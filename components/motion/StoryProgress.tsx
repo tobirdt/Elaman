@@ -1,0 +1,61 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
+import type { StoryStep } from "@/types/site";
+
+type StoryProgressProps = {
+  steps: readonly StoryStep[];
+  activeIndex: number;
+};
+
+export function StoryProgress({ steps, activeIndex }: StoryProgressProps) {
+  const prefersReducedMotion = useReducedMotionPreference();
+  const progress = ((activeIndex + 1) / steps.length) * 100;
+
+  return (
+    <div className="mt-5 rounded-lg border border-line bg-white/72 p-4 shadow-[0_18px_60px_rgba(22,24,29,0.045)]">
+      <div className="flex items-center justify-between gap-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-graphite-soft">
+          Story Progress
+        </p>
+        <p className="text-xs font-semibold text-elaman-blue">
+          {String(activeIndex + 1).padStart(2, "0")} /{" "}
+          {String(steps.length).padStart(2, "0")}
+        </p>
+      </div>
+      <div className="mt-4 h-1 overflow-hidden rounded-full bg-graphite/8">
+        <motion.div
+          className="h-full rounded-full bg-gradient-to-r from-elaman-blue to-elaman-red"
+          initial={false}
+          animate={{ width: `${progress}%` }}
+          transition={
+            prefersReducedMotion ? { duration: 0 } : { duration: 0.45, ease: "easeOut" }
+          }
+        />
+      </div>
+      <ol className="mt-4 grid gap-2">
+        {steps.map((step, index) => (
+          <li key={step.id} className="flex items-center gap-3 text-xs">
+            <span
+              className={`size-2 rounded-full transition ${
+                index <= activeIndex ? "bg-elaman-blue" : "bg-graphite/16"
+              }`}
+              aria-hidden="true"
+            />
+            <span
+              className={
+                index === activeIndex
+                  ? "font-semibold text-graphite"
+                  : "text-graphite-soft"
+              }
+            >
+              {step.title}
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
