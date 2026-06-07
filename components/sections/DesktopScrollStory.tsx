@@ -62,7 +62,7 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
     <div
       ref={sectionRef}
       className="relative"
-      style={{ height: `${content.steps.length * 100}svh` }}
+      style={{ height: `${content.steps.length * 80}svh` }}
     >
       <div className="sticky top-[var(--header-h)] flex h-[calc(100svh-var(--header-h))] items-center overflow-hidden">
         <Container className="grid items-center gap-8 xl:grid-cols-[0.72fr_1.04fr_0.78fr] xl:gap-10">

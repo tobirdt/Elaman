@@ -2,99 +2,171 @@ type MobileStoryVisualProps = {
   index: number;
 };
 
-type DotPattern = { blue: number[]; ring: number[]; red: number[] };
-
-// Per-step active dot sets — each creates a different visual pattern
-const STEP_PATTERNS: DotPattern[] = [
-  // 0: Trust — central stable cluster
-  { blue: [10, 11, 17, 18], ring: [3, 4, 24, 25], red: [] },
-  // 1: Advice — structured column
-  { blue: [2, 9, 16, 23, 28], ring: [3, 10, 17, 24], red: [] },
-  // 2: Communications — horizontal spread
-  { blue: [6, 7, 8, 13, 14, 15], ring: [0, 5, 20, 27], red: [] },
-  // 3: Surveillance — grid pattern
-  { blue: [0, 4, 8, 14, 20, 24, 28], ring: [6, 12, 18], red: [] },
-  // 4: Protection — red active
-  { blue: [2, 4, 6], ring: [8, 14, 20], red: [10, 11, 17, 18] },
-  // 5: Delivery — full system
-  { blue: [0, 4, 8, 12, 16], ring: [2, 6, 10, 14], red: [18, 22, 26] },
-];
+// Per-step abstract diagram configs
+const STEP_CONFIGS = [
+  // 0: Trust — single centered ring
+  { rings: 1, redArc: false, gridLines: false, crosshair: false },
+  // 1: Advice — rings + crosshair
+  { rings: 2, redArc: false, gridLines: false, crosshair: true },
+  // 2: Communications — arcs spread
+  { rings: 2, redArc: false, gridLines: false, crosshair: true },
+  // 3: Surveillance — grid lines appear
+  { rings: 2, redArc: false, gridLines: true, crosshair: true },
+  // 4: Protection — red arc activates
+  { rings: 2, redArc: true, gridLines: true, crosshair: true },
+  // 5: Delivery — full composition
+  { rings: 3, redArc: true, gridLines: true, crosshair: true },
+] as const;
 
 export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
-  const pattern = STEP_PATTERNS[index] ?? STEP_PATTERNS[0];
-  const isProtection = index === 4;
-  const isDelivery = index === 5;
+  const cfg = STEP_CONFIGS[index] ?? STEP_CONFIGS[0];
 
   return (
     <div className="relative h-20 overflow-hidden rounded-lg border border-line bg-white/76">
-      <div className="technical-grid absolute inset-0 opacity-40" aria-hidden="true" />
+      <div className="technical-grid absolute inset-0 opacity-35" aria-hidden="true" />
 
-      {/* Signal path SVG */}
       <svg
         viewBox="0 0 220 80"
         className="absolute inset-0 h-full w-full"
         fill="none"
         aria-hidden="true"
+        preserveAspectRatio="xMidYMid meet"
       >
-        {/* Primary path */}
-        <path
-          d={
-            isProtection
-              ? "M18 54 C54 24 86 24 110 40 C138 58 168 36 202 20"
-              : isDelivery
-                ? "M18 40 H202"
-                : "M22 58 C60 28 96 28 112 44 C130 62 162 38 198 24"
-          }
-          stroke={isProtection ? "#D83034" : "#244074"}
-          strokeDasharray={isProtection ? "4 9" : isDelivery ? "3 6" : "7 11"}
-          strokeLinecap="round"
-          strokeWidth={isDelivery ? "1" : "1.6"}
-          opacity="0.44"
+        {/* Rings */}
+        <circle
+          cx="110"
+          cy="40"
+          r="28"
+          stroke="#244074"
+          strokeWidth="0.8"
+          strokeOpacity="0.18"
+          strokeDasharray="2 6"
         />
-        {!isProtection && (
-          <path
-            d="M30 22 H96 C118 22 126 44 126 62 H186"
-            stroke="#16181D"
-            strokeLinecap="round"
-            strokeWidth="0.9"
-            opacity="0.12"
+        {cfg.rings >= 2 && (
+          <circle
+            cx="110"
+            cy="40"
+            r="18"
+            stroke="#244074"
+            strokeWidth="0.8"
+            strokeOpacity="0.16"
           />
         )}
-        {isDelivery && (
-          <path
-            d="M18 58 C60 44 96 30 202 56"
-            stroke="#D83034"
-            strokeDasharray="3 8"
-            strokeLinecap="round"
-            strokeWidth="1.2"
-            opacity="0.32"
+        {cfg.rings >= 3 && (
+          <circle
+            cx="110"
+            cy="40"
+            r="10"
+            stroke="#244074"
+            strokeWidth="0.8"
+            strokeOpacity="0.14"
+            strokeDasharray="1 4"
           />
         )}
-      </svg>
 
-      {/* Dot grid */}
-      <div className="relative z-10 grid h-full grid-cols-7 gap-1.5 p-3">
-        {Array.from({ length: 7 * 4 }, (_, i) => {
-          const isBlue = pattern.blue.includes(i);
-          const isRing = pattern.ring.includes(i);
-          const isRed = pattern.red.includes(i);
-
-          return (
-            <span
-              key={i}
-              className={`aspect-square self-center rounded-full ${
-                isRed
-                  ? "bg-elaman-red shadow-[0_0_0_4px_rgba(216,48,52,0.1)]"
-                  : isBlue
-                    ? "bg-elaman-blue shadow-[0_0_0_4px_rgba(36,64,116,0.1)]"
-                    : isRing
-                      ? "border border-elaman-blue/26 bg-white"
-                      : "bg-graphite/10"
-              }`}
+        {/* Crosshair */}
+        {cfg.crosshair && (
+          <>
+            <line
+              x1="40"
+              y1="40"
+              x2="180"
+              y2="40"
+              stroke="#244074"
+              strokeWidth="0.6"
+              strokeOpacity="0.10"
             />
-          );
-        })}
-      </div>
+            <line
+              x1="110"
+              y1="8"
+              x2="110"
+              y2="72"
+              stroke="#244074"
+              strokeWidth="0.6"
+              strokeOpacity="0.10"
+            />
+          </>
+        )}
+
+        {/* Grid lines */}
+        {cfg.gridLines && (
+          <>
+            <line
+              x1="40"
+              y1="22"
+              x2="180"
+              y2="22"
+              stroke="#244074"
+              strokeWidth="0.5"
+              strokeOpacity="0.07"
+              strokeDasharray="2 6"
+            />
+            <line
+              x1="40"
+              y1="58"
+              x2="180"
+              y2="58"
+              stroke="#244074"
+              strokeWidth="0.5"
+              strokeOpacity="0.07"
+              strokeDasharray="2 6"
+            />
+          </>
+        )}
+
+        {/* Blue comms arc */}
+        <path
+          d="M38 54 C66 34 88 26 110 26 C134 26 152 36 180 18"
+          stroke="#244074"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeDasharray="6 10"
+          strokeOpacity="0.48"
+        />
+
+        {/* Red ECM arc */}
+        {cfg.redArc && (
+          <path
+            d="M38 64 C72 54 90 44 110 38 C130 32 154 34 180 44"
+            stroke="#D83034"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            strokeDasharray="4 9"
+            strokeOpacity="0.40"
+          />
+        )}
+
+        {/* Center node */}
+        <circle cx="110" cy="40" r="3.5" fill="#244074" fillOpacity="0.48" />
+        <circle
+          cx="110"
+          cy="40"
+          r="8"
+          fill="none"
+          stroke="#244074"
+          strokeWidth="0.6"
+          strokeOpacity="0.16"
+        />
+
+        {/* Signal node on arc */}
+        <circle cx="110" cy="26" r="2.5" fill="#244074" fillOpacity="0.42" />
+
+        {/* Corner marks */}
+        <path
+          d="M16 12 H24 M16 12 V20"
+          stroke="#244074"
+          strokeWidth="0.8"
+          strokeOpacity="0.16"
+          strokeLinecap="round"
+        />
+        <path
+          d="M204 68 H196 M204 68 V60"
+          stroke={cfg.redArc ? "#D83034" : "#244074"}
+          strokeWidth="0.8"
+          strokeOpacity="0.14"
+          strokeLinecap="round"
+        />
+      </svg>
     </div>
   );
 }

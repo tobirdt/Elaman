@@ -12,68 +12,19 @@ type StickyStoryStageProps = {
   systemFocusLabel: string;
 };
 
-const TOTAL = 63; // 9 × 7
+const ease = [0.22, 1, 0.36, 1] as const;
 
-const layerTransition = {
-  duration: 0.65,
-  ease: [0.22, 1, 0.36, 1],
-} as const;
-
-// Per-step: which dots are active and what tone
-// Step 0 (Trust/Foundation): center cluster — stability
-const STEP_DOTS: Record<number, { blue: number[]; ring: number[]; red: number[] }> = {
-  0: {
-    blue: [21, 22, 30, 31, 39, 40],
-    ring: [12, 13, 14, 48, 49, 50],
-    red: [],
-  },
-  1: {
-    // Advice / architecture: structured columns emerge
-    blue: [4, 13, 22, 31, 40, 49, 58],
-    ring: [21, 22, 23, 39, 40, 41],
-    red: [],
-  },
-  2: {
-    // Communications: horizontal network spreads
-    blue: [4, 13, 22, 31, 40, 49, 58, 9, 18, 27, 36, 45, 54],
-    ring: [5, 14, 23, 32, 41, 50, 59],
-    red: [],
-  },
-  3: {
-    // Surveillance: observation grid fills
-    blue: [4, 13, 22, 31, 40, 49, 58, 9, 18, 27, 36, 45, 54],
-    ring: [0, 8, 16, 24, 32, 40, 48, 56, 62],
-    red: [],
-  },
-  4: {
-    // Protection: red countermeasure layer activates
-    blue: [4, 13, 22, 31, 40, 49, 58, 9, 18, 27, 36, 45, 54],
-    ring: [0, 8, 16, 24, 32, 40, 48, 56, 62],
-    red: [28, 29, 37, 38, 46, 47],
-  },
-  5: {
-    // Delivery: full integrated system — all layers
-    blue: [4, 13, 22, 31, 40, 49, 58, 9, 18, 27, 36, 45, 54, 1, 2, 3],
-    ring: [0, 8, 16, 24, 32, 40, 48, 56, 62, 6, 7],
-    red: [28, 29, 37, 38, 46, 47, 55, 61],
-  },
-};
-
-function getDotState(index: number, activeIndex: number) {
-  const state = STEP_DOTS[Math.min(activeIndex, 5)] ?? STEP_DOTS[0];
-  if (state.red.includes(index)) return "red";
-  if (state.blue.includes(index)) return "blue";
-  if (state.ring.includes(index)) return "ring";
-  return "inactive";
+function vis(activeIndex: number, from: number, reduced: boolean) {
+  const on = activeIndex >= from;
+  return {
+    opacity: on ? 1 : 0,
+    pathLength: on ? 1 : 0,
+    scale: on || reduced ? 1 : 0.97,
+  };
 }
 
-function layerVisible(activeIndex: number, visibleFrom: number, reduced: boolean) {
-  const visible = activeIndex >= visibleFrom;
-  return {
-    opacity: visible ? 1 : 0,
-    pathLength: visible ? 1 : 0,
-    scale: visible || reduced ? 1 : 0.98,
-  };
+function fadeIn(activeIndex: number, from: number) {
+  return { opacity: activeIndex >= from ? 1 : 0 };
 }
 
 export function StickyStoryStage({
@@ -84,125 +35,271 @@ export function StickyStoryStage({
 }: StickyStoryStageProps) {
   const reduced = useReducedMotionPreference();
   const activeStep = steps[activeIndex] ?? steps[0];
-  const transition = reduced ? { duration: 0 } : layerTransition;
+  const t = reduced ? { duration: 0 } : { duration: 0.65, ease };
+  const tFast = reduced ? { duration: 0 } : { duration: 0.4, ease };
 
   return (
     <div className="glass-surface-strong relative min-h-[28rem] overflow-hidden rounded-xl p-5 sm:p-7 xl:h-[calc(100vh-13rem)] xl:min-h-[34rem]">
-      <div className="technical-grid absolute inset-0 opacity-60" aria-hidden="true" />
+      <div className="technical-grid absolute inset-0 opacity-55" aria-hidden="true" />
+      <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-elaman-blue/28 to-transparent" />
+      <div className="absolute bottom-6 left-6 right-6 h-px bg-gradient-to-r from-transparent via-elaman-red/22 to-transparent" />
 
-      {/* Accent lines */}
-      <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-elaman-blue/32 to-transparent" />
-      <div className="absolute bottom-6 left-6 right-6 h-px bg-gradient-to-r from-transparent via-elaman-red/24 to-transparent" />
-
+      {/* Abstract radar / system diagram — purely decorative */}
       <svg
-        viewBox="0 0 540 440"
-        className="absolute inset-0 h-full w-full overflow-visible"
+        viewBox="0 0 400 300"
+        className="absolute inset-0 h-full w-full"
         fill="none"
         aria-hidden="true"
+        preserveAspectRatio="xMidYMid meet"
       >
-        {/* Foundation ring — always visible, step 0 */}
-        <motion.circle
-          cx="270"
-          cy="220"
-          r="60"
+        {/* Outermost ring — always present, trust foundation */}
+        <circle
+          cx="200"
+          cy="150"
+          r="118"
           stroke="#244074"
-          strokeWidth="1"
-          strokeDasharray="4 8"
-          initial={false}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={transition}
-          opacity="0.14"
+          strokeWidth="0.8"
+          strokeOpacity="0.12"
+          strokeDasharray="3 9"
         />
 
-        {/* Communications arc — visible from step 2 */}
-        <motion.path
-          d="M52 290 C128 202 192 176 270 204 C342 228 398 176 488 106"
+        {/* Second ring — advice/architecture, step 1 */}
+        <motion.circle
+          cx="200"
+          cy="150"
+          r="84"
           stroke="#244074"
-          strokeWidth="3"
+          strokeWidth="0.9"
+          strokeOpacity="0.14"
+          initial={false}
+          animate={fadeIn(activeIndex, 1)}
+          transition={t}
+        />
+
+        {/* Inner ring — comms/ops, step 2 */}
+        <motion.circle
+          cx="200"
+          cy="150"
+          r="50"
+          stroke="#244074"
+          strokeWidth="1"
+          strokeOpacity="0.18"
+          strokeDasharray="2 6"
+          initial={false}
+          animate={fadeIn(activeIndex, 2)}
+          transition={t}
+        />
+
+        {/* Core ring — always present */}
+        <circle
+          cx="200"
+          cy="150"
+          r="18"
+          stroke="#244074"
+          strokeWidth="0.8"
+          strokeOpacity="0.20"
+        />
+
+        {/* Crosshair — horizontal, step 1 */}
+        <motion.line
+          x1="56"
+          y1="150"
+          x2="344"
+          y2="150"
+          stroke="#244074"
+          strokeWidth="0.7"
+          strokeOpacity="0.10"
+          initial={false}
+          animate={fadeIn(activeIndex, 1)}
+          transition={t}
+        />
+        {/* Crosshair — vertical, step 1 */}
+        <motion.line
+          x1="200"
+          y1="16"
+          x2="200"
+          y2="284"
+          stroke="#244074"
+          strokeWidth="0.7"
+          strokeOpacity="0.10"
+          initial={false}
+          animate={fadeIn(activeIndex, 1)}
+          transition={t}
+        />
+
+        {/* Communications arc — blue, step 2 */}
+        <motion.path
+          d="M72 210 C122 154 162 130 200 128 C242 126 274 148 328 100"
+          stroke="#244074"
+          strokeWidth="1.8"
           strokeLinecap="round"
           strokeDasharray="8 14"
+          strokeOpacity="0.50"
           initial={false}
-          animate={layerVisible(activeIndex, 2, reduced)}
-          transition={transition}
+          animate={vis(activeIndex, 2, reduced)}
+          transition={t}
         />
 
-        {/* Secondary comms thread — step 2 */}
+        {/* Surveillance sweep — second arc, step 3 */}
         <motion.path
-          d="M78 338 C156 318 220 282 268 228 C330 164 392 162 468 180"
+          d="M72 240 C138 222 178 196 200 168 C224 138 264 130 328 148"
           stroke="#244074"
-          strokeWidth="1.4"
+          strokeWidth="1.2"
           strokeLinecap="round"
+          strokeOpacity="0.28"
           initial={false}
-          animate={layerVisible(activeIndex, 2, reduced)}
-          transition={{ ...transition, delay: reduced ? 0 : 0.1 }}
+          animate={vis(activeIndex, 3, reduced)}
+          transition={{ ...t, delay: reduced ? 0 : 0.08 }}
         />
 
-        {/* Surveillance observation grid line — step 3 */}
-        <motion.path
-          d="M52 220 H488"
+        {/* Surveillance cross-axis — dashed horizontal band, step 3 */}
+        <motion.line
+          x1="72"
+          y1="150"
+          x2="328"
+          y2="150"
           stroke="#244074"
-          strokeWidth="1"
-          strokeDasharray="4 10"
+          strokeWidth="0.6"
+          strokeOpacity="0.16"
+          strokeDasharray="3 8"
           initial={false}
-          animate={layerVisible(activeIndex, 3, reduced)}
-          transition={transition}
-          opacity={0.3}
-        />
-        <motion.path
-          d="M270 60 V380"
-          stroke="#244074"
-          strokeWidth="1"
-          strokeDasharray="4 10"
-          initial={false}
-          animate={layerVisible(activeIndex, 3, reduced)}
-          transition={{ ...transition, delay: reduced ? 0 : 0.08 }}
-          opacity={0.22}
+          animate={fadeIn(activeIndex, 3)}
+          transition={t}
         />
 
-        {/* Protection layer — red ECM line, step 4 */}
+        {/* Protection ECM arc — red, step 4 */}
         <motion.path
-          d="M74 368 C162 346 226 308 276 248 C340 172 408 174 474 196"
+          d="M82 258 C152 238 192 206 200 178 C210 148 260 148 328 168"
           stroke="#D83034"
-          strokeWidth="3"
+          strokeWidth="1.8"
           strokeLinecap="round"
           strokeDasharray="5 12"
+          strokeOpacity="0.44"
           initial={false}
-          animate={layerVisible(activeIndex, 4, reduced)}
-          transition={transition}
+          animate={vis(activeIndex, 4, reduced)}
+          transition={t}
         />
 
-        {/* Delivery integration frame — step 5 */}
+        {/* Delivery integration frame — rectangle/L-bracket, step 5 */}
         <motion.path
-          d="M104 88 H324 C368 88 400 120 400 164 V360"
+          d="M100 72 H280 C304 72 320 88 320 112 V244"
           stroke="#16181D"
-          strokeWidth="1.4"
+          strokeWidth="1.2"
           strokeLinecap="round"
+          strokeOpacity="0.16"
           initial={false}
-          animate={layerVisible(activeIndex, 5, reduced)}
-          transition={transition}
-          opacity={0.22}
+          animate={vis(activeIndex, 5, reduced)}
+          transition={t}
         />
 
-        {/* Key network nodes */}
-        {[
-          { cx: 270, cy: 204, from: 2, color: "#244074" },
-          { cx: 192, cy: 238, from: 2, color: "#244074" },
-          { cx: 364, cy: 176, from: 3, color: "#244074" },
-          { cx: 276, cy: 248, from: 4, color: "#D83034" },
-          { cx: 164, cy: 148, from: 5, color: "#244074" },
-        ].map(({ cx, cy, from, color }) => (
-          <motion.g
-            key={`${cx}-${cy}`}
-            initial={false}
-            animate={layerVisible(activeIndex, from, reduced)}
-            transition={transition}
-          >
-            <circle cx={cx} cy={cy} r="14" fill={color} fillOpacity="0.07" />
-            <circle cx={cx} cy={cy} r="5" fill={color} opacity="0.55" />
-          </motion.g>
-        ))}
+        {/* Center origin dot */}
+        <circle cx="200" cy="150" r="4.5" fill="#244074" fillOpacity="0.50" />
+        <circle
+          cx="200"
+          cy="150"
+          r="11"
+          fill="none"
+          stroke="#244074"
+          strokeWidth="0.9"
+          strokeOpacity="0.20"
+        />
+
+        {/* North cardinal */}
+        <circle cx="200" cy="66" r="3" fill="#244074" fillOpacity="0.36" />
+        {/* East cardinal */}
+        <motion.circle
+          cx="284"
+          cy="150"
+          r="3"
+          fill="#244074"
+          fillOpacity="0.36"
+          initial={false}
+          animate={fadeIn(activeIndex, 1)}
+          transition={tFast}
+        />
+        {/* South cardinal */}
+        <motion.circle
+          cx="200"
+          cy="234"
+          r="3"
+          fill="#244074"
+          fillOpacity="0.36"
+          initial={false}
+          animate={fadeIn(activeIndex, 1)}
+          transition={tFast}
+        />
+        {/* West cardinal */}
+        <motion.circle
+          cx="116"
+          cy="150"
+          r="3"
+          fill="#244074"
+          fillOpacity="0.36"
+          initial={false}
+          animate={fadeIn(activeIndex, 1)}
+          transition={tFast}
+        />
+
+        {/* Node on comms arc */}
+        <motion.g initial={false} animate={fadeIn(activeIndex, 2)} transition={tFast}>
+          <circle cx="200" cy="128" r="5" fill="#244074" fillOpacity="0.55" />
+          <circle
+            cx="200"
+            cy="128"
+            r="12"
+            fill="none"
+            stroke="#244074"
+            strokeWidth="0.8"
+            strokeOpacity="0.18"
+          />
+        </motion.g>
+
+        {/* Node on ECM arc */}
+        <motion.g initial={false} animate={fadeIn(activeIndex, 4)} transition={tFast}>
+          <circle cx="260" cy="148" r="4" fill="#D83034" fillOpacity="0.52" />
+          <circle
+            cx="260"
+            cy="148"
+            r="10"
+            fill="none"
+            stroke="#D83034"
+            strokeWidth="0.8"
+            strokeOpacity="0.16"
+          />
+        </motion.g>
+
+        {/* Corner brackets */}
+        <path
+          d="M36 32 H50 M36 32 V46"
+          stroke="#244074"
+          strokeWidth="1"
+          strokeOpacity="0.16"
+          strokeLinecap="round"
+        />
+        <path
+          d="M364 32 H350 M364 32 V46"
+          stroke="#244074"
+          strokeWidth="1"
+          strokeOpacity="0.16"
+          strokeLinecap="round"
+        />
+        <path
+          d="M36 268 H50 M36 268 V254"
+          stroke="#244074"
+          strokeWidth="1"
+          strokeOpacity="0.16"
+          strokeLinecap="round"
+        />
+        <path
+          d="M364 268 H350 M364 268 V254"
+          stroke="#D83034"
+          strokeWidth="1"
+          strokeOpacity="0.14"
+          strokeLinecap="round"
+        />
       </svg>
 
+      {/* Content layer */}
       <div className="relative z-10 flex h-full min-h-[25rem] flex-col justify-between xl:min-h-full">
         {/* Top label bar */}
         <div className="flex items-start justify-between gap-4">
@@ -212,9 +309,9 @@ export function StickyStoryStage({
             </p>
             <motion.p
               key={activeStep.id}
-              initial={reduced ? false : { opacity: 0, y: 8 }}
+              initial={reduced ? false : { opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={transition}
+              transition={tFast}
               className="mt-1.5 text-sm leading-6 text-graphite-muted"
             >
               {activeStep.eyebrow}
@@ -226,40 +323,8 @@ export function StickyStoryStage({
           </div>
         </div>
 
-        {/* Dot matrix */}
-        <div className="relative mx-auto my-4 grid w-full max-w-[22rem] grid-cols-9 gap-2.5">
-          {Array.from({ length: TOTAL }, (_, index) => {
-            const dotState = getDotState(index, activeIndex);
-
-            return (
-              <motion.span
-                key={index}
-                className={`aspect-square rounded-full ${
-                  dotState === "red"
-                    ? "bg-elaman-red"
-                    : dotState === "blue"
-                      ? "bg-elaman-blue"
-                      : dotState === "ring"
-                        ? "border border-elaman-blue/32 bg-elaman-blue/8"
-                        : "bg-graphite/9"
-                }`}
-                initial={false}
-                animate={{
-                  scale: dotState === "red" || dotState === "blue" ? 1.12 : 1,
-                  opacity:
-                    dotState === "red" || dotState === "blue"
-                      ? 1
-                      : dotState === "ring"
-                        ? 0.85
-                        : 0.55,
-                }}
-                transition={
-                  reduced ? { duration: 0 } : { duration: 0.4, ease: "easeOut" }
-                }
-              />
-            );
-          })}
-        </div>
+        {/* Spacer — SVG fills this space */}
+        <div className="flex-1" />
 
         {/* Bottom step info */}
         <div>
@@ -268,9 +333,9 @@ export function StickyStoryStage({
           </p>
           <motion.h3
             key={`title-${activeStep.id}`}
-            initial={reduced ? false : { opacity: 0, y: 10 }}
+            initial={reduced ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={transition}
+            transition={tFast}
             className="mt-2 text-xl font-semibold leading-tight tracking-[-0.035em] text-graphite sm:text-2xl"
           >
             {activeStep.title}
@@ -279,14 +344,14 @@ export function StickyStoryStage({
             {activeStep.bullets.slice(0, 4).map((bullet, bIndex) => (
               <motion.div
                 key={bullet}
-                initial={reduced ? false : { opacity: 0, x: -6 }}
+                initial={reduced ? false : { opacity: 0, x: -4 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={
                   reduced
                     ? { duration: 0 }
-                    : { duration: 0.35, delay: bIndex * 0.06, ease: "easeOut" }
+                    : { duration: 0.3, delay: bIndex * 0.05, ease: "easeOut" }
                 }
-                className="flex items-center gap-2.5 rounded-md border border-line bg-white/72 px-3 py-2"
+                className="flex items-center gap-2.5 rounded-lg border border-line bg-white/72 px-3 py-2"
               >
                 <span
                   className={`size-1.5 shrink-0 rounded-full ${activeIndex >= 4 && bIndex === 0 ? "bg-elaman-red" : "bg-elaman-blue"}`}
