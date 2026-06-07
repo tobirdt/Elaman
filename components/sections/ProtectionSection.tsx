@@ -10,7 +10,7 @@ type ProtectionSectionProps = {
 
 export function ProtectionSection({ content }: ProtectionSectionProps) {
   return (
-    <Section id="protection" compact screen className="relative overflow-hidden">
+    <Section id="protection" compact className="relative overflow-hidden">
       {/* Top red accent line */}
       <div
         className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-elaman-red/36 to-transparent"

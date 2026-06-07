@@ -62,13 +62,13 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
     <div
       ref={sectionRef}
       className="relative"
-      style={{ height: `${content.steps.length * 80}svh` }}
+      style={{ height: `${content.steps.length * 60}svh` }}
     >
       <div className="sticky top-[var(--header-h)] flex h-[calc(100svh-var(--header-h))] items-center overflow-hidden">
         <Container className="grid items-center gap-8 xl:grid-cols-[0.72fr_1.04fr_0.78fr] xl:gap-10">
           <div>
             <SectionLabel>{content.label}</SectionLabel>
-            <h2 className="text-balance text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-graphite 2xl:text-6xl">
+            <h2 className="text-4xl font-semibold leading-[1.06] tracking-[-0.04em] text-graphite 2xl:text-5xl">
               {content.title}
             </h2>
             <p className="mt-5 max-w-md text-base leading-7 text-graphite-muted 2xl:text-lg 2xl:leading-8">

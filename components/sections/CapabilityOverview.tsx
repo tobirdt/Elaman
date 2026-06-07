@@ -10,7 +10,7 @@ type CapabilityOverviewProps = {
 
 export function CapabilityOverview({ content }: CapabilityOverviewProps) {
   return (
-    <Section id="capabilities" compact screen>
+    <Section id="capabilities" compact>
       <Container>
         <div className="grid gap-8 [&>*]:min-w-0 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
           <div>

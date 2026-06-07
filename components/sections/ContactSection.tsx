@@ -11,7 +11,7 @@ type ContactSectionProps = {
 
 export function ContactSection({ content }: ContactSectionProps) {
   return (
-    <Section id="contact" compact screen>
+    <Section id="contact" compact>
       <Container>
         <GlassPanel className="glass-surface-strong grid gap-6 overflow-hidden p-5 [&>*]:min-w-0 sm:p-7 lg:grid-cols-[0.8fr_1.2fr] lg:p-8">
           <div className="flex flex-col gap-6">

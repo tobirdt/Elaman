@@ -10,7 +10,7 @@ type SystemsSectionProps = {
 
 export function SystemsSection({ content }: SystemsSectionProps) {
   return (
-    <Section id="systems" compact screen className="bg-white">
+    <Section id="systems" compact className="bg-white">
       <Container>
         <div className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>

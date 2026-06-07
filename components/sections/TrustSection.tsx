@@ -14,7 +14,6 @@ export function TrustSection({ content }: TrustSectionProps) {
     <Section
       id="experience"
       compact
-      screen
       className="border-y border-line bg-porcelain/70"
     >
       <Container className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">

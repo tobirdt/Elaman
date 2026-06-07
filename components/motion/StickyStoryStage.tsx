@@ -46,31 +46,31 @@ export function StickyStoryStage({
 
       {/* Abstract radar / system diagram — purely decorative */}
       <svg
-        viewBox="0 0 400 300"
+        viewBox="0 0 400 400"
         className="absolute inset-0 h-full w-full"
         fill="none"
         aria-hidden="true"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMidYMid slice"
       >
         {/* Outermost ring — always present, trust foundation */}
         <circle
           cx="200"
-          cy="150"
-          r="118"
+          cy="200"
+          r="160"
           stroke="#244074"
-          strokeWidth="0.8"
-          strokeOpacity="0.12"
-          strokeDasharray="3 9"
+          strokeWidth="1"
+          strokeOpacity="0.18"
+          strokeDasharray="4 12"
         />
 
         {/* Second ring — advice/architecture, step 1 */}
         <motion.circle
           cx="200"
-          cy="150"
-          r="84"
+          cy="200"
+          r="116"
           stroke="#244074"
-          strokeWidth="0.9"
-          strokeOpacity="0.14"
+          strokeWidth="1"
+          strokeOpacity="0.22"
           initial={false}
           animate={fadeIn(activeIndex, 1)}
           transition={t}
@@ -79,12 +79,12 @@ export function StickyStoryStage({
         {/* Inner ring — comms/ops, step 2 */}
         <motion.circle
           cx="200"
-          cy="150"
-          r="50"
+          cy="200"
+          r="72"
           stroke="#244074"
-          strokeWidth="1"
-          strokeOpacity="0.18"
-          strokeDasharray="2 6"
+          strokeWidth="1.2"
+          strokeOpacity="0.28"
+          strokeDasharray="3 8"
           initial={false}
           animate={fadeIn(activeIndex, 2)}
           transition={t}
@@ -93,22 +93,22 @@ export function StickyStoryStage({
         {/* Core ring — always present */}
         <circle
           cx="200"
-          cy="150"
-          r="18"
+          cy="200"
+          r="26"
           stroke="#244074"
-          strokeWidth="0.8"
-          strokeOpacity="0.20"
+          strokeWidth="1.2"
+          strokeOpacity="0.30"
         />
 
         {/* Crosshair — horizontal, step 1 */}
         <motion.line
-          x1="56"
-          y1="150"
-          x2="344"
-          y2="150"
+          x1="0"
+          y1="200"
+          x2="400"
+          y2="200"
           stroke="#244074"
-          strokeWidth="0.7"
-          strokeOpacity="0.10"
+          strokeWidth="0.8"
+          strokeOpacity="0.14"
           initial={false}
           animate={fadeIn(activeIndex, 1)}
           transition={t}
@@ -116,12 +116,12 @@ export function StickyStoryStage({
         {/* Crosshair — vertical, step 1 */}
         <motion.line
           x1="200"
-          y1="16"
+          y1="0"
           x2="200"
-          y2="284"
+          y2="400"
           stroke="#244074"
-          strokeWidth="0.7"
-          strokeOpacity="0.10"
+          strokeWidth="0.8"
+          strokeOpacity="0.14"
           initial={false}
           animate={fadeIn(activeIndex, 1)}
           transition={t}
@@ -129,12 +129,12 @@ export function StickyStoryStage({
 
         {/* Communications arc — blue, step 2 */}
         <motion.path
-          d="M72 210 C122 154 162 130 200 128 C242 126 274 148 328 100"
+          d="M40 270 C100 200 150 170 200 168 C254 166 290 196 360 140"
           stroke="#244074"
-          strokeWidth="1.8"
+          strokeWidth="2"
           strokeLinecap="round"
-          strokeDasharray="8 14"
-          strokeOpacity="0.50"
+          strokeDasharray="10 16"
+          strokeOpacity="0.58"
           initial={false}
           animate={vis(activeIndex, 2, reduced)}
           transition={t}
@@ -142,26 +142,26 @@ export function StickyStoryStage({
 
         {/* Surveillance sweep — second arc, step 3 */}
         <motion.path
-          d="M72 240 C138 222 178 196 200 168 C224 138 264 130 328 148"
+          d="M40 310 C120 285 170 255 200 222 C232 188 274 178 360 206"
           stroke="#244074"
-          strokeWidth="1.2"
+          strokeWidth="1.4"
           strokeLinecap="round"
-          strokeOpacity="0.28"
+          strokeOpacity="0.36"
           initial={false}
           animate={vis(activeIndex, 3, reduced)}
           transition={{ ...t, delay: reduced ? 0 : 0.08 }}
         />
 
-        {/* Surveillance cross-axis — dashed horizontal band, step 3 */}
+        {/* Surveillance scan line — step 3 */}
         <motion.line
-          x1="72"
-          y1="150"
-          x2="328"
-          y2="150"
+          x1="40"
+          y1="200"
+          x2="360"
+          y2="200"
           stroke="#244074"
-          strokeWidth="0.6"
-          strokeOpacity="0.16"
-          strokeDasharray="3 8"
+          strokeWidth="0.7"
+          strokeOpacity="0.20"
+          strokeDasharray="4 10"
           initial={false}
           animate={fadeIn(activeIndex, 3)}
           transition={t}
@@ -169,72 +169,69 @@ export function StickyStoryStage({
 
         {/* Protection ECM arc — red, step 4 */}
         <motion.path
-          d="M82 258 C152 238 192 206 200 178 C210 148 260 148 328 168"
+          d="M50 335 C150 305 180 268 200 238 C222 204 272 198 360 226"
           stroke="#D83034"
-          strokeWidth="1.8"
+          strokeWidth="2"
           strokeLinecap="round"
-          strokeDasharray="5 12"
-          strokeOpacity="0.44"
+          strokeDasharray="6 14"
+          strokeOpacity="0.52"
           initial={false}
           animate={vis(activeIndex, 4, reduced)}
           transition={t}
         />
 
-        {/* Delivery integration frame — rectangle/L-bracket, step 5 */}
+        {/* Delivery integration frame — step 5 */}
         <motion.path
-          d="M100 72 H280 C304 72 320 88 320 112 V244"
+          d="M80 80 H310 C334 80 352 98 352 122 V340"
           stroke="#16181D"
-          strokeWidth="1.2"
+          strokeWidth="1.4"
           strokeLinecap="round"
-          strokeOpacity="0.16"
+          strokeOpacity="0.18"
           initial={false}
           animate={vis(activeIndex, 5, reduced)}
           transition={t}
         />
 
-        {/* Center origin dot */}
-        <circle cx="200" cy="150" r="4.5" fill="#244074" fillOpacity="0.50" />
+        {/* Center origin */}
+        <circle cx="200" cy="200" r="5.5" fill="#244074" fillOpacity="0.60" />
         <circle
           cx="200"
-          cy="150"
-          r="11"
+          cy="200"
+          r="14"
           fill="none"
           stroke="#244074"
-          strokeWidth="0.9"
-          strokeOpacity="0.20"
+          strokeWidth="1"
+          strokeOpacity="0.28"
         />
 
-        {/* North cardinal */}
-        <circle cx="200" cy="66" r="3" fill="#244074" fillOpacity="0.36" />
-        {/* East cardinal */}
+        {/* Cardinal marks at outer ring */}
+        <circle cx="200" cy="84" r="3.5" fill="#244074" fillOpacity="0.40" />
         <motion.circle
-          cx="284"
-          cy="150"
-          r="3"
+          cx="316"
+          cy="200"
+          r="3.5"
           fill="#244074"
-          fillOpacity="0.36"
+          fillOpacity="0.40"
           initial={false}
           animate={fadeIn(activeIndex, 1)}
           transition={tFast}
         />
-        {/* South cardinal */}
         <motion.circle
           cx="200"
-          cy="234"
-          r="3"
+          cy="316"
+          r="3.5"
           fill="#244074"
-          fillOpacity="0.36"
+          fillOpacity="0.40"
           initial={false}
           animate={fadeIn(activeIndex, 1)}
           transition={tFast}
         />
-        {/* West cardinal */}
         <motion.circle
-          cx="116"
-          cy="150"
-          r="3"
+          cx="84"
+          cy="200"
+          r="3.5"
           fill="#244074"
-          fillOpacity="0.36"
+          fillOpacity="0.40"
           initial={false}
           animate={fadeIn(activeIndex, 1)}
           transition={tFast}
@@ -242,59 +239,59 @@ export function StickyStoryStage({
 
         {/* Node on comms arc */}
         <motion.g initial={false} animate={fadeIn(activeIndex, 2)} transition={tFast}>
-          <circle cx="200" cy="128" r="5" fill="#244074" fillOpacity="0.55" />
+          <circle cx="200" cy="168" r="6" fill="#244074" fillOpacity="0.60" />
           <circle
             cx="200"
-            cy="128"
-            r="12"
+            cy="168"
+            r="14"
             fill="none"
             stroke="#244074"
-            strokeWidth="0.8"
-            strokeOpacity="0.18"
+            strokeWidth="1"
+            strokeOpacity="0.22"
           />
         </motion.g>
 
         {/* Node on ECM arc */}
         <motion.g initial={false} animate={fadeIn(activeIndex, 4)} transition={tFast}>
-          <circle cx="260" cy="148" r="4" fill="#D83034" fillOpacity="0.52" />
+          <circle cx="272" cy="198" r="5" fill="#D83034" fillOpacity="0.60" />
           <circle
-            cx="260"
-            cy="148"
-            r="10"
+            cx="272"
+            cy="198"
+            r="13"
             fill="none"
             stroke="#D83034"
-            strokeWidth="0.8"
-            strokeOpacity="0.16"
+            strokeWidth="1"
+            strokeOpacity="0.22"
           />
         </motion.g>
 
         {/* Corner brackets */}
         <path
-          d="M36 32 H50 M36 32 V46"
+          d="M14 14 H32 M14 14 V32"
           stroke="#244074"
-          strokeWidth="1"
-          strokeOpacity="0.16"
+          strokeWidth="1.2"
+          strokeOpacity="0.22"
           strokeLinecap="round"
         />
         <path
-          d="M364 32 H350 M364 32 V46"
+          d="M386 14 H368 M386 14 V32"
           stroke="#244074"
-          strokeWidth="1"
-          strokeOpacity="0.16"
+          strokeWidth="1.2"
+          strokeOpacity="0.22"
           strokeLinecap="round"
         />
         <path
-          d="M36 268 H50 M36 268 V254"
+          d="M14 386 H32 M14 386 V368"
           stroke="#244074"
-          strokeWidth="1"
-          strokeOpacity="0.16"
+          strokeWidth="1.2"
+          strokeOpacity="0.22"
           strokeLinecap="round"
         />
         <path
-          d="M364 268 H350 M364 268 V254"
+          d="M386 386 H368 M386 386 V368"
           stroke="#D83034"
-          strokeWidth="1"
-          strokeOpacity="0.14"
+          strokeWidth="1.2"
+          strokeOpacity="0.20"
           strokeLinecap="round"
         />
       </svg>

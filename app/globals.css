@@ -202,8 +202,7 @@ select {
 
 .text-balance {
   text-wrap: balance;
-  overflow-wrap: anywhere;
-  hyphens: auto;
+  overflow-wrap: break-word;
 }
 
 .form-field {

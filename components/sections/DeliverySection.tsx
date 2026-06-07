@@ -10,7 +10,7 @@ type DeliverySectionProps = {
 
 export function DeliverySection({ content }: DeliverySectionProps) {
   return (
-    <Section id="delivery" compact screen className="bg-porcelain/70">
+    <Section id="delivery" compact className="bg-porcelain/70">
       <Container>
         <div className="max-w-3xl">
           <SectionLabel>{content.label}</SectionLabel>
