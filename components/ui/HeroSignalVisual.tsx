@@ -10,7 +10,7 @@ export function HeroSignalVisual() {
   });
 
   return (
-    <div className="relative min-h-[20rem] overflow-hidden rounded-lg border border-white/80 bg-white/64 p-5 shadow-[0_32px_100px_rgba(22,24,29,0.09)] backdrop-blur-2xl sm:min-h-[31rem] sm:p-7 lg:min-h-[38rem]">
+    <div className="relative min-h-[18rem] overflow-hidden rounded-lg border border-white/80 bg-white/64 p-5 shadow-[0_32px_100px_rgba(22,24,29,0.09)] backdrop-blur-2xl sm:min-h-[29rem] sm:p-7 lg:min-h-[31rem]">
       <div className="technical-grid absolute inset-0 opacity-80" aria-hidden="true" />
       <div className="absolute inset-x-8 top-8 h-px bg-gradient-to-r from-transparent via-elaman-blue/30 to-transparent" />
       <div className="absolute bottom-8 left-8 right-8 h-px bg-gradient-to-r from-transparent via-elaman-red/24 to-transparent" />
@@ -46,7 +46,7 @@ export function HeroSignalVisual() {
         />
       </svg>
 
-      <div className="relative z-10 flex h-full min-h-[17rem] flex-col justify-between sm:min-h-[28rem] lg:min-h-[35rem]">
+      <div className="relative z-10 flex h-full min-h-[15rem] flex-col justify-between sm:min-h-[26rem] lg:min-h-[28rem]">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-elaman-blue">

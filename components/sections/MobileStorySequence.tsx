@@ -7,10 +7,10 @@ import { storyContent } from "@/lib/content/story";
 
 export function MobileStorySequence() {
   return (
-    <Container className="relative py-[var(--section-y)]">
+    <Container className="relative py-[var(--section-y-compact)]">
       <div className="max-w-2xl">
         <SectionLabel>{storyContent.label}</SectionLabel>
-        <h2 className="text-4xl font-semibold leading-[1.04] tracking-[-0.045em] text-graphite sm:text-5xl">
+        <h2 className="text-balance text-4xl font-semibold leading-[1.04] tracking-[-0.045em] text-graphite sm:text-5xl">
           {storyContent.mobileTitle}
         </h2>
         <p className="mt-5 text-base leading-7 text-graphite-muted sm:text-lg sm:leading-8">
@@ -30,10 +30,10 @@ export function MobileStorySequence() {
         </div>
       </div>
 
-      <ol className="mt-10 grid gap-4">
+      <ol className="mt-8 grid gap-4">
         {storyContent.steps.map((step, index) => (
           <li key={step.id}>
-            <article className="rounded-lg border border-line bg-white/78 p-4 shadow-[0_18px_60px_rgba(22,24,29,0.05)] sm:p-5">
+            <article className="rounded-lg border border-line bg-white/78 p-4 shadow-[0_18px_60px_rgba(22,24,29,0.045)] sm:p-5">
               <MobileStoryVisual index={index} />
               <div className="mt-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-elaman-blue">

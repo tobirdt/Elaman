@@ -6,22 +6,22 @@ type SystemMapProps = {
 
 export function SystemMap({ items }: SystemMapProps) {
   return (
-    <div className="relative overflow-hidden rounded-lg border border-white/12 bg-white/[0.055] p-5 sm:p-7">
-      <div className="technical-grid absolute inset-0 opacity-25" aria-hidden="true" />
+    <div className="glass-surface-strong relative overflow-hidden rounded-lg p-5 sm:p-7">
+      <div className="technical-grid absolute inset-0 opacity-55" aria-hidden="true" />
       <svg
         viewBox="0 0 760 360"
-        className="relative z-0 hidden w-full sm:block"
+        className="relative z-0 hidden h-56 w-full sm:block"
         fill="none"
         aria-hidden="true"
       >
         <path
           d="M106 184 H276 C326 184 336 84 392 84 H624"
-          stroke="#FFFFFF"
+          stroke="#244074"
           strokeOpacity="0.18"
         />
         <path
           d="M106 184 H292 C344 184 350 276 405 276 H654"
-          stroke="#FFFFFF"
+          stroke="#244074"
           strokeOpacity="0.18"
         />
         <path
@@ -30,9 +30,9 @@ export function SystemMap({ items }: SystemMapProps) {
           strokeOpacity="0.42"
           strokeDasharray="6 12"
         />
-        <circle cx="106" cy="184" r="42" fill="rgba(255,255,255,0.08)" />
+        <circle cx="106" cy="184" r="42" fill="rgba(36,64,116,0.06)" />
         <circle cx="106" cy="184" r="12" fill="#244074" />
-        <circle cx="644" cy="184" r="34" fill="rgba(255,255,255,0.08)" />
+        <circle cx="644" cy="184" r="34" fill="rgba(216,48,52,0.06)" />
         <circle cx="644" cy="184" r="10" fill="#D83034" />
       </svg>
       <div
@@ -45,24 +45,26 @@ export function SystemMap({ items }: SystemMapProps) {
               className={`size-3 rounded-full ${index === items.length - 1 ? "bg-elaman-red" : "bg-elaman-blue"}`}
             />
             {index < items.length - 1 ? (
-              <span className="h-px flex-1 bg-white/16" />
+              <span className="h-px flex-1 bg-graphite/12" />
             ) : null}
           </div>
         ))}
       </div>
-      <div className="relative z-10 grid gap-3 sm:-mt-6 md:grid-cols-2">
+      <div className="relative z-10 grid gap-3 sm:-mt-4 md:grid-cols-2 xl:grid-cols-5">
         {items.map((item, index) => (
           <article
             key={item.title}
-            className="rounded-sm border border-white/10 bg-white/[0.07] p-4"
+            className="rounded-sm border border-line bg-white/72 p-3.5"
           >
             <p className="text-[0.68rem] font-semibold text-elaman-red">
               SYS {String(index + 1).padStart(2, "0")}
             </p>
-            <h3 className="mt-4 text-lg font-semibold tracking-[-0.02em] text-white">
+            <h3 className="mt-3 text-base font-semibold tracking-[-0.02em] text-graphite">
               {item.title}
             </h3>
-            <p className="mt-2 text-sm leading-6 text-white/62">{item.description}</p>
+            <p className="mt-2 text-xs leading-5 text-graphite-muted">
+              {item.description}
+            </p>
           </article>
         ))}
       </div>

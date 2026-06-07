@@ -6,11 +6,11 @@ import { deliveryContent } from "@/lib/content/delivery";
 
 export function DeliverySection() {
   return (
-    <Section id="delivery" className="bg-porcelain/70">
+    <Section id="delivery" compact screen className="bg-porcelain/70">
       <Container>
         <div className="max-w-3xl">
           <SectionLabel>{deliveryContent.label}</SectionLabel>
-          <h2 className="text-5xl font-semibold leading-[1.03] tracking-[-0.045em] text-graphite md:text-6xl">
+          <h2 className="text-balance text-4xl font-semibold leading-[1.04] tracking-[-0.045em] text-graphite md:text-5xl xl:text-6xl">
             {deliveryContent.title}
           </h2>
           <p className="mt-6 text-lg leading-8 text-graphite-muted">

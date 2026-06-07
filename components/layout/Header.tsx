@@ -6,10 +6,14 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { legalNavigation, navigationItems } from "@/lib/content/navigation";
 
+function homeSectionHref(href: string) {
+  return href.startsWith("#") ? `/${href}` : href;
+}
+
 export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/70 bg-white/72 backdrop-blur-2xl">
-      <Container className="flex h-20 items-center justify-between gap-5">
+      <Container className="flex h-16 items-center justify-between gap-3 lg:h-20 lg:gap-5">
         <Link href="/" className="flex items-center" aria-label="Elaman home">
           <Image
             src="/brand/elaman-logo.png"
@@ -17,7 +21,7 @@ export function Header() {
             width={188}
             height={72}
             priority
-            className="h-auto w-36 sm:w-44"
+            className="h-auto w-32 sm:w-44"
           />
         </Link>
 
@@ -25,7 +29,7 @@ export function Header() {
           {navigationItems.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={homeSectionHref(item.href)}
               className="rounded-full px-4 py-2 transition hover:bg-white hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-elaman-blue"
             >
               {item.label}
@@ -33,15 +37,13 @@ export function Header() {
           ))}
         </nav>
 
-        <Button
-          href="#contact"
-          variant="secondary"
-          className="hidden px-4 py-2.5 min-[390px]:inline-flex"
-        >
-          Contact
-        </Button>
+        <div className="hidden sm:block">
+          <Button href="/#contact" variant="secondary" className="px-4 py-2.5">
+            Contact
+          </Button>
+        </div>
 
-        <details className="group relative lg:hidden">
+        <details className="group relative z-50 block shrink-0 lg:hidden">
           <summary
             aria-label="Open site navigation"
             className="glass-surface flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium text-graphite transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue [&::-webkit-details-marker]:hidden"
@@ -57,7 +59,7 @@ export function Header() {
               {navigationItems.map((item) => (
                 <a
                   key={item.href}
-                  href={item.href}
+                  href={homeSectionHref(item.href)}
                   className="rounded-sm px-4 py-3 text-graphite-muted transition hover:bg-white hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-elaman-blue"
                 >
                   {item.label}

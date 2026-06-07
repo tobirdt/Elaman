@@ -12,113 +12,118 @@ import { storyContent } from "@/lib/content/story";
 
 export function DesktopScrollStory() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotionPreference();
+  const activeStep = storyContent.steps[activeIndex] ?? storyContent.steps[0];
 
   useEffect(() => {
-    const nodes = stepRefs.current.filter(Boolean) as HTMLDivElement[];
+    let frame = 0;
 
-    if (nodes.length === 0) {
-      return;
+    function updateActiveStep() {
+      const section = sectionRef.current;
+
+      if (!section) {
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const scrollRange = section.offsetHeight - window.innerHeight;
+      const traveled = Math.min(Math.max(-rect.top, 0), scrollRange);
+      const progress = scrollRange > 0 ? traveled / scrollRange : 0;
+      const nextIndex = Math.min(
+        storyContent.steps.length - 1,
+        Math.max(0, Math.round(progress * (storyContent.steps.length - 1))),
+      );
+
+      setActiveIndex(nextIndex);
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    function scheduleUpdate() {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActiveStep);
+    }
 
-        if (!visible) {
-          return;
-        }
+    updateActiveStep();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
 
-        const nextIndex = Number((visible.target as HTMLElement).dataset.storyIndex ?? 0);
-        setActiveIndex(nextIndex);
-      },
-      {
-        root: null,
-        rootMargin: "-44% 0px -44% 0px",
-        threshold: [0.12, 0.38, 0.62, 0.86],
-      },
-    );
-
-    nodes.forEach((node) => observer.observe(node));
-
-    return () => observer.disconnect();
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+    };
   }, []);
 
   return (
-    <Container className="relative py-[var(--section-y)]">
-      <div className="grid gap-8 xl:grid-cols-[0.88fr_1.12fr] xl:items-end">
-        <div>
-          <SectionLabel>{storyContent.label}</SectionLabel>
-          <h2 className="text-5xl font-semibold leading-[1.03] tracking-[-0.045em] text-graphite md:text-6xl">
-            {storyContent.title}
-          </h2>
-        </div>
-        <p className="max-w-2xl text-lg leading-8 text-graphite-muted xl:justify-self-end">
-          {storyContent.body}
-        </p>
-      </div>
+    <div ref={sectionRef} className="relative h-[500svh]">
+      <div className="sticky top-[var(--header-h)] flex h-[calc(100svh-var(--header-h))] items-center overflow-hidden">
+        <Container className="grid items-center gap-8 xl:grid-cols-[0.72fr_1.04fr_0.78fr] xl:gap-10">
+          <div>
+            <SectionLabel>{storyContent.label}</SectionLabel>
+            <h2 className="text-balance text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-graphite 2xl:text-6xl">
+              {storyContent.title}
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-7 text-graphite-muted 2xl:text-lg 2xl:leading-8">
+              {storyContent.body}
+            </p>
+            <StoryProgress activeIndex={activeIndex} steps={storyContent.steps} />
+          </div>
 
-      <div className="mt-16 grid gap-10 xl:grid-cols-[minmax(0,1.08fr)_minmax(25rem,0.92fr)] xl:gap-14">
-        <div className="xl:sticky xl:top-24 xl:self-start">
           <StickyStoryStage activeIndex={activeIndex} steps={storyContent.steps} />
-          <StoryProgress activeIndex={activeIndex} steps={storyContent.steps} />
-        </div>
 
-        <div className="xl:block">
-          {storyContent.steps.map((step, index) => (
-            <div
-              key={step.id}
-              ref={(node) => {
-                stepRefs.current[index] = node;
-              }}
-              data-story-index={index}
-              className="xl:flex xl:min-h-[82vh] xl:items-center"
-            >
-              <motion.article
-                aria-current={activeIndex === index ? "step" : undefined}
-                className={`rounded-lg border p-7 shadow-[0_24px_80px_rgba(22,24,29,0.045)] transition duration-300 ${
-                  activeIndex === index
-                    ? "border-elaman-blue/30 bg-white shadow-[0_30px_90px_rgba(36,64,116,0.08)]"
-                    : "border-line bg-white/64"
-                }`}
-                initial={false}
-                animate={{
-                  opacity: activeIndex === index ? 1 : 0.7,
-                  y: prefersReducedMotion || activeIndex === index ? 0 : 12,
-                }}
-                transition={
-                  prefersReducedMotion
-                    ? { duration: 0 }
-                    : { duration: 0.38, ease: "easeOut" }
-                }
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-elaman-blue">
-                  {step.eyebrow}
-                </p>
-                <h3 className="mt-6 text-4xl font-semibold leading-tight tracking-[-0.04em] text-graphite">
-                  {step.title}
-                </h3>
-                <p className="mt-5 text-base leading-8 text-graphite-muted">
-                  {step.description}
-                </p>
-                <div className="mt-7 grid gap-2 sm:grid-cols-2">
-                  {step.bullets.map((bullet) => (
-                    <div
-                      key={bullet}
-                      className="rounded-sm border border-line bg-porcelain/70 px-4 py-3"
-                    >
-                      <p className="text-sm font-medium text-graphite-muted">{bullet}</p>
-                    </div>
-                  ))}
+          <motion.article
+            key={activeStep.id}
+            aria-current="step"
+            className="glass-surface-strong rounded-lg p-7"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={
+              prefersReducedMotion
+                ? { duration: 0 }
+                : { duration: 0.42, ease: [0.22, 1, 0.36, 1] }
+            }
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-elaman-blue">
+              {activeStep.eyebrow}
+            </p>
+            <h3 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-graphite">
+              {activeStep.title}
+            </h3>
+            <p className="mt-5 text-base leading-8 text-graphite-muted">
+              {activeStep.description}
+            </p>
+            <div className="mt-7 grid gap-2">
+              {activeStep.bullets.map((bullet, index) => (
+                <div
+                  key={bullet}
+                  className="flex items-center gap-3 rounded-sm border border-line bg-white/72 px-4 py-3"
+                >
+                  <span
+                    className={`size-1.5 rounded-full ${
+                      activeIndex >= 3 && index === 0 ? "bg-elaman-red" : "bg-elaman-blue"
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <p className="text-sm font-medium text-graphite-muted">{bullet}</p>
                 </div>
-              </motion.article>
+              ))}
             </div>
-          ))}
+          </motion.article>
+        </Container>
+      </div>
+
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div className="sticky top-[calc(var(--header-h)+1.5rem)] ml-auto mr-[var(--page-x)] h-1 w-28 overflow-hidden rounded-full bg-graphite/10">
+          <motion.div
+            className="h-full rounded-full bg-gradient-to-r from-elaman-blue to-elaman-red"
+            initial={false}
+            animate={{
+              width: `${((activeIndex + 1) / storyContent.steps.length) * 100}%`,
+            }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.35 }}
+          />
         </div>
       </div>
-    </Container>
+    </div>
   );
 }

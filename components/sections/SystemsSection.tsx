@@ -6,15 +6,17 @@ import { systemsContent } from "@/lib/content/systems";
 
 export function SystemsSection() {
   return (
-    <Section id="systems" className="bg-graphite text-white">
+    <Section id="systems" compact screen className="bg-white">
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
-            <SectionLabel tone="red">{systemsContent.label}</SectionLabel>
-            <h2 className="text-5xl font-semibold leading-[1.03] tracking-[-0.045em] md:text-6xl">
+            <SectionLabel>{systemsContent.label}</SectionLabel>
+            <h2 className="text-balance text-4xl font-semibold leading-[1.04] tracking-[-0.045em] text-graphite md:text-5xl xl:text-6xl">
               {systemsContent.title}
             </h2>
-            <p className="mt-6 text-lg leading-8 text-white/68">{systemsContent.body}</p>
+            <p className="mt-6 text-lg leading-8 text-graphite-muted">
+              {systemsContent.body}
+            </p>
           </div>
           <SystemMap items={systemsContent.items} />
         </div>

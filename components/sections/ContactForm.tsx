@@ -138,7 +138,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-4"
+      className="grid gap-3.5"
       noValidate
       aria-busy={status === "loading"}
     >
@@ -195,52 +195,54 @@ export function ContactForm() {
         </label>
       </div>
 
-      <label className={fieldBase}>
-        Company
-        <input
-          id="company"
-          className="form-field"
-          name="company"
-          autoComplete="organization"
-          value={values.company}
-          onChange={updateField}
-          aria-invalid={Boolean(errors.company)}
-          aria-describedby={errors.company ? "company-error" : undefined}
-        />
-        {errors.company ? (
-          <span id="company-error" className="text-xs text-elaman-red">
-            {errors.company}
-          </span>
-        ) : null}
-      </label>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className={fieldBase}>
+          Company
+          <input
+            id="company"
+            className="form-field"
+            name="company"
+            autoComplete="organization"
+            value={values.company}
+            onChange={updateField}
+            aria-invalid={Boolean(errors.company)}
+            aria-describedby={errors.company ? "company-error" : undefined}
+          />
+          {errors.company ? (
+            <span id="company-error" className="text-xs text-elaman-red">
+              {errors.company}
+            </span>
+          ) : null}
+        </label>
 
-      <label className={fieldBase}>
-        Email
-        <input
-          id="email"
-          className="form-field"
-          name="email"
-          type="email"
-          inputMode="email"
-          autoComplete="email"
-          required
-          value={values.email}
-          onChange={updateField}
-          aria-invalid={Boolean(errors.email)}
-          aria-describedby={errors.email ? "email-error" : undefined}
-        />
-        {errors.email ? (
-          <span id="email-error" className="text-xs text-elaman-red">
-            {errors.email}
-          </span>
-        ) : null}
-      </label>
+        <label className={fieldBase}>
+          Email
+          <input
+            id="email"
+            className="form-field"
+            name="email"
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            required
+            value={values.email}
+            onChange={updateField}
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "email-error" : undefined}
+          />
+          {errors.email ? (
+            <span id="email-error" className="text-xs text-elaman-red">
+              {errors.email}
+            </span>
+          ) : null}
+        </label>
+      </div>
 
       <label className={fieldBase}>
         Message
         <textarea
           id="message"
-          className="form-field min-h-36 resize-y"
+          className="form-field min-h-24 resize-y"
           name="message"
           required
           value={values.message}
@@ -255,7 +257,7 @@ export function ContactForm() {
         ) : null}
       </label>
 
-      <div className="mt-2 flex flex-col gap-4 sm:flex-row sm:items-center">
+      <div className="mt-1 flex flex-col gap-4 sm:flex-row sm:items-center">
         <Button
           type="submit"
           disabled={status === "loading"}

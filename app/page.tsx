@@ -1,5 +1,6 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { AnchorScrollManager } from "@/components/motion/AnchorScrollManager";
 import { MotionReveal } from "@/components/motion/MotionReveal";
 import { CapabilityOverview } from "@/components/sections/CapabilityOverview";
 import { ContactSection } from "@/components/sections/ContactSection";
@@ -13,6 +14,7 @@ import { TrustSection } from "@/components/sections/TrustSection";
 export default function Home() {
   return (
     <>
+      <AnchorScrollManager />
       <Header />
       <main>
         <HeroSection />
