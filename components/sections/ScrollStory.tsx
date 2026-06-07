@@ -1,7 +1,14 @@
 import { DesktopScrollStory } from "@/components/sections/DesktopScrollStory";
 import { MobileStorySequence } from "@/components/sections/MobileStorySequence";
+import type { LocalizedSiteContent } from "@/lib/content/site";
+import type { Locale } from "@/lib/i18n";
 
-export function ScrollStory() {
+type ScrollStoryProps = {
+  locale: Locale;
+  content: LocalizedSiteContent;
+};
+
+export function ScrollStory({ locale, content }: ScrollStoryProps) {
   return (
     <section
       id="story"
@@ -12,10 +19,16 @@ export function ScrollStory() {
         aria-hidden="true"
       />
       <div className="hidden xl:block" data-story-variant="desktop">
-        <DesktopScrollStory />
+        <DesktopScrollStory content={content.story} />
       </div>
       <div className="xl:hidden" data-story-variant="mobile">
-        <MobileStorySequence />
+        <MobileStorySequence
+          locale={locale}
+          story={content.story}
+          contact={content.contact}
+          primaryCta={content.hero.primaryCta.label}
+          secondaryCta={content.hero.secondaryCta.label}
+        />
       </div>
     </section>
   );

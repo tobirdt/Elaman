@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/lib/seo/site";
 
-const routes = ["/", "/imprint", "/private-policy"] as const;
+const routes = ["/", "/en", "/de", "/imprint", "/private-policy"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     url: new URL(route, siteConfig.url).toString(),
     lastModified,
-    changeFrequency: route === "/" ? "monthly" : "yearly",
-    priority: route === "/" ? 1 : 0.4,
+    changeFrequency: route === "/en" || route === "/de" ? "monthly" : "yearly",
+    priority: route === "/en" || route === "/de" ? 1 : route === "/" ? 0.7 : 0.4,
   }));
 }

@@ -8,9 +8,10 @@ import type { StoryStep } from "@/types/site";
 type StoryProgressProps = {
   steps: readonly StoryStep[];
   activeIndex: number;
+  label: string;
 };
 
-export function StoryProgress({ steps, activeIndex }: StoryProgressProps) {
+export function StoryProgress({ steps, activeIndex, label }: StoryProgressProps) {
   const prefersReducedMotion = useReducedMotionPreference();
   const progress = ((activeIndex + 1) / steps.length) * 100;
 
@@ -18,7 +19,7 @@ export function StoryProgress({ steps, activeIndex }: StoryProgressProps) {
     <div className="mt-5 rounded-lg border border-line bg-white/72 p-4 shadow-[0_18px_60px_rgba(22,24,29,0.045)]">
       <div className="flex items-center justify-between gap-4">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-graphite-soft">
-          Story Progress
+          {label}
         </p>
         <p className="text-xs font-semibold text-elaman-blue">
           {String(activeIndex + 1).padStart(2, "0")} /{" "}
@@ -35,23 +36,29 @@ export function StoryProgress({ steps, activeIndex }: StoryProgressProps) {
           }
         />
       </div>
-      <ol className="mt-4 grid gap-2">
+      <ol className="mt-4 grid gap-1.5">
         {steps.map((step, index) => (
           <li key={step.id} className="flex items-center gap-3 text-xs">
             <span
-              className={`size-2 rounded-full transition ${
-                index <= activeIndex ? "bg-elaman-blue" : "bg-graphite/16"
+              className={`size-1.5 shrink-0 rounded-full transition ${
+                index < activeIndex
+                  ? "bg-elaman-blue"
+                  : index === activeIndex
+                    ? "bg-elaman-blue scale-125"
+                    : "bg-graphite/16"
               }`}
               aria-hidden="true"
             />
             <span
-              className={
+              className={`truncate ${
                 index === activeIndex
                   ? "font-semibold text-graphite"
-                  : "text-graphite-soft"
-              }
+                  : index < activeIndex
+                    ? "text-graphite-muted"
+                    : "text-graphite-soft"
+              }`}
             >
-              {step.title}
+              {step.eyebrow}
             </span>
           </li>
         ))}

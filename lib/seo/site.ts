@@ -26,6 +26,8 @@ type PageMetadataOptions = {
   title?: string;
   description?: string;
   path?: string;
+  locale?: string;
+  languages?: Record<string, string>;
   robots?: Metadata["robots"];
 };
 
@@ -37,6 +39,8 @@ export function createPageMetadata({
   title,
   description = siteConfig.description,
   path = "/",
+  locale = "en_US",
+  languages,
   robots = {
     index: true,
     follow: true,
@@ -53,6 +57,7 @@ export function createPageMetadata({
     metadataBase: new URL(siteConfig.url),
     alternates: {
       canonical: url,
+      languages,
     },
     robots,
     openGraph: {
@@ -68,7 +73,7 @@ export function createPageMetadata({
           alt: siteConfig.ogImage.alt,
         },
       ],
-      locale: "en_US",
+      locale,
       type: "website",
     },
     twitter: {

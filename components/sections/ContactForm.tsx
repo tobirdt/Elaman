@@ -3,6 +3,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/Button";
+import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type ContactFormValues = {
   firstName: string;
@@ -20,6 +21,10 @@ type ContactApiResponse =
   | { ok: false; error: "validation_error"; fields: ContactFormErrors }
   | { ok: false; error: "send_failed" | "unexpected_error" };
 
+type ContactFormProps = {
+  content: LocalizedSiteContent["contact"]["form"];
+};
+
 const initialValues: ContactFormValues = {
   firstName: "",
   lastName: "",
@@ -35,19 +40,33 @@ const validationFieldOrder: Array<keyof ContactFormValues> = [
   "message",
 ];
 
-function validate(values: ContactFormValues) {
+function validate(values: ContactFormValues, content: ContactFormProps["content"]) {
   const errors: ContactFormErrors = {};
 
   if (!values.firstName.trim()) {
-    errors.firstName = "First name is required.";
+    errors.firstName = content.errors.firstNameRequired;
+  } else if (values.firstName.trim().length > 80) {
+    errors.firstName = content.errors.firstNameMax;
+  }
+
+  if (values.lastName.trim().length > 80) {
+    errors.lastName = content.errors.lastNameMax;
+  }
+
+  if (values.company.trim().length > 120) {
+    errors.company = content.errors.companyMax;
   }
 
   if (!values.email.trim() || !/^\S+@\S+\.\S+$/.test(values.email)) {
-    errors.email = "Enter a valid email address.";
+    errors.email = content.errors.emailRequired;
+  } else if (values.email.trim().length > 254) {
+    errors.email = content.errors.emailMax;
   }
 
   if (values.message.trim().length < 20) {
-    errors.message = "Message must be at least 20 characters.";
+    errors.message = content.errors.messageMin;
+  } else if (values.message.trim().length > 4000) {
+    errors.message = content.errors.messageMax;
   }
 
   return errors;
@@ -65,7 +84,7 @@ function focusFirstError(errors: ContactFormErrors) {
   });
 }
 
-export function ContactForm() {
+export function ContactForm({ content }: ContactFormProps) {
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -87,7 +106,7 @@ export function ContactForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const nextErrors = validate(values);
+    const nextErrors = validate(values, content);
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
@@ -115,19 +134,22 @@ export function ContactForm() {
       }
 
       if (payload.error === "validation_error") {
-        setErrors(payload.fields);
+        const localizedErrors = validate(values, content);
+        setErrors(
+          Object.keys(localizedErrors).length > 0 ? localizedErrors : payload.fields,
+        );
       } else {
         setErrors({
           form:
             payload.error === "send_failed"
-              ? "The message could not be sent. Please use phone or email directly."
-              : "The message could not be prepared. Please try again later.",
+              ? content.errors.sendFailed
+              : content.errors.unexpected,
         });
       }
       setStatus("error");
     } catch {
       setErrors({
-        form: "The message could not be sent. Please use phone or email directly.",
+        form: content.errors.sendFailed,
       });
       setStatus("error");
     }
@@ -143,7 +165,7 @@ export function ContactForm() {
       aria-busy={status === "loading"}
     >
       <div className="hidden" aria-hidden="true">
-        <label htmlFor="website">Website</label>
+        <label htmlFor="website">{content.fields.website}</label>
         <input
           id="website"
           name="website"
@@ -156,7 +178,7 @@ export function ContactForm() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className={fieldBase}>
-          First name
+          {content.fields.firstName}
           <input
             id="firstName"
             className="form-field"
@@ -176,7 +198,7 @@ export function ContactForm() {
         </label>
 
         <label className={fieldBase}>
-          Last name
+          {content.fields.lastName}
           <input
             id="lastName"
             className="form-field"
@@ -197,7 +219,7 @@ export function ContactForm() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className={fieldBase}>
-          Company
+          {content.fields.company}
           <input
             id="company"
             className="form-field"
@@ -216,7 +238,7 @@ export function ContactForm() {
         </label>
 
         <label className={fieldBase}>
-          Email
+          {content.fields.email}
           <input
             id="email"
             className="form-field"
@@ -239,7 +261,7 @@ export function ContactForm() {
       </div>
 
       <label className={fieldBase}>
-        Message
+        {content.fields.message}
         <textarea
           id="message"
           className="form-field min-h-24 resize-y"
@@ -263,17 +285,15 @@ export function ContactForm() {
           disabled={status === "loading"}
           className="w-full sm:w-auto sm:min-w-44"
         >
-          {status === "loading" ? "Sending..." : "Send inquiry"}
+          {status === "loading" ? content.sending : content.submit}
         </Button>
-        <p className="text-xs leading-5 text-graphite-soft">
-          The inquiry is validated server-side before secure email delivery.
-        </p>
+        <p className="text-xs leading-5 text-graphite-soft">{content.helper}</p>
       </div>
 
       <div aria-live="polite" className="min-h-12">
         {status === "success" ? (
           <p className="rounded-sm border border-elaman-blue/18 bg-elaman-blue/[0.055] px-4 py-3 text-sm text-graphite">
-            Thank you. Your inquiry has been sent.
+            {content.success}
           </p>
         ) : null}
         {status === "error" && errors.form ? (

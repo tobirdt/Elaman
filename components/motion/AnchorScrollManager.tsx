@@ -2,7 +2,13 @@
 
 import { useEffect } from "react";
 
-function scrollToHash(hash: string, replace = false) {
+import type { Locale } from "@/lib/i18n";
+
+type AnchorScrollManagerProps = {
+  locale: Locale;
+};
+
+function scrollToHash(hash: string, url: string, replace = false) {
   const id = hash.replace("#", "");
   const target = document.getElementById(id);
 
@@ -13,17 +19,17 @@ function scrollToHash(hash: string, replace = false) {
   target.scrollIntoView({ behavior: "smooth", block: "start" });
 
   if (replace) {
-    history.replaceState(null, "", hash);
+    history.replaceState(null, "", url);
   } else {
-    history.pushState(null, "", hash);
+    history.pushState(null, "", url);
   }
 }
 
-export function AnchorScrollManager() {
+export function AnchorScrollManager({ locale }: AnchorScrollManagerProps) {
   useEffect(() => {
     function handleClick(event: MouseEvent) {
       const anchor = (event.target as Element | null)?.closest<HTMLAnchorElement>(
-        'a[href^="#"], a[href^="/#"]',
+        'a[href*="#"]',
       );
 
       if (!anchor) {
@@ -31,14 +37,26 @@ export function AnchorScrollManager() {
       }
 
       const href = anchor.getAttribute("href");
-      const hash = href?.startsWith("/#") ? href.slice(1) : href;
+
+      if (!href) {
+        return;
+      }
+
+      const sameLocalePrefix = `/${locale}#`;
+      const hash = href.startsWith(sameLocalePrefix)
+        ? href.slice(homePrefixLength(locale))
+        : href.startsWith("#")
+          ? href
+          : href.startsWith("/#")
+            ? href.slice(1)
+            : null;
 
       if (!hash || hash === "#") {
         return;
       }
 
       event.preventDefault();
-      scrollToHash(hash);
+      scrollToHash(hash, `/${locale}${hash}`);
 
       anchor.closest("details")?.removeAttribute("open");
     }
@@ -47,14 +65,18 @@ export function AnchorScrollManager() {
 
     if (window.location.hash) {
       requestAnimationFrame(() => {
-        scrollToHash(window.location.hash, true);
+        scrollToHash(window.location.hash, `/${locale}${window.location.hash}`, true);
       });
     }
 
     return () => {
       document.removeEventListener("click", handleClick);
     };
-  }, []);
+  }, [locale]);
 
   return null;
+}
+
+function homePrefixLength(locale: Locale) {
+  return `/${locale}`.length;
 }

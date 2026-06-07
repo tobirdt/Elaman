@@ -3,8 +3,11 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { LegalDocument } from "@/components/sections/LegalDocument";
+import { getSiteContent } from "@/lib/content/site";
 import { imprintContent } from "@/lib/content/legal";
 import { createPageMetadata } from "@/lib/seo/site";
+
+const content = getSiteContent("en");
 
 export const metadata: Metadata = createPageMetadata({
   title: "Imprint",
@@ -15,9 +18,13 @@ export const metadata: Metadata = createPageMetadata({
 export default function ImprintPage() {
   return (
     <>
-      <Header />
+      <Header locale="en" content={content.navigation} />
       <LegalDocument title={imprintContent.title} blocks={imprintContent.blocks} />
-      <Footer />
+      <Footer
+        contact={content.contact}
+        navigation={content.navigation}
+        footer={content.footer}
+      />
     </>
   );
 }

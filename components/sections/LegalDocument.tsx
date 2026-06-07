@@ -6,14 +6,15 @@ import type { LegalBlock } from "@/lib/content/legal";
 type LegalDocumentProps = {
   title: string;
   blocks: readonly LegalBlock[];
+  label?: string;
 };
 
-export function LegalDocument({ title, blocks }: LegalDocumentProps) {
+export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentProps) {
   return (
     <main>
       <Section compact className="bg-white">
         <Container className="max-w-4xl">
-          <SectionLabel tone="dark">Legal</SectionLabel>
+          <SectionLabel tone="dark">{label}</SectionLabel>
           <h1 className="text-4xl font-semibold tracking-[-0.045em] text-graphite [overflow-wrap:anywhere] sm:text-5xl md:text-6xl">
             {title}
           </h1>
