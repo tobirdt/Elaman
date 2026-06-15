@@ -231,11 +231,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
         {/* Step cards */}
         <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
           {steps.map((step, index) => (
-            <Surface
-              key={step}
-              className="p-2.5 shadow-none sm:p-3.5"
-              variant="card"
-            >
+            <Surface key={step} className="p-2.5 shadow-none sm:p-3.5" variant="card">
               <div className="flex items-center gap-1.5">
                 <span
                   className={`size-1.5 rounded-full ${index === 2 ? "bg-elaman-red/70" : "bg-elaman-blue/70"}`}

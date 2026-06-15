@@ -14,11 +14,7 @@ type HeroSectionProps = {
 
 export function HeroSection({ locale, content }: HeroSectionProps) {
   return (
-    <Section
-      id="hero"
-      variant="hero"
-      className="relative isolate overflow-hidden"
-    >
+    <Section id="hero" variant="hero" className="relative isolate overflow-hidden">
       <VisualLayer>
         {/* Large ambient circle centered on hero */}
         <div className="absolute left-1/2 top-0 h-[min(38rem,95vw)] w-[min(38rem,95vw)] -translate-x-1/2 rounded-full border border-elaman-blue/8 bg-elaman-blue/[0.02] lg:h-[46rem] lg:w-[46rem]" />

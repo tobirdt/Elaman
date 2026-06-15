@@ -12,8 +12,7 @@ type SectionProps = ComponentPropsWithoutRef<"section"> & {
 };
 
 const variantClasses: Record<SectionVariant, string> = {
-  hero:
-    "flex min-h-[calc(100svh-var(--header-h))] items-center py-[var(--section-y-hero)]",
+  hero: "flex min-h-[calc(100svh-var(--header-h))] items-center py-[var(--section-y-hero)]",
   screen: "screen-section py-[var(--section-y-screen)]",
   band: "py-[var(--section-y-band)]",
   compact: "py-[var(--section-y-compact)]",

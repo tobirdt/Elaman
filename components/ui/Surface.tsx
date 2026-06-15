@@ -15,8 +15,7 @@ type SurfaceProps = ComponentPropsWithoutRef<"div"> & {
 const variantClasses: Record<SurfaceVariant, string> = {
   panel:
     "rounded-[var(--radius-panel)] border border-[var(--border-soft)] bg-[var(--surface-white)] shadow-[var(--shadow-panel)]",
-  card:
-    "rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-[var(--surface-card)] shadow-[var(--shadow-card)]",
+  card: "rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-[var(--surface-card)] shadow-[var(--shadow-card)]",
   glass:
     "rounded-[var(--radius-panel)] border border-[var(--border-soft)] bg-[var(--surface-glass)] shadow-[var(--shadow-panel)] backdrop-blur-2xl",
   strongGlass:

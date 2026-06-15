@@ -28,7 +28,10 @@ export function TrustSection({ content }: TrustSectionProps) {
         <Surface variant="strongGlass" className="overflow-hidden p-5 sm:p-7">
           <div className="grid gap-px overflow-hidden rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-line md:grid-cols-3">
             {content.metrics.map((metric, index) => (
-              <div key={metric.value} className="relative bg-[var(--surface-card)] p-5 sm:p-6">
+              <div
+                key={metric.value}
+                className="relative bg-[var(--surface-card)] p-5 sm:p-6"
+              >
                 <TechnicalMark tone={index === 1 ? "red" : "blue"} />
                 <p className="mt-5 text-[length:var(--type-h2)] font-semibold leading-none tracking-[var(--tracking-display)] text-graphite">
                   {metric.value}
