@@ -18,13 +18,63 @@
 :root {
   color-scheme: light;
   --page-x: clamp(1.25rem, 4vw, 4rem);
-  --section-y: clamp(4.5rem, 8vw, 7rem);
-  --section-y-compact: clamp(3rem, 5vw, 4.75rem);
+  --container-page: 80rem;
+  --container-content: 64rem;
+  --container-copy: 42rem;
+  --container-narrow: 30rem;
+  --container-legal: 56rem;
+  --section-y-hero: clamp(2rem, 5vw, 3rem);
+  --section-y-screen: clamp(4rem, 7vw, 6rem);
+  --section-y-band: clamp(3.75rem, 6vw, 5.5rem);
+  --section-y-compact: clamp(2.75rem, 5vw, 4.25rem);
+  --section-gap: clamp(2rem, 4vw, 3.5rem);
+  --section-y: var(--section-y-band);
+  --type-display: clamp(2.75rem, 7vw, 5.9rem);
+  --type-h1: clamp(2.6rem, 5.8vw, 5.4rem);
+  --type-h2: clamp(2.1rem, 4.1vw, 3.75rem);
+  --type-h3: clamp(1.35rem, 2vw, 1.9rem);
+  --type-lead: clamp(1rem, 1.35vw, 1.25rem);
+  --type-body: 1rem;
+  --type-small: 0.875rem;
+  --type-micro: 0.75rem;
+  --leading-display: 0.94;
+  --leading-title: 1.04;
+  --leading-body: 1.65;
+  --tracking-display: -0.055em;
+  --tracking-title: -0.04em;
+  --tracking-label: 0.16em;
+  --radius-control: 0.5rem;
+  --radius-card: 0.75rem;
+  --radius-panel: 0.75rem;
+  --radius-pill: 999px;
+  --surface-white: #ffffff;
+  --surface-soft: #f7f8fa;
+  --surface-glass: rgba(255, 255, 255, 0.72);
+  --surface-glass-strong: rgba(255, 255, 255, 0.88);
+  --surface-card: rgba(255, 255, 255, 0.84);
+  --border-soft: rgba(22, 24, 29, 0.1);
+  --border-glass: rgba(255, 255, 255, 0.72);
+  --border-accent-blue: rgba(36, 64, 116, 0.24);
+  --border-accent-red: rgba(216, 48, 52, 0.24);
+  --shadow-none: none;
+  --shadow-card: 0 14px 44px rgba(22, 24, 29, 0.045);
+  --shadow-panel: 0 24px 80px rgba(22, 24, 29, 0.065);
+  --shadow-float: 0 34px 110px rgba(22, 24, 29, 0.085);
+  --shadow-button: 0 16px 42px rgba(22, 24, 29, 0.14);
+  --color-muted: #555d6b;
+  --color-soft: #788292;
+  --color-blue: #244074;
+  --color-red: #d83034;
+  --motion-fast: 180ms;
+  --motion-medium: 300ms;
+  --motion-slow: 650ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-rise: 0.75rem;
   --header-h: 4rem;
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-bg-strong: rgba(255, 255, 255, 0.88);
-  --glass-border: rgba(22, 24, 29, 0.09);
-  --glass-shadow: 0 24px 90px rgba(22, 24, 29, 0.07);
+  --glass-bg: var(--surface-glass);
+  --glass-bg-strong: var(--surface-glass-strong);
+  --glass-border: var(--border-soft);
+  --glass-shadow: var(--shadow-panel);
   --section-border: rgba(22, 24, 29, 0.08);
 }
 
@@ -128,21 +178,21 @@ select {
 }
 
 .glass-surface {
-  border: 1px solid var(--glass-border);
-  background: var(--glass-bg);
-  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--border-soft);
+  background: var(--surface-glass);
+  box-shadow: var(--shadow-panel);
   backdrop-filter: blur(24px) saturate(140%);
 }
 
 .glass-surface-strong {
-  border: 1px solid rgba(255, 255, 255, 0.76);
+  border: 1px solid var(--border-glass);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.66)),
-    rgba(255, 255, 255, 0.8);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.68)),
+    var(--surface-glass-strong);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
     inset 0 -1px 0 rgba(22, 24, 29, 0.04),
-    0 32px 96px rgba(22, 24, 29, 0.07);
+    var(--shadow-panel);
   backdrop-filter: blur(32px) saturate(148%);
 }
 
@@ -166,6 +216,11 @@ select {
   min-height: calc(100svh - var(--header-h));
   display: flex;
   align-items: center;
+}
+
+.surface-transition {
+  transition-duration: var(--motion-medium);
+  transition-timing-function: var(--motion-ease);
 }
 
 .signal-line-h {
@@ -208,8 +263,8 @@ select {
 .form-field {
   width: 100%;
   border: 1px solid rgba(22, 24, 29, 0.11);
-  border-radius: 0.5rem;
-  background: rgba(255, 255, 255, 0.72);
+  border-radius: var(--radius-control);
+  background: var(--surface-glass);
   padding: 0.875rem 1rem;
   color: #16181d;
   outline: none;
@@ -231,8 +286,11 @@ select {
 
 @media (max-width: 640px) {
   :root {
-    --section-y: clamp(3.5rem, 13vw, 5rem);
-    --section-y-compact: clamp(2.75rem, 10vw, 4rem);
+    --section-y-hero: clamp(2rem, 9vw, 2.75rem);
+    --section-y-screen: clamp(3.25rem, 12vw, 4.5rem);
+    --section-y-band: clamp(3rem, 11vw, 4.25rem);
+    --section-y-compact: clamp(2.5rem, 9vw, 3.75rem);
+    --section-y: var(--section-y-band);
   }
 }
 
