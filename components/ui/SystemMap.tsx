@@ -1,3 +1,4 @@
+import { Surface } from "@/components/ui/Surface";
 import type { ContentCard } from "@/types/site";
 
 type SystemMapProps = {
@@ -20,7 +21,7 @@ const SPOKES = [
 
 export function SystemMap({ items }: SystemMapProps) {
   return (
-    <div className="glass-surface-strong relative overflow-hidden rounded-xl p-5 sm:p-7">
+    <Surface className="relative overflow-hidden p-5 sm:p-7" variant="strongGlass">
       <div className="technical-grid absolute inset-0 opacity-50" aria-hidden="true" />
 
       {/* Desktop SVG network diagram */}
@@ -135,28 +136,32 @@ export function SystemMap({ items }: SystemMapProps) {
       {/* System cards */}
       <div className="relative z-10 grid gap-2.5 sm:-mt-2 md:grid-cols-2 xl:grid-cols-4">
         {items.map((item, index) => (
-          <article
+          <Surface
+            as="article"
             key={item.title}
-            className="rounded-lg border border-line bg-white/76 p-3.5 shadow-[0_8px_28px_rgba(22,24,29,0.04)] transition duration-200 hover:-translate-y-0.5 hover:border-elaman-blue/20"
+            className="p-3.5"
+            interactive
+            tone={index === 4 ? "red" : "blue"}
+            variant="card"
           >
-            <div className="flex items-center gap-2 mb-2.5">
+            <div className="mb-2.5 flex items-center gap-2">
               <span
                 className={`size-2 rounded-full ${index === 4 ? "bg-elaman-red" : "bg-elaman-blue"} opacity-70`}
                 aria-hidden="true"
               />
-              <p className="text-[0.62rem] font-semibold tracking-[0.12em] text-elaman-red">
+              <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-graphite-soft">
                 SYS {String(index + 1).padStart(2, "0")}
               </p>
             </div>
-            <h3 className="text-sm font-semibold leading-snug tracking-[-0.02em] text-graphite">
+            <h3 className="text-sm font-semibold leading-snug tracking-[var(--tracking-title)] text-graphite">
               {item.title}
             </h3>
-            <p className="mt-1.5 text-[0.72rem] leading-5 text-graphite-muted">
+            <p className="mt-1.5 text-xs leading-5 text-graphite-muted">
               {item.description}
             </p>
-          </article>
+          </Surface>
         ))}
       </div>
-    </div>
+    </Surface>
   );
 }

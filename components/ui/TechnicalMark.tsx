@@ -6,13 +6,13 @@ type TechnicalMarkProps = {
 const toneClasses = {
   blue: "border-elaman-blue/24 bg-elaman-blue/[0.055]",
   red: "border-elaman-red/24 bg-elaman-red/[0.055]",
-  neutral: "border-graphite/10 bg-white/70",
+  neutral: "border-[var(--border-soft)] bg-[var(--surface-card)]",
 };
 
 export function TechnicalMark({ tone = "blue", className = "" }: TechnicalMarkProps) {
   return (
     <span
-      className={`inline-grid size-11 place-items-center rounded-sm border ${toneClasses[tone]} ${className}`}
+      className={`inline-grid size-11 place-items-center rounded-[var(--radius-control)] border ${toneClasses[tone]} ${className}`}
       aria-hidden="true"
     >
       <svg viewBox="0 0 32 32" className="size-5" fill="none">

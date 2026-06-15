@@ -155,7 +155,7 @@ export function ContactForm({ content }: ContactFormProps) {
     }
   }
 
-  const fieldBase = "grid gap-2 text-sm font-medium text-graphite";
+  const fieldBase = "grid gap-2 text-sm font-medium leading-none text-graphite";
 
   return (
     <form
@@ -283,6 +283,7 @@ export function ContactForm({ content }: ContactFormProps) {
         <Button
           type="submit"
           disabled={status === "loading"}
+          size="md"
           className="w-full sm:w-auto sm:min-w-44"
         >
           {status === "loading" ? content.sending : content.submit}
@@ -292,12 +293,12 @@ export function ContactForm({ content }: ContactFormProps) {
 
       <div aria-live="polite" className="min-h-12">
         {status === "success" ? (
-          <p className="rounded-sm border border-elaman-blue/18 bg-elaman-blue/[0.055] px-4 py-3 text-sm text-graphite">
+          <p className="rounded-[var(--radius-control)] border border-elaman-blue/18 bg-elaman-blue/[0.055] px-4 py-3 text-sm text-graphite">
             {content.success}
           </p>
         ) : null}
         {status === "error" && errors.form ? (
-          <p className="rounded-sm border border-elaman-red/18 bg-elaman-red/[0.055] px-4 py-3 text-sm text-graphite">
+          <p className="rounded-[var(--radius-control)] border border-elaman-red/18 bg-elaman-red/[0.055] px-4 py-3 text-sm text-graphite">
             {errors.form}
           </p>
         ) : null}

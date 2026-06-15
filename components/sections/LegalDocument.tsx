@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Surface } from "@/components/ui/Surface";
 import type { LegalBlock } from "@/lib/content/legal";
 
 type LegalDocumentProps = {
@@ -12,24 +13,28 @@ type LegalDocumentProps = {
 export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentProps) {
   return (
     <main>
-      <Section compact className="bg-white">
-        <Container className="max-w-4xl">
-          <SectionLabel tone="dark">{label}</SectionLabel>
-          <h1 className="text-4xl font-semibold tracking-[-0.045em] text-graphite [overflow-wrap:anywhere] sm:text-5xl md:text-6xl">
-            {title}
-          </h1>
+      <Section variant="compact" tone="white">
+        <Container size="legal">
+          <SectionHeader
+            as="h1"
+            label={label}
+            labelTone="dark"
+            size="h1"
+            title={title}
+            width="full"
+          />
         </Container>
       </Section>
-      <Section compact className="border-t border-line bg-porcelain/60">
-        <Container className="max-w-4xl">
-          <div className="rounded-lg border border-line bg-white p-6 shadow-[0_20px_70px_rgba(22,24,29,0.05)] sm:p-9">
+      <Section className="border-t border-line" variant="compact" tone="soft">
+        <Container size="legal">
+          <Surface className="p-6 sm:p-9" variant="panel">
             {blocks.map((block, index) => (
               <section
                 key={`${block.title ?? "legal-block"}-${index}`}
                 className="border-b border-line py-8 first:pt-0 last:border-b-0 last:pb-0"
               >
                 {block.title ? (
-                  <h2 className="mb-4 text-xl font-semibold tracking-[-0.02em] text-graphite [overflow-wrap:anywhere]">
+                  <h2 className="mb-4 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite [overflow-wrap:anywhere]">
                     {block.title}
                   </h2>
                 ) : null}
@@ -45,7 +50,7 @@ export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentP
                 </div>
               </section>
             ))}
-          </div>
+          </Surface>
         </Container>
       </Section>
     </main>

@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SystemMap } from "@/components/ui/SystemMap";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
@@ -10,16 +10,15 @@ type SystemsSectionProps = {
 
 export function SystemsSection({ content }: SystemsSectionProps) {
   return (
-    <Section id="systems" compact className="bg-white">
+    <Section id="systems" variant="band" tone="white">
       <Container>
-        <div className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
-          <div>
-            <SectionLabel>{content.label}</SectionLabel>
-            <h2 className="text-balance text-4xl font-semibold leading-[1.04] tracking-[-0.045em] text-graphite md:text-5xl xl:text-6xl">
-              {content.title}
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-graphite-muted">{content.body}</p>
-          </div>
+        <div className="grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-2 lg:items-center">
+          <SectionHeader
+            body={content.body}
+            label={content.label}
+            title={content.title}
+            width="copy"
+          />
           <SystemMap items={content.items} />
         </div>
       </Container>

@@ -7,7 +7,8 @@ import { StickyStoryStage } from "@/components/motion/StickyStoryStage";
 import { StoryProgress } from "@/components/motion/StoryProgress";
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { Container } from "@/components/ui/Container";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Surface } from "@/components/ui/Surface";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type DesktopScrollStoryProps = {
@@ -65,15 +66,15 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
       style={{ height: `${content.steps.length * 60}svh` }}
     >
       <div className="sticky top-[var(--header-h)] flex h-[calc(100svh-var(--header-h))] items-center overflow-hidden">
-        <Container className="grid items-center gap-8 xl:grid-cols-[0.72fr_1.04fr_0.78fr] xl:gap-10">
+        <Container className="grid items-center gap-8 xl:grid-cols-3 xl:gap-10">
           <div>
-            <SectionLabel>{content.label}</SectionLabel>
-            <h2 className="text-4xl font-semibold leading-[1.06] tracking-[-0.04em] text-graphite 2xl:text-5xl">
-              {content.title}
-            </h2>
-            <p className="mt-5 max-w-md text-base leading-7 text-graphite-muted 2xl:text-lg 2xl:leading-8">
-              {content.body}
-            </p>
+            <SectionHeader
+              body={content.body}
+              label={content.label}
+              size="h3"
+              title={content.title}
+              width="narrow"
+            />
             <StoryProgress
               activeIndex={activeIndex}
               steps={content.steps}
@@ -88,10 +89,9 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
             systemFocusLabel={content.systemFocusLabel}
           />
 
-          <motion.article
+          <motion.div
             key={activeStep.id}
             aria-current="step"
-            className="glass-surface-strong rounded-xl p-6 xl:p-7"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={
@@ -100,32 +100,37 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
                 : { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
             }
           >
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-elaman-blue">
-              {activeStep.eyebrow}
-            </p>
-            <h3 className="mt-4 text-[1.85rem] font-semibold leading-[1.07] tracking-[-0.04em] text-graphite xl:text-4xl">
-              {activeStep.title}
-            </h3>
-            <p className="mt-4 text-sm leading-7 text-graphite-muted xl:text-base xl:leading-8">
-              {activeStep.description}
-            </p>
-            <div className="mt-6 grid gap-1.5">
-              {activeStep.bullets.map((bullet, index) => (
-                <div
-                  key={bullet}
-                  className="flex items-center gap-3 rounded-lg border border-line bg-white/74 px-4 py-2.5"
-                >
-                  <span
-                    className={`size-1.5 shrink-0 rounded-full ${
-                      activeIndex >= 4 && index === 0 ? "bg-elaman-red" : "bg-elaman-blue"
-                    }`}
-                    aria-hidden="true"
-                  />
-                  <p className="text-sm font-medium text-graphite-muted">{bullet}</p>
-                </div>
-              ))}
-            </div>
-          </motion.article>
+            <Surface as="article" className="p-6 xl:p-7" variant="strongGlass">
+              <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-elaman-blue">
+                {activeStep.eyebrow}
+              </p>
+              <h3 className="mt-4 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
+                {activeStep.title}
+              </h3>
+              <p className="mt-4 text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite-muted">
+                {activeStep.description}
+              </p>
+              <div className="mt-6 grid gap-1.5">
+                {activeStep.bullets.map((bullet, index) => (
+                  <Surface
+                    key={bullet}
+                    className="flex items-center gap-3 px-4 py-2.5 shadow-none"
+                    variant="inset"
+                  >
+                    <span
+                      className={`size-1.5 shrink-0 rounded-full ${
+                        activeIndex >= 4 && index === 0
+                          ? "bg-elaman-red"
+                          : "bg-elaman-blue"
+                      }`}
+                      aria-hidden="true"
+                    />
+                    <p className="text-sm font-medium text-graphite-muted">{bullet}</p>
+                  </Surface>
+                ))}
+              </div>
+            </Surface>
+          </motion.div>
         </Container>
       </div>
 

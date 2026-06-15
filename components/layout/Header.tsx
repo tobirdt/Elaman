@@ -15,7 +15,7 @@ type HeaderProps = {
 
 export function Header({ locale, content }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--border-soft)] bg-white/76 backdrop-blur-2xl">
+    <header className="sticky top-0 z-40 border-b border-[var(--border-soft)] bg-[var(--surface-glass-strong)] backdrop-blur-2xl">
       <Container className="flex h-16 items-center justify-between gap-3 lg:h-20 lg:gap-5">
         <Link
           href={`/${locale}` as Route}
@@ -59,7 +59,7 @@ export function Header({ locale, content }: HeaderProps) {
 
         <details className="group relative z-50 block shrink-0 lg:hidden">
           <summary
-            aria-label="Open site navigation"
+            aria-label={content.menu}
             className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-[var(--radius-pill)] border border-[var(--border-soft)] bg-[var(--surface-glass)] px-4 py-2.5 text-sm font-medium text-graphite shadow-[var(--shadow-card)] backdrop-blur-2xl transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue [&::-webkit-details-marker]:hidden"
           >
             {content.menu}

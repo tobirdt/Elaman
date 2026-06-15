@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
+import { Surface } from "@/components/ui/Surface";
 import type { StoryStep } from "@/types/site";
 
 type StickyStoryStageProps = {
@@ -39,7 +40,10 @@ export function StickyStoryStage({
   const tFast = reduced ? { duration: 0 } : { duration: 0.4, ease };
 
   return (
-    <div className="glass-surface-strong relative min-h-[28rem] overflow-hidden rounded-xl p-5 sm:p-7 xl:h-[calc(100vh-13rem)] xl:min-h-[34rem]">
+    <Surface
+      className="relative min-h-[28rem] overflow-hidden p-5 sm:p-7 xl:h-[calc(100vh-13rem)] xl:min-h-[34rem]"
+      variant="strongGlass"
+    >
       <div className="technical-grid absolute inset-0 opacity-55" aria-hidden="true" />
       <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-elaman-blue/28 to-transparent" />
       <div className="absolute bottom-6 left-6 right-6 h-px bg-gradient-to-r from-transparent via-elaman-red/22 to-transparent" />
@@ -301,7 +305,7 @@ export function StickyStoryStage({
         {/* Top label bar */}
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-elaman-blue">
+            <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-elaman-blue">
               {activeLayerLabel}
             </p>
             <motion.p
@@ -314,7 +318,7 @@ export function StickyStoryStage({
               {activeStep.eyebrow}
             </motion.p>
           </div>
-          <div className="rounded-full border border-line bg-white/80 px-3 py-1.5 text-xs font-semibold tabular-nums text-graphite-soft">
+          <div className="rounded-[var(--radius-pill)] border border-[var(--border-soft)] bg-[var(--surface-card)] px-3 py-1.5 text-xs font-semibold tabular-nums text-graphite-soft">
             {String(activeIndex + 1).padStart(2, "0")} /{" "}
             {String(steps.length).padStart(2, "0")}
           </div>
@@ -325,7 +329,7 @@ export function StickyStoryStage({
 
         {/* Bottom step info */}
         <div>
-          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-graphite-soft">
+          <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-graphite-soft">
             {systemFocusLabel}
           </p>
           <motion.h3
@@ -333,7 +337,7 @@ export function StickyStoryStage({
             initial={reduced ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={tFast}
-            className="mt-2 text-xl font-semibold leading-tight tracking-[-0.035em] text-graphite sm:text-2xl"
+            className="mt-2 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite"
           >
             {activeStep.title}
           </motion.h3>
@@ -346,9 +350,9 @@ export function StickyStoryStage({
                 transition={
                   reduced
                     ? { duration: 0 }
-                    : { duration: 0.3, delay: bIndex * 0.05, ease: "easeOut" }
+                    : { duration: 0.3, delay: bIndex * 0.05, ease }
                 }
-                className="flex items-center gap-2.5 rounded-lg border border-line bg-white/72 px-3 py-2"
+                className="flex items-center gap-2.5 rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-[var(--surface-soft)] px-3 py-2"
               >
                 <span
                   className={`size-1.5 shrink-0 rounded-full ${activeIndex >= 4 && bIndex === 0 ? "bg-elaman-red" : "bg-elaman-blue"}`}
@@ -360,6 +364,6 @@ export function StickyStoryStage({
           </div>
         </div>
       </div>
-    </div>
+    </Surface>
   );
 }

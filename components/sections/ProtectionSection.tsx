@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SectionLabel } from "@/components/ui/SectionLabel";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Surface } from "@/components/ui/Surface";
 import { TechnicalMark } from "@/components/ui/TechnicalMark";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
@@ -10,27 +11,26 @@ type ProtectionSectionProps = {
 
 export function ProtectionSection({ content }: ProtectionSectionProps) {
   return (
-    <Section id="protection" compact className="relative overflow-hidden">
-      {/* Top red accent line */}
+    <Section id="protection" variant="band" className="relative overflow-hidden">
       <div
-        className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-elaman-red/36 to-transparent"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-elaman-red/32 to-transparent"
         aria-hidden="true"
       />
-      {/* Subtle red ambient glow */}
       <div
         className="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-elaman-red/[0.03] blur-3xl"
         aria-hidden="true"
       />
       <Container>
-        <div className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div className="grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-2 lg:items-center">
           <div>
-            <SectionLabel tone="red">{content.label}</SectionLabel>
-            <h2 className="text-balance text-4xl font-semibold leading-[1.04] tracking-[-0.045em] text-graphite md:text-5xl xl:text-6xl">
-              {content.title}
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-graphite-muted">{content.body}</p>
+            <SectionHeader
+              body={content.body}
+              label={content.label}
+              labelTone="red"
+              title={content.title}
+              width="copy"
+            />
 
-            {/* Protection visual accent — concentric shield rings */}
             <div className="relative mt-8 hidden h-24 w-24 lg:block" aria-hidden="true">
               <div className="absolute inset-0 rounded-full border border-elaman-red/20" />
               <div className="absolute inset-3 rounded-full border border-elaman-red/14" />
@@ -44,9 +44,12 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
             <div className="absolute inset-y-8 left-5 hidden w-px bg-gradient-to-b from-elaman-red/28 via-line to-elaman-blue/20 sm:block" />
             <div className="grid gap-3">
               {content.items.map((item, index) => (
-                <article
+                <Surface
+                  as="article"
+                  interactive
                   key={item.title}
-                  className="relative overflow-hidden rounded-xl border border-line bg-white/84 p-5 shadow-[0_16px_64px_rgba(22,24,29,0.04)] transition duration-200 hover:-translate-y-1 hover:border-elaman-red/20"
+                  tone={index === 0 || index === 2 ? "red" : "blue"}
+                  className="relative overflow-hidden p-5"
                 >
                   <div className="flex gap-4">
                     <TechnicalMark
@@ -54,7 +57,7 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
                       className="shrink-0"
                     />
                     <div>
-                      <h3 className="text-xl font-semibold tracking-[-0.03em] text-graphite sm:text-2xl">
+                      <h3 className="text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
                         {item.title}
                       </h3>
                       <p className="mt-2.5 text-sm leading-7 text-graphite-muted">
@@ -62,7 +65,7 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
                       </p>
                     </div>
                   </div>
-                </article>
+                </Surface>
               ))}
             </div>
           </div>

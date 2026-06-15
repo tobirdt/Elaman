@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
+import { Surface } from "@/components/ui/Surface";
 import type { StoryStep } from "@/types/site";
 
 type StoryProgressProps = {
@@ -16,9 +17,9 @@ export function StoryProgress({ steps, activeIndex, label }: StoryProgressProps)
   const progress = ((activeIndex + 1) / steps.length) * 100;
 
   return (
-    <div className="mt-5 rounded-lg border border-line bg-white/72 p-4 shadow-[0_18px_60px_rgba(22,24,29,0.045)]">
+    <Surface className="mt-5 p-4" variant="card">
       <div className="flex items-center justify-between gap-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-graphite-soft">
+        <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-graphite-soft">
           {label}
         </p>
         <p className="text-xs font-semibold text-elaman-blue">
@@ -32,7 +33,9 @@ export function StoryProgress({ steps, activeIndex, label }: StoryProgressProps)
           initial={false}
           animate={{ width: `${progress}%` }}
           transition={
-            prefersReducedMotion ? { duration: 0 } : { duration: 0.45, ease: "easeOut" }
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { duration: 0.45, ease: [0.22, 1, 0.36, 1] }
           }
         />
       </div>
@@ -63,6 +66,6 @@ export function StoryProgress({ steps, activeIndex, label }: StoryProgressProps)
           </li>
         ))}
       </ol>
-    </div>
+    </Surface>
   );
 }

@@ -17,7 +17,7 @@ export function Footer({ contact, navigation, footer, locale }: FooterProps) {
   return (
     <footer className="border-t border-[var(--border-soft)] bg-white">
       <div className="h-px bg-gradient-to-r from-elaman-blue/32 via-line to-elaman-red/28" />
-      <Container className="grid gap-10 py-[var(--section-y-compact)] md:grid-cols-[1fr_auto] md:items-start">
+      <Container className="grid gap-10 py-[var(--section-y-compact)] md:grid-cols-2 md:items-start">
         <div className="max-w-sm">
           <Image
             src="/brand/elaman-logo.png"
@@ -43,7 +43,7 @@ export function Footer({ contact, navigation, footer, locale }: FooterProps) {
           <p className="mt-5 text-xs text-graphite-soft">{footer.copyright}</p>
         </div>
 
-        <div className="grid gap-6 min-[480px]:grid-cols-2 md:grid-cols-1 md:text-right">
+        <div className="grid gap-6 min-[480px]:grid-cols-2 md:grid-cols-1 md:justify-self-end md:text-right">
           <nav
             aria-label="Footer navigation"
             className="flex flex-wrap gap-2 md:justify-end"

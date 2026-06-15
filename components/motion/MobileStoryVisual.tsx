@@ -22,7 +22,7 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
   const cfg = STEP_CONFIGS[index] ?? STEP_CONFIGS[0];
 
   return (
-    <div className="relative h-20 overflow-hidden rounded-lg border border-line bg-white/76">
+    <div className="relative h-20 overflow-hidden rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-[var(--surface-card)]">
       <div className="technical-grid absolute inset-0 opacity-35" aria-hidden="true" />
 
       <svg

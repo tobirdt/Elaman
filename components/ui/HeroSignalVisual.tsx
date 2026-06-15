@@ -1,3 +1,5 @@
+import { Surface } from "@/components/ui/Surface";
+
 type HeroSignalVisualProps = {
   label: string;
   body: string;
@@ -7,7 +9,10 @@ type HeroSignalVisualProps = {
 
 export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisualProps) {
   return (
-    <div className="relative min-h-[18rem] overflow-hidden rounded-xl border border-white/80 bg-white/68 p-5 shadow-[0_36px_110px_rgba(22,24,29,0.10)] backdrop-blur-2xl sm:min-h-[30rem] sm:p-7 lg:min-h-[32rem]">
+    <Surface
+      className="relative min-h-[18rem] overflow-hidden p-5 sm:min-h-[30rem] sm:p-7 lg:min-h-[32rem]"
+      variant="strongGlass"
+    >
       <div className="technical-grid absolute inset-0 opacity-60" aria-hidden="true" />
 
       {/* Inset accent lines */}
@@ -208,14 +213,14 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
         {/* Header */}
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-elaman-blue">
+            <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-elaman-blue">
               {label}
             </p>
             <p className="mt-1.5 max-w-52 text-xs leading-5 text-graphite-muted sm:text-sm sm:leading-6">
               {body}
             </p>
           </div>
-          <div className="shrink-0 rounded-full border border-line bg-white/80 px-3 py-1.5 text-[0.68rem] font-medium text-graphite-muted">
+          <div className="shrink-0 rounded-[var(--radius-pill)] border border-[var(--border-soft)] bg-[var(--surface-card)] px-3 py-1.5 text-[length:var(--type-micro)] font-medium text-graphite-muted">
             {badge}
           </div>
         </div>
@@ -226,26 +231,27 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
         {/* Step cards */}
         <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
           {steps.map((step, index) => (
-            <div
+            <Surface
               key={step}
-              className="rounded-lg border border-line/80 bg-white/80 p-2.5 shadow-[0_6px_20px_rgba(22,24,29,0.05)] sm:p-3.5"
+              className="p-2.5 shadow-none sm:p-3.5"
+              variant="card"
             >
               <div className="flex items-center gap-1.5">
                 <span
                   className={`size-1.5 rounded-full ${index === 2 ? "bg-elaman-red/70" : "bg-elaman-blue/70"}`}
                   aria-hidden="true"
                 />
-                <p className="text-[0.6rem] font-semibold tabular-nums text-graphite-soft sm:text-[0.68rem]">
+                <p className="text-[length:var(--type-micro)] font-semibold tabular-nums text-graphite-soft">
                   {String(index + 1).padStart(2, "0")}
                 </p>
               </div>
-              <p className="mt-2 text-[0.72rem] font-semibold leading-tight text-graphite sm:mt-2.5 sm:text-sm">
+              <p className="mt-2 text-xs font-semibold leading-tight text-graphite sm:mt-2.5 sm:text-sm">
                 {step}
               </p>
-            </div>
+            </Surface>
           ))}
         </div>
       </div>
-    </div>
+    </Surface>
   );
 }
