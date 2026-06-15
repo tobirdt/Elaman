@@ -5,6 +5,10 @@ type SystemMapProps = {
   items: readonly ContentCard[];
 };
 
+const BLUE = "var(--color-brand-blue)";
+const RED = "var(--color-brand-red)";
+const WHITE = "var(--surface-white)";
+
 // Pre-calculated spoke endpoints for 8 systems around a hub
 // Hub: cx=380, cy=180, r=22
 // Spokes radiate outward with varying lengths
@@ -36,7 +40,7 @@ export function SystemMap({ items }: SystemMapProps) {
           cx="380"
           cy="188"
           r="148"
-          stroke="#244074"
+          stroke={BLUE}
           strokeOpacity="0.08"
           strokeDasharray="4 10"
         />
@@ -44,15 +48,15 @@ export function SystemMap({ items }: SystemMapProps) {
           cx="380"
           cy="188"
           r="96"
-          stroke="#244074"
+          stroke={BLUE}
           strokeOpacity="0.06"
           strokeDasharray="3 8"
         />
 
         {/* Hub */}
-        <circle cx="380" cy="188" r="28" fill="rgba(36,64,116,0.08)" />
-        <circle cx="380" cy="188" r="14" fill="#244074" fillOpacity="0.78" />
-        <circle cx="380" cy="188" r="6" fill="#ffffff" />
+        <circle cx="380" cy="188" r="28" fill={BLUE} fillOpacity="0.08" />
+        <circle cx="380" cy="188" r="14" fill={BLUE} fillOpacity="0.78" />
+        <circle cx="380" cy="188" r="6" fill={WHITE} />
 
         {/* Spokes */}
         {SPOKES.map(({ x, y, dx, dy }, i) => {
@@ -64,7 +68,7 @@ export function SystemMap({ items }: SystemMapProps) {
                 y1={dy}
                 x2={x}
                 y2={y}
-                stroke={isRed ? "#D83034" : "#244074"}
+                stroke={isRed ? RED : BLUE}
                 strokeOpacity={isRed ? 0.36 : 0.22}
                 strokeWidth={isRed ? 1.5 : 1.2}
                 strokeDasharray={isRed ? "4 8" : "3 7"}
@@ -74,15 +78,10 @@ export function SystemMap({ items }: SystemMapProps) {
                 cx={x}
                 cy={y}
                 r="18"
-                fill={isRed ? "rgba(216,48,52,0.07)" : "rgba(36,64,116,0.06)"}
+                fill={isRed ? RED : BLUE}
+                fillOpacity={isRed ? 0.07 : 0.06}
               />
-              <circle
-                cx={x}
-                cy={y}
-                r="7"
-                fill={isRed ? "#D83034" : "#244074"}
-                fillOpacity="0.6"
-              />
+              <circle cx={x} cy={y} r="7" fill={isRed ? RED : BLUE} fillOpacity="0.6" />
             </g>
           );
         })}
@@ -90,14 +89,14 @@ export function SystemMap({ items }: SystemMapProps) {
         {/* Cross-links between adjacent nodes */}
         <path
           d="M380 76 C432 76 482 108 482 108"
-          stroke="#244074"
+          stroke={BLUE}
           strokeOpacity="0.1"
           strokeWidth="1"
           strokeDasharray="3 9"
         />
         <path
           d="M230 202 C230 248 272 290 272 290"
-          stroke="#244074"
+          stroke={BLUE}
           strokeOpacity="0.1"
           strokeWidth="1"
           strokeDasharray="3 9"
@@ -109,7 +108,7 @@ export function SystemMap({ items }: SystemMapProps) {
           y="234"
           textAnchor="middle"
           fontSize="9"
-          fill="#244074"
+          fill={BLUE}
           fillOpacity="0.6"
           fontWeight="600"
           letterSpacing="0.08em"

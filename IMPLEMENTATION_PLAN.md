@@ -24,25 +24,25 @@ Step-by-step build plan for the premium institutional Elaman website. Aligned wi
 
 ## Current baseline
 
-| Item | Location |
-|------|----------|
-| Stack | Next.js 16, React 19, Tailwind 4, Framer Motion |
-| Tokens | `lib/design/tokens.ts`, `app/globals.css` (partial foundation in place) |
-| Content | `lib/content/site.ts` (draft; drift from blueprint) |
-| Page | `app/(marketing)/[locale]/page.tsx` — 8 sections |
+| Item    | Location                                                                |
+| ------- | ----------------------------------------------------------------------- |
+| Stack   | Next.js 16, React 19, Tailwind 4, Framer Motion                         |
+| Tokens  | `lib/design/tokens.ts`, `app/globals.css` (partial foundation in place) |
+| Content | `lib/content/site.ts` (draft; drift from blueprint)                     |
+| Page    | `app/(marketing)/[locale]/page.tsx` — 8 sections                        |
 
 ### Component ↔ step map
 
-| Step | Blueprint section | Component | Anchor |
-|------|-------------------|-----------|--------|
-| 4 | Hero | `HeroSection` | `#hero` |
-| 5 | Credentials | `TrustSection` | `#experience` |
-| 6 | Services | `CapabilityOverview` | `#capabilities` |
-| 7 | Approach | `ScrollStory` | `#story` |
-| 8 | Solutions | `SystemsSection` | `#systems` |
-| 9 | Protection | `ProtectionSection` | `#protection` |
-| 10 | Methodology | `DeliverySection` | `#delivery` |
-| 11 | Contact | `ContactSection` | `#contact` |
+| Step | Blueprint section | Component            | Anchor          |
+| ---- | ----------------- | -------------------- | --------------- |
+| 4    | Hero              | `HeroSection`        | `#hero`         |
+| 5    | Credentials       | `TrustSection`       | `#experience`   |
+| 6    | Services          | `CapabilityOverview` | `#capabilities` |
+| 7    | Approach          | `ScrollStory`        | `#story`        |
+| 8    | Solutions         | `SystemsSection`     | `#systems`      |
+| 9    | Protection        | `ProtectionSection`  | `#protection`   |
+| 10   | Methodology       | `DeliverySection`    | `#delivery`     |
+| 11   | Contact           | `ContactSection`     | `#contact`      |
 
 ---
 
@@ -50,13 +50,13 @@ Step-by-step build plan for the premium institutional Elaman website. Aligned wi
 
 **Status:** Complete (ongoing maintenance)
 
-| File | Purpose |
-|------|---------|
-| `DESIGN_DIRECTION.md` | Approved Switch/Stitch vision |
-| `DESIGN_SYSTEM.md` | Tokens, components, rules |
-| `CONTENT_BLUEPRINT.md` | Source-aligned copy EN/DE |
-| `IMPLEMENTATION_PLAN.md` | This file |
-| `AGENTS.md` | Agent/contributor rules |
+| File                     | Purpose                       |
+| ------------------------ | ----------------------------- |
+| `DESIGN_DIRECTION.md`    | Approved Switch/Stitch vision |
+| `DESIGN_SYSTEM.md`       | Tokens, components, rules     |
+| `CONTENT_BLUEPRINT.md`   | Source-aligned copy EN/DE     |
+| `IMPLEMENTATION_PLAN.md` | This file                     |
+| `AGENTS.md`              | Agent/contributor rules       |
 
 **Exit:** All agents read direction + blueprint before UI work.
 
@@ -66,14 +66,16 @@ Step-by-step build plan for the premium institutional Elaman website. Aligned wi
 
 **Scope:** Complete design token foundation in CSS and TypeScript.
 
+**Status:** Complete (2026-06-15)
+
 **Tasks:**
 
-- [ ] Sync `lib/design/tokens.ts` and `app/globals.css` (containers, section modes, surfaces, colors, motion)
-- [ ] Add dark contrast tokens: `--surface-dark-panel`, `--color-on-dark`, `--border-dark-panel`
-- [ ] Add utility classes: `surface-card`, `surface-panel`, `surface-glass`, `surface-dark-panel`
-- [ ] Add section utilities: `screen-section`, `screen-lite-section`
-- [ ] Grep audit: no orphan hex in `components/` for touched token names
-- [ ] Update `DESIGN_SYSTEM.md` if token names change
+- [x] Sync `lib/design/tokens.ts` and `app/globals.css` (containers, section modes, surfaces, colors, motion)
+- [x] Add dark contrast tokens: `--surface-dark-panel`, `--color-on-dark`, `--border-dark-panel`
+- [x] Add utility classes: `surface-card`, `surface-panel`, `surface-glass`, `surface-dark-panel`
+- [x] Add section utilities: `screen-section`, `screen-lite-section`
+- [x] Grep audit: no orphan hex in `components/` for touched token names
+- [x] Update `DESIGN_SYSTEM.md` if token names change
 
 **Files:** `lib/design/tokens.ts`, `app/globals.css`
 
@@ -87,13 +89,15 @@ Step-by-step build plan for the premium institutional Elaman website. Aligned wi
 
 **Scope:** `Section`, `Container`, `Surface`, `Button` conform to canonical modes and surfaces.
 
+**Status:** Complete (2026-06-15)
+
 **Tasks:**
 
-- [ ] `Section`: modes `hero-screen`, `screen`, `screen-lite`, `content-band`, `legal-page` + legacy aliases
-- [ ] `Container`: sizes `page`, `content`, `copy`, `narrow`, `legal`
-- [ ] `Surface`: `card`, `panel`, `glass`, `darkPanel` (+ legacy compat)
-- [ ] `Button`: semantic color tokens; motion tokens
-- [ ] No section file changes in this step
+- [x] `Section`: modes `hero-screen`, `screen`, `screen-lite`, `content-band`, `legal-page` + legacy aliases
+- [x] `Container`: sizes `page`, `content`, `copy`, `narrow`, `legal`
+- [x] `Surface`: `card`, `panel`, `glass`, `darkPanel` (+ legacy compat)
+- [x] `Button`: semantic color tokens; motion tokens
+- [x] No section file changes in this step
 
 **Files:** `components/ui/Section.tsx`, `Container.tsx`, `Surface.tsx`, `Button.tsx`
 
@@ -107,14 +111,16 @@ Step-by-step build plan for the premium institutional Elaman website. Aligned wi
 
 **Scope:** Content architecture and blueprint import — not full visual redesign.
 
+**Status:** Complete (2026-06-15; locale-prefixed legal routes deferred to Step 11)
+
 **Tasks:**
 
-- [ ] Apply `CONTENT_BLUEPRINT.md` navigation labels (Experience, Approach, Services, Solutions, Contact)
-- [ ] Update `siteContent.en` and `siteContent.de` together: hero, trust, nav, metadata
-- [ ] Remove drift: `B2G`, `360°`, “secure channel”, “discreet inquiry”, surveillance-heavy hero
-- [ ] Extend `types/site.ts` if accordion/tab detail fields needed (e.g. `details?: string[]`)
-- [ ] Plan legal locale routes; update `navigation.legal` hrefs if paths decided
-- [ ] Verify `hreflang` and sitemap entries for `/en`, `/de`
+- [x] Apply `CONTENT_BLUEPRINT.md` navigation labels (Experience, Approach, Services, Solutions, Contact)
+- [x] Update `siteContent.en` and `siteContent.de` together: hero, trust, nav, metadata
+- [x] Remove drift: `B2G`, `360°`, “secure channel”, “discreet inquiry”, surveillance-heavy hero
+- [x] Confirm no `types/site.ts` extension is needed until Step 8 accordion/tab detail fields
+- [x] Plan legal locale routes; keep interim legal hrefs until Step 11 locale route work
+- [x] Verify `hreflang` and sitemap entries for `/en`, `/de`
 
 **Files:** `lib/content/site.ts`, `types/site.ts`, `lib/i18n.ts`, `app/sitemap.ts`
 
@@ -128,13 +134,15 @@ Step-by-step build plan for the premium institutional Elaman website. Aligned wi
 
 **Scope:** `HeroSection` only — white-first, technical diagram, blueprint copy.
 
+**Status:** Complete (2026-06-15)
+
 **Tasks:**
 
-- [ ] `variant="hero-screen"`; white / plain tone
-- [ ] Copy from blueprint §4 (tagline, intro, body, CTAs)
-- [ ] `HeroSignalVisual`: diagram-led; no stock; minimal surveillance wording in visual labels
-- [ ] Stats strip: factual labels (20+ years, turnkey, training) — not `B2G`/`360°`
-- [ ] Primary CTA → `#contact`; secondary → `#capabilities`
+- [x] `variant="hero-screen"`; white / plain tone
+- [x] Copy from blueprint §4 (tagline, intro, body, CTAs)
+- [x] `HeroSignalVisual`: diagram-led; no stock; minimal surveillance wording in visual labels
+- [x] Stats strip: factual labels (20+ years, turnkey, training) — not `B2G`/`360°`
+- [x] Primary CTA → `#contact`; secondary → `#capabilities`
 
 **Files:** `components/sections/HeroSection.tsx`, `components/ui/HeroSignalVisual.tsx`, `lib/content/site.ts`
 
@@ -326,22 +334,22 @@ Step-by-step build plan for the premium institutional Elaman website. Aligned wi
 
 ## PR strategy
 
-| PR | Step | Scope |
-|----|------|-------|
-| PR-0 | 0 | Docs only |
-| PR-1 | 1 | Tokens |
-| PR-2 | 2 | Layout primitives |
-| PR-3 | 3 | i18n / content structure |
-| PR-4 | 4 | Hero |
-| PR-5 | 5 | Credentials |
-| PR-6 | 6 | Services |
-| PR-7 | 7 | Sticky lifecycle |
-| PR-8 | 8 | Solutions accordion |
-| PR-9 | 9 | Dark protection section |
-| PR-10 | 10 | Methodology |
-| PR-11 | 11 | Contact / footer / legal |
-| PR-12 | 12 | Motion system |
-| PR-13 | 13 | Responsive polish |
+| PR    | Step | Scope                    |
+| ----- | ---- | ------------------------ |
+| PR-0  | 0    | Docs only                |
+| PR-1  | 1    | Tokens                   |
+| PR-2  | 2    | Layout primitives        |
+| PR-3  | 3    | i18n / content structure |
+| PR-4  | 4    | Hero                     |
+| PR-5  | 5    | Credentials              |
+| PR-6  | 6    | Services                 |
+| PR-7  | 7    | Sticky lifecycle         |
+| PR-8  | 8    | Solutions accordion      |
+| PR-9  | 9    | Dark protection section  |
+| PR-10 | 10   | Methodology              |
+| PR-11 | 11   | Contact / footer / legal |
+| PR-12 | 12   | Motion system            |
+| PR-13 | 13   | Responsive polish        |
 
 Each visual PR: reference `DESIGN_DIRECTION.md`; include before/after screenshots; do not mix unrelated steps.
 
@@ -349,27 +357,27 @@ Each visual PR: reference `DESIGN_DIRECTION.md`; include before/after screenshot
 
 ## Known gaps (track here)
 
-| Area | Current | Target step |
-|------|---------|-------------|
-| Token / dark panel | Partial | Step 1 |
-| Content drift vs blueprint | `site.ts` has SaaS-isms | Step 3 |
-| Legal i18n | EN imprint / DE privacy only | Step 11 |
-| Solutions expand | Static cards | Step 8 |
-| Protection dark band | Light section today | Step 9 |
-| Nav labels | Story, Capabilities | Step 3 |
+| Area                       | Current                      | Target step |
+| -------------------------- | ---------------------------- | ----------- |
+| Token / dark panel         | Complete                     | Step 1      |
+| Content drift vs blueprint | `site.ts` has SaaS-isms      | Step 3      |
+| Legal i18n                 | EN imprint / DE privacy only | Step 11     |
+| Solutions expand           | Static cards                 | Step 8      |
+| Protection dark band       | Light section today          | Step 9      |
+| Nav labels                 | Story, Capabilities          | Step 3      |
 
 ---
 
 ## Decision log
 
-| Date | Decision | Rationale |
-|------|----------|-----------|
-| 2026-06-15 | White-first + selective dark sections | Switch/Stitch approved |
-| 2026-06-15 | Technical diagrams only | Institutional positioning |
-| 2026-06-15 | 13 incremental steps | Small reviewable PRs |
-| 2026-06-15 | Content from `CONTENT_BLUEPRINT.md` | Source-aligned, legally careful |
-| 2026-06-15 | Credentials = TrustSection | Blueprint naming |
-| 2026-06-15 | Methodology = DeliverySection | Turnkey process rail |
+| Date       | Decision                              | Rationale                       |
+| ---------- | ------------------------------------- | ------------------------------- |
+| 2026-06-15 | White-first + selective dark sections | Switch/Stitch approved          |
+| 2026-06-15 | Technical diagrams only               | Institutional positioning       |
+| 2026-06-15 | 13 incremental steps                  | Small reviewable PRs            |
+| 2026-06-15 | Content from `CONTENT_BLUEPRINT.md`   | Source-aligned, legally careful |
+| 2026-06-15 | Credentials = TrustSection            | Blueprint naming                |
+| 2026-06-15 | Methodology = DeliverySection         | Turnkey process rail            |
 
 ---
 

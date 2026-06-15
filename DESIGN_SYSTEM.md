@@ -16,15 +16,15 @@ Elaman GmbH is a **premium, minimal, institutional** communications and security
 
 ### Design personality
 
-| Attribute | Expression |
-|-----------|------------|
+| Attribute        | Expression                                                 |
+| ---------------- | ---------------------------------------------------------- |
 | Government-grade | Restrained palette, formal typography, sourced claims only |
-| Calm | Large whitespace, slow motion, low visual noise |
-| Precise | Grid-aligned layout, consistent spacing, technical labels |
-| Technical | Diagrams, signal lines, system maps — no stock imagery |
-| Trustworthy | Real company data, legal clarity, blueprint-aligned copy |
-| Minimal | One idea per screen; content leads |
-| Premium | Subtle depth, refined surfaces, intentional contrast |
+| Calm             | Large whitespace, slow motion, low visual noise            |
+| Precise          | Grid-aligned layout, consistent spacing, technical labels  |
+| Technical        | Diagrams, signal lines, system maps — no stock imagery     |
+| Trustworthy      | Real company data, legal clarity, blueprint-aligned copy   |
+| Minimal          | One idea per screen; content leads                         |
+| Premium          | Subtle depth, refined surfaces, intentional contrast       |
 
 ### White-first with contrast sections
 
@@ -63,13 +63,13 @@ Elaman GmbH is a **premium, minimal, institutional** communications and security
 
 Use `Container` `size` prop — no ad-hoc `max-w-*` in sections.
 
-| Size | Token | Value |
-|------|-------|-------|
-| `page` | `--container-page` | 80rem |
+| Size      | Token                 | Value |
+| --------- | --------------------- | ----- |
+| `page`    | `--container-page`    | 80rem |
 | `content` | `--container-content` | 64rem |
-| `copy` | `--container-copy` | 42rem |
-| `narrow` | `--container-narrow` | 30rem |
-| `legal` | `--container-legal` | 56rem |
+| `copy`    | `--container-copy`    | 42rem |
+| `narrow`  | `--container-narrow`  | 30rem |
+| `legal`   | `--container-legal`   | 56rem |
 
 Horizontal padding: `--page-x` = `clamp(1.25rem, 4vw, 4rem)`.
 
@@ -98,28 +98,28 @@ Primitives: `Section`, `SectionHeader`, `SectionLabel`, `Container`, `Surface`, 
 
 ### Canonical modes (`Section` variant)
 
-| Mode | Use |
-|------|-----|
-| `hero-screen` | Above-the-fold; min-height viewport minus header |
-| `screen` | Full-screen pinned moments (sticky lifecycle) |
-| `screen-lite` | Near-viewport emphasis without full pin |
+| Mode           | Use                                              |
+| -------------- | ------------------------------------------------ |
+| `hero-screen`  | Above-the-fold; min-height viewport minus header |
+| `screen`       | Full-screen pinned moments (sticky lifecycle)    |
+| `screen-lite`  | Near-viewport emphasis without full pin          |
 | `content-band` | Default content sections (services, methodology) |
-| `legal-page` | Legal headers and dense document layout |
+| `legal-page`   | Legal headers and dense document layout          |
 
 Legacy aliases (resolved automatically): `hero` → `hero-screen`, `band` → `content-band`, `compact` → `legal-page`.
 
 ### Tone alternation (target)
 
-| Section | Mode | Tone |
-|---------|------|------|
-| Hero | `hero-screen` | `plain` / white |
-| Credentials | `content-band` | `soft` |
-| Sticky lifecycle | `screen` | glass stage on light |
-| Services | `content-band` | `soft` or white |
-| Solutions | `content-band` | `white` |
-| Protection | `screen-lite` or `content-band` | **dark** (`surface-dark-panel`) |
-| Methodology | `content-band` | `soft` |
-| Contact | `content-band` | `white` |
+| Section          | Mode                            | Tone                            |
+| ---------------- | ------------------------------- | ------------------------------- |
+| Hero             | `hero-screen`                   | `plain` / white                 |
+| Credentials      | `content-band`                  | `soft`                          |
+| Sticky lifecycle | `screen`                        | glass stage on light            |
+| Services         | `content-band`                  | `soft` or white                 |
+| Solutions        | `content-band`                  | `white`                         |
+| Protection       | `screen-lite` or `content-band` | **dark** (`surface-dark-panel`) |
+| Methodology      | `content-band`                  | `soft`                          |
+| Contact          | `content-band`                  | `white`                         |
 
 Avoid two identical adjacent bands without a label, divider, or tone shift.
 
@@ -134,16 +134,16 @@ Avoid two identical adjacent bands without a label, divider, or tone shift.
 
 Font: `--font-elaman-sans` with system fallbacks. `text-rendering: geometricPrecision`.
 
-| Role | Token | Size | Weight | Tracking | Leading |
-|------|-------|------|--------|----------|---------|
-| Display | `--type-display` | clamp(2.75rem → 5.9rem) | 600–700 | -0.055em | 0.94 |
-| H1 | `--type-h1` | clamp(2.6rem → 5.4rem) | 600–700 | -0.04em | 1.04 |
-| H2 | `--type-h2` | clamp(2.1rem → 3.75rem) | 600 | -0.04em | 1.04 |
-| H3 | `--type-h3` | clamp(1.35rem → 1.9rem) | 600 | -0.04em | 1.04 |
-| Lead | `--type-lead` | clamp(1rem → 1.25rem) | 400 | normal | 1.65 |
-| Body | `--type-body` | 1rem | 400 | normal | 1.65 |
-| Small | `--type-small` | 0.875rem | 400–500 | normal | 1.55 |
-| Micro | `--type-micro` | 0.75rem | 500 | 0.16em | 1.4 |
+| Role    | Token            | Size                    | Weight  | Tracking | Leading |
+| ------- | ---------------- | ----------------------- | ------- | -------- | ------- |
+| Display | `--type-display` | clamp(2.75rem → 5.9rem) | 600–700 | -0.04em  | 0.94    |
+| H1      | `--type-h1`      | clamp(2.6rem → 5.4rem)  | 600–700 | -0.04em  | 1.04    |
+| H2      | `--type-h2`      | clamp(2.1rem → 3.75rem) | 600     | -0.04em  | 1.04    |
+| H3      | `--type-h3`      | clamp(1.35rem → 1.9rem) | 600     | -0.04em  | 1.04    |
+| Lead    | `--type-lead`    | clamp(1rem → 1.25rem)   | 400     | normal   | 1.65    |
+| Body    | `--type-body`    | 1rem                    | 400     | normal   | 1.65    |
+| Small   | `--type-small`   | 0.875rem                | 400–500 | normal   | 1.55    |
+| Micro   | `--type-micro`   | 0.75rem                 | 500     | 0.16em   | 1.4     |
 
 Rules: one display/h1 per viewport; body max-width `copy`; `text-balance` on headlines; EN/DE share scale.
 
@@ -155,31 +155,31 @@ Rules: one display/h1 per viewport; body max-width `copy`; `text-balance` on hea
 
 ### Light surfaces
 
-| Role | Token | Value |
-|------|-------|-------|
-| Canvas | `--surface-white` | `#ffffff` |
-| Soft band | `--surface-soft` | `#f7f8fa` |
-| Muted fill | `--color-mist` | `#eef1f5` |
-| Line | `--color-line` | `#dfe4ea` |
-| Text primary | `--color-text-primary` / graphite | `#16181d` |
-| Text secondary | `--color-text-secondary` | `#555d6b` |
-| Text tertiary | `--color-text-tertiary` | `#788292` |
+| Role           | Token                             | Value     |
+| -------------- | --------------------------------- | --------- |
+| Canvas         | `--surface-white`                 | `#ffffff` |
+| Soft band      | `--surface-soft`                  | `#f7f8fa` |
+| Muted fill     | `--color-mist`                    | `#eef1f5` |
+| Line           | `--color-line`                    | `#dfe4ea` |
+| Text primary   | `--color-text-primary` / graphite | `#16181d` |
+| Text secondary | `--color-text-secondary`          | `#555d6b` |
+| Text tertiary  | `--color-text-tertiary`           | `#667286` |
 
 ### Brand accents (logo-derived)
 
-| Role | Token | Value | Usage |
-|------|-------|-------|-------|
-| Elaman blue | `--color-brand-blue` | `#244074` | Focus, hover, diagram nodes, labels |
-| Elaman red | `--color-brand-red` | `#d83034` | Accent nodes, split line — ≤5% of viewport |
+| Role        | Token                | Value     | Usage                                      |
+| ----------- | -------------------- | --------- | ------------------------------------------ |
+| Elaman blue | `--color-brand-blue` | `#244074` | Focus, hover, diagram nodes, labels        |
+| Elaman red  | `--color-brand-red`  | `#d83034` | Accent nodes, split line — ≤5% of viewport |
 
 ### Dark contrast surfaces
 
-| Role | Token | Usage |
-|------|-------|-------|
-| Dark panel | `--surface-dark-panel` | Protection section background |
-| On-dark text | `--color-on-dark` | Headlines on dark |
-| On-dark muted | `--color-on-dark-muted` | Body on dark |
-| Dark border | `--border-dark-panel` | Subtle edge on dark bands |
+| Role          | Token                               | Usage                         |
+| ------------- | ----------------------------------- | ----------------------------- |
+| Dark panel    | `--surface-dark-panel` (`#172033`)  | Protection section background |
+| On-dark text  | `--color-on-dark` (`#f7f8fa`)       | Headlines on dark             |
+| On-dark muted | `--color-on-dark-muted` (`#c7d0dc`) | Body on dark                  |
+| Dark border   | `--border-dark-panel`               | Subtle edge on dark bands     |
 
 ### Semantic
 
@@ -195,11 +195,11 @@ No purple, cyan, or neon. No unsourced sovereignty or security superlatives in U
 
 ### Canonical surface levels
 
-| Level | Token / class | Use |
-|-------|---------------|-----|
-| Card | `surface-card` / `Surface variant="card"` | Service cards, metrics |
-| Panel | `surface-panel` / `Surface variant="panel"` | Elevated content blocks |
-| Glass | `surface-glass` / `Surface variant="glass"` | Header, story stage, forms |
+| Level      | Token / class                                        | Use                                 |
+| ---------- | ---------------------------------------------------- | ----------------------------------- |
+| Card       | `surface-card` / `Surface variant="card"`            | Service cards, metrics              |
+| Panel      | `surface-panel` / `Surface variant="panel"`          | Elevated content blocks             |
+| Glass      | `surface-glass` / `Surface variant="glass"`          | Header, story stage, forms          |
 | Dark panel | `surface-dark-panel` / `Surface variant="darkPanel"` | Protection section, contrast blocks |
 
 Legacy: `strongGlass`, `inset` — migrate toward canonical levels when touching components.
@@ -215,17 +215,19 @@ Legacy: `strongGlass`, `inset` — migrate toward canonical levels when touching
 
 Permitted: header, sticky stage, form fields. Do not glass-wrap entire light sections.
 
+Glass surfaces must provide a solid-fill fallback for reduced-transparency environments.
+
 ---
 
 ## 7. Buttons and interactions
 
 ### Button variants
 
-| Variant | Use |
-|---------|-----|
-| `primary` | Graphite → blue hover; one per viewport |
-| `secondary` | Glass border; header/secondary CTAs |
-| `ghost` | Tertiary / inline |
+| Variant     | Use                                     |
+| ----------- | --------------------------------------- |
+| `primary`   | Graphite → blue hover; one per viewport |
+| `secondary` | Glass border; header/secondary CTAs     |
+| `ghost`     | Tertiary / inline                       |
 
 Shape: `control` default; `pill` for footer legal chips only.
 
@@ -250,13 +252,13 @@ Shape: `control` default; `pill` for footer legal chips only.
 
 ## 8. Motion
 
-| Token | Value | Use |
-|-------|-------|-----|
-| `--motion-fast` | 180ms | Hover, focus, toggles |
-| `--motion-medium` | 300ms | Reveals, accordion, card transitions |
-| `--motion-slow` | 650ms | Section enter, story crossfade |
-| `--motion-ease` | `cubic-bezier(0.22, 1, 0.36, 1)` | All transitions |
-| `--motion-rise` | 0.75rem | Reveal translate |
+| Token             | Value                            | Use                                  |
+| ----------------- | -------------------------------- | ------------------------------------ |
+| `--motion-fast`   | 180ms                            | Hover, focus, toggles                |
+| `--motion-medium` | 300ms                            | Reveals, accordion, card transitions |
+| `--motion-slow`   | 650ms                            | Section enter, story crossfade       |
+| `--motion-ease`   | `cubic-bezier(0.22, 1, 0.36, 1)` | All transitions                      |
+| `--motion-rise`   | 0.75rem                          | Reveal translate                     |
 
 **Allowed:** `MotionReveal`, sticky story progress, diagram pulse/dash, header blur.
 
@@ -268,11 +270,11 @@ Shape: `control` default; `pill` for footer legal chips only.
 
 ## 9. Responsive
 
-| Breakpoint | Behavior |
-|------------|----------|
-| `< 640px` | Tighter section padding; single column; mobile menu |
-| `640px – 1023px` | Two-column where fit; unpinned story |
-| `≥ 1024px` | Sticky lifecycle; full grid |
+| Breakpoint       | Behavior                                            |
+| ---------------- | --------------------------------------------------- |
+| `< 640px`        | Tighter section padding; single column; mobile menu |
+| `640px – 1023px` | Two-column where fit; unpinned story                |
+| `≥ 1024px`       | Sticky lifecycle; full grid                         |
 
 Touch targets ≥ 44×44px. No horizontal scroll. Typography uses `clamp()` — avoid breakpoint font overrides.
 
@@ -291,9 +293,9 @@ Touch targets ≥ 44×44px. No horizontal scroll. Typography uses `clamp()` — 
 
 ## 11. Legal pages
 
-| Page | DE | EN |
-|------|----|----|
-| Imprint | Impressum | Imprint |
+| Page    | DE                   | EN             |
+| ------- | -------------------- | -------------- |
+| Imprint | Impressum            | Imprint        |
 | Privacy | Datenschutzerklärung | Privacy Policy |
 
 Target routes: `/en/imprint`, `/de/impressum`, `/en/privacy`, `/de/datenschutz` (redirect legacy paths).
@@ -331,34 +333,34 @@ Content: `lib/content/legal.ts`. Layout: `LegalDocument` + `Container size="lega
 
 ## Token reference
 
-| File | Role |
-|------|------|
+| File                   | Role                                        |
+| ---------------------- | ------------------------------------------- |
 | `lib/design/tokens.ts` | TypeScript token export, section mode types |
-| `app/globals.css` | CSS custom properties, utility classes |
+| `app/globals.css`      | CSS custom properties, utility classes      |
 
 Update **both** when tokens change.
 
 ## Component map
 
-| Concern | Component |
-|---------|-----------|
-| Sections | `components/sections/*` |
-| Layout | `Header`, `Footer`, `Container` |
+| Concern    | Component                                                                     |
+| ---------- | ----------------------------------------------------------------------------- |
+| Sections   | `components/sections/*`                                                       |
+| Layout     | `Header`, `Footer`, `Container`                                               |
 | Primitives | `Button`, `Section`, `Surface`, `GlassPanel`, `SectionHeader`, `SectionLabel` |
-| Motion | `MotionReveal`, `ScrollStory`, `StickyStoryStage`, `AnchorScrollManager` |
-| Diagrams | `SystemMap`, `ProcessRail`, `TechnicalMark`, `HeroSignalVisual` |
+| Motion     | `MotionReveal`, `ScrollStory`, `StickyStoryStage`, `AnchorScrollManager`      |
+| Diagrams   | `SystemMap`, `ProcessRail`, `TechnicalMark`, `HeroSignalVisual`               |
 
 Compose from primitives before adding new abstractions.
 
 ## Section ↔ blueprint map
 
-| Blueprint | Component | Content key |
-|-----------|-----------|-------------|
-| Hero | `HeroSection` | `hero` |
-| Credentials | `TrustSection` | `trust` |
-| Approach | `ScrollStory` | `story` |
-| Services | `CapabilityOverview` | `capabilities` |
-| Solutions | `SystemsSection` | `systems` |
-| Protection | `ProtectionSection` | `protection` |
-| Methodology | `DeliverySection` | `delivery` |
-| Contact | `ContactSection` | `contact` |
+| Blueprint   | Component            | Content key    |
+| ----------- | -------------------- | -------------- |
+| Hero        | `HeroSection`        | `hero`         |
+| Credentials | `TrustSection`       | `trust`        |
+| Approach    | `ScrollStory`        | `story`        |
+| Services    | `CapabilityOverview` | `capabilities` |
+| Solutions   | `SystemsSection`     | `systems`      |
+| Protection  | `ProtectionSection`  | `protection`   |
+| Methodology | `DeliverySection`    | `delivery`     |
+| Contact     | `ContactSection`     | `contact`      |

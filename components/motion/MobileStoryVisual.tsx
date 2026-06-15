@@ -2,6 +2,9 @@ type MobileStoryVisualProps = {
   index: number;
 };
 
+const BLUE = "var(--color-brand-blue)";
+const RED = "var(--color-brand-red)";
+
 // Per-step abstract diagram configs
 const STEP_CONFIGS = [
   // 0: Trust — single centered ring
@@ -37,7 +40,7 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
           cx="110"
           cy="40"
           r="28"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.8"
           strokeOpacity="0.18"
           strokeDasharray="2 6"
@@ -47,7 +50,7 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
             cx="110"
             cy="40"
             r="18"
-            stroke="#244074"
+            stroke={BLUE}
             strokeWidth="0.8"
             strokeOpacity="0.16"
           />
@@ -57,7 +60,7 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
             cx="110"
             cy="40"
             r="10"
-            stroke="#244074"
+            stroke={BLUE}
             strokeWidth="0.8"
             strokeOpacity="0.14"
             strokeDasharray="1 4"
@@ -72,7 +75,7 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
               y1="40"
               x2="180"
               y2="40"
-              stroke="#244074"
+              stroke={BLUE}
               strokeWidth="0.6"
               strokeOpacity="0.10"
             />
@@ -81,7 +84,7 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
               y1="8"
               x2="110"
               y2="72"
-              stroke="#244074"
+              stroke={BLUE}
               strokeWidth="0.6"
               strokeOpacity="0.10"
             />
@@ -96,7 +99,7 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
               y1="22"
               x2="180"
               y2="22"
-              stroke="#244074"
+              stroke={BLUE}
               strokeWidth="0.5"
               strokeOpacity="0.07"
               strokeDasharray="2 6"
@@ -106,7 +109,7 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
               y1="58"
               x2="180"
               y2="58"
-              stroke="#244074"
+              stroke={BLUE}
               strokeWidth="0.5"
               strokeOpacity="0.07"
               strokeDasharray="2 6"
@@ -117,7 +120,7 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
         {/* Blue comms arc */}
         <path
           d="M38 54 C66 34 88 26 110 26 C134 26 152 36 180 18"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1.4"
           strokeLinecap="round"
           strokeDasharray="6 10"
@@ -128,7 +131,7 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
         {cfg.redArc && (
           <path
             d="M38 64 C72 54 90 44 110 38 C130 32 154 34 180 44"
-            stroke="#D83034"
+            stroke={RED}
             strokeWidth="1.2"
             strokeLinecap="round"
             strokeDasharray="4 9"
@@ -137,31 +140,31 @@ export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
         )}
 
         {/* Center node */}
-        <circle cx="110" cy="40" r="3.5" fill="#244074" fillOpacity="0.48" />
+        <circle cx="110" cy="40" r="3.5" fill={BLUE} fillOpacity="0.48" />
         <circle
           cx="110"
           cy="40"
           r="8"
           fill="none"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.6"
           strokeOpacity="0.16"
         />
 
         {/* Signal node on arc */}
-        <circle cx="110" cy="26" r="2.5" fill="#244074" fillOpacity="0.42" />
+        <circle cx="110" cy="26" r="2.5" fill={BLUE} fillOpacity="0.42" />
 
         {/* Corner marks */}
         <path
           d="M16 12 H24 M16 12 V20"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.8"
           strokeOpacity="0.16"
           strokeLinecap="round"
         />
         <path
           d="M204 68 H196 M204 68 V60"
-          stroke={cfg.redArc ? "#D83034" : "#244074"}
+          stroke={cfg.redArc ? RED : BLUE}
           strokeWidth="0.8"
           strokeOpacity="0.14"
           strokeLinecap="round"

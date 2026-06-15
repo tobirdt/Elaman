@@ -14,6 +14,9 @@ type StickyStoryStageProps = {
 };
 
 const ease = [0.22, 1, 0.36, 1] as const;
+const BLUE = "var(--color-brand-blue)";
+const RED = "var(--color-brand-red)";
+const INK = "var(--color-text-primary)";
 
 function vis(activeIndex: number, from: number, reduced: boolean) {
   const on = activeIndex >= from;
@@ -61,7 +64,7 @@ export function StickyStoryStage({
           cx="200"
           cy="200"
           r="160"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1"
           strokeOpacity="0.18"
           strokeDasharray="4 12"
@@ -72,7 +75,7 @@ export function StickyStoryStage({
           cx="200"
           cy="200"
           r="116"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1"
           strokeOpacity="0.22"
           initial={false}
@@ -85,7 +88,7 @@ export function StickyStoryStage({
           cx="200"
           cy="200"
           r="72"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1.2"
           strokeOpacity="0.28"
           strokeDasharray="3 8"
@@ -99,7 +102,7 @@ export function StickyStoryStage({
           cx="200"
           cy="200"
           r="26"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1.2"
           strokeOpacity="0.30"
         />
@@ -110,7 +113,7 @@ export function StickyStoryStage({
           y1="200"
           x2="400"
           y2="200"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.8"
           strokeOpacity="0.14"
           initial={false}
@@ -123,7 +126,7 @@ export function StickyStoryStage({
           y1="0"
           x2="200"
           y2="400"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.8"
           strokeOpacity="0.14"
           initial={false}
@@ -134,7 +137,7 @@ export function StickyStoryStage({
         {/* Communications arc — blue, step 2 */}
         <motion.path
           d="M40 270 C100 200 150 170 200 168 C254 166 290 196 360 140"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="2"
           strokeLinecap="round"
           strokeDasharray="10 16"
@@ -147,7 +150,7 @@ export function StickyStoryStage({
         {/* Surveillance sweep — second arc, step 3 */}
         <motion.path
           d="M40 310 C120 285 170 255 200 222 C232 188 274 178 360 206"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1.4"
           strokeLinecap="round"
           strokeOpacity="0.36"
@@ -162,7 +165,7 @@ export function StickyStoryStage({
           y1="200"
           x2="360"
           y2="200"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.7"
           strokeOpacity="0.20"
           strokeDasharray="4 10"
@@ -174,7 +177,7 @@ export function StickyStoryStage({
         {/* Protection ECM arc — red, step 4 */}
         <motion.path
           d="M50 335 C150 305 180 268 200 238 C222 204 272 198 360 226"
-          stroke="#D83034"
+          stroke={RED}
           strokeWidth="2"
           strokeLinecap="round"
           strokeDasharray="6 14"
@@ -187,7 +190,7 @@ export function StickyStoryStage({
         {/* Delivery integration frame — step 5 */}
         <motion.path
           d="M80 80 H310 C334 80 352 98 352 122 V340"
-          stroke="#16181D"
+          stroke={INK}
           strokeWidth="1.4"
           strokeLinecap="round"
           strokeOpacity="0.18"
@@ -197,24 +200,24 @@ export function StickyStoryStage({
         />
 
         {/* Center origin */}
-        <circle cx="200" cy="200" r="5.5" fill="#244074" fillOpacity="0.60" />
+        <circle cx="200" cy="200" r="5.5" fill={BLUE} fillOpacity="0.60" />
         <circle
           cx="200"
           cy="200"
           r="14"
           fill="none"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1"
           strokeOpacity="0.28"
         />
 
         {/* Cardinal marks at outer ring */}
-        <circle cx="200" cy="84" r="3.5" fill="#244074" fillOpacity="0.40" />
+        <circle cx="200" cy="84" r="3.5" fill={BLUE} fillOpacity="0.40" />
         <motion.circle
           cx="316"
           cy="200"
           r="3.5"
-          fill="#244074"
+          fill={BLUE}
           fillOpacity="0.40"
           initial={false}
           animate={fadeIn(activeIndex, 1)}
@@ -224,7 +227,7 @@ export function StickyStoryStage({
           cx="200"
           cy="316"
           r="3.5"
-          fill="#244074"
+          fill={BLUE}
           fillOpacity="0.40"
           initial={false}
           animate={fadeIn(activeIndex, 1)}
@@ -234,7 +237,7 @@ export function StickyStoryStage({
           cx="84"
           cy="200"
           r="3.5"
-          fill="#244074"
+          fill={BLUE}
           fillOpacity="0.40"
           initial={false}
           animate={fadeIn(activeIndex, 1)}
@@ -243,13 +246,13 @@ export function StickyStoryStage({
 
         {/* Node on comms arc */}
         <motion.g initial={false} animate={fadeIn(activeIndex, 2)} transition={tFast}>
-          <circle cx="200" cy="168" r="6" fill="#244074" fillOpacity="0.60" />
+          <circle cx="200" cy="168" r="6" fill={BLUE} fillOpacity="0.60" />
           <circle
             cx="200"
             cy="168"
             r="14"
             fill="none"
-            stroke="#244074"
+            stroke={BLUE}
             strokeWidth="1"
             strokeOpacity="0.22"
           />
@@ -257,13 +260,13 @@ export function StickyStoryStage({
 
         {/* Node on ECM arc */}
         <motion.g initial={false} animate={fadeIn(activeIndex, 4)} transition={tFast}>
-          <circle cx="272" cy="198" r="5" fill="#D83034" fillOpacity="0.60" />
+          <circle cx="272" cy="198" r="5" fill={RED} fillOpacity="0.60" />
           <circle
             cx="272"
             cy="198"
             r="13"
             fill="none"
-            stroke="#D83034"
+            stroke={RED}
             strokeWidth="1"
             strokeOpacity="0.22"
           />
@@ -272,28 +275,28 @@ export function StickyStoryStage({
         {/* Corner brackets */}
         <path
           d="M14 14 H32 M14 14 V32"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1.2"
           strokeOpacity="0.22"
           strokeLinecap="round"
         />
         <path
           d="M386 14 H368 M386 14 V32"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1.2"
           strokeOpacity="0.22"
           strokeLinecap="round"
         />
         <path
           d="M14 386 H32 M14 386 V368"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1.2"
           strokeOpacity="0.22"
           strokeLinecap="round"
         />
         <path
           d="M386 386 H368 M386 386 V368"
-          stroke="#D83034"
+          stroke={RED}
           strokeWidth="1.2"
           strokeOpacity="0.20"
           strokeLinecap="round"

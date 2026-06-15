@@ -28,7 +28,7 @@ export function resolveSectionMode(mode: SectionModeInput): SectionMode {
     return legacySectionModes[mode as LegacySectionMode];
   }
 
-  return mode;
+  return mode as SectionMode;
 }
 
 export const designTokens = {
@@ -40,13 +40,19 @@ export const designTokens = {
     text: {
       primary: "#16181d",
       secondary: "#555d6b",
-      tertiary: "#788292",
+      tertiary: "#667286",
     },
     brand: {
       blue: "#244074",
       red: "#d83034",
     },
     onDark: "#f7f8fa",
+    onDarkMuted: "#c7d0dc",
+    action: {
+      primary: "#16181d",
+      primaryHover: "#244074",
+      onPrimary: "#ffffff",
+    },
     focus: "rgba(36, 64, 116, 0.48)",
     focusRing: "rgba(36, 64, 116, 0.1)",
     selection: "rgba(36, 64, 116, 0.16)",
@@ -56,7 +62,7 @@ export const designTokens = {
     mist: "#eef1f5",
     graphite: "#16181d",
     muted: "#555d6b",
-    soft: "#788292",
+    soft: "#667286",
     blue: "#244074",
     red: "#d83034",
   },
@@ -112,7 +118,7 @@ export const designTokens = {
     body: "1.65",
   },
   tracking: {
-    display: "-0.055em",
+    display: "-0.04em",
     title: "-0.04em",
     label: "0.16em",
   },
@@ -129,7 +135,7 @@ export const designTokens = {
     panel: "#ffffff",
     glass: "rgba(255, 255, 255, 0.72)",
     glassStrong: "rgba(255, 255, 255, 0.88)",
-    darkPanel: "#16181d",
+    darkPanel: "#172033",
   },
   border: {
     soft: "rgba(22, 24, 29, 0.1)",
@@ -142,10 +148,10 @@ export const designTokens = {
   },
   shadow: {
     none: "none",
-    card: "0 14px 44px rgba(22, 24, 29, 0.045)",
-    panel: "0 24px 80px rgba(22, 24, 29, 0.065)",
-    float: "0 34px 110px rgba(22, 24, 29, 0.085)",
-    button: "0 16px 42px rgba(22, 24, 29, 0.14)",
+    card: "0 2px 8px rgba(22, 24, 29, 0.06)",
+    panel: "0 14px 40px rgba(22, 24, 29, 0.08)",
+    float: "0 24px 64px rgba(22, 24, 29, 0.1)",
+    button: "0 6px 12px rgba(22, 24, 29, 0.14)",
   },
   motion: {
     fast: "180ms",

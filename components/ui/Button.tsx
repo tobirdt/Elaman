@@ -25,7 +25,7 @@ const shapeClasses: Record<ButtonShape, string> = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center border font-medium tracking-[0.01em] transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-brand-blue)] disabled:pointer-events-none disabled:translate-y-0 disabled:opacity-55";
+  "inline-flex items-center justify-center border font-medium tracking-[0.01em] transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-brand-blue)] disabled:pointer-events-none disabled:translate-y-0 disabled:opacity-55";
 
 type AnchorButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode;

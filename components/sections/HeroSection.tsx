@@ -14,7 +14,7 @@ type HeroSectionProps = {
 
 export function HeroSection({ locale, content }: HeroSectionProps) {
   return (
-    <Section id="hero" variant="hero" className="relative isolate overflow-hidden">
+    <Section id="hero" variant="hero-screen" className="relative isolate overflow-hidden">
       <VisualLayer>
         {/* Large ambient circle centered on hero */}
         <div className="absolute left-1/2 top-0 h-[min(38rem,95vw)] w-[min(38rem,95vw)] -translate-x-1/2 rounded-full border border-elaman-blue/8 bg-elaman-blue/[0.02] lg:h-[46rem] lg:w-[46rem]" />
@@ -25,10 +25,10 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
         <div className="absolute right-[var(--page-x)] top-0 h-16 w-px bg-gradient-to-b from-elaman-red/16 to-transparent" />
       </VisualLayer>
 
-      <Container className="grid items-center gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-2">
+      <Container className="grid items-center gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
         <div>
           <SectionLabel>{content.label}</SectionLabel>
-          <h1 className="text-balance max-w-[10.5ch] text-[length:var(--type-display)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite sm:max-w-5xl">
+          <h1 className="text-balance max-w-[10.5ch] text-[length:var(--type-h1)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite sm:max-w-5xl">
             {content.title}
           </h1>
           <p className="mt-5 max-w-[32ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite sm:hidden">
@@ -37,10 +37,10 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
           <p className="mt-6 hidden max-w-[var(--container-copy)] text-[length:var(--type-lead)] leading-[var(--leading-body)] text-graphite sm:block">
             {content.intro}
           </p>
-          <p className="mt-4 max-w-[34ch] text-sm leading-[var(--leading-body)] text-graphite-muted sm:hidden">
+          <p className="mt-4 max-w-[34ch] text-sm leading-[var(--leading-body)] text-graphite-muted 2xl:hidden">
             {content.mobileBody}
           </p>
-          <p className="mt-4 hidden max-w-[var(--container-narrow)] text-sm leading-[var(--leading-body)] text-graphite-muted sm:block xl:text-base">
+          <p className="mt-4 hidden max-w-[var(--container-narrow)] text-base leading-[var(--leading-body)] text-graphite-muted 2xl:block">
             {content.body}
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row xl:mt-8">

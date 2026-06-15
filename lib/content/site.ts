@@ -140,20 +140,20 @@ export const siteContent = {
     metadata: {
       title: "German Security Solutions | Elaman GmbH",
       description:
-        "Elaman GmbH provides communications and security engineering, advisory, surveillance, protection, training, implementation, and support for public authority and security contexts.",
+        "Elaman GmbH provides communications and security engineering, technical services, advice, surveillance and protection solutions, professional training, and after-sales support for public authorities and security-sector clients.",
       ogLocale: "en_US",
     },
     navigation: {
       main: [
         { label: "Experience", href: "#experience" },
-        { label: "Story", href: "#story" },
-        { label: "Capabilities", href: "#capabilities" },
-        { label: "Systems", href: "#systems" },
+        { label: "Approach", href: "#story" },
+        { label: "Services", href: "#capabilities" },
+        { label: "Solutions", href: "#systems" },
         { label: "Contact", href: "#contact" },
       ],
       legal: [
         { label: "Imprint", href: "/imprint" },
-        { label: "Data Privacy Policy", href: "/private-policy" },
+        { label: "Privacy Policy", href: "/private-policy" },
       ],
       cta: "Contact",
       menu: "Menu",
@@ -162,242 +162,242 @@ export const siteContent = {
     },
     footer: {
       legalNotice: "Imprint",
-      privacy: "Data Privacy Policy",
-      copyright: "©2026 by Elaman GmbH",
+      privacy: "Privacy Policy",
+      copyright: "©2026 Elaman GmbH",
     },
     hero: {
       label: "Elaman GmbH",
       title: "Your bridge to trust and security.",
       mobileIntro:
-        "German security solutions for public authorities, security services, and communications service providers.",
+        "German security solutions for public authorities, security-sector clients, and communication service providers.",
       intro:
-        "German security solutions for public authorities, law enforcement agencies, ministries, security services, and communications service providers.",
+        "German security solutions for governmental authorities, public authorities, law-enforcement-related organisations, and communication service providers.",
       mobileBody:
-        "Advisory, implementation, training, and support for demanding communications and security environments.",
-      body: "With more than 20 years of experience in communications and security engineering, Elaman provides technical services, high-quality advice, turnkey implementation, professional training, and after-sales support.",
-      primaryCta: { label: "Contact Elaman", href: "#contact" },
-      secondaryCta: { label: "Explore capabilities", href: "#capabilities" },
-      visualLabel: "Secure Systems",
-      visualBody: "Communications, observation, command, and protection layers.",
+        "Communications and security engineering, advice, implementation, training, and support for demanding public-sector environments.",
+      body: "For more than 20 years, Elaman has worked in communications and security engineering. We provide comprehensive security solutions, technical services, high-quality advice, turnkey implementation, professional training, and after-sales service.",
+      primaryCta: { label: "Contact", href: "#contact" },
+      secondaryCta: { label: "View services", href: "#capabilities" },
+      visualLabel: "Integrated security systems",
+      visualBody:
+        "Communications, surveillance, protection, and support as connected capability layers.",
       visualBadge: "Munich / DE",
-      visualSteps: ["Analyze", "Integrate", "Support"],
+      visualSteps: ["Advise", "Implement", "Support"],
       stats: [
-        { value: "20+", label: "years of security and communications engineering" },
         {
-          value: "B2G",
-          label: "exclusively for government and public-sector authorities",
+          value: "20+",
+          label: "Years in communications and security engineering",
         },
-        { value: "360°", label: "advisory, implementation, training, and support" },
+        { value: "Turnkey", label: "Project implementation and system integration" },
+        { value: "Training", label: "Professional training and after-sales service" },
       ],
     },
     trust: {
-      label: "Trust & Experience",
-      title: "Built for public-sector security requirements.",
-      body: "Elaman combines communications engineering, security technology, discreet advisory work, system integration, professional training, and long-term service for organizations whose operations depend on reliable technical systems.",
+      label: "Experience",
+      title: "Built on long-standing public-sector security expertise.",
+      body: "Elaman combines communications and security engineering with extensive knowledge of government security and safety requirements. We support organisations whose operations depend on reliable technical systems, professional advice, and sustained service.",
       metrics: [
         {
           value: "20+",
-          label: "years of communications and security engineering experience",
+          label: "Years of experience in communications and security engineering",
         },
         {
-          value: "B2G",
+          value: "Public sector",
           label:
-            "exclusive focus on government, public authorities, and official security organizations",
+            "Focus on governmental authorities and public-sector security requirements",
         },
         {
-          value: "360°",
-          label:
-            "full-cycle delivery — from advice and integration to training and after-sales support",
+          value: "Full service",
+          label: "Advice, implementation, training, and after-sales support",
         },
       ],
       pillars: [
-        "Public authorities and ministries",
-        "Law enforcement agencies",
-        "Security services",
-        "Communications service providers",
+        "Governmental authorities",
+        "Public authorities",
+        "Law-enforcement-related organisations",
+        "Communication service providers",
       ],
     },
     story: {
-      label: "Operational Story",
-      title: "From confidential requirements to operational continuity.",
-      mobileTitle: "Security work, condensed.",
-      body: "A guided view of how Elaman moves from experience and advisory work into communications, surveillance, protection, integration, training, and long-term support.",
+      label: "Approach",
+      title: "From requirements analysis to implementation and support.",
+      mobileTitle: "How Elaman works",
+      body: "How Elaman connects experience, advice, surveillance and communications, protection, turnkey implementation, training, and after-sales service.",
       mobileBody:
-        "A compact view of the Elaman value chain: advisory work, technical systems, countermeasures, delivery, training, and support.",
-      progressLabel: "Story Progress",
-      activeLayerLabel: "Active Layer",
-      systemFocusLabel: "System focus",
-      detailsLabel: "Key details",
+        "How Elaman connects experience, advice, surveillance and communications, protection, implementation, training, and support.",
+      progressLabel: "Progress",
+      activeLayerLabel: "Current step",
+      systemFocusLabel: "Key points",
+      detailsLabel: "Key points",
       steps: [
         {
-          id: "trust",
-          eyebrow: "01 / Trust & Experience",
-          title: "Experience creates the basis for discreet security work.",
-          mobileTitle: "Trust first.",
+          id: "experience",
+          eyebrow: "01 / Experience",
+          title: "More than 20 years in communications and security engineering.",
+          mobileTitle: "20+ years of experience.",
           description:
-            "The foundation is more than 20 years of communications and security engineering for demanding public authority and official security environments.",
+            "Elaman's work is grounded in long-standing experience and extensive knowledge of government security and safety requirements for public authorities.",
           mobileSummary:
-            "20+ years of communications and security engineering for public authority and official security contexts.",
+            "Long-standing experience in communications and security engineering for public authority contexts.",
           bullets: [
             "Government security requirements",
-            "Public authority understanding",
-            "Discreet technical advisory work",
+            "Public authority contexts",
+            "Communications and security engineering",
           ],
         },
         {
           id: "advice",
           eyebrow: "02 / Advice",
-          title: "Requirements become a precise technical architecture.",
-          mobileTitle: "Advice becomes architecture.",
+          title: "Requirements are translated into a coherent technical approach.",
+          mobileTitle: "Requirements become technical approach.",
           description:
-            "Advisory work translates mission context, existing infrastructure, risk, procurement constraints, and operational expectations into a coherent solution concept.",
+            "Advice covers analysis, consulting, and solution design, aligning mission context, existing infrastructure, and procurement constraints with appropriate technical options.",
           mobileSummary:
-            "Analysis and consulting translate operational needs into a coherent solution architecture.",
-          bullets: ["Analysis", "Consulting", "Solution architecture"],
+            "Analysis, consulting, and solution design align requirements with appropriate technical options.",
+          bullets: ["Analysis", "Consulting", "Solution design"],
         },
         {
-          id: "communications",
-          eyebrow: "03 / Communications",
-          title: "Secure communications connect the operational layer.",
-          mobileTitle: "Communications connect.",
+          id: "surveillance-communications",
+          eyebrow: "03 / Surveillance & communications",
+          title: "Communications and surveillance systems form the operational layer.",
+          mobileTitle: "Operational layer.",
           description:
-            "Network, private, wireless, cellular, and satellite communications are treated as part of the security system rather than isolated channels.",
+            "Network-based, private, wireless, cellular, and satellite communications are integrated with surveillance-related capabilities as part of a broader security solution.",
           mobileSummary:
-            "Network, private, wireless, cellular, and satellite communications form the operational connection layer.",
-          bullets: ["PSTN / IP", "PABX", "Wireless / cellular", "Satellite"],
-        },
-        {
-          id: "surveillance",
-          eyebrow: "04 / Surveillance",
-          title: "Observation, GIS, intelligence, and command layers align.",
-          mobileTitle: "Surveillance layers align.",
-          description:
-            "Observation equipment, GIS, intelligence fusion, data forensics, command centers, and special operations vehicles are presented as connected capabilities for authorized workflows.",
-          mobileSummary:
-            "Observation, GIS, intelligence fusion, data forensics, and command layers work as connected systems.",
+            "Communications domains are integrated with authorised surveillance-related capabilities.",
           bullets: [
-            "Audio / video observation",
-            "GIS",
-            "Intelligence fusion",
-            "Command & control",
+            "Network / IP",
+            "Private networks",
+            "Wireless / cellular",
+            "Satellite",
           ],
         },
         {
           id: "protection",
-          eyebrow: "05 / Protection",
-          title: "Countermeasures protect people, data, and restricted spaces.",
-          mobileTitle: "Protection is layered.",
+          eyebrow: "04 / Protection",
+          title: "Protection measures for personnel, data, and restricted spaces.",
+          mobileTitle: "Protection measures.",
           description:
-            "ECM, counter-RCIED, jamming, TSCM, and shielded room concepts form a restrained protection layer for personnel, confidential information, and sensitive environments.",
+            "Protection-related services include countermeasure systems and protective infrastructure for environments where confidentiality and operational safety are essential.",
           mobileSummary:
-            "ECM, counter-RCIED, jamming, TSCM, and shielded room concepts form layered protection.",
+            "Countermeasure systems and protective infrastructure support restricted environments.",
           bullets: ["ECM", "Counter-RCIED", "TSCM", "Shielded rooms"],
         },
         {
-          id: "delivery",
-          eyebrow: "06 / Delivery",
-          title: "Implementation, training, and support keep systems usable.",
-          mobileTitle: "Delivery keeps systems operational.",
+          id: "implementation",
+          eyebrow: "05 / Implementation",
+          title: "Projects delivered on a turnkey basis.",
+          mobileTitle: "Turnkey implementation.",
           description:
-            "The final layer brings systems into operation through turnkey implementation, professional training, flawless operation, and after-sales service.",
+            "Elaman implements projects using state-of-the-art technology, with attention to system integration, reliability, and operational fit.",
           mobileSummary:
-            "Turnkey implementation, training, support, and after-sales service keep technical systems usable after delivery.",
-          bullets: ["Implement", "Train", "Support", "After-sales"],
+            "System integration, turnkey delivery, and operational readiness guide implementation.",
+          bullets: ["System integration", "Turnkey delivery", "Operational readiness"],
+        },
+        {
+          id: "training-support",
+          eyebrow: "06 / Training & support",
+          title: "Training and after-sales service sustain long-term usability.",
+          mobileTitle: "Training and support.",
+          description:
+            "Professional training and high-quality after-sales service help client teams operate, maintain, and continue to rely on implemented systems.",
+          mobileSummary:
+            "Training and after-sales service help teams operate and maintain implemented systems.",
+          bullets: ["In-depth training", "Technical service", "After-sales support"],
         },
       ],
     },
     capabilities: {
-      label: "Capability Overview",
-      title: "A coherent capability system, not isolated products.",
-      body: "Elaman's offer is structured around advice, communications and surveillance, protection, and training/support. Each capability is designed to fit into broader mission and infrastructure requirements.",
+      label: "Services",
+      title: "Advice, surveillance, protection, and sustained support.",
+      body: "Elaman's services follow the structure established over more than two decades: specialised advice, surveillance-related systems and communications, protection and countermeasures, supported by professional training and after-sales service.",
       items: [
         {
           eyebrow: "01",
           title: "Advice",
           description:
-            "Specialized technical guidance for selecting the right combination of products, services, and operational support.",
+            "High-quality technical advice for selecting and combining products, services, and operational support, based on extensive knowledge of government security and safety requirements.",
         },
         {
           eyebrow: "02",
-          title: "Surveillance & Communications",
+          title: "Surveillance",
           description:
-            "Observation, secure communications, GIS, intelligence, forensics, and command-related systems for authorized applications.",
+            "Surveillance-related systems and secure communications for authorised applications, including network-based, private, wireless, cellular, and satellite communications.",
         },
         {
           eyebrow: "03",
           title: "Protection",
           description:
-            "Countermeasure systems and protective infrastructure for personnel, facilities, convoys, and restricted environments.",
+            "Protection solutions and countermeasure systems for personnel, facilities, and restricted environments where confidentiality and operational safety are required.",
         },
         {
           eyebrow: "04",
           title: "Training & Support",
           description:
-            "In-depth training and after-sales service so teams can operate high-end technical solutions with confidence.",
+            "In-depth training, technical services, and high-quality after-sales service so client teams can operate and maintain implemented systems.",
         },
       ],
     },
     systems: {
-      label: "Systems & Technologies",
+      label: "Solutions",
       title: "Integrated systems across communications, observation, and command.",
-      body: "Elaman combines state-of-the-art products and current technological trends into efficient systems for security contexts where reliability and operational fit matter.",
+      body: "Elaman implements projects on a turnkey basis, combining established products and current technology into systems suited to security and public-authority requirements.",
       items: [
         {
-          title: "Secure Communications",
+          title: "Secure communications",
           description:
-            "Network, private, wireless, cellular, and satellite communications for demanding security contexts.",
+            "Network-based, private, wireless, cellular, and satellite communications for demanding security environments.",
         },
         {
-          title: "Audio / Video Observation",
+          title: "Audio / video observation",
           description:
-            "Technical observation equipment and supporting infrastructure for authorized surveillance operations.",
+            "Technical observation equipment and supporting infrastructure for authorised surveillance applications.",
         },
         {
-          title: "Geographical Information Systems",
+          title: "Geographical information systems",
           description:
-            "GIS-oriented systems that support situational understanding and operational planning.",
+            "GIS-related systems supporting situational awareness and operational planning.",
         },
         {
-          title: "Counter Surveillance",
+          title: "Counter surveillance",
           description:
             "Counter-surveillance equipment and sweep-team support for sensitive environments.",
         },
         {
-          title: "Special Operations Vehicles",
+          title: "Special operations vehicles",
           description:
-            "Vehicle-based concepts for specialized operational and communications requirements.",
+            "Vehicle-based concepts for specialised operational and communications requirements.",
         },
         {
-          title: "Command & Control Centers",
+          title: "Command & control centres",
           description:
-            "Mobile and strategic command environments for coordinated security operations.",
+            "Mobile and fixed command environments for coordinated operations.",
         },
         {
-          title: "Intelligence Fusion Systems",
+          title: "Intelligence fusion systems",
           description:
-            "Fusion systems that consolidate operational inputs into actionable information flows.",
+            "Systems that consolidate operational inputs for authorised analysis workflows.",
         },
         {
-          title: "Data Forensics",
+          title: "Data forensics",
           description:
-            "Forensics-related technical capabilities for authorized investigative contexts.",
+            "Forensics-related technical capabilities for authorised investigative contexts.",
         },
       ],
     },
     protection: {
       label: "Protection & Countermeasures",
-      title: "Countermeasure expertise for people, data, and restricted spaces.",
-      body: "Protection-related services include ECM, counter-RCIED, jamming systems, TSCM, and shielded room concepts for environments where confidentiality and operational safety matter.",
+      title: "Protection solutions for authorised security applications.",
+      body: "Protection-related services from the original Elaman portfolio include electronic countermeasures, counter-RCIED systems, jamming systems, technical surveillance countermeasures (TSCM), and shielded room concepts.",
       items: [
         {
           title: "ECM / Counter-RCIED",
           description:
-            "Electronic countermeasure systems designed to disrupt radio signals used as triggers for RCIEDs or wireless surveillance equipment.",
+            "Electronic countermeasure systems for authorised applications involving radio-controlled threats or wireless surveillance risks.",
         },
         {
-          title: "Jamming Systems",
+          title: "Jamming systems",
           description:
-            "Manpack jammers for bomb disposal teams, VIP convoy jamming, and static systems for building deployment.",
+            "Manpack, convoy, and building-deployable jamming systems for authorised operational contexts.",
         },
         {
           title: "TSCM",
@@ -412,15 +412,15 @@ export const siteContent = {
       ],
     },
     delivery: {
-      label: "Delivery Model",
-      title: "A clear path from assessment to operational support.",
-      body: "The delivery model keeps technical decisions connected to operational requirements, implementation quality, flawless operation, and long-term usability.",
+      label: "Methodology",
+      title: "A clear delivery model from analysis to support.",
+      body: "Elaman connects requirements analysis, system design, integration, training, and support so implemented systems remain technically reliable and operationally usable.",
       steps: [
         {
           step: "01",
-          title: "Analyze",
+          title: "Analyse",
           description:
-            "Understand mission context, existing infrastructure, risks, and technical constraints.",
+            "Understand mission context, infrastructure, and technical constraints.",
         },
         {
           step: "02",
@@ -431,35 +431,32 @@ export const siteContent = {
         {
           step: "03",
           title: "Integrate",
-          description:
-            "Implement turnkey technical systems with attention to reliability and operational fit.",
+          description: "Turnkey implementation with state-of-the-art technology.",
         },
         {
           step: "04",
           title: "Train",
-          description:
-            "Prepare client teams to understand, operate, and maintain high-end security solutions.",
+          description: "In-depth training for client teams.",
         },
         {
           step: "05",
           title: "Support",
-          description: "Provide after-sales service and continuity for deployed systems.",
+          description: "After-sales service and ongoing technical support.",
         },
       ],
     },
     contact: {
       company: "Elaman GmbH",
-      officeTitle: "The Elaman Office in Munich",
+      officeTitle: "Elaman GmbH - Munich",
       title: "Contact",
-      intro:
-        "Direct contact details and a structured inquiry form for Elaman GmbH in Munich.",
+      intro: "Contact details and an inquiry form for Elaman GmbH in Munich.",
       labels: {
         address: "Address",
         phone: "Phone",
         email: "Email",
         fax: "Fax",
       },
-      addressLines: ["Implerstr. 24", "81371 Munich", "Germany"],
+      addressLines: ["Implerstraße 24", "81371 Munich", "Germany"],
       footerAddressLines: ["Implerstrasse 24", "81371 Munich, Germany"],
       phone: "+49 (0) 89 - 24 20 91 80",
       phoneHref: "+498924209180",
@@ -468,9 +465,9 @@ export const siteContent = {
       emailHref: "mailto:info@elaman.de",
       form: {
         label: "Inquiry",
-        title: "Send a discreet inquiry",
+        title: "Send an inquiry",
         intro:
-          "Describe your requirement briefly. The responsible team will review your inquiry and respond through a secure channel.",
+          "Please describe your requirement briefly. The Elaman team will review your message and respond.",
         fields: {
           firstName: "First name",
           lastName: "Last name",
@@ -481,7 +478,7 @@ export const siteContent = {
         },
         submit: "Send inquiry",
         sending: "Sending...",
-        helper: "The inquiry is validated server-side before secure email delivery.",
+        helper: "Your inquiry is validated before email delivery.",
         success: "Thank you. Your inquiry has been sent.",
         errors: {
           firstNameRequired: "First name is required.",
@@ -507,15 +504,15 @@ export const siteContent = {
     metadata: {
       title: "Deutsche Sicherheitslösungen | Elaman GmbH",
       description:
-        "Elaman GmbH bietet Kommunikations- und Sicherheitstechnik, Beratung, Überwachung, Schutz, Training, Implementierung und Support für Behörden- und Sicherheitsumfelder.",
+        "Elaman GmbH bietet Kommunikations- und Sicherheitstechnik, technische Dienstleistungen, Beratung, Observation und Schutzlösungen, professionelle Schulungen und After-Sales-Service für Behörden und Sicherheitskunden.",
       ogLocale: "de_DE",
     },
     navigation: {
       main: [
         { label: "Erfahrung", href: "#experience" },
-        { label: "Ablauf", href: "#story" },
-        { label: "Kompetenzen", href: "#capabilities" },
-        { label: "Systeme", href: "#systems" },
+        { label: "Vorgehen", href: "#story" },
+        { label: "Leistungen", href: "#capabilities" },
+        { label: "Lösungen", href: "#systems" },
         { label: "Kontakt", href: "#contact" },
       ],
       legal: [
@@ -536,186 +533,188 @@ export const siteContent = {
       label: "Elaman GmbH",
       title: "Ihre Brücke zu Vertrauen und Sicherheit.",
       mobileIntro:
-        "Deutsche Sicherheitslösungen für Behörden, Sicherheitsdienste und Kommunikationsanbieter.",
+        "Deutsche Sicherheitslösungen für Behörden, Sicherheitskunden und Kommunikationsanbieter.",
       intro:
-        "Deutsche Sicherheitslösungen für Behörden, Strafverfolgungsbehörden, Ministerien, Sicherheitsdienste und Kommunikationsanbieter.",
+        "Deutsche Sicherheitslösungen für staatliche und öffentliche Behörden, sicherheitsrelevante Organisationen und Kommunikationsanbieter.",
       mobileBody:
-        "Beratung, Implementierung, Training und Support für anspruchsvolle Kommunikations- und Sicherheitsumfelder.",
-      body: "Mit mehr als 20 Jahren Erfahrung in Kommunikations- und Sicherheitstechnik bietet Elaman technische Dienstleistungen, hochwertige Beratung, schlüsselfertige Implementierung, professionelle Schulungen und After-Sales-Service.",
-      primaryCta: { label: "Elaman kontaktieren", href: "#contact" },
-      secondaryCta: { label: "Kompetenzen ansehen", href: "#capabilities" },
-      visualLabel: "Sichere Systeme",
-      visualBody: "Kommunikation, Observation, Führung und Schutz als Systemebenen.",
+        "Kommunikations- und Sicherheitstechnik, Beratung, Implementierung, Schulung und Betreuung für anspruchsvolle Behördenumfelder.",
+      body: "Seit mehr als 20 Jahren ist Elaman in der Kommunikations- und Sicherheitstechnik tätig. Wir bieten umfassende Sicherheitslösungen, technische Dienstleistungen, hochwertige Beratung, schlüsselfertige Implementierung, professionelle Schulungen und After-Sales-Service.",
+      primaryCta: { label: "Kontakt", href: "#contact" },
+      secondaryCta: { label: "Leistungen ansehen", href: "#capabilities" },
+      visualLabel: "Integrierte Sicherheitssysteme",
+      visualBody:
+        "Kommunikation, Observation, Schutz und Betreuung als verbundene Leistungsebenen.",
       visualBadge: "München / DE",
-      visualSteps: ["Analysieren", "Integrieren", "Betreuen"],
+      visualSteps: ["Beraten", "Umsetzen", "Betreuen"],
       stats: [
         {
           value: "20+",
-          label: "Jahre Erfahrung in Sicherheits- und Kommunikationstechnik",
+          label: "Jahre in Kommunikations- und Sicherheitstechnik",
         },
         {
-          value: "B2G",
-          label: "ausschließlich für Behörden und staatliche Sicherheitsorganisationen",
+          value: "Schlüsselfertig",
+          label: "Projektumsetzung und Systemintegration",
         },
-        { value: "360°", label: "Beratung, Implementierung, Training und Support" },
+        { value: "Schulung", label: "Schulungen und After-Sales-Service" },
       ],
     },
     trust: {
-      label: "Vertrauen & Erfahrung",
-      title: "Entwickelt für Sicherheitsanforderungen im öffentlichen Umfeld.",
-      body: "Elaman verbindet Kommunikationstechnik, Sicherheitstechnologie, diskrete Beratung, Systemintegration, professionelle Schulungen und langfristigen Service für Organisationen, deren Arbeit von zuverlässigen technischen Systemen abhängt.",
+      label: "Erfahrung",
+      title: "Auf langjähriger Expertise für Behörden und Sicherheitsanforderungen.",
+      body: "Elaman verbindet Kommunikations- und Sicherheitstechnik mit umfassendem Wissen über staatliche Sicherheits- und Schutzanforderungen öffentlicher Behörden. Wir unterstützen Organisationen, deren Arbeit auf zuverlässigen technischen Systemen, fachlicher Beratung und kontinuierlicher Betreuung beruht.",
       metrics: [
         {
           value: "20+",
           label: "Jahre Erfahrung in Kommunikations- und Sicherheitstechnik",
         },
         {
-          value: "B2G",
-          label:
-            "ausschließlicher Fokus auf Behörden, Ministerien und staatliche Sicherheitsorganisationen",
+          value: "Behörden",
+          label: "Schwerpunkt auf Behörden und öffentlichen Sicherheitsanforderungen",
         },
         {
-          value: "360°",
-          label:
-            "vollständiger Leistungszyklus — von Beratung und Integration bis Training und After-Sales",
+          value: "Vollservice",
+          label: "Beratung, Implementierung, Schulung und After-Sales-Service",
         },
       ],
       pillars: [
-        "Behörden und Ministerien",
-        "Strafverfolgungsbehörden",
-        "Sicherheitsdienste",
+        "Staatliche Behörden",
+        "Öffentliche Behörden",
+        "Sicherheits- und ordnungsrelevante Organisationen",
         "Kommunikationsanbieter",
       ],
     },
     story: {
-      label: "Operativer Ablauf",
-      title: "Von vertraulichen Anforderungen zu verlässlichem Betrieb.",
-      mobileTitle: "Sicherheitsarbeit, verdichtet.",
-      body: "Eine geführte Darstellung, wie Elaman Erfahrung und Beratung mit Kommunikation, Observation, Schutz, Integration, Training und langfristiger Betreuung verbindet.",
+      label: "Vorgehen",
+      title: "Von der Anforderungsanalyse bis zur Umsetzung und Betreuung.",
+      mobileTitle: "So arbeitet Elaman",
+      body: "Wie Elaman Erfahrung, Beratung, Observation und Kommunikation, Schutz, schlüsselfertige Umsetzung, Schulung und After-Sales-Service zusammenführt.",
       mobileBody:
-        "Eine kompakte Darstellung der Elaman-Wertschöpfung: Beratung, technische Systeme, Schutzmaßnahmen, Umsetzung, Training und Support.",
+        "Wie Elaman Erfahrung, Beratung, Observation und Kommunikation, Schutz, Umsetzung, Schulung und Betreuung zusammenführt.",
       progressLabel: "Fortschritt",
-      activeLayerLabel: "Aktive Ebene",
-      systemFocusLabel: "Systemfokus",
-      detailsLabel: "Details",
+      activeLayerLabel: "Aktueller Schritt",
+      systemFocusLabel: "Schwerpunkte",
+      detailsLabel: "Schwerpunkte",
       steps: [
         {
-          id: "trust",
-          eyebrow: "01 / Vertrauen & Erfahrung",
-          title: "Erfahrung schafft die Grundlage für diskrete Sicherheitsarbeit.",
-          mobileTitle: "Vertrauen zuerst.",
+          id: "experience",
+          eyebrow: "01 / Erfahrung",
+          title: "Mehr als 20 Jahre Kommunikations- und Sicherheitstechnik.",
+          mobileTitle: "Mehr als 20 Jahre Erfahrung.",
           description:
-            "Die Grundlage bilden mehr als 20 Jahre Kommunikations- und Sicherheitstechnik für anspruchsvolle Behörden- und Sicherheitsumfelder.",
+            "Die Arbeit von Elaman basiert auf langjähriger Erfahrung und umfassendem Wissen über staatliche Sicherheits- und Schutzanforderungen öffentlicher Behörden.",
           mobileSummary:
-            "Mehr als 20 Jahre Kommunikations- und Sicherheitstechnik für Behörden und offizielle Sicherheitskontexte.",
+            "Langjährige Erfahrung in Kommunikations- und Sicherheitstechnik für Behördenumfelder.",
           bullets: [
             "Staatliche Sicherheitsanforderungen",
-            "Verständnis für Behördenumfelder",
-            "Diskrete technische Beratung",
+            "Behördenumfelder",
+            "Kommunikations- und Sicherheitstechnik",
           ],
         },
         {
           id: "advice",
           eyebrow: "02 / Beratung",
-          title: "Anforderungen werden zu einer präzisen technischen Architektur.",
-          mobileTitle: "Beratung wird Architektur.",
+          title: "Anforderungen werden in einen stimmigen technischen Ansatz überführt.",
+          mobileTitle: "Anforderungen werden Ansatz.",
           description:
-            "Beratung übersetzt Einsatzkontext, bestehende Infrastruktur, Risiken, Beschaffungsrahmen und operative Erwartungen in ein stimmiges Lösungskonzept.",
+            "Die Beratung umfasst Analyse, Consulting und Lösungskonzeption, unter Abstimmung von Einsatzkontext, bestehender Infrastruktur und Beschaffungsrahmen mit geeigneten technischen Optionen.",
           mobileSummary:
-            "Analyse und Beratung übersetzen operative Anforderungen in eine klare Lösungsarchitektur.",
-          bullets: ["Analyse", "Beratung", "Lösungsarchitektur"],
+            "Analyse, Beratung und Lösungskonzeption stimmen Anforderungen mit technischen Optionen ab.",
+          bullets: ["Analyse", "Beratung", "Lösungskonzeption"],
         },
         {
-          id: "communications",
-          eyebrow: "03 / Kommunikation",
-          title: "Sichere Kommunikation verbindet die operative Ebene.",
-          mobileTitle: "Kommunikation verbindet.",
+          id: "surveillance-communications",
+          eyebrow: "03 / Observation & Kommunikation",
+          title: "Kommunikations- und Observationssysteme bilden die operative Ebene.",
+          mobileTitle: "Operative Ebene.",
           description:
-            "Netzwerkbasierte, private, drahtlose, zellulare und satellitengestützte Kommunikation wird als Teil des Sicherheitssystems betrachtet, nicht als isolierter Kanal.",
+            "Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation werden mit observationstechnischen Fähigkeiten als Teil einer umfassenden Sicherheitslösung integriert.",
           mobileSummary:
-            "Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation bilden die operative Verbindungsebene.",
-          bullets: ["PSTN / IP", "PABX", "Funk / Mobilfunk", "Satellit"],
-        },
-        {
-          id: "surveillance",
-          eyebrow: "04 / Observation",
-          title: "Observation, GIS, Intelligence und Führungslagen greifen ineinander.",
-          mobileTitle: "Observation vernetzt sich.",
-          description:
-            "Observationstechnik, GIS, Intelligence Fusion, Data Forensics, Führungszentren und Spezialfahrzeuge werden als verbundene Fähigkeiten für autorisierte Arbeitsabläufe verstanden.",
-          mobileSummary:
-            "Observation, GIS, Intelligence Fusion, Data Forensics und Führungszentren bilden zusammenhängende Systemebenen.",
-          bullets: [
-            "Audio-/Video-Observation",
-            "GIS",
-            "Intelligence Fusion",
-            "Command & Control",
-          ],
+            "Kommunikationsbereiche werden mit autorisierten observationstechnischen Fähigkeiten integriert.",
+          bullets: ["Netzwerk / IP", "Private Netze", "Funk / Mobilfunk", "Satellit"],
         },
         {
           id: "protection",
-          eyebrow: "05 / Schutz",
+          eyebrow: "04 / Schutz",
           title: "Schutzmaßnahmen sichern Personen, Daten und geschützte Räume.",
-          mobileTitle: "Schutz ist mehrschichtig.",
+          mobileTitle: "Schutzmaßnahmen.",
           description:
-            "ECM, Counter-RCIED, Jamming, TSCM und geschirmte Räume bilden eine zurückhaltende Schutzebene für Personal, vertrauliche Informationen und sensible Umgebungen.",
+            "Schutzbezogene Leistungen umfassen Gegenmaßnahmensysteme und Schutzinfrastruktur für Umgebungen, in denen Vertraulichkeit und operative Sicherheit erforderlich sind.",
           mobileSummary:
-            "ECM, Counter-RCIED, Jamming, TSCM und geschirmte Räume bilden mehrschichtigen Schutz.",
+            "Gegenmaßnahmensysteme und Schutzinfrastruktur unterstützen geschützte Umgebungen.",
           bullets: ["ECM", "Counter-RCIED", "TSCM", "Geschirmte Räume"],
         },
         {
-          id: "delivery",
-          eyebrow: "06 / Umsetzung",
-          title: "Implementierung, Training und Support halten Systeme nutzbar.",
-          mobileTitle: "Umsetzung sichert Betrieb.",
+          id: "implementation",
+          eyebrow: "05 / Umsetzung",
+          title: "Projekte schlüsselfertig umgesetzt.",
+          mobileTitle: "Schlüsselfertige Umsetzung.",
           description:
-            "Die letzte Ebene überführt Systeme durch schlüsselfertige Implementierung, professionelle Schulungen, verlässlichen Betrieb und After-Sales-Service in die Praxis.",
+            "Elaman setzt Projekte mit aktueller Technologie um, mit Blick auf Systemintegration, Zuverlässigkeit und operative Eignung.",
           mobileSummary:
-            "Schlüsselfertige Implementierung, Training, Support und After-Sales-Service halten technische Systeme im Betrieb nutzbar.",
-          bullets: ["Implementieren", "Trainieren", "Betreuen", "After-Sales"],
+            "Systemintegration, schlüsselfertige Übergabe und Einsatzbereitschaft prägen die Umsetzung.",
+          bullets: [
+            "Systemintegration",
+            "Schlüsselfertige Übergabe",
+            "Einsatzbereitschaft",
+          ],
+        },
+        {
+          id: "training-support",
+          eyebrow: "06 / Schulung & Betreuung",
+          title: "Schulung und After-Sales-Service sichern langfristige Nutzbarkeit.",
+          mobileTitle: "Schulung und Betreuung.",
+          description:
+            "Professionelle Schulungen und hochwertiger After-Sales-Service unterstützen Kundenteams beim Betrieb, bei der Wartung und bei der langfristigen Nutzung implementierter Systeme.",
+          mobileSummary:
+            "Schulung und After-Sales-Service unterstützen Betrieb und Wartung implementierter Systeme.",
+          bullets: [
+            "Fundierte Schulungen",
+            "Technischer Service",
+            "After-Sales-Betreuung",
+          ],
         },
       ],
     },
     capabilities: {
-      label: "Kompetenzübersicht",
-      title: "Ein zusammenhängendes Kompetenzsystem, keine isolierten Produkte.",
-      body: "Das Angebot von Elaman umfasst Beratung, Kommunikation und Observation, Schutz sowie Training und Support. Jede Fähigkeit ist auf übergeordnete Einsatz- und Infrastrukturanforderungen ausgerichtet.",
+      label: "Leistungen",
+      title: "Beratung, Observation, Schutz und kontinuierliche Betreuung.",
+      body: "Die Leistungen von Elaman folgen der seit über zwei Jahrzehnten etablierten Struktur: spezialisierte Beratung, observationstechnische Systeme und Kommunikation, Schutz und Gegenmaßnahmen, ergänzt durch professionelle Schulungen und After-Sales-Service.",
       items: [
         {
           eyebrow: "01",
           title: "Beratung",
           description:
-            "Spezialisierte technische Beratung zur Auswahl der passenden Kombination aus Produkten, Dienstleistungen und operativer Unterstützung.",
+            "Hochwertige technische Beratung zur Auswahl und Kombination von Produkten, Dienstleistungen und operativer Unterstützung, auf Basis umfassenden Wissens über staatliche Sicherheits- und Schutzanforderungen.",
         },
         {
           eyebrow: "02",
           title: "Observation & Kommunikation",
           description:
-            "Observation, sichere Kommunikation, GIS, Intelligence, Forensik und Führungssysteme für autorisierte Anwendungen.",
+            "Observationstechnische Systeme und sichere Kommunikation für autorisierte Anwendungen, einschließlich netzwerk-, privat-, drahtlos-, mobilfunk- und satellitengestützter Kommunikation.",
         },
         {
           eyebrow: "03",
           title: "Schutz",
           description:
-            "Schutz- und Gegenmaßnahmensysteme für Personal, Einrichtungen, Konvois und sensible Umgebungen.",
+            "Schutzlösungen und Gegenmaßnahmensysteme für Personal, Einrichtungen und geschützte Umgebungen, in denen Vertraulichkeit und operative Sicherheit erforderlich sind.",
         },
         {
           eyebrow: "04",
           title: "Training & Support",
           description:
-            "Fundierte Schulungen und After-Sales-Service, damit Teams hochwertige technische Lösungen sicher einsetzen können.",
+            "Fundierte Schulungen, technische Dienstleistungen und hochwertiger After-Sales-Service, damit Kundenteams implementierte Systeme sicher bedienen und erhalten können.",
         },
       ],
     },
     systems: {
-      label: "Systeme & Technologien",
+      label: "Lösungen",
       title: "Integrierte Systeme für Kommunikation, Observation und Führung.",
-      body: "Elaman kombiniert hochwertige Produkte und aktuelle technologische Entwicklungen zu effizienten Systemen für Sicherheitsumfelder, in denen Zuverlässigkeit und operative Passung entscheidend sind.",
+      body: "Elaman setzt Projekte schlüsselfertig um und kombiniert bewährte Produkte mit aktueller Technologie zu Systemen für Sicherheits- und Behördenanforderungen.",
       items: [
         {
           title: "Sichere Kommunikation",
           description:
-            "Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation für anspruchsvolle Sicherheitskontexte.",
+            "Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation für anspruchsvolle Sicherheitsumfelder.",
         },
         {
           title: "Audio-/Video-Observation",
@@ -724,8 +723,7 @@ export const siteContent = {
         },
         {
           title: "Geoinformationssysteme",
-          description:
-            "GIS-orientierte Systeme zur Lageerfassung, Planung und operativen Entscheidungsunterstützung.",
+          description: "GIS-bezogene Systeme zur Lagebildung und operativen Planung.",
         },
         {
           title: "Counter Surveillance",
@@ -739,13 +737,12 @@ export const siteContent = {
         },
         {
           title: "Command & Control Centers",
-          description:
-            "Mobile und strategische Führungsumgebungen für koordinierte Sicherheitsoperationen.",
+          description: "Mobile und feste Führungsumgebungen für koordinierte Einsätze.",
         },
         {
-          title: "Intelligence Fusion Systeme",
+          title: "Intelligence-Fusion-Systeme",
           description:
-            "Fusionssysteme, die operative Eingaben in verwertbare Informationsflüsse überführen.",
+            "Systeme zur zusammenführenden Auswertung operativer Informationen in autorisierten Analyseprozessen.",
         },
         {
           title: "Data Forensics",
@@ -756,23 +753,23 @@ export const siteContent = {
     },
     protection: {
       label: "Schutz & Gegenmaßnahmen",
-      title: "Gegenmaßnahmentechnik für Personen, Daten und geschützte Räume.",
-      body: "Schutzbezogene Leistungen umfassen ECM, Counter-RCIED, Jamming-Systeme, TSCM und geschirmte Raumkonzepte für Umgebungen, in denen Vertraulichkeit und operative Sicherheit zählen.",
+      title: "Schutzlösungen für autorisierte Sicherheitsanwendungen.",
+      body: "Schutzbezogene Leistungen aus dem etablierten Elaman-Portfolio umfassen elektronische Gegenmaßnahmen, Counter-RCIED-Systeme, Jamming-Systeme, technische Überwachungsgegenmaßnahmen (TSCM) und Konzepte für geschirmte Räume.",
       items: [
         {
           title: "ECM / Counter-RCIED",
           description:
-            "Elektronische Gegenmaßnahmensysteme zur Störung von Funksignalen, die als Auslöser für RCIEDs oder drahtlose Überwachungstechnik genutzt werden könnten.",
+            "Elektronische Gegenmaßnahmensysteme für autorisierte Anwendungen im Zusammenhang mit funkgesteuerten Bedrohungen oder drahtlosen Überwachungsrisiken.",
         },
         {
           title: "Jamming-Systeme",
           description:
-            "Manpack-Jammer für Entschärfungsteams, VIP-Konvoi-Jamming und statische Systeme für Gebäudeeinsätze.",
+            "Manpack-, Konvoi- und gebäudebasierte Jamming-Systeme für autorisierte Einsatzkontexte.",
         },
         {
           title: "TSCM",
           description:
-            "Technische Überwachungsgegenmaßnahmen, professionelle Beratung und Schulungen für Counter-Surveillance- und Sweep-Teams.",
+            "Technische Überwachungsgegenmaßnahmen, Beratung und Schulungen für Counter-Surveillance- und Sweep-Teams.",
         },
         {
           title: "Geschirmte Räume",
@@ -782,55 +779,50 @@ export const siteContent = {
       ],
     },
     delivery: {
-      label: "Umsetzungsmodell",
-      title: "Ein klarer Weg von der Analyse bis zur Betriebsbetreuung.",
-      body: "Das Umsetzungsmodell verbindet technische Entscheidungen mit operativen Anforderungen, Implementierungsqualität, zuverlässigem Betrieb und langfristiger Nutzbarkeit.",
+      label: "Methodik",
+      title: "Ein klares Umsetzungsmodell von der Analyse bis zur Betreuung.",
+      body: "Elaman verbindet Anforderungsanalyse, Systemkonzeption, Integration, Schulung und Betreuung, damit implementierte Systeme technisch zuverlässig und operativ nutzbar bleiben.",
       steps: [
         {
           step: "01",
           title: "Analysieren",
           description:
-            "Einsatzkontext, bestehende Infrastruktur, Risiken und technische Rahmenbedingungen verstehen.",
+            "Einsatzkontext, Infrastruktur und technische Rahmenbedingungen verstehen.",
         },
         {
           step: "02",
           title: "Konzipieren",
-          description:
-            "Anforderungen in ein präzises Systemkonzept und einen belastbaren Umsetzungsansatz übersetzen.",
+          description: "Systemkonzept und Umsetzungsansatz entwickeln.",
         },
         {
           step: "03",
           title: "Integrieren",
-          description:
-            "Schlüsselfertige technische Systeme mit Blick auf Zuverlässigkeit und operative Passung umsetzen.",
+          description: "Schlüsselfertige Umsetzung mit aktueller Technologie.",
         },
         {
           step: "04",
           title: "Schulen",
-          description:
-            "Teams darauf vorbereiten, hochwertige Sicherheitslösungen zu verstehen, zu bedienen und zu erhalten.",
+          description: "Fundierte Schulungen für Kundenteams.",
         },
         {
           step: "05",
           title: "Betreuen",
-          description:
-            "After-Sales-Service und Kontinuität für implementierte Systeme bereitstellen.",
+          description: "After-Sales-Service und fortlaufende technische Betreuung.",
         },
       ],
     },
     contact: {
       company: "Elaman GmbH",
-      officeTitle: "Das Elaman Büro in München",
+      officeTitle: "Elaman GmbH - München",
       title: "Kontakt",
-      intro:
-        "Direkte Kontaktdaten und ein strukturiertes Anfrageformular für die Elaman GmbH in München.",
+      intro: "Kontaktdaten und ein Anfrageformular für die Elaman GmbH in München.",
       labels: {
         address: "Adresse",
         phone: "Telefon",
         email: "E-Mail",
         fax: "Fax",
       },
-      addressLines: ["Implerstr. 24", "81371 München", "Deutschland"],
+      addressLines: ["Implerstraße 24", "81371 München", "Deutschland"],
       footerAddressLines: ["Implerstrasse 24", "81371 München, Deutschland"],
       phone: "+49 (0) 89 - 24 20 91 80",
       phoneHref: "+498924209180",
@@ -839,9 +831,9 @@ export const siteContent = {
       emailHref: "mailto:info@elaman.de",
       form: {
         label: "Anfrage",
-        title: "Diskrete Anfrage senden",
+        title: "Anfrage senden",
         intro:
-          "Beschreiben Sie Ihr Anliegen kurz. Das zuständige Team prüft Ihre Anfrage und meldet sich über einen sicheren Kanal.",
+          "Bitte beschreiben Sie Ihr Anliegen kurz. Das Team von Elaman prüft Ihre Nachricht und meldet sich.",
         fields: {
           firstName: "Vorname",
           lastName: "Nachname",
@@ -852,8 +844,7 @@ export const siteContent = {
         },
         submit: "Anfrage senden",
         sending: "Wird gesendet...",
-        helper:
-          "Die Anfrage wird serverseitig geprüft, bevor sie sicher per E-Mail zugestellt wird.",
+        helper: "Ihre Anfrage wird vor der E-Mail-Zustellung serverseitig geprüft.",
         success: "Vielen Dank. Ihre Anfrage wurde gesendet.",
         errors: {
           firstNameRequired: "Bitte geben Sie Ihren Vornamen ein.",

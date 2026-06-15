@@ -7,6 +7,9 @@ type HeroSignalVisualProps = {
   steps: readonly string[];
 };
 
+const BLUE = "var(--color-brand-blue)";
+const RED = "var(--color-brand-red)";
+
 export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisualProps) {
   return (
     <Surface
@@ -32,7 +35,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
           cx="200"
           cy="160"
           r="120"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.8"
           strokeOpacity="0.14"
           strokeDasharray="3 9"
@@ -42,7 +45,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
           cx="200"
           cy="160"
           r="80"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.8"
           strokeOpacity="0.10"
         />
@@ -51,7 +54,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
           cx="200"
           cy="160"
           r="40"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1"
           strokeOpacity="0.16"
           strokeDasharray="2 6"
@@ -63,7 +66,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
           y1="160"
           x2="340"
           y2="160"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.7"
           strokeOpacity="0.12"
         />
@@ -73,7 +76,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
           y1="24"
           x2="200"
           y2="296"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.7"
           strokeOpacity="0.12"
         />
@@ -84,7 +87,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
           y1="75"
           x2="285"
           y2="245"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.5"
           strokeOpacity="0.07"
         />
@@ -93,7 +96,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
           y1="75"
           x2="115"
           y2="245"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.5"
           strokeOpacity="0.07"
         />
@@ -101,7 +104,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
         {/* Primary signal arc — blue, animated march */}
         <path
           d="M80 220 C120 160 160 124 200 120 C244 116 276 136 320 96"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1.6"
           strokeLinecap="round"
           strokeDasharray="8 14"
@@ -111,7 +114,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
         {/* Secondary arc — red, reverse march */}
         <path
           d="M80 248 C130 228 170 200 200 170 C232 140 270 132 320 140"
-          stroke="#D83034"
+          stroke={RED}
           strokeWidth="1.4"
           strokeLinecap="round"
           strokeDasharray="5 12"
@@ -121,58 +124,54 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
         />
 
         {/* Scanning arc segment (decorative, thin) */}
-        <path
-          d="M200 160 L200 80"
-          stroke="#244074"
-          strokeWidth="0.8"
-          strokeOpacity="0.20"
-        />
+        <path d="M200 160 L200 80" stroke={BLUE} strokeWidth="0.8" strokeOpacity="0.20" />
         <path
           d="M200 80 A80 80 0 0 1 272 136"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.8"
           strokeOpacity="0.18"
-          fill="rgba(36,64,116,0.03)"
+          fill={BLUE}
+          fillOpacity="0.03"
         />
 
         {/* Center origin */}
-        <circle cx="200" cy="160" r="4" fill="#244074" fillOpacity="0.50" />
+        <circle cx="200" cy="160" r="4" fill={BLUE} fillOpacity="0.50" />
         <circle
           cx="200"
           cy="160"
           r="10"
           fill="none"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1"
           strokeOpacity="0.18"
         />
 
         {/* Cardinal point markers */}
-        <circle cx="200" cy="80" r="3" fill="#244074" fillOpacity="0.35" />
-        <circle cx="280" cy="160" r="3" fill="#244074" fillOpacity="0.35" />
-        <circle cx="200" cy="240" r="3" fill="#244074" fillOpacity="0.35" />
-        <circle cx="120" cy="160" r="3" fill="#244074" fillOpacity="0.35" />
+        <circle cx="200" cy="80" r="3" fill={BLUE} fillOpacity="0.35" />
+        <circle cx="280" cy="160" r="3" fill={BLUE} fillOpacity="0.35" />
+        <circle cx="200" cy="240" r="3" fill={BLUE} fillOpacity="0.35" />
+        <circle cx="120" cy="160" r="3" fill={BLUE} fillOpacity="0.35" />
 
         {/* Signal node on blue arc */}
-        <circle cx="200" cy="120" r="4.5" fill="#244074" fillOpacity="0.55" />
+        <circle cx="200" cy="120" r="4.5" fill={BLUE} fillOpacity="0.55" />
         <circle
           cx="200"
           cy="120"
           r="10"
           fill="none"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="0.8"
           strokeOpacity="0.18"
         />
 
         {/* Signal node on red arc */}
-        <circle cx="270" cy="132" r="3.5" fill="#D83034" fillOpacity="0.50" />
+        <circle cx="270" cy="132" r="3.5" fill={RED} fillOpacity="0.50" />
         <circle
           cx="270"
           cy="132"
           r="8"
           fill="none"
-          stroke="#D83034"
+          stroke={RED}
           strokeWidth="0.8"
           strokeOpacity="0.16"
         />
@@ -180,28 +179,28 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
         {/* Corner micro-marks */}
         <path
           d="M44 44 H58 M44 44 V58"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1"
           strokeOpacity="0.18"
           strokeLinecap="round"
         />
         <path
           d="M356 44 H342 M356 44 V58"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1"
           strokeOpacity="0.18"
           strokeLinecap="round"
         />
         <path
           d="M44 276 H58 M44 276 V262"
-          stroke="#244074"
+          stroke={BLUE}
           strokeWidth="1"
           strokeOpacity="0.18"
           strokeLinecap="round"
         />
         <path
           d="M356 276 H342 M356 276 V262"
-          stroke="#D83034"
+          stroke={RED}
           strokeWidth="1"
           strokeOpacity="0.16"
           strokeLinecap="round"
