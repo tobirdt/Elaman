@@ -14,7 +14,8 @@ type StoryProgressProps = {
 
 export function StoryProgress({ steps, activeIndex, label }: StoryProgressProps) {
   const prefersReducedMotion = useReducedMotionPreference();
-  const progress = ((activeIndex + 1) / steps.length) * 100;
+  const progress = steps.length > 1 ? (activeIndex / (steps.length - 1)) * 100 : 100;
+  const redStart = steps.length > 1 ? (3 / (steps.length - 1)) * 100 : 0;
 
   return (
     <Surface className="mt-5 p-4" variant="card">
@@ -27,17 +28,52 @@ export function StoryProgress({ steps, activeIndex, label }: StoryProgressProps)
           {String(steps.length).padStart(2, "0")}
         </p>
       </div>
-      <div className="mt-4 h-1 overflow-hidden rounded-full bg-graphite/8">
+      <div className="relative mt-4 h-8">
+        <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-graphite/10" />
         <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-elaman-blue to-elaman-red"
+          className="absolute left-0 top-1/2 h-px -translate-y-1/2 bg-elaman-blue"
           initial={false}
           animate={{ width: `${progress}%` }}
           transition={
             prefersReducedMotion
               ? { duration: 0 }
-              : { duration: 0.45, ease: [0.22, 1, 0.36, 1] }
+              : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
           }
         />
+        {activeIndex >= 4 && (
+          <motion.div
+            className="absolute top-1/2 h-px -translate-y-1/2 bg-elaman-red"
+            style={{ left: `${redStart}%` }}
+            initial={false}
+            animate={{ width: `${Math.max(0, progress - redStart)}%` }}
+            transition={
+              prefersReducedMotion
+                ? { duration: 0 }
+                : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+            }
+          />
+        )}
+        {steps.map((step, index) => {
+          const position = steps.length > 1 ? (index / (steps.length - 1)) * 100 : 0;
+          const active = index <= activeIndex;
+          const current = index === activeIndex;
+          const red = index === 4 && activeIndex >= 4;
+
+          return (
+            <span
+              key={step.id}
+              className={`absolute top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] ${
+                active
+                  ? red
+                    ? "border-elaman-red bg-elaman-red"
+                    : "border-elaman-blue bg-elaman-blue"
+                  : "border-graphite/12 bg-white"
+              } ${current ? "ring-2 ring-elaman-blue/12" : ""}`}
+              style={{ left: `${position}%` }}
+              aria-hidden="true"
+            />
+          );
+        })}
       </div>
       <ol className="mt-4 grid gap-1.5">
         {steps.map((step, index) => (
@@ -47,7 +83,7 @@ export function StoryProgress({ steps, activeIndex, label }: StoryProgressProps)
                 index < activeIndex
                   ? "bg-elaman-blue"
                   : index === activeIndex
-                    ? "bg-elaman-blue scale-125"
+                    ? "bg-elaman-blue ring-2 ring-elaman-blue/12"
                     : "bg-graphite/16"
               }`}
               aria-hidden="true"

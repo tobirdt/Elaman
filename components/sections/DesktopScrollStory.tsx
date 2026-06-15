@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { useRef, useState } from "react";
 
 import { StickyStoryStage } from "@/components/motion/StickyStoryStage";
 import { StoryProgress } from "@/components/motion/StoryProgress";
@@ -20,44 +20,22 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotionPreference();
   const activeStep = content.steps[activeIndex] ?? content.steps[0];
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
 
-  useEffect(() => {
-    let frame = 0;
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const clamped = Math.min(1, Math.max(0, latest));
+    const nextIndex = Math.min(
+      content.steps.length - 1,
+      Math.max(0, Math.floor(clamped * content.steps.length)),
+    );
 
-    function updateActiveStep() {
-      const section = sectionRef.current;
-
-      if (!section) {
-        return;
-      }
-
-      const rect = section.getBoundingClientRect();
-      const scrollRange = section.offsetHeight - window.innerHeight;
-      const traveled = Math.min(Math.max(-rect.top, 0), scrollRange);
-      const progress = scrollRange > 0 ? traveled / scrollRange : 0;
-      const nextIndex = Math.min(
-        content.steps.length - 1,
-        Math.max(0, Math.round(progress * (content.steps.length - 1))),
-      );
-
-      setActiveIndex(nextIndex);
-    }
-
-    function scheduleUpdate() {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(updateActiveStep);
-    }
-
-    updateActiveStep();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-    };
-  }, [content.steps.length]);
+    setActiveIndex((currentIndex) =>
+      currentIndex === nextIndex ? currentIndex : nextIndex,
+    );
+  });
 
   return (
     <div
@@ -92,12 +70,12 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
           <motion.div
             key={activeStep.id}
             aria-current="step"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+            initial={prefersReducedMotion ? false : { opacity: 0.001, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={
               prefersReducedMotion
                 ? { duration: 0 }
-                : { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
+                : { duration: 0.26, ease: [0.22, 1, 0.36, 1] }
             }
           >
             <Surface as="article" className="p-6 xl:p-7" variant="strongGlass">
@@ -135,14 +113,14 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
       </div>
 
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="sticky top-[calc(var(--header-h)+1.5rem)] ml-auto mr-[var(--page-x)] h-1 w-28 overflow-hidden rounded-full bg-graphite/10">
+        <div className="sticky top-[calc(var(--header-h)+1.5rem)] ml-auto mr-[var(--page-x)] h-px w-28 bg-graphite/10">
           <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-elaman-blue to-elaman-red"
+            className={`h-full ${activeIndex >= 4 ? "bg-elaman-red" : "bg-elaman-blue"}`}
             initial={false}
             animate={{
-              width: `${((activeIndex + 1) / content.steps.length) * 100}%`,
+              width: `${content.steps.length > 1 ? (activeIndex / (content.steps.length - 1)) * 100 : 100}%`,
             }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.35 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.24 }}
           />
         </div>
       </div>

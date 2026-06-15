@@ -102,53 +102,8 @@
   --section-border: rgba(22, 24, 29, 0.08);
 }
 
-@keyframes signal-pulse-blue {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(36, 64, 116, 0);
-  }
-  50% {
-    box-shadow: 0 0 0 6px rgba(36, 64, 116, 0.1);
-  }
-}
-
-@keyframes signal-pulse-red {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(216, 48, 52, 0);
-  }
-  50% {
-    box-shadow: 0 0 0 6px rgba(216, 48, 52, 0.1);
-  }
-}
-
-@keyframes dash-march {
-  to {
-    stroke-dashoffset: -28;
-  }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dot-pulse-blue {
-  animation: signal-pulse-blue 2.8s ease-in-out infinite;
-}
-
-.dot-pulse-red {
-  animation: signal-pulse-red 2.8s ease-in-out 1.4s infinite;
-}
-
-.signal-march {
-  animation: dash-march 2s linear infinite;
+.motion-soft-reveal {
+  will-change: opacity, transform;
 }
 
 * {
@@ -253,19 +208,9 @@ select {
 }
 
 .surface-interactive {
-  transition-property: transform, border-color, background-color, box-shadow;
+  transition-property: border-color, background-color, box-shadow;
   transition-duration: var(--motion-fast);
   transition-timing-function: var(--motion-ease);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .surface-interactive:hover {
-    transform: translateY(-0.125rem);
-  }
-}
-
-.surface-interactive:active {
-  transform: translateY(0);
 }
 
 .accent-line {
@@ -331,12 +276,10 @@ select {
 
 .node-blue {
   background: var(--color-brand-blue);
-  animation: signal-pulse-blue 2.8s ease-in-out infinite;
 }
 
 .node-red {
   background: var(--color-brand-red);
-  animation: signal-pulse-red 2.8s ease-in-out 1.4s infinite;
 }
 
 .text-balance {

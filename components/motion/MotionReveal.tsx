@@ -22,11 +22,11 @@ export function MotionReveal({ children, className = "", delay = 0 }: MotionReve
 
   return (
     <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 28 }}
+      className={`motion-soft-reveal ${className}`}
+      initial={{ opacity: 0.001, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.65, ease: revealEase, delay }}
+      viewport={{ once: true, amount: 0.24 }}
+      transition={{ duration: 0.38, ease: revealEase, delay }}
     >
       {children}
     </motion.div>

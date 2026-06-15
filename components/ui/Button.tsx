@@ -6,9 +6,9 @@ type ButtonShape = "control" | "pill";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "button-primary border-[var(--color-action-primary)] bg-[var(--color-action-primary)] text-[var(--color-on-primary)] shadow-[var(--shadow-button)] hover:-translate-y-0.5 hover:border-[var(--color-action-primary-hover)] hover:bg-[var(--color-action-primary-hover)]",
+    "button-primary border-[var(--color-action-primary)] bg-[var(--color-action-primary)] text-[var(--color-on-primary)] shadow-[var(--shadow-button)] hover:border-[var(--color-action-primary-hover)] hover:bg-[var(--color-action-primary-hover)]",
   secondary:
-    "border-[var(--border-soft)] bg-[var(--surface-glass)] text-[var(--color-text-primary)] hover:-translate-y-0.5 hover:border-[var(--border-accent-blue)] hover:bg-[var(--surface-white)]",
+    "border-[var(--border-soft)] bg-[var(--surface-glass)] text-[var(--color-text-primary)] hover:border-[var(--border-accent-blue)] hover:bg-[var(--surface-white)]",
   ghost:
     "border-transparent bg-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]",
 };
@@ -25,7 +25,7 @@ const shapeClasses: Record<ButtonShape, string> = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center border font-medium tracking-[0.01em] transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-brand-blue)] disabled:pointer-events-none disabled:translate-y-0 disabled:opacity-55";
+  "inline-flex items-center justify-center border font-medium tracking-[0.01em] transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-brand-blue)] disabled:pointer-events-none disabled:opacity-55";
 
 type AnchorButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode;

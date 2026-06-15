@@ -294,16 +294,18 @@ Step-by-step build plan for the premium institutional Elaman website. Aligned wi
 
 **Scope:** Cross-cutting motion polish after sections exist.
 
+**Status:** Complete (2026-06-15; advanced by explicit user request for full animation redesign)
+
 **Tasks:**
 
-- [ ] Audit `MotionReveal` on section wrappers in `page.tsx`
-- [ ] Standardize hover transitions to token durations
-- [ ] Sticky story crossfade tune (`--motion-slow`)
-- [ ] Diagram animations: low amplitude only
-- [ ] Global `prefers-reduced-motion` regression pass
-- [ ] Remove any parallax or scale-on-scroll if introduced
+- [x] Audit `MotionReveal` on section wrappers in `page.tsx`
+- [x] Standardize hover transitions to token durations
+- [x] Sticky story crossfade tune (`--motion-slow`)
+- [x] Diagram animations: no continuous decorative motion; state changes only
+- [x] Global `prefers-reduced-motion` regression pass
+- [x] Remove any parallax or scale-on-scroll if introduced
 
-**Files:** `components/motion/*`, `app/globals.css`, `app/(marketing)/[locale]/page.tsx`
+**Files:** `components/motion/*`, `components/ui/HeroSignalVisual.tsx`, `components/sections/DesktopScrollStory.tsx`, `app/globals.css`
 
 **Exit:** Motion feels subtle and consistent; reduced motion hides no essential content.
 

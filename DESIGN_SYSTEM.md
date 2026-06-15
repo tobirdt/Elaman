@@ -260,7 +260,9 @@ Shape: `control` default; `pill` for footer legal chips only.
 | `--motion-ease`   | `cubic-bezier(0.22, 1, 0.36, 1)` | All transitions                      |
 | `--motion-rise`   | 0.75rem                          | Reveal translate                     |
 
-**Allowed:** `MotionReveal`, sticky story progress, diagram pulse/dash, header blur.
+**Allowed:** `MotionReveal`, sticky story progress, static logo-derived matrix nodes, static bridge traces, header blur.
+
+Diagram visuals follow the Elaman mark: sparse matrix nodes, calm blue bridge paths, and selective red countermeasure accents. They should be still by default; motion is reserved for state changes such as scroll progress, accordion open/close, and focus feedback. Avoid node breathing, marching dash lines, radar sweeps, crosshair scans, particles, and spectacle motion.
 
 **Prohibited:** parallax copy, particles, bounce, scroll-scale headlines, autoplay carousel, Lottie spectacle.
 

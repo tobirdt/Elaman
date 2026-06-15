@@ -9,6 +9,29 @@ type HeroSignalVisualProps = {
 
 const BLUE = "var(--color-brand-blue)";
 const RED = "var(--color-brand-red)";
+const INK = "var(--color-text-primary)";
+
+const MATRIX_DOTS = [
+  { x: 92, y: 92, r: 3.8, opacity: 0.22, tone: "ink" },
+  { x: 116, y: 72, r: 4.4, opacity: 0.26, tone: "ink" },
+  { x: 142, y: 86, r: 3.6, opacity: 0.22, tone: "ink" },
+  { x: 104, y: 126, r: 4.8, opacity: 0.28, tone: "ink" },
+  { x: 132, y: 122, r: 5.2, opacity: 0.34, tone: "blue" },
+  { x: 162, y: 122, r: 4.8, opacity: 0.3, tone: "ink" },
+  { x: 86, y: 164, r: 3.5, opacity: 0.18, tone: "ink" },
+  { x: 116, y: 166, r: 4.6, opacity: 0.28, tone: "ink" },
+  { x: 146, y: 160, r: 5.1, opacity: 0.38, tone: "red" },
+  { x: 174, y: 176, r: 3.9, opacity: 0.22, tone: "ink" },
+  { x: 104, y: 204, r: 3.6, opacity: 0.18, tone: "ink" },
+  { x: 134, y: 208, r: 4.2, opacity: 0.24, tone: "ink" },
+  { x: 164, y: 216, r: 3.4, opacity: 0.16, tone: "ink" },
+] as const;
+
+const SYSTEM_NODES = [
+  { x: 284, y: 84, tone: "blue" },
+  { x: 318, y: 148, tone: "blue" },
+  { x: 276, y: 214, tone: "red" },
+] as const;
 
 export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisualProps) {
   return (
@@ -16,13 +39,11 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
       className="relative min-h-[18rem] overflow-hidden p-5 sm:min-h-[30rem] sm:p-7 lg:min-h-[32rem]"
       variant="strongGlass"
     >
-      <div className="technical-grid absolute inset-0 opacity-60" aria-hidden="true" />
+      <div className="technical-grid absolute inset-0 opacity-45" aria-hidden="true" />
 
-      {/* Inset accent lines */}
-      <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-elaman-blue/28 to-transparent" />
-      <div className="absolute bottom-6 left-6 right-6 h-px bg-gradient-to-r from-transparent via-elaman-red/22 to-transparent" />
+      <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-elaman-blue/24 to-transparent" />
+      <div className="absolute bottom-6 left-6 right-6 h-px bg-gradient-to-r from-transparent via-elaman-red/18 to-transparent" />
 
-      {/* Main abstract diagram */}
       <svg
         viewBox="0 0 400 320"
         className="absolute inset-0 h-full w-full"
@@ -30,186 +51,157 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
         aria-hidden="true"
         preserveAspectRatio="xMidYMid meet"
       >
-        {/* Outer ring */}
-        <circle
-          cx="200"
-          cy="160"
-          r="120"
-          stroke={BLUE}
-          strokeWidth="0.8"
-          strokeOpacity="0.14"
-          strokeDasharray="3 9"
+        <defs>
+          <linearGradient id="heroBridgeBlue" x1="76" y1="168" x2="328" y2="90">
+            <stop offset="0" stopColor={BLUE} stopOpacity="0.08" />
+            <stop offset="0.48" stopColor={BLUE} stopOpacity="0.58" />
+            <stop offset="1" stopColor={BLUE} stopOpacity="0.18" />
+          </linearGradient>
+          <linearGradient id="heroBridgeRed" x1="118" y1="188" x2="292" y2="222">
+            <stop offset="0" stopColor={RED} stopOpacity="0.04" />
+            <stop offset="0.72" stopColor={RED} stopOpacity="0.52" />
+            <stop offset="1" stopColor={RED} stopOpacity="0.18" />
+          </linearGradient>
+        </defs>
+
+        <path
+          d="M64 246 H334"
+          stroke={INK}
+          strokeWidth="1"
+          strokeOpacity="0.07"
+          strokeDasharray="2 10"
         />
-        {/* Mid ring */}
-        <circle
-          cx="200"
-          cy="160"
-          r="80"
-          stroke={BLUE}
-          strokeWidth="0.8"
-          strokeOpacity="0.10"
+        <path
+          d="M68 58 H176 C196 58 210 72 210 92 V242"
+          stroke={INK}
+          strokeWidth="1"
+          strokeOpacity="0.08"
+          strokeLinecap="round"
         />
-        {/* Inner ring */}
-        <circle
-          cx="200"
-          cy="160"
-          r="40"
+        <path
+          d="M206 72 H324 C338 72 348 82 348 96 V230"
+          stroke={INK}
+          strokeWidth="1"
+          strokeOpacity="0.08"
+          strokeLinecap="round"
+        />
+
+        <path
+          d="M132 122 C178 76 225 68 284 84"
+          stroke="url(#heroBridgeBlue)"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+        />
+        <path
+          d="M132 122 C178 76 225 68 284 84"
           stroke={BLUE}
           strokeWidth="1"
-          strokeOpacity="0.16"
-          strokeDasharray="2 6"
-        />
-
-        {/* Crosshair — horizontal */}
-        <line
-          x1="60"
-          y1="160"
-          x2="340"
-          y2="160"
-          stroke={BLUE}
-          strokeWidth="0.7"
-          strokeOpacity="0.12"
-        />
-        {/* Crosshair — vertical */}
-        <line
-          x1="200"
-          y1="24"
-          x2="200"
-          y2="296"
-          stroke={BLUE}
-          strokeWidth="0.7"
-          strokeOpacity="0.12"
-        />
-
-        {/* Diagonal reference lines */}
-        <line
-          x1="115"
-          y1="75"
-          x2="285"
-          y2="245"
-          stroke={BLUE}
-          strokeWidth="0.5"
-          strokeOpacity="0.07"
-        />
-        <line
-          x1="285"
-          y1="75"
-          x2="115"
-          y2="245"
-          stroke={BLUE}
-          strokeWidth="0.5"
-          strokeOpacity="0.07"
-        />
-
-        {/* Primary signal arc — blue, animated march */}
-        <path
-          d="M80 220 C120 160 160 124 200 120 C244 116 276 136 320 96"
-          stroke={BLUE}
-          strokeWidth="1.6"
           strokeLinecap="round"
-          strokeDasharray="8 14"
-          strokeOpacity="0.52"
-          className="signal-march"
-        />
-        {/* Secondary arc — red, reverse march */}
-        <path
-          d="M80 248 C130 228 170 200 200 170 C232 140 270 132 320 140"
-          stroke={RED}
-          strokeWidth="1.4"
-          strokeLinecap="round"
-          strokeDasharray="5 12"
-          strokeOpacity="0.40"
-          className="signal-march"
-          style={{ animationDirection: "reverse", animationDuration: "2.6s" }}
-        />
-
-        {/* Scanning arc segment (decorative, thin) */}
-        <path d="M200 160 L200 80" stroke={BLUE} strokeWidth="0.8" strokeOpacity="0.20" />
-        <path
-          d="M200 80 A80 80 0 0 1 272 136"
-          stroke={BLUE}
-          strokeWidth="0.8"
           strokeOpacity="0.18"
-          fill={BLUE}
-          fillOpacity="0.03"
+          strokeDasharray="4 12"
         />
-
-        {/* Center origin */}
-        <circle cx="200" cy="160" r="4" fill={BLUE} fillOpacity="0.50" />
-        <circle
-          cx="200"
-          cy="160"
-          r="10"
-          fill="none"
+        <path
+          d="M116 166 C170 150 228 142 318 148"
           stroke={BLUE}
           strokeWidth="1"
-          strokeOpacity="0.18"
+          strokeOpacity="0.22"
+          strokeLinecap="round"
+          strokeDasharray="3 10"
         />
-
-        {/* Cardinal point markers */}
-        <circle cx="200" cy="80" r="3" fill={BLUE} fillOpacity="0.35" />
-        <circle cx="280" cy="160" r="3" fill={BLUE} fillOpacity="0.35" />
-        <circle cx="200" cy="240" r="3" fill={BLUE} fillOpacity="0.35" />
-        <circle cx="120" cy="160" r="3" fill={BLUE} fillOpacity="0.35" />
-
-        {/* Signal node on blue arc */}
-        <circle cx="200" cy="120" r="4.5" fill={BLUE} fillOpacity="0.55" />
-        <circle
-          cx="200"
-          cy="120"
-          r="10"
-          fill="none"
-          stroke={BLUE}
-          strokeWidth="0.8"
-          strokeOpacity="0.18"
+        <path
+          d="M146 160 C188 204 230 222 276 214"
+          stroke="url(#heroBridgeRed)"
+          strokeWidth="1.7"
+          strokeLinecap="round"
         />
-
-        {/* Signal node on red arc */}
-        <circle cx="270" cy="132" r="3.5" fill={RED} fillOpacity="0.50" />
-        <circle
-          cx="270"
-          cy="132"
-          r="8"
-          fill="none"
+        <path
+          d="M146 160 C188 204 230 222 276 214"
           stroke={RED}
-          strokeWidth="0.8"
+          strokeWidth="1"
+          strokeLinecap="round"
           strokeOpacity="0.16"
+          strokeDasharray="4 12"
         />
 
-        {/* Corner micro-marks */}
+        <g>
+          {MATRIX_DOTS.map((dot) => {
+            const fill = dot.tone === "red" ? RED : dot.tone === "blue" ? BLUE : INK;
+
+            return (
+              <circle
+                key={`${dot.x}-${dot.y}`}
+                cx={dot.x}
+                cy={dot.y}
+                r={dot.r}
+                fill={fill}
+                fillOpacity={dot.opacity}
+              />
+            );
+          })}
+        </g>
+
+        <g>
+          {SYSTEM_NODES.map((node) => (
+            <g key={`${node.x}-${node.y}`}>
+              <circle
+                cx={node.x}
+                cy={node.y}
+                r="13"
+                stroke={node.tone === "red" ? RED : BLUE}
+                strokeWidth="0.9"
+                strokeOpacity={node.tone === "red" ? "0.18" : "0.2"}
+              />
+              <circle
+                cx={node.x}
+                cy={node.y}
+                r="4.4"
+                fill={node.tone === "red" ? RED : BLUE}
+                fillOpacity={node.tone === "red" ? "0.56" : "0.52"}
+              />
+            </g>
+          ))}
+        </g>
+
+        <g stroke={INK} strokeLinecap="round" strokeOpacity="0.12">
+          <path d="M252 104 H306" />
+          <path d="M252 118 H286" />
+          <path d="M248 170 H326" />
+          <path d="M248 184 H300" />
+          <path d="M230 232 H304" />
+          <path d="M230 246 H280" />
+        </g>
+
         <path
           d="M44 44 H58 M44 44 V58"
           stroke={BLUE}
           strokeWidth="1"
-          strokeOpacity="0.18"
+          strokeOpacity="0.16"
           strokeLinecap="round"
         />
         <path
           d="M356 44 H342 M356 44 V58"
           stroke={BLUE}
           strokeWidth="1"
-          strokeOpacity="0.18"
+          strokeOpacity="0.14"
           strokeLinecap="round"
         />
         <path
           d="M44 276 H58 M44 276 V262"
           stroke={BLUE}
           strokeWidth="1"
-          strokeOpacity="0.18"
+          strokeOpacity="0.14"
           strokeLinecap="round"
         />
         <path
           d="M356 276 H342 M356 276 V262"
           stroke={RED}
           strokeWidth="1"
-          strokeOpacity="0.16"
+          strokeOpacity="0.14"
           strokeLinecap="round"
         />
       </svg>
 
-      {/* Content layer */}
       <div className="relative z-10 flex h-full min-h-[15rem] flex-col justify-between gap-5 sm:min-h-[27rem] lg:min-h-[29rem]">
-        {/* Header */}
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-elaman-blue">
@@ -224,10 +216,8 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
           </div>
         </div>
 
-        {/* Spacer — the SVG fills this area */}
         <div className="flex-1" />
 
-        {/* Step cards */}
         <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
           {steps.map((step, index) => (
             <Surface key={step} className="p-2.5 shadow-none sm:p-3.5" variant="card">
