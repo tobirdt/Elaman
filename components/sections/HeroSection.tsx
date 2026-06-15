@@ -56,7 +56,7 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
           </div>
 
           {/* Stats */}
-          <dl className="mt-8 grid grid-cols-3 gap-x-2 gap-y-4 xl:mt-10">
+          <dl className="mt-8 grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-3 xl:mt-10">
             {content.stats.map((stat) => (
               <div key={stat.value} className="min-w-0 border-t border-line pt-4">
                 <dt className="text-[length:var(--type-h3)] font-semibold tracking-[var(--tracking-title)] text-graphite">

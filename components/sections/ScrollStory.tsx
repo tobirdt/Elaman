@@ -10,10 +10,7 @@ type ScrollStoryProps = {
 
 export function ScrollStory({ locale, content }: ScrollStoryProps) {
   return (
-    <section
-      id="story"
-      className="relative isolate overflow-hidden border-y border-line bg-white"
-    >
+    <section id="story" className="relative isolate border-y border-line bg-white">
       <div
         className="technical-grid absolute inset-x-0 top-0 h-[34rem] opacity-45"
         aria-hidden="true"
