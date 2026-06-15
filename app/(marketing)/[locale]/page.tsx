@@ -87,6 +87,7 @@ export default async function HomePage({ params }: LocalePageProps) {
       </main>
       <Footer
         contact={content.contact}
+        locale={locale}
         navigation={content.navigation}
         footer={content.footer}
       />

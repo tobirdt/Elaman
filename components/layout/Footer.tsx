@@ -4,19 +4,20 @@ import type { Route } from "next";
 
 import { Container } from "@/components/ui/Container";
 import type { LocalizedSiteContent } from "@/lib/content/site";
+import { sectionPath, type Locale } from "@/lib/i18n";
 
 type FooterProps = {
   contact: LocalizedSiteContent["contact"];
   navigation: LocalizedSiteContent["navigation"];
   footer: LocalizedSiteContent["footer"];
+  locale: Locale;
 };
 
-export function Footer({ contact, navigation, footer }: FooterProps) {
+export function Footer({ contact, navigation, footer, locale }: FooterProps) {
   return (
-    <footer className="border-t border-line bg-white">
-      {/* Top signal accent */}
-      <div className="h-[2px] bg-gradient-to-r from-elaman-blue/40 via-elaman-blue/20 to-elaman-red/30" />
-      <Container className="grid gap-10 py-12 md:grid-cols-[1fr_auto] md:items-start">
+    <footer className="border-t border-[var(--border-soft)] bg-white">
+      <div className="h-px bg-gradient-to-r from-elaman-blue/32 via-line to-elaman-red/28" />
+      <Container className="grid gap-10 py-[var(--section-y-compact)] md:grid-cols-[1fr_auto] md:items-start">
         <div className="max-w-sm">
           <Image
             src="/brand/elaman-logo.png"
@@ -35,7 +36,7 @@ export function Footer({ contact, navigation, footer }: FooterProps) {
           </address>
           <a
             href={`tel:${contact.phoneHref}`}
-            className="mt-3 block text-sm text-graphite-soft transition hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
+            className="mt-3 block text-sm text-graphite-soft transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
           >
             {contact.phone}
           </a>
@@ -50,8 +51,8 @@ export function Footer({ contact, navigation, footer }: FooterProps) {
             {navigation.main.map((item) => (
               <a
                 key={item.href}
-                href={item.href}
-                className="text-sm text-graphite-soft transition hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
+                href={sectionPath(locale, item.href)}
+                className="text-sm text-graphite-soft transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
               >
                 {item.label}
               </a>
@@ -65,7 +66,7 @@ export function Footer({ contact, navigation, footer }: FooterProps) {
               <Link
                 key={item.href}
                 href={item.href as Route}
-                className="rounded-full border border-line bg-porcelain/60 px-3.5 py-1.5 text-xs font-medium text-graphite-muted transition hover:border-elaman-blue/22 hover:bg-white hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
+                className="rounded-[var(--radius-pill)] border border-[var(--border-soft)] bg-[var(--surface-soft)] px-3.5 py-1.5 text-xs font-medium text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)] hover:bg-white hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
               >
                 {item.label}
               </Link>

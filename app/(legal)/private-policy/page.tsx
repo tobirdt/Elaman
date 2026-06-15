@@ -27,6 +27,7 @@ export default function PrivatePolicyPage() {
       />
       <Footer
         contact={content.contact}
+        locale="de"
         navigation={content.navigation}
         footer={content.footer}
       />

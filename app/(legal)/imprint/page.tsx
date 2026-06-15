@@ -22,6 +22,7 @@ export default function ImprintPage() {
       <LegalDocument title={imprintContent.title} blocks={imprintContent.blocks} />
       <Footer
         contact={content.contact}
+        locale="en"
         navigation={content.navigation}
         footer={content.footer}
       />
