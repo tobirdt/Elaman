@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-type ContainerSize = "page" | "content" | "copy" | "narrow" | "legal";
+import { type ContainerSize } from "@/lib/design/tokens";
 
 type ContainerProps = {
   children: ReactNode;
@@ -20,6 +20,7 @@ export function Container({ children, className = "", size = "page" }: Container
   return (
     <div
       className={`mx-auto w-full ${sizeClasses[size]} px-[var(--page-x)] ${className}`}
+      data-container-size={size}
     >
       {children}
     </div>

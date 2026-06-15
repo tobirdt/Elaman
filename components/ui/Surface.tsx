@@ -1,7 +1,18 @@
 import { createElement, type ComponentPropsWithoutRef, type ReactNode } from "react";
 
+import type { SurfaceLevel } from "@/lib/design/tokens";
+
 type SurfaceElement = "article" | "aside" | "div" | "li";
-type SurfaceVariant = "panel" | "card" | "glass" | "strongGlass" | "inset";
+
+type SurfaceVariant =
+  | SurfaceLevel
+  | "strongGlass"
+  | "inset"
+  | "panel"
+  | "card"
+  | "glass"
+  | "darkPanel";
+
 type SurfaceTone = "neutral" | "blue" | "red";
 
 type SurfaceProps = ComponentPropsWithoutRef<"div"> & {
@@ -13,13 +24,12 @@ type SurfaceProps = ComponentPropsWithoutRef<"div"> & {
 };
 
 const variantClasses: Record<SurfaceVariant, string> = {
-  panel:
-    "rounded-[var(--radius-panel)] border border-[var(--border-soft)] bg-[var(--surface-white)] shadow-[var(--shadow-panel)]",
-  card: "rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-[var(--surface-card)] shadow-[var(--shadow-card)]",
-  glass:
-    "rounded-[var(--radius-panel)] border border-[var(--border-soft)] bg-[var(--surface-glass)] shadow-[var(--shadow-panel)] backdrop-blur-2xl",
-  strongGlass:
-    "rounded-[var(--radius-panel)] border border-[var(--border-glass)] bg-[var(--surface-glass-strong)] shadow-[var(--shadow-panel)] backdrop-blur-2xl",
+  card: "surface-card",
+  panel: "surface-panel",
+  glass: "surface-glass",
+  "dark-panel": "surface-dark-panel",
+  darkPanel: "surface-dark-panel",
+  strongGlass: "surface-glass-strong",
   inset:
     "rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-[var(--surface-soft)] shadow-[var(--shadow-none)]",
 };
@@ -43,7 +53,7 @@ export function Surface({
     Element,
     {
       ...props,
-      className: `${variantClasses[variant]} ${interactive ? "surface-transition transition hover:-translate-y-1 hover:shadow-[var(--shadow-panel)]" : ""} ${toneClasses[tone]} ${className}`,
+      className: `${variantClasses[variant]} ${interactive ? "surface-interactive" : ""} ${toneClasses[tone]} ${className}`,
     },
     children,
   );
