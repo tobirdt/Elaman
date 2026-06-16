@@ -6,9 +6,9 @@ type ButtonShape = "control" | "pill";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "button-primary border-[var(--color-action-primary)] bg-[var(--color-action-primary)] text-[var(--color-on-primary)] shadow-[var(--shadow-button)] hover:border-[var(--color-action-primary-hover)] hover:bg-[var(--color-action-primary-hover)]",
+    "button-primary border-[var(--color-action-primary)] bg-[var(--color-action-primary)] text-[var(--color-on-primary)] shadow-[var(--shadow-button)] hover:-translate-y-0.5 hover:border-[var(--color-action-primary-hover)] hover:bg-[var(--color-action-primary-hover)] active:translate-y-0 motion-reduce:hover:translate-y-0",
   secondary:
-    "border-[var(--border-soft)] bg-[var(--surface-glass)] text-[var(--color-text-primary)] hover:border-[var(--border-accent-blue)] hover:bg-[var(--surface-white)]",
+    "border-[var(--border-soft)] bg-[var(--surface-glass)] text-[var(--color-text-primary)] hover:-translate-y-0.5 hover:border-[var(--border-accent-blue)] hover:bg-[var(--surface-white)] active:translate-y-0 motion-reduce:hover:translate-y-0",
   ghost:
     "border-transparent bg-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]",
 };

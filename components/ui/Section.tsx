@@ -8,6 +8,7 @@ type SectionProps = ComponentPropsWithoutRef<"section"> & {
   children: ReactNode;
   /** @deprecated Use `variant="legal-page"` */
   compact?: boolean;
+  modeLayout?: boolean;
   tone?: SectionTone;
   variant?: SectionModeInput;
   /** @deprecated Use `variant="screen"` */
@@ -54,6 +55,7 @@ export function Section({
   children,
   className = "",
   compact = false,
+  modeLayout = true,
   tone = "plain",
   variant,
   screen = false,
@@ -63,7 +65,7 @@ export function Section({
 
   return (
     <section
-      className={`${modeClasses[resolvedMode]} ${toneClasses[tone]} ${className}`}
+      className={`${modeLayout ? modeClasses[resolvedMode] : ""} ${toneClasses[tone]} ${className}`}
       data-section-mode={resolvedMode}
       {...props}
     >

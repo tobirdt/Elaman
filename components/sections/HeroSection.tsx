@@ -14,21 +14,24 @@ type HeroSectionProps = {
 
 export function HeroSection({ locale, content }: HeroSectionProps) {
   return (
-    <Section id="hero" variant="hero-screen" className="relative isolate overflow-hidden">
+    <Section
+      id="hero"
+      variant="hero-screen"
+      tone="white"
+      className="relative isolate overflow-hidden"
+    >
       <VisualLayer>
-        {/* Large ambient circle centered on hero */}
-        <div className="absolute left-1/2 top-0 h-[min(38rem,95vw)] w-[min(38rem,95vw)] -translate-x-1/2 rounded-full border border-elaman-blue/8 bg-elaman-blue/[0.02] lg:h-[46rem] lg:w-[46rem]" />
-        <div className="absolute left-1/2 top-16 h-[min(22rem,60vw)] w-[min(22rem,60vw)] -translate-x-1/2 rounded-full border border-elaman-blue/6 lg:h-[28rem] lg:w-[28rem]" />
-        <div className="technical-grid absolute inset-x-0 top-0 h-[36rem] opacity-40" />
-        {/* Corner signal accents */}
+        <div className="absolute left-1/2 top-0 h-[min(34rem,90vw)] w-[min(34rem,90vw)] -translate-x-1/2 rounded-full border border-elaman-blue/8 bg-elaman-blue/[0.018] lg:h-[42rem] lg:w-[42rem]" />
+        <div className="absolute left-1/2 top-20 h-[min(20rem,58vw)] w-[min(20rem,58vw)] -translate-x-1/2 rounded-full border border-elaman-blue/6 lg:h-[25rem] lg:w-[25rem]" />
+        <div className="technical-grid absolute inset-x-0 top-0 h-[34rem] opacity-25" />
         <div className="absolute left-[var(--page-x)] top-0 h-16 w-px bg-gradient-to-b from-elaman-blue/20 to-transparent" />
         <div className="absolute right-[var(--page-x)] top-0 h-16 w-px bg-gradient-to-b from-elaman-red/16 to-transparent" />
       </VisualLayer>
 
-      <Container className="grid items-center gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
+      <Container className="grid items-center gap-[var(--section-gap)] [&>*]:min-w-0 lg:-mt-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
         <div>
           <SectionLabel>{content.label}</SectionLabel>
-          <h1 className="text-balance max-w-[10.5ch] text-[length:var(--type-h1)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite sm:max-w-5xl">
+          <h1 className="text-balance max-w-[13.5ch] text-[clamp(3rem,5.2vw,4.9rem)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite sm:max-w-[15ch]">
             {content.title}
           </h1>
           <p className="mt-5 max-w-[32ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite sm:hidden">
@@ -37,10 +40,10 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
           <p className="mt-6 hidden max-w-[var(--container-copy)] text-[length:var(--type-lead)] leading-[var(--leading-body)] text-graphite sm:block">
             {content.intro}
           </p>
-          <p className="mt-4 max-w-[34ch] text-sm leading-[var(--leading-body)] text-graphite-muted 2xl:hidden">
+          <p className="mt-4 max-w-[34ch] text-sm leading-[var(--leading-body)] text-graphite-muted sm:block 2xl:hidden">
             {content.mobileBody}
           </p>
-          <p className="mt-4 hidden max-w-[var(--container-narrow)] text-base leading-[var(--leading-body)] text-graphite-muted 2xl:block">
+          <p className="mt-4 hidden max-w-[36rem] text-base leading-[var(--leading-body)] text-graphite-muted 2xl:block">
             {content.body}
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row xl:mt-8">
@@ -55,14 +58,22 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
             </Button>
           </div>
 
-          {/* Stats */}
-          <dl className="mt-8 grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-3 xl:mt-10">
+          <HeroSignalVisual
+            className="mt-7 lg:hidden"
+            label={content.visualLabel}
+            body={content.visualBody}
+            badge={content.visualBadge}
+            size="compact"
+            steps={content.visualSteps}
+          />
+
+          <dl className="mt-8 grid grid-cols-1 gap-4 border-y border-line/80 py-4 sm:grid-cols-3 xl:mt-10">
             {content.stats.map((stat) => (
-              <div key={stat.value} className="min-w-0 border-t border-line pt-4">
-                <dt className="text-[length:var(--type-h3)] font-semibold tracking-[var(--tracking-title)] text-graphite">
+              <div key={stat.value} className="min-w-0">
+                <dt className="text-lg font-semibold leading-tight tracking-[var(--tracking-title)] text-graphite sm:text-xl">
                   {stat.value}
                 </dt>
-                <dd className="mt-1.5 text-[length:var(--type-micro)] leading-5 text-graphite-muted">
+                <dd className="mt-1.5 max-w-48 text-[length:var(--type-micro)] leading-5 text-graphite-muted">
                   {stat.label}
                 </dd>
               </div>
@@ -71,6 +82,7 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
         </div>
 
         <HeroSignalVisual
+          className="hidden lg:block"
           label={content.visualLabel}
           body={content.visualBody}
           badge={content.visualBadge}

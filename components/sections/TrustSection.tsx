@@ -1,7 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Surface } from "@/components/ui/Surface";
 import { TechnicalMark } from "@/components/ui/TechnicalMark";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
@@ -13,11 +12,11 @@ export function TrustSection({ content }: TrustSectionProps) {
   return (
     <Section
       id="experience"
-      variant="band"
+      variant="content-band"
       tone="soft"
       className="border-y border-[var(--border-soft)]"
     >
-      <Container className="grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-2 lg:items-center">
+      <Container className="grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-center">
         <SectionHeader
           body={content.body}
           label={content.label}
@@ -25,43 +24,39 @@ export function TrustSection({ content }: TrustSectionProps) {
           width="copy"
         />
 
-        <Surface variant="strongGlass" className="overflow-hidden p-5 sm:p-7">
-          <div className="grid gap-px overflow-hidden rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-line md:grid-cols-3">
+        <div>
+          <div className="grid overflow-hidden rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-white md:grid-cols-3">
             {content.metrics.map((metric, index) => (
               <div
                 key={metric.value}
-                className="relative bg-[var(--surface-card)] p-5 sm:p-6"
+                className="relative border-t border-[var(--border-soft)] p-5 first:border-t-0 md:border-l md:border-t-0 md:first:border-l-0 sm:p-6"
               >
                 <TechnicalMark tone={index === 1 ? "red" : "blue"} />
-                <p className="mt-5 text-[length:var(--type-h2)] font-semibold leading-none tracking-[var(--tracking-display)] text-graphite">
+                <p className="mt-5 text-2xl font-semibold leading-none tracking-[var(--tracking-title)] text-graphite">
                   {metric.value}
                 </p>
                 <p className="mt-3 text-[length:var(--type-micro)] leading-5 text-graphite-muted">
                   {metric.label}
                 </p>
-                {index < 2 && (
-                  <div className="absolute right-0 top-6 hidden h-[calc(100%-3rem)] w-px bg-line md:block" />
-                )}
               </div>
             ))}
           </div>
 
           <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
             {content.pillars.map((pillar, index) => (
-              <Surface
+              <div
                 key={pillar}
-                variant="inset"
-                className="flex items-center gap-3 px-4 py-3"
+                className="flex items-center gap-3 rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-white px-4 py-3"
               >
                 <span
                   className={`size-1.5 shrink-0 rounded-full ${index === 0 || index === 2 ? "bg-elaman-blue" : "bg-elaman-red/70"}`}
                   aria-hidden="true"
                 />
                 <p className="text-sm font-medium text-graphite-muted">{pillar}</p>
-              </Surface>
+              </div>
             ))}
           </div>
-        </Surface>
+        </div>
       </Container>
     </Section>
   );

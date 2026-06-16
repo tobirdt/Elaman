@@ -4,6 +4,8 @@ type HeroSignalVisualProps = {
   label: string;
   body: string;
   badge: string;
+  className?: string;
+  size?: "default" | "compact";
   steps: readonly string[];
 };
 
@@ -33,13 +35,25 @@ const SYSTEM_NODES = [
   { x: 276, y: 214, tone: "red" },
 ] as const;
 
-export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisualProps) {
+export function HeroSignalVisual({
+  label,
+  body,
+  badge,
+  className = "",
+  size = "default",
+  steps,
+}: HeroSignalVisualProps) {
+  const sizeClass =
+    size === "compact"
+      ? "min-h-[15rem] sm:min-h-[22rem]"
+      : "min-h-[18rem] sm:min-h-[29rem] lg:min-h-[31rem]";
+
   return (
     <Surface
-      className="relative min-h-[18rem] overflow-hidden p-5 sm:min-h-[30rem] sm:p-7 lg:min-h-[32rem]"
-      variant="strongGlass"
+      className={`relative ${sizeClass} overflow-hidden border border-[var(--border-soft)] bg-white/[0.82] p-5 sm:p-7 ${className}`}
+      variant="panel"
     >
-      <div className="technical-grid absolute inset-0 opacity-45" aria-hidden="true" />
+      <div className="technical-grid absolute inset-0 opacity-35" aria-hidden="true" />
 
       <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-elaman-blue/24 to-transparent" />
       <div className="absolute bottom-6 left-6 right-6 h-px bg-gradient-to-r from-transparent via-elaman-red/18 to-transparent" />
@@ -218,9 +232,12 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
 
         <div className="flex-1" />
 
-        <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
+        <div className="grid overflow-hidden rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-white/[0.62] sm:grid-cols-3">
           {steps.map((step, index) => (
-            <Surface key={step} className="p-2.5 shadow-none sm:p-3.5" variant="card">
+            <div
+              key={step}
+              className="border-t border-[var(--border-soft)] p-3 first:border-t-0 sm:border-l sm:border-t-0 sm:first:border-l-0 sm:p-3.5"
+            >
               <div className="flex items-center gap-1.5">
                 <span
                   className={`size-1.5 rounded-full ${index === 2 ? "bg-elaman-red/70" : "bg-elaman-blue/70"}`}
@@ -233,7 +250,7 @@ export function HeroSignalVisual({ label, body, badge, steps }: HeroSignalVisual
               <p className="mt-2 text-xs font-semibold leading-tight text-graphite sm:mt-2.5 sm:text-sm">
                 {step}
               </p>
-            </Surface>
+            </div>
           ))}
         </div>
       </div>

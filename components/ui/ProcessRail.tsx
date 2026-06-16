@@ -20,12 +20,11 @@ export function ProcessRail({ steps }: ProcessRailProps) {
           <Surface
             as="article"
             key={step.step}
-            className="group relative overflow-hidden p-4"
+            className="group relative overflow-hidden bg-white p-4 sm:p-5"
             interactive
             tone={isLast(index) ? "red" : "blue"}
             variant="card"
           >
-            {/* Step number badge */}
             <div
               className={`relative z-10 flex size-12 items-center justify-center rounded-[var(--radius-pill)] border text-xs font-semibold shadow-[var(--shadow-card)] ${
                 isLast(index)
@@ -35,13 +34,12 @@ export function ProcessRail({ steps }: ProcessRailProps) {
             >
               {step.step}
             </div>
-            <h3 className="mt-5 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite lg:mt-8">
+            <h3 className="mt-5 text-xl font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite lg:mt-8">
               {step.title}
             </h3>
             <p className="mt-2.5 text-sm leading-6 text-graphite-muted">
               {step.description}
             </p>
-            {/* Bottom accent */}
             <div
               className={`absolute bottom-0 left-0 right-0 h-[2px] opacity-0 transition [transition-duration:var(--motion-medium)] [transition-timing-function:var(--motion-ease)] group-hover:opacity-100 ${
                 isLast(index)

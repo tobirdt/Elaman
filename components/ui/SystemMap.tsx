@@ -1,8 +1,12 @@
+import { useId } from "react";
+
 import { Surface } from "@/components/ui/Surface";
 import type { ContentCard } from "@/types/site";
 
 type SystemMapProps = {
+  activeIndex: number;
   items: readonly ContentCard[];
+  onSelect: (index: number) => void;
 };
 
 const BLUE = "var(--color-brand-blue)";
@@ -23,15 +27,20 @@ const SPOKES = [
   { x: 272, y: 108, dx: 314, dy: 134 }, // top-left
 ] as const;
 
-export function SystemMap({ items }: SystemMapProps) {
+export function SystemMap({ activeIndex, items, onSelect }: SystemMapProps) {
+  const baseId = useId();
+
   return (
-    <Surface className="relative overflow-hidden p-5 sm:p-7" variant="strongGlass">
-      <div className="technical-grid absolute inset-0 opacity-50" aria-hidden="true" />
+    <Surface
+      className="relative overflow-hidden border border-[var(--border-soft)] bg-white p-5 sm:p-7"
+      variant="panel"
+    >
+      <div className="technical-grid absolute inset-0 opacity-32" aria-hidden="true" />
 
       {/* Desktop SVG network diagram */}
       <svg
         viewBox="0 0 760 380"
-        className="relative z-0 hidden h-64 w-full sm:block"
+        className="relative z-0 hidden h-56 w-full sm:block"
         fill="none"
         aria-hidden="true"
       >
@@ -132,33 +141,65 @@ export function SystemMap({ items }: SystemMapProps) {
         ))}
       </div>
 
-      {/* System cards */}
-      <div className="relative z-10 grid gap-2.5 sm:-mt-2 md:grid-cols-2 xl:grid-cols-4">
+      <div className="relative z-10 grid gap-2.5 sm:mt-4">
         {items.map((item, index) => (
-          <Surface
-            as="article"
+          <div
             key={item.title}
-            className="p-3.5"
-            interactive
-            tone={index === 4 ? "red" : "blue"}
-            variant="card"
+            className="rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-white/[0.78] transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)]"
           >
-            <div className="mb-2.5 flex items-center gap-2">
+            <button
+              aria-controls={`${baseId}-panel-${index}`}
+              aria-expanded={activeIndex === index}
+              className={`group flex min-h-14 w-full items-center justify-between gap-4 rounded-[var(--radius-card)] px-4 py-3 text-left transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-elaman-blue ${
+                activeIndex === index
+                  ? "bg-white text-graphite"
+                  : "text-graphite-muted"
+              }`}
+              id={`${baseId}-button-${index}`}
+              onClick={() => onSelect(index)}
+              type="button"
+            >
+              <span className="flex min-w-0 items-center gap-3">
+                <span
+                  className={`size-2 shrink-0 rounded-full ${index === 4 ? "bg-elaman-red" : "bg-elaman-blue"} opacity-70`}
+                  aria-hidden="true"
+                />
+                <span className="min-w-0">
+                  <span className="block text-xs font-semibold tabular-nums text-graphite-soft">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="mt-1 block text-sm font-semibold leading-snug tracking-[var(--tracking-title)] text-graphite">
+                    {item.title}
+                  </span>
+                </span>
+              </span>
               <span
-                className={`size-2 rounded-full ${index === 4 ? "bg-elaman-red" : "bg-elaman-blue"} opacity-70`}
+                className={`shrink-0 text-lg leading-none text-elaman-blue transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] group-hover:text-graphite ${
+                  activeIndex === index ? "rotate-45" : ""
+                }`}
                 aria-hidden="true"
-              />
-              <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-graphite-soft">
-                SYS {String(index + 1).padStart(2, "0")}
-              </p>
+              >
+                +
+              </span>
+            </button>
+            <div
+              aria-hidden={activeIndex !== index}
+              aria-labelledby={`${baseId}-button-${index}`}
+              className={`grid transition-[grid-template-rows,opacity] [transition-duration:var(--motion-medium)] [transition-timing-function:var(--motion-ease)] motion-reduce:transition-none ${
+                activeIndex === index
+                  ? "grid-rows-[1fr] opacity-100"
+                  : "grid-rows-[0fr] opacity-0"
+              }`}
+              id={`${baseId}-panel-${index}`}
+              role="region"
+            >
+              <div className="overflow-hidden">
+                <p className="px-4 pb-4 text-sm leading-6 text-graphite-muted">
+                  {item.description}
+                </p>
+              </div>
             </div>
-            <h3 className="text-sm font-semibold leading-snug tracking-[var(--tracking-title)] text-graphite">
-              {item.title}
-            </h3>
-            <p className="mt-1.5 text-xs leading-5 text-graphite-muted">
-              {item.description}
-            </p>
-          </Surface>
+          </div>
         ))}
       </div>
     </Surface>

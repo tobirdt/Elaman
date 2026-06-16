@@ -15,7 +15,7 @@ type HeaderProps = {
 
 export function Header({ locale, content }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--border-soft)] bg-[var(--surface-glass-strong)] backdrop-blur-2xl">
+    <header className="sticky top-0 z-40 border-b border-[var(--border-soft)] bg-white backdrop-blur-xl">
       <Container className="flex h-16 items-center justify-between gap-3 lg:h-20 lg:gap-5">
         <Link
           href={`/${locale}` as Route}
@@ -28,16 +28,16 @@ export function Header({ locale, content }: HeaderProps) {
             width={188}
             height={72}
             priority
-            className="h-auto w-32 sm:w-44"
+            className="h-auto w-32 sm:w-40"
           />
         </Link>
 
-        <nav className="hidden items-center gap-0.5 rounded-[var(--radius-pill)] border border-[var(--border-soft)] bg-[var(--surface-glass)] px-1.5 py-1.5 text-sm text-graphite-muted shadow-[var(--shadow-card)] backdrop-blur-2xl lg:flex">
+        <nav className="hidden items-center gap-7 text-sm text-graphite-muted lg:flex">
           {content.main.map((item) => (
             <a
               key={item.href}
               href={sectionPath(locale, item.href)}
-              className="rounded-[var(--radius-pill)] px-3.5 py-2 transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-white hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-elaman-blue"
+              className="relative py-2 transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-elaman-blue after:transition-transform after:[transition-duration:var(--motion-fast)] after:[transition-timing-function:var(--motion-ease)] hover:text-graphite hover:after:scale-x-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
             >
               {item.label}
             </a>
@@ -68,7 +68,7 @@ export function Header({ locale, content }: HeaderProps) {
               <span className="absolute bottom-1 left-0 h-px w-4 bg-current transition group-open:bottom-[0.45rem] group-open:-rotate-45" />
             </span>
           </summary>
-          <div className="absolute right-0 mt-3 w-[min(18rem,calc(100vw-2.5rem))] rounded-[var(--radius-panel)] border border-[var(--border-soft)] bg-[var(--surface-glass-strong)] p-2 shadow-[var(--shadow-panel)] backdrop-blur-2xl">
+          <div className="absolute right-0 mt-3 w-[calc(100vw-2.5rem)] max-w-[22rem] rounded-[var(--radius-panel)] border border-[var(--border-soft)] bg-white p-2 shadow-[var(--shadow-panel)]">
             <nav className="grid gap-1 text-sm">
               {content.main.map((item) => (
                 <a

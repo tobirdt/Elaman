@@ -19,7 +19,11 @@ export function NotFoundPage({ locale = "en" }: NotFoundPageProps) {
     <>
       <Header locale={locale} content={content.navigation} />
       <main>
-        <Section className="min-h-[calc(100vh-16rem)]" tone="white" variant="band">
+        <Section
+          className="min-h-[calc(100vh-16rem)]"
+          tone="white"
+          variant="content-band"
+        >
           <Container size="legal">
             <SectionHeader
               as="h1"

@@ -10,7 +10,7 @@ type DeliverySectionProps = {
 
 export function DeliverySection({ content }: DeliverySectionProps) {
   return (
-    <Section id="delivery" variant="band" tone="soft">
+    <Section id="delivery" variant="content-band" tone="soft">
       <Container>
         <SectionHeader
           body={content.body}
