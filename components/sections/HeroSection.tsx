@@ -35,7 +35,6 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
     offset: ["start start", "end start"],
   });
   const fieldY = useTransform(scrollYProgress, [0.25, 0.95], [0, -16]);
-  const fieldOpacity = useTransform(scrollYProgress, [0.25, 0.95], [1, 0.55]);
 
   return (
     <Section id="hero" variant="hero-screen" className="relative overflow-hidden">
@@ -110,7 +109,7 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
 
             <motion.div
               className="relative hidden lg:block"
-              style={reduced ? undefined : { y: fieldY, opacity: fieldOpacity }}
+              style={reduced ? undefined : { y: fieldY }}
             >
               <div className="overflow-hidden">
                 <HeroDotField
