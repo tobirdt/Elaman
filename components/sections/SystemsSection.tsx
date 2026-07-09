@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 
+import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { SystemMap } from "@/components/ui/SystemMap";
+import { SectionRule } from "@/components/ui/SectionRule";
+import { SystemsAccordion } from "@/components/ui/SystemsAccordion";
+import { SystemsMatrix } from "@/components/ui/SystemsMatrix";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type SystemsSectionProps = {
@@ -14,22 +17,33 @@ type SystemsSectionProps = {
 
 export function SystemsSection({ content }: SystemsSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const redIndex = content.items.length - 1;
 
   return (
-    <Section id="systems" variant="content-band" tone="white">
+    <Section id="systems" variant="content-band">
       <Container>
-        <div className="grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-2 lg:items-start">
-          <SectionHeader
-            body={content.body}
-            label={content.label}
-            title={content.title}
-            width="copy"
-          />
-          <SystemMap
-            activeIndex={activeIndex}
-            items={content.items}
-            onSelect={setActiveIndex}
-          />
+        <SectionRule index="04" keyword={content.label} />
+
+        <div className="mt-10 grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:mt-14 lg:grid-cols-2 lg:items-start">
+          <Reveal>
+            <SectionHeader body={content.body} title={content.title} width="copy" />
+            <SystemsMatrix
+              activeIndex={activeIndex}
+              className="mt-10 hidden max-w-xs sm:block"
+              items={content.items}
+              onSelect={setActiveIndex}
+              redIndex={redIndex}
+            />
+          </Reveal>
+
+          <Reveal variant="rise" delay={0.06}>
+            <SystemsAccordion
+              activeIndex={activeIndex}
+              items={content.items}
+              onSelect={setActiveIndex}
+              redIndex={redIndex}
+            />
+          </Reveal>
         </div>
       </Container>
     </Section>

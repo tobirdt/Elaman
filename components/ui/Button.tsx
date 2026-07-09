@@ -6,15 +6,14 @@ type ButtonShape = "control" | "pill";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "button-primary border-[var(--color-action-primary)] bg-[var(--color-action-primary)] text-[var(--color-on-primary)] shadow-[var(--shadow-button)] hover:-translate-y-0.5 hover:border-[var(--color-action-primary-hover)] hover:bg-[var(--color-action-primary-hover)] active:translate-y-0 motion-reduce:hover:translate-y-0",
+    "border-[var(--color-action-primary)] bg-[var(--color-action-primary)] text-[var(--color-on-primary)] hover:-translate-y-0.5 hover:border-[var(--color-action-primary-hover)] hover:bg-[var(--color-action-primary-hover)] active:translate-y-0 motion-reduce:hover:translate-y-0",
   secondary:
-    "border-[var(--border-soft)] bg-[var(--surface-glass)] text-[var(--color-text-primary)] hover:-translate-y-0.5 hover:border-[var(--border-accent-blue)] hover:bg-[var(--surface-white)] active:translate-y-0 motion-reduce:hover:translate-y-0",
-  ghost:
-    "border-transparent bg-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]",
+    "border-[var(--border-hairline-strong)] bg-[var(--surface-paper)] text-graphite hover:-translate-y-0.5 hover:border-[var(--border-accent-blue)] hover:bg-[var(--surface-paper-soft)] active:translate-y-0 motion-reduce:hover:translate-y-0",
+  ghost: "border-transparent bg-transparent text-graphite-muted hover:text-graphite",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: "min-h-9 px-3.5 py-2 text-[length:var(--type-small)]",
+  sm: "min-h-10 px-4 py-2 text-[length:var(--type-small)]",
   md: "min-h-11 px-5 py-3 text-[length:var(--type-small)]",
   lg: "min-h-12 px-6 py-3.5 text-[length:var(--type-body)]",
 };
@@ -25,7 +24,7 @@ const shapeClasses: Record<ButtonShape, string> = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center border font-medium tracking-[0.01em] transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-brand-blue)] disabled:pointer-events-none disabled:opacity-55";
+  "inline-flex items-center justify-center border font-medium tracking-[0.01em] transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] disabled:pointer-events-none disabled:opacity-55";
 
 type AnchorButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode;

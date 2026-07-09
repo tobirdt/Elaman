@@ -2,7 +2,7 @@ import { MobileStoryVisual } from "@/components/motion/MobileStoryVisual";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Surface } from "@/components/ui/Surface";
+import { SectionRule } from "@/components/ui/SectionRule";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 import { sectionPath, type Locale } from "@/lib/i18n";
 
@@ -21,15 +21,14 @@ export function MobileStorySequence({
   primaryCta,
   secondaryCta,
 }: MobileStorySequenceProps) {
+  const redIndex = story.steps.findIndex((step) => step.id === "protection");
+
   return (
     <Container className="relative py-[var(--section-y-compact)]">
-      <div>
-        <SectionHeader
-          body={story.mobileBody}
-          label={story.label}
-          title={story.mobileTitle}
-          width="copy"
-        />
+      <SectionRule index="02" keyword={story.label} />
+
+      <div className="mt-8">
+        <SectionHeader body={story.mobileBody} title={story.mobileTitle} width="copy" />
         <div className="mt-7 flex flex-col gap-3 min-[430px]:flex-row">
           <Button
             href={sectionPath(locale, "#contact")}
@@ -47,13 +46,17 @@ export function MobileStorySequence({
         </div>
       </div>
 
-      <ol className="mt-8 grid gap-4">
+      <ol className="mt-10">
         {story.steps.map((step, index) => (
-          <li key={step.id}>
-            <Surface as="article" variant="card" className="p-4 sm:p-5">
+          <li key={step.id} className="border-t border-[var(--border-hairline)] py-7">
+            <article>
               <MobileStoryVisual index={index} />
               <div className="mt-5">
-                <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-elaman-blue">
+                <p
+                  className={`font-mono-label ${
+                    index === redIndex ? "text-elaman-red" : "text-elaman-blue"
+                  }`}
+                >
                   {step.eyebrow}
                 </p>
                 <h3 className="mt-3 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
@@ -63,8 +66,8 @@ export function MobileStorySequence({
                   {step.mobileSummary}
                 </p>
               </div>
-              <details className="group mt-4">
-                <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between rounded-[var(--radius-control)] border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-3 text-sm font-semibold text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-elaman-blue [&::-webkit-details-marker]:hidden">
+              <details className="group mt-5">
+                <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between rounded-[var(--radius-control)] border border-[var(--border-hairline)] bg-[var(--surface-paper-soft)] px-4 py-3 text-sm font-semibold text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-[var(--surface-paper)] [&::-webkit-details-marker]:hidden">
                   {story.detailsLabel}
                   <span
                     className="text-lg leading-none text-elaman-blue transition group-open:rotate-45"
@@ -73,41 +76,44 @@ export function MobileStorySequence({
                     +
                   </span>
                 </summary>
-                <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                  {step.bullets.map((bullet) => (
-                    <p
+                <ul className="mt-4">
+                  {step.bullets.map((bullet, bulletIndex) => (
+                    <li
                       key={bullet}
-                      className="rounded-[var(--radius-control)] border border-[var(--border-soft)] bg-[var(--surface-glass)] px-3 py-2 text-sm font-medium text-graphite-muted"
+                      className="flex items-baseline gap-4 border-t border-[var(--border-hairline)] py-2.5"
                     >
-                      {bullet}
-                    </p>
+                      <span className="font-mono-label shrink-0 text-graphite-soft">
+                        {String(bulletIndex + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-sm font-medium text-graphite-muted">
+                        {bullet}
+                      </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </details>
-            </Surface>
+            </article>
           </li>
         ))}
       </ol>
 
-      <Surface className="mt-8 p-5">
-        <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-elaman-red">
-          {contact.title}
-        </p>
+      <div className="border-t border-[var(--border-hairline)] pt-6">
+        <p className="font-mono-label text-elaman-red">{contact.title}</p>
         <div className="mt-4 grid gap-3 min-[430px]:grid-cols-2">
           <a
             href={`tel:${contact.phoneHref}`}
-            className="rounded-[var(--radius-control)] border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-3 text-sm font-semibold text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-elaman-blue"
+            className="rounded-[var(--radius-control)] border border-[var(--border-hairline)] px-4 py-3 text-sm font-semibold text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)]"
           >
             {contact.phone}
           </a>
           <a
             href={contact.emailHref}
-            className="rounded-[var(--radius-control)] border border-[var(--border-soft)] bg-[var(--surface-soft)] px-4 py-3 text-sm font-semibold text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-elaman-blue"
+            className="rounded-[var(--radius-control)] border border-[var(--border-hairline)] px-4 py-3 text-sm font-semibold text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)]"
           >
             {contact.email}
           </a>
         </div>
-      </Surface>
+      </div>
     </Container>
   );
 }

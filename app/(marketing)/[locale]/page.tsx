@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { AnchorScrollManager } from "@/components/motion/AnchorScrollManager";
-import { MotionReveal } from "@/components/motion/MotionReveal";
 import { CapabilityOverview } from "@/components/sections/CapabilityOverview";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { DeliverySection } from "@/components/sections/DeliverySection";
@@ -18,7 +17,7 @@ import { isLocale, locales, type Locale } from "@/lib/i18n";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo/site";
 
 type LocalePageProps = {
-  params: Promise<unknown>;
+  params: Promise<{ locale: string }>;
 };
 
 export function generateStaticParams() {
@@ -26,10 +25,9 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
-  const resolvedParams = (await params) as { locale?: string };
-  const locale = resolvedParams.locale;
+  const { locale } = await params;
 
-  if (!locale || !isLocale(locale)) {
+  if (!isLocale(locale)) {
     return {};
   }
 
@@ -49,14 +47,13 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
 }
 
 export default async function HomePage({ params }: LocalePageProps) {
-  const resolvedParams = (await params) as { locale?: string };
-  const localeParam = resolvedParams.locale;
+  const { locale: localeParam } = await params;
 
-  if (!localeParam || !isLocale(localeParam)) {
+  if (!isLocale(localeParam)) {
     notFound();
   }
 
-  const locale = localeParam as Locale;
+  const locale: Locale = localeParam;
   const content = getSiteContent(locale);
 
   return (
@@ -65,25 +62,13 @@ export default async function HomePage({ params }: LocalePageProps) {
       <Header locale={locale} content={content.navigation} />
       <main>
         <HeroSection locale={locale} content={content.hero} />
-        <MotionReveal>
-          <TrustSection content={content.trust} />
-        </MotionReveal>
+        <TrustSection content={content.trust} />
         <ScrollStory locale={locale} content={content} />
-        <MotionReveal>
-          <CapabilityOverview content={content.capabilities} />
-        </MotionReveal>
-        <MotionReveal>
-          <SystemsSection content={content.systems} />
-        </MotionReveal>
-        <MotionReveal>
-          <ProtectionSection content={content.protection} />
-        </MotionReveal>
-        <MotionReveal>
-          <DeliverySection content={content.delivery} />
-        </MotionReveal>
-        <MotionReveal>
-          <ContactSection content={content.contact} />
-        </MotionReveal>
+        <CapabilityOverview content={content.capabilities} />
+        <SystemsSection content={content.systems} />
+        <ProtectionSection content={content.protection} />
+        <DeliverySection content={content.delivery} />
+        <ContactSection content={content.contact} />
       </main>
       <Footer
         contact={content.contact}

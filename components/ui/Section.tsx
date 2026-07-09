@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { resolveSectionMode, type SectionModeInput } from "@/lib/design/tokens";
 
-type SectionTone = "white" | "soft" | "plain";
+type SectionTone = "paper" | "navy" | "plain" | "white" | "soft";
 
 type SectionProps = ComponentPropsWithoutRef<"section"> & {
   children: ReactNode;
@@ -26,9 +26,12 @@ const modeClasses = {
 } as const;
 
 const toneClasses: Record<SectionTone, string> = {
-  white: "bg-[var(--surface-white)]",
-  soft: "bg-[var(--surface-soft)]",
+  paper: "bg-[var(--surface-paper)]",
+  navy: "bg-[var(--surface-navy)] text-[var(--color-on-dark)]",
   plain: "",
+  /* Legacy tones — the page is continuous paper now; soft striping is retired. */
+  white: "bg-[var(--surface-paper)]",
+  soft: "",
 };
 
 function resolveVariant(

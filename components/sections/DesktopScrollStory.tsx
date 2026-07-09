@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 import { useRef, useState } from "react";
 
 import { StickyStoryStage } from "@/components/motion/StickyStoryStage";
@@ -8,28 +14,36 @@ import { StoryProgress } from "@/components/motion/StoryProgress";
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Surface } from "@/components/ui/Surface";
+import { SectionRule } from "@/components/ui/SectionRule";
 import type { LocalizedSiteContent } from "@/lib/content/site";
+import { motionDuration, motionEase, scrollSpring } from "@/lib/motion/presets";
 
 type DesktopScrollStoryProps = {
   content: LocalizedSiteContent["story"];
 };
 
+/** svh of scroll runway per story step. */
+const STEP_RUNWAY = 80;
+
 export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const prefersReducedMotion = useReducedMotionPreference();
-  const activeStep = content.steps[activeIndex] ?? content.steps[0];
+  const reduced = useReducedMotionPreference();
+  const steps = content.steps;
+  const activeStep = steps[activeIndex] ?? steps[0];
+  const redIndex = steps.findIndex((step) => step.id === "protection");
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
+  const smooth = useSpring(scrollYProgress, scrollSpring);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const clamped = Math.min(1, Math.max(0, latest));
     const nextIndex = Math.min(
-      content.steps.length - 1,
-      Math.max(0, Math.floor(clamped * content.steps.length)),
+      steps.length - 1,
+      Math.max(0, Math.floor(clamped * steps.length)),
     );
 
     setActiveIndex((currentIndex) =>
@@ -37,92 +51,103 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
     );
   });
 
+  function scrollToStep(index: number) {
+    const runway = sectionRef.current;
+
+    if (!runway) {
+      return;
+    }
+
+    const rect = runway.getBoundingClientRect();
+    const top = window.scrollY + rect.top;
+    const scrollable = runway.offsetHeight - window.innerHeight;
+    const progress = (index + 0.5) / steps.length;
+
+    window.scrollTo({
+      top: top + progress * scrollable,
+      behavior: reduced ? "auto" : "smooth",
+    });
+  }
+
   return (
     <div
       ref={sectionRef}
       className="relative"
-      style={{ height: `${content.steps.length * 60}svh` }}
+      style={{ height: `${steps.length * STEP_RUNWAY}svh` }}
     >
-      <div className="sticky top-[var(--header-h)] flex h-[calc(100svh-var(--header-h))] items-center overflow-hidden">
-        <Container className="grid items-center gap-8 xl:grid-cols-3 xl:gap-10">
-          <div>
-            <SectionHeader
-              body={content.body}
-              label={content.label}
-              size="h3"
-              title={content.title}
-              width="narrow"
-            />
-            <StoryProgress
-              activeIndex={activeIndex}
-              steps={content.steps}
-              label={content.progressLabel}
-            />
-          </div>
+      <div className="sticky top-[var(--header-h)] flex h-[calc(100svh-var(--header-h))] flex-col justify-center">
+        <Container className="w-full">
+          <SectionRule index="02" keyword={content.label} />
 
-          <StickyStoryStage
-            activeIndex={activeIndex}
-            steps={content.steps}
-            activeLayerLabel={content.activeLayerLabel}
-            systemFocusLabel={content.systemFocusLabel}
-          />
-
-          <motion.div
-            key={activeStep.id}
-            aria-current="step"
-            initial={prefersReducedMotion ? false : { opacity: 0.001, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={
-              prefersReducedMotion
-                ? { duration: 0 }
-                : { duration: 0.26, ease: [0.22, 1, 0.36, 1] }
-            }
-          >
-            <Surface as="article" className="p-6 xl:p-7" variant="strongGlass">
-              <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-elaman-blue">
-                {activeStep.eyebrow}
-              </p>
-              <h3 className="mt-4 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
-                {activeStep.title}
-              </h3>
-              <p className="mt-4 text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite-muted">
-                {activeStep.description}
-              </p>
-              <div className="mt-6 grid gap-1.5">
-                {activeStep.bullets.map((bullet, index) => (
-                  <Surface
-                    key={bullet}
-                    className="flex items-center gap-3 px-4 py-2.5 shadow-none"
-                    variant="inset"
-                  >
-                    <span
-                      className={`size-1.5 shrink-0 rounded-full ${
-                        activeIndex >= 4 && index === 0
-                          ? "bg-elaman-red"
-                          : "bg-elaman-blue"
-                      }`}
-                      aria-hidden="true"
-                    />
-                    <p className="text-sm font-medium text-graphite-muted">{bullet}</p>
-                  </Surface>
-                ))}
+          <div className="mt-8 grid items-center gap-10 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.25fr)_minmax(0,0.95fr)] [&>*]:min-w-0">
+            <div>
+              <SectionHeader size="h3" title={content.title} width="narrow" />
+              <div className="mt-8">
+                <StoryProgress
+                  activeIndex={activeIndex}
+                  label={content.progressLabel}
+                  onSelect={scrollToStep}
+                  progress={smooth}
+                  redIndex={redIndex}
+                  steps={steps}
+                />
               </div>
-            </Surface>
-          </motion.div>
-        </Container>
-      </div>
+            </div>
 
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="sticky top-[calc(var(--header-h)+1.5rem)] ml-auto mr-[var(--page-x)] h-px w-28 bg-graphite/10">
-          <motion.div
-            className={`h-full ${activeIndex >= 4 ? "bg-elaman-red" : "bg-elaman-blue"}`}
-            initial={false}
-            animate={{
-              width: `${content.steps.length > 1 ? (activeIndex / (content.steps.length - 1)) * 100 : 100}%`,
-            }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.24 }}
-          />
-        </div>
+            <StickyStoryStage
+              activeIndex={activeIndex}
+              progress={smooth}
+              stepCount={steps.length}
+            />
+
+            <div className="min-h-[24rem]">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.article
+                  key={activeStep.id}
+                  aria-current="step"
+                  initial={reduced ? false : { opacity: 0.001, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reduced ? undefined : { opacity: 0.001 }}
+                  transition={
+                    reduced
+                      ? { duration: 0 }
+                      : { duration: motionDuration.state, ease: motionEase.out }
+                  }
+                  className="border-t border-[var(--border-hairline)] pt-5"
+                >
+                  <p
+                    className={`font-mono-label ${
+                      activeIndex === redIndex ? "text-elaman-red" : "text-elaman-blue"
+                    }`}
+                  >
+                    {activeStep.eyebrow}
+                  </p>
+                  <h3 className="mt-4 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
+                    {activeStep.title}
+                  </h3>
+                  <p className="mt-4 text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite-muted">
+                    {activeStep.description}
+                  </p>
+                  <ul className="mt-6">
+                    {activeStep.bullets.map((bullet, index) => (
+                      <li
+                        key={bullet}
+                        className="flex items-baseline gap-4 border-t border-[var(--border-hairline)] py-2.5"
+                      >
+                        <span className="font-mono-label shrink-0 text-graphite-soft">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-sm font-medium text-graphite-muted">
+                          {bullet}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.article>
+              </AnimatePresence>
+            </div>
+          </div>
+        </Container>
       </div>
     </div>
   );

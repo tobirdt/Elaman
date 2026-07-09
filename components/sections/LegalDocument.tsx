@@ -18,7 +18,7 @@ export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentP
           <SectionHeader
             as="h1"
             label={label}
-            labelTone="dark"
+            labelTone="ink"
             size="h1"
             title={title}
             width="full"

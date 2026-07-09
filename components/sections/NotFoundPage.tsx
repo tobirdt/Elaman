@@ -33,7 +33,7 @@ export function NotFoundPage({ locale = "en" }: NotFoundPageProps) {
                   : "The requested page is not available. Return to the Elaman homepage or use the contact path in the navigation."
               }
               label="404"
-              labelTone="dark"
+              labelTone="ink"
               size="h1"
               title={isGerman ? "Seite nicht gefunden." : "Page not found."}
               width="content"

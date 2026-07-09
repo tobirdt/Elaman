@@ -11,17 +11,7 @@ type ScrollStoryProps = {
 
 export function ScrollStory({ locale, content }: ScrollStoryProps) {
   return (
-    <Section
-      id="story"
-      variant="screen"
-      tone="white"
-      modeLayout={false}
-      className="relative isolate overflow-hidden border-y border-line"
-    >
-      <div
-        className="technical-grid absolute inset-x-0 top-0 h-[34rem] opacity-45"
-        aria-hidden="true"
-      />
+    <Section id="story" variant="screen" modeLayout={false} className="relative">
       <div className="hidden xl:block" data-story-variant="desktop">
         <DesktopScrollStory content={content.story} />
       </div>

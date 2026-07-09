@@ -1,93 +1,195 @@
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
+import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { HeroSignalVisual } from "@/components/ui/HeroSignalVisual";
+import { HeroDotField } from "@/components/ui/HeroDotField";
+import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Section } from "@/components/ui/Section";
-import { SectionLabel } from "@/components/ui/SectionLabel";
-import { VisualLayer } from "@/components/motion/VisualLayer";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 import { sectionPath, type Locale } from "@/lib/i18n";
+import { motionDuration, motionEase, staggerContainer } from "@/lib/motion/presets";
 
 type HeroSectionProps = {
   locale: Locale;
   content: LocalizedSiteContent["hero"];
 };
 
-export function HeroSection({ locale, content }: HeroSectionProps) {
-  return (
-    <Section
-      id="hero"
-      variant="hero-screen"
-      tone="white"
-      className="relative isolate overflow-hidden"
-    >
-      <VisualLayer>
-        <div className="absolute left-1/2 top-0 h-[min(34rem,90vw)] w-[min(34rem,90vw)] -translate-x-1/2 rounded-full border border-elaman-blue/8 bg-elaman-blue/[0.018] lg:h-[42rem] lg:w-[42rem]" />
-        <div className="absolute left-1/2 top-20 h-[min(20rem,58vw)] w-[min(20rem,58vw)] -translate-x-1/2 rounded-full border border-elaman-blue/6 lg:h-[25rem] lg:w-[25rem]" />
-        <div className="technical-grid absolute inset-x-0 top-0 h-[34rem] opacity-25" />
-        <div className="absolute left-[var(--page-x)] top-0 h-16 w-px bg-gradient-to-b from-elaman-blue/20 to-transparent" />
-        <div className="absolute right-[var(--page-x)] top-0 h-16 w-px bg-gradient-to-b from-elaman-red/16 to-transparent" />
-      </VisualLayer>
+const entranceItem = {
+  hidden: { opacity: 0.001, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: motionDuration.entrance, ease: motionEase.out },
+  },
+} as const;
 
-      <Container className="grid items-center gap-[var(--section-gap)] [&>*]:min-w-0 lg:-mt-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-        <div>
-          <SectionLabel>{content.label}</SectionLabel>
-          <h1 className="text-balance max-w-[13.5ch] text-[clamp(3rem,5.2vw,4.9rem)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite sm:max-w-[15ch]">
-            {content.title}
-          </h1>
-          <p className="mt-5 max-w-[32ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite sm:hidden">
-            {content.mobileIntro}
-          </p>
-          <p className="mt-6 hidden max-w-[var(--container-copy)] text-[length:var(--type-lead)] leading-[var(--leading-body)] text-graphite sm:block">
-            {content.intro}
-          </p>
-          <p className="mt-4 max-w-[34ch] text-sm leading-[var(--leading-body)] text-graphite-muted sm:block 2xl:hidden">
-            {content.mobileBody}
-          </p>
-          <p className="mt-4 hidden max-w-[36rem] text-base leading-[var(--leading-body)] text-graphite-muted 2xl:block">
-            {content.body}
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row xl:mt-8">
-            <Button href={sectionPath(locale, content.primaryCta.href)}>
-              {content.primaryCta.label}
-            </Button>
-            <Button
-              href={sectionPath(locale, content.secondaryCta.href)}
-              variant="secondary"
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(query.matches);
+
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  return isDesktop;
+}
+
+export function HeroSection({ locale, content }: HeroSectionProps) {
+  const reduced = useReducedMotionPreference();
+  const isDesktop = useIsDesktop();
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: scrollRef,
+    offset: ["start start", "end start"],
+  });
+  const textY = useTransform(scrollYProgress, [0.2, 0.9], [0, -12]);
+  const textOpacity = useTransform(scrollYProgress, [0.2, 0.9], [1, 0.5]);
+  const fieldY = useTransform(scrollYProgress, [0.2, 0.9], [0, -24]);
+  const fieldOpacity = useTransform(scrollYProgress, [0.2, 0.9], [1, 0.35]);
+  const scrollOut = isDesktop && !reduced;
+
+  return (
+    <Section id="hero" variant="hero-screen" className="relative overflow-hidden">
+      <Container className="w-full">
+        <motion.div
+          ref={scrollRef}
+          initial={reduced ? false : "hidden"}
+          animate="visible"
+          variants={staggerContainer(0.08)}
+        >
+          <motion.div
+            variants={entranceItem}
+            className="flex items-baseline justify-between gap-4 border-t border-[var(--border-hairline)] pt-3"
+          >
+            <span className="font-mono-label text-graphite">{content.label}</span>
+            <span className="font-mono-label text-graphite-soft">{content.visualBadge}</span>
+          </motion.div>
+
+          <motion.div variants={entranceItem} className="mt-10 lg:hidden">
+            <HeroDotField static className="h-40 w-40" />
+          </motion.div>
+
+          <div className="mt-8 grid gap-[var(--section-gap)] lg:mt-16 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:items-start [&>*]:min-w-0">
+            <motion.div style={scrollOut ? { y: textY, opacity: textOpacity } : undefined}>
+              <motion.h1
+                variants={entranceItem}
+                className="text-balance max-w-[13ch] text-[length:var(--type-display)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite"
+              >
+                {content.title}
+              </motion.h1>
+              <motion.p
+                variants={entranceItem}
+                className="mt-6 max-w-[32ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite sm:hidden"
+              >
+                {content.mobileIntro}
+              </motion.p>
+              <motion.p
+                variants={entranceItem}
+                className="mt-7 hidden max-w-[var(--container-copy)] text-[length:var(--type-lead)] leading-[var(--leading-body)] text-graphite sm:block"
+              >
+                {content.intro}
+              </motion.p>
+              <motion.p
+                variants={entranceItem}
+                className="mt-4 max-w-[38ch] text-sm leading-[var(--leading-body)] text-graphite-muted xl:hidden"
+              >
+                {content.mobileBody}
+              </motion.p>
+              <motion.p
+                variants={entranceItem}
+                className="mt-4 hidden max-w-[36rem] text-base leading-[var(--leading-body)] text-graphite-muted xl:block"
+              >
+                {content.body}
+              </motion.p>
+              <motion.div
+                variants={entranceItem}
+                className="mt-8 flex flex-col gap-3 sm:flex-row"
+              >
+                <Button href={sectionPath(locale, content.primaryCta.href)}>
+                  {content.primaryCta.label}
+                </Button>
+                <Button
+                  href={sectionPath(locale, content.secondaryCta.href)}
+                  variant="secondary"
+                >
+                  {content.secondaryCta.label}
+                </Button>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              variants={entranceItem}
+              className="relative hidden lg:block"
+              style={scrollOut ? { y: fieldY, opacity: fieldOpacity } : undefined}
             >
-              {content.secondaryCta.label}
-            </Button>
+              <div className="overflow-hidden">
+                <HeroDotField
+                  delayBase={0.35}
+                  className="ml-auto w-[min(24rem,88%)] translate-x-12 xl:translate-x-16"
+                />
+              </div>
+              <div className="relative ml-auto mt-8 max-w-[24rem]">
+                <span
+                  className="absolute -top-6 right-16 h-6 w-px bg-[var(--border-hairline)]"
+                  aria-hidden="true"
+                />
+                <div className="border-t border-[var(--border-hairline)] pt-4">
+                  <MonoLabel tone="blue">{content.visualLabel}</MonoLabel>
+                  <p className="mt-3 text-sm leading-[var(--leading-body)] text-graphite-muted">
+                    {content.visualBody}
+                  </p>
+                  <ol className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                    {content.visualSteps.map((step, index) => (
+                      <li key={step} className="flex items-baseline gap-2">
+                        <span
+                          className={`font-mono-label ${
+                            index === content.visualSteps.length - 1
+                              ? "text-elaman-red"
+                              : "text-elaman-blue"
+                          }`}
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-sm font-medium text-graphite-muted">{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+            </motion.div>
           </div>
 
-          <HeroSignalVisual
-            className="mt-7 lg:hidden"
-            label={content.visualLabel}
-            body={content.visualBody}
-            badge={content.visualBadge}
-            size="compact"
-            steps={content.visualSteps}
-          />
-
-          <dl className="mt-8 grid grid-cols-1 gap-4 border-y border-line/80 py-4 sm:grid-cols-3 xl:mt-10">
+          <motion.dl
+            variants={entranceItem}
+            className="mt-12 grid gap-8 border-t border-[var(--border-hairline)] pt-6 sm:grid-cols-3 lg:mt-16"
+          >
             {content.stats.map((stat) => (
               <div key={stat.value} className="min-w-0">
-                <dt className="text-lg font-semibold leading-tight tracking-[var(--tracking-title)] text-graphite sm:text-xl">
+                <dt
+                  className={`text-balance font-semibold leading-none tracking-[var(--tracking-title)] text-graphite ${
+                    stat.value.length <= 6
+                      ? "text-[length:var(--type-numeral)]"
+                      : "text-[length:var(--type-h3)]"
+                  }`}
+                >
                   {stat.value}
                 </dt>
-                <dd className="mt-1.5 max-w-48 text-[length:var(--type-micro)] leading-5 text-graphite-muted">
+                <dd className="font-mono-label mt-3 max-w-56 text-graphite-soft">
                   {stat.label}
                 </dd>
               </div>
             ))}
-          </dl>
-        </div>
-
-        <HeroSignalVisual
-          className="hidden lg:block"
-          label={content.visualLabel}
-          body={content.visualBody}
-          badge={content.visualBadge}
-          steps={content.visualSteps}
-        />
+          </motion.dl>
+        </motion.div>
       </Container>
     </Section>
   );

@@ -1,7 +1,9 @@
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { TechnicalMark } from "@/components/ui/TechnicalMark";
+import { SectionRule } from "@/components/ui/SectionRule";
+import { Stat } from "@/components/ui/Stat";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type TrustSectionProps = {
@@ -10,51 +12,50 @@ type TrustSectionProps = {
 
 export function TrustSection({ content }: TrustSectionProps) {
   return (
-    <Section
-      id="experience"
-      variant="content-band"
-      tone="soft"
-      className="border-y border-[var(--border-soft)]"
-    >
-      <Container className="grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-center">
-        <SectionHeader
-          body={content.body}
-          label={content.label}
-          title={content.title}
-          width="copy"
-        />
+    <Section id="experience" variant="content-band">
+      <Container>
+        <SectionRule index="01" keyword={content.label} />
 
-        <div>
-          <div className="grid overflow-hidden rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-white md:grid-cols-3">
-            {content.metrics.map((metric, index) => (
-              <div
-                key={metric.value}
-                className="relative border-t border-[var(--border-soft)] p-5 first:border-t-0 md:border-l md:border-t-0 md:first:border-l-0 sm:p-6"
-              >
-                <TechnicalMark tone={index === 1 ? "red" : "blue"} />
-                <p className="mt-5 text-2xl font-semibold leading-none tracking-[var(--tracking-title)] text-graphite">
-                  {metric.value}
-                </p>
-                <p className="mt-3 text-[length:var(--type-micro)] leading-5 text-graphite-muted">
-                  {metric.label}
-                </p>
-              </div>
-            ))}
-          </div>
+        <div className="mt-10 grid gap-[var(--section-gap)] lg:mt-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] [&>*]:min-w-0">
+          <Reveal>
+            <SectionHeader body={content.body} title={content.title} width="copy" />
+          </Reveal>
 
-          <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
-            {content.pillars.map((pillar, index) => (
-              <div
-                key={pillar}
-                className="flex items-center gap-3 rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-white px-4 py-3"
-              >
-                <span
-                  className={`size-1.5 shrink-0 rounded-full ${index === 0 || index === 2 ? "bg-elaman-blue" : "bg-elaman-red/70"}`}
-                  aria-hidden="true"
-                />
-                <p className="text-sm font-medium text-graphite-muted">{pillar}</p>
-              </div>
-            ))}
+          <div>
+            <RevealGroup className="grid md:grid-cols-3" stagger={0.09}>
+              {content.metrics.map((metric, index) => (
+                <RevealItem
+                  key={metric.value}
+                  className={`flex flex-col justify-end border-[var(--border-hairline)] py-6 md:py-2 ${
+                    index === 0
+                      ? "border-t md:border-t-0 md:pr-6"
+                      : "border-t md:border-l md:border-t-0 md:px-6"
+                  }`}
+                >
+                  <Stat
+                    caption={metric.label}
+                    size={metric.value.length <= 6 ? "numeral" : "h3"}
+                    value={metric.value}
+                  />
+                </RevealItem>
+              ))}
+            </RevealGroup>
+
+            <RevealGroup className="mt-12" stagger={0.06}>
+              {content.pillars.map((pillar, index) => (
+                <RevealItem key={pillar}>
+                  <div className="flex items-baseline gap-5 border-t border-[var(--border-hairline)] py-3.5">
+                    <span className="font-mono-label shrink-0 text-graphite-soft">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-[length:var(--type-body)] font-medium text-graphite-muted">
+                      {pillar}
+                    </p>
+                  </div>
+                </RevealItem>
+              ))}
+              <div className="rule-hairline" aria-hidden="true" />
+            </RevealGroup>
           </div>
         </div>
       </Container>

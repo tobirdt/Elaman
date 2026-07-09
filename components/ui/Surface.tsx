@@ -7,10 +7,9 @@ type SurfaceElement = "article" | "aside" | "div" | "li";
 type SurfaceVariant =
   | SurfaceLevel
   | "strongGlass"
-  | "inset"
   | "panel"
-  | "card"
   | "glass"
+  | "dark-panel"
   | "darkPanel";
 
 type SurfaceTone = "neutral" | "blue" | "red";
@@ -25,13 +24,16 @@ type SurfaceProps = ComponentPropsWithoutRef<"div"> & {
 
 const variantClasses: Record<SurfaceVariant, string> = {
   card: "surface-card",
+  raised: "surface-raised",
+  navy: "surface-dark-panel",
+  inset:
+    "rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper-soft)]",
+  /* Legacy variants — mapped to flat dossier surfaces until all consumers migrate. */
   panel: "surface-panel",
   glass: "surface-glass",
   "dark-panel": "surface-dark-panel",
   darkPanel: "surface-dark-panel",
   strongGlass: "surface-glass-strong",
-  inset:
-    "rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-[var(--surface-soft)] shadow-[var(--shadow-none)]",
 };
 
 const toneClasses: Record<SurfaceTone, string> = {

@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 import "../../globals.css";
 import { RootDocument } from "@/components/layout/RootDocument";
-import { isLocale, locales, type Locale } from "@/lib/i18n";
+import { isLocale, locales } from "@/lib/i18n";
 import { siteConfig } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
@@ -31,16 +31,15 @@ export function generateStaticParams() {
 
 type LocaleLayoutProps = {
   children: ReactNode;
-  params: Promise<unknown>;
+  params: Promise<{ locale: string }>;
 };
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
-  const resolvedParams = (await params) as { locale?: string };
-  const locale = resolvedParams.locale;
+  const { locale } = await params;
 
-  if (!locale || !isLocale(locale)) {
+  if (!isLocale(locale)) {
     notFound();
   }
 
-  return <RootDocument lang={locale as Locale}>{children}</RootDocument>;
+  return <RootDocument lang={locale}>{children}</RootDocument>;
 }
