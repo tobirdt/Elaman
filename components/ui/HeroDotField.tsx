@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useSyncExternalStore } from "react";
 
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { DOT_COLORS, DotMatrix } from "@/components/ui/DotMatrix";
@@ -21,7 +20,6 @@ const DOT_R = 5.5;
 const PADDING = 1;
 const SIZE = (DIAMOND_RADIUS + PADDING) * 2 * PITCH;
 const INK_OPACITY = 0.22;
-const subscribe = () => () => {};
 
 function dotDelay(distance: number, delayBase: number) {
   return delayBase + distance * 0.12;
@@ -38,9 +36,8 @@ export function HeroDotField({
   static: isStatic = false,
 }: HeroDotFieldProps) {
   const reduced = useReducedMotionPreference();
-  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
 
-  if ((mounted && reduced) || isStatic) {
+  if (reduced || isStatic) {
     return (
       <DotMatrix
         className={className}

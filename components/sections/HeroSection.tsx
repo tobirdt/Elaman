@@ -109,7 +109,6 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
             </motion.div>
 
             <motion.div
-              variants={entranceItem}
               className="relative hidden lg:block"
               style={reduced ? undefined : { y: fieldY, opacity: fieldOpacity }}
             >

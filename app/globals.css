@@ -313,6 +313,11 @@ select {
     --section-y-content-band: var(--section-y-band);
     --section-y-legal-page: var(--section-y-compact);
   }
+
+  .text-balance:not(.hero-title) {
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

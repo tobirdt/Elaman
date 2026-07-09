@@ -137,10 +137,11 @@ export function Header({ locale, content }: HeaderProps) {
               aria-hidden={!menuOpen}
               className={`absolute right-0 mt-3 w-[calc(100vw-2.5rem)] max-w-[22rem] rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper)] p-2 shadow-[var(--shadow-overlay)] transition-[opacity,transform] [transition-duration:var(--motion-state)] [transition-timing-function:var(--motion-ease)] motion-reduce:transition-none ${
                 menuOpen
-                  ? "visible translate-y-0 opacity-100"
-                  : "invisible -translate-y-2 opacity-0"
+                  ? "pointer-events-auto translate-y-0 opacity-100"
+                  : "pointer-events-none -translate-y-2 opacity-0"
               }`}
               id="mobile-navigation"
+              inert={!menuOpen}
             >
               <nav className="grid gap-1 text-sm">
                 {content.main.map((item) => (
