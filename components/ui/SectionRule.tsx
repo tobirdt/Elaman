@@ -27,7 +27,9 @@ export function SectionRule({
   onDark = false,
   className = "",
 }: SectionRuleProps) {
-  const lineClass = onDark ? "border-[var(--border-on-navy)]" : "border-[var(--border-hairline)]";
+  const lineClass = onDark
+    ? "border-[var(--border-on-navy)]"
+    : "border-[var(--border-hairline)]";
   const baseText = onDark ? "text-[var(--color-on-dark-muted)]" : "text-graphite-soft";
 
   return (

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { DOT_COLORS, DotMatrix } from "@/components/ui/DotMatrix";
 import { perimeterFormation } from "@/lib/design/formations";
-import { motionEase, revealViewport } from "@/lib/motion/presets";
+import { motionDuration, motionEase, revealViewport } from "@/lib/motion/presets";
 
 type ProtectionPerimeterProps = {
   className?: string;
@@ -70,7 +70,11 @@ export function ProtectionPerimeter({ className = "" }: ProtectionPerimeterProps
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={revealViewport}
               style={{ transformOrigin: `${cx}px ${cy}px` }}
-              transition={{ duration: 0.35, ease: motionEase.out, delay: 0.72 }}
+              transition={{
+                duration: motionDuration.medium,
+                ease: motionEase.out,
+                delay: 0.32,
+              }}
             />
           );
         }
@@ -85,7 +89,11 @@ export function ProtectionPerimeter({ className = "" }: ProtectionPerimeterProps
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 0.32 }}
             viewport={revealViewport}
-            transition={{ duration: 0.3, ease: motionEase.out, delay: index * 0.04 }}
+            transition={{
+              duration: motionDuration.state,
+              ease: motionEase.out,
+              delay: Math.min(index * 0.016, 0.28),
+            }}
           />
         );
       })}

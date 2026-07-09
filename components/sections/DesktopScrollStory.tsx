@@ -23,7 +23,7 @@ type DesktopScrollStoryProps = {
 };
 
 /** svh of scroll runway per story step. */
-const STEP_RUNWAY = 80;
+const STEP_RUNWAY = 60;
 
 export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -39,7 +39,7 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
   });
   const smooth = useSpring(scrollYProgress, scrollSpring);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  useMotionValueEvent(smooth, "change", (latest) => {
     const clamped = Math.min(1, Math.max(0, latest));
     const nextIndex = Math.min(
       steps.length - 1,
@@ -100,14 +100,14 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
               stepCount={steps.length}
             />
 
-            <div className="min-h-[24rem]">
-              <AnimatePresence mode="wait" initial={false}>
+            <div className="min-h-[20rem]">
+              <AnimatePresence mode="sync" initial={false}>
                 <motion.article
                   key={activeStep.id}
                   aria-current="step"
                   initial={reduced ? false : { opacity: 0.001, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={reduced ? undefined : { opacity: 0.001 }}
+                  exit={reduced ? undefined : { opacity: 0.001, y: -4 }}
                   transition={
                     reduced
                       ? { duration: 0 }

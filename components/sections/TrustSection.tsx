@@ -12,7 +12,7 @@ type TrustSectionProps = {
 
 export function TrustSection({ content }: TrustSectionProps) {
   return (
-    <Section id="experience" variant="content-band">
+    <Section id="experience" variant="content-band" tone="soft">
       <Container>
         <SectionRule index="01" keyword={content.label} />
 

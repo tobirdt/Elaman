@@ -75,7 +75,8 @@ function toStageY(y: number) {
 const RED_STEP = storyFormations.findIndex((formation) =>
   formation.dots.some((dot) => dot.tone === "red"),
 );
-const RED_IN_START = (RED_STEP / FORMATION_COUNT) * (1 - 0.001) - (1 / FORMATION_COUNT) * 0.3;
+const RED_IN_START =
+  (RED_STEP / FORMATION_COUNT) * (1 - 0.001) - (1 / FORMATION_COUNT) * 0.3;
 const RED_IN_END = RED_STEP / FORMATION_COUNT + (1 / FORMATION_COUNT) * 0.2;
 
 /** Chain formation dwell — the window where connective edges are visible. */
@@ -122,7 +123,15 @@ function StageDot({ progress, index }: StageDotProps) {
     );
   }
 
-  return <motion.circle cx={cx} cy={cy} r={DOT_R} fill={DOT_COLORS.ink} fillOpacity={INK_OPACITY} />;
+  return (
+    <motion.circle
+      cx={cx}
+      cy={cy}
+      r={DOT_R}
+      fill={DOT_COLORS.ink}
+      fillOpacity={INK_OPACITY}
+    />
+  );
 }
 
 function ChainEdges({ progress }: { progress: MotionValue<number> }) {
@@ -133,7 +142,9 @@ function ChainEdges({ progress }: { progress: MotionValue<number> }) {
     [0, 1, 1, 0],
   );
   const path = chain.dots
-    .map((dot, index) => `${index === 0 ? "M" : "L"}${toStageX(dot.x)} ${toStageY(dot.y)}`)
+    .map(
+      (dot, index) => `${index === 0 ? "M" : "L"}${toStageX(dot.x)} ${toStageY(dot.y)}`,
+    )
     .join(" ");
 
   return (
@@ -178,7 +189,8 @@ function StageBase({ progress, activeIndex, stepCount }: StickyStoryStageProps) 
   const reduced = useReducedMotionPreference();
   const seqText = useTransform(
     progress,
-    (value) => `SEQ ${String(Math.min(100, Math.max(0, Math.round(value * 100)))).padStart(3, "0")}%`,
+    (value) =>
+      `SEQ ${String(Math.min(100, Math.max(0, Math.round(value * 100)))).padStart(3, "0")}%`,
   );
 
   if (reduced) {
@@ -194,7 +206,8 @@ function StageBase({ progress, activeIndex, stepCount }: StickyStoryStageProps) 
           pitch={PITCH}
         />
         <p className="font-mono-label absolute right-0 top-0 text-graphite-soft">
-          {String(activeIndex + 1).padStart(2, "0")} / {String(stepCount).padStart(2, "0")}
+          {String(activeIndex + 1).padStart(2, "0")} /{" "}
+          {String(stepCount).padStart(2, "0")}
         </p>
       </div>
     );

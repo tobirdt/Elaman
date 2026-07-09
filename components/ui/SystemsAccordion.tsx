@@ -5,9 +5,9 @@ import { useId } from "react";
 import type { ContentCard } from "@/types/site";
 
 type SystemsAccordionProps = {
-  activeIndex: number;
+  activeIndex: number | null;
   items: readonly ContentCard[];
-  onSelect: (index: number) => void;
+  onSelect: (index: number | null) => void;
   redIndex: number;
 };
 
@@ -33,13 +33,17 @@ export function SystemsAccordion({
                 isActive ? "text-graphite" : "text-graphite-muted hover:text-graphite"
               }`}
               id={`${baseId}-button-${index}`}
-              onClick={() => onSelect(index)}
+              onClick={() => onSelect(isActive ? null : index)}
               type="button"
             >
               <span className="flex min-w-0 items-baseline gap-4">
                 <span
                   className={`font-mono-label ${
-                    isActive ? (index === redIndex ? "text-elaman-red" : "text-elaman-blue") : ""
+                    isActive
+                      ? index === redIndex
+                        ? "text-elaman-red"
+                        : "text-elaman-blue"
+                      : ""
                   }`}
                 >
                   {String(index + 1).padStart(2, "0")}
@@ -67,7 +71,9 @@ export function SystemsAccordion({
               role="region"
             >
               <div className="overflow-hidden">
-                <p className="pb-4 text-sm leading-6 text-graphite-muted">{item.description}</p>
+                <p className="pb-5 text-base leading-7 text-graphite-muted">
+                  {item.description}
+                </p>
               </div>
             </div>
           </div>

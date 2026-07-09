@@ -38,7 +38,7 @@ export function CapabilityOverview({ content }: CapabilityOverviewProps) {
                   <h3 className="text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
                     {item.title}
                   </h3>
-                  <p className="col-span-2 text-sm leading-7 text-graphite-muted sm:col-span-1">
+                  <p className="col-span-2 text-base leading-7 text-graphite-muted sm:col-span-1">
                     {item.description}
                   </p>
                 </article>

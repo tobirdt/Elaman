@@ -1,9 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
-import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroDotField } from "@/components/ui/HeroDotField";
@@ -27,51 +25,19 @@ const entranceItem = {
   },
 } as const;
 
-function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const query = window.matchMedia("(min-width: 1024px)");
-    const update = () => setIsDesktop(query.matches);
-
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
-
-  return isDesktop;
-}
-
 export function HeroSection({ locale, content }: HeroSectionProps) {
-  const reduced = useReducedMotionPreference();
-  const isDesktop = useIsDesktop();
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: scrollRef,
-    offset: ["start start", "end start"],
-  });
-  const textY = useTransform(scrollYProgress, [0.2, 0.9], [0, -12]);
-  const textOpacity = useTransform(scrollYProgress, [0.2, 0.9], [1, 0.5]);
-  const fieldY = useTransform(scrollYProgress, [0.2, 0.9], [0, -24]);
-  const fieldOpacity = useTransform(scrollYProgress, [0.2, 0.9], [1, 0.35]);
-  const scrollOut = isDesktop && !reduced;
-
   return (
     <Section id="hero" variant="hero-screen" className="relative overflow-hidden">
       <Container className="w-full">
-        <motion.div
-          ref={scrollRef}
-          initial={reduced ? false : "hidden"}
-          animate="visible"
-          variants={staggerContainer(0.08)}
-        >
+        <motion.div initial={false} animate="visible" variants={staggerContainer(0.08)}>
           <motion.div
             variants={entranceItem}
             className="flex items-baseline justify-between gap-4 border-t border-[var(--border-hairline)] pt-3"
           >
             <span className="font-mono-label text-graphite">{content.label}</span>
-            <span className="font-mono-label text-graphite-soft">{content.visualBadge}</span>
+            <span className="font-mono-label text-graphite-soft">
+              {content.visualBadge}
+            </span>
           </motion.div>
 
           <motion.div variants={entranceItem} className="mt-10 lg:hidden">
@@ -79,10 +45,10 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
           </motion.div>
 
           <div className="mt-8 grid gap-[var(--section-gap)] lg:mt-16 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:items-start [&>*]:min-w-0">
-            <motion.div style={scrollOut ? { y: textY, opacity: textOpacity } : undefined}>
+            <motion.div>
               <motion.h1
                 variants={entranceItem}
-                className="text-balance max-w-[13ch] text-[length:var(--type-display)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite"
+                className="hero-title text-balance max-w-[13ch] text-[length:var(--type-display)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite"
               >
                 {content.title}
               </motion.h1>
@@ -100,7 +66,7 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
               </motion.p>
               <motion.p
                 variants={entranceItem}
-                className="mt-4 max-w-[38ch] text-sm leading-[var(--leading-body)] text-graphite-muted xl:hidden"
+                className="mt-4 max-w-[38ch] text-base leading-[var(--leading-body)] text-graphite-muted xl:hidden"
               >
                 {content.mobileBody}
               </motion.p>
@@ -126,11 +92,7 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
               </motion.div>
             </motion.div>
 
-            <motion.div
-              variants={entranceItem}
-              className="relative hidden lg:block"
-              style={scrollOut ? { y: fieldY, opacity: fieldOpacity } : undefined}
-            >
+            <motion.div variants={entranceItem} className="relative hidden lg:block">
               <div className="overflow-hidden">
                 <HeroDotField
                   delayBase={0.35}
@@ -159,7 +121,9 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
                         >
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="text-sm font-medium text-graphite-muted">{step}</span>
+                        <span className="text-sm font-medium text-graphite-muted">
+                          {step}
+                        </span>
                       </li>
                     ))}
                   </ol>
@@ -170,7 +134,7 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
 
           <motion.dl
             variants={entranceItem}
-            className="mt-12 grid gap-8 border-t border-[var(--border-hairline)] pt-6 sm:grid-cols-3 lg:mt-16"
+            className="mt-10 grid gap-6 border-t border-[var(--border-hairline)] pt-6 sm:grid-cols-3 lg:mt-16 lg:gap-8"
           >
             {content.stats.map((stat) => (
               <div key={stat.value} className="min-w-0">

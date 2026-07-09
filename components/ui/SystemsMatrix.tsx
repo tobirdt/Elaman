@@ -9,46 +9,35 @@ import type { ContentCard } from "@/types/site";
 type SystemsMatrixProps = {
   items: readonly ContentCard[];
   activeIndex: number;
-  onSelect: (index: number) => void;
   redIndex: number;
   className?: string;
 };
 
-/** 8 satellite positions in an incomplete diamond around the blue hub. */
+/** Eight system endpoints connected to a shared integration bus. */
 const POSITIONS = [
-  { x: 0, y: -2.4 },
-  { x: 1.7, y: -1.7 },
-  { x: 2.4, y: 0 },
-  { x: 1.7, y: 1.7 },
-  { x: 0, y: 2.4 },
-  { x: -1.7, y: 1.7 },
-  { x: -2.4, y: 0 },
-  { x: -1.7, y: -1.7 },
+  { x: 34, y: 30 },
+  { x: 34, y: 90 },
+  { x: 34, y: 150 },
+  { x: 34, y: 210 },
+  { x: 246, y: 30 },
+  { x: 246, y: 90 },
+  { x: 246, y: 150 },
+  { x: 246, y: 210 },
 ] as const;
 
-const PITCH = 34;
-const PAD = 1.1;
-const SIZE = (2.4 + PAD) * 2 * PITCH;
-const CENTER = (2.4 + PAD) * PITCH;
-
-function toX(x: number) {
-  return CENTER + x * PITCH;
-}
-
-function toY(y: number) {
-  return CENTER + y * PITCH;
-}
+const WIDTH = 280;
+const HEIGHT = 240;
+const BUS_X = WIDTH / 2;
 
 /**
- * Eight satellites around the Elaman hub — one per system. The active
- * accordion item's dot fills and a leader line draws toward its label.
- * Mirrors onSelect via transparent hit targets; the accordion buttons remain
- * the accessible control.
+ * Eight system endpoints connect to a central integration bus. The active
+ * accordion item highlights one signal path without turning the diagram
+ * itself into an additional control.
+ * The adjacent accordion remains the sole interactive control.
  */
 export function SystemsMatrix({
   items,
   activeIndex,
-  onSelect,
   redIndex,
   className = "",
 }: SystemsMatrixProps) {
@@ -58,18 +47,35 @@ export function SystemsMatrix({
   return (
     <div className={className}>
       <svg
-        viewBox={`0 0 ${SIZE} ${SIZE}`}
+        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         className="w-full"
         aria-hidden="true"
         focusable="false"
       >
+        <line
+          x1={BUS_X}
+          y1={18}
+          x2={BUS_X}
+          y2={222}
+          stroke={DOT_COLORS.ink}
+          strokeOpacity={0.22}
+          strokeWidth={1.5}
+        />
+        <rect
+          x={BUS_X - 8}
+          y={HEIGHT / 2 - 8}
+          width={16}
+          height={16}
+          fill={DOT_COLORS.blue}
+        />
+
         {POSITIONS.map((position, index) => (
           <line
-            key={`spoke-${index}`}
-            x1={CENTER}
-            y1={CENTER}
-            x2={toX(position.x)}
-            y2={toY(position.y)}
+            key={`channel-${index}`}
+            x1={position.x}
+            y1={position.y}
+            x2={BUS_X}
+            y2={position.y}
             stroke={DOT_COLORS.ink}
             strokeOpacity={0.12}
             strokeWidth={1}
@@ -77,44 +83,35 @@ export function SystemsMatrix({
         ))}
 
         <motion.line
-          x1={CENTER}
-          y1={CENTER}
-          x2={toX(activePosition.x)}
-          y2={toY(activePosition.y)}
+          key={activeIndex}
+          x1={activePosition.x}
+          y1={activePosition.y}
+          x2={BUS_X}
+          y2={activePosition.y}
           stroke={activeIndex === redIndex ? DOT_COLORS.red : DOT_COLORS.blue}
           strokeOpacity={0.5}
           strokeWidth={1.5}
-          initial={false}
-          animate={{ x2: toX(activePosition.x), y2: toY(activePosition.y) }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.32, ease: motionEase.out }}
         />
-
-        <circle cx={CENTER} cy={CENTER} r={7} fill={DOT_COLORS.blue} />
 
         {POSITIONS.map((position, index) => {
           const isActive = index === activeIndex;
           const isRed = index === redIndex;
 
           return (
-            <g key={index}>
-              <motion.circle
-                cx={toX(position.x)}
-                cy={toY(position.y)}
-                r={isActive ? 9 : 6}
-                fill={isRed ? DOT_COLORS.red : DOT_COLORS.blue}
-                fillOpacity={isActive ? 1 : 0.28}
-                animate={{ r: isActive ? 9 : 6, fillOpacity: isActive ? 1 : 0.28 }}
-                transition={{ duration: 0.24, ease: motionEase.out }}
-              />
-              <circle
-                cx={toX(position.x)}
-                cy={toY(position.y)}
-                r={22}
-                fill="transparent"
-                className="pointer-events-auto cursor-pointer"
-                onClick={() => onSelect(index)}
-              />
-            </g>
+            <motion.circle
+              key={index}
+              cx={position.x}
+              cy={position.y}
+              r={6}
+              fill={isRed ? DOT_COLORS.red : DOT_COLORS.blue}
+              fillOpacity={isActive ? 1 : 0.28}
+              animate={{ scale: isActive ? 1.5 : 1, fillOpacity: isActive ? 1 : 0.28 }}
+              style={{ transformOrigin: `${position.x}px ${position.y}px` }}
+              transition={{ duration: 0.24, ease: motionEase.out }}
+            />
           );
         })}
       </svg>
@@ -122,7 +119,8 @@ export function SystemsMatrix({
         <p
           className={`font-mono-label ${activeIndex === redIndex ? "text-elaman-red" : "text-elaman-blue"}`}
         >
-          {String(activeIndex + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+          {String(activeIndex + 1).padStart(2, "0")} /{" "}
+          {String(items.length).padStart(2, "0")}
         </p>
         <p className="mt-1 text-sm font-semibold text-graphite">{active?.title}</p>
       </div>

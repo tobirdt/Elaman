@@ -16,7 +16,7 @@ type SystemsSectionProps = {
 };
 
 export function SystemsSection({ content }: SystemsSectionProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
   const redIndex = content.items.length - 1;
 
   return (
@@ -28,10 +28,9 @@ export function SystemsSection({ content }: SystemsSectionProps) {
           <Reveal>
             <SectionHeader body={content.body} title={content.title} width="copy" />
             <SystemsMatrix
-              activeIndex={activeIndex}
+              activeIndex={activeIndex ?? 0}
               className="mt-10 hidden max-w-xs sm:block"
               items={content.items}
-              onSelect={setActiveIndex}
               redIndex={redIndex}
             />
           </Reveal>

@@ -15,8 +15,11 @@ type FooterProps = {
 
 export function Footer({ contact, navigation, footer, locale }: FooterProps) {
   return (
-    <footer className="border-t border-[var(--border-soft)] bg-white">
-      <div className="h-px bg-gradient-to-r from-elaman-blue/32 via-line to-elaman-red/28" />
+    <footer className="border-t border-[var(--border-hairline)] bg-[var(--surface-paper)]">
+      <div className="grid h-px grid-cols-[3fr_1fr]" aria-hidden="true">
+        <span className="bg-elaman-blue/40" />
+        <span className="bg-elaman-red/40" />
+      </div>
       <Container className="grid gap-10 py-[var(--section-y-compact)] md:grid-cols-2 md:items-start">
         <div className="max-w-sm">
           <Image
@@ -36,7 +39,7 @@ export function Footer({ contact, navigation, footer, locale }: FooterProps) {
           </address>
           <a
             href={`tel:${contact.phoneHref}`}
-            className="mt-3 block text-sm text-graphite-soft transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
+            className="mt-3 inline-flex min-h-11 items-center text-sm text-graphite-soft transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite"
           >
             {contact.phone}
           </a>
@@ -45,28 +48,28 @@ export function Footer({ contact, navigation, footer, locale }: FooterProps) {
 
         <div className="grid gap-6 min-[480px]:grid-cols-2 md:grid-cols-1 md:justify-self-end md:text-right">
           <nav
-            aria-label="Footer navigation"
-            className="flex flex-wrap gap-2 md:justify-end"
+            aria-label={navigation.footerNavigationLabel}
+            className="flex flex-wrap gap-x-4 gap-y-1 md:justify-end"
           >
             {navigation.main.map((item) => (
               <a
                 key={item.href}
                 href={sectionPath(locale, item.href)}
-                className="text-sm text-graphite-soft transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
+                className="inline-flex min-h-11 items-center text-sm text-graphite-soft transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite"
               >
                 {item.label}
               </a>
             ))}
           </nav>
           <nav
-            aria-label="Legal navigation"
-            className="flex flex-wrap gap-2 md:justify-end"
+            aria-label={navigation.legalNavigationLabel}
+            className="flex flex-wrap gap-x-4 gap-y-1 md:justify-end"
           >
             {navigation.legal.map((item) => (
               <Link
                 key={item.href}
                 href={item.href as Route}
-                className="rounded-[var(--radius-pill)] border border-[var(--border-soft)] bg-[var(--surface-soft)] px-3.5 py-1.5 text-xs font-medium text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)] hover:bg-white hover:text-graphite focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
+                className="inline-flex min-h-11 items-center border-b border-[var(--border-hairline)] text-xs font-medium text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)] hover:text-graphite"
               >
                 {item.label}
               </Link>

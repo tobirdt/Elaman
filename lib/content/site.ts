@@ -47,6 +47,9 @@ export type LocalizedSiteContent = {
     menu: string;
     homeLabel: string;
     languageSwitcherLabel: string;
+    skipLabel: string;
+    footerNavigationLabel: string;
+    legalNavigationLabel: string;
   };
   footer: {
     legalNotice: string;
@@ -159,6 +162,9 @@ export const siteContent = {
       menu: "Menu",
       homeLabel: "Elaman home",
       languageSwitcherLabel: "Language",
+      skipLabel: "Skip to content",
+      footerNavigationLabel: "Footer navigation",
+      legalNavigationLabel: "Legal navigation",
     },
     footer: {
       legalNotice: "Imprint",
@@ -523,6 +529,9 @@ export const siteContent = {
       menu: "Menü",
       homeLabel: "Elaman Startseite",
       languageSwitcherLabel: "Sprache",
+      skipLabel: "Zum Inhalt springen",
+      footerNavigationLabel: "Fußzeilennavigation",
+      legalNavigationLabel: "Rechtliche Navigation",
     },
     footer: {
       legalNotice: "Impressum",

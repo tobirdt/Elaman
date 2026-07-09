@@ -178,7 +178,12 @@ export function ContactForm({ content }: ContactFormProps) {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className={fieldBase}>
-          {content.fields.firstName}
+          <span>
+            {content.fields.firstName}{" "}
+            <span className="text-elaman-red" aria-hidden="true">
+              *
+            </span>
+          </span>
           <input
             id="firstName"
             className="form-field"
@@ -238,7 +243,12 @@ export function ContactForm({ content }: ContactFormProps) {
         </label>
 
         <label className={fieldBase}>
-          {content.fields.email}
+          <span>
+            {content.fields.email}{" "}
+            <span className="text-elaman-red" aria-hidden="true">
+              *
+            </span>
+          </span>
           <input
             id="email"
             className="form-field"
@@ -261,7 +271,12 @@ export function ContactForm({ content }: ContactFormProps) {
       </div>
 
       <label className={fieldBase}>
-        {content.fields.message}
+        <span>
+          {content.fields.message}{" "}
+          <span className="text-elaman-red" aria-hidden="true">
+            *
+          </span>
+        </span>
         <textarea
           id="message"
           className="form-field min-h-24 resize-y"
@@ -298,7 +313,10 @@ export function ContactForm({ content }: ContactFormProps) {
           </p>
         ) : null}
         {status === "error" && errors.form ? (
-          <p className="rounded-[var(--radius-control)] border border-elaman-red/18 bg-elaman-red/[0.055] px-4 py-3 text-sm text-graphite">
+          <p
+            className="rounded-[var(--radius-control)] border border-elaman-red/18 bg-elaman-red/[0.055] px-4 py-3 text-sm text-graphite"
+            role="alert"
+          >
             {errors.form}
           </p>
         ) : null}

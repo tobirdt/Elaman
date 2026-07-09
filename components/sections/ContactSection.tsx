@@ -47,8 +47,13 @@ export function ContactSection({ content }: ContactSectionProps) {
         <SectionRule accent="red" index="07" keyword={content.officeTitle} />
 
         <div className="mt-10 grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:mt-14 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-start">
-          <Reveal>
-            <SectionHeader body={content.intro} size="h2" title={content.title} width="copy" />
+          <Reveal className="order-2 lg:order-1">
+            <SectionHeader
+              body={content.intro}
+              size="h2"
+              title={content.title}
+              width="copy"
+            />
 
             <div className="mt-8 border-t border-[var(--border-hairline)]">
               {contactRows.map((row) => (
@@ -60,24 +65,28 @@ export function ContactSection({ content }: ContactSectionProps) {
                   {row.href ? (
                     <a
                       href={row.href}
-                      className="text-sm leading-7 text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite"
+                      className="inline-flex min-h-11 items-center text-base leading-7 text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite"
                     >
                       {row.value}
                     </a>
                   ) : (
-                    <div className="text-sm leading-7 text-graphite-muted">{row.value}</div>
+                    <div className="text-base leading-7 text-graphite-muted">
+                      {row.value}
+                    </div>
                   )}
                 </div>
               ))}
             </div>
           </Reveal>
 
-          <Reveal variant="rise" delay={0.06}>
+          <Reveal className="order-1 lg:order-2" variant="rise" delay={0.06}>
             <MonoLabel tone="red">{content.form.label}</MonoLabel>
             <h3 className="mt-3 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
               {content.form.title}
             </h3>
-            <p className="mt-3 text-sm leading-6 text-graphite-muted">{content.form.intro}</p>
+            <p className="mt-3 text-base leading-7 text-graphite-muted">
+              {content.form.intro}
+            </p>
             <div className="mt-6">
               <ContactForm content={content.form} />
             </div>

@@ -52,7 +52,11 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className={`${widthClasses[width]} ${alignClasses[align]} ${className}`}>
-      {label ? <MonoLabel tone={labelTone} className="mb-5">{label}</MonoLabel> : null}
+      {label ? (
+        <MonoLabel tone={labelTone} className="mb-5">
+          {label}
+        </MonoLabel>
+      ) : null}
       <TitleTag
         className={`text-balance font-semibold ${
           onDark ? "text-[var(--color-on-dark)]" : "text-graphite"

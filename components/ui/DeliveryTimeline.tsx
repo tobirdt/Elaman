@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { DOT_COLORS } from "@/components/ui/DotMatrix";
-import { motionEase, revealViewport } from "@/lib/motion/presets";
+import { motionDuration, motionEase, revealViewport } from "@/lib/motion/presets";
 import type { DeliveryStep } from "@/types/site";
 
 type DeliveryTimelineProps = {
@@ -29,7 +29,7 @@ export function DeliveryTimeline({ steps }: DeliveryTimelineProps) {
           initial={reduced ? false : { scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={revealViewport}
-          transition={{ duration: 0.6, ease: motionEase.out }}
+          transition={{ duration: motionDuration.trace, ease: motionEase.out }}
           style={{ width: "100%" }}
         />
         <div className="grid grid-cols-5 gap-6">
@@ -37,11 +37,17 @@ export function DeliveryTimeline({ steps }: DeliveryTimelineProps) {
             <div key={step.step} className="relative pt-2">
               <motion.span
                 className="absolute left-0 top-0 block size-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                style={{ backgroundColor: isLast(index) ? DOT_COLORS.red : DOT_COLORS.blue }}
+                style={{
+                  backgroundColor: isLast(index) ? DOT_COLORS.red : DOT_COLORS.blue,
+                }}
                 initial={reduced ? false : { scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={revealViewport}
-                transition={{ duration: 0.3, ease: motionEase.out, delay: index * 0.08 }}
+                transition={{
+                  duration: motionDuration.medium,
+                  ease: motionEase.out,
+                  delay: index * 0.06,
+                }}
               />
               <p className="text-[length:var(--type-numeral)] font-semibold leading-none tracking-[var(--tracking-title)] text-graphite">
                 {step.step}
@@ -49,7 +55,7 @@ export function DeliveryTimeline({ steps }: DeliveryTimelineProps) {
               <h3 className="mt-4 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
                 {step.title}
               </h3>
-              <p className="mt-2.5 text-sm leading-6 text-graphite-muted">
+              <p className="mt-2.5 text-base leading-7 text-graphite-muted">
                 {step.description}
               </p>
             </div>
@@ -64,14 +70,16 @@ export function DeliveryTimeline({ steps }: DeliveryTimelineProps) {
             <li key={step.step} className="relative">
               <span
                 className="absolute -left-8 top-1.5 block size-3 rounded-full"
-                style={{ backgroundColor: isLast(index) ? DOT_COLORS.red : DOT_COLORS.blue }}
+                style={{
+                  backgroundColor: isLast(index) ? DOT_COLORS.red : DOT_COLORS.blue,
+                }}
                 aria-hidden="true"
               />
               <p className="font-mono-label text-graphite-soft">{step.step}</p>
               <h3 className="mt-2 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
                 {step.title}
               </h3>
-              <p className="mt-2.5 text-sm leading-6 text-graphite-muted">
+              <p className="mt-2.5 text-base leading-7 text-graphite-muted">
                 {step.description}
               </p>
             </li>
