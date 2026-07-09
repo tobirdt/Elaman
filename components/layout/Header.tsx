@@ -18,6 +18,7 @@ type HeaderProps = {
 
 export function Header({ locale, content }: HeaderProps) {
   const [activeSection, setActiveSection] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
   const primaryNavigation = content.main.filter((item) => item.href !== "#contact");
 
   useEffect(() => {
@@ -25,22 +26,36 @@ export function Header({ locale, content }: HeaderProps) {
       .map((item) => document.getElementById(item.href.slice(1)))
       .filter((section): section is HTMLElement => section !== null);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    function updateActiveSection() {
+      const marker = window.innerHeight * 0.35;
+      const active = sections.find((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= marker && rect.bottom > marker;
+      });
 
-        if (visible?.target.id) {
-          setActiveSection(`#${visible.target.id}`);
-        }
-      },
-      { rootMargin: "-20% 0px -65% 0px", threshold: [0, 0.1, 0.25] },
-    );
+      setActiveSection(active ? `#${active.id}` : "");
+    }
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, [content.main]);
+
+  useEffect(() => {
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
 
   return (
     <>
@@ -95,24 +110,45 @@ export function Header({ locale, content }: HeaderProps) {
             </Button>
           </div>
 
-          <details className="group relative z-50 block shrink-0 lg:hidden">
-            <summary
+          <div className="relative z-50 block shrink-0 lg:hidden">
+            <button
+              aria-controls="mobile-navigation"
+              aria-expanded={menuOpen}
               aria-label={content.menu}
-              className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-[var(--radius-pill)] border border-[var(--border-hairline)] bg-[var(--surface-paper)] px-4 py-2.5 text-sm font-medium text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-[var(--surface-paper-soft)] [&::-webkit-details-marker]:hidden"
+              className="flex min-h-11 cursor-pointer items-center gap-2 rounded-[var(--radius-pill)] border border-[var(--border-hairline)] bg-[var(--surface-paper)] px-4 py-2.5 text-sm font-medium text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-[var(--surface-paper-soft)]"
+              onClick={() => setMenuOpen((open) => !open)}
+              type="button"
             >
               {content.menu}
               <span className="relative size-4" aria-hidden="true">
-                <span className="absolute left-0 top-1 h-px w-4 origin-center bg-current transition-transform [transition-duration:var(--motion-state)] group-open:translate-y-1 group-open:rotate-45" />
-                <span className="absolute bottom-1 left-0 h-px w-4 origin-center bg-current transition-transform [transition-duration:var(--motion-state)] group-open:-translate-y-1 group-open:-rotate-45" />
+                <span
+                  className={`absolute left-0 top-1 h-px w-4 origin-center bg-current transition-transform [transition-duration:var(--motion-state)] ${
+                    menuOpen ? "translate-y-1 rotate-45" : ""
+                  }`}
+                />
+                <span
+                  className={`absolute bottom-1 left-0 h-px w-4 origin-center bg-current transition-transform [transition-duration:var(--motion-state)] ${
+                    menuOpen ? "-translate-y-1 -rotate-45" : ""
+                  }`}
+                />
               </span>
-            </summary>
-            <div className="absolute right-0 mt-3 w-[calc(100vw-2.5rem)] max-w-[22rem] translate-y-[-0.5rem] rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper)] p-2 opacity-0 shadow-[var(--shadow-overlay)] transition-[opacity,transform] [transition-duration:var(--motion-state)] [transition-timing-function:var(--motion-ease)] group-open:translate-y-0 group-open:opacity-100 motion-reduce:transition-none">
+            </button>
+            <div
+              aria-hidden={!menuOpen}
+              className={`absolute right-0 mt-3 w-[calc(100vw-2.5rem)] max-w-[22rem] rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper)] p-2 shadow-[var(--shadow-overlay)] transition-[opacity,transform] [transition-duration:var(--motion-state)] [transition-timing-function:var(--motion-ease)] motion-reduce:transition-none ${
+                menuOpen
+                  ? "visible translate-y-0 opacity-100"
+                  : "invisible -translate-y-2 opacity-0"
+              }`}
+              id="mobile-navigation"
+            >
               <nav className="grid gap-1 text-sm">
                 {content.main.map((item) => (
                   <a
                     key={item.href}
                     href={sectionPath(locale, item.href)}
                     className="rounded-[var(--radius-control)] px-4 py-3 text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-[var(--surface-paper-soft)] hover:text-graphite"
+                    onClick={() => setMenuOpen(false)}
                   >
                     {item.label}
                   </a>
@@ -123,6 +159,7 @@ export function Header({ locale, content }: HeaderProps) {
                     key={item.href}
                     href={item.href as Route}
                     className="rounded-[var(--radius-control)] px-4 py-3 text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-[var(--surface-paper-soft)] hover:text-graphite"
+                    onClick={() => setMenuOpen(false)}
                   >
                     {item.label}
                   </Link>
@@ -135,7 +172,7 @@ export function Header({ locale, content }: HeaderProps) {
                 </div>
               </nav>
             </div>
-          </details>
+          </div>
         </Container>
       </header>
     </>

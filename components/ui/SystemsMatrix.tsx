@@ -66,7 +66,8 @@ export function SystemsMatrix({
           y={HEIGHT / 2 - 8}
           width={16}
           height={16}
-          fill={DOT_COLORS.blue}
+          fill={DOT_COLORS.ink}
+          fillOpacity={0.6}
         />
 
         {POSITIONS.map((position, index) => (
@@ -106,7 +107,9 @@ export function SystemsMatrix({
               cx={position.x}
               cy={position.y}
               r={6}
-              fill={isRed ? DOT_COLORS.red : DOT_COLORS.blue}
+              fill={
+                isActive ? (isRed ? DOT_COLORS.red : DOT_COLORS.blue) : DOT_COLORS.ink
+              }
               fillOpacity={isActive ? 1 : 0.28}
               animate={{ scale: isActive ? 1.5 : 1, fillOpacity: isActive ? 1 : 0.28 }}
               style={{ transformOrigin: `${position.x}px ${position.y}px` }}

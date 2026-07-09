@@ -69,7 +69,7 @@ export function Footer({ contact, navigation, footer, locale }: FooterProps) {
               <Link
                 key={item.href}
                 href={item.href as Route}
-                className="inline-flex min-h-11 items-center border-b border-[var(--border-hairline)] text-xs font-medium text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)] hover:text-graphite"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center border-b border-[var(--border-hairline)] px-1 text-xs font-medium text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)] hover:text-graphite"
               >
                 {item.label}
               </Link>

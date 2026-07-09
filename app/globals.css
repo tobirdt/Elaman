@@ -193,6 +193,7 @@ select {
 .text-balance {
   text-wrap: balance;
   overflow-wrap: normal;
+  word-break: normal;
   hyphens: none;
 }
 
@@ -202,6 +203,8 @@ select {
   left: var(--page-x);
   z-index: 100;
   transform: translateY(-200%);
+  opacity: 0;
+  pointer-events: none;
   border: 1px solid var(--border-hairline-strong);
   border-radius: var(--radius-control);
   background: var(--surface-paper);
@@ -213,11 +216,14 @@ select {
 
 .skip-link:focus {
   transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (min-width: 768px) {
   :lang(de) .hero-title {
-    font-size: clamp(4.25rem, 7vw, 5.25rem);
+    max-width: 15ch;
+    font-size: clamp(4.25rem, 6vw, 5.75rem);
   }
 }
 

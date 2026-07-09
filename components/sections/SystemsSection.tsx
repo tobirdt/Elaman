@@ -24,12 +24,12 @@ export function SystemsSection({ content }: SystemsSectionProps) {
       <Container>
         <SectionRule index="04" keyword={content.label} />
 
-        <div className="mt-10 grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:mt-14 lg:grid-cols-2 lg:items-start">
+        <div className="mt-10 grid gap-[var(--section-gap)] [&>*]:min-w-0 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start lg:mt-14 lg:grid-cols-2">
           <Reveal>
             <SectionHeader body={content.body} title={content.title} width="copy" />
             <SystemsMatrix
               activeIndex={activeIndex ?? 0}
-              className="mt-10 hidden max-w-xs sm:block"
+              className="mt-10 hidden w-full max-w-sm sm:block"
               items={content.items}
               redIndex={redIndex}
             />

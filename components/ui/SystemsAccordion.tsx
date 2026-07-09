@@ -67,6 +67,7 @@ export function SystemsAccordion({
               className={`grid transition-[grid-template-rows,opacity] [transition-duration:var(--motion-expand)] [transition-timing-function:var(--motion-ease)] motion-reduce:transition-none ${
                 isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
               }`}
+              style={{ transitionDuration: "var(--motion-expand)" }}
               id={`${baseId}-panel-${index}`}
               role="region"
             >

@@ -75,9 +75,8 @@ function toStageY(y: number) {
 const RED_STEP = storyFormations.findIndex((formation) =>
   formation.dots.some((dot) => dot.tone === "red"),
 );
-const RED_IN_START =
-  (RED_STEP / FORMATION_COUNT) * (1 - 0.001) - (1 / FORMATION_COUNT) * 0.3;
-const RED_IN_END = RED_STEP / FORMATION_COUNT + (1 / FORMATION_COUNT) * 0.2;
+const RED_IN_START = RED_STEP / FORMATION_COUNT;
+const RED_IN_END = RED_IN_START + (1 / FORMATION_COUNT) * 0.45;
 
 /** Chain formation dwell — the window where connective edges are visible. */
 const CHAIN_STEP = 2;

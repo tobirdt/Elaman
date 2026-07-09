@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
+import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroDotField } from "@/components/ui/HeroDotField";
@@ -26,10 +28,24 @@ const entranceItem = {
 } as const;
 
 export function HeroSection({ locale, content }: HeroSectionProps) {
+  const reduced = useReducedMotionPreference();
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const fieldY = useTransform(scrollYProgress, [0.25, 0.95], [0, -16]);
+  const fieldOpacity = useTransform(scrollYProgress, [0.25, 0.95], [1, 0.55]);
+
   return (
     <Section id="hero" variant="hero-screen" className="relative overflow-hidden">
       <Container className="w-full">
-        <motion.div initial={false} animate="visible" variants={staggerContainer(0.08)}>
+        <motion.div
+          ref={heroRef}
+          initial={false}
+          animate="visible"
+          variants={staggerContainer(0.08)}
+        >
           <motion.div
             variants={entranceItem}
             className="flex items-baseline justify-between gap-4 border-t border-[var(--border-hairline)] pt-3"
@@ -92,7 +108,11 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
               </motion.div>
             </motion.div>
 
-            <motion.div variants={entranceItem} className="relative hidden lg:block">
+            <motion.div
+              variants={entranceItem}
+              className="relative hidden lg:block"
+              style={reduced ? undefined : { y: fieldY, opacity: fieldOpacity }}
+            >
               <div className="overflow-hidden">
                 <HeroDotField
                   delayBase={0.35}
