@@ -29,9 +29,8 @@ const toneClasses: Record<SectionTone, string> = {
   paper: "bg-[var(--surface-paper)]",
   navy: "bg-[var(--surface-navy)] text-[var(--color-on-dark)]",
   plain: "",
-  /* Legacy tones — the page is continuous paper now; soft striping is retired. */
   white: "bg-[var(--surface-paper)]",
-  soft: "",
+  soft: "bg-[var(--surface-paper-soft)]",
 };
 
 function resolveVariant(

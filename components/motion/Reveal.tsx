@@ -23,7 +23,12 @@ type RevealProps = {
 };
 
 /** Single once-only viewport reveal. */
-export function Reveal({ children, className = "", delay = 0, variant = "reveal" }: RevealProps) {
+export function Reveal({
+  children,
+  className = "",
+  delay = 0,
+  variant = "reveal",
+}: RevealProps) {
   const reduced = useReducedMotionPreference();
 
   if (reduced) {

@@ -21,9 +21,13 @@ export function LanguageSwitcher({ locale, label }: LanguageSwitcherProps) {
 
     syncHash();
     window.addEventListener("hashchange", syncHash);
+    window.addEventListener("popstate", syncHash);
+    window.addEventListener("elaman:locationchange", syncHash);
 
     return () => {
       window.removeEventListener("hashchange", syncHash);
+      window.removeEventListener("popstate", syncHash);
+      window.removeEventListener("elaman:locationchange", syncHash);
     };
   }, []);
 

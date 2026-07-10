@@ -12,12 +12,12 @@ type DeliverySectionProps = {
 
 export function DeliverySection({ content }: DeliverySectionProps) {
   return (
-    <Section id="delivery" variant="content-band">
+    <Section id="delivery" variant="content-band" tone="soft">
       <Container>
         <SectionRule index="06" keyword={content.label} />
         <div className="mt-10 lg:mt-14">
           <Reveal>
-            <SectionHeader body={content.body} title={content.title} width="content" />
+            <SectionHeader body={content.body} title={content.title} width="copy" />
           </Reveal>
           <DeliveryTimeline steps={content.steps} />
         </div>

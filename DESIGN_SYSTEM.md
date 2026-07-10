@@ -167,10 +167,11 @@ Rules: one display/h1 per viewport; body max-width `copy`; `text-balance` on hea
 
 ### Brand accents (logo-derived)
 
-| Role        | Token                | Value     | Usage                                      |
-| ----------- | -------------------- | --------- | ------------------------------------------ |
-| Elaman blue | `--color-brand-blue` | `#244074` | Focus, hover, diagram nodes, labels        |
-| Elaman red  | `--color-brand-red`  | `#d83034` | Accent nodes, split line — ≤5% of viewport |
+| Role        | Token                        | Value     | Usage                                      |
+| ----------- | ---------------------------- | --------- | ------------------------------------------ |
+| Elaman blue | `--color-brand-blue`         | `#244074` | Focus, hover, diagram nodes, labels        |
+| Elaman red  | `--color-brand-red`          | `#d83034` | Accent nodes, split line — ≤5% of viewport |
+| Red on navy | `--color-elaman-red-on-dark` | `#ff6b6f` | Accessible small red labels on navy only   |
 
 ### Dark contrast surfaces
 
@@ -195,19 +196,19 @@ No purple, cyan, or neon. No unsourced sovereignty or security superlatives in U
 
 ### Canonical surface levels
 
-| Level      | Token / class                                        | Use                                 |
-| ---------- | ---------------------------------------------------- | ----------------------------------- |
-| Card       | `surface-card` / `Surface variant="card"`            | Service cards, metrics              |
-| Panel      | `surface-panel` / `Surface variant="panel"`          | Elevated content blocks             |
-| Glass      | `surface-glass` / `Surface variant="glass"`          | Header, story stage, forms          |
-| Dark panel | `surface-dark-panel` / `Surface variant="darkPanel"` | Protection section, contrast blocks |
+| Level  | Token / class                                   | Use                          |
+| ------ | ----------------------------------------------- | ---------------------------- |
+| Card   | `surface-card` / `Surface variant="card"`       | Service cards, metrics       |
+| Raised | `surface-raised` / `Surface variant="raised"`   | Overlaying UI such as menus  |
+| Inset  | `Surface variant="inset"`                       | Recessed technical groupings |
+| Navy   | `surface-dark-panel` / `Surface variant="navy"` | Protection contrast sections |
 
-Legacy: `strongGlass`, `inset` — migrate toward canonical levels when touching components.
+Legacy: `panel`, `glass`, `strongGlass`, `darkPanel` — migrate toward canonical levels when touching components.
 
 ### Card rules
 
 - One title, one description, optional eyebrow per card.
-- Padding `p-5`–`p-9`; radius `--radius-card` (0.75rem).
+- Padding `p-5`–`p-9`; radius `--radius-card` (0.125rem).
 - Hover: border shift or subtle translate — no dramatic shadow growth.
 - **Expandable detail:** inline accordion/tab; `aria-expanded`; no modals.
 
@@ -252,13 +253,14 @@ Shape: `control` default; `pill` for footer legal chips only.
 
 ## 8. Motion
 
-| Token             | Value                            | Use                                  |
-| ----------------- | -------------------------------- | ------------------------------------ |
-| `--motion-fast`   | 180ms                            | Hover, focus, toggles                |
-| `--motion-medium` | 300ms                            | Reveals, accordion, card transitions |
-| `--motion-slow`   | 650ms                            | Section enter, story crossfade       |
-| `--motion-ease`   | `cubic-bezier(0.22, 1, 0.36, 1)` | All transitions                      |
-| `--motion-rise`   | 0.75rem                          | Reveal translate                     |
+| Token             | Value                            | Use                            |
+| ----------------- | -------------------------------- | ------------------------------ |
+| `--motion-fast`   | 180ms                            | Hover, focus, toggles          |
+| `--motion-medium` | 300ms                            | Reveals and state transitions  |
+| `--motion-expand` | 320ms                            | Accordion expansion            |
+| `--motion-slow`   | 650ms                            | Section enter, story crossfade |
+| `--motion-ease`   | `cubic-bezier(0.22, 1, 0.36, 1)` | All transitions                |
+| `--motion-rise`   | 0.75rem                          | Reveal translate               |
 
 **Allowed:** `MotionReveal`, sticky story progress, static logo-derived matrix nodes, static bridge traces, header blur.
 
@@ -275,8 +277,8 @@ Diagram visuals follow the Elaman mark: sparse matrix nodes, calm blue bridge pa
 | Breakpoint       | Behavior                                            |
 | ---------------- | --------------------------------------------------- |
 | `< 640px`        | Tighter section padding; single column; mobile menu |
-| `640px – 1023px` | Two-column where fit; unpinned story                |
-| `≥ 1024px`       | Sticky lifecycle; full grid                         |
+| `640px – 1279px` | Two-column tablet sequence; unpinned story          |
+| `≥ 1280px`       | Sticky lifecycle; full three-column grid            |
 
 Touch targets ≥ 44×44px. No horizontal scroll. Typography uses `clamp()` — avoid breakpoint font overrides.
 

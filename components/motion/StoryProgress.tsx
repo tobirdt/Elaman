@@ -37,7 +37,9 @@ export function StoryProgress({
         />
         <motion.div
           className="absolute left-0 top-0 h-full w-px origin-top bg-elaman-blue"
-          style={reduced ? { scaleY: activeIndex / (steps.length - 1) } : { scaleY: fill }}
+          style={
+            reduced ? { scaleY: activeIndex / (steps.length - 1) } : { scaleY: fill }
+          }
           aria-hidden="true"
         />
         <ol className="grid gap-1">
@@ -52,7 +54,7 @@ export function StoryProgress({
                   type="button"
                   aria-current={isActive ? "step" : undefined}
                   onClick={() => onSelect(index)}
-                  className={`group flex w-full items-baseline gap-3 py-1.5 pl-5 text-left transition-colors [transition-duration:var(--motion-fast)] ${
+                  className={`group flex min-h-11 w-full items-center gap-3 py-2 pl-5 text-left transition-colors [transition-duration:var(--motion-fast)] ${
                     isActive
                       ? "text-graphite"
                       : isPast

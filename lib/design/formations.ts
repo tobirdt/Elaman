@@ -51,7 +51,8 @@ function buildDiamondDots(): FormationDot[] {
         continue;
       }
 
-      const tone: DotTone = x === 0 && y === 0 ? "blue" : x === 2 && y === -1 ? "red" : "ink";
+      const tone: DotTone =
+        x === 0 && y === 0 ? "blue" : x === 2 && y === -1 ? "red" : "ink";
       dots.push({ x, y, tone });
     }
   }

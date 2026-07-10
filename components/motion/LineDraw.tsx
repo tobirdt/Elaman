@@ -34,7 +34,8 @@ export function LineDraw({
   accent = "ink",
 }: LineDrawProps) {
   const reduced = useReducedMotionPreference();
-  const color = onDark && accent === "ink" ? "bg-[var(--border-on-navy)]" : accentClasses[accent];
+  const color =
+    onDark && accent === "ink" ? "bg-[var(--border-on-navy)]" : accentClasses[accent];
   const classes = `h-px w-full origin-left ${color} ${className}`;
 
   if (reduced) {

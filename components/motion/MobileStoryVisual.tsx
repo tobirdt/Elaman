@@ -2,6 +2,7 @@ import { DotMatrix } from "@/components/ui/DotMatrix";
 import { STORY_BOUNDS, storyFormations } from "@/lib/design/formations";
 
 type MobileStoryVisualProps = {
+  className?: string;
   index: number;
 };
 
@@ -10,14 +11,14 @@ type MobileStoryVisualProps = {
  * desktop stage animates through, so the mobile sequence stays truthful to
  * the story state.
  */
-export function MobileStoryVisual({ index }: MobileStoryVisualProps) {
+export function MobileStoryVisual({ className = "", index }: MobileStoryVisualProps) {
   const formation =
     storyFormations[Math.min(Math.max(index, 0), storyFormations.length - 1)];
 
   return (
     <DotMatrix
       bounds={STORY_BOUNDS}
-      className="h-24 w-full"
+      className={`h-24 w-full md:h-40 ${className}`}
       dotRadius={4.5}
       formation={formation}
       inkOpacity={0.26}

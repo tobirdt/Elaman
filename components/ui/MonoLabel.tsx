@@ -13,5 +13,7 @@ const toneClasses = {
 
 /** Technical eyebrow label — the mono voice of the design system. */
 export function MonoLabel({ children, tone = "blue", className = "" }: MonoLabelProps) {
-  return <p className={`font-mono-label ${toneClasses[tone]} ${className}`}>{children}</p>;
+  return (
+    <p className={`font-mono-label ${toneClasses[tone]} ${className}`}>{children}</p>
+  );
 }

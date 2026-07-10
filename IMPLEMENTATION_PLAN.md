@@ -197,15 +197,15 @@ Step-by-step build plan for the premium institutional Elaman website. Aligned wi
 **Tasks:**
 
 - [ ] Blueprint §8 six steps
-- [ ] Desktop: `StickyStoryStage` + progress; `screen` mode
-- [ ] Mobile: `MobileStorySequence` — no pin
-- [ ] `useReducedMotionPreference` gates motion
+- [x] Wide desktop ≥1280px: `StickyStoryStage` + progress; `screen` mode
+- [x] Tablet/mobile: responsive `MobileStorySequence` — no pin
+- [x] `useReducedMotionPreference` gates motion and removes the sticky runway
 - [ ] Diagrams in stage: `SystemMap`, `ProcessRail` — technical only
 - [ ] Nav label: Approach / Vorgehen
 
 **Files:** `components/sections/ScrollStory.tsx`, `DesktopScrollStory.tsx`, `MobileStorySequence.tsx`, `components/motion/*`, `lib/content/site.ts`
 
-**Exit:** Sticky scroll works ≥1024px; reduced motion degrades gracefully; blueprint steps live.
+**Exit:** Sticky scroll works ≥1280px; tablet/mobile and reduced motion use a compact unpinned sequence; blueprint steps live.
 
 **Risk:** Medium — scroll interaction QA
 

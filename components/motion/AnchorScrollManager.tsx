@@ -8,6 +8,12 @@ type AnchorScrollManagerProps = {
   locale: Locale;
 };
 
+const locationChangeEvent = "elaman:locationchange";
+
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 function scrollToHash(hash: string, url: string, replace = false) {
   const id = hash.replace("#", "");
   const target = document.getElementById(id);
@@ -16,13 +22,18 @@ function scrollToHash(hash: string, url: string, replace = false) {
     return;
   }
 
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
+  target.scrollIntoView({
+    behavior: prefersReducedMotion() ? "auto" : "smooth",
+    block: "start",
+  });
 
   if (replace) {
     history.replaceState(null, "", url);
   } else {
     history.pushState(null, "", url);
   }
+
+  window.dispatchEvent(new Event(locationChangeEvent));
 }
 
 export function AnchorScrollManager({ locale }: AnchorScrollManagerProps) {

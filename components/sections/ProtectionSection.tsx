@@ -16,7 +16,9 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
       <Container>
         <LineDraw accent="red" onDark />
         <div className="flex items-baseline justify-between gap-4 pt-3">
-          <span className="font-mono-label text-elaman-red">05</span>
+          <span className="font-mono-label text-[var(--color-elaman-red-on-dark)]">
+            05
+          </span>
           <span className="font-mono-label text-[var(--color-on-dark-muted)]">
             {content.label}
           </span>
@@ -25,9 +27,14 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
         <div className="mt-10 grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:mt-14 lg:grid-cols-2 lg:items-center">
           <div>
             <Reveal>
-              <SectionHeader onDark body={content.body} title={content.title} width="copy" />
+              <SectionHeader
+                onDark
+                body={content.body}
+                title={content.title}
+                width="copy"
+              />
             </Reveal>
-            <ProtectionPerimeter className="mt-10 hidden h-40 w-40 lg:block" />
+            <ProtectionPerimeter className="mt-10 hidden h-52 w-52 lg:block" />
           </div>
 
           <RevealGroup className="border-t border-[var(--border-on-navy)]" stagger={0.09}>
@@ -38,7 +45,7 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
                     <span
                       className={`font-mono-label ${
                         index === 0 || index === 2
-                          ? "text-elaman-red"
+                          ? "text-[var(--color-elaman-red-on-dark)]"
                           : "text-[var(--color-on-dark-muted)]"
                       }`}
                     >
@@ -48,7 +55,7 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
                       {item.title}
                     </h3>
                   </div>
-                  <p className="mt-2.5 pl-10 text-sm leading-7 text-[var(--color-on-dark-muted)]">
+                  <p className="mt-2.5 pl-10 text-base leading-7 text-[var(--color-on-dark-muted)]">
                     {item.description}
                   </p>
                 </article>

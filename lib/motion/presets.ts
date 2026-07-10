@@ -34,8 +34,8 @@ export const motionDuration = {
 
 /** Spring for smoothing scroll progress before binding it to graphics. */
 export const scrollSpring = {
-  stiffness: 90,
-  damping: 26,
+  stiffness: 140,
+  damping: 30,
   restDelta: 0.001,
 } as const;
 

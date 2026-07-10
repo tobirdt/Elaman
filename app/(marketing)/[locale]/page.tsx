@@ -60,7 +60,7 @@ export default async function HomePage({ params }: LocalePageProps) {
     <>
       <AnchorScrollManager locale={locale} />
       <Header locale={locale} content={content.navigation} />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <HeroSection locale={locale} content={content.hero} />
         <TrustSection content={content.trust} />
         <ScrollStory locale={locale} content={content} />
