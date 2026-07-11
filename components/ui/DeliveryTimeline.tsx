@@ -23,20 +23,25 @@ export function DeliveryTimeline({ steps }: DeliveryTimelineProps) {
   return (
     <div className="mt-10 lg:mt-14">
       <div className="relative hidden lg:block">
-        <div className="absolute left-0 right-0 top-2 h-px bg-[var(--border-hairline)]" />
+        <div
+          className="absolute left-0 right-0 top-2 h-px bg-[var(--border-hairline)]"
+          aria-hidden="true"
+        />
         <motion.div
           className="absolute left-0 top-2 h-px origin-left bg-[var(--border-hairline-strong)]"
+          aria-hidden="true"
           initial={reduced ? false : { scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={revealViewport}
           transition={{ duration: motionDuration.trace, ease: motionEase.out }}
           style={{ width: "100%" }}
         />
-        <div className="grid grid-cols-5 gap-6">
+        <ol className="grid grid-cols-5 gap-6">
           {steps.map((step, index) => (
-            <div key={step.step} className="relative pt-2">
+            <li key={step.step} className="relative pt-2">
               <motion.span
                 className="absolute left-0 top-0 block size-4 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                aria-hidden="true"
                 style={{
                   backgroundColor: isLast(index) ? DOT_COLORS.red : DOT_COLORS.blue,
                 }}
@@ -58,9 +63,9 @@ export function DeliveryTimeline({ steps }: DeliveryTimelineProps) {
               <p className="mt-2.5 text-base leading-7 text-graphite-muted">
                 {step.description}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
 
       <div className="relative pl-8 lg:hidden">

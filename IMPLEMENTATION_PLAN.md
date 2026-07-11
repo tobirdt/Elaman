@@ -4,7 +4,7 @@ Authoritative execution plan for the Elaman website. It translates the approved 
 
 **Status:** Active — brand foundation approved; detailed build programme ready
 **Primary language:** German at /de; English remains a complete, switchable version at /en
-**Current execution unit:** P06 — Delivery methodology
+**Current execution unit:** P07 — Contact, footer, and controlled photography
 **Planning rule:** One numbered slice per pull request where practical. Do not merge unrelated visual, copy, legal, or infrastructure changes into one slice.
 
 ---
@@ -340,7 +340,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P06 — Delivery methodology
 
-**Status:** Next.
+**Status:** Completed — 2026-07-11.
 
 **Purpose:** Make the delivery model a compact proof of process, tying advice to implementation, training, and after-sales support.
 
@@ -367,7 +367,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P07 — Contact, footer, and controlled photography
 
-**Status:** Ready after P06.
+**Status:** Next.
 
 **Purpose:** End the page with a credible Munich presence and an uncomplicated inquiry path.
 

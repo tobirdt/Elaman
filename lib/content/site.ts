@@ -424,35 +424,36 @@ export const siteContent = {
     },
     delivery: {
       label: "Methodology",
-      title: "A clear delivery model from analysis to support.",
-      body: "Elaman connects requirements analysis, system design, integration, training, and support so implemented systems remain technically reliable and operationally usable.",
+      title: "A clear delivery model from analysis to continued support.",
+      body: "Elaman connects requirements analysis, system design, integration, training, and continued support to provide reliable, usable systems.",
       steps: [
         {
           step: "01",
           title: "Analyse",
-          description:
-            "Understand mission context, infrastructure, and technical constraints.",
+          description: "Understand context, infrastructure, and technical parameters.",
         },
         {
           step: "02",
           title: "Design",
-          description:
-            "Translate requirements into a precise system concept and delivery approach.",
+          description: "Develop a system concept and implementation approach.",
         },
         {
           step: "03",
           title: "Integrate",
-          description: "Turnkey implementation with state-of-the-art technology.",
+          description:
+            "Combine established and current technology into a coherent system.",
         },
         {
           step: "04",
           title: "Train",
-          description: "In-depth training for client teams.",
+          description:
+            "Provide role-appropriate training for operating and maintaining the implemented system.",
         },
         {
           step: "05",
           title: "Support",
-          description: "After-sales service and ongoing technical support.",
+          description:
+            "Provide technical service and after-sales support throughout the system lifecycle.",
         },
       ],
     },
@@ -801,14 +802,15 @@ export const siteContent = {
     },
     delivery: {
       label: "Methodik",
-      title: "Ein klares Umsetzungsmodell von der Analyse bis zur Betreuung.",
-      body: "Elaman verbindet Anforderungsanalyse, Systemkonzeption, Integration, Schulung und Betreuung, damit implementierte Systeme technisch zuverlässig und operativ nutzbar bleiben.",
+      title:
+        "Ein klares Umsetzungsmodell von der Analyse bis zur kontinuierlichen Betreuung.",
+      body: "Elaman verbindet Anforderungsanalyse, Systemkonzeption, Integration, Schulung und kontinuierliche Betreuung für technisch zuverlässige, langfristig nutzbare Systeme.",
       steps: [
         {
           step: "01",
           title: "Analysieren",
           description:
-            "Einsatzkontext, Infrastruktur und technische Rahmenbedingungen verstehen.",
+            "Anwendungskontext, Infrastruktur und technische Rahmenbedingungen verstehen.",
         },
         {
           step: "02",
@@ -818,17 +820,20 @@ export const siteContent = {
         {
           step: "03",
           title: "Integrieren",
-          description: "Schlüsselfertige Umsetzung mit aktueller Technologie.",
+          description:
+            "Bewährte und aktuelle Technologie zu einem stimmigen System verbinden.",
         },
         {
           step: "04",
           title: "Schulen",
-          description: "Fundierte Schulungen für Kundenteams.",
+          description:
+            "Rollenbezogene Schulungen für Betrieb und Wartung des implementierten Systems durchführen.",
         },
         {
           step: "05",
           title: "Betreuen",
-          description: "After-Sales-Service und fortlaufende technische Betreuung.",
+          description:
+            "Technischen Service und After-Sales-Betreuung über den Lebenszyklus des Systems bereitstellen.",
         },
       ],
     },

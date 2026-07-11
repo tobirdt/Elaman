@@ -346,11 +346,11 @@ Maps to `ProtectionSection` (`#protection`). **Visual treatment** may use `surfa
 
 | Step | EN | DE |
 |------|----|----|
-| 01 | **Analyse** — Understand mission context, infrastructure, and technical constraints. | **Analysieren** — Einsatzkontext, Infrastruktur und technische Rahmenbedingungen verstehen. |
-| 02 | **Design** — Develop a system concept and delivery approach. | **Konzipieren** — Systemkonzept und Umsetzungsansatz entwickeln. |
-| 03 | **Integrate** — Turnkey implementation with state-of-the-art technology. | **Integrieren** — Schlüsselfertige Umsetzung mit aktueller Technologie. |
-| 04 | **Train** — In-depth training for client teams. | **Schulen** — Fundierte Schulungen für Kundenteams. |
-| 05 | **Support** — After-sales service and ongoing technical support. | **Betreuen** — After-Sales-Service und fortlaufende technische Betreuung. |
+| 01 | **Analyse** — Understand context, infrastructure, and technical parameters. | **Analysieren** — Anwendungskontext, Infrastruktur und technische Rahmenbedingungen verstehen. |
+| 02 | **Design** — Develop a system concept and implementation approach. | **Konzipieren** — Systemkonzept und Umsetzungsansatz entwickeln. |
+| 03 | **Integrate** — Combine established and current technology into a coherent system. | **Integrieren** — Bewährte und aktuelle Technologie zu einem stimmigen System verbinden. |
+| 04 | **Train** — Provide role-appropriate training for operating and maintaining the implemented system. | **Schulen** — Rollenbezogene Schulungen für Betrieb und Wartung des implementierten Systems durchführen. |
+| 05 | **Support** — Provide technical service and after-sales support throughout the system lifecycle. | **Betreuen** — Technischen Service und After-Sales-Betreuung über den Lebenszyklus des Systems bereitstellen. |
 
 ---
 
