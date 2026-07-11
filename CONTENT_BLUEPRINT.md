@@ -95,6 +95,7 @@ Single-page scroll at `/de`. Same order and anchors as English.
 
 | Key | English | Deutsch |
 |-----|---------|---------|
+| Main navigation | Main navigation | Hauptnavigation |
 | Header CTA | Contact | Kontakt |
 | Menu | Menu | Menü |
 | Home (aria) | Elaman home | Elaman Startseite |
@@ -363,6 +364,7 @@ Maps to `ContactSection` (`#contact`). Factual details only — sourced from imp
 | | English | Deutsch |
 |---|---------|---------|
 | Office title | `Elaman GmbH — Munich` | `Elaman GmbH — München` |
+| Office image alt | `Reception area at Elaman GmbH in Munich.` | `Empfangsbereich der Elaman GmbH in München.` |
 | Title | `Contact` | `Kontakt` |
 | Intro | `Contact details and an inquiry form for Elaman GmbH in Munich.` | `Kontaktdaten und ein Anfrageformular für die Elaman GmbH in München.` |
 

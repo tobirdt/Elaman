@@ -72,7 +72,10 @@ export function Header({ locale, content }: HeaderProps) {
             <ElamanMark className="h-auto w-10 sm:w-11" />
           </Link>
 
-          <nav className="hidden items-center gap-7 text-sm text-graphite-muted lg:flex">
+          <nav
+            aria-label={content.mainNavigationLabel}
+            className="hidden items-center gap-7 text-sm text-graphite-muted lg:flex"
+          >
             {primaryNavigation.map((item) => (
               <a
                 aria-current={activeSection === item.href ? "location" : undefined}
@@ -140,7 +143,10 @@ export function Header({ locale, content }: HeaderProps) {
               id="mobile-navigation"
               inert={!menuOpen}
             >
-              <nav className="grid gap-1 text-sm">
+              <nav
+                aria-label={content.mainNavigationLabel}
+                className="grid gap-1 text-sm"
+              >
                 {content.main.map((item) => (
                   <a
                     key={item.href}

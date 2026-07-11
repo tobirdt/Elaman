@@ -102,13 +102,13 @@ export function MobileStorySequence({
         <div className="mt-4 grid gap-3 min-[430px]:grid-cols-2">
           <a
             href={`tel:${contact.phoneHref}`}
-            className="rounded-[var(--radius-control)] border border-[var(--border-hairline)] px-4 py-3 text-sm font-semibold text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)]"
+            className="inline-flex min-h-11 items-center rounded-[var(--radius-control)] border border-[var(--border-hairline)] px-4 py-3 text-sm font-semibold text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)]"
           >
             {contact.phone}
           </a>
           <a
             href={contact.emailHref}
-            className="rounded-[var(--radius-control)] border border-[var(--border-hairline)] px-4 py-3 text-sm font-semibold text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)]"
+            className="inline-flex min-h-11 items-center rounded-[var(--radius-control)] border border-[var(--border-hairline)] px-4 py-3 text-sm font-semibold text-graphite transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:border-[var(--border-accent-blue)]"
           >
             {contact.email}
           </a>

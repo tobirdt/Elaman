@@ -60,7 +60,7 @@ export function ContactSection({ content }: ContactSectionProps) {
             <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper-soft)]">
               <Image
                 src="/images/elaman-munich-office.jpg"
-                alt={content.officeTitle}
+                alt={content.officeImageAlt}
                 fill
                 sizes="(min-width: 1024px) 35vw, 100vw"
                 className="object-cover object-[72%_center] saturate-[0.82]"

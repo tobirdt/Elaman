@@ -48,6 +48,7 @@ export type LocalizedSiteContent = {
     menu: string;
     homeLabel: string;
     languageSwitcherLabel: string;
+    mainNavigationLabel: string;
     skipLabel: string;
     footerNavigationLabel: string;
     legalNavigationLabel: string;
@@ -119,6 +120,7 @@ export type LocalizedSiteContent = {
   contact: {
     company: string;
     officeTitle: string;
+    officeImageAlt: string;
     title: string;
     intro: string;
     labels: {
@@ -164,6 +166,7 @@ export const siteContent = {
       menu: "Menu",
       homeLabel: "Elaman home",
       languageSwitcherLabel: "Language",
+      mainNavigationLabel: "Main navigation",
       skipLabel: "Skip to content",
       footerNavigationLabel: "Footer navigation",
       legalNavigationLabel: "Legal navigation",
@@ -461,6 +464,7 @@ export const siteContent = {
     contact: {
       company: "Elaman GmbH",
       officeTitle: "Elaman GmbH - Munich",
+      officeImageAlt: "Reception area at Elaman GmbH in Munich.",
       title: "Contact",
       intro: "Contact details and an inquiry form for Elaman GmbH in Munich.",
       labels: {
@@ -537,6 +541,7 @@ export const siteContent = {
       menu: "Menü",
       homeLabel: "Elaman Startseite",
       languageSwitcherLabel: "Sprache",
+      mainNavigationLabel: "Hauptnavigation",
       skipLabel: "Zum Inhalt springen",
       footerNavigationLabel: "Fußzeilennavigation",
       legalNavigationLabel: "Rechtliche Navigation",
@@ -842,6 +847,7 @@ export const siteContent = {
     contact: {
       company: "Elaman GmbH",
       officeTitle: "Elaman GmbH - München",
+      officeImageAlt: "Empfangsbereich der Elaman GmbH in München.",
       title: "Kontakt",
       intro: "Kontaktdaten und ein Anfrageformular für die Elaman GmbH in München.",
       labels: {

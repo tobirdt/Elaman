@@ -12,7 +12,7 @@ type LegalDocumentProps = {
 
 export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentProps) {
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <Section variant="legal-page" tone="white">
         <Container size="legal">
           <SectionHeader
@@ -29,7 +29,7 @@ export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentP
         <Container size="legal">
           <Surface className="p-6 sm:p-9" variant="panel">
             {blocks.map((block, index) => (
-              <section
+              <div
                 key={`${block.title ?? "legal-block"}-${index}`}
                 className="border-b border-line py-8 first:pt-0 last:border-b-0 last:pb-0"
               >
@@ -48,7 +48,7 @@ export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentP
                     </p>
                   ))}
                 </div>
-              </section>
+              </div>
             ))}
           </Surface>
         </Container>
