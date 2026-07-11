@@ -16,15 +16,15 @@ Elaman GmbH is a **premium, minimal, institutional** communications and security
 
 ### Design personality
 
-| Attribute        | Expression                                                 |
-| ---------------- | ---------------------------------------------------------- |
-| Government-grade | Restrained palette, formal typography, sourced claims only |
-| Calm             | Large whitespace, slow motion, low visual noise            |
-| Precise          | Grid-aligned layout, consistent spacing, technical labels  |
-| Technical        | Diagrams, signal lines, system maps — no stock imagery     |
-| Trustworthy      | Real company data, legal clarity, blueprint-aligned copy   |
-| Minimal          | One idea per screen; content leads                         |
-| Premium          | Subtle depth, refined surfaces, intentional contrast       |
+| Attribute        | Expression                                                                |
+| ---------------- | ------------------------------------------------------------------------- |
+| Government-grade | Restrained palette, formal typography, sourced claims only                |
+| Calm             | Large whitespace, slow motion, low visual noise                           |
+| Precise          | Grid-aligned layout, consistent spacing, technical labels                 |
+| Technical        | Diagrams, signal lines, system maps, and rare approved contextual imagery |
+| Trustworthy      | Real company data, legal clarity, blueprint-aligned copy                  |
+| Minimal          | One idea per screen; content leads                                        |
+| Premium          | Subtle depth, refined surfaces, intentional contrast                      |
 
 ### White-first with contrast sections
 
@@ -36,8 +36,9 @@ Elaman GmbH is a **premium, minimal, institutional** communications and security
 
 ### Imagery
 
-- **Use:** `HeroSignalVisual`, `SystemMap`, `ProcessRail`, `TechnicalMark`, SVG signal geometry.
-- **Do not use:** stock photos, AI blobs, 3D characters, isometric SaaS art, bento mosaic layouts.
+- **Use:** `HeroSignalVisual`, `SystemMap`, `ProcessRail`, `TechnicalMark`, SVG signal geometry, the Elaman point mark, the approved Munich office photograph, and a restrained bridge visual where it supports the brand line.
+- **Use sparingly:** explicitly approved licensed technical imagery only when it provides factual context; photographs remain static after their entrance reveal.
+- **Do not use:** eyes, animals, tunnel imagery, generic smart-city/globe/network stock, AI blobs, 3D characters, isometric SaaS art, bento mosaic layouts.
 
 ### Anti-patterns
 
@@ -132,7 +133,7 @@ Avoid two identical adjacent bands without a label, divider, or tone shift.
 
 ## 4. Typography scale
 
-Font: `--font-elaman-sans` with system fallbacks. `text-rendering: geometricPrecision`.
+Font: **Jost** through `next/font/google` and `--font-elaman-sans`, with system fallbacks. Jost retains the controlled, geometric Futura-derived feeling while being supplied under an OFL licence and self-hosted in the Next.js output. The current Wix site uses Futura LT Book/Light for its key typography, but its hosted font files must not be reused without a licence. `text-rendering: geometricPrecision`.
 
 | Role    | Token            | Size                    | Weight  | Tracking | Leading |
 | ------- | ---------------- | ----------------------- | ------- | -------- | ------- |
@@ -189,6 +190,13 @@ Rules: one display/h1 per viewport; body max-width `copy`; `text-balance` on hea
 - Error: brand red — forms only
 
 No purple, cyan, or neon. No unsourced sovereignty or security superlatives in UI chrome.
+
+### Point-mark system
+
+- The header displays the Elaman point mark only; its accessible label remains “Elaman home”.
+- The full wordmark is reserved for the hero and footer.
+- The blue and red points indicate a deliberate state, layer, or focus; grey points form the quiet structural field.
+- Reuse the point geometry in a limited number of places: navigation state, story progress, system map, and a single low-contrast background field. Never turn it into a repeating wallpaper.
 
 ---
 
@@ -264,6 +272,8 @@ Shape: `control` default; `pill` for footer legal chips only.
 
 **Allowed:** `MotionReveal`, sticky story progress, static logo-derived matrix nodes, static bridge traces, header blur.
 
+**Photographic motion:** a one-time masked reveal or 1–2% depth shift on entrance only, gated by `prefers-reduced-motion`.
+
 Diagram visuals follow the Elaman mark: sparse matrix nodes, calm blue bridge paths, and selective red countermeasure accents. They should be still by default; motion is reserved for state changes such as scroll progress, accordion open/close, and focus feedback. Avoid node breathing, marching dash lines, radar sweeps, crosshair scans, particles, and spectacle motion.
 
 **Prohibited:** parallax copy, particles, bounce, scroll-scale headlines, autoplay carousel, Lottie spectacle.
@@ -286,7 +296,7 @@ Touch targets ≥ 44×44px. No horizontal scroll. Typography uses `clamp()` — 
 
 ## 10. Bilingual / i18n
 
-- Locales: `en` (default), `de` — `/en`, `/de`
+- Locales: `de` (primary), `en` — `/de`, `/en`
 - Copy: `lib/content/site.ts` via `getSiteContent(locale)`
 - Blueprint: `CONTENT_BLUEPRINT.md` — implement EN + DE together
 - Anchors locale-agnostic: `#experience`, `#story`, `#capabilities`, `#systems`, `#protection`, `#delivery`, `#contact`

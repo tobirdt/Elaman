@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
@@ -55,11 +56,22 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
             </span>
           </motion.div>
 
-          <motion.div variants={entranceItem} className="mt-10 lg:hidden">
+          <motion.div variants={entranceItem} className="mt-7">
+            <Image
+              src="/brand/elaman-logo.png"
+              alt="Elaman"
+              width={470}
+              height={180}
+              priority
+              className="h-auto w-[min(17.5rem,74vw)]"
+            />
+          </motion.div>
+
+          <motion.div variants={entranceItem} className="mt-8 lg:hidden">
             <HeroDotField static className="h-40 w-40" />
           </motion.div>
 
-          <div className="mt-8 grid gap-[var(--section-gap)] lg:mt-16 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:items-start [&>*]:min-w-0">
+          <div className="mt-8 grid gap-[var(--section-gap)] lg:mt-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:items-start [&>*]:min-w-0">
             <motion.div>
               <motion.h1
                 variants={entranceItem}
@@ -131,11 +143,12 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
                     {content.visualSteps.map((step, index) => (
                       <li key={step} className="flex items-baseline gap-2">
                         <span
-                          className={`font-mono-label ${
+                          className={[
+                            "font-mono-label",
                             index === content.visualSteps.length - 1
                               ? "text-elaman-red"
-                              : "text-elaman-blue"
-                          }`}
+                              : "text-elaman-blue",
+                          ].join(" ")}
                         >
                           {String(index + 1).padStart(2, "0")}
                         </span>
@@ -157,11 +170,12 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
             {content.stats.map((stat) => (
               <div key={stat.value} className="min-w-0">
                 <dt
-                  className={`text-balance font-semibold leading-none tracking-[var(--tracking-title)] text-graphite ${
+                  className={[
+                    "text-balance font-semibold leading-none tracking-[var(--tracking-title)] text-graphite",
                     stat.value.length <= 6
                       ? "text-[length:var(--type-numeral)]"
-                      : "text-[length:var(--type-h3)]"
-                  }`}
+                      : "text-[length:var(--type-h3)]",
+                  ].join(" ")}
                 >
                   {stat.value}
                 </dt>

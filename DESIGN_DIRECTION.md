@@ -8,18 +8,18 @@ This document states _intent_. Token values and component rules live in `DESIGN_
 
 ## 1. What we are building
 
-A **premium, minimal, institutional** bilingual single-page website for Elaman GmbH — communications and security engineering for public authorities, governmental organisations, security-sector clients, and communication service providers.
+A **premium, minimal, institutional** single-page website for Elaman GmbH — communications and security engineering for public authorities, governmental organisations, security-sector clients, and communication service providers. German is the primary experience; English is an equal, switchable translation.
 
 The site must read as **government-grade procurement material**, not a product landing page.
 
-| Quality       | Expression                                                |
-| ------------- | --------------------------------------------------------- |
-| Premium       | Refined spacing, restrained motion, intentional hierarchy |
-| Minimal       | One primary idea per screen; no decorative clutter        |
-| Institutional | Formal tone, factual claims, technical credibility        |
-| Calm          | Large whitespace, slow transitions, low visual noise      |
-| Precise       | Grid-aligned layout, consistent tokens, structured labels |
-| Technical     | Diagrams and system visuals — never stock photography     |
+| Quality       | Expression                                                                        |
+| ------------- | --------------------------------------------------------------------------------- |
+| Premium       | Refined spacing, restrained motion, intentional hierarchy                         |
+| Minimal       | One primary idea per screen; no decorative clutter                                |
+| Institutional | Formal tone, factual claims, technical credibility                                |
+| Calm          | Large whitespace, slow transitions, low visual noise                              |
+| Precise       | Grid-aligned layout, consistent tokens, structured labels                         |
+| Technical     | Diagrams and system visuals, with only selected approved company/licensed imagery |
 
 ---
 
@@ -32,6 +32,8 @@ The site must read as **government-grade procurement material**, not a product l
 - **Precise grid** — single alignment spine, consistent column logic, no playful offset layouts.
 - **Large calm whitespace** — sections breathe; density is reserved for diagrams and data, not marketing copy.
 - **Elaman blue / red accents** — derived from the logo; used as thin rules, diagram nodes, label tones, and the signature split line. Never as large gradient fills or neon glow.
+- **Point mark as a signal system** — the Elaman point constellation is the primary brand device: it carries navigation state, technical diagrams, progress, and focused interaction states. It is never treated as generic decoration.
+- **Brand hierarchy** — the header displays the point mark only. The full Elaman wordmark and descriptor appear in the hero and footer.
 
 ### Layout experience
 
@@ -43,8 +45,10 @@ The site must read as **government-grade procurement material**, not a product l
 
 ### Imagery
 
-- **Technical diagrams only** — signal lines, system maps, process rails, node graphs (`SystemMap`, `ProcessRail`, `HeroSignalVisual`, `TechnicalMark`).
-- **No stock photos**, no 3D SaaS illustrations, no AI-generated abstract blobs, no icon-only hero art.
+- **Primary visual language:** signal lines, system maps, process rails, node graphs (`SystemMap`, `ProcessRail`, `HeroSignalVisual`, `TechnicalMark`) and the Elaman point constellation.
+- **Permitted imagery:** the approved office photograph, a restrained bridge image as a literal but calm reference to the brand line, and only explicitly approved licensed technical imagery where it adds factual context.
+- **Do not use:** eye, animal, tunnel, globe, smart-city, glowing-network, or generic cyber-security stock imagery. It is too surveillance-led, theatrical, or template-like for the desired public-sector position.
+- **Image treatment:** use one to three photographs in the whole experience; crop editorially, use generous negative space, and apply only subtle neutral/brand-colour grading. Images must never become animated spectacle or imply a client, operation, or capability not publicly approved.
 
 ---
 
@@ -52,15 +56,16 @@ The site must read as **government-grade procurement material**, not a product l
 
 ### Visual anti-patterns
 
-| Avoid                                      | Why                                          |
-| ------------------------------------------ | -------------------------------------------- |
-| Generic SaaS startup look                  | Undermines institutional trust               |
-| Playful Bento / mosaic card grids          | Reads as template, not engineering firm      |
-| AI gradient blobs                          | Associated with generic AI products          |
-| Neon / cyberpunk security aesthetic        | Wrong audience signal for public authorities |
-| Full-bleed gradient heroes                 | Conflicts with white-first calm              |
-| Auto-playing carousels, parallax spectacle | Flashy, not procurement-grade                |
-| Badge walls without proof                  | Legal and credibility risk                   |
+| Avoid                                       | Why                                                                      |
+| ------------------------------------------- | ------------------------------------------------------------------------ |
+| Generic SaaS startup look                   | Undermines institutional trust                                           |
+| Playful Bento / mosaic card grids           | Reads as template, not engineering firm                                  |
+| AI gradient blobs                           | Associated with generic AI products                                      |
+| Neon / cyberpunk security aesthetic         | Wrong audience signal for public authorities                             |
+| Full-bleed gradient heroes                  | Conflicts with white-first calm                                          |
+| Auto-playing carousels, parallax spectacle  | Flashy, not procurement-grade                                            |
+| Badge walls without proof                   | Legal and credibility risk                                               |
+| Surveillance, predator, or "hacker" imagery | Reads as tactical marketing rather than a discreet professional presence |
 
 ### Copy anti-patterns
 
@@ -93,7 +98,7 @@ All marketing copy follows **`CONTENT_BLUEPRINT.md`**. Summary anchors:
 
 **Hero rule:** Lead with trust, experience, and engineering — not surveillance vocabulary.
 
-**Navigation (target):** Experience · Approach · Services · Solutions · Contact (DE: Erfahrung · Vorgehen · Leistungen · Lösungen · Kontakt).
+**Navigation (target):** German default — Erfahrung · Vorgehen · Leistungen · Lösungen · Kontakt. English remains available through a visible language switch.
 
 ---
 
@@ -136,14 +141,16 @@ Light and dark sections alternate with purpose — not random contrast.
 
 ## 6. Interaction direction
 
-| Pattern                  | Where                      | Rule                                                         |
-| ------------------------ | -------------------------- | ------------------------------------------------------------ |
-| Sticky scroll + progress | Lifecycle section          | Wide desktop ≥1280px; tablet/mobile use an unpinned sequence |
-| Expandable cards         | Services, solutions        | `aria-expanded`, keyboard, `--motion-medium`                 |
-| Tabs (optional)          | Solutions section          | Same content as accordion; one pattern per section           |
-| Hover lift               | Buttons, interactive cards | Max `-translate-y-0.5`; no scale                             |
-| Scroll reveal            | Section entry              | `MotionReveal`; respect reduced motion                       |
-| Diagram motion           | Hero, story, maps          | Low-amplitude pulse / dash only                              |
+| Pattern                  | Where                      | Rule                                                               |
+| ------------------------ | -------------------------- | ------------------------------------------------------------------ |
+| Sticky scroll + progress | Lifecycle section          | Wide desktop ≥1280px; tablet/mobile use an unpinned sequence       |
+| Expandable cards         | Services, solutions        | `aria-expanded`, keyboard, `--motion-medium`                       |
+| Tabs (optional)          | Solutions section          | Same content as accordion; one pattern per section                 |
+| Hover lift               | Buttons, interactive cards | Max `-translate-y-0.5`; no scale                                   |
+| Scroll reveal            | Section entry              | `MotionReveal`; respect reduced motion                             |
+| Diagram motion           | Hero, story, maps          | Low-amplitude pulse / dash only                                    |
+| Point-mark motion        | Header, progress, diagrams | State-driven opacity or colour changes only; no perpetual movement |
+| Image motion             | Approved photographs only  | Gentle masked reveal or depth shift on entry; static afterwards    |
 
 ---
 
@@ -163,10 +170,15 @@ When direction conflicts arise, resolve in this order: **content blueprint (fact
 
 ## 8. Decision log
 
-| Date       | Decision                                               | Source                                    |
-| ---------- | ------------------------------------------------------ | ----------------------------------------- |
-| 2026-06-15 | White-first with selective dark contrast sections      | Switch/Stitch screenshots                 |
-| 2026-06-15 | Technical diagrams replace all photography             | Switch/Stitch + institutional positioning |
-| 2026-06-15 | Content anchored to original Elaman services and facts | `CONTENT_BLUEPRINT.md`                    |
-| 2026-06-15 | Solutions use accordion/tabs for detail                | Switch/Stitch interaction model           |
-| 2026-06-15 | Hero avoids surveillance-heavy language                | Content + style correction                |
+| Date       | Decision                                                                                                             | Source                                     |
+| ---------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| 2026-06-15 | White-first with selective dark contrast sections                                                                    | Switch/Stitch screenshots                  |
+| 2026-06-15 | Technical diagrams replace all photography                                                                           | Switch/Stitch + institutional positioning  |
+| 2026-06-15 | Content anchored to original Elaman services and facts                                                               | `CONTENT_BLUEPRINT.md`                     |
+| 2026-06-15 | Solutions use accordion/tabs for detail                                                                              | Switch/Stitch interaction model            |
+| 2026-06-15 | Hero avoids surveillance-heavy language                                                                              | Content + style correction                 |
+| 2026-07-10 | German is the primary experience; English remains switchable                                                         | Stakeholder direction                      |
+| 2026-07-10 | Header uses point mark only; full wordmark appears in hero and footer                                                | Stakeholder direction                      |
+| 2026-07-10 | Selected licensed/company imagery may support, but not replace, technical diagrams                                   | Asset audit + stakeholder direction        |
+| 2026-07-10 | Futura-derived typography is retained through a legally usable alternative if no Futura webfont licence is available | Current-site audit + stakeholder direction |
+| 2026-07-10 | Jost is the implemented Futura-derived webfont; the owned Munich office image is reserved for contact context        | Brand-system implementation                |

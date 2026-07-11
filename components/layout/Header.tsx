@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
 import { useEffect, useState } from "react";
@@ -8,6 +7,7 @@ import { useEffect, useState } from "react";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { ElamanMark } from "@/components/ui/ElamanMark";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 import { sectionPath, type Locale } from "@/lib/i18n";
 
@@ -33,7 +33,7 @@ export function Header({ locale, content }: HeaderProps) {
         return rect.top <= marker && rect.bottom > marker;
       });
 
-      setActiveSection(active ? `#${active.id}` : "");
+      setActiveSection(active ? "#" + active.id : "");
     }
 
     updateActiveSection();
@@ -65,18 +65,11 @@ export function Header({ locale, content }: HeaderProps) {
       <header className="sticky top-0 z-40 border-b border-[var(--border-hairline)] bg-[var(--surface-paper)]">
         <Container className="flex h-16 items-center justify-between gap-3 lg:h-20 lg:gap-5">
           <Link
-            href={`/${locale}` as Route}
-            className="flex items-center"
+            href={("/" + locale) as Route}
+            className="flex items-center rounded-[var(--radius-control)] p-1 transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-[var(--surface-paper-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
             aria-label={content.homeLabel}
           >
-            <Image
-              src="/brand/elaman-logo.png"
-              alt="Elaman German Security Solutions"
-              width={188}
-              height={72}
-              priority
-              className="h-auto w-32 sm:w-40"
-            />
+            <ElamanMark className="h-auto w-10 sm:w-11" />
           </Link>
 
           <nav className="hidden items-center gap-7 text-sm text-graphite-muted lg:flex">
@@ -85,11 +78,12 @@ export function Header({ locale, content }: HeaderProps) {
                 aria-current={activeSection === item.href ? "location" : undefined}
                 key={item.href}
                 href={sectionPath(locale, item.href)}
-                className={`relative flex min-h-11 items-center transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] after:absolute after:bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:bg-elaman-blue after:transition-transform after:[transition-duration:var(--motion-fast)] after:[transition-timing-function:var(--motion-ease)] hover:text-graphite ${
+                className={[
+                  "relative flex min-h-11 items-center transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] after:absolute after:bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:bg-elaman-blue after:transition-transform after:[transition-duration:var(--motion-fast)] after:[transition-timing-function:var(--motion-ease)] hover:text-graphite",
                   activeSection === item.href
                     ? "text-graphite after:scale-x-100"
-                    : "after:scale-x-0 hover:after:scale-x-100"
-                }`}
+                    : "after:scale-x-0 hover:after:scale-x-100",
+                ].join(" ")}
               >
                 {item.label}
               </a>
@@ -122,24 +116,27 @@ export function Header({ locale, content }: HeaderProps) {
               {content.menu}
               <span className="relative size-4" aria-hidden="true">
                 <span
-                  className={`absolute left-0 top-1 h-px w-4 origin-center bg-current transition-transform [transition-duration:var(--motion-state)] ${
-                    menuOpen ? "translate-y-1 rotate-45" : ""
-                  }`}
+                  className={[
+                    "absolute left-0 top-1 h-px w-4 origin-center bg-current transition-transform [transition-duration:var(--motion-state)]",
+                    menuOpen ? "translate-y-1 rotate-45" : "",
+                  ].join(" ")}
                 />
                 <span
-                  className={`absolute bottom-1 left-0 h-px w-4 origin-center bg-current transition-transform [transition-duration:var(--motion-state)] ${
-                    menuOpen ? "-translate-y-1 -rotate-45" : ""
-                  }`}
+                  className={[
+                    "absolute bottom-1 left-0 h-px w-4 origin-center bg-current transition-transform [transition-duration:var(--motion-state)]",
+                    menuOpen ? "-translate-y-1 -rotate-45" : "",
+                  ].join(" ")}
                 />
               </span>
             </button>
             <div
               aria-hidden={!menuOpen}
-              className={`absolute right-0 mt-3 w-[calc(100vw-2.5rem)] max-w-[22rem] rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper)] p-2 shadow-[var(--shadow-overlay)] transition-[opacity,transform] [transition-duration:var(--motion-state)] [transition-timing-function:var(--motion-ease)] motion-reduce:transition-none ${
+              className={[
+                "absolute right-0 mt-3 w-[calc(100vw-2.5rem)] max-w-[22rem] rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper)] p-2 shadow-[var(--shadow-overlay)] transition-[opacity,transform] [transition-duration:var(--motion-state)] [transition-timing-function:var(--motion-ease)] motion-reduce:transition-none",
                 menuOpen
                   ? "pointer-events-auto translate-y-0 opacity-100"
-                  : "pointer-events-none -translate-y-2 opacity-0"
-              }`}
+                  : "pointer-events-none -translate-y-2 opacity-0",
+              ].join(" ")}
               id="mobile-navigation"
               inert={!menuOpen}
             >

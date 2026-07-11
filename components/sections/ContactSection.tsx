@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { ContactForm } from "@/components/sections/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
@@ -26,7 +28,7 @@ export function ContactSection({ content }: ContactSectionProps) {
       ),
     },
     {
-      href: `tel:${content.phoneHref}`,
+      href: "tel:" + content.phoneHref,
       label: content.labels.phone,
       value: content.phone,
     },
@@ -54,6 +56,20 @@ export function ContactSection({ content }: ContactSectionProps) {
               title={content.title}
               width="copy"
             />
+
+            <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper-soft)]">
+              <Image
+                src="/images/elaman-munich-office.jpg"
+                alt={content.officeTitle}
+                fill
+                sizes="(min-width: 1024px) 35vw, 100vw"
+                className="object-cover object-[72%_center] saturate-[0.82]"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-graphite/22 via-transparent to-white/5"
+                aria-hidden="true"
+              />
+            </div>
 
             <div className="mt-8 border-t border-[var(--border-hairline)]">
               {contactRows.map((row) => (
