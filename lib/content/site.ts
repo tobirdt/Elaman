@@ -147,7 +147,7 @@ export const siteContent = {
     metadata: {
       title: "German Security Solutions | Elaman GmbH",
       description:
-        "Elaman GmbH provides communications and security engineering, technical services, advice, surveillance and protection solutions, professional training, and after-sales support for public authorities and security-sector clients.",
+        "Elaman GmbH provides communications and security engineering, technical advice, system integration, training, and ongoing support for institutional environments.",
       ogLocale: "en_US",
     },
     navigation: {
@@ -522,7 +522,7 @@ export const siteContent = {
     metadata: {
       title: "Deutsche Sicherheitslösungen | Elaman GmbH",
       description:
-        "Elaman GmbH bietet Kommunikations- und Sicherheitstechnik, technische Dienstleistungen, Beratung, Observation und Schutzlösungen, professionelle Schulungen und After-Sales-Service für Behörden und Sicherheitskunden.",
+        "Elaman GmbH bietet Kommunikations- und Sicherheitstechnik, technische Beratung, Systemintegration, Schulung und kontinuierliche Betreuung für institutionelle Umgebungen.",
       ogLocale: "de_DE",
     },
     navigation: {

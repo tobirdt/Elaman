@@ -2,15 +2,12 @@ import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/lib/seo/site";
 
-const routes = ["/", "/en", "/de", "/imprint", "/private-policy"] as const;
+const routes = ["/de", "/en", "/imprint", "/private-policy"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-
   return routes.map((route) => ({
     url: new URL(route, siteConfig.url).toString(),
-    lastModified,
     changeFrequency: route === "/en" || route === "/de" ? "monthly" : "yearly",
-    priority: route === "/de" ? 1 : route === "/en" ? 0.9 : route === "/" ? 0.7 : 0.4,
+    priority: route === "/de" ? 1 : route === "/en" ? 0.9 : 0.4,
   }));
 }

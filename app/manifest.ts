@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
 
+import { getSiteContent } from "@/lib/content/site";
 import { siteConfig } from "@/lib/seo/site";
 
 export default function manifest(): MetadataRoute.Manifest {
+  const content = getSiteContent("de");
+
   return {
-    name: siteConfig.title,
+    name: content.metadata.title,
     short_name: siteConfig.name,
-    description: siteConfig.description,
+    description: content.metadata.description,
     start_url: "/de",
     display: "standalone",
     background_color: "#ffffff",

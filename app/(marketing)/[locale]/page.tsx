@@ -43,6 +43,12 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
       de: absoluteUrl("/de"),
       "x-default": absoluteUrl("/de"),
     },
+    image: {
+      path: `/${locale}/opengraph-image`,
+      width: 1200,
+      height: 630,
+      alt: `${content.hero.label} — ${content.hero.title}`,
+    },
   });
 }
 

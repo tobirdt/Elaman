@@ -16,15 +16,14 @@ export function organizationJsonLd() {
       "@type": "PostalAddress",
       streetAddress: contact.addressLines[0],
       postalCode: "81371",
-      addressLocality: "Munich",
+      addressLocality: "München",
       addressCountry: "DE",
     },
     contactPoint: {
       "@type": "ContactPoint",
       email: contact.email,
       telephone: contact.phone,
-      contactType: "customer support",
-      areaServed: "DE",
+      contactType: "general inquiries",
     },
   };
 }

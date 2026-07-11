@@ -10,7 +10,7 @@ export const siteConfig = {
   title: "German Security Solutions | Elaman GmbH",
   titleTemplate: "%s | Elaman GmbH",
   description:
-    "Elaman GmbH provides German security solutions, communications and security engineering, advice, surveillance, protection, training, and support for public authority and security contexts.",
+    "Elaman GmbH provides communications and security engineering, technical advice, system integration, training, and ongoing support for institutional environments.",
   url: siteUrl,
   logoPath: "/brand/elaman-logo.png",
   iconPath: "/brand/elaman-icon.svg",
@@ -22,12 +22,20 @@ export const siteConfig = {
   },
 } as const;
 
+type SocialImage = {
+  alt: string;
+  height: number;
+  path: string;
+  width: number;
+};
+
 type PageMetadataOptions = {
   title?: string;
   description?: string;
   path?: string;
   locale?: string;
   languages?: Record<string, string>;
+  image?: SocialImage;
   robots?: Metadata["robots"];
 };
 
@@ -41,15 +49,22 @@ export function createPageMetadata({
   path = "/",
   locale = "en_US",
   languages,
+  image,
   robots = {
     index: true,
     follow: true,
   },
 }: PageMetadataOptions = {}): Metadata {
   const pageTitle = title ?? siteConfig.title;
-  const openGraphTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title;
+  const openGraphTitle =
+    title && title.includes(siteConfig.name)
+      ? title
+      : title
+        ? `${title} | ${siteConfig.name}`
+        : siteConfig.title;
   const url = absoluteUrl(path);
-  const imageUrl = absoluteUrl(siteConfig.ogImage.path);
+  const socialImage = image ?? siteConfig.ogImage;
+  const imageUrl = absoluteUrl(socialImage.path);
 
   return {
     title: pageTitle,
@@ -68,9 +83,9 @@ export function createPageMetadata({
       images: [
         {
           url: imageUrl,
-          width: siteConfig.ogImage.width,
-          height: siteConfig.ogImage.height,
-          alt: siteConfig.ogImage.alt,
+          width: socialImage.width,
+          height: socialImage.height,
+          alt: socialImage.alt,
         },
       ],
       locale,
@@ -80,7 +95,7 @@ export function createPageMetadata({
       card: "summary_large_image",
       title: openGraphTitle,
       description,
-      images: [imageUrl],
+      images: [{ url: imageUrl, alt: socialImage.alt }],
     },
   };
 }

@@ -47,7 +47,7 @@ Single-page scroll at `/en`. Order matches `app/(marketing)/[locale]/page.tsx`.
 **Metadata**
 
 - **Title:** `German Security Solutions | Elaman GmbH`
-- **Description:** `Elaman GmbH provides communications and security engineering, technical services, advice, surveillance and protection solutions, professional training, and after-sales support for public authorities and security-sector clients.`
+- **Description:** `Elaman GmbH provides communications and security engineering, technical advice, system integration, training, and ongoing support for institutional environments.`
 
 ---
 
@@ -69,7 +69,7 @@ Single-page scroll at `/de`. Same order and anchors as English.
 **Metadata**
 
 - **Title:** `Deutsche Sicherheitslösungen | Elaman GmbH`
-- **Description:** `Elaman GmbH bietet Kommunikations- und Sicherheitstechnik, technische Dienstleistungen, Beratung, Observation und Schutzlösungen, professionelle Schulungen und After-Sales-Service für Behörden und Sicherheitskunden.`
+- **Description:** `Elaman GmbH bietet Kommunikations- und Sicherheitstechnik, technische Beratung, Systemintegration, Schulung und kontinuierliche Betreuung für institutionelle Umgebungen.`
 
 ---
 

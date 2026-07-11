@@ -4,7 +4,7 @@ Authoritative execution plan for the Elaman website. It translates the approved 
 
 **Status:** Active — brand foundation approved; detailed build programme ready
 **Primary language:** German at /de; English remains a complete, switchable version at /en
-**Current execution unit:** P11 — SEO, social, and performance hardening
+**Current execution unit:** P12 — Contact-form security and operations
 **Planning rule:** One numbered slice per pull request where practical. Do not merge unrelated visual, copy, legal, or infrastructure changes into one slice.
 
 ---
@@ -135,8 +135,8 @@ The project is not a blank redesign. The following functionality and components 
 | 08    | Legal and locale routing                      | Blocked for final wording      | Locale-specific legal architecture and redirects                                        | Counsel/owner approval                         |
 | 09    | Motion and interaction system                 | Complete                       | Final motion budget and state transitions                                               | Reduced-motion audit                           |
 | 10    | Responsive accessibility pass                 | Complete                       | Device, touch, keyboard, screen-reader, contrast polish                                 | Test matrix                                    |
-| 11    | SEO, social, and performance                  | **Next**                       | Search/social readiness and fast visual delivery                                        | Final domain decision                          |
-| 12    | Form security and operations                  | Ready before launch            | Reliable inquiry delivery, spam posture, operational monitoring                         | Resend/Vercel setup                            |
+| 11    | SEO, social, and performance                  | Complete in code               | Search/social readiness and fast visual delivery                                        | Final domain decision                          |
+| 12    | Form security and operations                  | **Next**                       | Reliable inquiry delivery, spam posture, operational monitoring                         | Resend/Vercel setup                            |
 | 13    | Staging, launch, and post-launch verification | Blocked until all gates clear  | Controlled public release                                                               | Legal, form, domain, stakeholder sign-off      |
 
 ---
@@ -489,7 +489,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P11 — SEO, social, and performance hardening
 
-**Status:** Next.
+**Status:** Completed in code — 2026-07-11. Final production domain and legal route migration remain release gates.
 
 **Purpose:** Ensure the site is discoverable, accurately represented when shared, and fast without relying on marketing trackers.
 
@@ -521,7 +521,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P12 — Contact-form security and operations
 
-**Status:** Ready before staging.
+**Status:** Next.
 
 **Purpose:** Move the existing form implementation from code-complete to reliable production operation.
 
