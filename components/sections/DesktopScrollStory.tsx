@@ -22,8 +22,44 @@ type DesktopScrollStoryProps = {
   content: LocalizedSiteContent["story"];
 };
 
+type ScreenReaderNarrativeProps = {
+  detailsLabel: string;
+  steps: LocalizedSiteContent["story"]["steps"];
+};
+
 /** svh of scroll runway per story step. */
 const STEP_RUNWAY = 60;
+const activeDetailId = "story-active-step";
+
+function resolveStepIndex(progress: number, stepCount: number) {
+  if (stepCount <= 1 || progress >= 1) {
+    return Math.max(0, stepCount - 1);
+  }
+
+  return Math.min(stepCount - 1, Math.max(0, Math.floor(progress * stepCount)));
+}
+
+function ScreenReaderNarrative({ detailsLabel, steps }: ScreenReaderNarrativeProps) {
+  return (
+    <ol className="sr-only">
+      {steps.map((step) => (
+        <li key={step.id}>
+          <article>
+            <p>{step.eyebrow}</p>
+            <h4>{step.title}</h4>
+            <p>{step.description}</p>
+            <p>{detailsLabel}</p>
+            <ul>
+              {step.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          </article>
+        </li>
+      ))}
+    </ol>
+  );
+}
 
 export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -41,10 +77,7 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
 
   useMotionValueEvent(smooth, "change", (latest) => {
     const clamped = Math.min(1, Math.max(0, latest));
-    const nextIndex = Math.min(
-      steps.length - 1,
-      Math.max(0, Math.floor(clamped * steps.length)),
-    );
+    const nextIndex = resolveStepIndex(clamped, steps.length);
 
     setActiveIndex((currentIndex) =>
       currentIndex === nextIndex ? currentIndex : nextIndex,
@@ -61,6 +94,11 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
     const rect = runway.getBoundingClientRect();
     const top = window.scrollY + rect.top;
     const scrollable = runway.offsetHeight - window.innerHeight;
+
+    if (scrollable <= 0) {
+      return;
+    }
+
     const progress = (index + 0.5) / steps.length;
 
     window.scrollTo({
@@ -69,11 +107,15 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
     });
   }
 
+  if (!activeStep) {
+    return null;
+  }
+
   return (
     <div
       ref={sectionRef}
       className="relative"
-      style={{ height: `${steps.length * STEP_RUNWAY}svh` }}
+      style={{ height: steps.length * STEP_RUNWAY + "svh" }}
     >
       <div className="sticky top-[var(--header-h)] flex h-[calc(100svh-var(--header-h))] flex-col justify-center">
         <Container className="w-full">
@@ -85,6 +127,7 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
               <div className="mt-8">
                 <StoryProgress
                   activeIndex={activeIndex}
+                  detailId={activeDetailId}
                   label={content.progressLabel}
                   onSelect={scrollToStep}
                   progress={smooth}
@@ -92,6 +135,10 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
                   steps={steps}
                 />
               </div>
+              <ScreenReaderNarrative
+                detailsLabel={content.systemFocusLabel}
+                steps={steps}
+              />
             </div>
 
             <StickyStoryStage
@@ -103,11 +150,12 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
             <div className="min-h-[20rem]">
               <AnimatePresence mode="sync" initial={false}>
                 <motion.article
+                  id={activeDetailId}
                   key={activeStep.id}
                   aria-current="step"
-                  initial={reduced ? false : { opacity: 0.001, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduced ? undefined : { opacity: 0.001, y: -4 }}
+                  initial={reduced ? false : { opacity: 0.001 }}
+                  animate={{ opacity: 1 }}
+                  exit={reduced ? undefined : { opacity: 0.001 }}
                   transition={
                     reduced
                       ? { duration: 0 }
@@ -115,10 +163,14 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
                   }
                   className="border-t border-[var(--border-hairline)] pt-5"
                 >
+                  <p className="font-mono-label text-graphite-soft">
+                    {content.activeLayerLabel}
+                  </p>
                   <p
-                    className={`font-mono-label ${
-                      activeIndex === redIndex ? "text-elaman-red" : "text-elaman-blue"
-                    }`}
+                    className={[
+                      "font-mono-label mt-3",
+                      activeIndex === redIndex ? "text-elaman-red" : "text-elaman-blue",
+                    ].join(" ")}
                   >
                     {activeStep.eyebrow}
                   </p>
@@ -128,7 +180,10 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
                   <p className="mt-4 text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite-muted">
                     {activeStep.description}
                   </p>
-                  <ul className="mt-6">
+                  <p className="font-mono-label mt-6 text-graphite-soft">
+                    {content.systemFocusLabel}
+                  </p>
+                  <ul className="mt-3">
                     {activeStep.bullets.map((bullet, index) => (
                       <li
                         key={bullet}

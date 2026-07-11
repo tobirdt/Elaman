@@ -227,9 +227,9 @@ export const siteContent = {
       label: "Approach",
       title: "From requirements analysis to implementation and support.",
       mobileTitle: "How Elaman works",
-      body: "How Elaman connects experience, advice, surveillance and communications, protection, turnkey implementation, training, and after-sales service.",
+      body: "How Elaman brings together experience, advice, observation and communications, protection, implementation, training, and after-sales support.",
       mobileBody:
-        "How Elaman connects experience, advice, surveillance and communications, protection, implementation, training, and support.",
+        "How Elaman brings together experience, advice, observation and communications, protection, implementation, training, and support.",
       progressLabel: "Progress",
       activeLayerLabel: "Current step",
       systemFocusLabel: "Key points",
@@ -241,12 +241,12 @@ export const siteContent = {
           title: "More than 20 years in communications and security engineering.",
           mobileTitle: "20+ years of experience.",
           description:
-            "Elaman's work is grounded in long-standing experience and extensive knowledge of government security and safety requirements for public authorities.",
+            "Elaman's work is grounded in long-standing experience and extensive knowledge of institutional security and safety requirements.",
           mobileSummary:
-            "Long-standing experience in communications and security engineering for public authority contexts.",
+            "Long-standing experience in communications and security engineering for institutional contexts.",
           bullets: [
-            "Government security requirements",
-            "Public authority contexts",
+            "Institutional security requirements",
+            "Public-sector contexts",
             "Communications and security engineering",
           ],
         },
@@ -256,20 +256,21 @@ export const siteContent = {
           title: "Requirements are translated into a coherent technical approach.",
           mobileTitle: "Requirements become technical approach.",
           description:
-            "Advice covers analysis, consulting, and solution design, aligning mission context, existing infrastructure, and procurement constraints with appropriate technical options.",
+            "Advice covers analysis, consulting, and solution design, aligning project context, existing infrastructure, and procurement constraints with appropriate technical options.",
           mobileSummary:
             "Analysis, consulting, and solution design align requirements with appropriate technical options.",
           bullets: ["Analysis", "Consulting", "Solution design"],
         },
         {
-          id: "surveillance-communications",
-          eyebrow: "03 / Surveillance & communications",
-          title: "Communications and surveillance systems form the operational layer.",
-          mobileTitle: "Operational layer.",
+          id: "observation-communications",
+          eyebrow: "03 / Observation & communications",
+          title:
+            "Communications and observation systems form a coordinated technical layer.",
+          mobileTitle: "Coordinated technical layer.",
           description:
-            "Network-based, private, wireless, cellular, and satellite communications are integrated with surveillance-related capabilities as part of a broader security solution.",
+            "Network-based, private, wireless, cellular, and satellite communications are combined with observation-related capabilities as part of an integrated technical system.",
           mobileSummary:
-            "Communications domains are integrated with authorised surveillance-related capabilities.",
+            "Communications domains are combined with authorised observation-related capabilities.",
           bullets: [
             "Network / IP",
             "Private networks",
@@ -280,34 +281,38 @@ export const siteContent = {
         {
           id: "protection",
           eyebrow: "04 / Protection",
-          title: "Protection measures for personnel, data, and restricted spaces.",
+          title: "Protection measures for personnel, information, and sensitive spaces.",
           mobileTitle: "Protection measures.",
           description:
-            "Protection-related services include countermeasure systems and protective infrastructure for environments where confidentiality and operational safety are essential.",
+            "Protection-related services combine protective infrastructure and selected technical measures for contexts where confidentiality and reliable operation are essential.",
           mobileSummary:
-            "Countermeasure systems and protective infrastructure support restricted environments.",
-          bullets: ["ECM", "Counter-RCIED", "TSCM", "Shielded rooms"],
+            "Protective infrastructure and selected technical measures support sensitive environments.",
+          bullets: [
+            "Protective infrastructure",
+            "Sensitive spaces",
+            "Confidential information",
+          ],
         },
         {
           id: "implementation",
           eyebrow: "05 / Implementation",
-          title: "Projects delivered on a turnkey basis.",
-          mobileTitle: "Turnkey implementation.",
+          title: "Projects delivered with an integrated implementation approach.",
+          mobileTitle: "Structured implementation.",
           description:
-            "Elaman implements projects using state-of-the-art technology, with attention to system integration, reliability, and operational fit.",
+            "Elaman implements projects with current technology, focusing on system integration, reliability, and practical fit.",
           mobileSummary:
-            "System integration, turnkey delivery, and operational readiness guide implementation.",
-          bullets: ["System integration", "Turnkey delivery", "Operational readiness"],
+            "System integration, structured delivery, and operational readiness guide implementation.",
+          bullets: ["System integration", "Structured delivery", "Operational readiness"],
         },
         {
           id: "training-support",
           eyebrow: "06 / Training & support",
-          title: "Training and after-sales service sustain long-term usability.",
+          title: "Training and after-sales support sustain long-term use.",
           mobileTitle: "Training and support.",
           description:
-            "Professional training and high-quality after-sales service help client teams operate, maintain, and continue to rely on implemented systems.",
+            "Professional training and after-sales support help teams operate, maintain, and use implemented systems over time.",
           mobileSummary:
-            "Training and after-sales service help teams operate and maintain implemented systems.",
+            "Training and after-sales support help teams operate and maintain implemented systems.",
           bullets: ["In-depth training", "Technical service", "After-sales support"],
         },
       ],
@@ -596,7 +601,7 @@ export const siteContent = {
       label: "Vorgehen",
       title: "Von der Anforderungsanalyse bis zur Umsetzung und Betreuung.",
       mobileTitle: "So arbeitet Elaman",
-      body: "Wie Elaman Erfahrung, Beratung, Observation und Kommunikation, Schutz, schlüsselfertige Umsetzung, Schulung und After-Sales-Service zusammenführt.",
+      body: "Wie Elaman Erfahrung, Beratung, Observation und Kommunikation, Schutz, Umsetzung, Schulung und After-Sales-Betreuung zusammenführt.",
       mobileBody:
         "Wie Elaman Erfahrung, Beratung, Observation und Kommunikation, Schutz, Umsetzung, Schulung und Betreuung zusammenführt.",
       progressLabel: "Fortschritt",
@@ -610,12 +615,12 @@ export const siteContent = {
           title: "Mehr als 20 Jahre Kommunikations- und Sicherheitstechnik.",
           mobileTitle: "Mehr als 20 Jahre Erfahrung.",
           description:
-            "Die Arbeit von Elaman basiert auf langjähriger Erfahrung und umfassendem Wissen über staatliche Sicherheits- und Schutzanforderungen öffentlicher Behörden.",
+            "Die Arbeit von Elaman basiert auf langjähriger Erfahrung und umfassendem Wissen über institutionelle Sicherheits- und Schutzanforderungen.",
           mobileSummary:
-            "Langjährige Erfahrung in Kommunikations- und Sicherheitstechnik für Behördenumfelder.",
+            "Langjährige Erfahrung in Kommunikations- und Sicherheitstechnik für institutionelle Kontexte.",
           bullets: [
-            "Staatliche Sicherheitsanforderungen",
-            "Behördenumfelder",
+            "Institutionelle Sicherheitsanforderungen",
+            "Öffentliche Kontexte",
             "Kommunikations- und Sicherheitstechnik",
           ],
         },
@@ -625,18 +630,19 @@ export const siteContent = {
           title: "Anforderungen werden in einen stimmigen technischen Ansatz überführt.",
           mobileTitle: "Anforderungen werden Ansatz.",
           description:
-            "Die Beratung umfasst Analyse, Consulting und Lösungskonzeption, unter Abstimmung von Einsatzkontext, bestehender Infrastruktur und Beschaffungsrahmen mit geeigneten technischen Optionen.",
+            "Die Beratung umfasst Analyse, Consulting und Lösungskonzeption, unter Abstimmung von Anwendungskontext, bestehender Infrastruktur und Beschaffungsrahmen mit geeigneten technischen Optionen.",
           mobileSummary:
             "Analyse, Beratung und Lösungskonzeption stimmen Anforderungen mit technischen Optionen ab.",
           bullets: ["Analyse", "Beratung", "Lösungskonzeption"],
         },
         {
-          id: "surveillance-communications",
+          id: "observation-communications",
           eyebrow: "03 / Observation & Kommunikation",
-          title: "Kommunikations- und Observationssysteme bilden die operative Ebene.",
-          mobileTitle: "Operative Ebene.",
+          title:
+            "Kommunikations- und Observationssysteme bilden eine abgestimmte technische Ebene.",
+          mobileTitle: "Abgestimmte technische Ebene.",
           description:
-            "Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation werden mit observationstechnischen Fähigkeiten als Teil einer umfassenden Sicherheitslösung integriert.",
+            "Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation werden mit observationstechnischen Fähigkeiten zu einem integrierten technischen System verbunden.",
           mobileSummary:
             "Kommunikationsbereiche werden mit autorisierten observationstechnischen Fähigkeiten integriert.",
           bullets: ["Netzwerk / IP", "Private Netze", "Funk / Mobilfunk", "Satellit"],
@@ -644,38 +650,42 @@ export const siteContent = {
         {
           id: "protection",
           eyebrow: "04 / Schutz",
-          title: "Schutzmaßnahmen sichern Personen, Daten und geschützte Räume.",
+          title: "Schutzmaßnahmen für Personal, Informationen und sensible Bereiche.",
           mobileTitle: "Schutzmaßnahmen.",
           description:
-            "Schutzbezogene Leistungen umfassen Gegenmaßnahmensysteme und Schutzinfrastruktur für Umgebungen, in denen Vertraulichkeit und operative Sicherheit erforderlich sind.",
+            "Schutzbezogene Leistungen verbinden Schutzinfrastruktur und ausgewählte technische Maßnahmen für Umgebungen, in denen Vertraulichkeit und zuverlässiger Betrieb wesentlich sind.",
           mobileSummary:
-            "Gegenmaßnahmensysteme und Schutzinfrastruktur unterstützen geschützte Umgebungen.",
-          bullets: ["ECM", "Counter-RCIED", "TSCM", "Geschirmte Räume"],
+            "Schutzinfrastruktur und ausgewählte technische Maßnahmen unterstützen sensible Umgebungen.",
+          bullets: [
+            "Schutzinfrastruktur",
+            "Sensible Bereiche",
+            "Vertrauliche Informationen",
+          ],
         },
         {
           id: "implementation",
           eyebrow: "05 / Umsetzung",
-          title: "Projekte schlüsselfertig umgesetzt.",
-          mobileTitle: "Schlüsselfertige Umsetzung.",
+          title: "Projekte mit einem integrierten Umsetzungsansatz realisiert.",
+          mobileTitle: "Strukturierte Umsetzung.",
           description:
-            "Elaman setzt Projekte mit aktueller Technologie um, mit Blick auf Systemintegration, Zuverlässigkeit und operative Eignung.",
+            "Elaman setzt Projekte mit aktueller Technologie um, mit Blick auf Systemintegration, Zuverlässigkeit und praktische Eignung.",
           mobileSummary:
-            "Systemintegration, schlüsselfertige Übergabe und Einsatzbereitschaft prägen die Umsetzung.",
+            "Systemintegration, strukturierte Umsetzung und Einsatzbereitschaft prägen die Umsetzung.",
           bullets: [
             "Systemintegration",
-            "Schlüsselfertige Übergabe",
+            "Strukturierte Umsetzung",
             "Einsatzbereitschaft",
           ],
         },
         {
           id: "training-support",
           eyebrow: "06 / Schulung & Betreuung",
-          title: "Schulung und After-Sales-Service sichern langfristige Nutzbarkeit.",
+          title: "Schulung und After-Sales-Betreuung sichern langfristige Nutzbarkeit.",
           mobileTitle: "Schulung und Betreuung.",
           description:
-            "Professionelle Schulungen und hochwertiger After-Sales-Service unterstützen Kundenteams beim Betrieb, bei der Wartung und bei der langfristigen Nutzung implementierter Systeme.",
+            "Professionelle Schulungen und After-Sales-Betreuung unterstützen Teams beim Betrieb, bei der Wartung und bei der langfristigen Nutzung implementierter Systeme.",
           mobileSummary:
-            "Schulung und After-Sales-Service unterstützen Betrieb und Wartung implementierter Systeme.",
+            "Schulung und After-Sales-Betreuung unterstützen Betrieb und Wartung implementierter Systeme.",
           bullets: [
             "Fundierte Schulungen",
             "Technischer Service",

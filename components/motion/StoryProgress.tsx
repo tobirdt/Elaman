@@ -8,6 +8,7 @@ import type { StoryStep } from "@/types/site";
 type StoryProgressProps = {
   steps: readonly StoryStep[];
   activeIndex: number;
+  detailId: string;
   label: string;
   /** Smoothed 0–1 runway progress — drives the continuous rail fill. */
   progress: MotionValue<number>;
@@ -19,6 +20,7 @@ type StoryProgressProps = {
 export function StoryProgress({
   steps,
   activeIndex,
+  detailId,
   label,
   progress,
   redIndex,
@@ -53,6 +55,7 @@ export function StoryProgress({
                 <button
                   type="button"
                   aria-current={isActive ? "step" : undefined}
+                  aria-controls={detailId}
                   onClick={() => onSelect(index)}
                   className={`group flex min-h-11 w-full items-center gap-3 py-2 pl-5 text-left transition-colors [transition-duration:var(--motion-fast)] ${
                     isActive

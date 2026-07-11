@@ -257,7 +257,7 @@ Maps to `ScrollStory` (`#story`). Six steps aligned with original service logic 
 |---|---------|---------|
 | Label | `Approach` | `Vorgehen` |
 | Title | `From requirements analysis to implementation and support.` | `Von der Anforderungsanalyse bis zur Umsetzung und Betreuung.` |
-| Body | `How Elaman connects experience, advice, surveillance and communications, protection, turnkey implementation, training, and after-sales service.` | `Wie Elaman Erfahrung, Beratung, Observation und Kommunikation, Schutz, schlüsselfertige Umsetzung, Schulung und After-Sales-Service zusammenführt.` |
+| Body | `How Elaman brings together experience, advice, observation and communications, protection, implementation, training, and after-sales support.` | `Wie Elaman Erfahrung, Beratung, Observation und Kommunikation, Schutz, Umsetzung, Schulung und After-Sales-Betreuung zusammenführt.` |
 | Mobile title | `How Elaman works` | `So arbeitet Elaman` |
 | Progress label | `Progress` | `Fortschritt` |
 | Active layer label | `Current step` | `Aktueller Schritt` |
@@ -271,8 +271,8 @@ Maps to `ScrollStory` (`#story`). Six steps aligned with original service logic 
 |---|---------|---------|
 | Eyebrow | `01 / Experience` | `01 / Erfahrung` |
 | Title | `More than 20 years in communications and security engineering.` | `Mehr als 20 Jahre Kommunikations- und Sicherheitstechnik.` |
-| Description | `Elaman's work is grounded in long-standing experience and extensive knowledge of government security and safety requirements for public authorities.` | `Die Arbeit von Elaman basiert auf langjähriger Erfahrung und umfassendem Wissen über staatliche Sicherheits- und Schutzanforderungen öffentlicher Behörden.` |
-| Bullets | Government security requirements · Public authority contexts · Communications and security engineering | Staatliche Sicherheitsanforderungen · Behördenumfelder · Kommunikations- und Sicherheitstechnik |
+| Description | `Elaman's work is grounded in long-standing experience and extensive knowledge of institutional security and safety requirements.` | `Die Arbeit von Elaman basiert auf langjähriger Erfahrung und umfassendem Wissen über institutionelle Sicherheits- und Schutzanforderungen.` |
+| Bullets | Institutional security requirements · Public-sector contexts · Communications and security engineering | Institutionelle Sicherheitsanforderungen · Öffentliche Kontexte · Kommunikations- und Sicherheitstechnik |
 
 ### Step 02 — Advice
 
@@ -280,16 +280,16 @@ Maps to `ScrollStory` (`#story`). Six steps aligned with original service logic 
 |---|---------|---------|
 | Eyebrow | `02 / Advice` | `02 / Beratung` |
 | Title | `Requirements are translated into a coherent technical approach.` | `Anforderungen werden in einen stimmigen technischen Ansatz überführt.` |
-| Description | `Advice covers analysis, consulting, and solution design — aligning mission context, existing infrastructure, and procurement constraints with appropriate technical options.` | `Die Beratung umfasst Analyse, Consulting und Lösungskonzeption — unter Abstimmung von Einsatzkontext, bestehender Infrastruktur und Beschaffungsrahmen mit geeigneten technischen Optionen.` |
+| Description | `Advice covers analysis, consulting, and solution design — aligning project context, existing infrastructure, and procurement constraints with appropriate technical options.` | `Die Beratung umfasst Analyse, Consulting und Lösungskonzeption — unter Abstimmung von Anwendungskontext, bestehender Infrastruktur und Beschaffungsrahmen mit geeigneten technischen Optionen.` |
 | Bullets | Analysis · Consulting · Solution design | Analyse · Beratung · Lösungskonzeption |
 
-### Step 03 — Surveillance & communications
+### Step 03 — Observation & communications
 
 | | English | Deutsch |
 |---|---------|---------|
-| Eyebrow | `03 / Surveillance & communications` | `03 / Observation & Kommunikation` |
-| Title | `Communications and surveillance systems form the operational layer.` | `Kommunikations- und Observationssysteme bilden die operative Ebene.` |
-| Description | `Network-based, private, wireless, cellular, and satellite communications are integrated with surveillance-related capabilities as part of a broader security solution.` | `Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation werden mit observationstechnischen Fähigkeiten als Teil einer umfassenden Sicherheitslösung integriert.` |
+| Eyebrow | `03 / Observation & communications` | `03 / Observation & Kommunikation` |
+| Title | `Communications and observation systems form a coordinated technical layer.` | `Kommunikations- und Observationssysteme bilden eine abgestimmte technische Ebene.` |
+| Description | `Network-based, private, wireless, cellular, and satellite communications are combined with observation-related capabilities as part of an integrated technical system.` | `Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation werden mit observationstechnischen Fähigkeiten zu einem integrierten technischen System verbunden.` |
 | Bullets | Network / IP · Private networks · Wireless / cellular · Satellite | Netzwerk / IP · Private Netze · Funk / Mobilfunk · Satellit |
 
 ### Step 04 — Protection
@@ -297,26 +297,26 @@ Maps to `ScrollStory` (`#story`). Six steps aligned with original service logic 
 | | English | Deutsch |
 |---|---------|---------|
 | Eyebrow | `04 / Protection` | `04 / Schutz` |
-| Title | `Protection measures for personnel, data, and restricted spaces.` | `Schutzmaßnahmen für Personal, Daten und geschützte Bereiche.` |
-| Description | `Protection-related services include countermeasure systems and protective infrastructure for environments where confidentiality and operational safety are essential.` | `Schutzbezogene Leistungen umfassen Gegenmaßnahmensysteme und Schutzinfrastruktur für Umgebungen, in denen Vertraulichkeit und operative Sicherheit erforderlich sind.` |
-| Bullets | ECM · Counter-RCIED · TSCM · Shielded rooms | ECM · Counter-RCIED · TSCM · Geschirmte Räume |
+| Title | `Protection measures for personnel, information, and sensitive spaces.` | `Schutzmaßnahmen für Personal, Informationen und sensible Bereiche.` |
+| Description | `Protection-related services combine protective infrastructure and selected technical measures for contexts where confidentiality and reliable operation are essential.` | `Schutzbezogene Leistungen verbinden Schutzinfrastruktur und ausgewählte technische Maßnahmen für Umgebungen, in denen Vertraulichkeit und zuverlässiger Betrieb wesentlich sind.` |
+| Bullets | Protective infrastructure · Sensitive spaces · Confidential information | Schutzinfrastruktur · Sensible Bereiche · Vertrauliche Informationen |
 
 ### Step 05 — Turnkey implementation
 
 | | English | Deutsch |
 |---|---------|---------|
 | Eyebrow | `05 / Implementation` | `05 / Umsetzung` |
-| Title | `Projects delivered on a turnkey basis.` | `Projekte schlüsselfertig umgesetzt.` |
-| Description | `Elaman implements projects using state-of-the-art technology, with attention to system integration, reliability, and operational fit.` | `Elaman setzt Projekte mit aktueller Technologie um — mit Blick auf Systemintegration, Zuverlässigkeit und operative Eignung.` |
-| Bullets | System integration · Turnkey delivery · Operational readiness | Systemintegration · Schlüsselfertige Übergabe · Einsatzbereitschaft |
+| Title | `Projects delivered with an integrated implementation approach.` | `Projekte mit einem integrierten Umsetzungsansatz realisiert.` |
+| Description | `Elaman implements projects with current technology, focusing on system integration, reliability, and practical fit.` | `Elaman setzt Projekte mit aktueller Technologie um — mit Blick auf Systemintegration, Zuverlässigkeit und praktische Eignung.` |
+| Bullets | System integration · Structured delivery · Operational readiness | Systemintegration · Strukturierte Umsetzung · Einsatzbereitschaft |
 
 ### Step 06 — Training & after-sales
 
 | | English | Deutsch |
 |---|---------|---------|
 | Eyebrow | `06 / Training & support` | `06 / Schulung & Betreuung` |
-| Title | `Training and after-sales service sustain long-term usability.` | `Schulung und After-Sales-Service sichern langfristige Nutzbarkeit.` |
-| Description | `Professional training and high-quality after-sales service help client teams operate, maintain, and continue to rely on implemented systems.` | `Professionelle Schulungen und hochwertiger After-Sales-Service unterstützen Kundenteams beim Betrieb, bei der Wartung und bei der langfristigen Nutzung implementierter Systeme.` |
+| Title | `Training and after-sales support sustain long-term use.` | `Schulung und After-Sales-Betreuung sichern langfristige Nutzbarkeit.` |
+| Description | `Professional training and after-sales support help teams operate, maintain, and use implemented systems over time.` | `Professionelle Schulungen und After-Sales-Betreuung unterstützen Teams beim Betrieb, bei der Wartung und bei der langfristigen Nutzung implementierter Systeme.` |
 | Bullets | In-depth training · Technical service · After-sales support | Fundierte Schulungen · Technischer Service · After-Sales-Betreuung |
 
 ---

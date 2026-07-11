@@ -4,7 +4,7 @@ Authoritative execution plan for the Elaman website. It translates the approved 
 
 **Status:** Active — brand foundation approved; detailed build programme ready
 **Primary language:** German at /de; English remains a complete, switchable version at /en
-**Current execution unit:** P03 — Lifecycle / approach experience
+**Current execution unit:** P04 — Solutions disclosure
 **Planning rule:** One numbered slice per pull request where practical. Do not merge unrelated visual, copy, legal, or infrastructure changes into one slice.
 
 ---
@@ -241,7 +241,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P03 — Lifecycle / approach experience
 
-**Status:** Next.
+**Status:** Completed — 2026-07-11.
 
 **Purpose:** Make the procedural Vorgehen section the site’s most distinctive technical interaction without making it theatrical.
 
@@ -277,7 +277,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P04 — Solutions disclosure
 
-**Status:** Ready after P03.
+**Status:** Next.
 
 **Purpose:** Turn the existing system map into a fully accessible, discreet, single-open disclosure pattern.
 
