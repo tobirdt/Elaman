@@ -329,18 +329,18 @@ Maps to `ProtectionSection` (`#protection`). **Visual treatment** may use `surfa
 
 | | English | Deutsch |
 |---|---------|---------|
-| Label | `Protection & countermeasures` | `Schutz & Gegenmaßnahmen` |
-| Title | `Protection solutions for authorised security applications.` | `Schutzlösungen für autorisierte Sicherheitsanwendungen.` |
-| Body | `Protection-related services from the original Elaman portfolio include electronic countermeasures, counter-RCIED systems, jamming systems, technical surveillance countermeasures (TSCM), and shielded room concepts.` | `Schutzbezogene Leistungen aus dem etablierten Elaman-Portfolio umfassen elektronische Gegenmaßnahmen, Counter-RCIED-Systeme, Jamming-Systeme, technische Überwachungsgegenmaßnahmen (TSCM) und Konzepte für geschirmte Räume.` |
+| Label | `Protective environments` | `Schutzumgebungen` |
+| Title | `Protective capabilities for sensitive institutional environments.` | `Schutzfähigkeiten für sensible institutionelle Umgebungen.` |
+| Body | `Elaman combines selected protective infrastructure, technical measures, and advisory support for environments where confidentiality, reliability, and controlled access matter.` | `Elaman verbindet ausgewählte Schutzinfrastruktur, technische Maßnahmen und beratende Begleitung für Umgebungen, in denen Vertraulichkeit, Zuverlässigkeit und kontrollierter Zugang wesentlich sind.` |
 
 **Cards**
 
 | EN title | EN description | DE title | DE description |
 |----------|----------------|----------|----------------|
-| ECM / Counter-RCIED | Electronic countermeasure systems for authorised applications involving radio-controlled threats or wireless surveillance risks. | ECM / Counter-RCIED | Elektronische Gegenmaßnahmensysteme für autorisierte Anwendungen im Zusammenhang mit funkgesteuerten Bedrohungen oder drahtlosen Überwachungsrisiken. |
-| Jamming systems | Manpack, convoy, and building-deployable jamming systems for authorised operational contexts. | Jamming-Systeme | Manpack-, Konvoi- und gebäudebasierte Jamming-Systeme für autorisierte Einsatzkontexte. |
-| TSCM | Technical surveillance countermeasures, advice, and training for counter-surveillance and sweep teams. | TSCM | Technische Überwachungsgegenmaßnahmen, Beratung und Schulungen für Counter-Surveillance- und Sweep-Teams. |
-| Shielded rooms | Structural, mechanical, and electronic protection concepts for restricted rooms and confidential information. | Geschirmte Räume | Bauliche, mechanische und elektronische Schutzkonzepte für geschützte Räume und vertrauliche Informationen. |
+| Technical protective measures | Technical measures for authorised environments with heightened communications and infrastructure protection requirements. | Technische Schutzmaßnahmen | Technische Maßnahmen für autorisierte Umgebungen mit erhöhten Anforderungen an Kommunikations- und Infrastrukturschutz. |
+| Resilient operational infrastructure | Concepts that help maintain continuity in sensitive technical environments. | Resiliente Infrastruktur | Konzepte zur Unterstützung der Kontinuität in sensiblen technischen Umgebungen. |
+| Technical environment assurance | Assessment, advice, and training related to the integrity of sensitive spaces and technical environments. | Technische Umfeldabsicherung | Einschätzung, Beratung und Schulung zur Integrität sensibler Räume und technischer Umgebungen. |
+| Shielded environments | Structural, mechanical, and electronic protection concepts for sensitive rooms and confidential information. | Geschützte Umgebungen | Bauliche, mechanische und elektronische Schutzkonzepte für sensible Räume und vertrauliche Informationen. |
 
 **Delivery model** (companion section `#delivery` — include here for planning continuity)
 

@@ -40,11 +40,11 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
           <RevealGroup className="border-t border-[var(--border-on-navy)]" stagger={0.09}>
             {content.items.map((item, index) => (
               <RevealItem key={item.title}>
-                <article className="group border-b border-[var(--border-on-navy)] py-6 transition-colors [transition-duration:var(--motion-fast)]">
+                <article className="border-b border-[var(--border-on-navy)] py-6">
                   <div className="flex items-baseline gap-4">
                     <span
                       className={`font-mono-label ${
-                        index === 0 || index === 2
+                        index === 0
                           ? "text-[var(--color-elaman-red-on-dark)]"
                           : "text-[var(--color-on-dark-muted)]"
                       }`}

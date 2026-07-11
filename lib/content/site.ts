@@ -396,29 +396,29 @@ export const siteContent = {
       ],
     },
     protection: {
-      label: "Protection & Countermeasures",
-      title: "Protection solutions for authorised security applications.",
-      body: "Protection-related services from the original Elaman portfolio include electronic countermeasures, counter-RCIED systems, jamming systems, technical surveillance countermeasures (TSCM), and shielded room concepts.",
+      label: "Protective environments",
+      title: "Protective capabilities for sensitive institutional environments.",
+      body: "Elaman combines selected protective infrastructure, technical measures, and advisory support for environments where confidentiality, reliability, and controlled access matter.",
       items: [
         {
-          title: "ECM / Counter-RCIED",
+          title: "Technical protective measures",
           description:
-            "Electronic countermeasure systems for authorised applications involving radio-controlled threats or wireless surveillance risks.",
+            "Technical measures for authorised environments with heightened communications and infrastructure protection requirements.",
         },
         {
-          title: "Jamming systems",
+          title: "Resilient operational infrastructure",
           description:
-            "Manpack, convoy, and building-deployable jamming systems for authorised operational contexts.",
+            "Concepts that help maintain continuity in sensitive technical environments.",
         },
         {
-          title: "TSCM",
+          title: "Technical environment assurance",
           description:
-            "Technical surveillance countermeasures, professional advice, and training for counter-surveillance and sweep teams.",
+            "Assessment, advice, and training related to the integrity of sensitive spaces and technical environments.",
         },
         {
-          title: "Shielded Rooms",
+          title: "Shielded environments",
           description:
-            "Structural, mechanical, and electronic protection concepts for restricted rooms and confidential information.",
+            "Structural, mechanical, and electronic protection concepts for sensitive rooms and confidential information.",
         },
       ],
     },
@@ -773,29 +773,29 @@ export const siteContent = {
       ],
     },
     protection: {
-      label: "Schutz & Gegenmaßnahmen",
-      title: "Schutzlösungen für autorisierte Sicherheitsanwendungen.",
-      body: "Schutzbezogene Leistungen aus dem etablierten Elaman-Portfolio umfassen elektronische Gegenmaßnahmen, Counter-RCIED-Systeme, Jamming-Systeme, technische Überwachungsgegenmaßnahmen (TSCM) und Konzepte für geschirmte Räume.",
+      label: "Schutzumgebungen",
+      title: "Schutzfähigkeiten für sensible institutionelle Umgebungen.",
+      body: "Elaman verbindet ausgewählte Schutzinfrastruktur, technische Maßnahmen und beratende Begleitung für Umgebungen, in denen Vertraulichkeit, Zuverlässigkeit und kontrollierter Zugang wesentlich sind.",
       items: [
         {
-          title: "ECM / Counter-RCIED",
+          title: "Technische Schutzmaßnahmen",
           description:
-            "Elektronische Gegenmaßnahmensysteme für autorisierte Anwendungen im Zusammenhang mit funkgesteuerten Bedrohungen oder drahtlosen Überwachungsrisiken.",
+            "Technische Maßnahmen für autorisierte Umgebungen mit erhöhten Anforderungen an Kommunikations- und Infrastrukturschutz.",
         },
         {
-          title: "Jamming-Systeme",
+          title: "Resiliente Infrastruktur",
           description:
-            "Manpack-, Konvoi- und gebäudebasierte Jamming-Systeme für autorisierte Einsatzkontexte.",
+            "Konzepte zur Unterstützung der Kontinuität in sensiblen technischen Umgebungen.",
         },
         {
-          title: "TSCM",
+          title: "Technische Umfeldabsicherung",
           description:
-            "Technische Überwachungsgegenmaßnahmen, Beratung und Schulungen für Counter-Surveillance- und Sweep-Teams.",
+            "Einschätzung, Beratung und Schulung zur Integrität sensibler Räume und technischer Umgebungen.",
         },
         {
-          title: "Geschirmte Räume",
+          title: "Geschützte Umgebungen",
           description:
-            "Bauliche, mechanische und elektronische Schutzkonzepte für geschützte Räume und vertrauliche Informationen.",
+            "Bauliche, mechanische und elektronische Schutzkonzepte für sensible Räume und vertrauliche Informationen.",
         },
       ],
     },

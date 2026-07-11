@@ -4,7 +4,7 @@ Authoritative execution plan for the Elaman website. It translates the approved 
 
 **Status:** Active — brand foundation approved; detailed build programme ready
 **Primary language:** German at /de; English remains a complete, switchable version at /en
-**Current execution unit:** P05 — Protection contrast section
+**Current execution unit:** P06 — Delivery methodology
 **Planning rule:** One numbered slice per pull request where practical. Do not merge unrelated visual, copy, legal, or infrastructure changes into one slice.
 
 ---
@@ -307,7 +307,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P05 — Protection contrast section
 
-**Status:** Next.
+**Status:** Completed — 2026-07-11.
 
 **Purpose:** Create the page’s selective deep-navy contrast moment while keeping the wording restrained and institutional.
 
@@ -340,7 +340,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P06 — Delivery methodology
 
-**Status:** Ready after P05.
+**Status:** Next.
 
 **Purpose:** Make the delivery model a compact proof of process, tying advice to implementation, training, and after-sales support.
 
