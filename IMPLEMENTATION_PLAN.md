@@ -4,7 +4,7 @@ Authoritative execution plan for the Elaman website. It translates the approved 
 
 **Status:** Active — brand foundation approved; detailed build programme ready
 **Primary language:** German at /de; English remains a complete, switchable version at /en
-**Current execution unit:** P04 — Solutions disclosure
+**Current execution unit:** P05 — Protection contrast section
 **Planning rule:** One numbered slice per pull request where practical. Do not merge unrelated visual, copy, legal, or infrastructure changes into one slice.
 
 ---
@@ -277,7 +277,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P04 — Solutions disclosure
 
-**Status:** Next.
+**Status:** Completed — 2026-07-11.
 
 **Purpose:** Turn the existing system map into a fully accessible, discreet, single-open disclosure pattern.
 
@@ -307,7 +307,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P05 — Protection contrast section
 
-**Status:** Ready after P04.
+**Status:** Next.
 
 **Purpose:** Create the page’s selective deep-navy contrast moment while keeping the wording restrained and institutional.
 

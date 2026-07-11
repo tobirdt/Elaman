@@ -28,7 +28,7 @@ export function SystemsSection({ content }: SystemsSectionProps) {
           <Reveal>
             <SectionHeader body={content.body} title={content.title} width="copy" />
             <SystemsMatrix
-              activeIndex={activeIndex ?? 0}
+              activeIndex={activeIndex}
               className="mt-10 hidden w-full max-w-sm sm:block"
               items={content.items}
               redIndex={redIndex}

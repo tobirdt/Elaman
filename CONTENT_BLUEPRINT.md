@@ -230,20 +230,20 @@ Maps to `SystemsSection` (`#systems`). Drawn from original Elaman technology and
 |---|---------|---------|
 | Label | `Solutions` | `Lösungen` |
 | Title | `Integrated systems for communications, observation, and command.` | `Integrierte Systeme für Kommunikation, Observation und Führung.` |
-| Body | `Elaman implements projects on a turnkey basis, combining established products and current technology into systems suited to security and public-authority requirements.` | `Elaman setzt Projekte schlüsselfertig um und kombiniert bewährte Produkte mit aktueller Technologie zu Systemen für Sicherheits- und Behördenanforderungen.` |
+| Body | `Elaman combines established products and current technology into integrated systems for institutional security and communications requirements.` | `Elaman kombiniert bewährte Produkte und aktuelle Technologie zu integrierten Systemen für institutionelle Sicherheits- und Kommunikationsanforderungen.` |
 
 **Solution cards**
 
 | # | EN title | EN description | DE title | DE description |
 |---|----------|----------------|----------|----------------|
-| 1 | Secure communications | Network-based, private, wireless, cellular, and satellite communications for demanding security environments. | Sichere Kommunikation | Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation für anspruchsvolle Sicherheitsumfelder. |
-| 2 | Audio / video observation | Technical observation equipment and supporting infrastructure for authorised surveillance applications. | Audio-/Video-Observation | Technische Observationstechnik und unterstützende Infrastruktur für autorisierte Überwachungsanwendungen. |
-| 3 | Geographical information systems | GIS-related systems supporting situational awareness and operational planning. | Geoinformationssysteme | GIS-bezogene Systeme zur Lagebildung und operativen Planung. |
-| 4 | Counter surveillance | Counter-surveillance equipment and support for sweep teams in sensitive environments. | Counter Surveillance | Gegenobservationstechnik und Unterstützung für Sweep-Teams in sensiblen Umgebungen. |
-| 5 | Special operations vehicles | Vehicle-based concepts for specialised operational and communications requirements. | Spezialfahrzeuge | Fahrzeugbasierte Konzepte für spezialisierte Einsatz- und Kommunikationsanforderungen. |
-| 6 | Command & control centres | Mobile and fixed command environments for coordinated operations. | Command- & Control-Zentren | Mobile und feste Führungsumgebungen für koordinierte Einsätze. |
-| 7 | Intelligence fusion systems | Systems that consolidate operational inputs for authorised analysis workflows. | Intelligence-Fusion-Systeme | Systeme zur zusammenführenden Auswertung operativer Informationen in autorisierten Analyseprozessen. |
-| 8 | Data forensics | Forensics-related technical capabilities for authorised investigative contexts. | Data Forensics | Forensikbezogene technische Fähigkeiten für autorisierte Ermittlungsumfelder. |
+| 1 | Communications systems | Network-based, private, wireless, cellular, and satellite communications for institutional environments. | Kommunikationssysteme | Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation für institutionelle Umgebungen. |
+| 2 | Technical observation | Technical observation and supporting infrastructure for authorised applications. | Technische Observation | Technische Observation und unterstützende Infrastruktur für autorisierte Anwendungen. |
+| 3 | Geographical information systems | GIS-related systems supporting spatial information, coordination, and planning. | Geoinformationssysteme | GIS-bezogene Systeme für räumliche Information, Koordination und Planung. |
+| 4 | Technical environment assessment | Technical capabilities for assessing sensitive environments and maintaining appropriate protective conditions. | Technische Umfeldanalyse | Technische Fähigkeiten zur Einschätzung sensibler Umgebungen und zur Aufrechterhaltung geeigneter Schutzbedingungen. |
+| 5 | Mobile system concepts | Vehicle-based concepts for specialised communications and technical requirements. | Mobile Systemkonzepte | Fahrzeugbasierte Konzepte für spezialisierte Kommunikations- und technische Anforderungen. |
+| 6 | Coordinated operational environments | Mobile and fixed environments supporting coordinated decision-making and communications. | Koordinierte Führungsumgebungen | Mobile und feste Umgebungen zur Unterstützung koordinierter Lage- und Kommunikationsarbeit. |
+| 7 | Information integration | Systems that bring together authorised information sources for structured analysis workflows. | Informationsintegration | Systeme zur Zusammenführung autorisierter Informationsquellen für strukturierte Analyseprozesse. |
+| 8 | Technical analysis | Technical capabilities supporting authorised examination and documentation workflows. | Technische Analyse | Technische Fähigkeiten zur Unterstützung autorisierter Prüf- und Dokumentationsprozesse. |
 
 ---
 

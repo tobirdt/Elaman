@@ -351,47 +351,47 @@ export const siteContent = {
     systems: {
       label: "Solutions",
       title: "Integrated systems across communications, observation, and command.",
-      body: "Elaman implements projects on a turnkey basis, combining established products and current technology into systems suited to security and public-authority requirements.",
+      body: "Elaman combines established products and current technology into integrated systems for institutional security and communications requirements.",
       items: [
         {
-          title: "Secure communications",
+          title: "Communications systems",
           description:
-            "Network-based, private, wireless, cellular, and satellite communications for demanding security environments.",
+            "Network-based, private, wireless, cellular, and satellite communications for institutional environments.",
         },
         {
-          title: "Audio / video observation",
+          title: "Technical observation",
           description:
-            "Technical observation equipment and supporting infrastructure for authorised surveillance applications.",
+            "Technical observation and supporting infrastructure for authorised applications.",
         },
         {
           title: "Geographical information systems",
           description:
-            "GIS-related systems supporting situational awareness and operational planning.",
+            "GIS-related systems supporting spatial information, coordination, and planning.",
         },
         {
-          title: "Counter surveillance",
+          title: "Technical environment assessment",
           description:
-            "Counter-surveillance equipment and sweep-team support for sensitive environments.",
+            "Technical capabilities for assessing sensitive environments and maintaining appropriate protective conditions.",
         },
         {
-          title: "Special operations vehicles",
+          title: "Mobile system concepts",
           description:
-            "Vehicle-based concepts for specialised operational and communications requirements.",
+            "Vehicle-based concepts for specialised communications and technical requirements.",
         },
         {
-          title: "Command & control centres",
+          title: "Coordinated operational environments",
           description:
-            "Mobile and fixed command environments for coordinated operations.",
+            "Mobile and fixed environments supporting coordinated decision-making and communications.",
         },
         {
-          title: "Intelligence fusion systems",
+          title: "Information integration",
           description:
-            "Systems that consolidate operational inputs for authorised analysis workflows.",
+            "Systems that bring together authorised information sources for structured analysis workflows.",
         },
         {
-          title: "Data forensics",
+          title: "Technical analysis",
           description:
-            "Forensics-related technical capabilities for authorised investigative contexts.",
+            "Technical capabilities supporting authorised examination and documentation workflows.",
         },
       ],
     },
@@ -728,45 +728,47 @@ export const siteContent = {
     systems: {
       label: "Lösungen",
       title: "Integrierte Systeme für Kommunikation, Observation und Führung.",
-      body: "Elaman setzt Projekte schlüsselfertig um und kombiniert bewährte Produkte mit aktueller Technologie zu Systemen für Sicherheits- und Behördenanforderungen.",
+      body: "Elaman kombiniert bewährte Produkte und aktuelle Technologie zu integrierten Systemen für institutionelle Sicherheits- und Kommunikationsanforderungen.",
       items: [
         {
-          title: "Sichere Kommunikation",
+          title: "Kommunikationssysteme",
           description:
-            "Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation für anspruchsvolle Sicherheitsumfelder.",
+            "Netzwerk-, Privat-, Funk-, Mobilfunk- und Satellitenkommunikation für institutionelle Umgebungen.",
         },
         {
-          title: "Audio-/Video-Observation",
+          title: "Technische Observation",
           description:
-            "Technische Observationstechnik und unterstützende Infrastruktur für autorisierte Überwachungsanwendungen.",
+            "Technische Observation und unterstützende Infrastruktur für autorisierte Anwendungen.",
         },
         {
           title: "Geoinformationssysteme",
-          description: "GIS-bezogene Systeme zur Lagebildung und operativen Planung.",
-        },
-        {
-          title: "Counter Surveillance",
           description:
-            "Gegenobservationstechnik und Unterstützung für Sweep-Teams in sensiblen Umgebungen.",
+            "GIS-bezogene Systeme für räumliche Information, Koordination und Planung.",
         },
         {
-          title: "Spezialfahrzeuge",
+          title: "Technische Umfeldanalyse",
           description:
-            "Fahrzeugbasierte Konzepte für spezialisierte Einsatz- und Kommunikationsanforderungen.",
+            "Technische Fähigkeiten zur Einschätzung sensibler Umgebungen und zur Aufrechterhaltung geeigneter Schutzbedingungen.",
         },
         {
-          title: "Command & Control Centers",
-          description: "Mobile und feste Führungsumgebungen für koordinierte Einsätze.",
-        },
-        {
-          title: "Intelligence-Fusion-Systeme",
+          title: "Mobile Systemkonzepte",
           description:
-            "Systeme zur zusammenführenden Auswertung operativer Informationen in autorisierten Analyseprozessen.",
+            "Fahrzeugbasierte Konzepte für spezialisierte Kommunikations- und technische Anforderungen.",
         },
         {
-          title: "Data Forensics",
+          title: "Koordinierte Führungsumgebungen",
           description:
-            "Forensikbezogene technische Fähigkeiten für autorisierte Ermittlungsumfelder.",
+            "Mobile und feste Umgebungen zur Unterstützung koordinierter Lage- und Kommunikationsarbeit.",
+        },
+        {
+          title: "Informationsintegration",
+          description:
+            "Systeme zur Zusammenführung autorisierter Informationsquellen für strukturierte Analyseprozesse.",
+        },
+        {
+          title: "Technische Analyse",
+          description:
+            "Technische Fähigkeiten zur Unterstützung autorisierter Prüf- und Dokumentationsprozesse.",
         },
       ],
     },

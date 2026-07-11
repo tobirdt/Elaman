@@ -2,13 +2,14 @@
 
 import { motion } from "framer-motion";
 
+import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { DOT_COLORS } from "@/components/ui/DotMatrix";
 import { motionEase } from "@/lib/motion/presets";
 import type { ContentCard } from "@/types/site";
 
 type SystemsMatrixProps = {
   items: readonly ContentCard[];
-  activeIndex: number;
+  activeIndex: number | null;
   redIndex: number;
   className?: string;
 };
@@ -30,10 +31,9 @@ const HEIGHT = 240;
 const BUS_X = WIDTH / 2;
 
 /**
- * Eight system endpoints connect to a central integration bus. The active
- * accordion item highlights one signal path without turning the diagram
- * itself into an additional control.
- * The adjacent accordion remains the sole interactive control.
+ * The map is visual context only. Accordion buttons supply the semantic
+ * controls; the selected item is echoed below the diagram so colour is never
+ * the sole indicator of the active category.
  */
 export function SystemsMatrix({
   items,
@@ -41,13 +41,14 @@ export function SystemsMatrix({
   redIndex,
   className = "",
 }: SystemsMatrixProps) {
-  const active = items[activeIndex];
-  const activePosition = POSITIONS[activeIndex] ?? POSITIONS[0];
+  const reduced = useReducedMotionPreference();
+  const active = activeIndex === null ? null : (items[activeIndex] ?? null);
+  const activePosition = activeIndex === null ? null : (POSITIONS[activeIndex] ?? null);
 
   return (
     <div className={className}>
       <svg
-        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+        viewBox={"0 0 " + WIDTH + " " + HEIGHT}
         className="w-full"
         aria-hidden="true"
         focusable="false"
@@ -72,7 +73,7 @@ export function SystemsMatrix({
 
         {POSITIONS.map((position, index) => (
           <line
-            key={`channel-${index}`}
+            key={"channel-" + index}
             x1={position.x}
             y1={position.y}
             x2={BUS_X}
@@ -83,19 +84,23 @@ export function SystemsMatrix({
           />
         ))}
 
-        <motion.line
-          key={activeIndex}
-          x1={activePosition.x}
-          y1={activePosition.y}
-          x2={BUS_X}
-          y2={activePosition.y}
-          stroke={activeIndex === redIndex ? DOT_COLORS.red : DOT_COLORS.blue}
-          strokeOpacity={0.5}
-          strokeWidth={1.5}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.32, ease: motionEase.out }}
-        />
+        {activePosition && activeIndex !== null ? (
+          <motion.line
+            key={activeIndex}
+            x1={activePosition.x}
+            y1={activePosition.y}
+            x2={BUS_X}
+            y2={activePosition.y}
+            stroke={activeIndex === redIndex ? DOT_COLORS.red : DOT_COLORS.blue}
+            strokeOpacity={0.5}
+            strokeWidth={1.5}
+            initial={reduced ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={
+              reduced ? { duration: 0 } : { duration: 0.32, ease: motionEase.out }
+            }
+          />
+        ) : null}
 
         {POSITIONS.map((position, index) => {
           const isActive = index === activeIndex;
@@ -112,20 +117,27 @@ export function SystemsMatrix({
               }
               fillOpacity={isActive ? 1 : 0.28}
               animate={{ scale: isActive ? 1.5 : 1, fillOpacity: isActive ? 1 : 0.28 }}
-              style={{ transformOrigin: `${position.x}px ${position.y}px` }}
-              transition={{ duration: 0.24, ease: motionEase.out }}
+              style={{ transformOrigin: position.x + "px " + position.y + "px" }}
+              transition={
+                reduced ? { duration: 0 } : { duration: 0.24, ease: motionEase.out }
+              }
             />
           );
         })}
       </svg>
       <div className="mt-4 border-t border-[var(--border-hairline)] pt-3">
         <p
-          className={`font-mono-label ${activeIndex === redIndex ? "text-elaman-red" : "text-elaman-blue"}`}
+          className={[
+            "font-mono-label",
+            activeIndex === redIndex ? "text-elaman-red" : "text-elaman-blue",
+          ].join(" ")}
         >
-          {String(activeIndex + 1).padStart(2, "0")} /{" "}
+          {activeIndex === null ? "—" : String(activeIndex + 1).padStart(2, "0")} /{" "}
           {String(items.length).padStart(2, "0")}
         </p>
-        <p className="mt-1 text-sm font-semibold text-graphite">{active?.title}</p>
+        {active ? (
+          <p className="mt-1 text-sm font-semibold text-graphite">{active.title}</p>
+        ) : null}
       </div>
     </div>
   );
