@@ -3,12 +3,17 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SectionRule } from "@/components/ui/SectionRule";
-import { Stat } from "@/components/ui/Stat";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type TrustSectionProps = {
   content: LocalizedSiteContent["trust"];
 };
+
+const evidencePointTones = [
+  "bg-graphite-soft",
+  "bg-elaman-blue",
+  "bg-elaman-red",
+] as const;
 
 export function TrustSection({ content }: TrustSectionProps) {
   return (
@@ -22,40 +27,56 @@ export function TrustSection({ content }: TrustSectionProps) {
           </Reveal>
 
           <div>
-            <RevealGroup className="grid md:grid-cols-3" stagger={0.09}>
+            <RevealGroup
+              className="border-t border-[var(--border-hairline)]"
+              stagger={0.09}
+            >
               {content.metrics.map((metric, index) => (
                 <RevealItem
                   key={metric.value}
-                  className={`flex flex-col justify-end border-[var(--border-hairline)] py-6 md:py-2 ${
-                    index === 0
-                      ? "border-t md:border-t-0 md:pr-6"
-                      : "border-t md:border-l md:border-t-0 md:px-6"
-                  }`}
+                  className="border-b border-[var(--border-hairline)]"
                 >
-                  <Stat
-                    caption={metric.label}
-                    size={metric.value.length <= 6 ? "numeral" : "h3"}
-                    value={metric.value}
-                  />
+                  <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-4 py-5 sm:gap-6 sm:py-6">
+                    <span
+                      aria-hidden="true"
+                      className="flex min-w-9 items-center gap-2 pt-1.5"
+                    >
+                      <span
+                        className={
+                          "size-1.5 rounded-full " +
+                          (evidencePointTones[index] ?? "bg-graphite-soft")
+                        }
+                      />
+                      <span className="font-mono-label text-graphite-soft">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </span>
+                    <div>
+                      <p className="text-balance text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
+                        {metric.value}
+                      </p>
+                      <p className="mt-2 max-w-[38rem] text-sm leading-6 text-graphite-muted">
+                        {metric.label}
+                      </p>
+                    </div>
+                  </div>
                 </RevealItem>
               ))}
             </RevealGroup>
 
-            <RevealGroup className="mt-12" stagger={0.06}>
-              {content.pillars.map((pillar, index) => (
-                <RevealItem key={pillar}>
-                  <div className="flex items-baseline gap-5 border-t border-[var(--border-hairline)] py-3.5">
-                    <span className="font-mono-label shrink-0 text-graphite-soft">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <p className="text-[length:var(--type-body)] font-medium text-graphite-muted">
-                      {pillar}
-                    </p>
-                  </div>
-                </RevealItem>
-              ))}
-              <div className="rule-hairline" aria-hidden="true" />
-            </RevealGroup>
+            <Reveal className="mt-8">
+              <p className="font-mono-label text-elaman-blue">{content.contextsLabel}</p>
+              <ul className="mt-4 grid gap-x-6 sm:grid-cols-3">
+                {content.pillars.map((pillar) => (
+                  <li
+                    key={pillar}
+                    className="border-t border-[var(--border-hairline)] py-3 text-sm leading-6 text-graphite-muted"
+                  >
+                    {pillar}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
         </div>
       </Container>

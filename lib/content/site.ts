@@ -76,6 +76,7 @@ export type LocalizedSiteContent = {
     title: string;
     body: string;
     metrics: Array<{ value: string; label: string }>;
+    contextsLabel: string;
     pillars: string[];
   };
   story: {
@@ -199,27 +200,26 @@ export const siteContent = {
     },
     trust: {
       label: "Experience",
-      title: "Built on long-standing public-sector security expertise.",
-      body: "Elaman combines communications and security engineering with extensive knowledge of government security and safety requirements. We support organisations whose operations depend on reliable technical systems, professional advice, and sustained service.",
+      title: "Long-standing expertise in institutional security requirements.",
+      body: "Elaman combines communications and security engineering with long-standing knowledge of institutional security and safety requirements. We support organisations that rely on reliable technical systems, sound advice, and sustained service.",
       metrics: [
         {
           value: "20+",
           label: "Years of experience in communications and security engineering",
         },
         {
-          value: "Public sector",
-          label:
-            "Focus on governmental authorities and public-sector security requirements",
+          value: "Institutional focus",
+          label: "Experience with public-sector and security-related requirements",
         },
         {
-          value: "Full service",
+          value: "Sustained support",
           label: "Advice, implementation, training, and after-sales support",
         },
       ],
+      contextsLabel: "Focus contexts",
       pillars: [
-        "Governmental authorities",
-        "Public authorities",
-        "Law-enforcement-related organisations",
+        "Public institutions",
+        "Security-relevant organisations",
         "Communication service providers",
       ],
     },
@@ -569,26 +569,26 @@ export const siteContent = {
     },
     trust: {
       label: "Erfahrung",
-      title: "Auf langjähriger Expertise für Behörden und Sicherheitsanforderungen.",
-      body: "Elaman verbindet Kommunikations- und Sicherheitstechnik mit umfassendem Wissen über staatliche Sicherheits- und Schutzanforderungen öffentlicher Behörden. Wir unterstützen Organisationen, deren Arbeit auf zuverlässigen technischen Systemen, fachlicher Beratung und kontinuierlicher Betreuung beruht.",
+      title: "Langjährige Expertise für anspruchsvolle Sicherheitsanforderungen.",
+      body: "Elaman verbindet Kommunikations- und Sicherheitstechnik mit langjährigem Wissen über institutionelle Sicherheits- und Schutzanforderungen. Wir unterstützen Organisationen, die auf zuverlässige technische Systeme, fundierte Beratung und kontinuierliche Betreuung angewiesen sind.",
       metrics: [
         {
           value: "20+",
           label: "Jahre Erfahrung in Kommunikations- und Sicherheitstechnik",
         },
         {
-          value: "Behörden",
-          label: "Schwerpunkt auf Behörden und öffentlichen Sicherheitsanforderungen",
+          value: "Institutioneller Fokus",
+          label: "Erfahrung mit öffentlichen und sicherheitsrelevanten Anforderungen",
         },
         {
-          value: "Vollservice",
-          label: "Beratung, Implementierung, Schulung und After-Sales-Service",
+          value: "Kontinuierliche Betreuung",
+          label: "Beratung, Umsetzung, Schulung und After-Sales-Service",
         },
       ],
+      contextsLabel: "Fokusfelder",
       pillars: [
-        "Staatliche Behörden",
-        "Öffentliche Behörden",
-        "Sicherheits- und ordnungsrelevante Organisationen",
+        "Öffentliche Institutionen",
+        "Sicherheitsrelevante Organisationen",
         "Kommunikationsanbieter",
       ],
     },

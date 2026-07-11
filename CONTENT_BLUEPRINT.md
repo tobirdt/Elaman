@@ -155,24 +155,23 @@ Single-page scroll at `/de`. Same order and anchors as English.
 | | English | Deutsch |
 |---|---------|---------|
 | Label | `Experience` | `Erfahrung` |
-| Title | `Built on long-standing public-sector security expertise.` | `Auf langjähriger Expertise für Behörden und Sicherheitsanforderungen.` |
-| Body | `Elaman combines communications and security engineering with extensive knowledge of government security and safety requirements. We support organisations whose operations depend on reliable technical systems, professional advice, and sustained service.` | `Elaman verbindet Kommunikations- und Sicherheitstechnik mit umfassendem Wissen über staatliche Sicherheits- und Schutzanforderungen öffentlicher Behörden. Wir unterstützen Organisationen, deren Arbeit auf zuverlässigen technischen Systemen, fachlicher Beratung und kontinuierlicher Betreuung beruht.` |
+| Title | `Long-standing expertise in institutional security requirements.` | `Langjährige Expertise für anspruchsvolle Sicherheitsanforderungen.` |
+| Body | `Elaman combines communications and security engineering with long-standing knowledge of institutional security and safety requirements. We support organisations that rely on reliable technical systems, sound advice, and sustained service.` | `Elaman verbindet Kommunikations- und Sicherheitstechnik mit langjährigem Wissen über institutionelle Sicherheits- und Schutzanforderungen. Wir unterstützen Organisationen, die auf zuverlässige technische Systeme, fundierte Beratung und kontinuierliche Betreuung angewiesen sind.` |
 
 **Metrics (replace gimmick values like `B2G` / `360°`)**
 
 | Value | EN label | DE label |
 |-------|----------|----------|
 | `20+` | Years of experience in communications and security engineering | Jahre Erfahrung in Kommunikations- und Sicherheitstechnik |
-| `Public sector` | Focus on governmental authorities and public-sector security requirements | Schwerpunkt auf Behörden und öffentlichen Sicherheitsanforderungen |
-| `Full service` | Advice, implementation, training, and after-sales support | Beratung, Implementierung, Schulung und After-Sales-Service |
+| `Institutional focus` | Experience with public-sector and security-related requirements | Erfahrung mit öffentlichen und sicherheitsrelevanten Anforderungen |
+| `Sustained support` | Advice, implementation, training, and after-sales support | Beratung, Umsetzung, Schulung und After-Sales-Service |
 
-**Client pillars (audience list — factual, not a client logo wall)**
+**Focus contexts (factual categories — never a client list or logo wall)**
 
 | English | Deutsch |
 |---------|---------|
-| Governmental authorities | Staatliche Behörden |
-| Public authorities | Öffentliche Behörden |
-| Law-enforcement-related organisations | Sicherheits- und ordnungsrelevante Organisationen |
+| Public institutions | Öffentliche Institutionen |
+| Security-relevant organisations | Sicherheitsrelevante Organisationen |
 | Communication service providers | Kommunikationsanbieter |
 
 ---

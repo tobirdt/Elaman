@@ -4,7 +4,7 @@ Authoritative execution plan for the Elaman website. It translates the approved 
 
 **Status:** Active — brand foundation approved; detailed build programme ready
 **Primary language:** German at /de; English remains a complete, switchable version at /en
-**Current execution unit:** P01 — Editorial restraint and credentials
+**Current execution unit:** P02 — Services / capability composition
 **Planning rule:** One numbered slice per pull request where practical. Do not merge unrelated visual, copy, legal, or infrastructure changes into one slice.
 
 ---
@@ -170,7 +170,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P01 — Editorial restraint and credentials
 
-**Status:** Next.
+**Status:** Completed — 2026-07-11.
 
 **Purpose:** Make the public voice consistently institutional and discreet before additional visual depth is added.
 
@@ -212,7 +212,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P02 — Services / capability composition
 
-**Status:** Ready after P01.
+**Status:** Next.
 
 **Purpose:** Present the four established service pillars as a precise, equal-weight capability system.
 
