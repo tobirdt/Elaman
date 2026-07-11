@@ -4,7 +4,7 @@ Authoritative execution plan for the Elaman website. It translates the approved 
 
 **Status:** Active — brand foundation approved; detailed build programme ready
 **Primary language:** German at /de; English remains a complete, switchable version at /en
-**Current execution unit:** P09 — Motion and interaction budget
+**Current execution unit:** P10 — Responsive accessibility pass
 **Planning rule:** One numbered slice per pull request where practical. Do not merge unrelated visual, copy, legal, or infrastructure changes into one slice.
 
 ---
@@ -133,8 +133,8 @@ The project is not a blank redesign. The following functionality and components 
 | 06    | Delivery methodology                          | Complete                       | Clear five-step delivery rail, visually connected to lifecycle                          | None                                           |
 | 07    | Contact, footer, and image restraint          | Complete                       | Human Munich presence, factual contact, durable inquiry experience                      | Live email configuration needed for final test |
 | 08    | Legal and locale routing                      | Blocked for final wording      | Locale-specific legal architecture and redirects                                        | Counsel/owner approval                         |
-| 09    | Motion and interaction system                 | **Next**                       | Final motion budget and state transitions                                               | Reduced-motion audit                           |
-| 10    | Responsive accessibility pass                 | Ready after sections           | Device, touch, keyboard, screen-reader, contrast polish                                 | Test matrix                                    |
+| 09    | Motion and interaction system                 | Complete                       | Final motion budget and state transitions                                               | Reduced-motion audit                           |
+| 10    | Responsive accessibility pass                 | **Next**                       | Device, touch, keyboard, screen-reader, contrast polish                                 | Test matrix                                    |
 | 11    | SEO, social, and performance                  | Ready after content stabilises | Search/social readiness and fast visual delivery                                        | Final domain decision                          |
 | 12    | Form security and operations                  | Ready before launch            | Reliable inquiry delivery, spam posture, operational monitoring                         | Resend/Vercel setup                            |
 | 13    | Staging, launch, and post-launch verification | Blocked until all gates clear  | Controlled public release                                                               | Legal, form, domain, stakeholder sign-off      |
@@ -426,7 +426,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P09 — Motion and interaction budget
 
-**Status:** Next.
+**Status:** Completed — 2026-07-11.
 
 **Purpose:** Make the experience feel expensive through restraint, not constant movement.
 
@@ -455,7 +455,7 @@ The project is not a blank redesign. The following functionality and components 
 
 ### P10 — Responsive, accessibility, and content-resilience pass
 
-**Status:** Ready after P09.
+**Status:** Next.
 
 **Purpose:** Make the site robust in the contexts most likely for public-sector visitors: locked-down browsers, laptops, tablets, mobile devices, keyboard use, and zoom.
 

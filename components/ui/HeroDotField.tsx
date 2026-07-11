@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { DOT_COLORS, DotMatrix } from "@/components/ui/DotMatrix";
-import { diamondFormation, DIAMOND_RADIUS, manhattan } from "@/lib/design/formations";
-import { motionEase } from "@/lib/motion/presets";
+import { diamondFormation, DIAMOND_RADIUS } from "@/lib/design/formations";
+import { motionDuration, motionEase } from "@/lib/motion/presets";
 
 type HeroDotFieldProps = {
   className?: string;
@@ -21,14 +21,9 @@ const PADDING = 1;
 const SIZE = (DIAMOND_RADIUS + PADDING) * 2 * PITCH;
 const INK_OPACITY = 0.22;
 
-function dotDelay(distance: number, delayBase: number) {
-  return delayBase + distance * 0.12;
-}
-
 /**
- * The logo diamond as environment — 25 dots assembling on load, ordered by
- * Manhattan distance from the center. The blue dot settles last; the red dot
- * follows with a single expanding ring.
+ * The logo diamond as environment. It has one calm entrance on desktop;
+ * the dots themselves remain still so the mark reads as identity, not effect.
  */
 export function HeroDotField({
   className = "",
@@ -49,82 +44,35 @@ export function HeroDotField({
   }
 
   const center = (DIAMOND_RADIUS + PADDING) * PITCH;
-  const blueDelay = dotDelay(DIAMOND_RADIUS + 1, delayBase);
-  const redDelay = blueDelay + 0.18;
-
   return (
-    <svg
+    <motion.svg
       viewBox={`0 0 ${SIZE} ${SIZE}`}
       className={className}
       aria-hidden="true"
       focusable="false"
+      initial={{ opacity: 0.001 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: motionDuration.slow,
+        ease: motionEase.out,
+        delay: delayBase,
+      }}
     >
       {diamondFormation.dots.map((dot, index) => {
         const cx = center + dot.x * PITCH;
         const cy = center + dot.y * PITCH;
 
-        if (dot.tone === "blue") {
-          return (
-            <motion.circle
-              key={index}
-              cx={cx}
-              cy={cy}
-              r={DOT_R}
-              fill={DOT_COLORS.blue}
-              initial={{ opacity: 0, scale: 1.15 }}
-              animate={{ opacity: 1, scale: 1 }}
-              style={{ transformOrigin: `${cx}px ${cy}px` }}
-              transition={{ duration: 0.4, ease: motionEase.out, delay: blueDelay }}
-            />
-          );
-        }
-
-        if (dot.tone === "red") {
-          return (
-            <g key={index}>
-              <motion.circle
-                cx={cx}
-                cy={cy}
-                r={DOT_R}
-                fill="none"
-                stroke={DOT_COLORS.red}
-                strokeWidth={1}
-                initial={{ scale: 1, opacity: 0.5 }}
-                animate={{ scale: 2.6, opacity: 0 }}
-                style={{ transformOrigin: `${cx}px ${cy}px` }}
-                transition={{ duration: 0.9, ease: "easeOut", delay: redDelay + 0.2 }}
-              />
-              <motion.circle
-                cx={cx}
-                cy={cy}
-                r={DOT_R}
-                fill={DOT_COLORS.red}
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                style={{ transformOrigin: `${cx}px ${cy}px` }}
-                transition={{ duration: 0.35, ease: motionEase.out, delay: redDelay }}
-              />
-            </g>
-          );
-        }
-
         return (
-          <motion.circle
+          <circle
             key={index}
             cx={cx}
             cy={cy}
             r={DOT_R}
-            fill={DOT_COLORS.ink}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: INK_OPACITY }}
-            transition={{
-              duration: 0.35,
-              ease: motionEase.out,
-              delay: dotDelay(manhattan(dot), delayBase),
-            }}
+            fill={dot.tone === "ink" ? DOT_COLORS.ink : DOT_COLORS[dot.tone]}
+            fillOpacity={dot.tone === "ink" ? INK_OPACITY : 1}
           />
         );
       })}
-    </svg>
+    </motion.svg>
   );
 }

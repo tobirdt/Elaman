@@ -266,17 +266,16 @@ Shape: `control` default; `pill` for footer legal chips only.
 | `--motion-fast`   | 180ms                            | Hover, focus, toggles          |
 | `--motion-medium` | 300ms                            | Reveals and state transitions  |
 | `--motion-expand` | 320ms                            | Accordion expansion            |
-| `--motion-slow`   | 650ms                            | Section enter, story crossfade |
+| `--motion-slow`   | 650ms                            | Hero mark entrance only        |
 | `--motion-ease`   | `cubic-bezier(0.22, 1, 0.36, 1)` | All transitions                |
-| `--motion-rise`   | 0.75rem                          | Reveal translate               |
 
-**Allowed:** `MotionReveal`, sticky story progress, static logo-derived matrix nodes, static bridge traces, header blur.
+**Allowed:** `Reveal`, `LineDraw`, sticky story progress, static logo-derived matrix nodes, and static bridge traces.
 
-**Photographic motion:** a one-time masked reveal or 1–2% depth shift on entrance only, gated by `prefers-reduced-motion`.
+**Photographic motion:** a photograph may appear with its containing section’s one-time reveal only. No image transform, parallax, or loop.
 
 Diagram visuals follow the Elaman mark: sparse matrix nodes, calm blue bridge paths, and selective red countermeasure accents. They should be still by default; motion is reserved for state changes such as scroll progress, accordion open/close, and focus feedback. Avoid node breathing, marching dash lines, radar sweeps, crosshair scans, particles, and spectacle motion.
 
-**Prohibited:** parallax copy, particles, bounce, scroll-scale headlines, autoplay carousel, Lottie spectacle.
+**Prohibited:** parallax, particles, bounce, scroll-scale headlines, autoplay carousel, Lottie spectacle.
 
 **Reduced motion:** `useReducedMotionPreference` + global CSS; sticky story unpins or shows static steps.
 
@@ -361,7 +360,7 @@ Update **both** when tokens change.
 | Sections   | `components/sections/*`                                                       |
 | Layout     | `Header`, `Footer`, `Container`                                               |
 | Primitives | `Button`, `Section`, `Surface`, `GlassPanel`, `SectionHeader`, `SectionLabel` |
-| Motion     | `MotionReveal`, `ScrollStory`, `StickyStoryStage`, `AnchorScrollManager`      |
+| Motion     | `Reveal`, `LineDraw`, `ScrollStory`, `StickyStoryStage`, `AnchorScrollManager` |
 | Diagrams   | `SystemMap`, `ProcessRail`, `TechnicalMark`, `HeroSignalVisual`               |
 
 Compose from primitives before adding new abstractions.

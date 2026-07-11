@@ -27,11 +27,6 @@ export type Formation = {
 
 export const DIAMOND_RADIUS = 3;
 
-/** Manhattan distance from the grid center — used for entrance stagger order. */
-export function manhattan(dot: Pick<FormationDot, "x" | "y">) {
-  return Math.abs(dot.x) + Math.abs(dot.y);
-}
-
 /**
  * Round trig-derived coordinates to a fixed precision. `Math.cos`/`Math.sin`
  * can differ in their last bit between the server's and the browser's libm,

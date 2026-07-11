@@ -12,9 +12,9 @@ type DeliveryTimelineProps = {
 };
 
 /**
- * Dot-to-line formation — five phases on one hairline. The line draws left
- * to right, dots pop in sequence, numerals rise. Step 5 carries the red
- * accent (support/protection semantics, matching the story's convention).
+ * Dot-to-line formation — five phases on one hairline. The line establishes
+ * reading order and dots fade in once. Step 5 carries the red accent
+ * (support/protection semantics, matching the story's convention).
  */
 export function DeliveryTimeline({ steps }: DeliveryTimelineProps) {
   const reduced = useReducedMotionPreference();
@@ -33,7 +33,7 @@ export function DeliveryTimeline({ steps }: DeliveryTimelineProps) {
           initial={reduced ? false : { scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={revealViewport}
-          transition={{ duration: motionDuration.trace, ease: motionEase.out }}
+          transition={{ duration: motionDuration.medium, ease: motionEase.out }}
           style={{ width: "100%" }}
         />
         <ol className="grid grid-cols-5 gap-6">
@@ -45,13 +45,13 @@ export function DeliveryTimeline({ steps }: DeliveryTimelineProps) {
                 style={{
                   backgroundColor: isLast(index) ? DOT_COLORS.red : DOT_COLORS.blue,
                 }}
-                initial={reduced ? false : { scale: 0 }}
-                whileInView={{ scale: 1 }}
+                initial={reduced ? false : { opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={revealViewport}
                 transition={{
                   duration: motionDuration.medium,
                   ease: motionEase.out,
-                  delay: index * 0.06,
+                  delay: index * 0.04,
                 }}
               />
               <p className="text-[length:var(--type-numeral)] font-semibold leading-none tracking-[var(--tracking-title)] text-graphite">

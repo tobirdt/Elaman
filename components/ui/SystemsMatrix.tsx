@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { DOT_COLORS } from "@/components/ui/DotMatrix";
-import { motionEase } from "@/lib/motion/presets";
+import { motionDuration, motionEase } from "@/lib/motion/presets";
 import type { ContentCard } from "@/types/site";
 
 type SystemsMatrixProps = {
@@ -97,7 +97,9 @@ export function SystemsMatrix({
             initial={reduced ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={
-              reduced ? { duration: 0 } : { duration: 0.32, ease: motionEase.out }
+              reduced
+                ? { duration: 0 }
+                : { duration: motionDuration.medium, ease: motionEase.out }
             }
           />
         ) : null}
@@ -119,7 +121,9 @@ export function SystemsMatrix({
               animate={{ scale: isActive ? 1.5 : 1, fillOpacity: isActive ? 1 : 0.28 }}
               style={{ transformOrigin: position.x + "px " + position.y + "px" }}
               transition={
-                reduced ? { duration: 0 } : { duration: 0.24, ease: motionEase.out }
+                reduced
+                  ? { duration: 0 }
+                  : { duration: motionDuration.state, ease: motionEase.out }
               }
             />
           );

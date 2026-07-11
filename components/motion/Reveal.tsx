@@ -42,7 +42,7 @@ export function Reveal({
       whileInView="visible"
       viewport={revealViewport}
       variants={variant === "rise" ? riseVariants : revealVariants}
-      transition={{ duration: motionDuration.reveal, ease: motionEase.out, delay }}
+      transition={{ duration: motionDuration.medium, ease: motionEase.out, delay }}
     >
       {children}
     </motion.div>

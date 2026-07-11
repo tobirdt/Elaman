@@ -18,8 +18,7 @@ const DOT_R = 4.5;
 
 /**
  * The page's single red formation — a defensive ring around the protected
- * principal. Ring dots light up sequentially clockwise, then the red center
- * settles. Fires once when the dark band enters the viewport.
+ * principal. It has one quiet entrance when the dark band enters view.
  */
 export function ProtectionPerimeter({ className = "" }: ProtectionPerimeterProps) {
   const reduced = useReducedMotionPreference();
@@ -48,55 +47,31 @@ export function ProtectionPerimeter({ className = "" }: ProtectionPerimeterProps
   const height = (maxY - minY) * PITCH;
 
   return (
-    <svg
+    <motion.svg
       viewBox={`0 0 ${width} ${height}`}
       className={className}
       aria-hidden="true"
       focusable="false"
+      initial={{ opacity: 0.001 }}
+      whileInView={{ opacity: 1 }}
+      viewport={revealViewport}
+      transition={{ duration: motionDuration.medium, ease: motionEase.out }}
     >
       {formation.dots.map((dot, index) => {
         const cx = (dot.x - minX) * PITCH;
         const cy = (dot.y - minY) * PITCH;
 
-        if (dot.tone === "red") {
-          return (
-            <motion.circle
-              key={index}
-              cx={cx}
-              cy={cy}
-              r={DOT_R + 1.5}
-              fill={DOT_COLORS.red}
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={revealViewport}
-              style={{ transformOrigin: `${cx}px ${cy}px` }}
-              transition={{
-                duration: motionDuration.medium,
-                ease: motionEase.out,
-                delay: 0.32,
-              }}
-            />
-          );
-        }
-
         return (
-          <motion.circle
+          <circle
             key={index}
             cx={cx}
             cy={cy}
-            r={DOT_R}
-            fill={DOT_COLORS.inkOnDark}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.32 }}
-            viewport={revealViewport}
-            transition={{
-              duration: motionDuration.state,
-              ease: motionEase.out,
-              delay: Math.min(index * 0.016, 0.28),
-            }}
+            r={dot.tone === "red" ? DOT_R + 1.5 : DOT_R}
+            fill={dot.tone === "red" ? DOT_COLORS.red : DOT_COLORS.inkOnDark}
+            fillOpacity={dot.tone === "red" ? 1 : 0.32}
           />
         );
       })}
-    </svg>
+    </motion.svg>
   );
 }

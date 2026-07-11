@@ -1,10 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
-import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroDotField } from "@/components/ui/HeroDotField";
@@ -24,28 +22,15 @@ const entranceItem = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: motionDuration.entrance, ease: motionEase.out },
+    transition: { duration: motionDuration.slow, ease: motionEase.out },
   },
 } as const;
 
 export function HeroSection({ locale, content }: HeroSectionProps) {
-  const reduced = useReducedMotionPreference();
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const fieldY = useTransform(scrollYProgress, [0.25, 0.95], [0, -16]);
-
   return (
     <Section id="hero" variant="hero-screen" className="relative overflow-hidden">
       <Container className="w-full">
-        <motion.div
-          ref={heroRef}
-          initial={false}
-          animate="visible"
-          variants={staggerContainer(0.08)}
-        >
+        <motion.div initial={false} animate="visible" variants={staggerContainer(0.08)}>
           <motion.div
             variants={entranceItem}
             className="flex items-baseline justify-between gap-4 border-t border-[var(--border-hairline)] pt-3"
@@ -119,10 +104,7 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
               </motion.div>
             </motion.div>
 
-            <motion.div
-              className="relative hidden lg:block"
-              style={reduced ? undefined : { y: fieldY }}
-            >
+            <div className="relative hidden lg:block">
               <div className="overflow-hidden">
                 <HeroDotField
                   delayBase={0.35}
@@ -160,7 +142,7 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
                   </ol>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           <motion.dl

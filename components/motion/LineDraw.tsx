@@ -24,8 +24,7 @@ const accentClasses = {
 } as const;
 
 /**
- * A hairline that draws itself from the left when it enters the viewport.
- * The per-section accent moment of the reveal system.
+ * A once-only hairline draw for section orientation.
  */
 export function LineDraw({
   className = "",
@@ -50,7 +49,7 @@ export function LineDraw({
       whileInView="visible"
       viewport={revealViewport}
       variants={lineDrawVariants}
-      transition={{ duration: motionDuration.trace, ease: motionEase.out, delay }}
+      transition={{ duration: motionDuration.medium, ease: motionEase.out, delay }}
     />
   );
 }
