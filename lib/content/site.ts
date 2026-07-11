@@ -314,32 +314,32 @@ export const siteContent = {
     },
     capabilities: {
       label: "Services",
-      title: "Advice, surveillance, protection, and sustained support.",
-      body: "Elaman's services follow the structure established over more than two decades: specialised advice, surveillance-related systems and communications, protection and countermeasures, supported by professional training and after-sales service.",
+      title: "Advice, observation, protection, and sustained support.",
+      body: "Elaman's services follow the structure established over more than two decades: specialised advice, observation-related systems and communications, protection for sensitive environments, complemented by professional training and after-sales service.",
       items: [
         {
           eyebrow: "01",
           title: "Advice",
           description:
-            "High-quality technical advice for selecting and combining products, services, and operational support, based on extensive knowledge of government security and safety requirements.",
+            "Technical advice for selecting and combining systems, services, and operational support, based on long-standing knowledge of institutional security and safety requirements.",
         },
         {
           eyebrow: "02",
-          title: "Surveillance",
+          title: "Observation & communications",
           description:
-            "Surveillance-related systems and secure communications for authorised applications, including network-based, private, wireless, cellular, and satellite communications.",
+            "Observation-related systems and communications for authorised applications, including network-based, private, wireless, cellular, and satellite communications.",
         },
         {
           eyebrow: "03",
           title: "Protection",
           description:
-            "Protection solutions and countermeasure systems for personnel, facilities, and restricted environments where confidentiality and operational safety are required.",
+            "Protection-related solutions for personnel, facilities, and sensitive environments where confidentiality and operational reliability matter.",
         },
         {
           eyebrow: "04",
           title: "Training & Support",
           description:
-            "In-depth training, technical services, and high-quality after-sales service so client teams can operate and maintain implemented systems.",
+            "In-depth training, technical services, and sustained after-sales support to help teams operate and maintain implemented systems.",
         },
       ],
     },
@@ -687,31 +687,31 @@ export const siteContent = {
     capabilities: {
       label: "Leistungen",
       title: "Beratung, Observation, Schutz und kontinuierliche Betreuung.",
-      body: "Die Leistungen von Elaman folgen der seit über zwei Jahrzehnten etablierten Struktur: spezialisierte Beratung, observationstechnische Systeme und Kommunikation, Schutz und Gegenmaßnahmen, ergänzt durch professionelle Schulungen und After-Sales-Service.",
+      body: "Die Leistungen von Elaman folgen der seit über zwei Jahrzehnten etablierten Struktur: spezialisierte Beratung, observationstechnische Systeme und Kommunikation, Schutz für sensible Umgebungen — ergänzt durch professionelle Schulungen und After-Sales-Service.",
       items: [
         {
           eyebrow: "01",
           title: "Beratung",
           description:
-            "Hochwertige technische Beratung zur Auswahl und Kombination von Produkten, Dienstleistungen und operativer Unterstützung, auf Basis umfassenden Wissens über staatliche Sicherheits- und Schutzanforderungen.",
+            "Technische Beratung zur Auswahl und Kombination von Systemen, Dienstleistungen und operativer Unterstützung, auf Basis langjähriger Kenntnisse institutioneller Sicherheits- und Schutzanforderungen.",
         },
         {
           eyebrow: "02",
           title: "Observation & Kommunikation",
           description:
-            "Observationstechnische Systeme und sichere Kommunikation für autorisierte Anwendungen, einschließlich netzwerk-, privat-, drahtlos-, mobilfunk- und satellitengestützter Kommunikation.",
+            "Observationstechnische Systeme und Kommunikation für autorisierte Anwendungen, einschließlich netzwerk-, privat-, drahtlos-, mobilfunk- und satellitengestützter Kommunikation.",
         },
         {
           eyebrow: "03",
           title: "Schutz",
           description:
-            "Schutzlösungen und Gegenmaßnahmensysteme für Personal, Einrichtungen und geschützte Umgebungen, in denen Vertraulichkeit und operative Sicherheit erforderlich sind.",
+            "Schutzbezogene Lösungen für Personal, Einrichtungen und sensible Umgebungen, in denen Vertraulichkeit und betriebliche Zuverlässigkeit entscheidend sind.",
         },
         {
           eyebrow: "04",
-          title: "Training & Support",
+          title: "Training & Betreuung",
           description:
-            "Fundierte Schulungen, technische Dienstleistungen und hochwertiger After-Sales-Service, damit Kundenteams implementierte Systeme sicher bedienen und erhalten können.",
+            "Fundierte Schulungen, technische Dienstleistungen und kontinuierliche After-Sales-Betreuung, damit Teams implementierte Systeme sicher bedienen und erhalten können.",
         },
       ],
     },

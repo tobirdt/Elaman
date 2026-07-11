@@ -1,4 +1,5 @@
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { CapabilityMark } from "@/components/ui/CapabilityMark";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -9,9 +10,9 @@ type CapabilityOverviewProps = {
   content: LocalizedSiteContent["capabilities"];
 };
 
-export function CapabilityOverview({ content }: CapabilityOverviewProps) {
-  const redIndex = 2;
+const protectionIndex = 2;
 
+export function CapabilityOverview({ content }: CapabilityOverviewProps) {
   return (
     <Section id="capabilities" variant="content-band">
       <Container>
@@ -22,29 +23,36 @@ export function CapabilityOverview({ content }: CapabilityOverviewProps) {
             <SectionHeader body={content.body} title={content.title} width="copy" />
           </Reveal>
 
-          <RevealGroup className="mt-10" stagger={0.09}>
+          <RevealGroup
+            className="mt-10 border-t border-[var(--border-hairline)]"
+            stagger={0.09}
+          >
             {content.items.map((item, index) => (
-              <RevealItem key={item.title}>
-                <article className="group grid grid-cols-[3rem_1fr] items-baseline gap-x-6 gap-y-3 border-t border-[var(--border-hairline)] py-6 transition-colors [transition-duration:var(--motion-fast)] sm:grid-cols-[4rem_minmax(0,1fr)_minmax(0,1.4fr)] sm:items-start sm:gap-x-8 sm:hover:bg-[var(--surface-paper-soft)]">
+              <RevealItem
+                key={item.title}
+                className="border-b border-[var(--border-hairline)]"
+              >
+                <article className="grid grid-cols-[2rem_2.75rem_minmax(0,1fr)] gap-x-3 gap-y-3 py-6 sm:grid-cols-[2.5rem_3.5rem_minmax(10rem,0.72fr)_minmax(0,1.28fr)] sm:gap-x-6 sm:py-7">
                   <span
-                    className={`font-mono-label transition-colors [transition-duration:var(--motion-fast)] ${
-                      index === redIndex
+                    className={[
+                      "font-mono-label pt-1.5",
+                      index === protectionIndex
                         ? "text-elaman-red"
-                        : "text-graphite-soft group-hover:text-elaman-blue"
-                    }`}
+                        : "text-graphite-soft",
+                    ].join(" ")}
                   >
                     {item.eyebrow ?? String(index + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
+                  <CapabilityMark index={index} className="mt-0.5" />
+                  <h3 className="text-balance text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
                     {item.title}
                   </h3>
-                  <p className="col-span-2 text-base leading-7 text-graphite-muted sm:col-span-1">
+                  <p className="col-span-3 pl-[4.75rem] text-base leading-7 text-graphite-muted sm:col-auto sm:pl-0">
                     {item.description}
                   </p>
                 </article>
               </RevealItem>
             ))}
-            <div className="rule-hairline" aria-hidden="true" />
           </RevealGroup>
         </div>
       </Container>

@@ -185,8 +185,8 @@ Mapped to original service areas. **Contact** is its own page section (`#contact
 | | English | Deutsch |
 |---|---------|---------|
 | Label | `Services` | `Leistungen` |
-| Title | `Advice, surveillance, protection, and sustained support.` | `Beratung, Observation, Schutz und kontinuierliche Betreuung.` |
-| Body | `Elaman's services follow the structure established over more than two decades: specialised advice, surveillance-related systems and communications, protection and countermeasures, supported by professional training and after-sales service.` | `Die Leistungen von Elaman folgen der seit über zwei Jahrzehnten etablierten Struktur: spezialisierte Beratung, observationstechnische Systeme und Kommunikation, Schutz und Gegenmaßnahmen — ergänzt durch professionelle Schulungen und After-Sales-Service.` |
+| Title | `Advice, observation, protection, and sustained support.` | `Beratung, Observation, Schutz und kontinuierliche Betreuung.` |
+| Body | `Elaman's services follow the structure established over more than two decades: specialised advice, observation-related systems and communications, protection for sensitive environments, complemented by professional training and after-sales service.` | `Die Leistungen von Elaman folgen der seit über zwei Jahrzehnten etablierten Struktur: spezialisierte Beratung, observationstechnische Systeme und Kommunikation, Schutz für sensible Umgebungen — ergänzt durch professionelle Schulungen und After-Sales-Service.` |
 
 **Cards**
 
@@ -195,28 +195,28 @@ Mapped to original service areas. **Contact** is its own page section (`#contact
 | EN | DE |
 |----|-----|
 | **Title:** Advice | **Title:** Beratung |
-| **Description:** High-quality technical advice for selecting and combining products, services, and operational support — based on extensive knowledge of government security and safety requirements. | **Description:** Hochwertige technische Beratung zur Auswahl und Kombination von Produkten, Dienstleistungen und operativer Unterstützung — auf Basis umfassenden Wissens über staatliche Sicherheits- und Schutzanforderungen. |
+| **Description:** Technical advice for selecting and combining systems, services, and operational support — based on long-standing knowledge of institutional security and safety requirements. | **Description:** Technische Beratung zur Auswahl und Kombination von Systemen, Dienstleistungen und operativer Unterstützung — auf Basis langjähriger Kenntnisse institutioneller Sicherheits- und Schutzanforderungen. |
 
 ### 02 — Surveillance / Observation
 
 | EN | DE |
 |----|-----|
-| **Title:** Surveillance | **Title:** Observation |
-| **Description:** Surveillance-related systems and secure communications for authorised applications — including network-based, private, wireless, cellular, and satellite communications. | **Description:** Observationstechnische Systeme und sichere Kommunikation für autorisierte Anwendungen — einschließlich netzwerk-, privat-, drahtlos-, mobilfunk- und satellitengestützter Kommunikation. |
+| **Title:** Observation & communications | **Title:** Observation & Kommunikation |
+| **Description:** Observation-related systems and communications for authorised applications — including network-based, private, wireless, cellular, and satellite communications. | **Description:** Observationstechnische Systeme und Kommunikation für autorisierte Anwendungen — einschließlich netzwerk-, privat-, drahtlos-, mobilfunk- und satellitengestützter Kommunikation. |
 
 ### 03 — Protection / Schutz
 
 | EN | DE |
 |----|-----|
 | **Title:** Protection | **Title:** Schutz |
-| **Description:** Protection solutions and countermeasure systems for personnel, facilities, and restricted environments where confidentiality and operational safety are required. | **Description:** Schutzlösungen und Gegenmaßnahmensysteme für Personal, Einrichtungen und geschützte Umgebungen, in denen Vertraulichkeit und operative Sicherheit erforderlich sind. |
+| **Description:** Protection-related solutions for personnel, facilities, and sensitive environments where confidentiality and operational reliability matter. | **Description:** Schutzbezogene Lösungen für Personal, Einrichtungen und sensible Umgebungen, in denen Vertraulichkeit und betriebliche Zuverlässigkeit entscheidend sind. |
 
 ### 04 — Training & Support / Training & Betreuung
 
 | EN | DE |
 |----|-----|
 | **Title:** Training & Support | **Title:** Training & Betreuung |
-| **Description:** In-depth training, technical services, and high-quality after-sales service so client teams can operate and maintain implemented systems. | **Description:** Fundierte Schulungen, technische Dienstleistungen und hochwertiger After-Sales-Service, damit Kundenteams implementierte Systeme sicher bedienen und erhalten können. |
+| **Description:** In-depth training, technical services, and sustained after-sales support to help teams operate and maintain implemented systems. | **Description:** Fundierte Schulungen, technische Dienstleistungen und kontinuierliche After-Sales-Betreuung, damit Teams implementierte Systeme sicher bedienen und erhalten können. |
 
 ---
 
