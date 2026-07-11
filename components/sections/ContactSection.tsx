@@ -71,28 +71,30 @@ export function ContactSection({ content }: ContactSectionProps) {
               />
             </div>
 
-            <div className="mt-8 border-t border-[var(--border-hairline)]">
+            <dl className="mt-8 border-t border-[var(--border-hairline)]">
               {contactRows.map((row) => (
                 <div
                   key={row.label}
                   className="grid gap-2 border-b border-[var(--border-hairline)] py-4 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-6"
                 >
-                  <p className="font-mono-label text-elaman-blue">{row.label}</p>
-                  {row.href ? (
-                    <a
-                      href={row.href}
-                      className="inline-flex min-h-11 items-center text-base leading-7 text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite"
-                    >
-                      {row.value}
-                    </a>
-                  ) : (
-                    <div className="text-base leading-7 text-graphite-muted">
-                      {row.value}
-                    </div>
-                  )}
+                  <dt className="font-mono-label text-elaman-blue">{row.label}</dt>
+                  <dd className="m-0">
+                    {row.href ? (
+                      <a
+                        href={row.href}
+                        className="inline-flex min-h-11 items-center text-base leading-7 text-graphite-muted transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite"
+                      >
+                        {row.value}
+                      </a>
+                    ) : (
+                      <div className="text-base leading-7 text-graphite-muted">
+                        {row.value}
+                      </div>
+                    )}
+                  </dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </Reveal>
 
           <Reveal className="order-1 lg:order-2" variant="rise" delay={0.06}>

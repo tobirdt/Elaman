@@ -19,7 +19,7 @@ type ContactFormErrors = Partial<Record<keyof ContactFormValues | "form", string
 type ContactApiResponse =
   | { ok: true }
   | { ok: false; error: "validation_error"; fields: ContactFormErrors }
-  | { ok: false; error: "send_failed" | "unexpected_error" };
+  | { ok: false; error: "rate_limited" | "send_failed" | "unexpected_error" };
 
 type ContactFormProps = {
   content: LocalizedSiteContent["contact"]["form"];
@@ -136,14 +136,18 @@ export function ContactForm({ content }: ContactFormProps) {
       if (payload.error === "validation_error") {
         const localizedErrors = validate(values, content);
         setErrors(
-          Object.keys(localizedErrors).length > 0 ? localizedErrors : payload.fields,
+          Object.keys(localizedErrors).length > 0
+            ? localizedErrors
+            : { form: content.errors.payload },
         );
       } else {
         setErrors({
           form:
-            payload.error === "send_failed"
-              ? content.errors.sendFailed
-              : content.errors.unexpected,
+            payload.error === "rate_limited"
+              ? content.errors.rateLimited
+              : payload.error === "send_failed"
+                ? content.errors.sendFailed
+                : content.errors.unexpected,
         });
       }
       setStatus("error");

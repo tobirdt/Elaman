@@ -385,6 +385,7 @@ Maps to `ContactSection` (`#contact`). Factual details only — sourced from imp
 | Submit | `Send inquiry` | `Anfrage senden` |
 | Helper | `Your inquiry is validated before email delivery.` | `Ihre Anfrage wird vor der E-Mail-Zustellung serverseitig geprüft.` |
 | Success | `Thank you. Your inquiry has been sent.` | `Vielen Dank. Ihre Anfrage wurde gesendet.` |
+| Rate limit | `Please wait a moment before sending another inquiry.` | `Bitte warten Sie einen Moment, bevor Sie eine weitere Anfrage senden.` |
 
 **Avoid in contact copy:** “secure channel”, “encrypted response”, “discreet hotline”, or any promise of classified handling unless operationally true and legally cleared.
 

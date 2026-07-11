@@ -13,6 +13,7 @@ export const runtime = "nodejs";
 type ContactApiResponse =
   | { ok: true }
   | { ok: false; error: "validation_error"; fields: ContactFieldErrors }
+  | { ok: false; error: "rate_limited" }
   | { ok: false; error: "send_failed" }
   | { ok: false; error: "unexpected_error" };
 
@@ -92,14 +93,7 @@ export async function POST(request: Request) {
   }
 
   if (isRateLimited(clientKey(request))) {
-    return json(
-      {
-        ok: false,
-        error: "validation_error",
-        fields: { form: "Too many requests. Please try again later." },
-      },
-      429,
-    );
+    return json({ ok: false, error: "rate_limited" }, 429);
   }
 
   const validation = validateContactPayload(payload);

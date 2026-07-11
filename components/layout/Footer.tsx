@@ -24,7 +24,7 @@ export function Footer({ contact, navigation, footer, locale }: FooterProps) {
         <div className="max-w-sm">
           <Image
             src="/brand/elaman-logo.png"
-            alt="Elaman German Security Solutions"
+            alt="Elaman"
             width={160}
             height={61}
             className="h-auto w-36"
@@ -42,6 +42,12 @@ export function Footer({ contact, navigation, footer, locale }: FooterProps) {
             className="mt-3 inline-flex min-h-11 items-center text-sm text-graphite-soft transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite"
           >
             {contact.phone}
+          </a>
+          <a
+            href={contact.emailHref}
+            className="inline-flex min-h-11 items-center text-sm text-graphite-soft transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:text-graphite"
+          >
+            {contact.email}
           </a>
           <p className="mt-5 text-xs text-graphite-soft">{footer.copyright}</p>
         </div>

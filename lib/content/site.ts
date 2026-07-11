@@ -27,6 +27,7 @@ type ContactFormContent = {
     messageMin: string;
     messageMax: string;
     payload: string;
+    rateLimited: string;
     sendFailed: string;
     unexpected: string;
   };
@@ -502,6 +503,7 @@ export const siteContent = {
           messageMin: "Message must be at least 20 characters.",
           messageMax: "Message must be 4000 characters or fewer.",
           payload: "The message could not be prepared. Please try again later.",
+          rateLimited: "Please wait a moment before sending another inquiry.",
           sendFailed:
             "The message could not be sent. Please use phone or email directly.",
           unexpected:
@@ -883,6 +885,8 @@ export const siteContent = {
           messageMax: "Die Nachricht darf maximal 4000 Zeichen enthalten.",
           payload:
             "Die Anfrage konnte nicht vorbereitet werden. Bitte versuchen Sie es später erneut.",
+          rateLimited:
+            "Bitte warten Sie einen Moment, bevor Sie eine weitere Anfrage senden.",
           sendFailed:
             "Die Nachricht konnte nicht gesendet werden. Bitte nutzen Sie Telefon oder E-Mail direkt.",
           unexpected:
