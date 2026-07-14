@@ -9,30 +9,20 @@ type ScrollStoryProps = {
   content: LocalizedSiteContent;
 };
 
-export function ScrollStory({ locale, content }: ScrollStoryProps) {
+export function ScrollStory({ content }: ScrollStoryProps) {
   return (
     <Section
       id="story"
       variant="screen"
       tone="white"
       modeLayout={false}
-      className="relative isolate overflow-hidden border-y border-line"
+      className="relative border-y border-[var(--border-hairline)]"
     >
-      <div
-        className="technical-grid absolute inset-x-0 top-0 h-[34rem] opacity-45"
-        aria-hidden="true"
-      />
       <div className="hidden xl:block" data-story-variant="desktop">
         <DesktopScrollStory content={content.story} />
       </div>
       <div className="xl:hidden" data-story-variant="mobile">
-        <MobileStorySequence
-          locale={locale}
-          story={content.story}
-          contact={content.contact}
-          primaryCta={content.hero.primaryCta.label}
-          secondaryCta={content.hero.secondaryCta.label}
-        />
+        <MobileStorySequence story={content.story} />
       </div>
     </Section>
   );

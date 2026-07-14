@@ -33,6 +33,9 @@ export function resolveSectionMode(mode: SectionModeInput): SectionMode {
 
 export const designTokens = {
   color: {
+    paper: "#ffffff",
+    paperSoft: "#f7f8fa",
+    navy: "#172033",
     canvas: "#ffffff",
     canvasSoft: "#f7f8fa",
     canvasMuted: "#eef1f5",
@@ -103,7 +106,7 @@ export const designTokens = {
     compact: "clamp(2.75rem, 5vw, 4.25rem)",
   },
   typography: {
-    display: "clamp(2.75rem, 7vw, 5.9rem)",
+    display: "clamp(3rem, 7.2vw, 6rem)",
     h1: "clamp(2.6rem, 5.8vw, 5.4rem)",
     h2: "clamp(2.1rem, 4.1vw, 3.75rem)",
     h3: "clamp(1.35rem, 2vw, 1.9rem)",
@@ -111,24 +114,27 @@ export const designTokens = {
     body: "1rem",
     small: "0.875rem",
     micro: "0.75rem",
+    monoLabel: "0.6875rem",
   },
   leading: {
-    display: "0.94",
+    display: "0.98",
     title: "1.04",
     body: "1.65",
   },
   tracking: {
-    display: "-0.04em",
+    display: "-0.035em",
     title: "-0.04em",
     label: "0.16em",
   },
   radius: {
-    control: "0.5rem",
+    control: "0.375rem",
     card: "0.75rem",
     panel: "0.75rem",
     pill: "999px",
   },
   surface: {
+    paper: "#ffffff",
+    paperSoft: "#f7f8fa",
     white: "#ffffff",
     soft: "#f7f8fa",
     card: "rgba(255, 255, 255, 0.84)",
@@ -138,6 +144,8 @@ export const designTokens = {
     darkPanel: "#172033",
   },
   border: {
+    hairline: "rgba(22, 24, 29, 0.12)",
+    hairlineStrong: "rgba(22, 24, 29, 0.24)",
     soft: "rgba(22, 24, 29, 0.1)",
     strong: "rgba(22, 24, 29, 0.11)",
     glass: "rgba(255, 255, 255, 0.72)",
@@ -152,10 +160,14 @@ export const designTokens = {
     panel: "0 14px 40px rgba(22, 24, 29, 0.08)",
     float: "0 24px 64px rgba(22, 24, 29, 0.1)",
     button: "0 6px 12px rgba(22, 24, 29, 0.14)",
+    overlay: "0 20px 60px rgba(22, 24, 29, 0.12)",
   },
   motion: {
+    micro: "120ms",
     fast: "180ms",
+    state: "240ms",
     medium: "300ms",
+    expand: "320ms",
     slow: "650ms",
     ease: "cubic-bezier(0.22, 1, 0.36, 1)",
     rise: "0.75rem",

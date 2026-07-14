@@ -1,324 +1,163 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useTransform, type MotionValue } from "framer-motion";
 
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
-import { Surface } from "@/components/ui/Surface";
+import { MonoLabel } from "@/components/ui/MonoLabel";
+import {
+  STORY_BOUNDS,
+  STORY_RED_INDEX,
+  storyFormations,
+  type DotTone,
+} from "@/lib/design/formations";
 import type { StoryStep } from "@/types/site";
 
 type StickyStoryStageProps = {
   activeIndex: number;
   steps: readonly StoryStep[];
   activeLayerLabel: string;
-  systemFocusLabel: string;
+  progress: MotionValue<number>;
 };
 
-const ease = [0.22, 1, 0.36, 1] as const;
-const BLUE = "var(--color-brand-blue)";
-const RED = "var(--color-brand-red)";
-const INK = "var(--color-text-primary)";
+const WIDTH = 620;
+const HEIGHT = 520;
+const PADDING = 54;
+const INK = "var(--color-graphite)";
+const BLUE = "var(--color-elaman-blue)";
+const RED = "var(--color-elaman-red)";
 
-const BRIDGE_PATH =
-  "M70 282 C110 218 148 188 190 176 C232 164 258 178 294 206 C318 224 342 196 350 132";
-const RED_PATH = "M220 246 C250 222 270 210 294 206 C318 202 338 174 350 132";
-
-const MATRIX_DOTS = [
-  { x: 82, y: 116, r: 3.7, tone: "ink", opacity: 0.18 },
-  { x: 106, y: 96, r: 4.4, tone: "ink", opacity: 0.24 },
-  { x: 132, y: 108, r: 3.6, tone: "ink", opacity: 0.18 },
-  { x: 92, y: 150, r: 4.8, tone: "ink", opacity: 0.25 },
-  { x: 120, y: 146, r: 5.2, tone: "blue", opacity: 0.35 },
-  { x: 150, y: 150, r: 4.7, tone: "ink", opacity: 0.24 },
-  { x: 76, y: 188, r: 3.5, tone: "ink", opacity: 0.16 },
-  { x: 106, y: 190, r: 4.6, tone: "ink", opacity: 0.23 },
-  { x: 136, y: 184, r: 5.1, tone: "red", opacity: 0.36 },
-  { x: 164, y: 202, r: 3.8, tone: "ink", opacity: 0.2 },
-  { x: 92, y: 228, r: 3.5, tone: "ink", opacity: 0.14 },
-  { x: 122, y: 232, r: 4.1, tone: "ink", opacity: 0.2 },
-] as const;
-
-const STAGE_NODES = [
-  { x: 70, y: 282, tone: "blue" },
-  { x: 132, y: 196, tone: "blue" },
-  { x: 190, y: 176, tone: "blue" },
-  { x: 248, y: 176, tone: "blue" },
-  { x: 294, y: 206, tone: "red" },
-  { x: 350, y: 132, tone: "blue" },
-] as const;
-
-function stepOpacity(activeIndex: number, index: number) {
-  if (activeIndex === index) {
-    return 1;
-  }
-
-  return activeIndex > index ? 0.78 : 0.28;
+function mapX(value: number) {
+  return (
+    PADDING +
+    ((value - STORY_BOUNDS.minX) / (STORY_BOUNDS.maxX - STORY_BOUNDS.minX)) *
+      (WIDTH - PADDING * 2)
+  );
 }
 
-function stepRadius(activeIndex: number, index: number) {
-  if (activeIndex === index) {
-    return 10;
-  }
+function mapY(value: number) {
+  return (
+    PADDING +
+    ((value - STORY_BOUNDS.minY) / (STORY_BOUNDS.maxY - STORY_BOUNDS.minY)) *
+      (HEIGHT - PADDING * 2)
+  );
+}
 
-  return activeIndex > index ? 8 : 6;
+function interpolateDot(progress: number, index: number, axis: "x" | "y") {
+  const scaled = Math.min(storyFormations.length - 1, Math.max(0, progress * 5));
+  const fromIndex = Math.floor(scaled);
+  const toIndex = Math.min(storyFormations.length - 1, fromIndex + 1);
+  const local = scaled - fromIndex;
+  const from = storyFormations[fromIndex]?.dots[index]?.[axis] ?? 0;
+  const to = storyFormations[toIndex]?.dots[index]?.[axis] ?? from;
+
+  return from + (to - from) * local;
+}
+
+function FormationDot({
+  index,
+  progress,
+  tone,
+}: {
+  index: number;
+  progress: MotionValue<number>;
+  tone: DotTone;
+}) {
+  const cx = useTransform(progress, (value) => mapX(interpolateDot(value, index, "x")));
+  const cy = useTransform(progress, (value) => mapY(interpolateDot(value, index, "y")));
+  const color = tone === "blue" ? BLUE : tone === "red" ? RED : INK;
+
+  return (
+    <motion.circle
+      cx={cx}
+      cy={cy}
+      r={tone === "ink" ? 5 : 6.5}
+      fill={color}
+      animate={{ opacity: tone === "ink" ? 0.24 : 1 }}
+    />
+  );
 }
 
 export function StickyStoryStage({
   activeIndex,
   steps,
   activeLayerLabel,
-  systemFocusLabel,
+  progress,
 }: StickyStoryStageProps) {
   const reduced = useReducedMotionPreference();
+  const formation = storyFormations[activeIndex] ?? storyFormations[0];
   const activeStep = steps[activeIndex] ?? steps[0];
-  const progress = steps.length > 1 ? activeIndex / (steps.length - 1) : 1;
-  const redProgress = activeIndex >= 4 ? Math.min(1, (activeIndex - 3) / 2) : 0;
-  const traceTransition = reduced ? { duration: 0 } : { duration: 0.48, ease };
-  const textTransition = reduced ? { duration: 0 } : { duration: 0.24, ease };
 
   return (
-    <Surface
-      className="relative min-h-[28rem] overflow-hidden p-5 sm:p-7 xl:h-[calc(100vh-13rem)] xl:min-h-[34rem]"
-      variant="strongGlass"
-    >
-      <div className="technical-grid absolute inset-0 opacity-42" aria-hidden="true" />
-      <div className="absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-elaman-blue/24 to-transparent" />
-      <div className="absolute bottom-6 left-6 right-6 h-px bg-gradient-to-r from-transparent via-elaman-red/18 to-transparent" />
+    <figure className="relative min-h-[32rem] border-x border-[var(--border-hairline)]">
+      <div className="absolute inset-x-0 top-1/2 h-px bg-[var(--border-hairline)]" />
+      <div className="absolute left-1/2 top-0 h-full w-px bg-[var(--border-hairline)]" />
+      <motion.div
+        className="absolute left-0 top-[18%] h-0.5 w-[41%] origin-left bg-elaman-blue"
+        initial={reduced ? false : { scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={reduced ? { duration: 0 } : { duration: 0.5 }}
+        aria-hidden="true"
+      />
+
+      <div className="absolute inset-x-6 top-6 z-10 flex items-start justify-between gap-4">
+        <div>
+          <MonoLabel>{activeLayerLabel}</MonoLabel>
+          <p className="mt-2 font-mono text-[0.66rem] uppercase tracking-[0.12em] text-graphite-soft">
+            {activeStep.eyebrow}
+          </p>
+        </div>
+        <p className="font-mono text-[0.66rem] tabular-nums text-graphite-soft">
+          {String(activeIndex + 1).padStart(2, "0")} /{" "}
+          {String(steps.length).padStart(2, "0")}
+        </p>
+      </div>
 
       <svg
-        viewBox="0 0 420 420"
+        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         className="absolute inset-0 h-full w-full"
-        fill="none"
         aria-hidden="true"
-        preserveAspectRatio="xMidYMid slice"
       >
-        <defs>
-          <linearGradient id="storyBridgeBlue" x1="70" y1="282" x2="350" y2="132">
-            <stop offset="0" stopColor={BLUE} stopOpacity="0.08" />
-            <stop offset="0.48" stopColor={BLUE} stopOpacity="0.62" />
-            <stop offset="1" stopColor={BLUE} stopOpacity="0.22" />
-          </linearGradient>
-          <linearGradient id="storyBridgeRed" x1="220" y1="246" x2="350" y2="132">
-            <stop offset="0" stopColor={RED} stopOpacity="0.05" />
-            <stop offset="0.72" stopColor={RED} stopOpacity="0.58" />
-            <stop offset="1" stopColor={RED} stopOpacity="0.22" />
-          </linearGradient>
-        </defs>
+        {formation.edges?.map(([from, to]) => {
+          const start = formation.dots[from];
+          const end = formation.dots[to];
 
-        <path
-          d="M52 70 H338 C358 70 372 84 372 104 V330"
-          stroke={INK}
-          strokeWidth="1"
-          strokeOpacity="0.08"
-          strokeLinecap="round"
-        />
-        <path
-          d="M52 330 H372"
-          stroke={INK}
-          strokeWidth="1"
-          strokeOpacity="0.07"
-          strokeDasharray="2 10"
-        />
-        <path
-          d="M52 240 H332"
-          stroke={BLUE}
-          strokeWidth="0.8"
-          strokeOpacity="0.08"
-          strokeDasharray="2 12"
-        />
+          if (!start || !end) return null;
 
-        <g>
-          {MATRIX_DOTS.map((dot) => {
-            const fill = dot.tone === "red" ? RED : dot.tone === "blue" ? BLUE : INK;
+          return (
+            <line
+              key={`${from}-${to}`}
+              x1={mapX(start.x)}
+              y1={mapY(start.y)}
+              x2={mapX(end.x)}
+              y2={mapY(end.y)}
+              stroke={INK}
+              strokeOpacity="0.12"
+            />
+          );
+        })}
+        {formation.dots.map((dot, index) => {
+          const redVisible = index === STORY_RED_INDEX && activeIndex >= 3;
+          const tone = redVisible ? "red" : dot.tone === "blue" ? "blue" : "ink";
 
-            return (
-              <circle
-                key={`${dot.x}-${dot.y}`}
-                cx={dot.x}
-                cy={dot.y}
-                r={dot.r}
-                fill={fill}
-                fillOpacity={dot.opacity}
-              />
-            );
-          })}
-        </g>
-
-        <path
-          d={BRIDGE_PATH}
-          stroke={BLUE}
-          strokeWidth="7"
-          strokeOpacity="0.04"
-          strokeLinecap="round"
-        />
-        <path
-          d={BRIDGE_PATH}
-          stroke={BLUE}
-          strokeWidth="1"
-          strokeLinecap="round"
-          strokeOpacity="0.12"
-          strokeDasharray="4 12"
-        />
-        <motion.path
-          d={BRIDGE_PATH}
-          stroke="url(#storyBridgeBlue)"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          initial={false}
-          animate={{ pathLength: progress, opacity: 0.78 }}
-          transition={traceTransition}
-        />
-
-        <path
-          d={RED_PATH}
-          stroke={RED}
-          strokeWidth="6"
-          strokeOpacity="0.035"
-          strokeLinecap="round"
-        />
-        <motion.path
-          d={RED_PATH}
-          stroke="url(#storyBridgeRed)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          initial={false}
-          animate={{ pathLength: redProgress, opacity: activeIndex >= 4 ? 0.74 : 0 }}
-          transition={traceTransition}
-        />
-
-        <g>
-          {STAGE_NODES.map((node, index) => {
-            const active = activeIndex >= index;
-            const current = activeIndex === index;
-            const color = node.tone === "red" ? RED : BLUE;
-
-            return (
-              <g key={`${node.x}-${node.y}`}>
-                <motion.circle
-                  cx={node.x}
-                  cy={node.y}
-                  fill="none"
-                  stroke={color}
-                  strokeWidth="0.9"
-                  initial={false}
-                  animate={{
-                    r: stepRadius(activeIndex, index),
-                    opacity: active ? (current ? 0.2 : 0.12) : 0.06,
-                  }}
-                  transition={traceTransition}
-                />
-                <motion.circle
-                  cx={node.x}
-                  cy={node.y}
-                  fill={color}
-                  initial={false}
-                  animate={{
-                    r: current ? 4.5 : active ? 3.8 : 3.2,
-                    opacity: stepOpacity(activeIndex, index),
-                  }}
-                  transition={traceTransition}
-                />
-              </g>
-            );
-          })}
-        </g>
-
-        <g stroke={INK} strokeLinecap="round" strokeOpacity="0.1">
-          <path d="M248 104 H330" />
-          <path d="M248 120 H306" />
-          <path d="M238 288 H338" />
-          <path d="M238 304 H296" />
-        </g>
-
-        <path
-          d="M18 18 H36 M18 18 V36"
-          stroke={BLUE}
-          strokeWidth="1.2"
-          strokeOpacity="0.18"
-          strokeLinecap="round"
-        />
-        <path
-          d="M402 18 H384 M402 18 V36"
-          stroke={BLUE}
-          strokeWidth="1.2"
-          strokeOpacity="0.16"
-          strokeLinecap="round"
-        />
-        <path
-          d="M18 402 H36 M18 402 V384"
-          stroke={BLUE}
-          strokeWidth="1.2"
-          strokeOpacity="0.16"
-          strokeLinecap="round"
-        />
-        <path
-          d="M402 402 H384 M402 402 V384"
-          stroke={RED}
-          strokeWidth="1.2"
-          strokeOpacity="0.16"
-          strokeLinecap="round"
-        />
+          return reduced ? (
+            <circle
+              key={index}
+              cx={mapX(dot.x)}
+              cy={mapY(dot.y)}
+              r={tone === "ink" ? 5 : 6.5}
+              fill={tone === "blue" ? BLUE : tone === "red" ? RED : INK}
+              fillOpacity={tone === "ink" ? 0.24 : 1}
+            />
+          ) : (
+            <FormationDot key={index} index={index} progress={progress} tone={tone} />
+          );
+        })}
       </svg>
 
-      <div className="relative z-10 flex h-full min-h-[25rem] flex-col justify-between xl:min-h-full">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-elaman-blue">
-              {activeLayerLabel}
-            </p>
-            <motion.p
-              key={activeStep.id}
-              initial={reduced ? false : { opacity: 0.001, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={textTransition}
-              className="mt-1.5 text-sm leading-6 text-graphite-muted"
-            >
-              {activeStep.eyebrow}
-            </motion.p>
-          </div>
-          <div className="rounded-[var(--radius-pill)] border border-[var(--border-soft)] bg-[var(--surface-card)] px-3 py-1.5 text-xs font-semibold tabular-nums text-graphite-soft">
-            {String(activeIndex + 1).padStart(2, "0")} /{" "}
-            {String(steps.length).padStart(2, "0")}
-          </div>
-        </div>
-
-        <div className="flex-1" />
-
-        <div>
-          <p className="text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-graphite-soft">
-            {systemFocusLabel}
-          </p>
-          <motion.h3
-            key={`title-${activeStep.id}`}
-            initial={reduced ? false : { opacity: 0.001, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={textTransition}
-            className="mt-2 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite"
-          >
-            {activeStep.title}
-          </motion.h3>
-          <div className="mt-3.5 grid gap-1.5 sm:grid-cols-2">
-            {activeStep.bullets.slice(0, 4).map((bullet, bIndex) => (
-              <motion.div
-                key={bullet}
-                initial={reduced ? false : { opacity: 0.001 }}
-                animate={{ opacity: 1 }}
-                transition={
-                  reduced
-                    ? { duration: 0 }
-                    : { duration: 0.22, delay: bIndex * 0.03, ease }
-                }
-                className="flex items-center gap-2.5 rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-[var(--surface-soft)] px-3 py-2"
-              >
-                <span
-                  className={`size-1.5 shrink-0 rounded-full ${activeIndex >= 4 && bIndex === 0 ? "bg-elaman-red" : "bg-elaman-blue"}`}
-                  aria-hidden="true"
-                />
-                <p className="text-xs font-medium text-graphite-muted">{bullet}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </Surface>
+      <figcaption className="absolute inset-x-6 bottom-6 flex items-center justify-between gap-4 border-t border-[var(--border-hairline)] pt-3 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-graphite-soft">
+        <span>{activeStep.id}</span>
+        <span>{String(activeIndex + 1).padStart(2, "0")}</span>
+      </figcaption>
+    </figure>
   );
 }
