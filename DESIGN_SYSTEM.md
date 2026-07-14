@@ -1,368 +1,392 @@
-# Elaman GmbH — Design System
+# Elaman GmbH — Precision Dossier Design System
+
+Implementation reference for the current Elaman website. The canonical sources are app/globals.css, lib/design/tokens.ts, lib/design/formations.ts, and lib/motion/presets.ts. This document describes that code; it does not supersede it.
 
-Technical specification for the Elaman corporate website. Governs tokens, layout, motion, and components.
+## 1. System thesis
 
-**Read first:** `DESIGN_DIRECTION.md` (approved vision) · `CONTENT_BLUEPRINT.md` (copy) · `IMPLEMENTATION_PLAN.md` (build order)
+The visual system is a white-first, institutional “Precision Dossier”:
 
-Token implementation: `lib/design/tokens.ts` and `app/globals.css`.
+- flat paper instead of simulated glass;
+- hairline registers instead of card shadows;
+- sharp 2px panels instead of soft SaaS rounding;
+- Geist and Geist Mono instead of decorative brand-font substitutions;
+- logo-derived dot formations instead of generic technical grids;
+- deliberate oversized figures instead of badge walls;
+- sparse Elaman blue and protection-only red instead of broad accent colour.
 
----
+The result should feel engineered, calm, factual, and distinctive at procurement distance.
 
-## 1. Visual direction
+## 2. Canonical tokens
 
-### Positioning
+The CSS custom properties in app/globals.css and the typed mirror in lib/design/tokens.ts must stay identical. Never add a one-off colour, radius, duration, or container value in a component when a token exists.
+
+### Colour
+
+| Semantic token | CSS token | Value | Use |
+|---|---|---:|---|
+| paper | --color-paper | #ffffff | Primary canvas |
+| paper-soft | --color-paper-soft | #f7f8fa | Quiet section or inset contrast |
+| line | --color-line | rgba(22, 24, 29, 0.12) | Default hairline |
+| graphite | --color-graphite | #16181d | Primary ink and text |
+| graphite-muted | --color-graphite-muted | #555d6b | Body and secondary text |
+| graphite-soft | --color-graphite-soft | #667286 | Metadata and tertiary text |
+| elaman-blue | --color-elaman-blue | #244074 | Elaman, focus, active state |
+| elaman-red | --color-elaman-red | #d83034 | Protection semantics |
+| red-on-dark | --color-elaman-red-on-dark | #ff6b6f | Accessible protection accent on navy |
+| navy | --color-navy | #172033 | Selective dark band |
+| on-dark | --color-on-dark | #f7f8fa | Primary content on navy |
+| on-dark-muted | --color-on-dark-muted | #c7d0dc | Secondary content on navy |
 
-Elaman GmbH is a **premium, minimal, institutional** communications and security engineering partner for public authorities and security-sector clients — not a SaaS product, not a cyberpunk vendor, not a startup template.
+Action and selection tokens:
 
-### Design personality
+| Token | Value |
+|---|---:|
+| --color-action-primary | #16181d |
+| --color-action-primary-hover | #244074 |
+| --color-on-primary | #ffffff |
+| --color-selection | rgba(36, 64, 116, 0.16) |
 
-| Attribute        | Expression                                                 |
-| ---------------- | ---------------------------------------------------------- |
-| Government-grade | Restrained palette, formal typography, sourced claims only |
-| Calm             | Large whitespace, slow motion, low visual noise            |
-| Precise          | Grid-aligned layout, consistent spacing, technical labels  |
-| Technical        | Diagrams, signal lines, system maps — no stock imagery     |
-| Trustworthy      | Real company data, legal clarity, blueprint-aligned copy   |
-| Minimal          | One idea per screen; content leads                         |
-| Premium          | Subtle depth, refined surfaces, intentional contrast       |
+Rules:
 
-### White-first with contrast sections
+- Blue means Elaman, active, selected, focused, or the single directed signal.
+- Red means protection, countermeasure, risk, or the protected principal.
+- Red is never a generic hover colour or a way to make a composition livelier.
+- Do not add cyan, purple, green status palettes, gradient ramps, or “near-brand” blues.
+- Focus uses one global 2px elaman-blue outline; components do not create competing focus systems.
 
-- **Default canvas:** white (`#ffffff`) with porcelain (`#f7f8fa`) and mist (`#eef1f5`) bands.
-- **Contrast sections:** black / deep navy (`--surface-dark-panel`, graphite `#16181d` or deep navy `#1a2332`) for designated blocks — primarily **protection / countermeasures**. Light text on dark (`--color-on-dark`).
-- Contrast sections are **intentional bands**, not a global dark theme. No user-toggle dark mode.
-- Background atmosphere on light sections: very low-opacity radial washes (blue ~4–8%, red ~4%) at edges only.
-- Brand marker: **Elaman blue–red split line** — thin, precise, logo-derived.
+### Surfaces and borders
 
-### Imagery
+| Token | Value | Rule |
+|---|---:|---|
+| --surface-paper | #ffffff | Default surface |
+| --surface-paper-soft | #f7f8fa | Inset or alternating band |
+| --surface-navy | #172033 | Protection band |
+| --surface-raised | #ffffff | Overlaying UI only |
+| --border-hairline | rgba(22, 24, 29, 0.12) | Default 1px rule |
+| --border-hairline-strong | rgba(22, 24, 29, 0.24) | Strong control edge |
+| --border-on-navy | rgba(255, 255, 255, 0.14) | Dark-band rule |
+| --border-accent-blue | rgba(36, 64, 116, 0.24) | Blue interactive edge |
+| --border-accent-red | rgba(216, 48, 52, 0.24) | Protection interactive edge |
 
-- **Use:** `HeroSignalVisual`, `SystemMap`, `ProcessRail`, `TechnicalMark`, SVG signal geometry.
-- **Do not use:** stock photos, AI blobs, 3D characters, isometric SaaS art, bento mosaic layouts.
+All ordinary cards and panels are flat:
 
-### Anti-patterns
+- 1px hairline border;
+- paper or paper-soft background;
+- 2px card radius;
+- no blur, translucency, or card shadow.
 
-- Generic SaaS startup landing page
-- Playful Bento / uneven card mosaics
-- AI gradient blobs and mesh backgrounds
-- Neon / cyberpunk (matrix, glitch, skull icons)
-- Fake claims (`100% sovereignty`, `secure portal` without a portal)
-- Surveillance-heavy hero copy (reserve for services/solutions sections)
+The sole shadow is --shadow-overlay: 0 16px 48px rgba(22, 24, 29, 0.12). Reserve it for UI that overlays page content, such as mobile navigation or sticky chrome.
 
----
+### Radius
 
-## 2. Layout rules
+| Token | Value | Use |
+|---|---:|---|
+| --radius-card | 0.125rem / 2px | Cards, panels, system fields |
+| --radius-control | 0.375rem / 6px | Buttons, inputs, disclosure controls |
+| --radius-pill | 999px | Language switcher and genuinely pill-shaped controls |
 
-### Page architecture
+Do not introduce intermediate “friendly SaaS” radii.
 
-- Single-page scroll at `/[locale]` (`en`, `de`).
-- Sections composed as **screens** using `Section` modes.
-- Sticky-scroll lifecycle (`ScrollStory`) — desktop pinned, mobile sequential.
-- Legal pages on separate routes.
+## 3. Layout
 
-### Container widths
+### Containers
 
-Use `Container` `size` prop — no ad-hoc `max-w-*` in sections.
+| Size | Max width | Use |
+|---|---:|---|
+| page | 80rem | Homepage composition |
+| content | 64rem | Dense content blocks |
+| copy | 42rem | Long-form copy and section introductions |
+| narrow | 30rem | Focused side columns |
+| legal | 56rem | Legal documents |
 
-| Size      | Token                 | Value |
-| --------- | --------------------- | ----- |
-| `page`    | `--container-page`    | 80rem |
-| `content` | `--container-content` | 64rem |
-| `copy`    | `--container-copy`    | 42rem |
-| `narrow`  | `--container-narrow`  | 30rem |
-| `legal`   | `--container-legal`   | 56rem |
+Horizontal page padding is clamp(1.25rem, 4vw, 4rem).
 
-Horizontal padding: `--page-x` = `clamp(1.25rem, 4vw, 4rem)`.
+### Section modes
 
-### Grid
+| Variant | Vertical rhythm | Minimum height |
+|---|---|---|
+| hero-screen | clamp(2rem, 5vw, 3rem) | viewport minus header |
+| screen | clamp(4rem, 7vw, 6rem) | viewport minus header |
+| screen-lite | clamp(3.25rem, 6vw, 5rem) | 24rem to 40rem, viewport-aware |
+| content-band | clamp(3.75rem, 6vw, 5.5rem) | content-led |
+| legal-page | clamp(2.75rem, 5vw, 4.25rem) | content-led |
 
-- Single left alignment spine per container.
-- Copy left, diagram/visual right on desktop; stack copy-first on mobile.
-- Internal gap: `--section-gap` = `clamp(2rem, 4vw, 3.5rem)`.
-- Header: `--header-h` (4rem mobile, 5rem desktop). `scroll-padding-top` accounts for header.
+Use components/ui/Section and components/ui/Container. The deprecated screen/compact props and legacy section aliases are migration-only.
 
-### Section composition
+### Composition
 
-```
-[SectionLabel]   eyebrow
-[Headline]       h1 / h2
-[Lead]           optional
-[Body / Grid]    cards, diagram, accordion
-[Action]         optional CTA
-```
+- Align each section to the same page spine, then vary internal composition by content.
+- Use full-width rules to establish register and sequence.
+- Prefer asymmetric editorial grids with clear hierarchy over a repeated centered heading plus card grid.
+- Keep one dominant idea per viewport.
+- Whitespace is structural; do not fill it with ornamental graphics.
+- Avoid repeating the same card count, reveal, and column split in adjacent sections.
 
-Primitives: `Section`, `SectionHeader`, `SectionLabel`, `Container`, `Surface`, `Button`.
+## 4. Typography
 
----
+The type system is fixed:
 
-## 3. Section modes and rhythm
+- Geist via --font-elaman-sans for display, headings, body, controls, and numerals.
+- Geist Mono via --font-elaman-mono for concise technical labels and sequence metadata.
 
-### Canonical modes (`Section` variant)
+Do not add Jost, Futura substitutes, display serifs, or additional monospace fonts.
 
-| Mode           | Use                                              |
-| -------------- | ------------------------------------------------ |
-| `hero-screen`  | Above-the-fold; min-height viewport minus header |
-| `screen`       | Full-screen pinned moments (sticky lifecycle)    |
-| `screen-lite`  | Near-viewport emphasis without full pin          |
-| `content-band` | Default content sections (services, methodology) |
-| `legal-page`   | Legal headers and dense document layout          |
+### Scale
 
-Legacy aliases (resolved automatically): `hero` → `hero-screen`, `band` → `content-band`, `compact` → `legal-page`.
+| Role | Token | Size | Leading | Tracking |
+|---|---|---:|---:|---:|
+| Display | --type-display | clamp(3rem, 8vw, 6.5rem) | 0.98 | -0.04em |
+| H2 | --type-h2 | clamp(2rem, 4.5vw, 3.5rem) | 1.08 | -0.02em |
+| H3 | --type-h3 | clamp(1.25rem, 1.8vw, 1.625rem) | 1.08 | -0.02em |
+| Numeral | --type-numeral | clamp(2.5rem, 5vw, 4.5rem) | 1 | -0.02em |
+| Lead | --type-lead | clamp(1rem, 1.35vw, 1.25rem) | 1.6 | normal |
+| Body | --type-body | 1rem | 1.6 | normal |
+| Small | --type-small | 0.875rem | contextual | contextual |
+| Mono label | --type-mono-label | 0.6875rem | contextual | 0.1em |
 
-### Tone alternation (target)
+Rules:
 
-| Section          | Mode                            | Tone                            |
-| ---------------- | ------------------------------- | ------------------------------- |
-| Hero             | `hero-screen`                   | `plain` / white                 |
-| Credentials      | `content-band`                  | `soft`                          |
-| Sticky lifecycle | `screen`                        | glass stage on light            |
-| Services         | `content-band`                  | `soft` or white                 |
-| Solutions        | `content-band`                  | `white`                         |
-| Protection       | `screen-lite` or `content-band` | **dark** (`surface-dark-panel`) |
-| Methodology      | `content-band`                  | `soft`                          |
-| Contact          | `content-band`                  | `white`                         |
+- One display-level statement in the hero.
+- Section titles use H2; internal titles use H3.
+- Use text-balance for titles, not arbitrary manual line breaks.
+- Body copy normally stays within the copy container.
+- Mono labels are uppercase, 500 weight, and terse.
+- Large figures must be factual, legible, and paired with a mono caption.
 
-Avoid two identical adjacent bands without a label, divider, or tone shift.
+## 5. Signature devices
 
-### Screen classes
+The design is recognisable through four devices. They are functional, not decoration.
 
-- `.screen-section` — full viewport minus header, vertically centered.
-- `.screen-lite-section` — reduced min-height for lighter screen moments.
+### D1 — DotMatrix formations
 
----
+lib/design/formations.ts defines the logo geometry and all shared formation states.
 
-## 4. Typography scale
+The base mark is a Manhattan diamond of radius 3 on a 12px-pitch grid:
 
-Font: `--font-elaman-sans` with system fallbacks. `text-rendering: geometricPrecision`.
+- 25 dots;
+- exact blue centre at (0, 0);
+- red protection point at (2, -1);
+- all other points low-opacity ink.
 
-| Role    | Token            | Size                    | Weight  | Tracking | Leading |
-| ------- | ---------------- | ----------------------- | ------- | -------- | ------- |
-| Display | `--type-display` | clamp(2.75rem → 5.9rem) | 600–700 | -0.04em  | 0.94    |
-| H1      | `--type-h1`      | clamp(2.6rem → 5.4rem)  | 600–700 | -0.04em  | 1.04    |
-| H2      | `--type-h2`      | clamp(2.1rem → 3.75rem) | 600     | -0.04em  | 1.04    |
-| H3      | `--type-h3`      | clamp(1.35rem → 1.9rem) | 600     | -0.04em  | 1.04    |
-| Lead    | `--type-lead`    | clamp(1rem → 1.25rem)   | 400     | normal   | 1.65    |
-| Body    | `--type-body`    | 1rem                    | 400     | normal   | 1.65    |
-| Small   | `--type-small`   | 0.875rem                | 400–500 | normal   | 1.55    |
-| Micro   | `--type-micro`   | 0.75rem                 | 500     | 0.16em   | 1.4     |
+Formation governance applies to each visual composition:
 
-Rules: one display/h1 per viewport; body max-width `copy`; `text-balance` on headlines; EN/DE share scale.
+1. Exactly one blue dot.
+2. At most one red dot.
+3. Red appears only with protection semantics.
+4. Every other dot uses graphite/on-dark ink at low opacity.
+5. Coordinates live in shared formation data, not local ad hoc SVG arrays.
+6. Adjacent sections do not repeat the same formation as wallpaper.
 
-**Dark sections:** headings `--color-on-dark`; body `--color-on-dark-muted`.
+components/ui/DotMatrix is the static, server-renderable renderer. Animated formation components consume the same data and preserve dot identity.
 
----
+The six lifecycle states are:
 
-## 5. Color roles
+| Step | Formation | Meaning |
+|---:|---|---|
+| 01 | Dispersed field | Assessment and experience |
+| 02 | Ordered columns | Advice and emerging structure |
+| 03 | Connected chain | Communications and integration |
+| 04 | Perimeter | Protection; red enters |
+| 05 | Dense block | Implemented system; red remains contained |
+| 06 | Diamond | Training/support resolve into the brand mark |
 
-### Light surfaces
+The story’s indexed dots are the same physical dots through every morph. Mobile uses static snapshots of these exact states.
 
-| Role           | Token                             | Value     |
-| -------------- | --------------------------------- | --------- |
-| Canvas         | `--surface-white`                 | `#ffffff` |
-| Soft band      | `--surface-soft`                  | `#f7f8fa` |
-| Muted fill     | `--color-mist`                    | `#eef1f5` |
-| Line           | `--color-line`                    | `#dfe4ea` |
-| Text primary   | `--color-text-primary` / graphite | `#16181d` |
-| Text secondary | `--color-text-secondary`          | `#555d6b` |
-| Text tertiary  | `--color-text-tertiary`           | `#667286` |
+### D2 — SectionRule
 
-### Brand accents (logo-derived)
+Every top-level homepage section begins with components/ui/SectionRule:
 
-| Role        | Token                | Value     | Usage                                      |
-| ----------- | -------------------- | --------- | ------------------------------------------ |
-| Elaman blue | `--color-brand-blue` | `#244074` | Focus, hover, diagram nodes, labels        |
-| Elaman red  | `--color-brand-red`  | `#d83034` | Accent nodes, split line — ≤5% of viewport |
+- full-width top hairline;
+- zero-padded index on the left;
+- terse keyword on the right;
+- Geist Mono label styling;
+- optional blue accent;
+- red only for protection semantics.
 
-### Dark contrast surfaces
+The rule behaves like the title block of a technical drawing and makes the one-page sequence legible.
 
-| Role          | Token                               | Usage                         |
-| ------------- | ----------------------------------- | ----------------------------- |
-| Dark panel    | `--surface-dark-panel` (`#172033`)  | Protection section background |
-| On-dark text  | `--color-on-dark` (`#f7f8fa`)       | Headlines on dark             |
-| On-dark muted | `--color-on-dark-muted` (`#c7d0dc`) | Body on dark                  |
-| Dark border   | `--border-dark-panel`               | Subtle edge on dark bands     |
+### D3 — MonoLabel
 
-### Semantic
+components/ui/MonoLabel provides the technical voice for:
 
-- Focus: brand blue 48% border, 10% ring
-- Selection: `rgba(36, 64, 116, 0.16)`
-- Error: brand red — forms only
+- eyebrows;
+- short state labels;
+- sequence counters;
+- visual captions;
+- concise metadata.
 
-No purple, cyan, or neon. No unsourced sovereignty or security superlatives in UI chrome.
+It is not a body-copy style and should not appear on every line of a section.
 
----
+### D4 — Stat and oversized numerals
 
-## 6. Surfaces and cards
+components/ui/Stat pairs a large factual value with a mono caption. Use one coherent stat group per viewport. Values must come from the approved content source; do not invent counters or animate them as a growth gimmick.
 
-### Canonical surface levels
+### One-accent rule
 
-| Level      | Token / class                                        | Use                                 |
-| ---------- | ---------------------------------------------------- | ----------------------------------- |
-| Card       | `surface-card` / `Surface variant="card"`            | Service cards, metrics              |
-| Panel      | `surface-panel` / `Surface variant="panel"`          | Elevated content blocks             |
-| Glass      | `surface-glass` / `Surface variant="glass"`          | Header, story stage, forms          |
-| Dark panel | `surface-dark-panel` / `Surface variant="darkPanel"` | Protection section, contrast blocks |
+Each composition has one primary accent event. For a dot composition this is exactly one blue dot, plus at most one protection-semantic red dot. For typographic compositions, choose the one active label, line, or signal; do not distribute accent colour across unrelated elements.
 
-Legacy: `strongGlass`, `inset` — migrate toward canonical levels when touching components.
+## 6. Component vocabulary
 
-### Card rules
+| Component | Contract |
+|---|---|
+| Button | Primary, secondary, or ghost action; control radius; 2px max hover lift |
+| Container | Canonical horizontal padding and max widths |
+| Section | Canonical section mode and paper/soft/navy tone |
+| SectionHeader | Label + title + optional body with canonical type scale |
+| SectionRule | Indexed register line for top-level sections |
+| MonoLabel | Geist Mono technical eyebrow |
+| Stat | Oversized factual figure and mono caption |
+| Surface | Flat card/inset/navy; raised only for overlays |
+| DotMatrix | Static renderer for shared formations |
+| HeroDotField | One-time logo-field assembly |
+| ProtectionPerimeter | Protection section’s red formation |
+| SystemsMatrix | Active system path paired with the accordion |
+| DeliveryTimeline | Hairline methodology sequence |
+| SystemsAccordion | Sole interactive control for solution disclosure |
 
-- One title, one description, optional eyebrow per card.
-- Padding `p-5`–`p-9`; radius `--radius-card` (0.75rem).
-- Hover: border shift or subtle translate — no dramatic shadow growth.
-- **Expandable detail:** inline accordion/tab; `aria-expanded`; no modals.
+Legacy surface names remain temporarily mapped to flat dossier surfaces. New work uses card, inset, navy, or raised and must not revive glass semantics.
 
-### Glass
+## 7. Motion
 
-Permitted: header, sticky stage, form fields. Do not glass-wrap entire light sections.
+lib/motion/presets.ts is the single source of truth for Framer Motion.
 
-Glass surfaces must provide a solid-fill fallback for reduced-transparency environments.
+### Duration tiers
 
----
+| Tier | Presets | Duration | Purpose |
+|---|---|---:|---|
+| Micro | micro, fast | 120ms, 180ms | Hover, focus, press, colour/border feedback |
+| State | state, medium, expand | 240ms, 300ms, 320ms | Menu, accordion, form feedback, text swaps |
+| Reveal | reveal, trace, entrance | 380ms, 500ms, 600ms | Once-only content entrance and line draw |
+| Scroll-linked | scrollSpring | no duration | Smooth a 0–1 MotionValue |
 
-## 7. Buttons and interactions
+The signature ease is [0.22, 1, 0.36, 1]. A symmetric [0.65, 0, 0.35, 1] ease is available only when an element moves and returns.
 
-### Button variants
+CSS exposes matching micro/fast/state/medium/expand tokens. --motion-slow remains at 650ms for CSS compatibility, but new Framer Motion work must use the 380–600ms reveal/trace/entrance tier from presets.ts.
 
-| Variant     | Use                                     |
-| ----------- | --------------------------------------- |
-| `primary`   | Graphite → blue hover; one per viewport |
-| `secondary` | Glass border; header/secondary CTAs     |
-| `ghost`     | Tertiary / inline                       |
+### Springs
 
-Shape: `control` default; `pill` for footer legal chips only.
+| Spring | Stiffness | Damping | Use |
+|---|---:|---:|---|
+| scrollSpring | 140 | 30 | Scroll-progress smoothing |
+| formationSpring | 110 | 22 | Dots moving between formation positions |
 
-### Interaction
+### Allowed choreography
 
-- Hover: `-translate-y-0.5` on primary/secondary; **no scale**
-- Duration: `--motion-fast` (180ms); easing `--motion-ease`
-- Focus-visible: 2px outline, 4px offset, brand blue
+- Once-only reveal: opacity plus 10px translation.
+- Strong rise: opacity plus 16px translation for a larger panel.
+- State swap: opacity-only or a very small vertical offset.
+- Hairline draw: scaleX from the left.
+- Dot assembly/morph: transform/position MotionValues derived from shared formations.
+- Hover lift: maximum 2px.
+- Stagger: 0.06s for small items, 0.09s for cards, with total group delay no greater than 0.36s.
 
-### Accordion / tabs (solutions)
+### Exactly two scroll-scrubbed systems
 
-- Single-open accordion or horizontal tabs — one pattern per section
-- Keyboard: Enter/Space toggle; arrow keys for tabs
-- Motion: `--motion-medium`; collapse under `prefers-reduced-motion`
-- Content from `CONTENT_BLUEPRINT.md` §7
+1. Hero exit — HeroSection maps hero scroll progress to the dot field’s subtle -16px transform.
+2. Formation Machine — DesktopScrollStory smooths runway progress and drives StoryProgress plus StickyStoryStage’s continuous formation morph.
 
-### Forms
+Do not add a third scrub system without explicit approval. The story progress rail and formation stage are two consumers of the same story MotionValue, not separate systems.
 
-`.form-field` — glass bg, soft border, blue focus. No “secure portal” messaging.
+### Motion prohibitions
 
----
+- Animate only transform and opacity. Use scaleX/scaleY for lines.
+- Never animate width, height, top, left, filter, blur, font size, or letter spacing.
+- No loops, bouncing, particles, radar sweeps, breathing nodes, marching dashes, scroll-scaled text, or parallax copy.
+- Do not apply the same generic fade-in to every section. Choreography should express hierarchy through rules, formations, groups, and state changes.
+- Reveals fire once.
+- Reduced-motion support is mandatory.
 
-## 8. Motion
+### Reduced motion
 
-| Token             | Value                            | Use                                  |
-| ----------------- | -------------------------------- | ------------------------------------ |
-| `--motion-fast`   | 180ms                            | Hover, focus, toggles                |
-| `--motion-medium` | 300ms                            | Reveals, accordion, card transitions |
-| `--motion-slow`   | 650ms                            | Section enter, story crossfade       |
-| `--motion-ease`   | `cubic-bezier(0.22, 1, 0.36, 1)` | All transitions                      |
-| `--motion-rise`   | 0.75rem                          | Reveal translate                     |
+- CSS collapses animation and transition duration and disables smooth scrolling.
+- Framer components branch to the final static state.
+- ScrollStory selects the linear sequence instead of the sticky runway.
+- Dot formations render with the static DotMatrix renderer.
+- Programmatic anchor and story navigation use auto, not smooth, behavior.
 
-**Allowed:** `MotionReveal`, sticky story progress, static logo-derived matrix nodes, static bridge traces, header blur.
+## 8. Homepage register
 
-Diagram visuals follow the Elaman mark: sparse matrix nodes, calm blue bridge paths, and selective red countermeasure accents. They should be still by default; motion is reserved for state changes such as scroll progress, accordion open/close, and focus feedback. Avoid node breathing, marching dash lines, radar sweeps, crosshair scans, particles, and spectacle motion.
+The order is fixed in app/(marketing)/[locale]/page.tsx:
 
-**Prohibited:** parallax copy, particles, bounce, scroll-scale headlines, autoplay carousel, Lottie spectacle.
+| Register | Anchor | Section | Visual role |
+|---:|---|---|---|
+| Hero | #hero | HeroSection | Display statement + logo-field assembly |
+| 01 | #experience | TrustSection | Credentials and large figures on paper-soft |
+| 02 | #story | ScrollStory | Formation Machine / linear sequence |
+| 03 | #capabilities | CapabilityOverview | Ruled service index |
+| 04 | #systems | SystemsSection | Accordion plus integration matrix |
+| 05 | #protection | ProtectionSection | Selective navy band and red perimeter |
+| 06 | #delivery | DeliverySection | Hairline methodology sequence |
+| 07 | #contact | ContactSection | Inquiry details and validated form |
 
-**Reduced motion:** `useReducedMotionPreference` + global CSS; sticky story unpins or shows static steps.
+The protection band is the page’s dominant red moment. The rest of the page remains paper-led.
 
----
+## 9. Interaction and accessibility
 
-## 9. Responsive
+- All touch targets are at least 44×44px.
+- Interactive state cannot rely on colour alone.
+- Disclosure controls use native buttons or details, aria-expanded, aria-controls, and labelled regions.
+- Focus uses the single global focus-visible rule.
+- Decorative SVG formations are aria-hidden and non-focusable.
+- Text and rules must retain sufficient contrast on paper and navy.
+- There is no horizontal overflow at supported widths.
+- The sticky Formation Machine is wide-desktop only; tablet/mobile get a readable linear sequence.
+- Reduced-motion behavior is part of acceptance, not an optional polish pass.
 
-| Breakpoint       | Behavior                                            |
-| ---------------- | --------------------------------------------------- |
-| `< 640px`        | Tighter section padding; single column; mobile menu |
-| `640px – 1023px` | Two-column where fit; unpinned story                |
-| `≥ 1024px`       | Sticky lifecycle; full grid                         |
+## 10. Content and i18n
 
-Touch targets ≥ 44×44px. No horizontal scroll. Typography uses `clamp()` — avoid breakpoint font overrides.
+- Locales: en and de.
+- Marketing strings live in lib/content/site.ts and come through getSiteContent(locale).
+- CONTENT_BLUEPRINT.md controls factual claims and approved EN/DE wording.
+- Components do not hardcode marketing copy.
+- Update both languages together.
+- Keep anchor names locale-agnostic.
+- Do not change legal copy without counsel approval.
 
----
-
-## 10. Bilingual / i18n
-
-- Locales: `en` (default), `de` — `/en`, `/de`
-- Copy: `lib/content/site.ts` via `getSiteContent(locale)`
-- Blueprint: `CONTENT_BLUEPRINT.md` — implement EN + DE together
-- Anchors locale-agnostic: `#experience`, `#story`, `#capabilities`, `#systems`, `#protection`, `#delivery`, `#contact`
-- `sectionPath(locale, href)` for hash links
-- Legal: locale-prefixed routes (see §11)
-
----
-
-## 11. Legal pages
-
-| Page    | DE                   | EN             |
-| ------- | -------------------- | -------------- |
-| Imprint | Impressum            | Imprint        |
-| Privacy | Datenschutzerklärung | Privacy Policy |
-
-Target routes: `/en/imprint`, `/de/impressum`, `/en/privacy`, `/de/datenschutz` (redirect legacy paths).
-
-Content: `lib/content/legal.ts`. Layout: `LegalDocument` + `Container size="legal"`. Counsel review before privacy changes.
-
----
-
-## 12. Prohibited patterns
+## 11. Prohibited patterns
 
 ### Visual
 
-- Bento / mosaic marketing grids
-- AI blobs, mesh gradients, neon cyberpunk
-- Stock photos and decorative illustration
-- User-toggle dark mode
-- Certification badges without approval
-- Marketing pop-ups, chat widgets, countdown timers
+- Glassmorphism, translucent glass cards, blur-backed panels.
+- Repeating technical-grid or graph-paper overlays.
+- Gradient blobs, gradient washes, glow fields, neon, cyberpunk.
+- Bento or mosaic layouts.
+- Icon tiles and generic feature-card grids.
+- Large decorative shadows.
+- Large friendly radii.
+- Stock cyber-security, hacker, surveillance, globe, tunnel, or smart-city imagery.
+- Decorative ornaments without semantic meaning.
+- New colours or local raw hex/rgba values.
+- New fonts; Geist + Geist Mono are fixed.
 
-### Copy (see also `CONTENT_BLUEPRINT.md` §12)
+### Motion
 
-- `100% sovereignty`, `secure portal` (no portal), surveillance-first hero
-- `B2G`, `360°`, `unlock`, `AI-powered`
-- Invented stats, unnamed client logos
-- `Secure channel` for standard email form
+- Uniform fade-ins copied across the entire page.
+- More than two scroll-scrubbed systems.
+- Perpetual or looping decorative animation.
+- Layout/filter/blur/type animation.
+- Text parallax or scroll scaling.
+- Motion without a reduced-motion final state.
 
-### Technical
+### Engineering
 
-- Hardcoded locale strings in components
-- Orphan hex outside tokens
-- Client-side locale override of URL
-- `!important` layout hacks
+- New code using transitional aliases or deprecated primitive props.
+- Local tokens that duplicate the canonical system.
+- Component-specific focus outlines that conflict with the global rule.
+- CI workflow or quality-gate changes.
+- Dependency changes without explicit justification.
 
----
+## 12. Maintenance checks
 
-## Token reference
+Before merging a visual or motion change:
 
-| File                   | Role                                        |
-| ---------------------- | ------------------------------------------- |
-| `lib/design/tokens.ts` | TypeScript token export, section mode types |
-| `app/globals.css`      | CSS custom properties, utility classes      |
+1. Compare app/globals.css with lib/design/tokens.ts.
+2. Search for raw colours, arbitrary radii, shadows, and legacy aliases.
+3. Verify dot formations obey the one-blue/at-most-one-red law.
+4. Verify motion imports presets from lib/motion/presets.ts.
+5. Confirm no third useScroll system was introduced.
+6. Check reduced motion.
+7. Check 1280px+ sticky story and 375px linear story.
+8. Run npm run lint, npm run typecheck, and npm run build.
 
-Update **both** when tokens change.
-
-## Component map
-
-| Concern    | Component                                                                     |
-| ---------- | ----------------------------------------------------------------------------- |
-| Sections   | `components/sections/*`                                                       |
-| Layout     | `Header`, `Footer`, `Container`                                               |
-| Primitives | `Button`, `Section`, `Surface`, `GlassPanel`, `SectionHeader`, `SectionLabel` |
-| Motion     | `MotionReveal`, `ScrollStory`, `StickyStoryStage`, `AnchorScrollManager`      |
-| Diagrams   | `SystemMap`, `ProcessRail`, `TechnicalMark`, `HeroSignalVisual`               |
-
-Compose from primitives before adding new abstractions.
-
-## Section ↔ blueprint map
-
-| Blueprint   | Component            | Content key    |
-| ----------- | -------------------- | -------------- |
-| Hero        | `HeroSection`        | `hero`         |
-| Credentials | `TrustSection`       | `trust`        |
-| Approach    | `ScrollStory`        | `story`        |
-| Services    | `CapabilityOverview` | `capabilities` |
-| Solutions   | `SystemsSection`     | `systems`      |
-| Protection  | `ProtectionSection`  | `protection`   |
-| Methodology | `DeliverySection`    | `delivery`     |
-| Contact     | `ContactSection`     | `contact`      |
+Token changes update both token files and this document. Formation or motion-law changes update their source modules and this document in the same change.

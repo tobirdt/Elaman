@@ -1,0 +1,4 @@
+interface:
+  display_name: "Elaman Motion System"
+  short_description: "Enforce calm, accessible Elaman motion rules"
+  default_prompt: "Use $motion-system to implement or review this Elaman animation."

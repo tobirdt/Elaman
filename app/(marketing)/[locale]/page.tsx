@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
     languages: {
       en: absoluteUrl("/en"),
       de: absoluteUrl("/de"),
-      "x-default": absoluteUrl("/en"),
+      "x-default": absoluteUrl("/de"),
     },
   });
 }

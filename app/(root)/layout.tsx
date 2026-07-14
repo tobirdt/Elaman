@@ -24,5 +24,5 @@ export const viewport: Viewport = {
 };
 
 export default function RootRedirectLayout({ children }: { children: ReactNode }) {
-  return <RootDocument lang="en">{children}</RootDocument>;
+  return <RootDocument lang="de">{children}</RootDocument>;
 }

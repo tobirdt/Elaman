@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroSignalVisual } from "@/components/ui/HeroSignalVisual";
@@ -30,6 +32,14 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
 
       <Container className="grid items-center gap-[var(--section-gap)] [&>*]:min-w-0 lg:-mt-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
         <div>
+          <Image
+            src="/brand/elaman-logo.png"
+            alt=""
+            width={470}
+            height={180}
+            priority
+            className="mb-7 h-auto w-[min(16rem,74vw)]"
+          />
           <SectionLabel>{content.label}</SectionLabel>
           <h1 className="text-balance max-w-[13.5ch] text-[clamp(3rem,5.2vw,4.9rem)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite sm:max-w-[15ch]">
             {content.title}

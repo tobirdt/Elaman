@@ -1,10 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
 
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { ElamanMark } from "@/components/ui/ElamanMark";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 import { sectionPath, type Locale } from "@/lib/i18n";
 
@@ -19,17 +19,10 @@ export function Header({ locale, content }: HeaderProps) {
       <Container className="flex h-16 items-center justify-between gap-3 lg:h-20 lg:gap-5">
         <Link
           href={`/${locale}` as Route}
-          className="flex items-center"
+          className="flex items-center rounded-[var(--radius-control)] p-1 transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-[var(--surface-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-elaman-blue"
           aria-label={content.homeLabel}
         >
-          <Image
-            src="/brand/elaman-logo.png"
-            alt="Elaman German Security Solutions"
-            width={188}
-            height={72}
-            priority
-            className="h-auto w-32 sm:w-40"
-          />
+          <ElamanMark className="h-auto w-10 sm:w-11" />
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm text-graphite-muted lg:flex">

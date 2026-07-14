@@ -1,0 +1,4 @@
+interface:
+  display_name: "Elaman Design Law"
+  short_description: "Enforce the Elaman precision-dossier system"
+  default_prompt: "Use $elaman-design-law to review and guide this Elaman UI change."
