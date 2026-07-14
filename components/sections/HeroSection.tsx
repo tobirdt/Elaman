@@ -20,6 +20,17 @@ type HeroSectionProps = {
 
 export function HeroSection({ locale, content }: HeroSectionProps) {
   const reduced = useReducedMotionPreference();
+  const entranceItem = {
+    hidden: { opacity: 0.001, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: reduced ? 0 : motionDuration.entrance,
+        ease: motionEase.out,
+      },
+    },
+  } as const;
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -38,9 +49,9 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
       <Container className="w-full">
         <motion.div
           ref={heroRef}
-          initial={reduced ? false : "hidden"}
+          initial="hidden"
           animate="visible"
-          variants={staggerContainer(0.06)}
+          variants={staggerContainer(reduced ? 0 : 0.06)}
         >
           <motion.div
             variants={entranceItem}
@@ -52,11 +63,11 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
             <MonoLabel tone="ink">{content.visualBadge}</MonoLabel>
           </motion.div>
 
-          <div className="mt-9 grid gap-12 lg:mt-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)] lg:items-center lg:gap-16 [&>*]:min-w-0">
+          <div className="mt-9 grid gap-12 lg:mt-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(22rem,0.8fr)] lg:items-center lg:gap-16 [&>*]:min-w-0">
             <div>
               <motion.h1
                 variants={entranceItem}
-                className="hero-title text-balance max-w-[12ch] text-[length:var(--type-display)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite"
+                className="hero-title max-w-[14ch] text-[length:var(--type-display)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite"
               >
                 {content.title}
               </motion.h1>
@@ -103,11 +114,14 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
             <motion.div variants={entranceItem}>
               <motion.div
                 className="relative border-y border-[var(--border-hairline)] py-7 lg:py-10"
-                style={reduced ? undefined : { y: fieldY, opacity: fieldOpacity }}
+                style={{
+                  y: reduced ? 0 : fieldY,
+                  opacity: reduced ? 1 : fieldOpacity,
+                }}
               >
                 <motion.span
                   className="absolute left-0 right-0 top-1/2 h-0.5 origin-left -translate-y-1/2 bg-elaman-blue"
-                  initial={reduced ? false : { scaleX: 0 }}
+                  initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={
                     reduced
@@ -151,12 +165,3 @@ export function HeroSection({ locale, content }: HeroSectionProps) {
     </Section>
   );
 }
-
-const entranceItem = {
-  hidden: { opacity: 0.001, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: motionDuration.entrance, ease: motionEase.out },
-  },
-} as const;

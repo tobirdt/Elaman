@@ -2,6 +2,7 @@
 
 import { motion, type MotionValue } from "framer-motion";
 
+import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
 import type { StoryStep } from "@/types/site";
 
 type StoryProgressProps = {
@@ -17,12 +18,15 @@ export function StoryProgress({
   label,
   progress,
 }: StoryProgressProps) {
+  const reduced = useReducedMotionPreference();
+  const snappedProgress = steps.length > 1 ? activeIndex / (steps.length - 1) : 1;
+
   return (
     <div className="mt-7 grid grid-cols-[1px_1fr] gap-5" aria-label={label}>
       <div className="relative bg-[var(--border-hairline)]">
         <motion.div
           className="absolute inset-0 origin-top bg-elaman-blue"
-          style={{ scaleY: progress }}
+          style={{ scaleY: reduced ? snappedProgress : progress }}
         />
       </div>
       <ol className="space-y-3.5">

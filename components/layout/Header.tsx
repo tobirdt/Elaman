@@ -114,7 +114,7 @@ export function Header({ locale, content }: HeaderProps) {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 sm:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           <LanguageSwitcher locale={locale} label={content.languageSwitcherLabel} />
           <Button
             href={sectionPath(locale, "#contact")}
@@ -190,7 +190,7 @@ export function Header({ locale, content }: HeaderProps) {
                     {item.label}
                   </Link>
                 ))}
-                <div className="px-2 py-2 sm:hidden">
+                <div className="px-2 py-2">
                   <LanguageSwitcher
                     locale={locale}
                     label={content.languageSwitcherLabel}

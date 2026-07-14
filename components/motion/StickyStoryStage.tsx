@@ -56,10 +56,14 @@ function interpolateDot(progress: number, index: number, axis: "x" | "y") {
 function FormationDot({
   index,
   progress,
+  reduced,
+  staticPosition,
   tone,
 }: {
   index: number;
   progress: MotionValue<number>;
+  reduced: boolean;
+  staticPosition: { x: number; y: number };
   tone: DotTone;
 }) {
   const cx = useTransform(progress, (value) => mapX(interpolateDot(value, index, "x")));
@@ -68,11 +72,11 @@ function FormationDot({
 
   return (
     <motion.circle
-      cx={cx}
-      cy={cy}
+      cx={reduced ? mapX(staticPosition.x) : cx}
+      cy={reduced ? mapY(staticPosition.y) : cy}
       r={tone === "ink" ? 5 : 6.5}
       fill={color}
-      animate={{ opacity: tone === "ink" ? 0.24 : 1 }}
+      fillOpacity={tone === "ink" ? 0.24 : 1}
     />
   );
 }
@@ -93,7 +97,7 @@ export function StickyStoryStage({
       <div className="absolute left-1/2 top-0 h-full w-px bg-[var(--border-hairline)]" />
       <motion.div
         className="absolute left-0 top-[18%] h-0.5 w-[41%] origin-left bg-elaman-blue"
-        initial={reduced ? false : { scaleX: 0 }}
+        initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={reduced ? { duration: 0 } : { duration: 0.5 }}
         aria-hidden="true"
@@ -139,17 +143,15 @@ export function StickyStoryStage({
           const redVisible = index === STORY_RED_INDEX && activeIndex >= 3;
           const tone = redVisible ? "red" : dot.tone === "blue" ? "blue" : "ink";
 
-          return reduced ? (
-            <circle
+          return (
+            <FormationDot
               key={index}
-              cx={mapX(dot.x)}
-              cy={mapY(dot.y)}
-              r={tone === "ink" ? 5 : 6.5}
-              fill={tone === "blue" ? BLUE : tone === "red" ? RED : INK}
-              fillOpacity={tone === "ink" ? 0.24 : 1}
+              index={index}
+              progress={progress}
+              reduced={reduced}
+              staticPosition={dot}
+              tone={tone}
             />
-          ) : (
-            <FormationDot key={index} index={index} progress={progress} tone={tone} />
           );
         })}
       </svg>

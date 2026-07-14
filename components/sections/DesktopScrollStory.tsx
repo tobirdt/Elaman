@@ -50,10 +50,10 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
           <div className="flex h-full flex-col">
             <SectionRule index="02" keyword={content.label} />
 
-            <div className="grid min-h-0 flex-1 grid-cols-[minmax(14rem,0.75fr)_minmax(22rem,1.35fr)_minmax(16rem,0.9fr)] items-center gap-8 2xl:gap-14">
+            <div className="grid min-h-0 flex-1 grid-cols-[minmax(18rem,0.9fr)_minmax(20rem,1.2fr)_minmax(17rem,0.9fr)] items-center gap-8 2xl:gap-14">
               <div>
                 <MonoLabel>{content.progressLabel}</MonoLabel>
-                <h2 className="mt-5 max-w-[12ch] text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
+                <h2 className="mt-5 max-w-[13ch] hyphens-auto text-[clamp(2rem,3.2vw,2.75rem)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite [overflow-wrap:anywhere]">
                   {content.title}
                 </h2>
                 <p className="mt-5 max-w-[31rem] text-[length:var(--type-small)] leading-[var(--leading-body)] text-graphite-muted">
@@ -77,7 +77,7 @@ export function DesktopScrollStory({ content }: DesktopScrollStoryProps) {
               <motion.article
                 key={activeStep.id}
                 aria-current="step"
-                initial={reduced ? false : { opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={reduced ? { duration: 0 } : { duration: 0.3 }}
                 className="border-t border-[var(--border-hairline)] pt-5"

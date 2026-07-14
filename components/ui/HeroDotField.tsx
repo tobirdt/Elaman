@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 import { useReducedMotionPreference } from "@/components/motion/useReducedMotionPreference";
-import { DOT_COLORS, DotMatrix } from "@/components/ui/DotMatrix";
+import { DOT_COLORS } from "@/components/ui/DotMatrix";
 import { STORY_BLUE_INDEX, STORY_BOUNDS, storyFormations } from "@/lib/design/formations";
 import { dotStagger, motionDuration, motionEase } from "@/lib/motion/presets";
 
@@ -23,20 +23,6 @@ const ORIGIN_Y = (-STORY_BOUNDS.minY + PADDING) * PITCH;
 
 export function HeroDotField({ className = "", delayBase = 0.18 }: HeroDotFieldProps) {
   const reduced = useReducedMotionPreference();
-
-  if (reduced) {
-    return (
-      <DotMatrix
-        bounds={STORY_BOUNDS}
-        className={className}
-        dotRadius={DOT_RADIUS}
-        formation={FORMATION}
-        inkOpacity={0.28}
-        padding={PADDING}
-        pitch={PITCH}
-      />
-    );
-  }
 
   return (
     <svg
@@ -61,9 +47,9 @@ export function HeroDotField({ className = "", delayBase = 0.18 }: HeroDotFieldP
             animate={{ opacity: isBlue ? 1 : 0.28, scale: 1 }}
             style={{ transformOrigin: `${cx}px ${cy}px` }}
             transition={{
-              duration: motionDuration.reveal,
+              duration: reduced ? 0 : motionDuration.reveal,
               ease: motionEase.out,
-              delay: delayBase + dotStagger(index),
+              delay: reduced ? 0 : delayBase + dotStagger(index),
             }}
           />
         );
