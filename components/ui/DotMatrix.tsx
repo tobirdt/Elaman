@@ -12,6 +12,9 @@ type DotMatrixProps = {
 
 export const DOT_COLORS = {
   ink: "var(--color-graphite)",
+  "mark-light": "#d2d2d2",
+  "mark-mid": "#b1b1b1",
+  "mark-dark": "#919191",
   blue: "var(--color-elaman-blue)",
   red: "var(--color-elaman-red)",
 } as const;

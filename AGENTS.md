@@ -6,7 +6,7 @@ Instructions for AI agents and developers working on the Elaman GmbH website.
 
 Production Next.js 16, React 19, Tailwind 4, and Framer Motion 12 site for Elaman GmbH. The bilingual EN/DE one-pager uses a white-first “Precision Dossier” aesthetic for an institutional communications and security-engineering audience.
 
-The defining system is flat paper, hairline rules, disciplined typography, register labels, oversized figures, and logo-derived dot formations. It must feel like an engineered dossier, not a SaaS landing page.
+The defining system is flat paper, hairline rules, disciplined typography, generous whitespace, and restrained logo-derived dot geometry. It must feel like an assured institutional company site, not a SaaS landing page or a design-system demonstration.
 
 ## Sources of truth
 
@@ -46,9 +46,9 @@ Conflict order for public wording remains: verified fact → CONTENT_BLUEPRINT.m
 - Introduce glassmorphism, blur-glass cards, large shadows, gradient washes, gradient blobs, grid overlays, neon/cyberpunk styling, bento layouts, icon-tile grids, or generic SaaS patterns.
 - Add new brand colours or raw colour values outside the token sources.
 - Add or replace fonts. Geist and Geist Mono are fixed.
-- Add decorative stock imagery or surveillance-first hero imagery.
+- Add imagery beyond the three explicitly approved heritage assets, or turn the hero into a surveillance-first composition.
 - Use uniform copy-pasted fade-ins for every section. Choreography must follow content and hierarchy.
-- Add a third scroll-scrubbed animation system.
+- Add scroll-scrubbed animation without explicit approval.
 - Animate layout properties, filters, blur, font size, or letter spacing.
 - Add looping decorative motion.
 - Use unsourced claims such as “100% sovereignty,” “secure portal,” invented statistics, certifications, or client logos.
@@ -61,19 +61,19 @@ Conflict order for public wording remains: verified fact → CONTENT_BLUEPRINT.m
 
 ### Canonical palette
 
-| Token | Value | Role |
-|---|---:|---|
-| paper | #ffffff | Primary canvas and flat surfaces |
-| paper-soft | #f7f8fa | Quiet section contrast and inset fields |
-| line | rgba(22, 24, 29, 0.12) | Default hairline |
-| graphite | #16181d | Primary text and ink |
-| graphite-muted | #555d6b | Body text |
-| graphite-soft | #667286 | Tertiary text and technical metadata |
-| elaman-blue | #244074 | Elaman/active accent |
-| elaman-red | #d83034 | Protection accent |
-| navy | #172033 | Selective dark band |
-| on-dark | #f7f8fa | Primary text on navy |
-| on-dark-muted | #c7d0dc | Secondary text on navy |
+| Token          |                  Value | Role                                    |
+| -------------- | ---------------------: | --------------------------------------- |
+| paper          |                #ffffff | Primary canvas and flat surfaces        |
+| paper-soft     |                #f7f8fa | Quiet section contrast and inset fields |
+| line           | rgba(22, 24, 29, 0.12) | Default hairline                        |
+| graphite       |                #16181d | Primary text and ink                    |
+| graphite-muted |                #555d6b | Body text                               |
+| graphite-soft  |                #667286 | Tertiary text and technical metadata    |
+| elaman-blue    |                #244074 | Elaman/active accent                    |
+| elaman-red     |                #d83034 | Protection accent                       |
+| navy           |                #172033 | Selective dark band                     |
+| on-dark        |                #f7f8fa | Primary text on navy                    |
+| on-dark-muted  |                #c7d0dc | Secondary text on navy                  |
 
 No additional palette is permitted. Red on navy may use the accessibility token #ff6b6f.
 
@@ -105,11 +105,11 @@ lib/design/formations.ts derives all formations from the Elaman logo grid. A vis
 
 Do not scatter blue/red points as decoration, repeat the same formation in adjacent sections, or create local coordinate sets when a shared formation can express the state.
 
-The story uses six identity-preserving states of the same 25 dots: field, columns, chain, protection perimeter, block, and final diamond. The desktop stage morphs the same indexed dots; mobile renders truthful static snapshots.
+The active homepage does not render a standalone DotMatrix composition. Keep the shared formation library available for purposeful diagrams, but do not add dot graphics merely to fill the photography-led composition.
 
-### SectionRule
+### Section rhythm
 
-Every top-level homepage section opens with a register rule: full-width hairline, zero-padded section index on the left, technical keyword on the right. Use components/ui/SectionRule. Red is restricted to protection semantics.
+Do not add numbered register labels to top-level sections. Use the actual section title, whitespace, tonal contrast, and hairlines for orientation. Numbering is reserved for genuine ordered processes.
 
 ### MonoLabel
 
@@ -121,18 +121,18 @@ Use components/ui/Stat or the same typography tokens for factual metrics. One co
 
 ## Layout primitives
 
-| Need | Primitive |
-|---|---|
-| Section mode | Section: hero-screen, screen, screen-lite, content-band, legal-page |
-| Width | Container: page, content, copy, narrow, legal |
-| Flat surface | Surface: card, inset, navy |
-| Overlay surface | Surface: raised |
-| Heading block | SectionHeader |
-| Register | SectionRule |
-| Technical label | MonoLabel |
-| Editorial figure | Stat |
-| Brand graphic | DotMatrix and formation-specific components |
-| Actions | Button: primary, secondary, ghost |
+| Need             | Primitive                                                           |
+| ---------------- | ------------------------------------------------------------------- |
+| Section mode     | Section: hero-screen, screen, screen-lite, content-band, legal-page |
+| Width            | Container: page, content, copy, narrow, legal                       |
+| Flat surface     | Surface: card, inset, navy                                          |
+| Overlay surface  | Surface: raised                                                     |
+| Heading block    | SectionHeader                                                       |
+| Ruled structure  | Hairline borders within the section composition                     |
+| Technical label  | MonoLabel                                                           |
+| Editorial figure | Stat                                                                |
+| Brand graphic    | DotMatrix and formation-specific components                         |
+| Actions          | Button: primary, secondary, ghost                                   |
 
 Legacy Section props and Surface aliases remain only for migration. Do not use them in new code.
 
@@ -140,39 +140,36 @@ Legacy Section props and Surface aliases remain only for migration. Do not use t
 
 lib/motion/presets.ts is the single source of truth.
 
-| Tier | Duration | Use |
-|---|---:|---|
-| Micro / fast | 120–180ms | Hover, focus, press, colour and border feedback |
-| State / medium / expand | 240–320ms | Menu, accordion, form state, text swaps |
-| Reveal / trace / entrance | 380–600ms | Once-only entrances and hairline draws |
-| Scroll-linked | No duration | MotionValues smoothed with scrollSpring |
+| Tier                      |    Duration | Use                                             |
+| ------------------------- | ----------: | ----------------------------------------------- |
+| Micro / fast              |   120–180ms | Hover, focus, press, colour and border feedback |
+| State / medium / expand   |   240–320ms | Menu, accordion, form state, text swaps         |
+| Reveal / trace / entrance |   380–600ms | Once-only entrances and hairline draws          |
+| Scroll-linked             | No duration | MotionValues smoothed with scrollSpring         |
 
 Rules:
 
-- Exactly two scroll-scrubbed systems are allowed: the hero field exit and the desktop story runway/Formation Machine.
+- The homepage has no scroll-scrubbed animation. Adding one requires explicit approval.
 - Animate transform and opacity only. Draw lines with scaleX/scaleY, not width/height.
 - Reveals fire once and total stagger per group stays at or below 0.36s.
 - Hover lift is capped at 2px and disabled for reduced motion.
 - No loops, bouncing, text parallax, scroll-scaled headlines, blur/filter animation, or decorative perpetual motion.
-- Reduced motion must render the final state immediately, use the linear story instead of the sticky runway, and disable smooth scrolling.
+- Reduced motion must render the final state immediately and disable smooth scrolling.
 - Avoid a page of identical fade-ins. Use a restrained mix of line draw, formation assembly, hierarchy-led reveal groups, and state transitions.
 
 ## Homepage structure
 
 The order in app/(marketing)/[locale]/page.tsx is fixed:
 
-| Index | Anchor | Component |
-|---:|---|---|
-| Hero | #hero | HeroSection |
-| 01 | #experience | TrustSection |
-| 02 | #story | ScrollStory |
-| 03 | #capabilities | CapabilityOverview |
-| 04 | #systems | SystemsSection |
-| 05 | #protection | ProtectionSection |
-| 06 | #delivery | DeliverySection |
-| 07 | #contact | ContactSection |
+| Index | Anchor      | Component                                       |
+| ----: | ----------- | ----------------------------------------------- |
+|  Hero | #hero       | HeroSection                                     |
+|    01 | #experience | CapabilityOverview                              |
+|     — | #systems    | Internal portfolio anchor in CapabilityOverview |
+|    02 | #protection | ProtectionSection                               |
+|    03 | #contact    | ContactSection                                  |
 
-The protection section is the selective navy band and the principal red moment. The sticky Formation Machine is reserved for wide desktop; tablet, mobile, and reduced-motion users receive the linear sequence.
+Trust, approach, systems, delivery, and support content is consolidated into these four visible compositions. The protection composition carries the principal red semantic signal; navy is used for the company overview and inquiry field.
 
 ## i18n and content
 

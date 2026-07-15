@@ -16,12 +16,25 @@ function scrollToHash(hash: string, url: string, replace = false) {
     return;
   }
 
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
+  const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ? "auto"
+    : "smooth";
 
-  if (replace) {
-    history.replaceState(null, "", url);
-  } else {
-    history.pushState(null, "", url);
+  target.scrollIntoView({ behavior, block: "start" });
+
+  const oldUrl = window.location.href;
+  const nextUrl = new URL(url, window.location.origin).href;
+
+  if (oldUrl !== nextUrl) {
+    if (replace) {
+      history.replaceState(null, "", url);
+    } else {
+      history.pushState(null, "", url);
+    }
+
+    window.dispatchEvent(
+      new HashChangeEvent("hashchange", { oldURL: oldUrl, newURL: nextUrl }),
+    );
   }
 }
 
@@ -33,6 +46,10 @@ export function AnchorScrollManager({ locale }: AnchorScrollManagerProps) {
       );
 
       if (!anchor) {
+        return;
+      }
+
+      if (anchor.hasAttribute("data-native-anchor")) {
         return;
       }
 

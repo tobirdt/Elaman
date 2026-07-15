@@ -1,7 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Surface } from "@/components/ui/Surface";
 import type { LegalBlock } from "@/lib/content/legal";
 
 type LegalDocumentProps = {
@@ -12,7 +11,7 @@ type LegalDocumentProps = {
 
 export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentProps) {
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <Section variant="legal-page" tone="white">
         <Container size="legal">
           <SectionHeader
@@ -27,7 +26,7 @@ export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentP
       </Section>
       <Section className="border-t border-line" variant="legal-page" tone="soft">
         <Container size="legal">
-          <Surface className="p-6 sm:p-9" variant="panel">
+          <div className="rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper)] p-6 sm:p-9">
             {blocks.map((block, index) => (
               <section
                 key={`${block.title ?? "legal-block"}-${index}`}
@@ -50,7 +49,7 @@ export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentP
                 </div>
               </section>
             ))}
-          </Surface>
+          </div>
         </Container>
       </Section>
     </main>

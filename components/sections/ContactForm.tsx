@@ -36,6 +36,8 @@ const initialValues: ContactFormValues = {
 
 const validationFieldOrder: Array<keyof ContactFormValues> = [
   "firstName",
+  "lastName",
+  "company",
   "email",
   "message",
 ];
@@ -106,6 +108,10 @@ export function ContactForm({ content }: ContactFormProps) {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    if (status === "loading") {
+      return;
+    }
+
     const nextErrors = validate(values, content);
     setErrors(nextErrors);
 
@@ -135,9 +141,17 @@ export function ContactForm({ content }: ContactFormProps) {
 
       if (payload.error === "validation_error") {
         const localizedErrors = validate(values, content);
-        setErrors(
-          Object.keys(localizedErrors).length > 0 ? localizedErrors : payload.fields,
-        );
+        const responseErrors =
+          Object.keys(localizedErrors).length > 0
+            ? localizedErrors
+            : {
+                form:
+                  response.status === 429
+                    ? content.errors.rateLimited
+                    : content.errors.payload,
+              };
+        setErrors(responseErrors);
+        focusFirstError(responseErrors);
       } else {
         setErrors({
           form:
@@ -160,7 +174,7 @@ export function ContactForm({ content }: ContactFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-3.5"
+      className="grid gap-5"
       noValidate
       aria-busy={status === "loading"}
     >
@@ -176,14 +190,20 @@ export function ContactForm({ content }: ContactFormProps) {
         />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2">
         <label className={fieldBase}>
-          {content.fields.firstName}
+          <span>
+            {content.fields.firstName}
+            <span aria-hidden="true" className="text-elaman-red">
+              {" *"}
+            </span>
+          </span>
           <input
             id="firstName"
             className="form-field"
             name="firstName"
             autoComplete="given-name"
+            maxLength={80}
             required
             value={values.firstName}
             onChange={updateField}
@@ -204,6 +224,7 @@ export function ContactForm({ content }: ContactFormProps) {
             className="form-field"
             name="lastName"
             autoComplete="family-name"
+            maxLength={80}
             value={values.lastName}
             onChange={updateField}
             aria-invalid={Boolean(errors.lastName)}
@@ -217,7 +238,7 @@ export function ContactForm({ content }: ContactFormProps) {
         </label>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2">
         <label className={fieldBase}>
           {content.fields.company}
           <input
@@ -225,6 +246,7 @@ export function ContactForm({ content }: ContactFormProps) {
             className="form-field"
             name="company"
             autoComplete="organization"
+            maxLength={120}
             value={values.company}
             onChange={updateField}
             aria-invalid={Boolean(errors.company)}
@@ -238,7 +260,12 @@ export function ContactForm({ content }: ContactFormProps) {
         </label>
 
         <label className={fieldBase}>
-          {content.fields.email}
+          <span>
+            {content.fields.email}
+            <span aria-hidden="true" className="text-elaman-red">
+              {" *"}
+            </span>
+          </span>
           <input
             id="email"
             className="form-field"
@@ -246,7 +273,9 @@ export function ContactForm({ content }: ContactFormProps) {
             type="email"
             inputMode="email"
             autoComplete="email"
+            maxLength={254}
             required
+            spellCheck={false}
             value={values.email}
             onChange={updateField}
             aria-invalid={Boolean(errors.email)}
@@ -261,11 +290,18 @@ export function ContactForm({ content }: ContactFormProps) {
       </div>
 
       <label className={fieldBase}>
-        {content.fields.message}
+        <span>
+          {content.fields.message}
+          <span aria-hidden="true" className="text-elaman-red">
+            {" *"}
+          </span>
+        </span>
         <textarea
           id="message"
           className="form-field min-h-24 resize-y"
           name="message"
+          minLength={20}
+          maxLength={4000}
           required
           value={values.message}
           onChange={updateField}
@@ -288,17 +324,16 @@ export function ContactForm({ content }: ContactFormProps) {
         >
           {status === "loading" ? content.sending : content.submit}
         </Button>
-        <p className="text-xs leading-5 text-graphite-soft">{content.helper}</p>
       </div>
 
-      <div aria-live="polite" className="min-h-12">
+      <div aria-live="polite" className="min-h-6">
         {status === "success" ? (
-          <p className="rounded-[var(--radius-control)] border border-elaman-blue/18 bg-elaman-blue/[0.055] px-4 py-3 text-sm text-graphite">
+          <p className="border-l-2 border-elaman-blue pl-4 text-sm leading-6 text-graphite">
             {content.success}
           </p>
         ) : null}
         {status === "error" && errors.form ? (
-          <p className="rounded-[var(--radius-control)] border border-elaman-red/18 bg-elaman-red/[0.055] px-4 py-3 text-sm text-graphite">
+          <p className="border-l-2 border-elaman-red pl-4 text-sm leading-6 text-graphite">
             {errors.form}
           </p>
         ) : null}

@@ -1,607 +1,343 @@
-# Elaman GmbH — Delivery & Implementation Plan
+# Elaman GmbH — Heritage Modernisation Implementation Plan
 
-Authoritative execution plan for the Elaman website. It translates the approved brand direction, bilingual content blueprint, current codebase, and launch requirements into small, reviewable implementation slices.
+Authoritative execution plan for the approved reconstruction of the former Elaman homepage as a modern, bilingual Next.js experience.
 
-**Status:** Active — brand foundation approved; detailed build programme ready  
-**Primary language:** German at /de; English remains a complete, switchable version at /en  
-**Current execution unit:** P01 — Editorial restraint and credentials  
-**Planning rule:** One numbered slice per pull request where practical. Do not merge unrelated visual, copy, legal, or infrastructure changes into one slice.
+**Status:** Release candidate approved and fully QA-verified; publication to `main` is authorised. Live mail delivery, final-domain wiring, and counsel-controlled legal review remain operational follow-ups.
+
+**Primary language:** German at `/de`; English remains complete at `/en`
+
+**Current execution unit:** P19 — approved `main` release and production verification
+
+**Planning rule:** Keep visual, content, legal, and deployment work reviewable. Do not mix unapproved claims or infrastructure changes into a design slice.
+
+This plan supersedes the earlier eight-section visual programme. The stakeholder explicitly approved a shorter reconstruction that preserves the former site’s layout, imagery, section rhythm, and text hierarchy while modernising typography, responsiveness, accessibility, and implementation quality.
 
 ---
 
 ## 1. Delivery outcome
 
-The finished website must feel like an institutional, highly considered digital presence for a German communications and security engineering company:
+The homepage should be immediately recognisable as the successor to the former Elaman website:
 
-- white-first, calm, precise, and technically credible;
-- discreet in public wording, especially around observation, protection, and specialist capabilities;
-- modern through composition, interaction quality, and technical diagrams — never through cyberpunk spectacle;
-- coherent in German and English;
-- usable on mobile, keyboard, reduced-motion, and touch-first contexts;
-- production-ready in legal, contact-form, SEO, performance, and deployment terms.
+- compact white header with the complete Elaman wordmark;
+- close-cropped advice image beside the Elaman introduction;
+- deep-navy company and capability field;
+- tiger image band introducing the protection composition;
+- factual protection information on paper;
+- Munich office image, direct contact information, and a navy inquiry field;
+- compact factual footer.
 
-The site is not a sales funnel, product catalogue, surveillance showcase, or generic SaaS landing page. It is a professional public-sector-facing company presence.
+The result remains an institutional public-sector-facing company presence. It is not a sales funnel, product catalogue, surveillance showcase, or generic cybersecurity landing page.
+
+“Faithful reconstruction” refers to composition, image choice, order, and recognisable brand rhythm. It does not mean reproducing obsolete typography, fixed desktop dimensions, inaccessible form patterns, unsafe claims, or the excessive empty space visible in the old capture.
 
 ---
 
-## 2. Sources of truth and conflict order
+## 2. Sources of truth
 
-Read these documents before changing a visual section or any public string:
+Use this order:
 
-1. **CONTENT_BLUEPRINT.md** — factual source and bilingual copy baseline
-2. **DESIGN_DIRECTION.md** — approved experience, image, and brand intent
-3. **DESIGN_SYSTEM.md** — tokens, components, motion, accessibility rules
-4. This plan — execution order, acceptance criteria, dependencies
-5. **README.md** — development, contact-form, Vercel, and deployment operations
+1. **CONTENT_BLUEPRINT.md** — factual claims and bilingual copy
+2. **app/(marketing)/[locale]/page.tsx** — active homepage composition
+3. **app/globals.css** and **lib/design/tokens.ts** — canonical visual tokens
+4. **lib/motion/presets.ts** — canonical motion tiers
+5. **DESIGN_DIRECTION.md** — approved heritage-modernisation intent
+6. **DESIGN_SYSTEM.md** — implementation rules and active component vocabulary
+7. This plan — delivery state, remaining gates, and release order
+8. **README.md** — local development and deployment operations
 
-When a public wording conflict exists, use this order:
+For visual and motion behaviour, current code wins over prose. When code and documentation drift, verify the implementation and update the documentation in the same change.
 
-verified company fact → approved stakeholder wording → content blueprint → design direction → implementation convenience
+Public wording follows:
 
-No named customer, authority, certification, operation, product guarantee, or classified/discreet-handling claim is added without written approval.
+verified fact → CONTENT_BLUEPRINT.md → approved stakeholder wording
+
+Do not add named customers, authorities, certifications, guarantees, or operational claims without publication approval. Do not paraphrase legal copy without counsel approval.
 
 ---
 
 ## 3. Locked decisions
 
-| Area                     | Decision                                                                                                                            |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Primary market language  | German first; / redirects to /de                                                                                                    |
-| English                  | Full equivalent experience at /en, reachable through the language switch                                                            |
-| Header                   | Elaman point mark only                                                                                                              |
-| Wordmark                 | Full wordmark in hero and footer only                                                                                               |
-| Typography               | Jost via next/font/google; no unlicensed Wix Futura reuse                                                                           |
-| Primary visual system    | Point constellation, technical maps, bridge traces, system/process diagrams                                                         |
-| Colour                   | White/soft-grey canvas; restrained graphite/deep-navy contrast; logo blue/red as precise accents                                    |
-| Photography              | The Munich office photo is approved for contact context; the bridge visual is prepared but optional; total photo use remains sparse |
-| Excluded imagery         | Eyes, animals, tunnels, hacker, globe, smart-city, neon-network, and generic cybersecurity stock                                    |
-| Sensitive public wording | Contextual and discreet; knowledgeable audiences may recognise the subject matter without operational detail                        |
-| Client context           | Police, BKA, ministries, and customer relationships remain background context unless publication approval is supplied               |
-| Interaction              | Subtle; state-based; reduced-motion-safe; no continuous decorative animation                                                        |
+| Area               | Approved decision                                                                                      |
+| ------------------ | ------------------------------------------------------------------------------------------------------ |
+| Market language    | German first; `/` redirects to `/de`                                                                   |
+| English            | Complete equivalent experience at `/en`                                                                |
+| Header             | Complete official Elaman wordmark in a compact white header                                            |
+| Hero               | Responsive 50/50 advice photograph and factual Elaman introduction                                     |
+| Typography         | Geist and Geist Mono only                                                                              |
+| Palette            | Paper, paper-soft, graphite, Elaman blue, protection red, and navy tokens only                         |
+| Structure          | Four visible compositions: hero, company/portfolio, protection, contact                                |
+| Navigation         | DE: Start, Beratung, Observation, Schutz, Kontakt; EN: Home, Advice, Surveillance, Protection, Contact |
+| Photography        | The supplied advice, tiger, and Munich office images are approved heritage assets                      |
+| Additional imagery | No further stock or generic cybersecurity imagery without explicit approval                            |
+| Dot geometry       | Shared formation library remains available; no standalone homepage DotMatrix is required               |
+| Public wording     | Discreet, factual, and capability-level; sensitive customer context stays private                      |
+| Motion             | One-time hero entrance and restrained state feedback; no homepage scroll-scrub system                  |
+| Contact            | Inquiry form, never a secure portal; honeypot and server validation remain mandatory                   |
+
+The user confirmed that the supplied heritage images are licensed for use.
 
 ---
 
-## 4. Verified baseline
+## 4. Active homepage architecture
 
-The project is not a blank redesign. The following functionality and components already exist and are the baseline for the next stages.
+The route renders this fixed order:
 
-| Area                 | Current state                                                                                | Plan treatment                                                                               |
-| -------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Next.js app          | Next.js 16, React 19, Tailwind 4, Framer Motion                                              | Preserve architecture; no framework migration                                                |
-| Locales              | /de, /en, German root redirect, alternate metadata                                           | Refine and test, do not rebuild                                                              |
-| Header, hero, footer | Brand foundation approved: point mark, wordmark hierarchy, Jost, German-first routing        | Treat as accepted; polish only when a later regression requires it                           |
-| Sections             | All eight homepage sections and technical visual primitives exist                            | Improve them one section at a time rather than replacing the page wholesale                  |
-| Content model        | **lib/content/site.ts** carries EN/DE strings                                                | Keep languages in lockstep; revise sensitive wording before public launch                    |
-| System interaction   | **SystemsSection** and **SystemMap** already provide a single-active detail pattern          | Audit semantics and refine disclosure behaviour instead of adding a second interaction model |
-| Sticky lifecycle     | Desktop pinned narrative and mobile sequence exist                                           | Recalibrate breakpoint, motion, performance, and accessibility                               |
-| Contact form         | Client validation, honeypot, server validation, Resend handler, best-effort rate limit exist | Production configuration and operational verification remain open                            |
-| Legal                | Interim English imprint and German privacy route exist                                       | Locale-specific routes and counsel review are still a release gate                           |
-| SEO                  | Metadata, sitemap, robots, manifest, organisation JSON-LD exist                              | Complete locale/legal metadata, OG imagery, and pre-launch audit                             |
-| Assets               | Office and bridge images are locally optimised; current point mark is production SVG         | Replace with original vector artwork only when found; no design work is blocked              |
+| Anchor        | Component            | Responsibility                                                                                    |
+| ------------- | -------------------- | ------------------------------------------------------------------------------------------------- |
+| `#hero`       | `HeroSection`        | Advice image, Elaman H1, original trust tagline, verified company introduction, experience anchor |
+| `#experience` | `CapabilityOverview` | Navy company statement and integrated eight-field portfolio index                                 |
+| `#systems`    | internal anchor      | Navigation target within the portfolio index                                                      |
+| `#protection` | `ProtectionSection`  | Tiger band, original bridge-to-trust line, protection copy, four ruled capability groups          |
+| `#contact`    | `ContactSection`     | Munich office band, direct contact row, navy inquiry field                                        |
+| footer        | `Footer`             | Company address, legal links, copyright                                                           |
 
-### Current constraints to preserve
-
-- Use tokens from **lib/design/tokens.ts** and **app/globals.css**; do not introduce arbitrary hex colours.
-- Compose from **components/ui**, **components/sections**, and existing motion primitives before adding abstractions.
-- Preserve the contact honeypot and server-side validation.
-- Treat .next as disposable build output. In the iCloud workspace, run clean validation from a fresh preview copy or clean generated duplicates before interpreting TypeScript errors as source failures.
-- Do not add dependencies merely for a visual effect or a test that can be executed with existing tools.
+Trust, approach, systems, delivery, training, and support data remains available in the content model. It is consolidated into the visible compositions instead of appearing as repetitive standalone screens.
 
 ---
 
-## 5. Execution model
+## 5. P14 — Heritage layout modernisation
 
-### Status vocabulary
+**Status:** Complete locally.
 
-| Status      | Meaning                                                                               |
-| ----------- | ------------------------------------------------------------------------------------- |
-| Complete    | Implemented, verified, and stakeholder-approved                                       |
-| Ready       | Technically prepared; awaits its scheduled slice                                      |
-| In progress | The only slice currently being changed                                                |
-| Blocked     | Cannot proceed without a specific approval, legal input, asset, or configured service |
-| Deferred    | Deliberately postponed; it does not block the next scheduled slice                    |
+### Purpose
 
-### Required evidence for every visual slice
+Recreate the former homepage’s recognisable composition using the current Next.js architecture and the approved Precision Dossier tokens.
 
-1. Scope is limited to the current slice.
-2. EN and DE are updated together if public copy changes.
-3. Desktop and mobile preview are checked.
-4. prefers-reduced-motion is not regressed.
-5. Keyboard/focus behaviour is checked where an interaction changes.
-6. Lint, typecheck, and production build pass in a clean validation environment.
-7. Before/after screenshots or an equivalent preview record accompany the review.
+### Implemented scope
 
-### Git and review convention
+#### Header and navigation
 
-- When Git work is requested, create one branch per slice using the codex/ prefix.
-- Keep source, content, legal, and deployment configuration changes separate whenever possible.
-- A Vercel preview deployment is the preferred review surface for a visual slice once the repository is pushed.
-- Do not commit, push, or open a pull request until explicitly requested.
+- Replaced the point-only header mark with the supplied complete wordmark.
+- Preserved sticky navigation, active-anchor state, mobile disclosure, language switching, and keyboard operation.
+- Restored the former site’s five navigation concepts in German and English.
 
----
+#### Hero
 
-## 6. Programme map
+- Rebuilt the introduction as a responsive split composition.
+- Added the supplied advice image with a deliberate eye-focused crop.
+- Restored “Elaman” as the primary heading and retained the original trust-and-security positioning.
+- Kept verified experience copy and one factual 20+ years figure.
+- Removed sales-style calls to action from the opening composition.
 
-| Order | Slice                                         | Status                         | Main result                                                                             | Gate                                           |
-| ----- | --------------------------------------------- | ------------------------------ | --------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| 00    | Programme hygiene and baseline record         | Complete                       | Accurate current-state audit and clean validation route                                 | None                                           |
-| 01    | Editorial restraint and credentials           | **Next**                       | Public tone calibrated; experience section becomes a stronger institutional proof point | Copy owner review                              |
-| 02    | Services / capability composition             | Ready                          | Four service pillars become clearer and more refined without sales language             | None                                           |
-| 03    | Lifecycle / approach experience               | Ready                          | Sticky desktop story and mobile sequence are robust and calm                            | Responsive and reduced-motion check            |
-| 04    | Solutions disclosure                          | Ready                          | Accessible, discreet single-open system detail interaction                              | No operational detail beyond approved copy     |
-| 05    | Protection contrast section                   | Ready                          | Distinct deep-navy moment with restrained public detail                                 | Sensitive wording review                       |
-| 06    | Delivery methodology                          | Ready                          | Clear five-step delivery rail, visually connected to lifecycle                          | None                                           |
-| 07    | Contact, footer, and image restraint          | Ready                          | Human Munich presence, factual contact, durable inquiry experience                      | Live email configuration needed for final test |
-| 08    | Legal and locale routing                      | Blocked for final wording      | Locale-specific legal architecture and redirects                                        | Counsel/owner approval                         |
-| 09    | Motion and interaction system                 | Ready after sections           | Final motion budget and state transitions                                               | Reduced-motion audit                           |
-| 10    | Responsive accessibility pass                 | Ready after sections           | Device, touch, keyboard, screen-reader, contrast polish                                 | Test matrix                                    |
-| 11    | SEO, social, and performance                  | Ready after content stabilises | Search/social readiness and fast visual delivery                                        | Final domain decision                          |
-| 12    | Form security and operations                  | Ready before launch            | Reliable inquiry delivery, spam posture, operational monitoring                         | Resend/Vercel setup                            |
-| 13    | Staging, launch, and post-launch verification | Blocked until all gates clear  | Controlled public release                                                               | Legal, form, domain, stakeholder sign-off      |
+#### Company and portfolio
 
----
+- Consolidated company positioning, trust, advice, systems, training, delivery, and support into one navy field.
+- Reconstructed the former eight-capability overview as a ruled typographic index.
+- Avoided icon tiles, cards, unsupported claims, and catalogue language.
 
-## 7. Detailed implementation slices
+#### Protection
 
-### P00 — Programme hygiene and baseline record
+- Added the supplied tiger image as a static full-width transition band.
+- Retained protection as the page’s principal red semantic moment.
+- Reframed the detailed content as four factual, discreet capability groups.
+- Kept the public language recognisable to informed audiences without naming sensitive customers or operations.
 
-**Status:** Complete, with an ongoing pre-commit check.
+#### Contact and footer
 
-**Purpose:** Establish a truthful starting point before visual work continues.
+- Added the supplied Munich office image as a static section band.
+- Exposed factual address, phone, and email links directly.
+- Rebuilt the form as a responsive white panel on navy.
+- Preserved labels, validation, honeypot, server handling, focus behaviour, and live status messaging.
+- Simplified the footer to the former site’s compact factual ending.
 
-**Completed**
+#### Content and localisation
 
-- Read the design direction, content blueprint, design system, existing implementation plan, and README.
-- Confirmed the eight-section marketing route is already implemented.
-- Confirmed German-first routing, point-mark header, Jost typography, office asset usage, and the core preview/build path.
-- Recorded the difference between source-level checks and stale generated .next files in the iCloud working directory.
+- Updated German and English together.
+- Retained safe factual content instead of restoring unsourced superlatives from the former page.
+- Kept legal content and legal routes unchanged.
 
-**Still required before the first Git commit**
+#### Motion and accessibility
 
-- Check repository index integrity and preserve any user-owned changes before staging.
-- Run git status, git diff --check, and the full quality gate from a clean state.
-- Confirm only intentionally imported assets are tracked.
+- Uses only canonical reveal/entrance tiers and the signature easing.
+- Animates transform and opacity only.
+- Keeps hero stagger within the approved budget.
+- Reduced motion renders the final hero state immediately.
+- Photographic bands remain static.
+- No scroll-linked homepage animation was introduced.
 
-**Exit criteria**
+### Explicitly excluded
 
-- A reviewer can identify what changed in the slice without relying on stale historical task statuses.
+- Literal reuse of old claims such as “global leader,” “second to none,” or equivalent unsupported superiority statements.
+- Named authority/customer references.
+- New product promises, certification badges, metrics, or client logos.
+- Additional stock imagery.
+- Glassmorphism, gradients, glows, grid overlays, bento layouts, icon-card grids, or cyberpunk effects.
+- Legal rewrites, analytics, CMS, portal, authentication, or CI changes.
 
 ---
 
-### P01 — Editorial restraint and credentials
+## 6. Release acceptance evidence
 
-**Status:** Next.
+### Automated
 
-**Purpose:** Make the public voice consistently institutional and discreet before additional visual depth is added.
+- `npm run lint` passes.
+- `npm run typecheck` passes.
+- `npm run format:check` passes.
+- `npm run build` passes with the Next.js production build.
+- `npm audit` and `npm audit --omit=dev` report no vulnerabilities.
+- German and English routes render.
+- Image assets resolve with valid intrinsic dimensions.
+- No horizontal overflow at the tested mobile, tablet, and desktop widths.
 
-**Scope**
+### Browser and responsive
 
-- TrustSection and the experience anchor
-- Relevant EN/DE strings in **lib/content/site.ts**
-- **CONTENT_BLUEPRINT.md** only if approved public wording needs to be corrected
-- Small supporting changes to SectionHeader or TechnicalMark only if they directly improve the section
+Verified in the production preview:
 
-**Tasks**
+| Context                      | Result                                                                                                        |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| German 320–1440 px           | Correct hierarchy, crops, section rhythm, and no overflow                                                     |
+| English 320–1440 px          | Equivalent content hierarchy and no overflow                                                                  |
+| Tablet 768 and 1024 px       | Stable split/stack transitions, readable portfolio, and usable contact form                                   |
+| Legal routes 390 and 1440 px | Readable long headings, correct landmarks, and no overflow                                                    |
+| Keyboard and mobile menu     | Skip link, focus order, Escape, focus return, active anchors, and language switch work                        |
+| Contact form                 | Client/server validation, honeypot, oversized payload, provider error, rate limit, and success state verified |
+| Reduced motion               | Hero copy is immediately visible; smooth scrolling and nonessential movement are disabled                     |
+| Console and hydration        | No application errors, warnings, or hydration failures                                                        |
+| Accessibility                | Automated WCAG scans report zero violations on both locales and legal routes                                  |
+| Lighthouse mobile            | Performance 95, Accessibility 100, Best Practices 100, SEO 100                                                |
+| Lighthouse desktop           | Performance 100, Accessibility 100, Best Practices 100, SEO 100                                               |
 
-1. Audit all public strings mentioning observation, countermeasures, jamming, intelligence, forensics, law enforcement, or operational contexts.
-2. Convert overly explicit product-language into capability-level, authorised-context language where the stakeholder direction requires discretion.
-3. Retain the factual anchors: 20+ years, communications and security engineering, advice, implementation, training, after-sales support, public-authority context.
-4. Keep audience groups as categories, never as a client list or logo wall.
-5. Rebalance the trust layout so it reads as a calm evidence band rather than a metric-card sales section.
-6. Use the point system as a subtle evidence/progress motif only; do not introduce a new decorative pattern.
-7. Ensure the German version reads naturally in formal institutional German, not as a literal English translation.
+### Visual record
 
-**Non-goals**
+The review images are stored under:
 
-- No certification badges without approval.
-- No customer testimonials, project counts, or named references.
-- No new image in this section unless a specific factual need is approved.
-
-**Acceptance criteria**
-
-- The section answers “why trust Elaman?” within one screen without making unsupported claims.
-- Every metric is factual and source-aligned.
-- The German/English content has equivalent meaning, hierarchy, and density.
-- Desktop and mobile retain clear scanning order.
-
-**Potential blocker**
-
-- If a desired credential, certificate, client category, or claim cannot be sourced, it stays out.
-
----
-
-### P02 — Services / capability composition
-
-**Status:** Ready after P01.
-
-**Purpose:** Present the four established service pillars as a precise, equal-weight capability system.
-
-**Scope**
-
-- CapabilityOverview
-- TechnicalMark where direct refinement is required
-- siteContent.capabilities
-
-**Tasks**
-
-1. Keep the four-pillared structure: Beratung/Advice, Observation/Surveillance, Schutz/Protection, Training & Betreuung/Training & Support.
-2. Make card hierarchy consistent: section number, mark, title, concise description, optional low-emphasis detail cue.
-3. Refine whitespace, baseline alignment, hover/focus states, and mobile stacking.
-4. Preserve equal visual importance; avoid a Bento or featured-product layout.
-5. Ensure descriptions signal domains and professional support without exposing sensitive implementation details.
-6. Test text wrapping with both German and English titles at compact widths.
-
-**Acceptance criteria**
-
-- A visitor can understand the four pillars without opening anything.
-- No card reads as a purchasable product tile.
-- The red accent appears as a controlled exception, not a promotional warning.
+- `output/playwright/heritage-modern/de-desktop.png`
+- `output/playwright/heritage-modern/de-mobile.png`
+- `output/playwright/heritage-modern/en-mobile.png`
 
 ---
 
-### P03 — Lifecycle / approach experience
+## 7. Release programme
 
-**Status:** Ready after P02.
+| Order | Slice                              | Status                   | Result                                                                | Remaining follow-up                |
+| ----: | ---------------------------------- | ------------------------ | --------------------------------------------------------------------- | ---------------------------------- |
+|    14 | Heritage layout modernisation      | Complete                 | Recognisable modern reconstruction                                    | None                               |
+|    15 | Visual and bilingual copy sign-off | Complete                 | Approved crops, density, and discreet public wording                  | None                               |
+|    16 | Legal and locale routes            | Existing routes verified | Current legal pages remain accessible and technically sound           | Counsel review of final wording    |
+|    17 | Contact operations                 | Technical QA complete    | All form paths verified without sending real test mail                | Add Vercel mail environment values |
+|    18 | SEO and performance                | Technical audit complete | Metadata, sitemap, robots, manifest, JSON-LD, images, and CWV audited | Final domain and social preview    |
+|    19 | Main and production release        | Approved for publication | Publish the reviewed tree and verify the live deployment              | Post-deployment smoke verification |
 
-**Purpose:** Make the procedural Vorgehen section the site’s most distinctive technical interaction without making it theatrical.
-
-**Scope**
-
-- ScrollStory
-- DesktopScrollStory
-- MobileStorySequence
-- StickyStoryStage, StoryProgress, MobileStoryVisual
-- siteContent.story
-
-**Tasks**
-
-1. Confirm the desktop pinned layout activates at the documented desktop threshold (at least 1024px) or explicitly document a justified higher threshold.
-2. Ensure the mobile sequence remains a normal scroll flow with no pinned or excessive-height behaviour.
-3. Review the six stages for the new discreet-public-language policy; keep the intent intelligible without operational disclosure.
-4. Verify the progress calculation reaches the final step smoothly and never skips a stage at common viewport heights.
-5. Reduce any visual movement that does not communicate stage change.
-6. Ensure keyboard users can read the entire narrative in document order without relying on scroll position.
-7. Test browser zoom, short laptop heights, touch scrolling, and reduced-motion preference.
-
-**Acceptance criteria**
-
-- Desktop interaction feels deliberate and stable, not like a presentation deck.
-- Mobile remains fast, readable, and fully equivalent in information.
-- Every stage appears without text overlap or clipped panel content.
-
-**Risk**
-
-- Scroll-linked experience is the highest interaction-risk area; it receives manual testing at all core breakpoints.
+The earlier P01–P13 visual sequence is superseded. Its legal, form, SEO, accessibility, and release concerns remain represented in P15–P19.
 
 ---
 
-### P04 — Solutions disclosure
+## 8. P15 — Visual and bilingual copy sign-off
 
-**Status:** Ready after P03.
+**Status:** Complete. The stakeholder approved the visual direction, bilingual presentation, discreet wording, and release to `main` after final QA.
 
-**Purpose:** Turn the existing system map into a fully accessible, discreet, single-open disclosure pattern.
+### Review points
 
-**Scope**
+1. Confirm the desktop hero crop and the stacked mobile crop.
+2. Confirm the compact header wordmark scale.
+3. Confirm the eight portfolio labels in German and English.
+4. Confirm the public specificity of the four protection groups.
+5. Confirm the tiger and Munich office band crops.
+6. Confirm that retaining safe current copy instead of the former page’s superlatives is acceptable.
+7. Review desktop and mobile captures side by side.
 
-- SystemsSection
-- SystemMap
-- types/site.ts and siteContent.systems only if the content model needs clarified short/long descriptions
+### Acceptance
 
-**Tasks**
-
-1. Keep one interaction model: accessible single-open accordion with an optional map as visual context.
-2. Allow an active item to collapse; do not force one item to stay open if that harms expectations.
-3. Preserve aria-expanded, aria-controls, labelled regions, focus visibility, and keyboard activation.
-4. Audit whether every item title/description is appropriate for public visibility; move sensitive detail into neutral category wording.
-5. Separate decorative SVG from the semantic controls so assistive technology gets a clean reading order.
-6. Ensure the active system map node reflects the selected detail without requiring colour perception alone.
-7. Test 8-item layout on mobile, tablet, and desktop for overflow, tap targets, and scroll position.
-
-**Acceptance criteria**
-
-- The control pattern works with mouse, touch, keyboard, and screen reader.
-- One visitor action exposes one clear detail; nothing relies solely on animation.
-- Solution descriptions show range and credibility without operating as a sensitive capability list.
+- The stakeholder recognises the former site’s identity and approves the modernised density.
+- German and English express equivalent meaning.
+- No sensitive, unsupported, or legally risky claim is introduced.
 
 ---
 
-### P05 — Protection contrast section
+## 9. P16 — Legal and locale routes
 
-**Status:** Ready after P04.
+**Status:** Existing routes are technically verified and remain unchanged. Substantive legal wording and any future locale-specific route migration remain counsel-controlled follow-ups.
 
-**Purpose:** Create the page’s selective deep-navy contrast moment while keeping the wording restrained and institutional.
+Target model:
 
-**Scope**
+| Locale  | Imprint                                                  | Privacy                                                  |
+| ------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| German  | `/de/impressum`                                          | `/de/datenschutz`                                        |
+| English | `/en/imprint`                                            | `/en/privacy`                                            |
+| Legacy  | Permanent redirects only after final routes are approved | Permanent redirects only after final routes are approved |
 
-- ProtectionSection
-- siteContent.protection
-- Dark-surface tokens only if a measured contrast adjustment is necessary
-
-**Tasks**
-
-1. Retain the dark surface as a single intentional pause in the scroll rhythm.
-2. Rework public copy from equipment/product detail toward protective capability categories and authorised contexts.
-3. Decide per card whether it belongs publicly at all; remove or generalise any item that is too operationally explicit.
-4. Use blue/red only as state/structure accents; no glow, radar, scanning, threat, or command-centre aesthetic.
-5. Audit white, muted text, borders, and focus states against WCAG contrast targets.
-6. Keep card density lower than a catalogue; the section should communicate assurance, not inventory.
-
-**Acceptance criteria**
-
-- The section is visually memorable but not cinematic.
-- Sensitive subject matter is implied professionally rather than advertised.
-- Contrast remains readable at normal, high-contrast, and reduced-transparency settings.
-
-**Required stakeholder check**
-
-- The final public level of specificity for protection-related terms is approved before merge.
+Do not machine-paraphrase legal text into production. Reconcile the privacy policy with the actual host, inquiry form, email provider, analytics, cookies, and embeds.
 
 ---
 
-### P06 — Delivery methodology
+## 10. P17 — Contact operations
 
-**Status:** Ready after P05.
+**Status:** Client and server behaviour is QA-complete. Real outbound delivery remains pending until the production environment values and verified sender domain are supplied.
 
-**Purpose:** Make the delivery model a compact proof of process, tying advice to implementation, training, and after-sales support.
+Required environment variables:
 
-**Scope**
+- `RESEND_API_KEY`
+- `CONTACT_TO_EMAIL`
+- `CONTACT_FROM_EMAIL`
+- `NEXT_PUBLIC_SITE_URL`
 
-- DeliverySection
-- ProcessRail
-- siteContent.delivery
+Required checks:
 
-**Tasks**
-
-1. Present five plain-language steps: analyse, design, integrate, train, support.
-2. Tie the visual rail to the point/bridge system without repeating the sticky-story visual.
-3. Maintain a readable horizontal relationship on desktop and sequential relationship on mobile.
-4. Review German wording for formal, concise verb forms.
-5. Avoid end-to-end platform, 360°, cutting-edge, or outcome promises.
-
-**Acceptance criteria**
-
-- The model can be scanned in seconds and understood without sales framing.
-- It reinforces lifecycle content without duplicating it verbatim.
+1. Verify the sender domain and receiving mailbox.
+2. Test a successful staging inquiry and reply-to.
+3. Test client validation, server validation, malformed payload, honeypot, provider failure, and rate-limit responses.
+4. Confirm that logs do not expose message bodies or sender details unnecessarily.
+5. Assign an owner for the receiving mailbox.
 
 ---
 
-### P07 — Contact, footer, and controlled photography
+## 11. P18 — SEO, social, and performance
 
-**Status:** Ready after P06.
+**Status:** Technical audit complete. Final custom-domain wiring and a dedicated social preview asset remain operational follow-ups.
 
-**Purpose:** End the page with a credible Munich presence and an uncomplicated inquiry path.
+Tasks:
 
-**Scope**
-
-- ContactSection, ContactForm, Footer
-- public/images/elaman-munich-office.jpg
-- Contact-related content in siteContent
-
-**Tasks**
-
-1. Keep the Munich office image as the only guaranteed photograph in the public experience; retain neutral grading and static presentation.
-2. Review the crop at mobile, tablet, desktop, and high-density screens; the sign/reception must not dominate the layout.
-3. Maintain factual address, phone, fax, email, and inquiry wording.
-4. Keep the form’s client validation, server validation, honeypot, focus-first-error behaviour, and live status announcements.
-5. Verify translated errors and helper content remain coherent with server-side error responses.
-6. Ensure footer links, company details, and language-specific labels are correct.
-7. Decide only at review time whether the bridge image adds value elsewhere; do not add it merely because it exists.
-
-**Acceptance criteria**
-
-- Contact is calm and factual; it makes no promise of a secure portal or classified communication.
-- The office image supports credibility without becoming a decorative hero.
-- All form fields are reachable, labelled, and usable on small touch screens.
+1. Verify German as x-default and validate canonical/hreflang output.
+2. Create a restrained 1200×630 social image from approved brand material.
+3. Finalise the canonical site URL after the domain decision.
+4. Validate metadata, sitemap, robots, manifest, and organisation JSON-LD.
+5. Audit responsive image output, loading priority, client JavaScript, and Core Web Vitals.
+6. Add no tracker, map, font, chat, or embedded service without explicit privacy approval.
 
 ---
 
-### P08 — Legal architecture and locale routing
+## 12. P19 — Staging and production
 
-**Status:** Blocked for final copy approval; route architecture can be prepared earlier.
+**Status:** Stakeholder-authorised for direct publication to `main`; production verification follows the push.
 
-**Purpose:** Replace interim legal URLs with a consistent bilingual route model and verified legal copy.
+### Staging
 
-**Target route model**
+1. Isolate the intended source changes from any unrelated worktree changes.
+2. Commit and push only the approved scope.
+3. Inspect the Vercel preview at desktop, tablet, mobile, keyboard, and reduced-motion settings.
+4. Test staging inquiry delivery.
+5. Freeze approved copy, assets, legal text, and route structure.
 
-| Locale  | Imprint                                                                            | Privacy         |
-| ------- | ---------------------------------------------------------------------------------- | --------------- |
-| German  | /de/impressum                                                                      | /de/datenschutz |
-| English | /en/imprint                                                                        | /en/privacy     |
-| Legacy  | /imprint and /private-policy redirect permanently to the appropriate primary pages |
+### Production
 
-**Tasks**
-
-1. Define locale-aware legal content types; preserve the approved current German content verbatim until counsel authorises changes.
-2. Obtain an English privacy policy from counsel or a company-approved source; do not machine-paraphrase legal text into production.
-3. Add locale-specific layouts, metadata, canonical URLs, alternates, sitemap entries, and legacy redirects.
-4. Update Header/Footer legal links through the central content model.
-5. Check all legal pages for long-text typography, mobile overflow, printing, and accessible headings.
-6. Reconcile the privacy policy with actual hosting, contact form, email delivery, analytics, cookies, and embedded services.
-
-**Release gate**
-
-- No public production launch until the responsible owner/counsel confirms legal content and the actual data-processing model.
+1. Confirm the final domain and production environment variables.
+2. Confirm legal and stakeholder sign-off.
+3. Promote the reviewed deployment.
+4. Verify HTTPS, redirects, canonical URLs, social preview, contact delivery, phone/email links, and legal pages.
+5. Retain the previous production deployment as a rollback point.
 
 ---
 
-### P09 — Motion and interaction budget
+## 13. Required inputs and release gates
 
-**Status:** Ready after P01–P07 visual work is stable.
+| Input / decision                   | Needed by       | Blocks                                     | State                                            |
+| ---------------------------------- | --------------- | ------------------------------------------ | ------------------------------------------------ |
+| Visual and bilingual copy approval | P15             | Approved release candidate                 | Approved                                         |
+| Sensitive service wording approval | P15             | Protection wording sign-off                | Approved in its current discreet form            |
+| English privacy policy             | P16             | Production launch                          | Counsel/company input required                   |
+| Final legal route model            | P16             | Legal-route release                        | Proposed, not approved                           |
+| Analytics/cookies/embeds decision  | P16/P18         | Privacy representation                     | Do not add until approved                        |
+| Final domain                       | P18/P19         | Custom-domain production data              | Follow-up; Vercel production alias is deployable |
+| Resend sender and recipient        | P17/P19         | Live inquiry delivery                      | Follow-up; code fails safely until configured    |
+| Original vector wordmark           | Optional polish | Nothing; current supplied raster is usable | Deferred until found                             |
 
-**Purpose:** Make the experience feel expensive through restraint, not constant movement.
-
-**Scope**
-
-- components/motion
-- Section-level transition classes
-- app/globals.css motion tokens only when a token gap is demonstrated
-
-**Tasks**
-
-1. Inventory every motion path: section reveal, header, lifecycle, system disclosure, cards, photo entrance, form states.
-2. Assign a purpose to each path: orientation, feedback, progress, or focus.
-3. Remove any motion without a clear purpose.
-4. Use only the shared fast, medium, slow, and easing tokens.
-5. Keep images static after a one-time entrance reveal; no parallax spectacle.
-6. Confirm the global reduced-motion mode removes transformation/animation without hiding content or breaking controls.
-
-**Acceptance criteria**
-
-- No perpetual decorative animation.
-- No scroll-scale headline, bounce, particle, radar, scanning, or autoplay behaviour.
-- Interaction feedback remains perceivable without motion.
+Client names, logos, case studies, and certifications remain omitted unless separately approved.
 
 ---
 
-### P10 — Responsive, accessibility, and content-resilience pass
+## 14. Quality gates
 
-**Status:** Ready after P09.
-
-**Purpose:** Make the site robust in the contexts most likely for public-sector visitors: locked-down browsers, laptops, tablets, mobile devices, keyboard use, and zoom.
-
-**Required viewport matrix**
-
-| Viewport    | Primary checks                                                               |
-| ----------- | ---------------------------------------------------------------------------- |
-| 320–390px   | Header, menu, German wrapping, form, office crop, accordion tap targets      |
-| 640–768px   | Two-column transitions, language switch, system disclosure, mobile lifecycle |
-| 1024px      | Sticky lifecycle activation, nav fit, desktop card grids                     |
-| 1280–1440px | Full layout rhythm, long English copy, visual alignment                      |
-| 1600px+     | Whitespace, container limits, image crop, no excessive line length           |
-
-**Tasks**
-
-1. Check for horizontal overflow on every public and legal route.
-2. Check heading hierarchy, landmarks, labels, alt text, visible focus rings, skip order, and screen-reader announcements.
-3. Test language switching while a hash anchor is present.
-4. Test navigation, mobile menu, accordion, contact form, tel/mail links, and legal links entirely by keyboard.
-5. Test 200% browser zoom and system text scaling.
-6. Check dark section contrast and form error contrast.
-7. Run an automated accessibility scan where available, then manually validate the interaction-specific results.
-
-**Acceptance criteria**
-
-- No touch target smaller than 44×44px where interaction is intended.
-- No route loses functionality with reduced motion, keyboard-only use, or mobile layout.
-- German and English layouts remain equally considered.
-
----
-
-### P11 — SEO, social, and performance hardening
-
-**Status:** Ready after public copy and routes stabilise.
-
-**Purpose:** Ensure the site is discoverable, accurately represented when shared, and fast without relying on marketing trackers.
-
-**Scope**
-
-- lib/seo/site.ts and lib/seo/structured-data.ts
-- app/sitemap.ts, app/robots.ts, app/manifest.ts
-- Page metadata and final social assets
-
-**Tasks**
-
-1. Verify German as the x-default locale and English/German hreflang alternates on all relevant pages.
-2. Create a dedicated, restrained 1200×630 Open Graph asset from approved logo/brand geometry; do not use generic stock imagery.
-3. Make social title, description, locale, and alt text language-specific where the framework supports it.
-4. Review organisation JSON-LD fields for factual accuracy, including contact type and address language.
-5. Finalise canonical production URL after the domain is confirmed.
-6. Add final legal routes to sitemap and ensure legacy URLs do not compete as canonical content.
-7. Verify robots, manifest start URL, favicon, and social preview rendering.
-8. Audit image dimensions, sizes, loading priority, and unused public media.
-9. Establish a performance budget: avoid unnecessary client code, defer nonessential code, and keep hero rendering lean.
-
-**Acceptance criteria**
-
-- /de and /en have correct locale, canonical, alternate, social, and title data.
-- Social previews look like Elaman, not a raw logo export.
-- No third-party analytics, map, font, or chat script is introduced without legal/privacy approval.
-
----
-
-### P12 — Contact-form security and operations
-
-**Status:** Ready before staging.
-
-**Purpose:** Move the existing form implementation from code-complete to reliable production operation.
-
-**Scope**
-
-- app/api/contact/route.ts
-- lib/validation/contact.ts
-- lib/email/contact-email.ts
-- Vercel and Resend configuration
-
-**Tasks**
-
-1. Configure RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL, and NEXT_PUBLIC_SITE_URL only in local secrets/Vercel project settings — never in Git.
-2. Verify the From domain/sender in Resend and verify replies reach the submitted sender address.
-3. Test valid submission, missing/invalid fields, oversized request, malformed JSON, honeypot, missing configuration, Resend failure, and rate-limit response.
-4. Assess whether in-memory rate limiting is sufficient for expected traffic; if not, choose a managed, auditable rate-limit control only with explicit approval and a justified dependency.
-5. Confirm error logging contains no message body, sender email, or sensitive inquiry content.
-6. Add Vercel firewall/rate-limit configuration only if it suits the expected operational risk and privacy stance.
-7. Document the owner responsible for monitoring the receiving mailbox and responding to inquiries.
-
-**Acceptance criteria**
-
-- Valid staging inquiry reaches the designated mailbox with correct reply-to.
-- Sensitive user input is not unnecessarily exposed in logs.
-- Failure states remain understandable and do not claim delivery when it failed.
-
----
-
-### P13 — Staging, launch, and post-launch verification
-
-**Status:** Blocked until P08, P10, P11, and P12 gates clear.
-
-**Purpose:** Publish deliberately with a reversible, evidence-based release process.
-
-**Staging sequence**
-
-1. Push the approved branch and inspect the Vercel preview deployment.
-2. Set non-production Resend/contact configuration if a safe test recipient is available.
-3. Run the complete visual, functional, accessibility, SEO, and form checklists below.
-4. Freeze public copy, legal content, assets, and route structure for final stakeholder review.
-5. Record known non-blocking limitations, if any.
-
-**Production sequence**
-
-1. Confirm final domain and NEXT_PUBLIC_SITE_URL.
-2. Configure production secrets and verified sender.
-3. Confirm legal sign-off.
-4. Promote the reviewed deployment.
-5. Verify HTTPS, redirects, canonical URLs, social preview, contact delivery, phone/email links, and legal routes live.
-6. Retain the immediately prior production deployment as rollback point.
-
-**Post-launch checks**
-
-- Re-test key routes and the inquiry form after DNS/cache propagation.
-- Confirm no unexpected errors in Vercel/Resend logs.
-- Confirm indexed pages match the intended locale/route model.
-- Review analytics only if explicitly approved and privacy-aligned.
-- Schedule a lightweight content/legal review whenever services, tracking, contact routing, or public claims change.
-
----
-
-## 8. Required stakeholder inputs and release gates
-
-| Input / decision                                  | Needed by             | Blocks                                     | Current state                                           |
-| ------------------------------------------------- | --------------------- | ------------------------------------------ | ------------------------------------------------------- |
-| Original vector logo (SVG/AI/EPS)                 | Optional brand polish | Nothing; current SVG mark is usable        | Deferred until found                                    |
-| Sensitive service wording                         | P01, P04, P05         | Public wording merge for affected sections | Direction confirmed; final strings need review          |
-| Client names, logos, case studies, certifications | Credentials only      | Nothing; omit without approval             | Not approved / not needed                               |
-| English privacy policy                            | P08                   | Production launch                          | Counsel/company input required                          |
-| German legal route slugs                          | P08                   | Legal route release                        | Target proposed; needs confirmation                     |
-| Analytics, cookies, maps, embeds                  | P08/P11               | Privacy and launch                         | Do not add until decision and legal review              |
-| Final domain                                      | P11/P13               | Canonical/social production data           | Required before launch                                  |
-| Resend sender and recipient                       | P12/P13               | Live inquiry delivery                      | Required before launch                                  |
-| Bridge image use                                  | P07 or later          | Nothing                                    | Optional; decide only if it improves a specific section |
-
----
-
-## 9. Quality gates
-
-### Code and build
+### Code
 
 ```bash
 npm run lint
@@ -611,82 +347,52 @@ npm run build
 npm audit --omit=dev
 ```
 
-If generated files in the iCloud workspace produce duplicate-type noise, rerun the quality gate in a clean temporary preview copy rather than changing source code to accommodate cache artefacts.
+### Functional
 
-### Functional checks
+- `/` redirects to `/de`.
+- `/de` and `/en` render with correct locale content.
+- Desktop navigation, mobile menu, anchors, and language switch work.
+- Telephone, email, form, and legal links remain usable.
+- Client and server form validation, honeypot, and error handling remain intact.
 
-| Area         | Required evidence                                                                               |
-| ------------ | ----------------------------------------------------------------------------------------------- |
-| Routing      | / redirects to /de; /de and /en render; invalid locale returns not found                        |
-| Navigation   | Desktop nav, mobile menu, anchor offset, language switch, legal links                           |
-| Interactions | System disclosure, lifecycle progression, buttons, hover/focus states                           |
-| Contact      | Client validation, server validation, invalid payload, honeypot, configured successful delivery |
-| Assets       | Logo, point mark, office image, favicon, responsive images                                      |
-| Legal        | All final locale routes, redirects, canonical/alternate metadata                                |
+### Accessibility
 
-### Accessibility checks
+- One H1 and logical landmarks/headings.
+- Every interactive element is keyboard-operable and visibly focused.
+- Form controls have persistent labels and associated errors.
+- Meaningful imagery has localised alternative text; decorative imagery is hidden.
+- No essential information depends on animation.
+- Reduced motion disables nonessential movement.
+- No horizontal overflow at supported widths.
 
-| Check     | Minimum standard                                                                    |
-| --------- | ----------------------------------------------------------------------------------- |
-| Keyboard  | Every interactive element operable and visibly focused                              |
-| Semantics | One H1 per page; logical landmarks/headings; labelled regions                       |
-| Motion    | No essential content depends on animation; reduced-motion works                     |
-| Contrast  | Text, focus, errors, and dark section meet accessible contrast                      |
-| Forms     | Labels, errors, focus restoration, live status messages work                        |
-| Images    | Meaningful imagery has appropriate alternative text; decorative graphics are hidden |
+### Visual
 
-### Visual checks
-
-- White-first rhythm remains calm at all breakpoints.
-- Point mark appears as a system, never as wallpaper.
-- Red accent remains sparse and meaningful.
-- No generic cybersecurity imagery, bento grid, glow, or SaaS treatment appears.
-- Section transitions are intentional; no two adjacent sections feel visually identical without reason.
-- German copy does not look compressed or secondary to English.
+- Compact white wordmark header.
+- Correct split hero and image crop.
+- Navy company/portfolio field.
+- Static tiger and office bands.
+- Protection red appears once as a semantic signal.
+- No new colours, fonts, gradients, glows, stock assets, or generic SaaS patterns.
+- German and English feel equally considered.
 
 ---
 
-## 10. Risks and mitigations
+## 15. Definition of done
 
-| Risk                                                       | Level      | Mitigation                                                                              |
-| ---------------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------- |
-| Sensitive capabilities are too explicit publicly           | High       | P01/P04/P05 wording review; capability-level language; stakeholder approval             |
-| Legal/privacy text does not match production behaviour     | High       | Counsel gate; no unapproved tracking; verify Resend/form/hosting data flow              |
-| Contact form appears to work but delivery fails            | High       | Staging delivery test with configured Resend before launch                              |
-| Visual work becomes generic or over-animated               | Medium     | Design-system guardrails; per-slice screenshot review; motion budget                    |
-| New claims drift from verified source facts                | Medium     | Blueprint-first content changes; no client/certification claims without approval        |
-| Sticky lifecycle fails on tablet or short desktop heights  | Medium     | Breakpoint matrix; progressive mobile fallback; reduced-motion checks                   |
-| Local iCloud build cache produces false errors             | Medium     | Clean temporary validation environment; never edit source to satisfy stale .next output |
-| Asset use becomes decorative or legally ambiguous          | Low–medium | Use only approved assets; record source; one-to-three-photo budget                      |
-| SEO metadata diverges across locales                       | Medium     | Metadata/alternate/sitemap audit as a dedicated slice                                   |
-| Scope expands to CMS, portal, authentication, or analytics | Medium     | Treat as a separately approved project; not part of this delivery plan                  |
+The website is production-ready only when:
 
----
-
-## 11. Definition of done
-
-The website is ready for production only when all of the following are true:
-
-1. The stakeholder approves the final German and English visual experience.
-2. Public copy is discreet, factual, bilingual, and legally safe.
-3. No unapproved client, authority, certificate, or operational claim is visible.
-4. All homepage sections meet their individual acceptance criteria.
-5. Contact delivery works in the production configuration and has been tested end-to-end.
-6. Legal content, locale routes, redirects, and privacy representation are approved.
-7. Lint, typecheck, formatting, build, and dependency audit pass from a clean environment.
-8. Desktop, tablet, mobile, keyboard, reduced-motion, and accessibility checks pass.
-9. Metadata, social preview, sitemap, robots, canonical URLs, and production domain are correct.
-10. The live deployment has a verified rollback path and a post-launch check has been completed.
+1. The stakeholder approves the final German and English experience.
+2. Public copy is factual, discreet, bilingual, and legally safe.
+3. No unapproved authority, customer, certification, guarantee, or metric is visible.
+4. The complete quality gate passes from a clean environment.
+5. Desktop, tablet, mobile, keyboard, zoom, and reduced-motion checks pass.
+6. Contact delivery works in production configuration.
+7. Legal text and routes are approved.
+8. Metadata, sitemap, robots, social preview, canonical URLs, and domain are correct.
+9. The reviewed deployment has a rollback path and receives post-launch verification.
 
 ---
 
-## 12. Immediate next action
+## 16. Immediate next action
 
-Begin **P01 — Editorial restraint and credentials**:
-
-1. Create a focused source/blueprint wording audit for the public-sensitive sections.
-2. Propose the exact German and English copy adjustments before changing the interface.
-3. Implement the credentials-section composition and verify it in preview.
-4. Present the result for review before moving to P02.
-
-No other section will be redesigned in the same implementation slice.
+Publish the reviewed release tree to `main`, verify the resulting Vercel production deployment at mobile, tablet, and desktop widths, and then configure the verified Resend sender/recipient values before treating live inquiry delivery as operational.

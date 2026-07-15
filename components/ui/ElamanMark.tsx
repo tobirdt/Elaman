@@ -1,5 +1,12 @@
 import type { SVGProps } from "react";
 
+import { DOT_COLORS } from "@/components/ui/DotMatrix";
+import {
+  BRAND_MARK_DOT_RADIUS,
+  BRAND_MARK_VIEWBOX,
+  brandMarkFormation,
+} from "@/lib/design/formations";
+
 type ElamanMarkProps = Omit<SVGProps<SVGSVGElement>, "children" | "viewBox">;
 
 /**
@@ -15,27 +22,19 @@ export function ElamanMark({ className, ...props }: ElamanMarkProps) {
       aria-hidden="true"
       className={className}
       focusable="false"
-      viewBox="0 0 128 100"
+      viewBox={`0 0 ${BRAND_MARK_VIEWBOX.width} ${BRAND_MARK_VIEWBOX.height}`}
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <circle cx="75.25" cy="7.67" r="7.67" fill="#b1b1b1" />
-
-      <circle cx="52.63" cy="28.87" r="7.67" fill="#919191" />
-      <circle cx="75.25" cy="28.87" r="7.67" fill="#919191" />
-      <circle cx="97.89" cy="28.87" r="7.67" fill="#919191" />
-      <circle cx="120.34" cy="28.87" r="7.67" fill="#b1b1b1" />
-
-      <circle cx="7.66" cy="49.94" r="7.67" fill="#d2d2d2" />
-      <circle cx="30.29" cy="49.94" r="7.67" fill="#b1b1b1" />
-      <circle cx="52.63" cy="49.94" r="7.67" fill="#919191" />
-      <circle cx="75.25" cy="49.94" r="7.67" fill="#244074" />
-      <circle cx="97.89" cy="49.94" r="7.67" fill="#d83034" />
-
-      <circle cx="52.63" cy="71.13" r="7.67" fill="#919191" />
-      <circle cx="75.25" cy="71.13" r="7.67" fill="#919191" />
-
-      <circle cx="75.25" cy="92.2" r="7.67" fill="#b1b1b1" />
+      {brandMarkFormation.dots.map((dot, index) => (
+        <circle
+          key={index}
+          cx={dot.x}
+          cy={dot.y}
+          r={BRAND_MARK_DOT_RADIUS}
+          fill={DOT_COLORS[dot.tone]}
+        />
+      ))}
     </svg>
   );
 }

@@ -4,15 +4,10 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { AnchorScrollManager } from "@/components/motion/AnchorScrollManager";
-import { MotionReveal } from "@/components/motion/MotionReveal";
 import { CapabilityOverview } from "@/components/sections/CapabilityOverview";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { DeliverySection } from "@/components/sections/DeliverySection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProtectionSection } from "@/components/sections/ProtectionSection";
-import { ScrollStory } from "@/components/sections/ScrollStory";
-import { SystemsSection } from "@/components/sections/SystemsSection";
-import { TrustSection } from "@/components/sections/TrustSection";
 import { getSiteContent } from "@/lib/content/site";
 import { isLocale, locales, type Locale } from "@/lib/i18n";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo/site";
@@ -63,27 +58,15 @@ export default async function HomePage({ params }: LocalePageProps) {
     <>
       <AnchorScrollManager locale={locale} />
       <Header locale={locale} content={content.navigation} />
-      <main>
-        <HeroSection locale={locale} content={content.hero} />
-        <MotionReveal>
-          <TrustSection content={content.trust} />
-        </MotionReveal>
-        <ScrollStory locale={locale} content={content} />
-        <MotionReveal>
-          <CapabilityOverview content={content.capabilities} />
-        </MotionReveal>
-        <MotionReveal>
-          <SystemsSection content={content.systems} />
-        </MotionReveal>
-        <MotionReveal>
-          <ProtectionSection content={content.protection} />
-        </MotionReveal>
-        <MotionReveal>
-          <DeliverySection content={content.delivery} />
-        </MotionReveal>
-        <MotionReveal>
-          <ContactSection content={content.contact} />
-        </MotionReveal>
+      <main id="main-content" tabIndex={-1}>
+        <HeroSection content={content.hero} />
+        <CapabilityOverview
+          content={content.capabilities}
+          systems={content.systems}
+          trust={content.trust}
+        />
+        <ProtectionSection content={content.protection} tagline={content.hero.title} />
+        <ContactSection content={content.contact} />
       </main>
       <Footer
         contact={content.contact}

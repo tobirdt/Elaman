@@ -1,10 +1,11 @@
 /**
  * Shared dot formations derived from the Elaman mark.
  *
- * Each composition contains exactly one blue point. Red is introduced only
- * for protection semantics, beginning with lifecycle step 04.
+ * System compositions contain exactly one blue point. Red is introduced only
+ * for protection semantics, beginning with lifecycle step 04. The official
+ * brand mark is the explicit exception and retains its original blue/red pair.
  */
-export type DotTone = "ink" | "blue" | "red";
+export type DotTone = "ink" | "mark-light" | "mark-mid" | "mark-dark" | "blue" | "red";
 
 export type FormationDot = {
   x: number;
@@ -48,6 +49,32 @@ function buildDiamondDots(): FormationDot[] {
 }
 
 export const diamondFormation: Formation = { dots: buildDiamondDots() };
+
+export const BRAND_MARK_VIEWBOX = { width: 128, height: 100 } as const;
+export const BRAND_MARK_DOT_RADIUS = 7.67;
+
+/**
+ * Exact constellation from the supplied Elaman mark artwork.
+ * Coordinates, grayscale hierarchy, brand colours and dot radius are shared
+ * by the static header mark and the animated hero mark.
+ */
+export const brandMarkFormation: Formation = {
+  dots: [
+    { x: 75.25, y: 7.67, tone: "mark-mid" },
+    { x: 52.63, y: 28.87, tone: "mark-dark" },
+    { x: 75.25, y: 28.87, tone: "mark-dark" },
+    { x: 97.89, y: 28.87, tone: "mark-dark" },
+    { x: 120.34, y: 28.87, tone: "mark-mid" },
+    { x: 7.66, y: 49.94, tone: "mark-light" },
+    { x: 30.29, y: 49.94, tone: "mark-mid" },
+    { x: 52.63, y: 49.94, tone: "mark-dark" },
+    { x: 75.25, y: 49.94, tone: "blue" },
+    { x: 97.89, y: 49.94, tone: "red" },
+    { x: 52.63, y: 71.13, tone: "mark-dark" },
+    { x: 75.25, y: 71.13, tone: "mark-dark" },
+    { x: 75.25, y: 92.2, tone: "mark-mid" },
+  ],
+};
 
 export const STORY_BLUE_INDEX = 12;
 export const STORY_RED_INDEX = 8;

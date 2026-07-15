@@ -151,9 +151,7 @@ export function SystemMap({ activeIndex, items, onSelect }: SystemMapProps) {
               aria-controls={`${baseId}-panel-${index}`}
               aria-expanded={activeIndex === index}
               className={`group flex min-h-14 w-full items-center justify-between gap-4 rounded-[var(--radius-card)] px-4 py-3 text-left transition [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-elaman-blue ${
-                activeIndex === index
-                  ? "bg-white text-graphite"
-                  : "text-graphite-muted"
+                activeIndex === index ? "bg-white text-graphite" : "text-graphite-muted"
               }`}
               id={`${baseId}-button-${index}`}
               onClick={() => onSelect(index)}

@@ -21,12 +21,12 @@ Use lib/motion/presets.ts as the source of truth. Do not create local easing or 
 
 ## Use the canonical tiers
 
-| Tier | Duration | Purpose |
-|---|---:|---|
-| Micro / fast | 120–180ms | Hover, focus, press, colour and border feedback |
-| State / medium / expand | 240–320ms | Accordion, menu, form feedback, text swaps |
-| Reveal / trace / entrance | 380–600ms | Once-only viewport entrances and line draws |
-| Scroll-linked | No duration | MotionValues smoothed with scrollSpring |
+| Tier                      |    Duration | Purpose                                         |
+| ------------------------- | ----------: | ----------------------------------------------- |
+| Micro / fast              |   120–180ms | Hover, focus, press, colour and border feedback |
+| State / medium / expand   |   240–320ms | Accordion, menu, form feedback, text swaps      |
+| Reveal / trace / entrance |   380–600ms | Once-only viewport entrances and line draws     |
+| Scroll-linked             | No duration | MotionValues smoothed with scrollSpring         |
 
 Use:
 
@@ -37,16 +37,11 @@ Use:
 
 Do not hardcode a new duration or cubic-bezier when a preset fits.
 
-## Preserve exactly two scroll-scrub systems
+## Keep the active homepage free of scroll-scrub motion
 
-The site has exactly two approved useScroll systems:
+The approved heritage homepage renders no scroll-linked animation. HeroSection keeps its LCP image static and uses one progressive CSS entrance for the copy; the later photographic bands remain static.
 
-1. Hero exit: HeroSection maps hero progress to the dot field’s subtle -16px transform.
-2. Formation Machine: DesktopScrollStory smooths one runway MotionValue and passes it to StoryProgress and StickyStoryStage.
-
-The story progress rail and formation stage are consumers of one system.
-
-Do not add another useScroll, scroll listener driving animation, scrubbed parallax, or progress-bound decorative effect without explicit approval. Event-triggered reveals do not count as scrub systems.
+Do not add useScroll, a scroll listener driving animation, scrubbed parallax, or progress-bound decorative effects without explicit approval. Dormant legacy story components may retain unused implementation until a separate cleanup slice, but they must not be reintroduced into the active route by accident. Event-triggered reveals do not count as scrub systems.
 
 ## Animate only safe properties
 
@@ -114,7 +109,6 @@ Required behavior:
 - Use useReducedMotionPreference in Framer Motion components.
 - Render final content immediately when reduction is preferred.
 - Use static DotMatrix formations instead of animated assembly/morphs.
-- Select the linear story instead of the sticky Formation Machine.
 - Use auto instead of smooth for programmatic scrolling.
 - Do not merely shorten complex motion; remove the motion path.
 - Preserve content order, state visibility, and control feedback without animation.
@@ -141,19 +135,19 @@ Before editing:
 
 1. State the animation’s purpose: orientation, hierarchy, or feedback.
 2. Select the tier and existing preset.
-3. Confirm the change does not create a third scrub system.
+3. Confirm the change does not introduce a homepage scrub system.
 4. Define the reduced-motion final state.
 5. Check whether a CSS transition is sufficient before adding Framer Motion.
 
 After editing:
 
 1. Search the change for hardcoded durations/eases and forbidden properties.
-2. Count useScroll usage across the app; it must remain two.
+2. Confirm the active homepage dependency tree contains no useScroll consumer.
 3. Verify every reveal uses once-only viewport behavior.
 4. Verify stagger totals remain at or below 0.36s.
 5. Verify hover lift is no more than 2px.
-6. Test the hero exit and story runway at wide desktop.
-7. Test menu, accordion, forms, and the linear story at mobile width.
+6. Test the hero-copy entrance, immediately visible hero image, and final static state at wide desktop.
+7. Test menu, forms, and the stacked heritage composition at mobile width.
 8. Test prefers-reduced-motion and smooth-scroll fallbacks.
 9. Check for console or hydration errors.
 10. Run npm run lint, npm run typecheck, and npm run build before signoff.

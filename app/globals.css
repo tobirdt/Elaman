@@ -63,8 +63,8 @@
   --tracking-title: -0.04em;
   --tracking-label: 0.16em;
   --radius-control: 0.375rem;
-  --radius-card: 0.75rem;
-  --radius-panel: 0.75rem;
+  --radius-card: 0.125rem;
+  --radius-panel: 0.125rem;
   --radius-pill: 999px;
   --surface-white: #ffffff;
   --surface-soft: #f7f8fa;
@@ -105,6 +105,7 @@
   --motion-state: 240ms;
   --motion-medium: 300ms;
   --motion-expand: 320ms;
+  --motion-entrance: 600ms;
   --motion-slow: 650ms;
   --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --motion-rise: 0.75rem;
@@ -118,6 +119,21 @@
 
 .motion-soft-reveal {
   will-change: opacity, transform;
+}
+
+.hero-copy-enter {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--motion-entrance) var(--motion-ease),
+    transform var(--motion-entrance) var(--motion-ease);
+}
+
+@starting-style {
+  .hero-copy-enter {
+    opacity: 0;
+    transform: translateY(var(--motion-rise));
+  }
 }
 
 * {
@@ -254,15 +270,25 @@ select {
 }
 
 .screen-section {
-  min-height: var(--section-min-screen);
-  display: flex;
-  align-items: center;
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .screen-section {
+    min-height: var(--section-min-screen);
+    display: flex;
+    align-items: center;
+  }
 }
 
 .screen-lite-section {
   min-height: var(--section-min-screen-lite);
   display: flex;
   align-items: center;
+}
+
+.contact-section {
+  padding-block: clamp(3rem, 6vw, 5rem);
 }
 
 .surface-transition {
@@ -309,7 +335,7 @@ select {
   width: 100%;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-control);
-  background: var(--surface-glass);
+  background: var(--surface-white);
   padding: 0.875rem 1rem;
   color: var(--color-text-primary);
   outline: none;
@@ -353,6 +379,11 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-brand-dot {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   *,
   *::before,
   *::after {

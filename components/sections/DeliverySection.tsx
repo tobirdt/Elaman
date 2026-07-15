@@ -10,14 +10,14 @@ type DeliverySectionProps = {
 
 export function DeliverySection({ content }: DeliverySectionProps) {
   return (
-    <Section id="delivery" variant="content-band" tone="soft">
+    <Section
+      id="delivery"
+      variant="screen"
+      tone="soft"
+      className="border-b border-[var(--border-hairline)]"
+    >
       <Container>
-        <SectionHeader
-          body={content.body}
-          label={content.label}
-          title={content.title}
-          width="content"
-        />
+        <SectionHeader body={content.body} title={content.title} width="content" />
         <ProcessRail steps={content.steps} />
       </Container>
     </Section>

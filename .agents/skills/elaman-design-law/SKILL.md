@@ -34,7 +34,8 @@ Make the result read as a precision engineering dossier:
 - strong editorial hierarchy;
 - Geist for editorial text;
 - Geist Mono for concise technical labels;
-- logo-derived dot formations;
+- restrained logo-derived dot geometry where it has a semantic role;
+- the three explicitly approved heritage photographs;
 - oversized factual numerals;
 - deliberate whitespace.
 
@@ -42,19 +43,19 @@ Do not make the page friendlier, softer, more colourful, more “tech,” or mor
 
 ## Use only the canonical palette
 
-| Token | Value | Meaning |
-|---|---:|---|
-| paper | #ffffff | Canvas |
-| paper-soft | #f7f8fa | Quiet contrast |
-| line | rgba(22, 24, 29, 0.12) | Hairline |
-| graphite | #16181d | Primary ink |
-| graphite-muted | #555d6b | Body |
-| graphite-soft | #667286 | Metadata |
-| elaman-blue | #244074 | Elaman/active |
-| elaman-red | #d83034 | Protection |
-| navy | #172033 | Dark band |
-| on-dark | #f7f8fa | Primary on navy |
-| on-dark-muted | #c7d0dc | Secondary on navy |
+| Token          |                  Value | Meaning           |
+| -------------- | ---------------------: | ----------------- |
+| paper          |                #ffffff | Canvas            |
+| paper-soft     |                #f7f8fa | Quiet contrast    |
+| line           | rgba(22, 24, 29, 0.12) | Hairline          |
+| graphite       |                #16181d | Primary ink       |
+| graphite-muted |                #555d6b | Body              |
+| graphite-soft  |                #667286 | Metadata          |
+| elaman-blue    |                #244074 | Elaman/active     |
+| elaman-red     |                #d83034 | Protection        |
+| navy           |                #172033 | Dark band         |
+| on-dark        |                #f7f8fa | Primary on navy   |
+| on-dark-muted  |                #c7d0dc | Secondary on navy |
 
 Use #ff6b6f only through the red-on-dark token. Never add a local brand-adjacent colour, raw hex value, gradient ramp, glow, or status palette.
 
@@ -76,12 +77,13 @@ For non-dot compositions, keep one primary accent event: one active rule, label,
 
 ## Use the signature devices
 
-- SectionRule: open each top-level homepage section with a full-width hairline, zero-padded index, and terse mono keyword.
+- Section rhythm: orient with actual titles, whitespace, tonal contrast, and hairlines; do not add decorative top-level numbering.
 - MonoLabel: use only for eyebrows, state, sequence, and technical metadata.
-- Stat: pair one oversized factual value with a mono caption; keep one coherent group per viewport.
-- DotMatrix: render shared formations statically; animated variants must consume the same formation data.
+- Stat: pair one oversized factual value with a concise caption; keep one coherent group per viewport.
+- DotMatrix: when a formation has a genuine diagrammatic role, render shared data statically; animated variants must consume the same formation data.
+- Heritage imagery: use only the approved advice, tiger, and Munich office assets with deliberate, static crops.
 
-Do not recreate these contracts with one-off markup.
+Do not recreate these contracts with one-off markup or add dot formations simply to fill the photography-led homepage.
 
 ## Compose with the existing primitives
 
@@ -117,11 +119,11 @@ Prefer asymmetric editorial compositions, ruled lists, and content-specific inte
 
 ## Respect page structure
 
-Preserve this fixed sequence unless explicitly approved:
+Preserve this approved visible sequence unless explicitly changed:
 
-Hero → Experience → Story → Capabilities → Systems → Protection → Delivery → Contact.
+Hero → Company/portfolio → Protection → Contact.
 
-Keep the Protection section as the selective navy band and the principal red moment. Keep the Formation Machine in the Story section.
+The systems anchor lives inside the company/portfolio composition. Keep protection as the principal red semantic moment. Navy belongs to the company overview and inquiry field; the tiger and office bands remain static.
 
 Do not redesign sections outside the active implementation slice.
 
@@ -135,7 +137,7 @@ Reject any change that introduces:
 - neon/cyberpunk styling;
 - bento/mosaic layouts;
 - icon tiles or generic feature-card grids;
-- decorative stock/cyber-security imagery;
+- imagery beyond the three approved heritage assets;
 - large shadows or soft SaaS rounding;
 - new colours;
 - new fonts;

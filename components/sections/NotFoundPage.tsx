@@ -18,7 +18,7 @@ export function NotFoundPage({ locale = "en" }: NotFoundPageProps) {
   return (
     <>
       <Header locale={locale} content={content.navigation} />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Section
           className="min-h-[calc(100vh-16rem)]"
           tone="white"

@@ -128,8 +128,8 @@ export const designTokens = {
   },
   radius: {
     control: "0.375rem",
-    card: "0.75rem",
-    panel: "0.75rem",
+    card: "0.125rem",
+    panel: "0.125rem",
     pill: "999px",
   },
   surface: {
@@ -168,6 +168,7 @@ export const designTokens = {
     state: "240ms",
     medium: "300ms",
     expand: "320ms",
+    entrance: "600ms",
     slow: "650ms",
     ease: "cubic-bezier(0.22, 1, 0.36, 1)",
     rise: "0.75rem",

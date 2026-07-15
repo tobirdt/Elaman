@@ -55,20 +55,20 @@ The deliberate risk is scale and interruption: the hero headline becomes the pri
 
 ## 4. What stays and what changes
 
-| Existing idea | Decision | Reason |
-|---|---|---|
-| Elaman dot mark | Keep and formalise | It is the strongest ownable visual asset. Shared formation data replaces local SVG coordinate sets. |
-| One blue point, red from protection onward | Keep | Scarcity gives both accents meaning. Hero and story steps 01–03 contain no red. |
-| Hairlines | Keep selectively | Useful for bearings, progress, and chapter boundaries; not every object needs a bordered box. |
-| Geist + Geist Mono | Reinstate | Fixed corporate constraint. Geist carries all reading; Mono is limited to state and sequence. |
-| White-first canvas | Keep | Supports procurement-grade clarity and makes the blue spine decisive. |
-| Technical-grid overlays | Remove | They imitate engineering without communicating anything and compete with the dot system. |
-| Glass panels and broad shadows | Remove from the slice | They add generic depth and split the composition into unrelated cards. |
-| Repeated tiny eyebrow treatment | Reduce | Labels remain only where they identify brand, state, or lifecycle sequence. |
-| Three-column hero stats | Replace | They create the familiar hero-metric template and dilute the main statement. The verified 20+ fact moves into the narrative hierarchy rather than a sales strip. |
-| Local bridge-path diagrams | Replace | The actual formation morph is more truthful and more specific to Elaman. |
-| Sticky lifecycle | Keep, rebuild | It is the right interaction, but one shared progress value must drive formation, text, and progress. |
-| Mobile story cards | Replace | Use an open linear ledger with chapter rules and static formation snapshots; no mini-card wall. |
+| Existing idea                              | Decision              | Reason                                                                                                                                                           |
+| ------------------------------------------ | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Elaman dot mark                            | Keep and formalise    | It is the strongest ownable visual asset. Shared formation data replaces local SVG coordinate sets.                                                              |
+| One blue point, red from protection onward | Keep                  | Scarcity gives both accents meaning. Hero and story steps 01–03 contain no red.                                                                                  |
+| Hairlines                                  | Keep selectively      | Useful for bearings, progress, and chapter boundaries; not every object needs a bordered box.                                                                    |
+| Geist + Geist Mono                         | Reinstate             | Fixed corporate constraint. Geist carries all reading; Mono is limited to state and sequence.                                                                    |
+| White-first canvas                         | Keep                  | Supports procurement-grade clarity and makes the blue spine decisive.                                                                                            |
+| Technical-grid overlays                    | Remove                | They imitate engineering without communicating anything and compete with the dot system.                                                                         |
+| Glass panels and broad shadows             | Remove from the slice | They add generic depth and split the composition into unrelated cards.                                                                                           |
+| Repeated tiny eyebrow treatment            | Reduce                | Labels remain only where they identify brand, state, or lifecycle sequence.                                                                                      |
+| Three-column hero stats                    | Replace               | They create the familiar hero-metric template and dilute the main statement. The verified 20+ fact moves into the narrative hierarchy rather than a sales strip. |
+| Local bridge-path diagrams                 | Replace               | The actual formation morph is more truthful and more specific to Elaman.                                                                                         |
+| Sticky lifecycle                           | Keep, rebuild         | It is the right interaction, but one shared progress value must drive formation, text, and progress.                                                             |
+| Mobile story cards                         | Replace               | Use an open linear ledger with chapter rules and static formation snapshots; no mini-card wall.                                                                  |
 
 ## 5. Art direction and layout
 
@@ -127,14 +127,14 @@ Wide desktop becomes a single borderless sticky stage rather than three cards:
 
 ## 6. Typography
 
-| Role | Face | Proposed scale | Notes |
-|---|---|---:|---|
-| Hero display | Geist 650–700 | `clamp(3rem, 7.2vw, 6rem)` | 0.96–1.0 leading, -0.035em tracking, balanced wrapping |
-| Story H2 | Geist 600–650 | `clamp(2.25rem, 4.4vw, 4rem)` | Strong contrast to body without mimicking hero |
-| Chapter H3 | Geist 600 | `clamp(1.4rem, 2.1vw, 2rem)` | German-tested width |
-| Lead | Geist 400–450 | `clamp(1.05rem, 1.35vw, 1.25rem)` | Maximum 65–70ch |
-| Body | Geist 400 | 1rem | 1.6 leading |
-| State/sequence | Geist Mono 500 | 0.6875–0.75rem | Uppercase only for terse metadata; 0.08–0.1em tracking |
+| Role           | Face           |                    Proposed scale | Notes                                                  |
+| -------------- | -------------- | --------------------------------: | ------------------------------------------------------ |
+| Hero display   | Geist 650–700  |        `clamp(3rem, 7.2vw, 6rem)` | 0.96–1.0 leading, -0.035em tracking, balanced wrapping |
+| Story H2       | Geist 600–650  |     `clamp(2.25rem, 4.4vw, 4rem)` | Strong contrast to body without mimicking hero         |
+| Chapter H3     | Geist 600      |      `clamp(1.4rem, 2.1vw, 2rem)` | German-tested width                                    |
+| Lead           | Geist 400–450  | `clamp(1.05rem, 1.35vw, 1.25rem)` | Maximum 65–70ch                                        |
+| Body           | Geist 400      |                              1rem | 1.6 leading                                            |
+| State/sequence | Geist Mono 500 |                    0.6875–0.75rem | Uppercase only for terse metadata; 0.08–0.1em tracking |
 
 No line break is hardcoded per locale. Width and scale must survive the longer German title at 375px, 768px, and short desktop heights.
 

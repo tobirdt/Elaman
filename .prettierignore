@@ -1,0 +1,5 @@
+.next
+.playwright-cli
+.vercel
+node_modules
+output

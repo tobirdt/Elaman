@@ -1,7 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { TechnicalMark } from "@/components/ui/TechnicalMark";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type TrustSectionProps = {
@@ -12,50 +11,29 @@ export function TrustSection({ content }: TrustSectionProps) {
   return (
     <Section
       id="experience"
-      variant="content-band"
+      variant="screen"
       tone="soft"
-      className="border-y border-[var(--border-soft)]"
+      className="border-y border-[var(--border-hairline)]"
     >
-      <Container className="grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-center">
-        <SectionHeader
-          body={content.body}
-          label={content.label}
-          title={content.title}
-          width="copy"
-        />
+      <Container className="grid gap-[var(--section-gap)] [&>*]:min-w-0 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:items-center">
+        <SectionHeader body={content.body} title={content.title} width="copy" />
 
-        <div>
-          <div className="grid overflow-hidden rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-white md:grid-cols-3">
-            {content.metrics.map((metric, index) => (
-              <div
-                key={metric.value}
-                className="relative border-t border-[var(--border-soft)] p-5 first:border-t-0 md:border-l md:border-t-0 md:first:border-l-0 sm:p-6"
+        <div className="grid border-y border-[var(--border-hairline-strong)] sm:grid-cols-[minmax(0,1.35fr)_minmax(12rem,0.65fr)]">
+          {content.metrics.map((metric, index) => (
+            <div
+              key={metric.value}
+              className={`flex min-h-44 flex-col justify-between gap-8 py-6 sm:min-h-60 sm:py-8 ${index === 0 ? "border-b border-[var(--border-hairline)] sm:border-b-0 sm:border-r sm:pr-10" : "sm:pl-10"}`}
+            >
+              <p
+                className={`font-semibold leading-none tracking-[var(--tracking-title)] ${index === 0 ? "text-[clamp(4.75rem,10vw,8.5rem)] text-elaman-blue" : "text-[clamp(2rem,4vw,3.25rem)] text-graphite"}`}
               >
-                <TechnicalMark tone={index === 1 ? "red" : "blue"} />
-                <p className="mt-5 text-2xl font-semibold leading-none tracking-[var(--tracking-title)] text-graphite">
-                  {metric.value}
-                </p>
-                <p className="mt-3 text-[length:var(--type-micro)] leading-5 text-graphite-muted">
-                  {metric.label}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
-            {content.pillars.map((pillar, index) => (
-              <div
-                key={pillar}
-                className="flex items-center gap-3 rounded-[var(--radius-card)] border border-[var(--border-soft)] bg-white px-4 py-3"
-              >
-                <span
-                  className={`size-1.5 shrink-0 rounded-full ${index === 0 || index === 2 ? "bg-elaman-blue" : "bg-elaman-red/70"}`}
-                  aria-hidden="true"
-                />
-                <p className="text-sm font-medium text-graphite-muted">{pillar}</p>
-              </div>
-            ))}
-          </div>
+                {metric.value}
+              </p>
+              <p className="max-w-sm text-pretty text-sm leading-6 text-graphite-muted">
+                {metric.label}
+              </p>
+            </div>
+          ))}
         </div>
       </Container>
     </Section>

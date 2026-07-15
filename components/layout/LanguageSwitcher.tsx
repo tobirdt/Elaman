@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/Button";
 import { alternateLocale, homePath, type Locale } from "@/lib/i18n";
 
 type LanguageSwitcherProps = {
@@ -28,16 +27,25 @@ export function LanguageSwitcher({ locale, label }: LanguageSwitcherProps) {
   }, []);
 
   return (
-    <Button
-      href={`${homePath(nextLocale)}${hash}`}
-      hrefLang={nextLocale}
-      aria-label={`${label}: ${nextLocale.toUpperCase()}`}
-      shape="pill"
-      size="sm"
-      variant="secondary"
-      className="uppercase tracking-[0.12em] text-graphite-muted"
+    <div
+      aria-label={label}
+      className="inline-flex min-h-11 items-center gap-1.5 text-xs tracking-[0.06em]"
+      role="group"
     >
-      {nextLocale.toUpperCase()}
-    </Button>
+      <span className="font-semibold text-graphite" aria-current="true">
+        {locale.toUpperCase()}
+      </span>
+      <span className="text-graphite-soft" aria-hidden="true">
+        /
+      </span>
+      <a
+        href={`${homePath(nextLocale)}${hash}`}
+        hrefLang={nextLocale}
+        aria-label={`${label}: ${nextLocale.toUpperCase()}`}
+        className="inline-flex min-h-11 items-center text-graphite-soft transition-colors [transition-duration:var(--motion-micro)] hover:text-elaman-blue"
+      >
+        {nextLocale.toUpperCase()}
+      </a>
+    </div>
   );
 }
