@@ -35,6 +35,14 @@ export function absoluteUrl(path: string) {
   return new URL(path, siteConfig.url).toString();
 }
 
+function withSiteName(title: string) {
+  const suffix = ` | ${siteConfig.name}`;
+
+  return title === siteConfig.name || title.endsWith(suffix)
+    ? title
+    : `${title}${suffix}`;
+}
+
 export function createPageMetadata({
   title,
   description = siteConfig.description,
@@ -46,8 +54,7 @@ export function createPageMetadata({
     follow: true,
   },
 }: PageMetadataOptions = {}): Metadata {
-  const pageTitle = title ?? siteConfig.title;
-  const openGraphTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title;
+  const pageTitle = title ? withSiteName(title) : siteConfig.title;
   const url = absoluteUrl(path);
   const imageUrl = absoluteUrl(siteConfig.ogImage.path);
 
@@ -61,7 +68,7 @@ export function createPageMetadata({
     },
     robots,
     openGraph: {
-      title: openGraphTitle,
+      title: pageTitle,
       description,
       url,
       siteName: siteConfig.name,
@@ -78,7 +85,7 @@ export function createPageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: openGraphTitle,
+      title: pageTitle,
       description,
       images: [imageUrl],
     },

@@ -30,8 +30,8 @@ Conflict order for public wording: verified fact → `CONTENT_BLUEPRINT.md` → 
 
 - Keep German and English content complete and aligned.
 - Use tokens from `app/globals.css`; keep `lib/design/tokens.ts` synchronized.
-- Compose with the reachable primitives in `components/ui` and the four current homepage sections.
-- Keep the homepage order: Hero → Company/portfolio → Protection → Contact.
+- Compose with the reachable primitives in `components/ui` and the six current homepage sections.
+- Keep the homepage order: Hero → Profile → Advice → Systems → Protection → Contact.
 - Preserve the contact-form honeypot, client validation, server validation, and safe email rendering.
 - Respect `prefers-reduced-motion` for all transitions and entrances.
 - Use `next/image` with an accurate `sizes` value for site imagery.
@@ -43,7 +43,7 @@ Conflict order for public wording: verified fact → `CONTENT_BLUEPRINT.md` → 
 - Reintroduce removed Scroll Story, DotMatrix, formation, glass, technical-grid, signal-diagram, or feature-card implementations.
 - Add glassmorphism, gradient blobs, grid overlays, glow, cyberpunk styling, icon-tile grids, bento layouts, large shadows, or soft SaaS rounding.
 - Add colours outside the canonical palette or add/replace fonts.
-- Add imagery beyond the three approved heritage photographs and supplied brand assets.
+- Add imagery beyond the five approved heritage photographs and supplied brand assets.
 - Invent statistics, certifications, client logos, named customers, portals, or sovereignty claims.
 - Add Framer Motion or another animation dependency for behavior achievable with the current CSS system.
 - Add scroll-scrubbed motion, parallax, loops, decorative perpetual motion, blur animation, or layout-property animation.
@@ -65,7 +65,7 @@ Conflict order for public wording: verified fact → `CONTENT_BLUEPRINT.md` → 
 | graphite-soft  | `#667286` | Metadata                                  |
 | elaman-blue    | `#244074` | Brand and active state                    |
 | elaman-red     | `#d83034` | Protection semantics and required markers |
-| navy           | `#172033` | Company and inquiry bands                 |
+| navy           | `#172033` | Systems composition                       |
 | on-dark        | `#f7f8fa` | Primary text on navy                      |
 | on-dark-muted  | `#c7d0dc` | Secondary text on navy                    |
 
@@ -85,6 +85,8 @@ No additional palette is permitted.
 The only approved homepage photographs are:
 
 - `public/images/elaman-advice.png`
+- `public/images/elaman-profile-bridge.jpg`
+- `public/images/elaman-systems-media-mining.jpg`
 - `public/images/elaman-protection.png`
 - `public/images/elaman-munich-office.jpg`
 
@@ -92,29 +94,30 @@ Keep the crops static and deliberate. The hero image is the LCP image and must r
 
 ## Current component vocabulary
 
-| Need                   | Current primitive                |
-| ---------------------- | -------------------------------- |
-| Page width             | `Container`                      |
-| Content/legal spacing  | `Section`                        |
-| Legal and 404 headings | `SectionHeader` + `SectionLabel` |
-| Actions                | `Button`                         |
-| Navigation             | `Header` + `LanguageSwitcher`    |
-| Footer                 | `Footer`                         |
-| Anchor correction      | `AnchorScrollManager`            |
+| Need                        | Current primitive                |
+| --------------------------- | -------------------------------- |
+| Page width                  | `Container`                      |
+| Screen/content/legal rhythm | `Section`                        |
+| Legal and 404 headings      | `SectionHeader` + `SectionLabel` |
+| Actions                     | `Button`                         |
+| Navigation                  | `Header` + `LanguageSwitcher`    |
+| Footer                      | `Footer`                         |
+| Anchor navigation           | `AnchorScrollManager`            |
 
 The application intentionally has no generic card, surface, diagram, or animation component layer. Add a primitive only when at least two current consumers need the same contract.
 
 ## Homepage structure
 
-| Anchor        | Component            | Purpose                                                                                  |
-| ------------- | -------------------- | ---------------------------------------------------------------------------------------- |
-| `#hero`       | `HeroSection`        | Advice photograph, Elaman name, original tagline, verified introduction, single 20+ stat |
-| `#experience` | `CapabilityOverview` | Navy company statement and open capability ledger                                        |
-| `#systems`    | internal anchor      | Portfolio navigation target inside `CapabilityOverview`                                  |
-| `#protection` | `ProtectionSection`  | Tiger band and factual protection/countermeasure information                             |
-| `#contact`    | `ContactSection`     | Munich office, direct contact routes, and inquiry form                                   |
+| Anchor        | Component           | Purpose                                                                     |
+| ------------- | ------------------- | --------------------------------------------------------------------------- |
+| `#hero`       | `HeroSection`       | Chameleon, Elaman, original tagline, verified introduction, single 20+ stat |
+| `#profile`    | `ProfileSection`    | Company profile and supplied stone-bridge image                             |
+| `#advice`     | `AdviceSection`     | Four-stage project path from analysis to support                            |
+| `#systems`    | `SystemsSection`    | Navy Media Mining split and open eight-area ledger                          |
+| `#protection` | `ProtectionSection` | Tiger and factual protection/countermeasure information                     |
+| `#contact`    | `ContactSection`    | Munich office, direct contact routes, and inquiry form                      |
 
-Do not add top-level sections without explicit approval.
+Do not change this approved section set or order without explicit approval.
 
 ## Motion law
 
@@ -127,6 +130,8 @@ The active site uses CSS only:
 - signature easing: `cubic-bezier(0.22, 1, 0.36, 1)`
 
 Animate only opacity and transforms for movement. Colour, border, and focus feedback may use the micro tiers. The global reduced-motion query must render final states immediately and disable smooth scrolling.
+
+Soft root-document scroll snap is allowed only at `min-width: 1024px`, with a fine pointer, and without reduced motion. It must remain `y proximity`; never add strict paging, wheel interception, a nested page scroller, or scroll-bound animation.
 
 ## Content and i18n
 

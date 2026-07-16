@@ -23,6 +23,8 @@
   --container-copy: 42rem;
   --container-narrow: 30rem;
   --container-legal: 56rem;
+  --section-screen-min: calc(100vh - var(--header-h));
+  --section-y-screen: clamp(3rem, 6svh, 5.5rem);
   --section-y-content-band: clamp(3.75rem, 6vw, 5.5rem);
   --section-y-legal-page: clamp(2.75rem, 5vw, 4.25rem);
   --type-display: clamp(3rem, 7.2vw, 6rem);
@@ -85,7 +87,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + 1rem);
   background: var(--surface-paper);
 }
 
@@ -107,6 +108,28 @@ body {
 @media (min-width: 1024px) {
   :root {
     --header-h: 5rem;
+  }
+}
+
+.section-screen {
+  min-height: var(--section-screen-min);
+  scroll-margin-top: var(--header-h);
+}
+
+@supports (height: 100svh) {
+  .section-screen {
+    min-height: calc(100svh - var(--header-h));
+  }
+}
+
+@media (min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+
+  .section-screen {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
   }
 }
 

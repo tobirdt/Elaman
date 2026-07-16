@@ -26,7 +26,7 @@ Calm, exact, and assured. Institutional without bureaucracy; technical without s
 ## Design Principles
 
 1. Make trust visible through hierarchy, restraint, and sourced facts rather than badges or claims.
-2. Preserve the former homepage's recognisable photography and sequence while modernising its hierarchy and responsiveness.
+2. Preserve the supplied heritage photography and verified content while giving each of the six sections a distinct, calm role.
 3. Let the supplied points-only signet carry the header identity; do not repeat its geometry as decoration.
 4. Give each viewport one dominant idea and make German copy a first-class composition constraint.
 5. Keep motion limited to orientation and direct state feedback; static content remains complete without it.

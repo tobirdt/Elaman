@@ -51,7 +51,7 @@ export function SectionHeader({
     <div className={`${widthClasses[width]} ${alignClasses[align]} ${className}`}>
       {label ? <SectionLabel tone={labelTone}>{label}</SectionLabel> : null}
       <TitleTag
-        className={`text-balance font-semibold text-graphite [hyphens:auto] ${titleClasses[size]}`}
+        className={`text-balance break-normal font-semibold text-graphite hyphens-none ${titleClasses[size]}`}
       >
         {title}
       </TitleTag>

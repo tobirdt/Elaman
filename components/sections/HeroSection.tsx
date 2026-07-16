@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Section } from "@/components/ui/Section";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type HeroSectionProps = {
@@ -8,50 +9,44 @@ type HeroSectionProps = {
 
 export function HeroSection({ content }: HeroSectionProps) {
   return (
-    <section
-      id="hero"
-      className="grid min-h-[clamp(34rem,72svh,48rem)] bg-[var(--surface-paper-soft)] md:grid-cols-2"
-    >
-      <div className="relative min-h-72 overflow-hidden bg-[var(--surface-paper-soft)] sm:min-h-96 md:min-h-full">
+    <Section id="hero" variant="screen" tone="soft" className="grid lg:grid-cols-2">
+      <div className="relative min-h-[clamp(15rem,38svh,24rem)] overflow-hidden bg-[var(--surface-paper-soft)] lg:min-h-full">
         <Image
           src="/images/elaman-advice.png"
           alt=""
           fill
           fetchPriority="high"
           preload
-          sizes="(min-width: 768px) 50vw, 100vw"
+          sizes="(min-width: 1024px) 50vw, 100vw"
           className="object-cover object-[48%_center]"
         />
       </div>
 
-      <div className="hero-copy-enter flex items-center border-l border-[var(--border-hairline)] px-[var(--page-x)] py-14 sm:py-16 lg:py-20">
+      <div className="hero-copy-enter flex items-center border-t border-[var(--border-hairline)] px-[var(--page-x)] py-[var(--section-y-screen)] lg:border-l lg:border-t-0">
         <div className="w-full max-w-[39rem]">
           <h1 className="text-[length:var(--type-display)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite">
             {content.label}
           </h1>
-          <p className="mt-3 text-balance text-[clamp(1.25rem,2.1vw,2rem)] font-normal leading-[1.15] tracking-[-0.03em] text-graphite-muted">
+          <p className="mt-3 max-w-[24ch] text-balance text-[length:var(--type-h3)] font-normal leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite-muted">
             {content.title}
           </p>
 
-          <div className="mt-9 border-t border-[var(--border-hairline-strong)] pt-7">
-            <p className="max-w-[56ch] text-base leading-7 text-graphite-muted">
+          <div className="mt-8 border-t border-[var(--border-hairline-strong)] pt-7 sm:mt-9">
+            <p className="max-w-[56ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite-muted">
               {content.intro}
-            </p>
-            <p className="mt-5 max-w-[60ch] text-sm leading-7 text-graphite-muted">
-              {content.body}
             </p>
           </div>
 
-          <div className="mt-9 flex items-baseline gap-4 border-t border-[var(--border-hairline)] pt-5">
-            <span className="text-3xl font-semibold tracking-[-0.04em] text-elaman-blue">
+          <div className="mt-8 flex items-baseline gap-4 border-t border-[var(--border-hairline)] pt-5 sm:mt-9">
+            <span className="text-[length:var(--type-h3)] font-semibold tracking-[var(--tracking-title)] text-elaman-blue">
               {content.stat.value}
             </span>
-            <span className="max-w-[20rem] text-xs leading-5 text-graphite-muted">
+            <span className="max-w-[21rem] text-[length:var(--type-small)] leading-6 text-graphite-muted">
               {content.stat.label}
             </span>
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -9,6 +9,8 @@ import { siteConfig } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  title: siteConfig.title,
+  description: siteConfig.description,
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   publisher: siteConfig.name,

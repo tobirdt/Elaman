@@ -36,6 +36,7 @@ Use `--motion-ease: cubic-bezier(0.22, 1, 0.36, 1)`.
 - Mobile menu: direct opacity and translate state.
 - Form fields: short border/background/focus feedback.
 - Anchor scrolling: smooth normally, automatic for reduced motion.
+- Section orientation: root-level `scroll-snap-type: y proximity` only at desktop width with a fine pointer and no reduced-motion request.
 
 Movement uses opacity and transforms. Do not animate width, height, positioning, font metrics, filter, blur, or layout.
 
@@ -48,6 +49,7 @@ Do not add:
 - page-wide reveal wrappers;
 - loops, pulses, particles, bouncing, radar effects, or perpetual decoration;
 - animated diagrams, dot formations, glows, or filters.
+- strict scroll paging, wheel interception, nested page scrollers, or forced snap stops.
 
 ## Reduced motion
 
@@ -57,6 +59,8 @@ The global `prefers-reduced-motion` rule must:
 - reduce transitions and animations to an effectively immediate duration;
 - leave all content in its final visible state;
 - preserve menu, focus, and form behavior.
+
+The desktop snap media query must also exclude reduced motion. Touch and tablet layouts must not receive snap behavior.
 
 Do not rely on shortened spectacle; remove the motion path.
 

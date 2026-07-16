@@ -40,7 +40,9 @@ export function Footer({ contact, navigation, footer }: FooterProps) {
           ))}
         </nav>
 
-        <p className="mt-3 text-[0.6875rem] text-graphite-soft">{footer.copyright}</p>
+        <p className="mt-3 text-[length:var(--type-micro)] text-graphite-soft">
+          {footer.copyright}
+        </p>
       </Container>
     </footer>
   );

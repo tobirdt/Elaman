@@ -4,10 +4,12 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { AnchorScrollManager } from "@/components/motion/AnchorScrollManager";
-import { CapabilityOverview } from "@/components/sections/CapabilityOverview";
+import { AdviceSection } from "@/components/sections/AdviceSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { ProfileSection } from "@/components/sections/ProfileSection";
 import { ProtectionSection } from "@/components/sections/ProtectionSection";
+import { SystemsSection } from "@/components/sections/SystemsSection";
 import { getSiteContent } from "@/lib/content/site";
 import { isLocale, locales, type Locale } from "@/lib/i18n";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo/site";
@@ -60,8 +62,10 @@ export default async function HomePage({ params }: LocalePageProps) {
       <Header locale={locale} content={content.navigation} />
       <main id="main-content" tabIndex={-1}>
         <HeroSection content={content.hero} />
-        <CapabilityOverview content={content.overview} />
-        <ProtectionSection content={content.protection} tagline={content.hero.title} />
+        <ProfileSection content={content.profile} />
+        <AdviceSection content={content.advice} />
+        <SystemsSection content={content.systems} />
+        <ProtectionSection content={content.protection} />
         <ContactSection content={content.contact} />
       </main>
       <Footer

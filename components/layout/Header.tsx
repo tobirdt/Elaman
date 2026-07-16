@@ -105,6 +105,7 @@ export function Header({ locale, content }: HeaderProps) {
               alt=""
               width={128}
               height={128}
+              loading="eager"
               sizes="(min-width: 1024px) 56px, 48px"
               className="size-12 lg:size-14"
             />
@@ -113,7 +114,7 @@ export function Header({ locale, content }: HeaderProps) {
           <div className="ml-auto hidden items-center lg:flex">
             <nav
               aria-label={content.mainNavigationLabel}
-              className="flex items-center gap-7 text-sm text-graphite-muted"
+              className="flex items-center gap-4 text-sm text-graphite-muted xl:gap-6"
             >
               {content.main.map((item) => (
                 <a
@@ -131,7 +132,7 @@ export function Header({ locale, content }: HeaderProps) {
               ))}
             </nav>
             <span
-              className="mx-5 h-4 w-px bg-[var(--border-hairline)]"
+              className="mx-4 h-4 w-px bg-[var(--border-hairline)] xl:mx-5"
               aria-hidden="true"
             />
             <LanguageSwitcher locale={locale} label={content.languageSwitcherLabel} />

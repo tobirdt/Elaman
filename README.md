@@ -1,6 +1,6 @@
 # Elaman Website
 
-Production-ready bilingual Next.js website for Elaman GmbH. The current product is a four-composition one-pager with legal pages and a server-validated contact form.
+Production-ready bilingual Next.js website for Elaman GmbH. The current product is a six-section one-pager with legal pages and a server-validated contact form.
 
 ## Stack
 
@@ -9,7 +9,20 @@ Production-ready bilingual Next.js website for Elaman GmbH. The current product 
 - Geist and Geist Mono through `next/font`
 - Resend for inquiry delivery
 
-The site intentionally has no client animation library; its restrained transitions live in `app/globals.css`.
+The site intentionally has no client animation library. Its restrained entrance, feedback, and responsive soft-snap behavior live in `app/globals.css`.
+
+## Homepage
+
+The fixed bilingual sequence is:
+
+1. `#hero` — Home / Start
+2. `#profile` — Profile / Profil
+3. `#advice` — Advice / Beratung
+4. `#systems` — Surveillance / Observation
+5. `#protection` — Protection / Schutz
+6. `#contact` — Contact / Kontakt
+
+Desktop sections occupy at least the visible height below the sticky header. Mobile, tablet, short displays, and sections with additional content grow and scroll naturally.
 
 ## Local Development
 
@@ -32,6 +45,8 @@ npm run build
 npm audit --omit=dev
 ```
 
+For visual changes, verify DE and EN at 320×568, 390×844, 768×1024, 1024×768, 1366×768, 1440×900, and 1600×1000.
+
 ## Required Environment Variables
 
 Create a local `.env.local` file and configure the same values in Vercel:
@@ -43,38 +58,25 @@ CONTACT_FROM_EMAIL=
 NEXT_PUBLIC_SITE_URL=https://www.elaman.de
 ```
 
-`RESEND_API_KEY` is the Resend API key used by `/api/contact`.
-
-`CONTACT_TO_EMAIL` is the inbox that receives website inquiries.
-
-`CONTACT_FROM_EMAIL` must be a verified sender in Resend. For production, verify the sender domain in the Resend dashboard before enabling live traffic.
-
-`NEXT_PUBLIC_SITE_URL` controls canonical URLs, Open Graph URLs, Twitter metadata, and structured data. Set it to the final production domain without a trailing slash.
+`RESEND_API_KEY` is used by `/api/contact`. `CONTACT_TO_EMAIL` receives inquiries. `CONTACT_FROM_EMAIL` must be a verified Resend sender. `NEXT_PUBLIC_SITE_URL` controls canonical, social, and structured-data URLs and must not end with a slash.
 
 ## Contact Form Delivery
 
-The contact API validates all submissions server-side, checks the hidden honeypot field, applies a small best-effort in-memory rate limit per runtime instance, and sends through Resend when all required environment variables are configured.
+The contact API validates all submissions server-side, checks the hidden honeypot, applies a small best-effort in-memory rate limit per runtime instance, and sends through Resend when all required environment variables are configured.
 
-If the honeypot field is filled, the API returns `{ "ok": true }` without sending email.
-
-If Resend variables are missing locally, valid submissions return `send_failed`. This is intentional and confirms that production sending is not being faked without credentials.
-
-The email includes plain text and minimal escaped HTML. User-provided content is not rendered as raw HTML.
+If the honeypot is filled, the API returns `{ "ok": true }` without sending email. If mail variables are missing locally, a valid submission returns `send_failed`; production success is never faked. The email includes escaped plain text and minimal escaped HTML.
 
 ## Vercel Deployment Preparation
 
-1. Create or select the Vercel project.
-2. Set the framework preset to Next.js.
-3. Add the environment variables listed above in Vercel Project Settings.
-4. Verify the sending domain or sender address in Resend.
-5. Set `NEXT_PUBLIC_SITE_URL` to the production domain.
-6. Run the validation commands locally.
-7. Deploy from Vercel after the environment is configured.
-8. Submit a test inquiry in production and confirm delivery to `CONTACT_TO_EMAIL`.
-9. Check metadata/social preview output for the final domain.
-10. Check `/imprint` and `/private-policy`.
-11. Check desktop, tablet, and mobile behavior on the live domain.
-12. Attach/configure the final domain if it was not used for the first deploy.
+1. Link or select the Vercel project.
+2. Add all required environment variables.
+3. Verify the Resend sending domain or sender address.
+4. Run the full local validation gate.
+5. Push a non-production branch and inspect its Vercel Preview.
+6. Check desktop, tablet, mobile, and reduced-motion behavior on the Preview.
+7. Check `/de`, `/en`, `/imprint`, `/private-policy`, 404, metadata, and sitemap.
+8. Promote or merge only after Preview acceptance.
+9. Submit a production test inquiry and confirm delivery and reply-to behavior.
 
 Build command:
 
@@ -82,21 +84,21 @@ Build command:
 npm run build
 ```
 
-Output is handled by Next.js/Vercel automatically.
-
 ## Post-Deployment Checklist
 
 1. Confirm the live homepage loads over HTTPS.
 2. Confirm canonical and Open Graph URLs use the live domain.
-3. Confirm the capability ledger uses two columns on tablet/desktop and one on mobile.
-4. Confirm the mobile menu opens, closes with Escape/outside click, and links navigate.
-5. Submit an invalid contact form and confirm field errors.
-6. Submit a valid contact form and confirm email delivery.
-7. Confirm reply-to uses the submitter email.
-8. Confirm phone and email links work.
-9. Confirm `/imprint`, `/private-policy`, and 404 states render without overflow.
-10. Check both locales with normal and reduced motion.
+3. Confirm all six anchors and active navigation work in both locales.
+4. Confirm the language switch preserves the active hash.
+5. Confirm the mobile menu opens, closes with Escape/outside click, and navigates.
+6. Confirm touch/tablet scrolling is free and desktop snap remains gentle.
+7. Confirm reduced motion disables smooth scrolling and snap.
+8. Submit an invalid contact form and confirm field errors and focus movement.
+9. Submit a valid production inquiry and confirm email delivery and reply-to.
+10. Confirm phone and email links work.
+11. Confirm legal and 404 routes render without overflow.
+12. Confirm there are no browser-console errors or horizontal overflow.
 
 ## Legal Review Note
 
-The imprint and privacy policy content is preserved from the extracted existing legal text. Before production launch, legal counsel or the responsible site owner should review whether the preserved privacy policy still reflects the actual production tracking, cookies, and data-processing setup.
+The imprint and privacy policy content is preserved from the extracted existing legal text. Before production launch, responsible counsel or the site owner should confirm that it reflects the actual production tracking, cookies, and data processing.

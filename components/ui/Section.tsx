@@ -11,6 +11,7 @@ type SectionProps = ComponentPropsWithoutRef<"section"> & {
 };
 
 const modeClasses = {
+  screen: "section-screen min-h-[var(--section-screen-min)]",
   "content-band": "section-content-band py-[var(--section-y-content-band)]",
   "legal-page": "section-legal-page py-[var(--section-y-legal-page)]",
 } as const;

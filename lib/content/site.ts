@@ -63,12 +63,20 @@ export type LocalizedSiteContent = {
     label: string;
     title: string;
     intro: string;
-    body: string;
     stat: { value: string; label: string };
   };
-  overview: {
+  profile: {
     title: string;
     paragraphs: string[];
+  };
+  advice: {
+    title: string;
+    intro: string;
+    steps: ContentItem[];
+  };
+  systems: {
+    title: string;
+    intro: string;
     items: Array<{ title: string }>;
   };
   protection: {
@@ -108,7 +116,8 @@ export const siteContent = {
     navigation: {
       main: [
         { label: "Home", href: "#hero" },
-        { label: "Advice", href: "#experience" },
+        { label: "Profile", href: "#profile" },
+        { label: "Advice", href: "#advice" },
         { label: "Surveillance", href: "#systems" },
         { label: "Protection", href: "#protection" },
         { label: "Contact", href: "#contact" },
@@ -132,19 +141,49 @@ export const siteContent = {
       title: "Your bridge to trust and security.",
       intro:
         "Elaman develops and integrates communications and security technology for public authorities and security organisations.",
-      body: "Our services range from technical advice and system integration through turnkey implementation to professional training and long-term support.",
       stat: {
         value: "20+",
         label: "Years in communications and security engineering",
       },
     },
-    overview: {
+    profile: {
       title: "Elaman — German Security Solutions.",
       paragraphs: [
         "We combine established products and current technologies into integrated systems for demanding communications and security environments.",
-        "Our work begins with a precise understanding of the task and continues beyond commissioning.",
         "Each solution is aligned with the project’s infrastructure, operating environment and organisational requirements.",
       ],
+    },
+    advice: {
+      title: "From initial analysis to long-term support.",
+      intro:
+        "Our work begins with a precise understanding of the task and continues beyond commissioning.",
+      steps: [
+        {
+          title: "Analysis & advice",
+          description:
+            "Technical requirements, infrastructure and the operating environment are assessed together.",
+        },
+        {
+          title: "Planning & integration",
+          description:
+            "Established products and current technologies are combined into a coordinated system.",
+        },
+        {
+          title: "Turnkey implementation",
+          description:
+            "Experienced engineers support implementation, commissioning and reliable operation.",
+        },
+        {
+          title: "Training & support",
+          description:
+            "Professional training and long-term support enable the appropriate use of each solution.",
+        },
+      ],
+    },
+    systems: {
+      title: "Systems for communications, observation and analysis.",
+      intro:
+        "The portfolio combines secure communications methods with specialised solutions for public-sector and security-related tasks.",
       items: [
         { title: "Audio and video observation" },
         { title: "Geographical information systems" },
@@ -152,7 +191,7 @@ export const siteContent = {
         { title: "Special-purpose vehicles" },
         { title: "Command and control centres" },
         { title: "Intelligence fusion systems" },
-        { title: "Training & Support" },
+        { title: "Training & support" },
         { title: "Data forensics" },
       ],
     },
@@ -242,7 +281,8 @@ export const siteContent = {
     navigation: {
       main: [
         { label: "Start", href: "#hero" },
-        { label: "Beratung", href: "#experience" },
+        { label: "Profil", href: "#profile" },
+        { label: "Beratung", href: "#advice" },
         { label: "Observation", href: "#systems" },
         { label: "Schutz", href: "#protection" },
         { label: "Kontakt", href: "#contact" },
@@ -266,19 +306,49 @@ export const siteContent = {
       title: "Ihre Brücke zu Vertrauen und Sicherheit.",
       intro:
         "Elaman entwickelt und integriert Kommunikations- und Sicherheitstechnik für Behörden und Sicherheitsorganisationen.",
-      body: "Das Leistungsspektrum reicht von technischer Beratung und Systemintegration über die schlüsselfertige Umsetzung bis zu Schulung und langfristiger Betreuung.",
       stat: {
         value: "20+",
         label: "Jahre in Kommunikations- und Sicherheitstechnik",
       },
     },
-    overview: {
+    profile: {
       title: "Elaman — Deutsche Sicherheitslösungen.",
       paragraphs: [
         "Wir verbinden bewährte Produkte und aktuelle Technologien zu integrierten Systemen für anspruchsvolle Kommunikations- und Sicherheitsumgebungen.",
-        "Unsere Arbeit beginnt mit einer genauen Analyse der Aufgabe und endet nicht mit der Inbetriebnahme.",
         "Jede Lösung wird auf Infrastruktur, Einsatzumgebung und organisatorische Anforderungen des Projekts abgestimmt.",
       ],
+    },
+    advice: {
+      title: "Von der Analyse bis zur langfristigen Betreuung.",
+      intro:
+        "Unsere Arbeit beginnt mit einer genauen Analyse der Aufgabe und endet nicht mit der Inbetriebnahme.",
+      steps: [
+        {
+          title: "Analyse & Beratung",
+          description:
+            "Technische Anforderungen, Infrastruktur und Einsatzumgebung werden gemeinsam eingeordnet.",
+        },
+        {
+          title: "Planung & Integration",
+          description:
+            "Bewährte Produkte und aktuelle Technologien werden zu einem abgestimmten System verbunden.",
+        },
+        {
+          title: "Schlüsselfertige Umsetzung",
+          description:
+            "Erfahrene Ingenieure begleiten Implementierung, Inbetriebnahme und zuverlässigen Betrieb.",
+        },
+        {
+          title: "Schulung & Betreuung",
+          description:
+            "Professionelle Schulungen und langfristige Betreuung unterstützen den sachgerechten Einsatz.",
+        },
+      ],
+    },
+    systems: {
+      title: "Systeme für Kommunikation, Observation und Auswertung.",
+      intro:
+        "Das Portfolio verbindet sichere Kommunikationsmethoden mit spezialisierten Lösungen für behördliche und sicherheitsbezogene Aufgaben.",
       items: [
         { title: "Audio- und Videoobservation" },
         { title: "Geoinformationssysteme" },

@@ -211,7 +211,7 @@ export function ContactForm({ content }: ContactFormProps) {
             aria-describedby={errors.firstName ? "firstName-error" : undefined}
           />
           {errors.firstName ? (
-            <span id="firstName-error" className="text-xs text-elaman-red">
+            <span id="firstName-error" className="text-sm leading-5 text-elaman-red">
               {errors.firstName}
             </span>
           ) : null}
@@ -231,7 +231,7 @@ export function ContactForm({ content }: ContactFormProps) {
             aria-describedby={errors.lastName ? "lastName-error" : undefined}
           />
           {errors.lastName ? (
-            <span id="lastName-error" className="text-xs text-elaman-red">
+            <span id="lastName-error" className="text-sm leading-5 text-elaman-red">
               {errors.lastName}
             </span>
           ) : null}
@@ -253,7 +253,7 @@ export function ContactForm({ content }: ContactFormProps) {
             aria-describedby={errors.company ? "company-error" : undefined}
           />
           {errors.company ? (
-            <span id="company-error" className="text-xs text-elaman-red">
+            <span id="company-error" className="text-sm leading-5 text-elaman-red">
               {errors.company}
             </span>
           ) : null}
@@ -282,7 +282,7 @@ export function ContactForm({ content }: ContactFormProps) {
             aria-describedby={errors.email ? "email-error" : undefined}
           />
           {errors.email ? (
-            <span id="email-error" className="text-xs text-elaman-red">
+            <span id="email-error" className="text-sm leading-5 text-elaman-red">
               {errors.email}
             </span>
           ) : null}
@@ -309,7 +309,7 @@ export function ContactForm({ content }: ContactFormProps) {
           aria-describedby={errors.message ? "message-error" : undefined}
         />
         {errors.message ? (
-          <span id="message-error" className="text-xs text-elaman-red">
+          <span id="message-error" className="text-sm leading-5 text-elaman-red">
             {errors.message}
           </span>
         ) : null}

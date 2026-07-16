@@ -25,7 +25,7 @@ Reachable code is the final visual source of truth. Do not revive a removed impl
 Require:
 
 - white/paper-soft canvas with selective navy bands;
-- the three approved heritage photographs;
+- the five approved heritage photographs, each in its assigned section;
 - supplied points-only Elaman signet in the header;
 - Geist and Geist Mono only;
 - strong editorial hierarchy and readable measures;
@@ -40,14 +40,16 @@ Reject glass, blur, gradients, grid overlays, glow, diagrams, DotMatrix decorati
 
 Preserve this sequence unless explicitly changed:
 
-Hero → Company/portfolio → Protection → Contact.
+Hero → Profile → Advice → Systems → Protection → Contact.
 
-- Hero: advice image, Elaman name, original tagline, verified copy, one 20+ stat.
-- Company: navy statement and open capability ledger.
-- Protection: tiger band and factual two-column information.
-- Contact: Munich-office band, direct routes, navy inquiry area, footer.
+- Hero: chameleon, Elaman name, original tagline, verified copy, one `20+` stat.
+- Profile: white asymmetric composition with the stone-bridge image.
+- Advice: paper-soft ordered four-stage process with numerals and one hairline.
+- Systems: Navy Media Mining split and open row-major capability ledger.
+- Protection: tiger panorama, one H2, four factual areas, one red dot.
+- Contact: Munich-office split, direct routes, standard inquiry form, footer after the section.
 
-The capability ledger uses horizontal rules only, one column on mobile and two from tablet upward. Do not restore a boxed matrix or vertical dividers.
+Each `screen` section owns at least the visible height below the sticky header but must grow naturally. The capability ledger uses horizontal rules and an unambiguous DOM order. Do not restore a boxed matrix or vertical cell dividers.
 
 ## Use current primitives
 
@@ -72,5 +74,12 @@ After editing:
 4. Check focus, touch targets, contrast, and overflow.
 5. If transitions or entrances change, also apply `motion-system`.
 6. Run lint, typecheck, format check, and build.
+
+For fullscreen work also verify:
+
+- header plus Hero equal one normal viewport;
+- soft snap exists only on large fine-pointer non-reduced-motion environments;
+- mobile, tablet, short displays, and form-error states never clip or create internal scrollers;
+- all six anchors and hash-preserving locale changes land below the header.
 
 Report intentional exceptions; do not silently create a parallel design system.
