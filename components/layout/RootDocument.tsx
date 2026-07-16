@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 
-import { organizationJsonLd, safeJsonLd } from "@/lib/seo/structured-data";
+import { safeJsonLd, siteJsonLd } from "@/lib/seo/structured-data";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -27,7 +27,7 @@ export function RootDocument({ children, lang }: RootDocumentProps) {
       <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: safeJsonLd(organizationJsonLd()) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(siteJsonLd()) }}
         />
         {children}
       </body>

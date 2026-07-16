@@ -108,14 +108,14 @@ The application intentionally has no generic card, surface, diagram, or animatio
 
 ## Homepage structure
 
-| Anchor        | Component           | Purpose                                                                     |
-| ------------- | ------------------- | --------------------------------------------------------------------------- |
-| `#hero`       | `HeroSection`       | Chameleon, Elaman, original tagline, verified introduction, single 20+ stat |
-| `#profile`    | `ProfileSection`    | Company profile and supplied stone-bridge image                             |
-| `#advice`     | `AdviceSection`     | Four-stage project path from analysis to support                            |
-| `#systems`    | `SystemsSection`    | Navy Media Mining split and open eight-area ledger                          |
-| `#protection` | `ProtectionSection` | Tiger and factual protection/countermeasure information                     |
-| `#contact`    | `ContactSection`    | Munich office, direct contact routes, and inquiry form                      |
+| Anchor        | Component           | Purpose                                                                   |
+| ------------- | ------------------- | ------------------------------------------------------------------------- |
+| `#hero`       | `HeroSection`       | Chameleon, Elaman, original tagline, and the single 20+ experience stat   |
+| `#profile`    | `ProfileSection`    | Company profile, factual management link, and supplied stone-bridge image |
+| `#advice`     | `AdviceSection`     | Four-stage project path from analysis to support                          |
+| `#systems`    | `SystemsSection`    | Navy Media Mining split and open eight-area ledger                        |
+| `#protection` | `ProtectionSection` | Tiger and factual protection/countermeasure information                   |
+| `#contact`    | `ContactSection`    | Munich office, direct contact routes, and inquiry form                    |
 
 Do not change this approved section set or order without explicit approval.
 

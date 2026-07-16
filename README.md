@@ -60,6 +60,18 @@ NEXT_PUBLIC_SITE_URL=https://www.elaman.de
 
 `RESEND_API_KEY` is used by `/api/contact`. `CONTACT_TO_EMAIL` receives inquiries. `CONTACT_FROM_EMAIL` must be a verified Resend sender. `NEXT_PUBLIC_SITE_URL` controls canonical, social, and structured-data URLs and must not end with a slash.
 
+## Search visibility
+
+The site publishes localised titles and descriptions, canonical and `hreflang` links, a canonical-only sitemap, robots directives, and linked `Organization`, `WebSite`, `WebPage`, and factual management structured data. Search language stays aligned with the visible service content; hidden keyword lists and duplicate search pages are intentionally not used.
+
+After a production deployment and final DNS cutover:
+
+1. Verify `https://www.elaman.de` as a domain property in Google Search Console.
+2. Submit `https://www.elaman.de/sitemap.xml`.
+3. Inspect and request indexing for `/de`, `/en`, and `/imprint`.
+4. Check that Google sees the production canonical URLs rather than the previous Wix deployment.
+5. Recheck coverage and search queries after Google has recrawled the domain.
+
 ## Contact Form Delivery
 
 The contact API validates all submissions server-side, checks the hidden honeypot, applies a small best-effort in-memory rate limit per runtime instance, and sends through Resend when all required environment variables are configured.

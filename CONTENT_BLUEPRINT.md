@@ -23,15 +23,16 @@ The canonical browser and social title in both locales is `Elaman – German Sec
 
 ## 2. Verified factual anchors
 
-| Fact                                                        | Approved use                       |
-| ----------------------------------------------------------- | ---------------------------------- |
-| 20+ years of experience                                     | One visible hero stat only         |
-| Communications and security engineering                     | Hero, profile, metadata            |
-| Established products combined with current technologies     | Profile and advice                 |
-| Analysis, planning, integration, and turnkey implementation | Advice process                     |
-| Professional training and long-term support                 | Advice process and systems ledger  |
-| Eight existing capability areas                             | Systems ledger                     |
-| Munich office                                               | Contact image, details, and footer |
+| Fact                                                        | Approved use                               |
+| ----------------------------------------------------------- | ------------------------------------------ |
+| 20+ years of experience                                     | One visible hero stat only                 |
+| Communications and security engineering                     | Hero, profile, metadata                    |
+| Established products combined with current technologies     | Profile and advice                         |
+| Analysis, planning, integration, and turnkey implementation | Advice process                             |
+| Professional training and long-term support                 | Advice process and systems ledger          |
+| Eight existing capability areas                             | Systems ledger                             |
+| Munich office                                               | Contact image, details, and footer         |
+| Holger Rumscheidt is named as General Manager               | Profile link, imprint, and structured data |
 
 Do not add percentages, certifications, awards, project counts, client logos, named authorities, countries, or sovereignty statements without verified stakeholder approval.
 
@@ -39,7 +40,7 @@ Do not add percentages, certifications, awards, project counts, client logos, na
 
 | Anchor        | Content responsibility                                                                 |
 | ------------- | -------------------------------------------------------------------------------------- |
-| `#hero`       | Company name, original bridge tagline, short introduction, and the single `20+` fact   |
+| `#hero`       | Company name, original bridge tagline, and the single `20+` experience fact            |
 | `#profile`    | German/English Security Solutions title, technology combination, and project alignment |
 | `#advice`     | Four-stage path from analysis and advice to training and long-term support             |
 | `#systems`    | Eight capability categories without technical specifications                           |
@@ -56,22 +57,29 @@ Required content:
 - Original tagline:
   - DE: `Ihre Brücke zu Vertrauen und Sicherheit.`
   - EN: `Your bridge to trust and security.`
-- One concise introduction to communications and security technology.
 - One `20+` stat with a locale-appropriate experience label.
 
-Do not repeat the `20+` statement or add a second service-range paragraph in the hero.
+The hero intentionally stays concise. Company positioning and service context begin in the Profile section. Do not repeat the `20+` statement or add a service-range paragraph in the hero.
 
 ## 5. Profile
 
-Title:
+Label and title:
 
-- DE: `Elaman — Sicherheitstechnik aus Deutschland.`
-- EN: `Elaman — German Security Solutions.`
+- Label: `Elaman`
+- DE title: `Sicherheitstechnik aus Deutschland.`
+- EN title: `German Security Solutions.`
 
 The two statements communicate:
 
 1. established products and current technologies form integrated systems for demanding communications and security environments;
 2. each solution is aligned with infrastructure, operating environment, and organisational project requirements.
+
+The section closes with one factual management reference:
+
+- DE: `Geschäftsführung: Holger Rumscheidt`
+- EN: `Managing Director: Holger Rumscheidt`
+
+The name links to the existing imprint. It must not be repeated elsewhere on the homepage or expanded into biographical claims without approved source material.
 
 ## 6. Advice
 
@@ -141,6 +149,10 @@ The form collects first name, optional last name, optional company, email, messa
 - Legal routes: `/imprint` and `/private-policy`
 - Header anchors: Home, Profile, Advice, Surveillance/Observation, Protection, Contact
 - Metadata may state communications/security engineering, technical services, advice, surveillance/observation, protection, training, and support.
+- The company may be associated with the alternate brand spellings `Elaman` and `ELAMAN` in organisation data.
+- Holger Rumscheidt may be associated with Elaman through the factual management reference in Profile, the supplied imprint, and the corresponding entity relationship. Do not create a biographical profile without approved source material.
+- Broad technical vocabulary may appear in localised descriptions and structured data only where it matches visible homepage content.
+- Do not use hidden keyword lists, duplicate or doorway search pages, repetitive keyword variants, or thin person-profile pages. Search language must remain useful, natural copy.
 
 ## 11. Legal boundary
 

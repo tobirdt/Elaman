@@ -34,14 +34,14 @@ Each image has a distinct structural role. Images are static, tightly cropped, a
 
 ## Homepage sequence
 
-| Anchor        | Experience                                                                   |
-| ------------- | ---------------------------------------------------------------------------- |
-| `#hero`       | 50/50 chameleon and Elaman introduction; header plus hero form one viewport  |
-| `#profile`    | Asymmetric white text/image composition with the stone bridge                |
-| `#advice`     | Paper-soft four-stage process using numerals and a continuous hairline       |
-| `#systems`    | Navy split with Media Mining and an open, row-major capability ledger        |
-| `#protection` | Panoramic tiger moment followed by one heading and four factual areas        |
-| `#contact`    | Office image and a functional contact/form split within one desktop viewport |
+| Anchor        | Experience                                                                      |
+| ------------- | ------------------------------------------------------------------------------- |
+| `#hero`       | 50/50 chameleon and concise Elaman identity; header plus hero form one viewport |
+| `#profile`    | Asymmetric white text/image composition with the stone bridge                   |
+| `#advice`     | Paper-soft four-stage process using numerals and a continuous hairline          |
+| `#systems`    | Navy split with Media Mining and an open, row-major capability ledger           |
+| `#protection` | Panoramic tiger moment followed by one heading and four factual areas           |
+| `#contact`    | Office image and a functional contact/form split within one desktop viewport    |
 
 The footer follows as a compact legal close and does not participate in scroll snap.
 
@@ -55,7 +55,7 @@ The footer follows as a compact legal close and does not participate in scroll s
 
 ## Section-specific direction
 
-- Profile is spacious and left aligned; the single blue line supports the heading rather than becoming a repeated eyebrow system.
+- Profile is spacious and left aligned; the single blue line supports the heading, while one quiet ruled management reference provides a factual internal link to the imprint.
 - Advice is an actual ordered process, not a row of feature cards. Large mono numerals and one hairline communicate sequence.
 - Systems is the highest-density section but remains open: horizontal rules, natural row-major order, no enclosed matrix.
 - Protection carries exactly one red dot and one primary heading.

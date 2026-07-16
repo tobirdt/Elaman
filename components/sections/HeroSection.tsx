@@ -10,7 +10,7 @@ type HeroSectionProps = {
 export function HeroSection({ content }: HeroSectionProps) {
   return (
     <Section id="hero" variant="screen" tone="soft" className="grid lg:grid-cols-2">
-      <div className="relative min-h-[clamp(15rem,38svh,24rem)] overflow-hidden bg-[var(--surface-paper-soft)] lg:min-h-full">
+      <div className="relative min-h-[clamp(12rem,34svh,24rem)] overflow-hidden bg-[var(--surface-paper-soft)] lg:min-h-full">
         <Image
           src="/images/elaman-advice.png"
           alt=""
@@ -22,26 +22,20 @@ export function HeroSection({ content }: HeroSectionProps) {
         />
       </div>
 
-      <div className="hero-copy-enter flex items-center border-t border-[var(--border-hairline)] px-[var(--page-x)] py-[var(--section-y-screen)] lg:border-l lg:border-t-0">
+      <div className="hero-copy-enter flex items-center border-t border-[var(--border-hairline)] px-[var(--page-x)] py-8 sm:py-10 lg:border-l lg:border-t-0 lg:py-[var(--section-y-screen)]">
         <div className="w-full max-w-[39rem]">
           <h1 className="text-[length:var(--type-display)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite">
             {content.label}
           </h1>
-          <p className="mt-3 max-w-[24ch] text-balance text-[length:var(--type-h3)] font-normal leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite-muted">
+          <p className="mt-2 max-w-[24ch] text-balance text-[length:var(--type-h3)] font-normal leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite-muted sm:mt-3">
             {content.title}
           </p>
 
-          <div className="mt-8 border-t border-[var(--border-hairline-strong)] pt-7 sm:mt-9">
-            <p className="max-w-[56ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite-muted">
-              {content.intro}
-            </p>
-          </div>
-
-          <div className="mt-8 flex items-baseline gap-4 border-t border-[var(--border-hairline)] pt-5 sm:mt-9">
-            <span className="text-[length:var(--type-h3)] font-semibold tracking-[var(--tracking-title)] text-elaman-blue">
+          <div className="mt-7 flex items-center gap-4 border-t border-[var(--border-hairline-strong)] pt-5 sm:mt-8 sm:gap-5">
+            <span className="shrink-0 text-[length:var(--type-h3)] font-semibold leading-none tracking-[var(--tracking-title)] text-elaman-blue">
               {content.stat.value}
             </span>
-            <span className="max-w-[21rem] text-[length:var(--type-small)] leading-6 text-graphite-muted">
+            <span className="max-w-[21rem] text-[length:var(--type-small)] leading-5 text-graphite-muted">
               {content.stat.label}
             </span>
           </div>

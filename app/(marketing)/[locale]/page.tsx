@@ -13,6 +13,7 @@ import { SystemsSection } from "@/components/sections/SystemsSection";
 import { getSiteContent } from "@/lib/content/site";
 import { isLocale, locales, type Locale } from "@/lib/i18n";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo/site";
+import { homepageJsonLd, safeJsonLd } from "@/lib/seo/structured-data";
 
 type LocalePageProps = {
   params: Promise<unknown>;
@@ -59,6 +60,10 @@ export default async function HomePage({ params }: LocalePageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(homepageJsonLd(locale)) }}
+      />
       <AnchorScrollManager locale={locale} />
       <Header locale={locale} content={content.navigation} />
       <main id="main-content" tabIndex={-1}>

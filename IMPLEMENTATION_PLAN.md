@@ -31,6 +31,7 @@ Legal pages, bilingual navigation, 404 handling, metadata, structured data, site
 |  P20 | Open capability ledger replacing the enclosed matrix                             | Published |
 |  P21 | Remove abandoned source, obsolete assets, and unused Framer Motion dependency    | Published |
 |  P22 | Six fullscreen-oriented sections with five approved images and soft desktop snap | Published |
+|  P23 | Entity-led SEO, management association, canonical sitemap, and search metadata   | Published |
 
 ## P22 — six-section viewport rhythm
 
@@ -80,6 +81,7 @@ The release passed:
 
 - Have responsible counsel review the preserved imprint and privacy policy.
 - Rotate the temporary demo Resend API key after stakeholder acceptance.
+- Verify the domain property in Google Search Console, submit `/sitemap.xml`, and request recrawling for `/de`, `/en`, and `/imprint` after deployment.
 
 ## Release rule
 

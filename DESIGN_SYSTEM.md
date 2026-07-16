@@ -106,6 +106,7 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 - Header plus hero equal one normal viewport.
 - Mobile stacks naturally and may grow on short displays.
 - The image is the sole LCP asset.
+- Company positioning begins in Profile; the hero contains no service paragraph.
 - `20+` appears exactly once.
 
 ### ProfileSection
@@ -114,6 +115,7 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 - Stone-bridge image is decorative and colour-calmed.
 - One blue hairline supports the heading.
 - Body copy is left aligned and bounded to 65ch.
+- One compact ruled management reference links Holger Rumscheidt to the existing imprint without creating a competing profile composition.
 
 ### AdviceSection
 
@@ -178,14 +180,14 @@ Soft scroll snap is orientation, not animation:
 
 ## 7. Homepage composition
 
-| Anchor        | Component           | Composition                             |
-| ------------- | ------------------- | --------------------------------------- |
-| `#hero`       | `HeroSection`       | Chameleon and factual introduction      |
-| `#profile`    | `ProfileSection`    | Company profile and stone bridge        |
-| `#advice`     | `AdviceSection`     | Four-stage project path                 |
-| `#systems`    | `SystemsSection`    | Media Mining and open ledger            |
-| `#protection` | `ProtectionSection` | Tiger and protection information        |
-| `#contact`    | `ContactSection`    | Office, direct routes, and inquiry form |
+| Anchor        | Component           | Composition                              |
+| ------------- | ------------------- | ---------------------------------------- |
+| `#hero`       | `HeroSection`       | Chameleon, identity, tagline, experience |
+| `#profile`    | `ProfileSection`    | Company profile and stone bridge         |
+| `#advice`     | `AdviceSection`     | Four-stage project path                  |
+| `#systems`    | `SystemsSection`    | Media Mining and open ledger             |
+| `#protection` | `ProtectionSection` | Tiger and protection information         |
+| `#contact`    | `ContactSection`    | Office, direct routes, and inquiry form  |
 
 ## 8. Prohibited patterns
 

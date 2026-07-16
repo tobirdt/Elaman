@@ -90,11 +90,11 @@ export function Header({ locale, content }: HeaderProps) {
         {content.skipToContent}
       </a>
       <header
-        className={`sticky top-0 z-40 border-b bg-[var(--surface-paper)] transition-colors [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] ${
+        className={`sticky top-0 z-40 h-[var(--header-h)] border-b bg-[var(--surface-paper)] transition-colors [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] ${
           scrolled ? "border-[var(--border-hairline)]" : "border-transparent"
         }`}
       >
-        <Container className="flex h-16 items-center justify-between gap-3 lg:h-20 lg:gap-5">
+        <Container className="flex h-full items-center justify-between gap-3 lg:gap-5">
           <Link
             href={`/${locale}` as Route}
             className="flex min-h-11 min-w-11 shrink-0 items-center"
@@ -144,7 +144,7 @@ export function Header({ locale, content }: HeaderProps) {
               aria-controls="mobile-navigation"
               aria-expanded={menuOpen}
               aria-label={content.menu}
-              className="flex min-h-11 cursor-pointer items-center gap-2 rounded-[var(--radius-control)] border border-[var(--border-hairline-strong)] bg-[var(--surface-paper)] px-4 py-2.5 text-sm font-medium text-graphite transition-colors [transition-duration:var(--motion-fast)] hover:bg-[var(--surface-paper-soft)]"
+              className="flex min-h-11 cursor-pointer items-center gap-2 rounded-[var(--radius-control)] px-2 text-sm font-medium text-graphite transition-colors [transition-duration:var(--motion-fast)] hover:text-elaman-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-elaman-blue"
               onClick={() => setMenuOpen((open) => !open)}
               type="button"
             >

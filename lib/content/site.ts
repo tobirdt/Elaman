@@ -62,12 +62,16 @@ export type LocalizedSiteContent = {
   hero: {
     label: string;
     title: string;
-    intro: string;
     stat: { value: string; label: string };
   };
   profile: {
+    label: string;
     title: string;
     paragraphs: string[];
+    management: {
+      label: string;
+      name: string;
+    };
   };
   advice: {
     title: string;
@@ -110,7 +114,7 @@ export const siteContent = {
     metadata: {
       title: "Elaman – German Security Solutions",
       description:
-        "Elaman GmbH provides communications and security engineering, technical services, advice, surveillance and protection solutions, professional training, and after-sales support for public authorities and security-sector clients.",
+        "Elaman GmbH in Munich develops and integrates communications and security technology for observation, counter-surveillance, protection and data forensics.",
       ogLocale: "en_US",
     },
     navigation: {
@@ -139,19 +143,22 @@ export const siteContent = {
     hero: {
       label: "Elaman",
       title: "Your bridge to trust and security.",
-      intro:
-        "Elaman develops and integrates communications and security technology for public authorities and security organisations.",
       stat: {
         value: "20+",
         label: "Years in communications and security engineering",
       },
     },
     profile: {
-      title: "Elaman — German Security Solutions.",
+      label: "Elaman",
+      title: "German Security Solutions.",
       paragraphs: [
         "We combine established products and current technologies into integrated systems for demanding communications and security environments.",
         "Each solution is aligned with the project’s infrastructure, operating environment and organisational requirements.",
       ],
+      management: {
+        label: "Managing Director",
+        name: "Holger Rumscheidt",
+      },
     },
     advice: {
       title: "From initial analysis to long-term support.",
@@ -275,7 +282,7 @@ export const siteContent = {
     metadata: {
       title: "Elaman – German Security Solutions",
       description:
-        "Elaman GmbH entwickelt und integriert Kommunikations- und Sicherheitstechnik für Behörden und Organisationen mit besonderen Sicherheitsanforderungen – von Beratung und Planung bis zu Schulung und langfristiger Betreuung.",
+        "Elaman GmbH in München entwickelt und integriert Kommunikations- und Sicherheitstechnik für Observation, technische Gegenüberwachung, Schutz und Datenforensik.",
       ogLocale: "de_DE",
     },
     navigation: {
@@ -304,19 +311,22 @@ export const siteContent = {
     hero: {
       label: "Elaman",
       title: "Ihre Brücke zu Vertrauen und Sicherheit.",
-      intro:
-        "Elaman entwickelt und integriert Kommunikations- und Sicherheitstechnik für Behörden und Organisationen mit besonderen Sicherheitsanforderungen.",
       stat: {
         value: "20+",
         label: "Jahre Erfahrung in der Kommunikations- und Sicherheitstechnik",
       },
     },
     profile: {
-      title: "Elaman — Sicherheitstechnik aus Deutschland.",
+      label: "Elaman",
+      title: "Sicherheitstechnik aus Deutschland.",
       paragraphs: [
         "Wir verbinden bewährte Produkte mit aktuellen Technologien und entwickeln daraus integrierte Systeme für anspruchsvolle Kommunikations- und Sicherheitsaufgaben.",
         "Ausgangspunkt sind stets die vorhandene Infrastruktur, das Einsatzumfeld und die organisatorischen Anforderungen des jeweiligen Projekts.",
       ],
+      management: {
+        label: "Geschäftsführung",
+        name: "Holger Rumscheidt",
+      },
     },
     advice: {
       title: "Von der Analyse bis zur langfristigen Betreuung.",
