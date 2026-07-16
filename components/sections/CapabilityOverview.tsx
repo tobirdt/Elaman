@@ -3,23 +3,10 @@ import { Section } from "@/components/ui/Section";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type CapabilityOverviewProps = {
-  content: LocalizedSiteContent["capabilities"];
-  systems: LocalizedSiteContent["systems"];
-  trust: LocalizedSiteContent["trust"];
+  content: LocalizedSiteContent["overview"];
 };
 
-export function CapabilityOverview({ content, systems, trust }: CapabilityOverviewProps) {
-  const portfolioItems = [
-    systems.items[1],
-    systems.items[2],
-    systems.items[3],
-    systems.items[4],
-    systems.items[5],
-    systems.items[6],
-    content.items[3],
-    systems.items[7],
-  ].filter(Boolean);
-
+export function CapabilityOverview({ content }: CapabilityOverviewProps) {
   return (
     <Section
       id="experience"
@@ -33,26 +20,26 @@ export function CapabilityOverview({ content, systems, trust }: CapabilityOvervi
             {content.title}
           </h2>
           <div className="mx-auto mt-7 grid max-w-[48rem] gap-4 text-sm leading-7 text-[var(--color-on-dark-muted)]">
-            <p>{content.body}</p>
-            <p>{trust.body}</p>
-            <p>{systems.body}</p>
+            {content.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </div>
 
         <div
           id="systems"
-          className="mt-14 border-t border-[var(--border-on-navy)] sm:mt-16"
+          className="mx-auto mt-14 max-w-[var(--container-content)] sm:mt-16"
         >
-          <ul className="grid grid-cols-2 lg:grid-cols-4">
-            {portfolioItems.map((item, index) => (
+          <ul className="grid md:grid-flow-col md:grid-cols-2 md:grid-rows-4 md:gap-x-16 lg:gap-x-24">
+            {content.items.map((item, index) => (
               <li
                 key={item.title}
-                className={`flex min-h-40 min-w-0 flex-col justify-between gap-8 border-b border-[var(--border-on-navy)] px-4 py-6 sm:min-h-48 sm:px-6 sm:py-7 ${index % 2 !== 0 ? "border-l" : ""} lg:border-l ${index % 4 === 0 ? "lg:border-l-0" : ""}`}
+                className={`grid min-w-0 grid-cols-[2.5rem_minmax(0,1fr)] items-baseline gap-x-4 border-t border-[var(--border-on-navy)] py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-x-5 sm:py-6 ${index === content.items.length - 1 ? "border-b" : ""} ${index === 3 ? "md:border-b" : ""}`}
               >
-                <span className="font-mono text-[0.6875rem] tracking-[0.12em] text-[var(--color-on-dark-muted)]">
+                <span className="font-mono text-[0.6875rem] leading-6 tracking-[0.12em] text-[var(--color-on-dark-muted)]">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h3 className="max-w-[15ch] break-words text-pretty text-sm font-semibold leading-5 tracking-[-0.01em] text-[var(--color-on-dark)] [hyphens:auto] sm:text-base sm:leading-6">
+                <h3 className="min-w-0 break-normal text-pretty text-base font-semibold leading-6 tracking-[-0.01em] text-[var(--color-on-dark)] hyphens-none sm:text-lg sm:leading-7">
                   {item.title}
                 </h3>
               </li>

@@ -1,155 +1,73 @@
 ---
 name: motion-system
-description: Enforce the Elaman motion system for all animation work. Use whenever a task adds, changes, removes, debugs, or reviews animation, transition, hover motion, disclosure state, smooth scrolling, scroll-linked behavior, framer-motion, MotionValues, reveal choreography, or prefers-reduced-motion handling.
+description: Enforce the current Elaman CSS motion system for any change involving animation, transition, hover feedback, menu state, smooth scrolling, entrances, or prefers-reduced-motion behavior. Use when adding, changing, removing, debugging, or reviewing motion in the Elaman website.
 ---
 
 # Elaman Motion System
 
-Make motion calm, precise, engineered, and accessible. Every movement must support orientation, hierarchy, or state feedback.
+Keep movement calm, sparse, and accessible. The active site uses CSS transitions only and has no animation library.
 
 ## Read before editing
 
 Read:
 
-1. lib/motion/presets.ts completely.
-2. components/motion and the affected motion consumer.
-3. lib/design/formations.ts for any dot animation.
-4. DESIGN_SYSTEM.md motion rules.
-5. .claude/agents/interaction-motion-designer.md when present.
+1. `app/globals.css`
+2. `lib/design/tokens.ts`
+3. the affected component
+4. the motion section in `DESIGN_SYSTEM.md`
 
-Use lib/motion/presets.ts as the source of truth. Do not create local easing or duration systems.
+Do not add a second timing or easing system.
 
-## Use the canonical tiers
+## Canonical tiers
 
-| Tier                      |    Duration | Purpose                                         |
-| ------------------------- | ----------: | ----------------------------------------------- |
-| Micro / fast              |   120–180ms | Hover, focus, press, colour and border feedback |
-| State / medium / expand   |   240–320ms | Accordion, menu, form feedback, text swaps      |
-| Reveal / trace / entrance |   380–600ms | Once-only viewport entrances and line draws     |
-| Scroll-linked             | No duration | MotionValues smoothed with scrollSpring         |
+| Token               | Duration | Purpose                             |
+| ------------------- | -------: | ----------------------------------- |
+| `--motion-micro`    |    120ms | Compact link/control feedback       |
+| `--motion-fast`     |    180ms | Hover/focus colour and active rules |
+| `--motion-state`    |    240ms | Mobile-menu state                   |
+| `--motion-entrance` |    600ms | Single hero-copy entrance           |
 
-Use:
+Use `--motion-ease: cubic-bezier(0.22, 1, 0.36, 1)`.
 
-- motionEase.out [0.22, 1, 0.36, 1] as the signature ease;
-- motionEase.inOut [0.65, 0, 0.35, 1] only when an element moves and returns;
-- scrollSpring at stiffness 140, damping 30;
-- formationSpring at stiffness 110, damping 22 for dot position changes.
+## Current allowed motion
 
-Do not hardcode a new duration or cubic-bezier when a preset fits.
+- Hero copy: once-only opacity plus 12px rise through `@starting-style`.
+- Header/navigation: short colour and scale feedback.
+- Mobile menu: direct opacity and translate state.
+- Form fields: short border/background/focus feedback.
+- Anchor scrolling: smooth normally, automatic for reduced motion.
 
-## Keep the active homepage free of scroll-scrub motion
+Movement uses opacity and transforms. Do not animate width, height, positioning, font metrics, filter, blur, or layout.
 
-The approved heritage homepage renders no scroll-linked animation. HeroSection keeps its LCP image static and uses one progressive CSS entrance for the copy; the later photographic bands remain static.
-
-Do not add useScroll, a scroll listener driving animation, scrubbed parallax, or progress-bound decorative effects without explicit approval. Dormant legacy story components may retain unused implementation until a separate cleanup slice, but they must not be reintroduced into the active route by accident. Event-triggered reveals do not count as scrub systems.
-
-## Animate only safe properties
-
-Animate:
-
-- opacity;
-- translate/scale/rotate transforms;
-- SVG position MotionValues when required for the identity-preserving formation morph.
-
-Draw hairlines with scaleX or scaleY.
-
-Never animate:
-
-- width or height;
-- top, right, bottom, or left;
-- filter or blur;
-- font size;
-- letter spacing;
-- layout-dependent properties that trigger reflow.
-
-Keep hover lift at or below 2px.
-
-## Use purpose-led choreography
-
-Allowed patterns:
-
-- Reveal: opacity plus 10px rise, once.
-- Rise: opacity plus 16px rise for a larger card or panel, once.
-- Fade: opacity-only for state swaps.
-- LineDraw: scaleX from the left.
-- RevealGroup: 0.06s stagger for small items or 0.09s for cards.
-- Dot assembly: shared formation data and controlled per-dot stagger.
-- Formation morph: continuous shared MotionValue with identity-preserving indices.
-- State change: 240–320ms with a direct visual relationship to the control.
-
-Keep total stagger delay at or below 0.36s per group.
-
-Do not use a uniform fade-in on every section. Vary internal choreography through register draws, formation assembly, ruled sequences, and hierarchy-led groups while keeping the overall language restrained.
-
-## Prohibit spectacle
+## Prohibited motion
 
 Do not add:
 
-- loops or perpetual animation;
-- breathing nodes;
-- marching dashes;
-- radar sweeps;
-- particles;
-- bounce;
-- text parallax;
-- scroll-scaled headlines;
-- large perspective effects;
-- repeated pulses;
-- animated blur or glow;
-- motion that exists only to make a static area feel “alive.”
+- Framer Motion or another animation dependency without explicit approval;
+- scroll scrubbing, parallax, progress-bound visuals, or sticky animation stories;
+- page-wide reveal wrappers;
+- loops, pulses, particles, bouncing, radar effects, or perpetual decoration;
+- animated diagrams, dot formations, glows, or filters.
 
-The page is not a motion demo.
+## Reduced motion
 
-## Require reduced motion
+The global `prefers-reduced-motion` rule must:
 
-Every motion change must define its reduced-motion final state.
+- disable smooth scrolling;
+- reduce transitions and animations to an effectively immediate duration;
+- leave all content in its final visible state;
+- preserve menu, focus, and form behavior.
 
-Required behavior:
-
-- Use useReducedMotionPreference in Framer Motion components.
-- Render final content immediately when reduction is preferred.
-- Use static DotMatrix formations instead of animated assembly/morphs.
-- Use auto instead of smooth for programmatic scrolling.
-- Do not merely shorten complex motion; remove the motion path.
-- Preserve content order, state visibility, and control feedback without animation.
-
-The global CSS media query is a safety net, not a substitute for component branching.
-
-## Keep formation motion truthful
-
-For dot formations:
-
-- consume lib/design/formations.ts;
-- preserve dot identity across story states;
-- keep exactly one blue dot;
-- introduce at most one red dot and only with protection semantics;
-- keep ink dots low opacity;
-- round trig-derived coordinates as the formation module does to avoid hydration drift;
-- use the static version on mobile/reduced-motion where specified.
-
-Do not create a visually similar but unrelated animation.
+Do not rely on shortened spectacle; remove the motion path.
 
 ## Review workflow
 
-Before editing:
+1. State whether the motion supports orientation, hierarchy, or feedback.
+2. Select an existing token.
+3. Prefer CSS over a client dependency.
+4. Verify only safe properties move.
+5. Test normal and reduced motion on desktop and mobile.
+6. Check the browser console for hydration or runtime errors.
+7. Run lint, typecheck, format check, and build.
 
-1. State the animation’s purpose: orientation, hierarchy, or feedback.
-2. Select the tier and existing preset.
-3. Confirm the change does not introduce a homepage scrub system.
-4. Define the reduced-motion final state.
-5. Check whether a CSS transition is sufficient before adding Framer Motion.
-
-After editing:
-
-1. Search the change for hardcoded durations/eases and forbidden properties.
-2. Confirm the active homepage dependency tree contains no useScroll consumer.
-3. Verify every reveal uses once-only viewport behavior.
-4. Verify stagger totals remain at or below 0.36s.
-5. Verify hover lift is no more than 2px.
-6. Test the hero-copy entrance, immediately visible hero image, and final static state at wide desktop.
-7. Test menu, forms, and the stacked heritage composition at mobile width.
-8. Test prefers-reduced-motion and smooth-scroll fallbacks.
-9. Check for console or hydration errors.
-10. Run npm run lint, npm run typecheck, and npm run build before signoff.
-
-If motion does not clearly improve orientation, hierarchy, or feedback, keep the state static.
+If movement is not necessary, keep the state static.

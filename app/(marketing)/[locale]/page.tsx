@@ -60,11 +60,7 @@ export default async function HomePage({ params }: LocalePageProps) {
       <Header locale={locale} content={content.navigation} />
       <main id="main-content" tabIndex={-1}>
         <HeroSection content={content.hero} />
-        <CapabilityOverview
-          content={content.capabilities}
-          systems={content.systems}
-          trust={content.trust}
-        />
+        <CapabilityOverview content={content.overview} />
         <ProtectionSection content={content.protection} tagline={content.hero.title} />
         <ContactSection content={content.contact} />
       </main>

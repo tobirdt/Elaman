@@ -44,10 +44,10 @@ export function HeroSection({ content }: HeroSectionProps) {
 
           <div className="mt-9 flex items-baseline gap-4 border-t border-[var(--border-hairline)] pt-5">
             <span className="text-3xl font-semibold tracking-[-0.04em] text-elaman-blue">
-              {content.stats[0]?.value}
+              {content.stat.value}
             </span>
             <span className="max-w-[20rem] text-xs leading-5 text-graphite-muted">
-              {content.stats[0]?.label}
+              {content.stat.label}
             </span>
           </div>
         </div>

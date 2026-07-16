@@ -6,11 +6,10 @@ type ButtonShape = "control" | "pill";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "button-primary border-[var(--color-action-primary)] bg-[var(--color-action-primary)] text-[var(--color-on-primary)] hover:border-[var(--color-action-primary-hover)] hover:bg-[var(--color-action-primary-hover)]",
+    "border-[var(--color-action-primary)] bg-[var(--color-action-primary)] text-[var(--color-on-primary)] hover:border-[var(--color-action-primary-hover)] hover:bg-[var(--color-action-primary-hover)]",
   secondary:
-    "border-[var(--border-hairline-strong)] bg-[var(--surface-paper)] text-[var(--color-text-primary)] hover:border-[var(--border-accent-blue)] hover:text-elaman-blue",
-  ghost:
-    "border-transparent bg-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]",
+    "border-[var(--border-hairline-strong)] bg-[var(--surface-paper)] text-graphite hover:border-[var(--border-accent-blue)] hover:text-elaman-blue",
+  ghost: "border-transparent bg-transparent text-graphite-muted hover:text-graphite",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

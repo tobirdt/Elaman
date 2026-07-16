@@ -97,16 +97,16 @@ export function Header({ locale, content }: HeaderProps) {
         <Container className="flex h-16 items-center justify-between gap-3 lg:h-20 lg:gap-5">
           <Link
             href={`/${locale}` as Route}
-            className="flex min-h-11 items-center"
+            className="flex min-h-11 min-w-11 shrink-0 items-center"
             aria-label={content.homeLabel}
           >
             <Image
-              src="/brand/elaman-logo.png"
+              src="/brand/elaman-icon.svg"
               alt=""
-              width={470}
-              height={180}
-              sizes="(min-width: 640px) 160px, 142px"
-              className="h-auto w-[8.875rem] sm:w-40"
+              width={128}
+              height={128}
+              sizes="(min-width: 1024px) 56px, 48px"
+              className="size-12 lg:size-14"
             />
           </Link>
 

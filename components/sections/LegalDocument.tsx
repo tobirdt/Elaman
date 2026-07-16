@@ -24,13 +24,17 @@ export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentP
           />
         </Container>
       </Section>
-      <Section className="border-t border-line" variant="legal-page" tone="soft">
+      <Section
+        className="border-t border-[var(--border-hairline)]"
+        variant="legal-page"
+        tone="soft"
+      >
         <Container size="legal">
           <div className="rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper)] p-6 sm:p-9">
             {blocks.map((block, index) => (
               <section
                 key={`${block.title ?? "legal-block"}-${index}`}
-                className="border-b border-line py-8 first:pt-0 last:border-b-0 last:pb-0"
+                className="border-b border-[var(--border-hairline)] py-8 first:pt-0 last:border-b-0 last:pb-0"
               >
                 {block.title ? (
                   <h2 className="mb-4 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite [overflow-wrap:anywhere]">

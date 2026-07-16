@@ -1,6 +1,15 @@
 # Elaman Website
 
-Production-ready Next.js website for Elaman GmbH.
+Production-ready bilingual Next.js website for Elaman GmbH. The current product is a four-composition one-pager with legal pages and a server-validated contact form.
+
+## Stack
+
+- Next.js 16 / React 19
+- Tailwind CSS 4
+- Geist and Geist Mono through `next/font`
+- Resend for inquiry delivery
+
+The site intentionally has no client animation library; its restrained transitions live in `app/globals.css`.
 
 ## Local Development
 
@@ -75,38 +84,18 @@ npm run build
 
 Output is handled by Next.js/Vercel automatically.
 
-## Git Readiness
-
-If this folder is not already a git repository, initialize and commit only after reviewing the generated file list:
-
-```bash
-git init
-git add .
-git commit -m "Initial Elaman website"
-```
-
-Then connect the repository to the chosen remote:
-
-```bash
-git remote add origin <repository-url>
-git branch -M main
-git push -u origin main
-```
-
-Do not commit `.env`, `.env.local`, `.next`, `node_modules`, or TypeScript build-info files. These are covered by `.gitignore`.
-
 ## Post-Deployment Checklist
 
 1. Confirm the live homepage loads over HTTPS.
 2. Confirm canonical and Open Graph URLs use the live domain.
-3. Confirm the desktop sticky story works at wide desktop sizes.
-4. Confirm tablet and mobile use the unpinned story sequence.
-5. Confirm the mobile menu opens and links navigate.
-6. Submit an invalid contact form and confirm field errors.
-7. Submit a valid contact form and confirm email delivery.
-8. Confirm reply-to uses the submitter email.
-9. Confirm phone and email links work.
-10. Confirm `/imprint` and `/private-policy` render without overflow.
+3. Confirm the capability ledger uses two columns on tablet/desktop and one on mobile.
+4. Confirm the mobile menu opens, closes with Escape/outside click, and links navigate.
+5. Submit an invalid contact form and confirm field errors.
+6. Submit a valid contact form and confirm email delivery.
+7. Confirm reply-to uses the submitter email.
+8. Confirm phone and email links work.
+9. Confirm `/imprint`, `/private-policy`, and 404 states render without overflow.
+10. Check both locales with normal and reduced motion.
 
 ## Legal Review Note
 
