@@ -2,11 +2,11 @@
 
 Authoritative execution plan for the approved reconstruction of the former Elaman homepage as a modern, bilingual Next.js experience.
 
-**Status:** Release candidate approved and fully QA-verified; publication to `main` is authorised. Live mail delivery, final-domain wiring, and counsel-controlled legal review remain operational follow-ups.
+**Status:** Published to `main` and verified on the Vercel production alias. Live mail delivery, final-domain wiring, and counsel-controlled legal review remain operational follow-ups.
 
 **Primary language:** German at `/de`; English remains complete at `/en`
 
-**Current execution unit:** P19 — approved `main` release and production verification
+**Current execution unit:** P19 — complete; operational follow-ups are tracked separately
 
 **Planning rule:** Keep visual, content, legal, and deployment work reviewable. Do not mix unapproved claims or infrastructure changes into a design slice.
 
@@ -216,7 +216,7 @@ The review images are stored under:
 |    16 | Legal and locale routes            | Existing routes verified | Current legal pages remain accessible and technically sound           | Counsel review of final wording    |
 |    17 | Contact operations                 | Technical QA complete    | All form paths verified without sending real test mail                | Add Vercel mail environment values |
 |    18 | SEO and performance                | Technical audit complete | Metadata, sitemap, robots, manifest, JSON-LD, images, and CWV audited | Final domain and social preview    |
-|    19 | Main and production release        | Approved for publication | Publish the reviewed tree and verify the live deployment              | Post-deployment smoke verification |
+|    19 | Main and production release        | Complete                 | Reviewed tree published to `main` and verified on Vercel              | None                               |
 
 The earlier P01–P13 visual sequence is superseded. Its legal, form, SEO, accessibility, and release concerns remain represented in P15–P19.
 
@@ -298,7 +298,7 @@ Tasks:
 
 ## 12. P19 — Staging and production
 
-**Status:** Stakeholder-authorised for direct publication to `main`; production verification follows the push.
+**Status:** Published to `main` and verified at `https://elaman-alpha.vercel.app` on mobile, tablet, and desktop viewports.
 
 ### Staging
 
@@ -395,4 +395,4 @@ The website is production-ready only when:
 
 ## 16. Immediate next action
 
-Publish the reviewed release tree to `main`, verify the resulting Vercel production deployment at mobile, tablet, and desktop widths, and then configure the verified Resend sender/recipient values before treating live inquiry delivery as operational.
+Configure the verified Resend sender/recipient values before treating live inquiry delivery as operational. Final custom-domain wiring and counsel review of the inherited legal copy remain separate owner-controlled follow-ups.
