@@ -7,8 +7,7 @@ const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.elaman.de").re
 
 export const siteConfig = {
   name: "Elaman GmbH",
-  title: "German Security Solutions | Elaman GmbH",
-  titleTemplate: "%s | Elaman GmbH",
+  title: "Elaman – German Security Solutions",
   description:
     "Elaman GmbH provides German security solutions, communications and security engineering, advice, surveillance, protection, training, and support for public authority and security contexts.",
   url: siteUrl,
@@ -24,6 +23,7 @@ export const siteConfig = {
 
 type PageMetadataOptions = {
   title?: string;
+  appendSiteName?: boolean;
   description?: string;
   path?: string;
   locale?: string;
@@ -45,6 +45,7 @@ function withSiteName(title: string) {
 
 export function createPageMetadata({
   title,
+  appendSiteName = true,
   description = siteConfig.description,
   path = "/",
   locale = "en_US",
@@ -54,7 +55,11 @@ export function createPageMetadata({
     follow: true,
   },
 }: PageMetadataOptions = {}): Metadata {
-  const pageTitle = title ? withSiteName(title) : siteConfig.title;
+  const pageTitle = title
+    ? appendSiteName
+      ? withSiteName(title)
+      : title
+    : siteConfig.title;
   const url = absoluteUrl(path);
   const imageUrl = absoluteUrl(siteConfig.ogImage.path);
 

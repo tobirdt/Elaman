@@ -108,7 +108,7 @@ export type LocalizedSiteContent = {
 export const siteContent = {
   en: {
     metadata: {
-      title: "German Security Solutions | Elaman GmbH",
+      title: "Elaman – German Security Solutions",
       description:
         "Elaman GmbH provides communications and security engineering, technical services, advice, surveillance and protection solutions, professional training, and after-sales support for public authorities and security-sector clients.",
       ogLocale: "en_US",
@@ -273,7 +273,7 @@ export const siteContent = {
   },
   de: {
     metadata: {
-      title: "Deutsche Sicherheitslösungen | Elaman GmbH",
+      title: "Elaman – German Security Solutions",
       description:
         "Elaman GmbH bietet Kommunikations- und Sicherheitstechnik, technische Dienstleistungen, Beratung, Observation und Schutzlösungen, professionelle Schulungen und After-Sales-Service für Behörden und Sicherheitskunden.",
       ogLocale: "de_DE",

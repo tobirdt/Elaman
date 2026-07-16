@@ -2,7 +2,7 @@
 
 ## Status
 
-The previous heritage-modern release remains on `main`. The active `codex/fullscreen-sections` slice implements the approved six-section viewport rhythm, has passed the full local production gate, and is ready for Vercel Preview acceptance.
+The approved six-section viewport release is the current production release on `main` and has passed the full production gate.
 
 German remains the default at `/de`; English is complete at `/en`.
 
@@ -21,16 +21,16 @@ Legal pages, bilingual navigation, 404 handling, metadata, structured data, site
 
 ## Completed release units
 
-| Unit | Outcome                                                                          | State            |
-| ---: | -------------------------------------------------------------------------------- | ---------------- |
-|  P15 | Heritage homepage reconstruction                                                 | Published        |
-|  P16 | Responsive, accessibility, and interaction pass                                  | Published        |
-|  P17 | Contact API, validation, honeypot, and Resend integration                        | Published        |
-|  P18 | SEO, legal routes, metadata, and release hardening                               | Published        |
-|  P19 | Production deployment to `main`                                                  | Published        |
-|  P20 | Open capability ledger replacing the enclosed matrix                             | Published        |
-|  P21 | Remove abandoned source, obsolete assets, and unused Framer Motion dependency    | Published        |
-|  P22 | Six fullscreen-oriented sections with five approved images and soft desktop snap | Verified locally |
+| Unit | Outcome                                                                          | State     |
+| ---: | -------------------------------------------------------------------------------- | --------- |
+|  P15 | Heritage homepage reconstruction                                                 | Published |
+|  P16 | Responsive, accessibility, and interaction pass                                  | Published |
+|  P17 | Contact API, validation, honeypot, and Resend integration                        | Published |
+|  P18 | SEO, legal routes, metadata, and release hardening                               | Published |
+|  P19 | Production deployment to `main`                                                  | Published |
+|  P20 | Open capability ledger replacing the enclosed matrix                             | Published |
+|  P21 | Remove abandoned source, obsolete assets, and unused Framer Motion dependency    | Published |
+|  P22 | Six fullscreen-oriented sections with five approved images and soft desktop snap | Published |
 
 ## P22 — six-section viewport rhythm
 
@@ -65,28 +65,22 @@ Legal pages, bilingual navigation, 404 handling, metadata, structured data, site
 - No horizontal overflow, automatic hyphenation, layout jumps, or browser-console errors.
 - Contact validation and focus behavior are unchanged.
 
-## Final verification gate
+## Final verification evidence
 
-Before Preview acceptance:
+The release passed:
 
-1. Run `npm run format` and `git diff --check`.
-2. Run `npm run lint`.
-3. Run `npm run typecheck`.
-4. Run `npm run format:check`.
-5. Run `npm run build`.
-6. Run `npm audit --omit=dev`.
-7. Verify DE and EN at 320×568, 390×844, 768×1024, 1024×768, 1366×768, 1440×900, and 1600×1000.
-8. Verify all navigation, locale, mobile-menu, reduced-motion, form, legal, 404, and metadata paths.
-9. Push the feature branch and obtain a Vercel Preview URL.
-10. Capture desktop, tablet, and mobile Preview screenshots.
+1. formatting, diff, lint, TypeScript, production build, and dependency audit gates;
+2. DE and EN checks from compact mobile through wide desktop;
+3. navigation, locale, mobile-menu, reduced-motion, form, legal, 404, and metadata paths;
+4. desktop, tablet, and mobile Preview screenshots;
+5. production-mode browser and API verification with no console errors or horizontal overflow;
+6. Lighthouse accessibility, best-practices, and SEO scores of 100 on mobile and desktop.
 
 ## Operational follow-ups
 
-- Verify final production domain and `NEXT_PUBLIC_SITE_URL`.
-- Configure and test the verified Resend sender and recipient.
 - Have responsible counsel review the preserved imprint and privacy policy.
-- Submit a production inquiry and confirm delivery and reply-to behavior.
+- Rotate the temporary demo Resend API key after stakeholder acceptance.
 
 ## Release rule
 
-Do not merge this slice to `main` until the Preview stand and required screenshots have been reviewed. Publishing to `main` remains a separate explicit action.
+Publish to `main` only after explicit stakeholder approval and a clean final verification run.

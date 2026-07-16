@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
 
   return createPageMetadata({
     title: content.metadata.title,
+    appendSiteName: false,
     description: content.metadata.description,
     path: `/${locale}`,
     locale: content.metadata.ogLocale,

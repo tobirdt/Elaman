@@ -17,6 +17,8 @@ The site communicates:
 
 The public site remains intentionally discreet. Do not name customers, expose operational detail, or turn internal background knowledge into public claims.
 
+The canonical browser and social title in both locales is `Elaman – German Security Solutions`.
+
 ## 2. Verified factual anchors
 
 | Fact                                                        | Approved use                       |
