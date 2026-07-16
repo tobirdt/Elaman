@@ -29,7 +29,7 @@ export function NotFoundPage({ locale = "en" }: NotFoundPageProps) {
               as="h1"
               body={
                 isGerman
-                  ? "Die angeforderte Seite ist nicht verfügbar. Kehren Sie zur Elaman-Startseite zurück oder nutzen Sie den Kontaktbereich."
+                  ? "Die angeforderte Seite ist nicht verfügbar. Kehren Sie zur Startseite zurück oder nehmen Sie direkt Kontakt mit uns auf."
                   : "The requested page is not available. Return to the Elaman homepage or use the contact path in the navigation."
               }
               label="404"

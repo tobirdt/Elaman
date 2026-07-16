@@ -17,6 +17,8 @@ The site communicates:
 
 The public site remains intentionally discreet. Do not name customers, expose operational detail, or turn internal background knowledge into public claims.
 
+German copy must read as original German, not as a line-by-line translation. Prefer direct, active sentences and established technical terminology. Avoid literal English compounds, inflated sales language, and abstract formulations when a precise German verb is available.
+
 The canonical browser and social title in both locales is `Elaman – German Security Solutions`.
 
 ## 2. Verified factual anchors
@@ -63,7 +65,7 @@ Do not repeat the `20+` statement or add a second service-range paragraph in the
 
 Title:
 
-- DE: `Elaman — Deutsche Sicherheitslösungen.`
+- DE: `Elaman — Sicherheitstechnik aus Deutschland.`
 - EN: `Elaman — German Security Solutions.`
 
 The two statements communicate:

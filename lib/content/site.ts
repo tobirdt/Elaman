@@ -275,7 +275,7 @@ export const siteContent = {
     metadata: {
       title: "Elaman – German Security Solutions",
       description:
-        "Elaman GmbH bietet Kommunikations- und Sicherheitstechnik, technische Dienstleistungen, Beratung, Observation und Schutzlösungen, professionelle Schulungen und After-Sales-Service für Behörden und Sicherheitskunden.",
+        "Elaman GmbH entwickelt und integriert Kommunikations- und Sicherheitstechnik für Behörden und Organisationen mit besonderen Sicherheitsanforderungen – von Beratung und Planung bis zu Schulung und langfristiger Betreuung.",
       ogLocale: "de_DE",
     },
     navigation: {
@@ -292,11 +292,11 @@ export const siteContent = {
         { label: "Datenschutzerklärung", href: "/private-policy" },
       ],
       menu: "Menü",
-      homeLabel: "Elaman Startseite",
+      homeLabel: "Zur Elaman-Startseite",
       languageSwitcherLabel: "Sprache",
-      skipToContent: "Zum Inhalt springen",
+      skipToContent: "Direkt zum Inhalt",
       mainNavigationLabel: "Hauptnavigation",
-      legalNavigationLabel: "Rechtliche Navigation",
+      legalNavigationLabel: "Rechtliche Hinweise",
     },
     footer: {
       copyright: "©2026 Elaman GmbH",
@@ -305,50 +305,50 @@ export const siteContent = {
       label: "Elaman",
       title: "Ihre Brücke zu Vertrauen und Sicherheit.",
       intro:
-        "Elaman entwickelt und integriert Kommunikations- und Sicherheitstechnik für Behörden und Sicherheitsorganisationen.",
+        "Elaman entwickelt und integriert Kommunikations- und Sicherheitstechnik für Behörden und Organisationen mit besonderen Sicherheitsanforderungen.",
       stat: {
         value: "20+",
-        label: "Jahre in Kommunikations- und Sicherheitstechnik",
+        label: "Jahre Erfahrung in der Kommunikations- und Sicherheitstechnik",
       },
     },
     profile: {
-      title: "Elaman — Deutsche Sicherheitslösungen.",
+      title: "Elaman — Sicherheitstechnik aus Deutschland.",
       paragraphs: [
-        "Wir verbinden bewährte Produkte und aktuelle Technologien zu integrierten Systemen für anspruchsvolle Kommunikations- und Sicherheitsumgebungen.",
-        "Jede Lösung wird auf Infrastruktur, Einsatzumgebung und organisatorische Anforderungen des Projekts abgestimmt.",
+        "Wir verbinden bewährte Produkte mit aktuellen Technologien und entwickeln daraus integrierte Systeme für anspruchsvolle Kommunikations- und Sicherheitsaufgaben.",
+        "Ausgangspunkt sind stets die vorhandene Infrastruktur, das Einsatzumfeld und die organisatorischen Anforderungen des jeweiligen Projekts.",
       ],
     },
     advice: {
       title: "Von der Analyse bis zur langfristigen Betreuung.",
       intro:
-        "Unsere Arbeit beginnt mit einer genauen Analyse der Aufgabe und endet nicht mit der Inbetriebnahme.",
+        "Wir analysieren die Aufgabe sorgfältig und begleiten jedes Projekt über die Inbetriebnahme hinaus.",
       steps: [
         {
           title: "Analyse & Beratung",
           description:
-            "Technische Anforderungen, Infrastruktur und Einsatzumgebung werden gemeinsam eingeordnet.",
+            "Gemeinsam klären wir die technischen Anforderungen, die vorhandene Infrastruktur und das jeweilige Einsatzumfeld.",
         },
         {
           title: "Planung & Integration",
           description:
-            "Bewährte Produkte und aktuelle Technologien werden zu einem abgestimmten System verbunden.",
+            "Auf dieser Grundlage wählen wir geeignete Produkte und Technologien aus und führen sie zu einem abgestimmten System zusammen.",
         },
         {
           title: "Schlüsselfertige Umsetzung",
           description:
-            "Erfahrene Ingenieure begleiten Implementierung, Inbetriebnahme und zuverlässigen Betrieb.",
+            "Unsere Ingenieure begleiten die Umsetzung, die Inbetriebnahme und den zuverlässigen Betrieb des Systems.",
         },
         {
           title: "Schulung & Betreuung",
           description:
-            "Professionelle Schulungen und langfristige Betreuung unterstützen den sachgerechten Einsatz.",
+            "Praxisnahe Schulungen und eine langfristige Betreuung unterstützen den sachgerechten Einsatz im Arbeitsalltag.",
         },
       ],
     },
     systems: {
       title: "Systeme für Kommunikation, Observation und Auswertung.",
       intro:
-        "Das Portfolio verbindet sichere Kommunikationsmethoden mit spezialisierten Lösungen für behördliche und sicherheitsbezogene Aufgaben.",
+        "Unser Portfolio umfasst spezialisierte Systeme für Kommunikation, Observation, Führung und Auswertung.",
       items: [
         { title: "Audio- und Videoobservation" },
         { title: "Geoinformationssysteme" },
@@ -361,37 +361,37 @@ export const siteContent = {
       ],
     },
     protection: {
-      label: "Schutz & Gegenmaßnahmen",
+      label: "Schutz und Gegenmaßnahmen",
       title: "Schutz, wo Vertraulichkeit zählt.",
-      body: "Elaman plant Gegenmaßnahmen und Schutzinfrastruktur für sensible Einsatzumgebungen.",
+      body: "Elaman plant und integriert technische Gegenmaßnahmen sowie Schutzlösungen für sensible Einsatzbereiche.",
       items: [
         {
           title: "ECM / Counter-RCIED",
           description:
-            "Elektronische Gegenmaßnahmen gegen funkgesteuerte Bedrohungen und drahtlose Risiken.",
+            "Elektronische Gegenmaßnahmen gegen funkgesteuerte Bedrohungen und andere funkbasierte Risiken.",
         },
         {
           title: "Jamming-Systeme",
           description:
-            "Tragbare, fahrzeug- und gebäudebasierte Systeme für behördlich autorisierte Einsatzbereiche.",
+            "Mobile, fahrzeuggebundene und stationäre Systeme für behördlich autorisierte Anwendungen.",
         },
         {
           title: "TSCM",
           description:
-            "Technische Überwachungsgegenmaßnahmen, Beratung und Schulung für spezialisierte Prüfteams.",
+            "Technische Maßnahmen zur Abwehr unbefugter Überwachung – ergänzt durch Beratung und Schulung für spezialisierte Prüfteams.",
         },
         {
           title: "Geschirmte Räume",
           description:
-            "Bauliche, mechanische und elektronische Schutzkonzepte für Räume, in denen vertrauliche Informationen verarbeitet werden.",
+            "Bauliche, mechanische und elektronische Schutzkonzepte für Räume, in denen vertrauliche Informationen besprochen oder verarbeitet werden.",
         },
       ],
     },
     contact: {
       company: "Elaman GmbH",
-      officeTitle: "Das Elaman-Büro in München",
+      officeTitle: "Elaman in München",
       title: "Kontakt",
-      intro: "Ihre Anfrage geht direkt an unser Team in München.",
+      intro: "Ihre Anfrage erreicht direkt unser Team in München.",
       labels: {
         address: "Adresse",
         phone: "Telefon",
@@ -405,7 +405,7 @@ export const siteContent = {
       emailHref: "mailto:info@elaman.de",
       form: {
         title: "Anfrage senden",
-        intro: "Für ein erstes Gespräch genügt eine kurze Einordnung.",
+        intro: "Für ein erstes Gespräch genügt eine kurze Beschreibung Ihres Anliegens.",
         fields: {
           firstName: "Vorname",
           lastName: "Nachname",
@@ -415,8 +415,8 @@ export const siteContent = {
           website: "Website",
         },
         submit: "Anfrage senden",
-        sending: "Wird gesendet…",
-        success: "Vielen Dank. Ihre Anfrage wurde gesendet.",
+        sending: "Anfrage wird gesendet…",
+        success: "Vielen Dank. Ihre Anfrage ist bei uns eingegangen.",
         errors: {
           firstNameRequired: "Bitte geben Sie Ihren Vornamen ein.",
           firstNameMax: "Der Vorname darf maximal 80 Zeichen enthalten.",
@@ -427,12 +427,13 @@ export const siteContent = {
           messageMin: "Die Nachricht muss mindestens 20 Zeichen enthalten.",
           messageMax: "Die Nachricht darf maximal 4000 Zeichen enthalten.",
           payload:
-            "Die Anfrage konnte nicht vorbereitet werden. Bitte versuchen Sie es später erneut.",
-          rateLimited: "Zu viele Anfragen. Bitte versuchen Sie es später erneut.",
+            "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es später erneut.",
+          rateLimited:
+            "Bitte warten Sie einen Moment, bevor Sie eine weitere Anfrage senden.",
           sendFailed:
-            "Die Nachricht konnte nicht gesendet werden. Bitte nutzen Sie Telefon oder E-Mail direkt.",
+            "Ihre Anfrage konnte nicht gesendet werden. Sie erreichen uns auch telefonisch oder per E-Mail.",
           unexpected:
-            "Die Nachricht konnte nicht gesendet werden. Bitte nutzen Sie Telefon oder E-Mail direkt.",
+            "Ihre Anfrage konnte nicht gesendet werden. Sie erreichen uns auch telefonisch oder per E-Mail.",
         },
       },
     },
