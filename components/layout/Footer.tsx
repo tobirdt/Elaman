@@ -10,11 +10,15 @@ type FooterProps = {
   navigation: LocalizedSiteContent["navigation"];
   footer: LocalizedSiteContent["footer"];
   locale: Locale;
+  snapEnd?: boolean;
 };
 
-export function Footer({ contact, navigation, footer }: FooterProps) {
+export function Footer({ contact, navigation, footer, snapEnd = false }: FooterProps) {
   return (
-    <footer className="border-t border-[var(--border-hairline)] bg-[var(--surface-paper)]">
+    <footer
+      className="border-t border-[var(--border-hairline)] bg-[var(--surface-paper)]"
+      data-scroll-snap-end={snapEnd || undefined}
+    >
       <Container className="py-12 text-center sm:py-14">
         <p className="text-sm font-semibold text-graphite">{contact.company}</p>
         <address className="mt-2 text-xs not-italic leading-5 text-graphite-soft">

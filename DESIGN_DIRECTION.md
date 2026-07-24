@@ -43,13 +43,14 @@ Each image has a distinct structural role. Images are static, tightly cropped, a
 | `#protection` | Panoramic tiger moment followed by one heading and four factual areas           |
 | `#contact`    | Office image and a functional contact/form split within one desktop viewport    |
 
-The footer follows as a compact legal close and does not participate in scroll snap.
+The footer follows as a compact legal close. On the homepage it supplies the terminal end-aligned snap point so the last wheel or trackpad gesture settles at the real page end instead of returning to the Contact section. Legal and utility pages do not opt into this behavior.
 
 ## Fullscreen rhythm
 
 - `screen` sections use `min-height: calc(100svh - var(--header-h))` with a `vh` fallback.
 - Height is never fixed. Content, translations, validation messages, and short displays may grow naturally.
 - Desktop with a fine pointer uses `scroll-snap-type: y proximity` for gentle orientation.
+- The homepage footer is the sole terminal `end` snap target; it keeps the compact legal close fully reachable after Contact.
 - Touch devices, tablet widths, and reduced-motion users scroll freely.
 - There is no wheel interception, strict paging, nested scroll container, or scroll-bound animation.
 

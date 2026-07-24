@@ -176,6 +176,8 @@ Soft scroll snap is orientation, not animation:
 - only with `pointer: fine`;
 - only when reduced motion is not requested;
 - `scroll-snap-type: y proximity` on the root document;
+- the homepage footer opts into one terminal `scroll-snap-align: end` point so the final gesture settles at the document end;
+- legal and utility footers do not opt into the terminal snap point;
 - no wheel interception, strict paging, nested scroller, or forced snap stop.
 
 ## 7. Homepage composition

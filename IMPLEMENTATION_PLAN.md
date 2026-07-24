@@ -32,6 +32,7 @@ Legal pages, bilingual navigation, 404 handling, metadata, structured data, site
 |  P21 | Remove abandoned source, obsolete assets, and unused Framer Motion dependency    | Published |
 |  P22 | Six fullscreen-oriented sections with five approved images and soft desktop snap | Published |
 |  P23 | Entity-led SEO, management association, canonical sitemap, and search metadata   | Published |
+|  P24 | Terminal homepage snap point keeping the compact footer fully reachable          | Published |
 
 ## P22 — six-section viewport rhythm
 
@@ -65,6 +66,13 @@ Legal pages, bilingual navigation, 404 handling, metadata, structured data, site
 - Mobile and tablet scroll freely; desktop snap is soft; reduced motion removes smooth/snap behavior.
 - No horizontal overflow, automatic hyphenation, layout jumps, or browser-console errors.
 - Contact validation and focus behavior are unchanged.
+
+## P24 — terminal footer snap
+
+- Keep the six section starts as soft `start` snap points.
+- Let the homepage footer provide one terminal `end` snap point after Contact.
+- Scope the terminal point to the homepage so legal and utility pages retain normal document scrolling.
+- Preserve `y proximity`, native browser scrolling, reduced-motion behavior, and free touch/tablet scrolling.
 
 ## Final verification evidence
 

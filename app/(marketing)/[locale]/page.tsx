@@ -79,6 +79,7 @@ export default async function HomePage({ params }: LocalePageProps) {
         locale={locale}
         navigation={content.navigation}
         footer={content.footer}
+        snapEnd
       />
     </>
   );

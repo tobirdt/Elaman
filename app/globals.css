@@ -131,6 +131,11 @@ body {
     scroll-snap-align: start;
     scroll-snap-stop: normal;
   }
+
+  [data-scroll-snap-end] {
+    scroll-snap-align: end;
+    scroll-snap-stop: normal;
+  }
 }
 
 a {

@@ -133,6 +133,8 @@ Animate only opacity and transforms for movement. Colour, border, and focus feed
 
 Soft root-document scroll snap is allowed only at `min-width: 1024px`, with a fine pointer, and without reduced motion. It must remain `y proximity`; never add strict paging, wheel interception, a nested page scroller, or scroll-bound animation.
 
+On the homepage, the compact footer provides the single terminal `scroll-snap-align: end` point so the final gesture settles at the real document end. Legal and utility footers do not opt into this behavior.
+
 ## Content and i18n
 
 - Locales are `de` and `en`; German is the default route.
