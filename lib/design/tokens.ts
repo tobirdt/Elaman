@@ -40,7 +40,7 @@ export const designTokens = {
   typography: {
     display: "clamp(3rem, 7.2vw, 6rem)",
     h1: "clamp(2.6rem, 5.8vw, 5.4rem)",
-    h2: "clamp(2.1rem, 4.1vw, 3.75rem)",
+    h2: "clamp(1.8rem, 4.1vw, 3.75rem)",
     h3: "clamp(1.35rem, 2vw, 1.9rem)",
     lead: "clamp(1rem, 1.35vw, 1.25rem)",
     body: "1rem",

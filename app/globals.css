@@ -31,7 +31,7 @@
   --section-y-legal-page: clamp(2.75rem, 5vw, 4.25rem);
   --type-display: clamp(3rem, 7.2vw, 6rem);
   --type-h1: clamp(2.6rem, 5.8vw, 5.4rem);
-  --type-h2: clamp(2.1rem, 4.1vw, 3.75rem);
+  --type-h2: clamp(1.8rem, 4.1vw, 3.75rem);
   --type-h3: clamp(1.35rem, 2vw, 1.9rem);
   --type-lead: clamp(1rem, 1.35vw, 1.25rem);
   --type-body: 1rem;

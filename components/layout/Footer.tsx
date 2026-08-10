@@ -37,7 +37,7 @@ export function Footer({ contact, navigation, footer, snapEnd = false }: FooterP
             <Link
               key={item.href}
               href={item.href as Route}
-              className="inline-flex min-h-11 items-center text-xs text-graphite-soft transition-colors [transition-duration:var(--motion-micro)] hover:text-elaman-blue"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center text-xs text-graphite-soft transition-colors [transition-duration:var(--motion-micro)] hover:text-elaman-blue"
             >
               {item.label}
             </Link>

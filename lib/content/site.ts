@@ -117,15 +117,15 @@ export const siteContent = {
     metadata: {
       title: "Elaman – German Security Solutions",
       description:
-        "Elaman GmbH in Munich develops and integrates communications and security technology for observation, counter-surveillance, protection and data forensics.",
+        "Elaman GmbH in Munich develops and integrates communications and security systems for observation, technical counter-surveillance, protection and data forensics.",
       ogLocale: "en_US",
     },
     navigation: {
       main: [
         { label: "Home", href: "#hero" },
-        { label: "Profile", href: "#profile" },
-        { label: "Advice", href: "#advice" },
-        { label: "Surveillance", href: "#systems" },
+        { label: "Company", href: "#profile" },
+        { label: "Consulting", href: "#advice" },
+        { label: "Systems", href: "#systems" },
         { label: "Protection", href: "#protection" },
         { label: "Contact", href: "#contact" },
       ],
@@ -148,56 +148,56 @@ export const siteContent = {
       title: "Your bridge to trust and security.",
       stat: {
         value: "20+",
-        label: "Years in communications and security engineering",
+        label: "Years of experience in communications and security engineering",
       },
     },
     profile: {
       label: "Elaman",
       title: "German Security Solutions.",
       paragraphs: [
-        "We combine established products and current technologies into integrated systems for demanding communications and security environments.",
-        "Each solution is aligned with the project’s infrastructure, operating environment and organisational requirements.",
+        "Elaman combines established products with current technologies to create integrated systems for demanding communications and security tasks.",
+        "We align every solution with the existing infrastructure, operating environment and organisational requirements of the project.",
       ],
       management: {
         label: "Managing Director",
         name: "Holger Rumscheidt",
       },
       detailLink: {
-        label: "About Elaman",
+        label: "Company profile",
         href: "/en/company",
       },
     },
     advice: {
       title: "From initial analysis to long-term support.",
       intro:
-        "Our work begins with a precise understanding of the task and continues beyond commissioning.",
+        "Our work begins with a clear understanding of the task and does not end at commissioning.",
       steps: [
         {
-          title: "Analysis & advice",
+          title: "Analysis & consulting",
           description:
-            "Technical requirements, infrastructure and the operating environment are assessed together.",
+            "Together, we define the technical requirements, existing infrastructure and conditions of the operating environment.",
         },
         {
           title: "Planning & integration",
           description:
-            "Established products and current technologies are combined into a coordinated system.",
+            "We select suitable products and technologies and integrate them into a coordinated system.",
         },
         {
           title: "Turnkey implementation",
           description:
-            "Experienced engineers support implementation, commissioning and reliable operation.",
+            "Our engineers deliver the coordinated system and support commissioning.",
         },
         {
           title: "Training & support",
           description:
-            "Professional training and long-term support enable the appropriate use of each solution.",
+            "We train the responsible teams and provide long-term technical support during operation.",
         },
       ],
     },
     systems: {
       title: "Systems for communications, observation and analysis.",
       intro:
-        "The portfolio combines secure communications methods with specialised solutions for public-sector and security-related tasks.",
+        "Elaman integrates specialised systems for communications, observation, command and analysis into the relevant operational environment.",
       items: [
         { title: "Audio and video observation" },
         { title: "Geographical information systems" },
@@ -209,19 +209,19 @@ export const siteContent = {
         { title: "Data forensics" },
       ],
       detailLink: {
-        label: "Explore systems",
+        label: "Systems overview",
         href: "/en/systems",
       },
     },
     protection: {
       label: "Protection & Countermeasures",
       title: "Protection where confidentiality matters.",
-      body: "Elaman plans countermeasures and protective infrastructure for sensitive operational environments.",
+      body: "Elaman plans technical countermeasures and protection concepts for sensitive environments and integrates them into existing infrastructure.",
       items: [
         {
           title: "ECM / Counter-RCIED",
           description:
-            "Electronic countermeasures addressing radio-controlled threats and wireless risks.",
+            "Electronic countermeasures for radio-controlled threats and other wireless risks.",
         },
         {
           title: "Jamming systems",
@@ -231,7 +231,7 @@ export const siteContent = {
         {
           title: "TSCM",
           description:
-            "Technical surveillance countermeasures, advice and training for specialist teams.",
+            "Technical measures against unauthorised surveillance, supported by consulting and training for specialist inspection teams.",
         },
         {
           title: "Shielded rooms",
@@ -240,15 +240,15 @@ export const siteContent = {
         },
       ],
       detailLink: {
-        label: "Explore protection solutions",
+        label: "View protection solutions",
         href: "/en/protection",
       },
     },
     contact: {
       company: "Elaman GmbH",
-      officeTitle: "The Elaman Office in Munich",
+      officeTitle: "Elaman in Munich",
       title: "Contact",
-      intro: "Your inquiry goes directly to our team in Munich.",
+      intro: "Your inquiry goes directly to our Munich team.",
       labels: {
         address: "Address",
         phone: "Phone",
@@ -261,8 +261,9 @@ export const siteContent = {
       email: "info@elaman.de",
       emailHref: "mailto:info@elaman.de",
       form: {
-        title: "Send an inquiry",
-        intro: "A short outline is enough for an initial conversation.",
+        title: "Your inquiry",
+        intro:
+          "A brief description of the task is all we need for an initial conversation.",
         fields: {
           firstName: "First name",
           lastName: "Last name",
@@ -272,23 +273,25 @@ export const siteContent = {
           website: "Website",
         },
         submit: "Send inquiry",
-        sending: "Sending…",
-        success: "Thank you. Your inquiry has been sent.",
+        sending: "Sending inquiry…",
+        success: "Thank you. We have received your inquiry and will be in touch.",
         errors: {
-          firstNameRequired: "First name is required.",
-          firstNameMax: "First name must be 80 characters or fewer.",
-          lastNameMax: "Last name must be 80 characters or fewer.",
-          companyMax: "Company must be 120 characters or fewer.",
-          emailRequired: "Enter a valid email address.",
-          emailMax: "Email must be 254 characters or fewer.",
-          messageMin: "Message must be at least 20 characters.",
-          messageMax: "Message must be 4000 characters or fewer.",
-          payload: "The message could not be prepared. Please try again later.",
-          rateLimited: "Too many requests. Please try again later.",
+          firstNameRequired: "Please enter your first name.",
+          firstNameMax: "Please shorten the first name to 80 characters or fewer.",
+          lastNameMax: "Please shorten the last name to 80 characters or fewer.",
+          companyMax: "Please shorten the company name to 120 characters or fewer.",
+          emailRequired: "Please enter a valid email address.",
+          emailMax: "Please shorten the email address to 254 characters or fewer.",
+          messageMin: "Please describe your inquiry in at least 20 characters.",
+          messageMax: "Please shorten your message to 4000 characters or fewer.",
+          payload:
+            "We could not process your inquiry. Please reload the page and try again.",
+          rateLimited:
+            "Several inquiries were sent in a short period. Please try again in a few minutes.",
           sendFailed:
-            "The message could not be sent. Please use phone or email directly.",
+            "We could not send your inquiry just now. Please try again or contact us by phone or email.",
           unexpected:
-            "The message could not be sent. Please use phone or email directly.",
+            "We could not send your inquiry just now. Please try again or contact us by phone or email.",
         },
       },
     },
@@ -297,15 +300,15 @@ export const siteContent = {
     metadata: {
       title: "Elaman – German Security Solutions",
       description:
-        "Elaman GmbH in München entwickelt und integriert Kommunikations- und Sicherheitstechnik für Observation, technische Gegenüberwachung, Schutz und Datenforensik.",
+        "Elaman GmbH in München entwickelt und integriert Kommunikations- und Sicherheitssysteme für Observation, technische Gegenüberwachung, Schutz und Datenforensik.",
       ogLocale: "de_DE",
     },
     navigation: {
       main: [
         { label: "Start", href: "#hero" },
-        { label: "Profil", href: "#profile" },
+        { label: "Unternehmen", href: "#profile" },
         { label: "Beratung", href: "#advice" },
-        { label: "Observation", href: "#systems" },
+        { label: "Systeme", href: "#systems" },
         { label: "Schutz", href: "#protection" },
         { label: "Kontakt", href: "#contact" },
       ],
@@ -328,56 +331,56 @@ export const siteContent = {
       title: "Ihre Brücke zu Vertrauen und Sicherheit.",
       stat: {
         value: "20+",
-        label: "Jahre Erfahrung in der Kommunikations- und Sicherheitstechnik",
+        label: "Jahre Erfahrung mit Kommunikations- und Sicherheitstechnik",
       },
     },
     profile: {
       label: "Elaman",
-      title: "Sicherheitstechnik aus Deutschland.",
+      title: "Kommunikations- und Sicherheitstechnik aus Deutschland.",
       paragraphs: [
-        "Wir verbinden bewährte Produkte mit aktuellen Technologien und entwickeln daraus integrierte Systeme für anspruchsvolle Kommunikations- und Sicherheitsaufgaben.",
-        "Ausgangspunkt sind stets die vorhandene Infrastruktur, das Einsatzumfeld und die organisatorischen Anforderungen des jeweiligen Projekts.",
+        "Elaman verbindet bewährte Produkte und aktuelle Technologien zu integrierten Systemen für anspruchsvolle Aufgaben in Kommunikation und Sicherheit.",
+        "Wir stimmen jede Lösung auf die vorhandene Infrastruktur, das Einsatzumfeld und die organisatorischen Anforderungen des Projekts ab.",
       ],
       management: {
         label: "Geschäftsführung",
         name: "Holger Rumscheidt",
       },
       detailLink: {
-        label: "Mehr über Elaman",
+        label: "Zum Unternehmensprofil",
         href: "/de/unternehmen",
       },
     },
     advice: {
       title: "Von der Analyse bis zur langfristigen Betreuung.",
       intro:
-        "Wir analysieren die Aufgabe sorgfältig und begleiten jedes Projekt über die Inbetriebnahme hinaus.",
+        "Jedes Projekt beginnt mit einer sorgfältigen Analyse und endet für uns nicht mit der Inbetriebnahme.",
       steps: [
         {
           title: "Analyse & Beratung",
           description:
-            "Gemeinsam klären wir die technischen Anforderungen, die vorhandene Infrastruktur und das jeweilige Einsatzumfeld.",
+            "Gemeinsam klären wir die technischen Anforderungen, die vorhandene Infrastruktur und die Bedingungen im Einsatzumfeld.",
         },
         {
           title: "Planung & Integration",
           description:
-            "Auf dieser Grundlage wählen wir geeignete Produkte und Technologien aus und führen sie zu einem abgestimmten System zusammen.",
+            "Wir wählen geeignete Produkte und Technologien aus und integrieren sie zu einem abgestimmten System.",
         },
         {
           title: "Schlüsselfertige Umsetzung",
           description:
-            "Unsere Ingenieure begleiten die Umsetzung, die Inbetriebnahme und den zuverlässigen Betrieb des Systems.",
+            "Unsere Ingenieure realisieren das abgestimmte System und begleiten die Inbetriebnahme.",
         },
         {
           title: "Schulung & Betreuung",
           description:
-            "Praxisnahe Schulungen und eine langfristige Betreuung unterstützen den sachgerechten Einsatz im Arbeitsalltag.",
+            "Wir schulen die verantwortlichen Teams und begleiten den technischen Betrieb langfristig.",
         },
       ],
     },
     systems: {
       title: "Systeme für Kommunikation, Observation und Auswertung.",
       intro:
-        "Unser Portfolio umfasst spezialisierte Systeme für Kommunikation, Observation, Führung und Auswertung.",
+        "Elaman integriert spezialisierte Systeme für Kommunikation, Observation, Führung und Auswertung in das jeweilige Einsatzumfeld.",
       items: [
         { title: "Audio- und Videoobservation" },
         { title: "Geoinformationssysteme" },
@@ -396,12 +399,12 @@ export const siteContent = {
     protection: {
       label: "Schutz und Gegenmaßnahmen",
       title: "Schutz, wo Vertraulichkeit zählt.",
-      body: "Elaman plant und integriert technische Gegenmaßnahmen sowie Schutzlösungen für sensible Einsatzbereiche.",
+      body: "Elaman plant technische Gegenmaßnahmen und Schutzkonzepte für sensible Einsatzbereiche und integriert sie in die vorhandene Infrastruktur.",
       items: [
         {
           title: "ECM / Counter-RCIED",
           description:
-            "Elektronische Gegenmaßnahmen gegen funkgesteuerte Bedrohungen und andere funkbasierte Risiken.",
+            "Elektronische Gegenmaßnahmen zum Schutz vor funkgesteuerten Bedrohungen und weiteren funkbasierten Risiken.",
         },
         {
           title: "Jamming-Systeme",
@@ -411,7 +414,7 @@ export const siteContent = {
         {
           title: "TSCM",
           description:
-            "Technische Maßnahmen zur Abwehr unbefugter Überwachung – ergänzt durch Beratung und Schulung für spezialisierte Prüfteams.",
+            "Technische Maßnahmen zur Abwehr unbefugter Überwachung sowie Beratung und Schulung spezialisierter Prüfteams.",
         },
         {
           title: "Geschirmte Räume",
@@ -441,8 +444,8 @@ export const siteContent = {
       email: "info@elaman.de",
       emailHref: "mailto:info@elaman.de",
       form: {
-        title: "Anfrage senden",
-        intro: "Für ein erstes Gespräch genügt eine kurze Beschreibung Ihres Anliegens.",
+        title: "Ihr Anliegen",
+        intro: "Eine kurze Beschreibung der Aufgabe genügt für den ersten Austausch.",
         fields: {
           firstName: "Vorname",
           lastName: "Nachname",
@@ -452,25 +455,26 @@ export const siteContent = {
           website: "Website",
         },
         submit: "Anfrage senden",
-        sending: "Anfrage wird gesendet…",
-        success: "Vielen Dank. Ihre Anfrage ist bei uns eingegangen.",
+        sending: "Anfrage wird übermittelt…",
+        success:
+          "Vielen Dank. Ihre Anfrage ist bei uns eingegangen. Wir melden uns bei Ihnen.",
         errors: {
           firstNameRequired: "Bitte geben Sie Ihren Vornamen ein.",
-          firstNameMax: "Der Vorname darf maximal 80 Zeichen enthalten.",
-          lastNameMax: "Der Nachname darf maximal 80 Zeichen enthalten.",
-          companyMax: "Das Unternehmen darf maximal 120 Zeichen enthalten.",
+          firstNameMax: "Bitte kürzen Sie den Vornamen auf höchstens 80 Zeichen.",
+          lastNameMax: "Bitte kürzen Sie den Nachnamen auf höchstens 80 Zeichen.",
+          companyMax: "Bitte kürzen Sie den Unternehmensnamen auf höchstens 120 Zeichen.",
           emailRequired: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-          emailMax: "Die E-Mail-Adresse darf maximal 254 Zeichen enthalten.",
-          messageMin: "Die Nachricht muss mindestens 20 Zeichen enthalten.",
-          messageMax: "Die Nachricht darf maximal 4000 Zeichen enthalten.",
+          emailMax: "Bitte kürzen Sie die E-Mail-Adresse auf höchstens 254 Zeichen.",
+          messageMin: "Bitte beschreiben Sie Ihr Anliegen mit mindestens 20 Zeichen.",
+          messageMax: "Bitte kürzen Sie Ihre Nachricht auf höchstens 4000 Zeichen.",
           payload:
-            "Ihre Anfrage konnte nicht verarbeitet werden. Bitte versuchen Sie es später erneut.",
+            "Ihre Anfrage konnte nicht verarbeitet werden. Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.",
           rateLimited:
-            "Bitte warten Sie einen Moment, bevor Sie eine weitere Anfrage senden.",
+            "In kurzer Zeit wurden mehrere Anfragen gesendet. Bitte versuchen Sie es in einigen Minuten erneut.",
           sendFailed:
-            "Ihre Anfrage konnte nicht gesendet werden. Sie erreichen uns auch telefonisch oder per E-Mail.",
+            "Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch beziehungsweise per E-Mail.",
           unexpected:
-            "Ihre Anfrage konnte nicht gesendet werden. Sie erreichen uns auch telefonisch oder per E-Mail.",
+            "Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch beziehungsweise per E-Mail.",
         },
       },
     },

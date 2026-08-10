@@ -61,7 +61,7 @@ No ordinary content shadow, glass surface, gradient surface, or alternative radi
 - Geist Mono: sequence indices and concise technical labels.
 - Display: `--type-display` with `--leading-display` and `--tracking-display`.
 - Dossier H1: `--type-h1` on narrow screens and `--type-h2` in split desktop heroes so long German compounds retain their full form without crossing the image boundary.
-- Section heading: `--type-h2` with `--leading-title` and `--tracking-title`.
+- Section heading: `--type-h2` (`clamp(1.8rem, 4.1vw, 3.75rem)`) with `--leading-title` and `--tracking-title`; the mobile minimum keeps long German compounds intact.
 - Subheading: `--type-h3` for subordinate editorial titles.
 - Long-form marketing copy: at least `--type-body` with `--leading-body` and a bounded `ch` measure.
 - Interface labels and compact metadata may use `--type-small` or `--type-micro`.

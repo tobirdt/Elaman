@@ -203,7 +203,7 @@ function SystemsDossier({ content }: { content: SystemsDetailContent }) {
             {content.portfolio.map((item, index) => (
               <li
                 key={item.title}
-                className={`grid grid-cols-[3rem_minmax(0,1fr)] gap-4 border-b border-[var(--border-hairline)] py-7 lg:gap-6 lg:px-8 lg:py-9 ${
+                className={`grid gap-3 border-b border-[var(--border-hairline)] py-7 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-4 lg:gap-6 lg:px-8 lg:py-9 ${
                   index % 2 === 0 ? "lg:border-r lg:pl-0" : "lg:pr-0"
                 }`}
               >

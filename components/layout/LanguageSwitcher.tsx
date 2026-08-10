@@ -47,7 +47,7 @@ export function LanguageSwitcher({
         href={alternateHref ?? `${homePath(nextLocale)}${hash}`}
         hrefLang={nextLocale}
         aria-label={`${label}: ${nextLocale.toUpperCase()}`}
-        className="inline-flex min-h-11 items-center text-graphite-soft transition-colors [transition-duration:var(--motion-micro)] hover:text-elaman-blue"
+        className="inline-flex min-h-11 min-w-11 items-center justify-center text-graphite-soft transition-colors [transition-duration:var(--motion-micro)] hover:text-elaman-blue"
       >
         {nextLocale.toUpperCase()}
       </a>

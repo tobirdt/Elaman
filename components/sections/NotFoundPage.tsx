@@ -29,8 +29,8 @@ export function NotFoundPage({ locale = "en" }: NotFoundPageProps) {
               as="h1"
               body={
                 isGerman
-                  ? "Die angeforderte Seite ist nicht verfügbar. Kehren Sie zur Startseite zurück oder nehmen Sie direkt Kontakt mit uns auf."
-                  : "The requested page is not available. Return to the Elaman homepage or use the contact path in the navigation."
+                  ? "Die aufgerufene Seite ist nicht verfügbar. Auf der Startseite finden Sie alle Informationen und Kontaktmöglichkeiten."
+                  : "The page you requested is not available. The Elaman homepage provides access to all information and contact options."
               }
               label="404"
               labelTone="dark"
@@ -40,7 +40,7 @@ export function NotFoundPage({ locale = "en" }: NotFoundPageProps) {
             />
             <div className="mt-8">
               <Button href={`/${locale}`}>
-                {isGerman ? "Zur Startseite" : "Back to homepage"}
+                {isGerman ? "Zur Elaman-Startseite" : "Go to Elaman homepage"}
               </Button>
             </div>
           </Container>

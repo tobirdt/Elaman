@@ -36,7 +36,7 @@ export function ProfileSection({ content }: ProfileSectionProps) {
             </span>
             <Link
               href="/imprint"
-              className="text-[length:var(--type-small)] font-medium text-graphite underline decoration-[var(--border-accent-blue)] underline-offset-4 transition-colors duration-[var(--motion-fast)] ease-[var(--motion-ease)] hover:text-elaman-blue"
+              className="inline-flex min-h-11 items-center text-[length:var(--type-small)] font-medium text-graphite underline decoration-[var(--border-accent-blue)] underline-offset-4 transition-colors duration-[var(--motion-fast)] ease-[var(--motion-ease)] hover:text-elaman-blue"
             >
               {content.management.name}
             </Link>

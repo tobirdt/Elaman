@@ -19,6 +19,8 @@ The public site remains intentionally discreet. Do not name customers, expose op
 
 German copy must read as original German, not as a line-by-line translation. Prefer direct, active sentences and established technical terminology. Avoid literal English compounds, inflated sales language, and abstract formulations when a precise German verb is available.
 
+The public voice is calm, exact, and assured. It explains what Elaman does without sales pressure, unsupported superlatives, or theatrical security language. Prefer concrete terms such as `Aufgabe`, `Infrastruktur`, `Einsatzumfeld`, `Integration`, and `technische Betreuung`; do not vary terminology merely for effect. English is written independently in the same register and uses British spelling throughout.
+
 The canonical browser and social title in both locales is `Elaman – German Security Solutions`.
 
 ## 2. Verified factual anchors
@@ -76,7 +78,7 @@ The hero intentionally stays concise. Company positioning and service context be
 Label and title:
 
 - Label: `Elaman`
-- DE title: `Sicherheitstechnik aus Deutschland.`
+- DE title: `Kommunikations- und Sicherheitstechnik aus Deutschland.`
 - EN title: `German Security Solutions.`
 
 The two statements communicate:
@@ -102,7 +104,7 @@ Title:
 
 The ordered process is fixed:
 
-1. Analyse & Beratung / Analysis & advice
+1. Analyse & Beratung / Analysis & consulting
 2. Planung & Integration / Planning & integration
 3. Schlüsselfertige Umsetzung / Turnkey implementation
 4. Schulung & Betreuung / Training & support
@@ -167,7 +169,9 @@ The form collects first name, optional last name, optional company, email, messa
 - English: `/en`
 - Localised dossier pairs: `/de/unternehmen` ↔ `/en/company`, `/de/systeme` ↔ `/en/systems`, and `/de/schutzloesungen` ↔ `/en/protection`
 - Legal routes: `/imprint` and `/private-policy`
-- Header anchors: Home, Profile, Advice, Surveillance/Observation, Protection, Contact
+- Header anchors:
+  - DE: Start, Unternehmen, Beratung, Systeme, Schutz, Kontakt
+  - EN: Home, Company, Consulting, Systems, Protection, Contact
 - Metadata may state communications/security engineering, technical services, advice, surveillance/observation, protection, training, and support.
 - The company may be associated with the alternate brand spellings `Elaman` and `ELAMAN` in organisation data.
 - Holger Rumscheidt may be associated with Elaman through the factual management reference in Profile, the supplied imprint, and the corresponding entity relationship. Do not create a biographical profile without approved source material.
