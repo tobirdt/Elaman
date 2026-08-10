@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { TextLink } from "@/components/ui/TextLink";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type ProtectionSectionProps = {
@@ -19,10 +20,10 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-navy/22" aria-hidden="true" />
+        <div className="absolute inset-0 bg-navy/18" aria-hidden="true" />
       </div>
 
-      <Container className="grid gap-10 py-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:gap-16 lg:py-12 xl:gap-20">
+      <Container className="grid gap-9 py-10 lg:grid-cols-[minmax(0,0.74fr)_minmax(0,1.26fr)] lg:gap-16 lg:py-12 xl:gap-20">
         <div className="max-w-[39rem]">
           <div className="flex items-center gap-3">
             <span className="size-2 rounded-full bg-elaman-red" aria-hidden="true" />
@@ -36,6 +37,9 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
           <p className="mt-5 max-w-[58ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite-muted">
             {content.body}
           </p>
+          <div className="mt-5">
+            <TextLink href={content.detailLink.href} label={content.detailLink.label} />
+          </div>
         </div>
 
         <div className="grid sm:grid-cols-2 sm:gap-x-10 lg:gap-x-12">

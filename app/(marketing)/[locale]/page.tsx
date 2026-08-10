@@ -66,7 +66,7 @@ export default async function HomePage({ params }: LocalePageProps) {
       />
       <AnchorScrollManager locale={locale} />
       <Header locale={locale} content={content.navigation} />
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" data-scroll-snap-page tabIndex={-1}>
         <HeroSection content={content.hero} />
         <ProfileSection content={content.profile} />
         <AdviceSection content={content.advice} />

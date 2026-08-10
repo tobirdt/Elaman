@@ -24,15 +24,15 @@ export function ContactSection({ content }: ContactSectionProps) {
           sizes="(min-width: 1024px) 38vw, 100vw"
           className="object-cover object-[68%_center] saturate-[0.8]"
         />
-        <div className="absolute inset-0 bg-navy/42" aria-hidden="true" />
-        <div className="absolute inset-x-0 bottom-0 px-[var(--page-x)] py-8 text-[var(--color-on-dark)] sm:py-10 lg:py-12">
+        <div className="absolute inset-0 bg-navy/32" aria-hidden="true" />
+        <div className="absolute inset-x-0 bottom-0 py-8 pl-[var(--page-x-left)] pr-[var(--page-x-right)] text-[var(--color-on-dark)] sm:py-10 lg:py-12">
           <p className="max-w-[18ch] text-balance text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)]">
             {content.officeTitle}
           </p>
         </div>
       </div>
 
-      <div className="flex items-center border-t border-[var(--border-hairline)] px-[var(--page-x)] py-[var(--section-y-screen)] lg:border-l lg:border-t-0">
+      <div className="flex items-center border-t border-[var(--border-hairline)] py-[var(--section-y-screen)] pl-[var(--page-x-left)] pr-[var(--page-x-right)] lg:border-l lg:border-t-0">
         <div className="w-full max-w-[64rem] xl:grid xl:grid-cols-[minmax(13rem,0.34fr)_minmax(0,0.66fr)] xl:gap-10">
           <div>
             <h2 className="text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">

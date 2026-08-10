@@ -18,6 +18,8 @@
 :root {
   color-scheme: light;
   --page-x: clamp(1.25rem, 4vw, 4rem);
+  --page-x-left: max(var(--page-x), env(safe-area-inset-left));
+  --page-x-right: max(var(--page-x), env(safe-area-inset-right));
   --container-page: 80rem;
   --container-content: 64rem;
   --container-copy: 42rem;
@@ -74,10 +76,28 @@
     transform var(--motion-entrance) var(--motion-ease);
 }
 
+.hero-image-enter {
+  opacity: 1;
+  transition: opacity var(--motion-entrance) var(--motion-ease);
+}
+
+.hero-image-enter > img {
+  transform: scale(1);
+  transition: transform var(--motion-entrance) var(--motion-ease);
+}
+
 @starting-style {
   .hero-copy-enter {
     opacity: 0;
     transform: translateY(var(--motion-rise));
+  }
+
+  .hero-image-enter {
+    opacity: 0.88;
+  }
+
+  .hero-image-enter > img {
+    transform: scale(1.012);
   }
 }
 
@@ -88,6 +108,10 @@
 html {
   scroll-behavior: smooth;
   background: var(--surface-paper);
+}
+
+html[data-anchor-scrolling] {
+  scroll-snap-type: none !important;
 }
 
 body {
@@ -123,7 +147,7 @@ body {
 }
 
 @media (min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  html {
+  html:has(main[data-scroll-snap-page]) {
     scroll-snap-type: y proximity;
   }
 
@@ -140,6 +164,12 @@ body {
 
 a {
   text-decoration: none;
+}
+
+a,
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(36, 64, 116, 0.12);
 }
 
 button,
@@ -160,7 +190,7 @@ select {
 
 .text-balance {
   text-wrap: balance;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 .form-field {

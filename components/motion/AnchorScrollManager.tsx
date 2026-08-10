@@ -8,6 +8,9 @@ type AnchorScrollManagerProps = {
   locale: Locale;
 };
 
+let finishPendingAnchorScroll: (() => void) | null = null;
+const initialAnchorSettleMs = 120;
+
 function scrollToHash(hash: string, url: string, replace = false) {
   const id = hash.replace("#", "");
   const target = document.getElementById(id);
@@ -20,7 +23,45 @@ function scrollToHash(hash: string, url: string, replace = false) {
     ? "auto"
     : "smooth";
 
+  finishPendingAnchorScroll?.();
+  document.documentElement.setAttribute("data-anchor-scrolling", "");
+
+  let timeout = 0;
+  let settled = false;
+  const startedAt = performance.now();
+
+  function handleScrollEnd() {
+    if (performance.now() - startedAt < 200) {
+      return;
+    }
+
+    finish();
+  }
+
+  function finish() {
+    if (settled) {
+      return;
+    }
+
+    settled = true;
+    window.clearTimeout(timeout);
+    window.removeEventListener("scrollend", handleScrollEnd);
+    document.documentElement.removeAttribute("data-anchor-scrolling");
+    finishPendingAnchorScroll = null;
+  }
+
+  finishPendingAnchorScroll = finish;
+
+  if (behavior === "smooth") {
+    window.addEventListener("scrollend", handleScrollEnd);
+    timeout = window.setTimeout(finish, 1400);
+  }
+
   target.scrollIntoView({ behavior, block: "start" });
+
+  if (behavior === "auto") {
+    requestAnimationFrame(() => requestAnimationFrame(finish));
+  }
 
   const oldUrl = window.location.href;
   const nextUrl = new URL(url, window.location.origin).href;
@@ -40,6 +81,8 @@ function scrollToHash(hash: string, url: string, replace = false) {
 
 export function AnchorScrollManager({ locale }: AnchorScrollManagerProps) {
   useEffect(() => {
+    let initialAnchorTimer = 0;
+
     function handleClick(event: MouseEvent) {
       const anchor = (event.target as Element | null)?.closest<HTMLAnchorElement>(
         'a[href*="#"]',
@@ -81,13 +124,17 @@ export function AnchorScrollManager({ locale }: AnchorScrollManagerProps) {
     document.addEventListener("click", handleClick);
 
     if (window.location.hash) {
-      requestAnimationFrame(() => {
+      document.documentElement.setAttribute("data-anchor-scrolling", "");
+      initialAnchorTimer = window.setTimeout(() => {
         scrollToHash(window.location.hash, `/${locale}${window.location.hash}`, true);
-      });
+      }, initialAnchorSettleMs);
     }
 
     return () => {
+      window.clearTimeout(initialAnchorTimer);
       document.removeEventListener("click", handleClick);
+      finishPendingAnchorScroll?.();
+      document.documentElement.removeAttribute("data-anchor-scrolling");
     };
   }, [locale]);
 

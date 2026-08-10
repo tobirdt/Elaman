@@ -25,7 +25,7 @@ Reachable code is the final visual source of truth. Do not revive a removed impl
 Require:
 
 - white/paper-soft canvas with selective navy bands;
-- the five approved heritage photographs, each in its assigned section;
+- the seven approved heritage photographs, each in its assigned homepage or dossier role;
 - supplied points-only Elaman signet in the header;
 - Geist and Geist Mono only;
 - strong editorial hierarchy and readable measures;
@@ -53,7 +53,15 @@ Each `screen` section owns at least the visible height below the sticky header b
 
 ## Use current primitives
 
-Use only reachable primitives in `components/ui`: `Button`, `Container`, `Section`, `SectionHeader`, and `SectionLabel`. Add a new abstraction only when at least two current consumers share a stable contract.
+Use only reachable primitives in `components/ui`: `Button`, `Container`, `Section`, `SectionHeader`, `SectionLabel`, and `TextLink`. Add a new abstraction only when at least two current consumers share a stable contract.
+
+The three approved dossier compositions are:
+
+- Company: office-led hero, three working principles, stone bridge, factual management reference;
+- Systems: navy Media Mining hero, open eight-area ledger, project approach;
+- Protection: tiger hero and two image/text groups using the approved Jammer and TSE motifs.
+
+Dossiers use normal document flow, reciprocal localised routes, and no scroll snap. They may deepen verified homepage categories but must not add specifications, customers, tactical detail, or unsupported claims.
 
 The active codebase intentionally has no generic Surface, GlassPanel, TechnicalMark, DotMatrix, signal diagram, or reveal-wrapper layer.
 

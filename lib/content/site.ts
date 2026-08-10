@@ -72,6 +72,7 @@ export type LocalizedSiteContent = {
       label: string;
       name: string;
     };
+    detailLink: NavigationItem;
   };
   advice: {
     title: string;
@@ -82,12 +83,14 @@ export type LocalizedSiteContent = {
     title: string;
     intro: string;
     items: Array<{ title: string }>;
+    detailLink: NavigationItem;
   };
   protection: {
     label: string;
     title: string;
     body: string;
     items: ContentItem[];
+    detailLink: NavigationItem;
   };
   contact: {
     company: string;
@@ -159,6 +162,10 @@ export const siteContent = {
         label: "Managing Director",
         name: "Holger Rumscheidt",
       },
+      detailLink: {
+        label: "About Elaman",
+        href: "/en/company",
+      },
     },
     advice: {
       title: "From initial analysis to long-term support.",
@@ -201,6 +208,10 @@ export const siteContent = {
         { title: "Training & support" },
         { title: "Data forensics" },
       ],
+      detailLink: {
+        label: "Explore systems",
+        href: "/en/systems",
+      },
     },
     protection: {
       label: "Protection & Countermeasures",
@@ -228,6 +239,10 @@ export const siteContent = {
             "Structural, mechanical and electronic concepts for rooms where confidential information is handled.",
         },
       ],
+      detailLink: {
+        label: "Explore protection solutions",
+        href: "/en/protection",
+      },
     },
     contact: {
       company: "Elaman GmbH",
@@ -327,6 +342,10 @@ export const siteContent = {
         label: "Geschäftsführung",
         name: "Holger Rumscheidt",
       },
+      detailLink: {
+        label: "Mehr über Elaman",
+        href: "/de/unternehmen",
+      },
     },
     advice: {
       title: "Von der Analyse bis zur langfristigen Betreuung.",
@@ -369,6 +388,10 @@ export const siteContent = {
         { title: "Schulung und Betreuung" },
         { title: "Datenforensik" },
       ],
+      detailLink: {
+        label: "Systeme im Überblick",
+        href: "/de/systeme",
+      },
     },
     protection: {
       label: "Schutz und Gegenmaßnahmen",
@@ -396,6 +419,10 @@ export const siteContent = {
             "Bauliche, mechanische und elektronische Schutzkonzepte für Räume, in denen vertrauliche Informationen besprochen oder verarbeitet werden.",
         },
       ],
+      detailLink: {
+        label: "Schutzlösungen im Überblick",
+        href: "/de/schutzloesungen",
+      },
     },
     contact: {
       company: "Elaman GmbH",

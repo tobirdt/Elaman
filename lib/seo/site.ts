@@ -29,6 +29,12 @@ type PageMetadataOptions = {
   locale?: string;
   languages?: Record<string, string>;
   robots?: Metadata["robots"];
+  image?: {
+    path: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
 };
 
 export function absoluteUrl(path: string) {
@@ -54,6 +60,7 @@ export function createPageMetadata({
     index: true,
     follow: true,
   },
+  image = siteConfig.ogImage,
 }: PageMetadataOptions = {}): Metadata {
   const pageTitle = title
     ? appendSiteName
@@ -61,7 +68,7 @@ export function createPageMetadata({
       : title
     : siteConfig.title;
   const url = absoluteUrl(path);
-  const imageUrl = absoluteUrl(siteConfig.ogImage.path);
+  const imageUrl = absoluteUrl(image.path);
 
   return {
     title: pageTitle,
@@ -80,9 +87,9 @@ export function createPageMetadata({
       images: [
         {
           url: imageUrl,
-          width: siteConfig.ogImage.width,
-          height: siteConfig.ogImage.height,
-          alt: siteConfig.ogImage.alt,
+          width: image.width,
+          height: image.height,
+          alt: image.alt,
         },
       ],
       locale,

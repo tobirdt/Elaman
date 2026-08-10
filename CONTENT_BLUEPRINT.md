@@ -1,6 +1,6 @@
 # Elaman GmbH — current content blueprint
 
-Authoritative factual and structural guide for the bilingual production website. Exact approved strings live in `lib/content/site.ts`; this document defines what may be communicated and how the six-section homepage is organised.
+Authoritative factual and structural guide for the bilingual production website. Exact approved strings live in `lib/content/site.ts` and `lib/content/detail-pages.ts`; this document defines what may be communicated across the six-section homepage and three focused dossier pages.
 
 ## 1. Positioning
 
@@ -49,6 +49,16 @@ Do not add percentages, certifications, awards, project counts, client logos, na
 
 The footer is a compact legal conclusion outside the six-section viewport rhythm.
 
+The homepage links to three reciprocal localised dossiers:
+
+| Responsibility                     | German                | English          |
+| ---------------------------------- | --------------------- | ---------------- |
+| Company and working approach       | `/de/unternehmen`     | `/en/company`    |
+| Systems and eight capability areas | `/de/systeme`         | `/en/systems`    |
+| Protection solutions               | `/de/schutzloesungen` | `/en/protection` |
+
+These pages add useful context, not new claims. They must not become thin keyword pages, product catalogues, or substitutes for a factual source that is not available.
+
 ## 4. Hero
 
 Required content:
@@ -80,6 +90,8 @@ The section closes with one factual management reference:
 - EN: `Managing Director: Holger Rumscheidt`
 
 The name links to the existing imprint. It must not be repeated elsewhere on the homepage or expanded into biographical claims without approved source material.
+
+The Company dossier may repeat the management name once as a factual route to the imprint. Without an approved portrait or biography, its narrative is carried by the Munich office, three verified working principles, and the supplied stone-bridge motif.
 
 ## 6. Advice
 
@@ -117,7 +129,7 @@ Capability labels:
 |       07 | Schulung und Betreuung      | Training & Support               |
 |       08 | Datenforensik               | Data forensics                   |
 
-The ledger names capability categories only. It does not expose technical specifications, customers, countries, operational scenarios, or performance claims.
+The homepage ledger names capability categories only. The Systems dossier may add concise descriptions of each category and the project-specific integration approach. It does not expose technical specifications, customers, countries, operational scenarios, or performance claims.
 
 ## 8. Protection
 
@@ -129,6 +141,13 @@ The protection composition is the principal red semantic moment. It may describe
 - structural, mechanical, and electronic concepts for shielded rooms.
 
 Keep authorisation and confidentiality context explicit. Avoid tactical claims and performance promises.
+
+The Protection dossier groups these areas into:
+
+1. electronic countermeasures: ECM / Counter-RCIED and authorised jamming systems;
+2. counter-surveillance and shielded environments: TSCM and protected rooms.
+
+The supplied protection-control and camera-lens motifs may appear only in these groups. They support orientation and must not be presented as a specific product claim.
 
 ## 9. Contact
 
@@ -146,6 +165,7 @@ The form collects first name, optional last name, optional company, email, messa
 
 - German default: `/de`
 - English: `/en`
+- Localised dossier pairs: `/de/unternehmen` ↔ `/en/company`, `/de/systeme` ↔ `/en/systems`, and `/de/schutzloesungen` ↔ `/en/protection`
 - Legal routes: `/imprint` and `/private-policy`
 - Header anchors: Home, Profile, Advice, Surveillance/Observation, Protection, Contact
 - Metadata may state communications/security engineering, technical services, advice, surveillance/observation, protection, training, and support.
@@ -164,6 +184,6 @@ When public copy changes:
 
 1. verify the fact and stakeholder approval;
 2. update this blueprint if the factual or structural boundary changes;
-3. update both locales in `lib/content/site.ts`;
+3. update both locales in `lib/content/site.ts` or `lib/content/detail-pages.ts` as appropriate;
 4. check wrapping on mobile, tablet, short desktop, and wide desktop;
 5. re-check metadata if positioning changed.

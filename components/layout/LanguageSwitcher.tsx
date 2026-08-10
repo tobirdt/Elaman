@@ -7,9 +7,14 @@ import { alternateLocale, homePath, type Locale } from "@/lib/i18n";
 type LanguageSwitcherProps = {
   locale: Locale;
   label: string;
+  alternateHref?: string;
 };
 
-export function LanguageSwitcher({ locale, label }: LanguageSwitcherProps) {
+export function LanguageSwitcher({
+  alternateHref,
+  locale,
+  label,
+}: LanguageSwitcherProps) {
   const [hash, setHash] = useState("");
   const nextLocale = alternateLocale(locale);
 
@@ -39,7 +44,7 @@ export function LanguageSwitcher({ locale, label }: LanguageSwitcherProps) {
         /
       </span>
       <a
-        href={`${homePath(nextLocale)}${hash}`}
+        href={alternateHref ?? `${homePath(nextLocale)}${hash}`}
         hrefLang={nextLocale}
         aria-label={`${label}: ${nextLocale.toUpperCase()}`}
         className="inline-flex min-h-11 items-center text-graphite-soft transition-colors [transition-duration:var(--motion-micro)] hover:text-elaman-blue"

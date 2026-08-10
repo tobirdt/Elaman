@@ -1,5 +1,6 @@
 import { getSiteContent } from "@/lib/content/site";
-import type { Locale } from "@/lib/i18n";
+import type { DetailPageKind, Locale } from "@/lib/i18n";
+import { detailPagePath } from "@/lib/i18n";
 import { absoluteUrl, siteConfig } from "@/lib/seo/site";
 
 const organizationId = absoluteUrl("/#organization");
@@ -86,6 +87,52 @@ export function homepageJsonLd(locale: Locale) {
     isPartOf: { "@id": websiteId },
     about: { "@id": organizationId },
     mainEntity: { "@id": organizationId },
+  };
+}
+
+export function detailPageJsonLd(
+  locale: Locale,
+  kind: DetailPageKind,
+  name: string,
+  description: string,
+) {
+  const path = detailPagePath(locale, kind);
+  const url = absoluteUrl(path);
+  const homeUrl = absoluteUrl(`/${locale}`);
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name,
+        description,
+        inLanguage: locale,
+        isPartOf: { "@id": websiteId },
+        about: { "@id": organizationId },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: locale === "de" ? "Start" : "Home",
+            item: homeUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name,
+            item: url,
+          },
+        ],
+      },
+    ],
   };
 }
 

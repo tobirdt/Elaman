@@ -2,11 +2,11 @@
 
 ## Status
 
-Approved production direction for the bilingual six-section website.
+Approved production direction for the bilingual six-section homepage and its three focused dossier pages.
 
 ## Experience statement
 
-The site should feel like the carefully modernised homepage of an established German specialist company: direct, calm, discreet, and technically credible. It preserves recognisable content and supplied photography while replacing the former presentation with stronger hierarchy, generous whitespace, responsive composition, and accessible interaction.
+The site should feel like the carefully modernised digital presence of an established German specialist company: direct, calm, discreet, and technically credible. The homepage gives a clear overview; three focused dossiers provide additional substance for the company, systems, and protection solutions. Recognisable content and supplied photography remain, while hierarchy, whitespace, responsive composition, and accessible interaction are contemporary.
 
 The objective is confidence, not conversion theatre. Each desktop viewport communicates one dominant idea; mobile and short displays retain the same order without clipping or forced pagination.
 
@@ -22,15 +22,17 @@ The objective is confidence, not conversion theatre. Each desktop viewport commu
 
 ## Photography
 
-The five approved supplied images create the page rhythm:
+Seven approved supplied images create the site rhythm:
 
 1. Chameleon macro — hero
 2. Stone bridge — profile
 3. Media Mining — systems
 4. Tiger — protection
 5. Munich office — contact
+6. Protection-level control — electronic countermeasures within the protection dossier
+7. Camera lens and eye — technical counter-surveillance within the protection dossier
 
-Each image has a distinct structural role. Images are static, tightly cropped, and colour-calmed where needed. Never decorate them with grids, diagrams, gradient washes, parallax, or animated effects. Do not add further photography without explicit approval.
+Each image has a distinct structural role. Images are static, tightly cropped, and colour-calmed where needed. Route-specific social crops are derivatives of this set. Never decorate images with grids, diagrams, gradient washes, parallax, or animated effects. Do not add further photography without explicit approval.
 
 ## Homepage sequence
 
@@ -49,7 +51,7 @@ The footer follows as a compact legal close. On the homepage it supplies the ter
 
 - `screen` sections use `min-height: calc(100svh - var(--header-h))` with a `vh` fallback.
 - Height is never fixed. Content, translations, validation messages, and short displays may grow naturally.
-- Desktop with a fine pointer uses `scroll-snap-type: y proximity` for gentle orientation.
+- The marked homepage uses `scroll-snap-type: y proximity` on desktops with a fine pointer; dossier and legal routes remain unsnapped.
 - The homepage footer is the sole terminal `end` snap target; it keeps the compact legal close fully reachable after Contact.
 - Touch devices, tablet widths, and reduced-motion users scroll freely.
 - There is no wheel interception, strict paging, nested scroll container, or scroll-bound animation.
@@ -61,6 +63,13 @@ The footer follows as a compact legal close. On the homepage it supplies the ter
 - Systems is the highest-density section but remains open: horizontal rules, natural row-major order, no enclosed matrix.
 - Protection carries exactly one red dot and one primary heading.
 - Contact is functional and human. The office title is subordinate to the `Kontakt / Contact` heading, and the form remains visibly standard rather than a secure portal.
+
+## Dossier pages
+
+- Company is office-led and human without inventing a portrait or biography. Three working principles and the stone-bridge composition carry the narrative.
+- Systems begins with the established navy photography language, then opens into a calm eight-area ledger and a concise project approach.
+- Protection uses the tiger once as an orienting hero and the two newly approved technical motifs for ECM/Jamming and TSCM/shielded environments. Exactly one red marker remains the semantic accent.
+- All dossiers use normal document flow, localised reciprocal routes, contextual links back to the homepage, and a restrained contact close.
 
 ## Content tone
 
@@ -75,7 +84,7 @@ The footer follows as a compact legal close. On the homepage it supplies the ter
 
 Motion is nearly invisible:
 
-- one progressive hero-copy entrance;
+- one coordinated route-hero entrance for image and copy;
 - short colour and rule feedback in navigation and controls;
 - a direct mobile-menu state transition;
 - native smooth anchor movement when reduced motion is not requested;

@@ -10,7 +10,7 @@ type HeroSectionProps = {
 export function HeroSection({ content }: HeroSectionProps) {
   return (
     <Section id="hero" variant="screen" tone="soft" className="grid lg:grid-cols-2">
-      <div className="relative min-h-[clamp(12rem,34svh,24rem)] overflow-hidden bg-[var(--surface-paper-soft)] lg:min-h-full">
+      <div className="hero-image-enter relative min-h-[clamp(12rem,34svh,24rem)] overflow-hidden bg-[var(--surface-paper-soft)] lg:min-h-full">
         <Image
           src="/images/elaman-advice.png"
           alt=""
@@ -22,7 +22,7 @@ export function HeroSection({ content }: HeroSectionProps) {
         />
       </div>
 
-      <div className="hero-copy-enter flex items-center border-t border-[var(--border-hairline)] px-[var(--page-x)] py-8 sm:py-10 lg:border-l lg:border-t-0 lg:py-[var(--section-y-screen)]">
+      <div className="hero-copy-enter flex items-center border-t border-[var(--border-hairline)] py-8 pl-[var(--page-x-left)] pr-[var(--page-x-right)] sm:py-10 lg:border-l lg:border-t-0 lg:py-[var(--section-y-screen)]">
         <div className="w-full max-w-[39rem]">
           <h1 className="text-[length:var(--type-display)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite">
             {content.label}

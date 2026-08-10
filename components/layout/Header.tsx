@@ -13,9 +13,10 @@ import { sectionPath, type Locale } from "@/lib/i18n";
 type HeaderProps = {
   locale: Locale;
   content: LocalizedSiteContent["navigation"];
+  alternateLocaleHref?: string;
 };
 
-export function Header({ locale, content }: HeaderProps) {
+export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
   const [activeSection, setActiveSection] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -58,10 +59,44 @@ export function Header({ locale, content }: HeaderProps) {
       return;
     }
 
+    const previousOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+
+    requestAnimationFrame(() => {
+      menuRef.current?.querySelector<HTMLElement>("[data-mobile-menu-link]")?.focus();
+    });
+
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setMenuOpen(false);
         requestAnimationFrame(() => triggerRef.current?.focus());
+      }
+    }
+
+    function trapFocus(event: KeyboardEvent) {
+      if (event.key !== "Tab" || !menuRef.current) {
+        return;
+      }
+
+      const focusable = Array.from(
+        menuRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((element) => !element.hasAttribute("inert"));
+
+      if (focusable.length === 0) {
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable.at(-1)!;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     }
 
@@ -72,10 +107,13 @@ export function Header({ locale, content }: HeaderProps) {
     }
 
     document.addEventListener("keydown", closeOnEscape);
+    document.addEventListener("keydown", trapFocus);
     document.addEventListener("pointerdown", closeOnOutsidePointer);
 
     return () => {
+      document.documentElement.style.overflow = previousOverflow;
       document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("keydown", trapFocus);
       document.removeEventListener("pointerdown", closeOnOutsidePointer);
     };
   }, [menuOpen]);
@@ -135,7 +173,11 @@ export function Header({ locale, content }: HeaderProps) {
               className="mx-4 h-4 w-px bg-[var(--border-hairline)] xl:mx-5"
               aria-hidden="true"
             />
-            <LanguageSwitcher locale={locale} label={content.languageSwitcherLabel} />
+            <LanguageSwitcher
+              locale={locale}
+              label={content.languageSwitcherLabel}
+              alternateHref={alternateLocaleHref}
+            />
           </div>
 
           <div ref={menuRef} className="relative z-50 block shrink-0 lg:hidden">
@@ -164,7 +206,7 @@ export function Header({ locale, content }: HeaderProps) {
             </button>
             <div
               aria-hidden={!menuOpen}
-              className={`fixed inset-x-0 top-[var(--header-h)] border-y border-[var(--border-hairline)] bg-[var(--surface-paper)] shadow-[var(--shadow-overlay)] transition-[opacity,transform] [transition-duration:var(--motion-state)] [transition-timing-function:var(--motion-ease)] motion-reduce:transition-none ${
+              className={`fixed inset-x-0 bottom-0 top-[var(--header-h)] overflow-y-auto overscroll-contain border-t border-[var(--border-hairline)] bg-[var(--surface-paper)] shadow-[var(--shadow-overlay)] transition-[opacity,transform] [transition-duration:var(--motion-state)] [transition-timing-function:var(--motion-ease)] motion-reduce:transition-none ${
                 menuOpen
                   ? "pointer-events-auto translate-y-0 opacity-100"
                   : "pointer-events-none -translate-y-2 opacity-0"
@@ -172,43 +214,55 @@ export function Header({ locale, content }: HeaderProps) {
               id="mobile-navigation"
               inert={!menuOpen}
             >
-              <Container className="py-3">
-                <nav aria-label={content.mainNavigationLabel} className="grid text-sm">
-                  {content.main.map((item) => (
+              <Container className="flex min-h-full flex-col py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:py-8">
+                <nav aria-label={content.mainNavigationLabel} className="grid">
+                  {content.main.map((item, index) => (
                     <a
                       aria-current={activeSection === item.href ? "location" : undefined}
                       key={item.href}
                       href={sectionPath(locale, item.href)}
-                      className={`flex min-h-12 items-center justify-between border-b border-[var(--border-hairline)] py-3 transition-colors [transition-duration:var(--motion-fast)] hover:text-graphite ${
+                      className={`group grid min-h-14 grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-3 border-b border-[var(--border-hairline)] py-3 text-[length:var(--type-h3)] font-semibold tracking-[var(--tracking-title)] transition-colors [transition-duration:var(--motion-fast)] hover:text-graphite ${
                         activeSection === item.href
                           ? "text-graphite"
                           : "text-graphite-muted"
                       }`}
+                      data-mobile-menu-link
                       onClick={() => setMenuOpen(false)}
                     >
-                      {item.label}
-                      <span className="text-elaman-blue" aria-hidden="true">
-                        ↘
+                      <span className="font-mono text-[length:var(--type-micro)] font-normal tracking-[var(--tracking-label)] text-graphite-soft">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span>{item.label}</span>
+                      <span
+                        className="text-[length:var(--type-body)] text-elaman-blue transition-transform [transition-duration:var(--motion-fast)] group-hover:translate-x-1 motion-reduce:transform-none"
+                        aria-hidden="true"
+                      >
+                        →
                       </span>
                     </a>
                   ))}
-                  {content.legal.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href as Route}
-                      className="flex min-h-11 items-center py-2 text-sm text-graphite-soft transition-colors [transition-duration:var(--motion-fast)] hover:text-graphite"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                  <div className="px-2 py-2">
+                </nav>
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-x-6 gap-y-2 pt-8">
+                  <div className="flex flex-wrap gap-x-6">
+                    {content.legal.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href as Route}
+                        className="flex min-h-11 items-center text-sm text-graphite-soft transition-colors [transition-duration:var(--motion-fast)] hover:text-graphite"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                  <div>
                     <LanguageSwitcher
                       locale={locale}
                       label={content.languageSwitcherLabel}
+                      alternateHref={alternateLocaleHref}
                     />
                   </div>
-                </nav>
+                </div>
               </Container>
             </div>
           </div>

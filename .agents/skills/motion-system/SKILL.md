@@ -25,18 +25,20 @@ Do not add a second timing or easing system.
 | `--motion-micro`    |    120ms | Compact link/control feedback       |
 | `--motion-fast`     |    180ms | Hover/focus colour and active rules |
 | `--motion-state`    |    240ms | Mobile-menu state                   |
-| `--motion-entrance` |    600ms | Single hero-copy entrance           |
+| `--motion-entrance` |    600ms | Coordinated route-hero entrance     |
 
 Use `--motion-ease: cubic-bezier(0.22, 1, 0.36, 1)`.
 
 ## Current allowed motion
 
-- Hero copy: once-only opacity plus 12px rise through `@starting-style`.
+- Route hero copy: once-only opacity plus 12px rise through `@starting-style`.
+- Route hero image: once-only opacity plus a 1.2% settling scale through `@starting-style`.
 - Header/navigation: short colour and scale feedback.
 - Mobile menu: direct opacity and translate state.
 - Form fields: short border/background/focus feedback.
 - Anchor scrolling: smooth normally, automatic for reduced motion.
-- Section orientation: root-level `scroll-snap-type: y proximity` only at desktop width with a fine pointer and no reduced-motion request.
+- During programmatic anchor movement, root snap is suspended only until `scrollend` so deep links cannot settle on the preceding section.
+- Section orientation: root-level `scroll-snap-type: y proximity` only while `main[data-scroll-snap-page]` marks the homepage, at desktop width with a fine pointer and no reduced-motion request. Detail and legal routes remain unsnapped.
 
 Movement uses opacity and transforms. Do not animate width, height, positioning, font metrics, filter, blur, or layout.
 

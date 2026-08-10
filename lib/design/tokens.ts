@@ -23,6 +23,8 @@ export const designTokens = {
   },
   container: {
     pageX: "clamp(1.25rem, 4vw, 4rem)",
+    pageXLeft: "max(var(--page-x), env(safe-area-inset-left))",
+    pageXRight: "max(var(--page-x), env(safe-area-inset-right))",
     page: "80rem",
     content: "64rem",
     copy: "42rem",

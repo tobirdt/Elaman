@@ -19,7 +19,7 @@ const sizeClasses: Record<ContainerSize, string> = {
 export function Container({ children, className = "", size = "page" }: ContainerProps) {
   return (
     <div
-      className={`mx-auto w-full ${sizeClasses[size]} px-[var(--page-x)] ${className}`}
+      className={`mx-auto w-full ${sizeClasses[size]} pl-[var(--page-x-left)] pr-[var(--page-x-right)] ${className}`}
       data-container-size={size}
     >
       {children}

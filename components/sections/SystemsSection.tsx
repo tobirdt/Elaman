@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { Section } from "@/components/ui/Section";
+import { TextLink } from "@/components/ui/TextLink";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type SystemsSectionProps = {
@@ -25,7 +26,7 @@ export function SystemsSection({ content }: SystemsSectionProps) {
         <div className="absolute inset-0 bg-navy/38" aria-hidden="true" />
       </div>
 
-      <div className="flex items-center border-t border-[var(--border-on-navy)] px-[var(--page-x)] py-[var(--section-y-screen)] lg:border-l lg:border-t-0">
+      <div className="flex items-center border-t border-[var(--border-on-navy)] py-[var(--section-y-screen)] pl-[var(--page-x-left)] pr-[var(--page-x-right)] lg:border-l lg:border-t-0">
         <div className="w-full max-w-[48rem]">
           <span className="block h-px w-20 bg-elaman-blue" aria-hidden="true" />
           <h2 className="mt-7 max-w-[21ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-[var(--color-on-dark)]">
@@ -50,6 +51,13 @@ export function SystemsSection({ content }: SystemsSectionProps) {
               </li>
             ))}
           </ol>
+          <div className="mt-6">
+            <TextLink
+              href={content.detailLink.href}
+              label={content.detailLink.label}
+              inverse
+            />
+          </div>
         </div>
       </div>
     </Section>

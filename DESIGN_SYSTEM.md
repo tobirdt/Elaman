@@ -4,7 +4,7 @@ Implementation contract for the current production website. `app/globals.css`, `
 
 ## 1. Design thesis
 
-Elaman presents as an established German security-engineering specialist through restraint: disciplined typography, five approved photographs, selective navy, local hairlines, factual copy, and one dominant idea per section. The site intentionally avoids a decorative technical interface.
+Elaman presents as an established German security-engineering specialist through restraint: disciplined typography, seven approved photographs, selective navy, local hairlines, factual copy, and one dominant idea per composition. The six-section homepage provides orientation; three editorial dossier pages provide depth without becoming a catalogue. The site intentionally avoids a decorative technical interface.
 
 ## 2. Canonical tokens
 
@@ -38,18 +38,20 @@ No ordinary content shadow, glass surface, gradient surface, or alternative radi
 
 ### Layout
 
-| Token                      |                                    Value |
-| -------------------------- | ---------------------------------------: |
-| `--container-page`         |                                  `80rem` |
-| `--container-content`      |                                  `64rem` |
-| `--container-copy`         |                                  `42rem` |
-| `--container-narrow`       |                                  `30rem` |
-| `--container-legal`        |                                  `56rem` |
-| `--page-x`                 |              `clamp(1.25rem, 4vw, 4rem)` |
-| `--section-screen-min`     | `calc(100vh - var(--header-h))` fallback |
-| `--section-y-screen`       |               `clamp(3rem, 6vh, 5.5rem)` |
-| `--section-y-content-band` |            `clamp(3.75rem, 6vw, 5.5rem)` |
-| `--section-y-legal-page`   |           `clamp(2.75rem, 5vw, 4.25rem)` |
+| Token                      |                                            Value |
+| -------------------------- | -----------------------------------------------: |
+| `--container-page`         |                                          `80rem` |
+| `--container-content`      |                                          `64rem` |
+| `--container-copy`         |                                          `42rem` |
+| `--container-narrow`       |                                          `30rem` |
+| `--container-legal`        |                                          `56rem` |
+| `--page-x`                 |                      `clamp(1.25rem, 4vw, 4rem)` |
+| `--page-x-left`            |  `max(var(--page-x), env(safe-area-inset-left))` |
+| `--page-x-right`           | `max(var(--page-x), env(safe-area-inset-right))` |
+| `--section-screen-min`     |         `calc(100vh - var(--header-h))` fallback |
+| `--section-y-screen`       |                       `clamp(3rem, 6vh, 5.5rem)` |
+| `--section-y-content-band` |                    `clamp(3.75rem, 6vw, 5.5rem)` |
+| `--section-y-legal-page`   |                   `clamp(2.75rem, 5vw, 4.25rem)` |
 
 `.section-screen` upgrades its minimum height to `calc(100svh - var(--header-h))` when supported. The property is applied directly because the production CSS compiler may remove `svh` inside a custom-property declaration. Screen sections own a shared header-sized `scroll-margin-top`.
 
@@ -58,6 +60,7 @@ No ordinary content shadow, glass surface, gradient surface, or alternative radi
 - Geist: all editorial and interface copy.
 - Geist Mono: sequence indices and concise technical labels.
 - Display: `--type-display` with `--leading-display` and `--tracking-display`.
+- Dossier H1: `--type-h1` on narrow screens and `--type-h2` in split desktop heroes so long German compounds retain their full form without crossing the image boundary.
 - Section heading: `--type-h2` with `--leading-title` and `--tracking-title`.
 - Subheading: `--type-h3` for subordinate editorial titles.
 - Long-form marketing copy: at least `--type-body` with `--leading-body` and a bounded `ch` measure.
@@ -70,7 +73,7 @@ Do not add a font, a local heading clamp, undersized long copy, or arbitrary dec
 
 ### Container
 
-`Container` owns page gutters and maximum width. Supported sizes are `page`, `content`, `copy`, `narrow`, and `legal`.
+`Container` owns safe-area-aware page gutters and maximum width. Supported sizes are `page`, `content`, `copy`, `narrow`, and `legal`.
 
 ### Section
 
@@ -90,11 +93,15 @@ Used by legal pages and utility states. `SectionLabel` uses Geist Mono. Top-leve
 
 Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill`. Primary actions use graphite and turn Elaman blue on hover. All controls retain visible focus and at least 44px touch height.
 
+### TextLink
+
+`TextLink` is the shared editorial route link for homepage-to-dossier and dossier-to-contact transitions. It uses a local hairline and a small directional arrow; only the arrow translates on hover.
+
 ### Header
 
 - Sticky white header with the supplied points-only Elaman signet.
 - Six desktop anchors use one blue active/hover rule.
-- Mobile navigation is the only raised overlay.
+- Mobile navigation is the only raised overlay. It fills the available height below the header, locks the document while open, keeps legal and locale actions at the end, and traps keyboard focus.
 - Escape and outside-pointer behavior remain intact.
 - Active tracking and locale switching preserve the six anchors.
 
@@ -136,7 +143,8 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 
 - Panoramic tiger image followed by one primary H2 and four factual areas.
 - Exactly one red dot carries protection semantics.
-- Item copy remains 1rem and open, with local hairlines.
+- Item copy remains readable and open, with local hairlines.
+- One editorial link leads to the protection dossier.
 
 ### ContactSection
 
@@ -148,25 +156,27 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 
 ## 5. Approved photography
 
-| Asset                                     | Role       |
-| ----------------------------------------- | ---------- |
-| `/images/elaman-advice.png`               | Hero       |
-| `/images/elaman-profile-bridge.jpg`       | Profile    |
-| `/images/elaman-systems-media-mining.jpg` | Systems    |
-| `/images/elaman-protection.png`           | Protection |
-| `/images/elaman-munich-office.jpg`        | Contact    |
+| Asset                                     | Role                                                      |
+| ----------------------------------------- | --------------------------------------------------------- |
+| `/images/elaman-advice.png`               | Hero                                                      |
+| `/images/elaman-profile-bridge.jpg`       | Profile                                                   |
+| `/images/elaman-systems-media-mining.jpg` | Systems                                                   |
+| `/images/elaman-protection.png`           | Protection                                                |
+| `/images/elaman-munich-office.jpg`        | Contact                                                   |
+| `/images/elaman-protection-jammer.jpg`    | Protection dossier: authorised electronic countermeasures |
+| `/images/elaman-protection-tscm.jpg`      | Protection dossier: TSCM and shielded environments        |
 
-No additional image is approved. Static crop, saturation, contrast, and overlay adjustments are allowed when they preserve legibility and a calm palette.
+The source set is limited to these seven photographs. The `elaman-company-og`, `elaman-systems-og`, and `elaman-protection-og` files are route-specific crops for search and social sharing. Static crop, saturation, contrast, and overlay adjustments are allowed when they preserve legibility and a calm palette.
 
 ## 6. Motion and scrolling
 
-| Token               |                         Duration | Use                                |
-| ------------------- | -------------------------------: | ---------------------------------- |
-| `--motion-micro`    |                          `120ms` | Compact link and control feedback  |
-| `--motion-fast`     |                          `180ms` | Hover/focus colour and active rule |
-| `--motion-state`    |                          `240ms` | Mobile-menu state                  |
-| `--motion-entrance` |                          `600ms` | One progressive hero-copy entrance |
-| `--motion-ease`     | `cubic-bezier(0.22, 1, 0.36, 1)` | Shared easing                      |
+| Token               |                         Duration | Use                                            |
+| ------------------- | -------------------------------: | ---------------------------------------------- |
+| `--motion-micro`    |                          `120ms` | Compact link and control feedback              |
+| `--motion-fast`     |                          `180ms` | Hover/focus colour and active rule             |
+| `--motion-state`    |                          `240ms` | Mobile-menu state                              |
+| `--motion-entrance` |                          `600ms` | Coordinated route-hero copy and image entrance |
+| `--motion-ease`     | `cubic-bezier(0.22, 1, 0.36, 1)` | Shared easing                                  |
 
 The homepage has no animation library, reveal wrappers, scroll scrubbing, parallax, or looping motion. Movement uses opacity and transforms. `prefers-reduced-motion` disables smooth scrolling and presents final states immediately.
 
@@ -175,41 +185,53 @@ Soft scroll snap is orientation, not animation:
 - only at `min-width: 1024px`;
 - only with `pointer: fine`;
 - only when reduced motion is not requested;
-- `scroll-snap-type: y proximity` on the root document;
+- `scroll-snap-type: y proximity` on the root document only while `main[data-scroll-snap-page]` marks the homepage;
 - the homepage footer opts into one terminal `scroll-snap-align: end` point so the final gesture settles at the document end;
 - legal and utility footers do not opt into the terminal snap point;
 - no wheel interception, strict paging, nested scroller, or forced snap stop.
 
+Programmatic anchor movement temporarily disables snap through `data-anchor-scrolling` and restores it on `scrollend` (with a bounded fallback). This prevents proximity snap from selecting the preceding section while preserving the native smooth path and exact deep-link destination.
+
 ## 7. Homepage composition
 
-| Anchor        | Component           | Composition                              |
-| ------------- | ------------------- | ---------------------------------------- |
-| `#hero`       | `HeroSection`       | Chameleon, identity, tagline, experience |
-| `#profile`    | `ProfileSection`    | Company profile and stone bridge         |
-| `#advice`     | `AdviceSection`     | Four-stage project path                  |
-| `#systems`    | `SystemsSection`    | Media Mining and open ledger             |
-| `#protection` | `ProtectionSection` | Tiger and protection information         |
-| `#contact`    | `ContactSection`    | Office, direct routes, and inquiry form  |
+| Anchor        | Component           | Composition                               |
+| ------------- | ------------------- | ----------------------------------------- |
+| `#hero`       | `HeroSection`       | Chameleon, identity, tagline, experience  |
+| `#profile`    | `ProfileSection`    | Company profile and stone bridge          |
+| `#advice`     | `AdviceSection`     | Four-stage project path                   |
+| `#systems`    | `SystemsSection`    | Media Mining and open ledger              |
+| `#protection` | `ProtectionSection` | Tiger panorama and protection information |
+| `#contact`    | `ContactSection`    | Office, direct routes, and inquiry form   |
 
-## 8. Prohibited patterns
+## 8. Dossier composition
+
+| Kind       | Routes                                  | Contract                                                                                                                   |
+| ---------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Company    | `/de/unternehmen`, `/en/company`        | Office-led hero, three working principles, bridge composition, factual management link                                     |
+| Systems    | `/de/systeme`, `/en/systems`            | Navy image-led hero, open eight-area ledger, project approach                                                              |
+| Protection | `/de/schutzloesungen`, `/en/protection` | Panoramic tiger hero with one red marker, two alternating image/text groups for ECM/Jamming and TSCM/shielded environments |
+
+Dossier pages use normal document flow and never opt into homepage scroll snap. Their language switcher targets the matching localised route. Each has a contextual route-specific social image and internal links back to the relevant homepage section and contact.
+
+## 9. Prohibited patterns
 
 - Glass, blur, translucency, large card shadows
 - Technical grids, network diagrams, DotMatrix fields, signal graphics
 - Generic feature-card or icon-tile grids
 - Gradient blobs, glow, neon, cyberpunk, or surveillance-first hero imagery
 - Repeated red accents outside protection and required/error form states
-- New colours, fonts, images, statistics, certifications, or client logos
+- New colours, fonts, unapproved images, statistics, certifications, or client logos
 - Scroll-linked motion, looping decoration, animated filters, or layout animation
 - Fixed section heights, clipped translations, nested section scrollbars, or wheel hijacking
 - Obsolete compatibility aliases or unused component variants
 
-## 9. Verification
+## 10. Verification
 
 For visual changes:
 
 1. Check 320×568, 390×844, 768×1024, 1024×768, 1366×768, 1440×900, and 1600×1000.
 2. Verify German and English wrapping and zero horizontal overflow.
-3. Verify all six anchors, active navigation, locale switching with hash, mobile menu, and skip link.
+3. Verify all six anchors, active navigation, locale switching with hash, all six localised dossier URLs, detail-page locale switching, mobile menu, and skip link.
 4. Verify free touch scrolling, soft desktop snap, and reduced-motion behavior.
 5. Verify contact validation, focus movement, direct links, and API error handling.
 6. Verify legal pages, 404, metadata, sitemap, and a clean browser console.

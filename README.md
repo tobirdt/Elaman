@@ -1,6 +1,6 @@
 # Elaman Website
 
-Production-ready bilingual Next.js website for Elaman GmbH. The current product is a six-section one-pager with legal pages and a server-validated contact form.
+Production-ready bilingual Next.js website for Elaman GmbH. The current product combines a six-section homepage, three focused dossier pages, legal pages, and a server-validated contact form.
 
 ## Stack
 
@@ -23,6 +23,16 @@ The fixed bilingual sequence is:
 6. `#contact` — Contact / Kontakt
 
 Desktop sections occupy at least the visible height below the sticky header. Mobile, tablet, short displays, and sections with additional content grow and scroll naturally.
+
+## Dossier pages
+
+| Topic                | German                | English          |
+| -------------------- | --------------------- | ---------------- |
+| Company              | `/de/unternehmen`     | `/en/company`    |
+| Systems              | `/de/systeme`         | `/en/systems`    |
+| Protection solutions | `/de/schutzloesungen` | `/en/protection` |
+
+Each route has reciprocal language links, canonical/hreflang metadata, structured data, and a route-specific social preview. Detail pages use normal document flow and do not opt into homepage scroll snap.
 
 ## Local Development
 
@@ -68,7 +78,7 @@ After a production deployment and final DNS cutover:
 
 1. Verify `https://www.elaman.de` as a domain property in Google Search Console.
 2. Submit `https://www.elaman.de/sitemap.xml`.
-3. Inspect and request indexing for `/de`, `/en`, and `/imprint`.
+3. Inspect and request indexing for `/de`, `/en`, the six dossier URLs, and `/imprint`.
 4. Check that Google sees the production canonical URLs rather than the previous Wix deployment.
 5. Recheck coverage and search queries after Google has recrawled the domain.
 
@@ -86,7 +96,7 @@ If the honeypot is filled, the API returns `{ "ok": true }` without sending emai
 4. Run the full local validation gate.
 5. Push a non-production branch and inspect its Vercel Preview.
 6. Check desktop, tablet, mobile, and reduced-motion behavior on the Preview.
-7. Check `/de`, `/en`, `/imprint`, `/private-policy`, 404, metadata, and sitemap.
+7. Check `/de`, `/en`, all six dossier URLs, `/imprint`, `/private-policy`, 404, metadata, and sitemap.
 8. Promote or merge only after Preview acceptance.
 9. Submit a production test inquiry and confirm delivery and reply-to behavior.
 
@@ -102,14 +112,15 @@ npm run build
 2. Confirm canonical and Open Graph URLs use the live domain.
 3. Confirm all six anchors and active navigation work in both locales.
 4. Confirm the language switch preserves the active hash.
-5. Confirm the mobile menu opens, closes with Escape/outside click, and navigates.
-6. Confirm touch/tablet scrolling is free and desktop snap remains gentle.
-7. Confirm reduced motion disables smooth scrolling and snap.
-8. Submit an invalid contact form and confirm field errors and focus movement.
-9. Submit a valid production inquiry and confirm email delivery and reply-to.
-10. Confirm phone and email links work.
-11. Confirm legal and 404 routes render without overflow.
-12. Confirm there are no browser-console errors or horizontal overflow.
+5. Confirm each dossier language switch opens its matching reciprocal route.
+6. Confirm the mobile menu opens without page bleed, traps focus, closes with Escape/outside click, and navigates.
+7. Confirm touch/tablet scrolling is free and desktop snap remains gentle.
+8. Confirm reduced motion disables smooth scrolling and snap.
+9. Submit an invalid contact form and confirm field errors and focus movement.
+10. Submit a valid production inquiry and confirm email delivery and reply-to.
+11. Confirm phone and email links work.
+12. Confirm legal, dossier, and 404 routes render without overflow.
+13. Confirm there are no browser-console errors or horizontal overflow.
 
 ## Legal Review Note
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { TextLink } from "@/components/ui/TextLink";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
 type ProfileSectionProps = {
@@ -25,6 +26,9 @@ export function ProfileSection({ content }: ProfileSectionProps) {
             {content.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
+          </div>
+          <div className="mt-6">
+            <TextLink href={content.detailLink.href} label={content.detailLink.label} />
           </div>
           <p className="mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-[var(--border-hairline)] pt-5">
             <span className="font-mono text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] text-graphite-soft">
