@@ -169,9 +169,13 @@ The form collects first name, optional last name, optional company, email, messa
 - English: `/en`
 - Localised dossier pairs: `/de/unternehmen` ↔ `/en/company`, `/de/systeme` ↔ `/en/systems`, and `/de/schutzloesungen` ↔ `/en/protection`
 - Legal routes: `/imprint` and `/private-policy`
-- Header anchors:
-  - DE: Start, Unternehmen, Beratung, Systeme, Schutz, Kontakt
-  - EN: Home, Company, Consulting, Systems, Protection, Contact
+- Global header navigation:
+  - Desktop DE: Unternehmen, Systeme, Schutzlösungen, Vorgehen, Kontakt
+  - Desktop EN: Company, Systems, Protection, Approach, Contact
+  - Mobile prepends Start / Home; the points-only signet remains the desktop home action.
+  - Unternehmen / Company, Systeme / Systems, and Schutzlösungen / Protection open their localised dossier pages directly.
+  - Vorgehen / Approach and Kontakt / Contact open the corresponding homepage sections.
+- The active rule represents either the current dossier page or its corresponding homepage section.
 - Metadata may state communications/security engineering, technical services, advice, surveillance/observation, protection, training, and support.
 - The company may be associated with the alternate brand spellings `Elaman` and `ELAMAN` in organisation data.
 - Holger Rumscheidt may be associated with Elaman through the factual management reference in Profile, the supplied imprint, and the corresponding entity relationship. Do not create a biographical profile without approved source material.

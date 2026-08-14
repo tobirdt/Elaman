@@ -92,6 +92,8 @@ Motion is nearly invisible:
 
 Reduced-motion users receive the final state immediately and no smooth scrolling or snap behavior.
 
+The header acts as global orientation rather than a homepage table of contents: the three substantive dossier pages are directly visible, while Approach and Contact return to their precise homepage sections. The points-only signet remains the quiet desktop home action; mobile adds an explicit Home / Start entry.
+
 ## Responsive behavior
 
 - Mobile: natural vertical stacks, mobile menu, no snap, no internal scrolling.

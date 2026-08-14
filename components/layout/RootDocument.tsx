@@ -23,7 +23,11 @@ type RootDocumentProps = {
 
 export function RootDocument({ children, lang }: RootDocumentProps) {
   return (
-    <html lang={lang} className={`${geist.variable} ${geistMono.variable}`}>
+    <html
+      lang={lang}
+      className={`${geist.variable} ${geistMono.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <body>
         <script
           type="application/ld+json"

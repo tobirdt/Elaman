@@ -100,10 +100,13 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 ### Header
 
 - Sticky white header with the supplied points-only Elaman signet.
-- Six desktop anchors use one blue active/hover rule.
+- The signet is the desktop home action; the desktop navigation exposes Company, Systems, Protection, Approach, and Contact directly.
+- Company, Systems, and Protection open localised dossier pages. Approach and Contact retain precise homepage anchor destinations.
+- Mobile prepends Home / Start and keeps the same five global destinations below it.
+- One blue rule communicates hover and either the current dossier page or its mapped homepage section.
 - Mobile navigation is the only raised overlay. It fills the available height below the header, locks the document while open, keeps legal and locale actions at the end, and traps keyboard focus.
 - Escape and outside-pointer behavior remain intact.
-- Active tracking and locale switching preserve the six anchors.
+- Locale switching preserves homepage hashes and maps each dossier to its reciprocal localised route.
 
 ## 4. Homepage section contracts
 

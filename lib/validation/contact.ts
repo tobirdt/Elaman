@@ -8,7 +8,7 @@ export type ContactValidationResult =
   | { ok: true; data: ContactEmailPayload }
   | { ok: false; fields: ContactFieldErrors };
 
-const limits = {
+export const contactFieldLimits = {
   firstName: { min: 1, max: 80 },
   lastName: { max: 80 },
   company: { max: 120 },
@@ -18,6 +18,10 @@ const limits = {
 } as const;
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export function isValidContactEmail(value: string) {
+  return emailPattern.test(value.trim().toLowerCase());
+}
 
 function readString(
   payload: Partial<Record<keyof ContactEmailPayload, unknown>>,
@@ -51,33 +55,33 @@ export function validateContactPayload(input: unknown): ContactValidationResult 
   const message = readString(payload, "message");
   const website = readString(payload, "website");
 
-  if (firstName.length < limits.firstName.min) {
+  if (firstName.length < contactFieldLimits.firstName.min) {
     fields.firstName = "First name is required.";
-  } else if (firstName.length > limits.firstName.max) {
-    fields.firstName = `First name must be ${limits.firstName.max} characters or fewer.`;
+  } else if (firstName.length > contactFieldLimits.firstName.max) {
+    fields.firstName = `First name must be ${contactFieldLimits.firstName.max} characters or fewer.`;
   }
 
-  if (lastName.length > limits.lastName.max) {
-    fields.lastName = `Last name must be ${limits.lastName.max} characters or fewer.`;
+  if (lastName.length > contactFieldLimits.lastName.max) {
+    fields.lastName = `Last name must be ${contactFieldLimits.lastName.max} characters or fewer.`;
   }
 
-  if (company.length > limits.company.max) {
-    fields.company = `Company must be ${limits.company.max} characters or fewer.`;
+  if (company.length > contactFieldLimits.company.max) {
+    fields.company = `Company must be ${contactFieldLimits.company.max} characters or fewer.`;
   }
 
-  if (!emailPattern.test(email)) {
+  if (!isValidContactEmail(email)) {
     fields.email = "A valid email address is required.";
-  } else if (email.length > limits.email.max) {
-    fields.email = `Email must be ${limits.email.max} characters or fewer.`;
+  } else if (email.length > contactFieldLimits.email.max) {
+    fields.email = `Email must be ${contactFieldLimits.email.max} characters or fewer.`;
   }
 
-  if (message.length < limits.message.min) {
-    fields.message = `Message must be at least ${limits.message.min} characters.`;
-  } else if (message.length > limits.message.max) {
-    fields.message = `Message must be ${limits.message.max} characters or fewer.`;
+  if (message.length < contactFieldLimits.message.min) {
+    fields.message = `Message must be at least ${contactFieldLimits.message.min} characters.`;
+  } else if (message.length > contactFieldLimits.message.max) {
+    fields.message = `Message must be ${contactFieldLimits.message.max} characters or fewer.`;
   }
 
-  if (website.length > limits.website.max) {
+  if (website.length > contactFieldLimits.website.max) {
     fields.website = "Invalid request payload.";
   }
 

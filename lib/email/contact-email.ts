@@ -26,13 +26,17 @@ function formatOptional(value: string | undefined) {
   return value && value.trim().length > 0 ? value : "Not provided";
 }
 
+function formatSubjectValue(value: string) {
+  return value.replace(/[\r\n]+/g, " ").trim();
+}
+
 export function createContactEmailContent(
   payload: ContactEmailPayload,
   timestamp = new Date(),
 ): ContactEmailContent {
   const submittedAt = timestamp.toISOString();
   const fullName = [payload.firstName, payload.lastName].filter(Boolean).join(" ");
-  const subjectName = fullName || payload.email;
+  const subjectName = formatSubjectValue(fullName || payload.email);
   const subject = `New Elaman website inquiry: ${subjectName}`;
 
   const rows = [

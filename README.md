@@ -16,9 +16,9 @@ The site intentionally has no client animation library. Its restrained entrance,
 The fixed bilingual sequence is:
 
 1. `#hero` — Home / Start
-2. `#profile` — Profile / Profil
-3. `#advice` — Advice / Beratung
-4. `#systems` — Surveillance / Observation
+2. `#profile` — Company / Unternehmen
+3. `#advice` — Approach / Vorgehen
+4. `#systems` — Systems / Systeme
 5. `#protection` — Protection / Schutz
 6. `#contact` — Contact / Kontakt
 
@@ -33,6 +33,10 @@ Desktop sections occupy at least the visible height below the sticky header. Mob
 | Protection solutions | `/de/schutzloesungen` | `/en/protection` |
 
 Each route has reciprocal language links, canonical/hreflang metadata, structured data, and a route-specific social preview. Detail pages use normal document flow and do not opt into homepage scroll snap.
+
+## Global navigation
+
+The points-only signet links to the localised homepage. Desktop navigation links directly to Company, Systems, and Protection, followed by the homepage anchors Approach and Contact. The mobile menu prepends an explicit Home / Start entry. Active styling follows either the current dossier route or the corresponding homepage section.
 
 ## Local Development
 
@@ -52,6 +56,7 @@ npm run lint
 npm run typecheck
 npm run format:check
 npm run build
+npm run test:e2e
 npm audit --omit=dev
 ```
 
@@ -84,7 +89,7 @@ After a production deployment and final DNS cutover:
 
 ## Contact Form Delivery
 
-The contact API validates all submissions server-side, checks the hidden honeypot, applies a small best-effort in-memory rate limit per runtime instance, and sends through Resend when all required environment variables are configured.
+The contact API validates all submissions server-side, enforces the payload limit while reading the request stream, checks the hidden honeypot, applies a bounded best-effort in-memory rate limit per runtime instance, and sends through Resend when all required environment variables are configured. API responses are never cached, and rate-limited responses include `Retry-After`.
 
 If the honeypot is filled, the API returns `{ "ok": true }` without sending email. If mail variables are missing locally, a valid submission returns `send_failed`; production success is never faked. The email includes escaped plain text and minimal escaped HTML.
 
@@ -110,8 +115,8 @@ npm run build
 
 1. Confirm the live homepage loads over HTTPS.
 2. Confirm canonical and Open Graph URLs use the live domain.
-3. Confirm all six anchors and active navigation work in both locales.
-4. Confirm the language switch preserves the active hash.
+3. Confirm all global-navigation destinations and active page/section states work in both locales.
+4. Confirm the language switch preserves the active hash or opens the reciprocal dossier route.
 5. Confirm each dossier language switch opens its matching reciprocal route.
 6. Confirm the mobile menu opens without page bleed, traps focus, closes with Escape/outside click, and navigates.
 7. Confirm touch/tablet scrolling is free and desktop snap remains gentle.
@@ -121,6 +126,8 @@ npm run build
 11. Confirm phone and email links work.
 12. Confirm legal, dossier, and 404 routes render without overflow.
 13. Confirm there are no browser-console errors or horizontal overflow.
+
+The Playwright suite runs this route, interaction, serious-accessibility, and overflow smoke coverage in desktop Chromium plus iPhone 15 portrait and landscape WebKit emulation. Use `npm run test:e2e:iphone` for the focused mobile gate.
 
 ## Legal Review Note
 

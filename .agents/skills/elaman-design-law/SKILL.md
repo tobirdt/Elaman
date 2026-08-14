@@ -63,6 +63,8 @@ The three approved dossier compositions are:
 
 Dossiers use normal document flow, reciprocal localised routes, and no scroll snap. They may deepen verified homepage categories but must not add specifications, customers, tactical detail, or unsupported claims.
 
+The global header exposes Company, Systems, and Protection as direct localised dossier routes. Approach and Contact return to homepage anchors; the signet acts as Home on desktop, and the mobile overlay prepends an explicit Home / Start entry. The active rule must represent either the exact dossier route or its mapped homepage section.
+
 The active codebase intentionally has no generic Surface, GlassPanel, TechnicalMark, DotMatrix, signal diagram, or reveal-wrapper layer.
 
 ## Audit every visual change

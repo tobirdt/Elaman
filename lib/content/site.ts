@@ -5,6 +5,11 @@ type NavigationItem = {
   href: string;
 };
 
+type PrimaryNavigationItem = NavigationItem & {
+  section: `#${string}`;
+  mobileOnly?: boolean;
+};
+
 type ContentItem = {
   title: string;
   description: string;
@@ -47,7 +52,7 @@ export type LocalizedSiteContent = {
     ogLocale: string;
   };
   navigation: {
-    main: NavigationItem[];
+    main: PrimaryNavigationItem[];
     legal: NavigationItem[];
     menu: string;
     homeLabel: string;
@@ -122,12 +127,12 @@ export const siteContent = {
     },
     navigation: {
       main: [
-        { label: "Home", href: "#hero" },
-        { label: "Company", href: "#profile" },
-        { label: "Consulting", href: "#advice" },
-        { label: "Systems", href: "#systems" },
-        { label: "Protection", href: "#protection" },
-        { label: "Contact", href: "#contact" },
+        { label: "Home", href: "#hero", section: "#hero", mobileOnly: true },
+        { label: "Company", href: "/en/company", section: "#profile" },
+        { label: "Systems", href: "/en/systems", section: "#systems" },
+        { label: "Protection", href: "/en/protection", section: "#protection" },
+        { label: "Approach", href: "#advice", section: "#advice" },
+        { label: "Contact", href: "#contact", section: "#contact" },
       ],
       legal: [
         { label: "Imprint", href: "/imprint" },
@@ -305,12 +310,16 @@ export const siteContent = {
     },
     navigation: {
       main: [
-        { label: "Start", href: "#hero" },
-        { label: "Unternehmen", href: "#profile" },
-        { label: "Beratung", href: "#advice" },
-        { label: "Systeme", href: "#systems" },
-        { label: "Schutz", href: "#protection" },
-        { label: "Kontakt", href: "#contact" },
+        { label: "Start", href: "#hero", section: "#hero", mobileOnly: true },
+        { label: "Unternehmen", href: "/de/unternehmen", section: "#profile" },
+        { label: "Systeme", href: "/de/systeme", section: "#systems" },
+        {
+          label: "Schutzlösungen",
+          href: "/de/schutzloesungen",
+          section: "#protection",
+        },
+        { label: "Vorgehen", href: "#advice", section: "#advice" },
+        { label: "Kontakt", href: "#contact", section: "#contact" },
       ],
       legal: [
         { label: "Impressum", href: "/imprint" },

@@ -19,10 +19,15 @@ type ContactApiResponse =
 const maxRequestBytes = 12_000;
 const rateLimitWindowMs = 10 * 60 * 1000;
 const rateLimitMax = 6;
+const rateLimitStoreMax = 2_048;
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+let lastRateLimitSweep = 0;
 
-function json(response: ContactApiResponse, status: number) {
-  return NextResponse.json(response, { status });
+function json(response: ContactApiResponse, status: number, headers?: HeadersInit) {
+  const responseHeaders = new Headers(headers);
+  responseHeaders.set("Cache-Control", "no-store");
+
+  return NextResponse.json(response, { headers: responseHeaders, status });
 }
 
 function clientKey(request: Request) {
@@ -33,17 +38,80 @@ function clientKey(request: Request) {
   );
 }
 
-function isRateLimited(key: string) {
+function sweepRateLimitStore(now: number) {
+  if (
+    now - lastRateLimitSweep < rateLimitWindowMs &&
+    rateLimitStore.size < rateLimitStoreMax
+  ) {
+    return;
+  }
+
+  rateLimitStore.forEach((entry, key) => {
+    if (entry.resetAt <= now) {
+      rateLimitStore.delete(key);
+    }
+  });
+
+  while (rateLimitStore.size >= rateLimitStoreMax) {
+    const oldestKey = rateLimitStore.keys().next().value;
+
+    if (oldestKey === undefined) {
+      break;
+    }
+
+    rateLimitStore.delete(oldestKey);
+  }
+
+  lastRateLimitSweep = now;
+}
+
+function checkRateLimit(key: string) {
   const now = Date.now();
+  sweepRateLimitStore(now);
+
   const current = rateLimitStore.get(key);
 
   if (!current || current.resetAt <= now) {
     rateLimitStore.set(key, { count: 1, resetAt: now + rateLimitWindowMs });
-    return false;
+    return { limited: false, retryAfterSeconds: 0 };
   }
 
   current.count += 1;
-  return current.count > rateLimitMax;
+
+  return {
+    limited: current.count > rateLimitMax,
+    retryAfterSeconds: Math.max(1, Math.ceil((current.resetAt - now) / 1_000)),
+  };
+}
+
+async function readRequestBody(request: Request) {
+  if (!request.body) {
+    return "";
+  }
+
+  const reader = request.body.getReader();
+  const decoder = new TextDecoder();
+  let bytesRead = 0;
+  let body = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+
+    if (done) {
+      break;
+    }
+
+    bytesRead += value.byteLength;
+
+    if (bytesRead > maxRequestBytes) {
+      await reader.cancel();
+      return null;
+    }
+
+    body += decoder.decode(value, { stream: true });
+  }
+
+  return body + decoder.decode();
 }
 
 function readEmailConfig() {
@@ -75,7 +143,20 @@ export async function POST(request: Request) {
   let payload: unknown;
 
   try {
-    payload = await request.json();
+    const rawBody = await readRequestBody(request);
+
+    if (rawBody === null) {
+      return json(
+        {
+          ok: false,
+          error: "validation_error",
+          fields: { form: "The submitted message is too large." },
+        },
+        400,
+      );
+    }
+
+    payload = JSON.parse(rawBody);
   } catch {
     return json(
       {
@@ -91,7 +172,9 @@ export async function POST(request: Request) {
     return json({ ok: true }, 200);
   }
 
-  if (isRateLimited(clientKey(request))) {
+  const rateLimit = checkRateLimit(clientKey(request));
+
+  if (rateLimit.limited) {
     return json(
       {
         ok: false,
@@ -99,6 +182,7 @@ export async function POST(request: Request) {
         fields: { form: "Too many requests. Please try again later." },
       },
       429,
+      { "Retry-After": String(rateLimit.retryAfterSeconds) },
     );
   }
 

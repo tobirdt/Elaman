@@ -46,7 +46,7 @@ const socialImages: Record<
     },
   },
   protection: {
-    path: "/images/elaman-protection-og.png",
+    path: "/images/elaman-protection-og.jpg",
     width: 1200,
     height: 630,
     alt: {

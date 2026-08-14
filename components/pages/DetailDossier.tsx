@@ -91,7 +91,7 @@ function CompanyDossier({ content }: { content: CompanyDetailContent }) {
             src="/images/elaman-munich-office.jpg"
             alt={content.heroAlt}
             fill
-            priority
+            preload
             sizes="(min-width: 1024px) 44vw, 100vw"
             className="object-cover object-[63%_center] saturate-[0.78]"
           />
@@ -172,7 +172,7 @@ function SystemsDossier({ content }: { content: SystemsDetailContent }) {
             src="/images/elaman-systems-media-mining.jpg"
             alt={content.heroAlt}
             fill
-            priority
+            preload
             sizes="(min-width: 1024px) 44vw, 100vw"
             className="object-cover object-[52%_43%] saturate-[0.52] contrast-[1.04]"
           />
@@ -256,13 +256,13 @@ function ProtectionDossier({ content }: { content: ProtectionDetailContent }) {
             src="/images/elaman-protection.png"
             alt={content.heroAlt}
             fill
-            priority
+            preload
             sizes="100vw"
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-navy/16" aria-hidden="true" />
         </div>
-        <Container className="hero-copy-enter grid flex-1 items-center gap-8 py-10 lg:grid-cols-[minmax(0,0.46fr)_minmax(0,0.54fr)] lg:gap-16 lg:py-12">
+        <Container className="hero-copy-enter grid flex-1 content-center items-start gap-8 py-10 lg:grid-cols-[minmax(0,0.46fr)_minmax(0,0.54fr)] lg:items-center lg:gap-16 lg:py-12">
           <div>
             <BackLink href={content.back.href} label={content.back.label} />
             <div className="mt-7 flex items-center gap-3">

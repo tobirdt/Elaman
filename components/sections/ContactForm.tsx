@@ -4,6 +4,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/Button";
 import type { LocalizedSiteContent } from "@/lib/content/site";
+import { contactFieldLimits, isValidContactEmail } from "@/lib/validation/contact";
 
 type ContactFormValues = {
   firstName: string;
@@ -47,27 +48,27 @@ function validate(values: ContactFormValues, content: ContactFormProps["content"
 
   if (!values.firstName.trim()) {
     errors.firstName = content.errors.firstNameRequired;
-  } else if (values.firstName.trim().length > 80) {
+  } else if (values.firstName.trim().length > contactFieldLimits.firstName.max) {
     errors.firstName = content.errors.firstNameMax;
   }
 
-  if (values.lastName.trim().length > 80) {
+  if (values.lastName.trim().length > contactFieldLimits.lastName.max) {
     errors.lastName = content.errors.lastNameMax;
   }
 
-  if (values.company.trim().length > 120) {
+  if (values.company.trim().length > contactFieldLimits.company.max) {
     errors.company = content.errors.companyMax;
   }
 
-  if (!values.email.trim() || !/^\S+@\S+\.\S+$/.test(values.email)) {
+  if (!isValidContactEmail(values.email)) {
     errors.email = content.errors.emailRequired;
-  } else if (values.email.trim().length > 254) {
+  } else if (values.email.trim().length > contactFieldLimits.email.max) {
     errors.email = content.errors.emailMax;
   }
 
-  if (values.message.trim().length < 20) {
+  if (values.message.trim().length < contactFieldLimits.message.min) {
     errors.message = content.errors.messageMin;
-  } else if (values.message.trim().length > 4000) {
+  } else if (values.message.trim().length > contactFieldLimits.message.max) {
     errors.message = content.errors.messageMax;
   }
 
@@ -203,7 +204,7 @@ export function ContactForm({ content }: ContactFormProps) {
             className="form-field"
             name="firstName"
             autoComplete="given-name"
-            maxLength={80}
+            maxLength={contactFieldLimits.firstName.max}
             required
             value={values.firstName}
             onChange={updateField}
@@ -224,7 +225,7 @@ export function ContactForm({ content }: ContactFormProps) {
             className="form-field"
             name="lastName"
             autoComplete="family-name"
-            maxLength={80}
+            maxLength={contactFieldLimits.lastName.max}
             value={values.lastName}
             onChange={updateField}
             aria-invalid={Boolean(errors.lastName)}
@@ -246,7 +247,7 @@ export function ContactForm({ content }: ContactFormProps) {
             className="form-field"
             name="company"
             autoComplete="organization"
-            maxLength={120}
+            maxLength={contactFieldLimits.company.max}
             value={values.company}
             onChange={updateField}
             aria-invalid={Boolean(errors.company)}
@@ -273,7 +274,7 @@ export function ContactForm({ content }: ContactFormProps) {
             type="email"
             inputMode="email"
             autoComplete="email"
-            maxLength={254}
+            maxLength={contactFieldLimits.email.max}
             required
             spellCheck={false}
             value={values.email}
@@ -300,8 +301,8 @@ export function ContactForm({ content }: ContactFormProps) {
           id="message"
           className="form-field min-h-24 resize-y"
           name="message"
-          minLength={20}
-          maxLength={4000}
+          minLength={contactFieldLimits.message.min}
+          maxLength={contactFieldLimits.message.max}
           required
           value={values.message}
           onChange={updateField}
@@ -328,12 +329,12 @@ export function ContactForm({ content }: ContactFormProps) {
 
       <div aria-live="polite" className="min-h-6">
         {status === "success" ? (
-          <p className="border-l-2 border-elaman-blue pl-4 text-sm leading-6 text-graphite">
+          <p className="border-t border-[var(--border-accent-blue)] pt-4 text-sm leading-6 text-graphite">
             {content.success}
           </p>
         ) : null}
         {status === "error" && errors.form ? (
-          <p className="border-l-2 border-elaman-red pl-4 text-sm leading-6 text-graphite">
+          <p className="border-t border-elaman-red pt-4 text-sm leading-6 text-graphite">
             {errors.form}
           </p>
         ) : null}

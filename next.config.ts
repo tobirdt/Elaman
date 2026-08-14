@@ -3,8 +3,34 @@ import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const workspaceRoot = dirname(fileURLToPath(import.meta.url));
+const isDevelopment = process.env.NODE_ENV === "development";
+
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data:",
+  `connect-src 'self'${isDevelopment ? " http: https: ws: wss:" : ""}`,
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+  "manifest-src 'self'",
+  "media-src 'self'",
+].join("; ");
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["127.0.0.1"],
+  experimental: {
+    globalNotFound: true,
+  },
+  images: {
+    localPatterns: [
+      { pathname: "/brand/**", search: "" },
+      { pathname: "/images/**", search: "" },
+    ],
+  },
   poweredByHeader: false,
   typedRoutes: true,
   turbopack: {
@@ -15,6 +41,10 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
+          {
+            key: "Content-Security-Policy",
+            value: contentSecurityPolicy,
+          },
           {
             key: "X-Content-Type-Options",
             value: "nosniff",

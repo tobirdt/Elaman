@@ -11,7 +11,7 @@ type NotFoundPageProps = {
   locale?: Locale;
 };
 
-export function NotFoundPage({ locale = "en" }: NotFoundPageProps) {
+export function NotFoundPage({ locale = "de" }: NotFoundPageProps) {
   const content = getSiteContent(locale);
   const isGerman = locale === "de";
 

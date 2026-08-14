@@ -35,7 +35,7 @@ Conflict order for public wording: verified fact → `CONTENT_BLUEPRINT.md` → 
 - Preserve the contact-form honeypot, client validation, server validation, and safe email rendering.
 - Respect `prefers-reduced-motion` for all transitions and entrances.
 - Use `next/image` with an accurate `sizes` value for site imagery.
-- Run `npm run lint`, `npm run typecheck`, `npm run format:check`, and `npm run build` before signoff.
+- Run `npm run lint`, `npm run typecheck`, `npm run format:check`, `npm run build`, and `npm run test:e2e` before signoff.
 - Capture desktop and mobile screenshots for visual changes.
 
 ### Do not
@@ -146,6 +146,8 @@ On the homepage, the compact footer provides the single terminal `scroll-snap-al
 - Use `sectionPath(locale, "#anchor")` for anchored navigation.
 - Use `detailPagePath(locale, kind)` for the three localised dossier routes.
 - Detail routes are `/de/unternehmen` ↔ `/en/company`, `/de/systeme` ↔ `/en/systems`, and `/de/schutzloesungen` ↔ `/en/protection`.
+- Global desktop navigation exposes the three dossier routes plus Approach / Vorgehen and Contact; the points-only signet is Home, while the mobile menu also shows Home / Start explicitly.
+- Active navigation must map both exact dossier paths and their corresponding homepage sections without relying on colour alone.
 - Keep exactly one visible 20+ experience statement in the hero.
 - Public detail remains discreet: describe capability categories without operational specifics or named customers.
 - `/imprint` and `/private-policy` remain language-neutral preserved legal pages until counsel approves revisions.
@@ -166,3 +168,13 @@ On the homepage, the compact footer provides the single terminal `scroll-snap-al
 - Component removal → remove stale documentation and tests/evidence that describe the removed implementation.
 
 Keep the repository limited to the current product. Do not retain abandoned alternatives, historical screenshots, migration aliases, or unreachable components in production source.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

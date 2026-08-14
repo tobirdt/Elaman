@@ -2,7 +2,7 @@
 
 ## Status
 
-The approved six-section viewport release remains the current production release on `main`. The `codex/heritage-modern-v2` branch extends it with three bilingual dossier pages, a refined mobile navigation, and a restrained cross-page visual polish. P25 is not a production release until its Preview passes the full gate and receives stakeholder approval.
+The approved Heritage Modern V2 release is the current production baseline. It combines the six-section homepage with three bilingual dossier pages, refined mobile navigation, release hardening, and automated desktop and iPhone browser coverage.
 
 German remains the default at `/de`; English is complete at `/en`.
 
@@ -17,23 +17,23 @@ The homepage contains six compositions:
 5. Protection
 6. Contact
 
-Legal pages, bilingual navigation, 404 handling, metadata, structured data, sitemap, robots, the contact API, and the compact footer remain part of the release surface. P25 adds Company, Systems, and Protection dossiers in both languages.
+Legal pages, bilingual navigation, global and localised 404 handling, metadata, structured data, sitemap, robots, the contact API, and the compact footer are part of the release surface. Company, Systems, and Protection dossiers are available in both languages.
 
 ## Completed release units
 
-| Unit | Outcome                                                                          | State         |
-| ---: | -------------------------------------------------------------------------------- | ------------- |
-|  P15 | Heritage homepage reconstruction                                                 | Published     |
-|  P16 | Responsive, accessibility, and interaction pass                                  | Published     |
-|  P17 | Contact API, validation, honeypot, and Resend integration                        | Published     |
-|  P18 | SEO, legal routes, metadata, and release hardening                               | Published     |
-|  P19 | Production deployment to `main`                                                  | Published     |
-|  P20 | Open capability ledger replacing the enclosed matrix                             | Published     |
-|  P21 | Remove abandoned source, obsolete assets, and unused Framer Motion dependency    | Published     |
-|  P22 | Six fullscreen-oriented sections with five approved images and soft desktop snap | Published     |
-|  P23 | Entity-led SEO, management association, canonical sitemap, and search metadata   | Published     |
-|  P24 | Terminal homepage snap point keeping the compact footer fully reachable          | Published     |
-|  P25 | Heritage Modern V2 dossiers, mobile navigation, imagery, metadata, and QA        | Preview ready |
+| Unit | Outcome                                                                          | State     |
+| ---: | -------------------------------------------------------------------------------- | --------- |
+|  P15 | Heritage homepage reconstruction                                                 | Published |
+|  P16 | Responsive, accessibility, and interaction pass                                  | Published |
+|  P17 | Contact API, validation, honeypot, and Resend integration                        | Published |
+|  P18 | SEO, legal routes, metadata, and release hardening                               | Published |
+|  P19 | Production deployment to `main`                                                  | Published |
+|  P20 | Open capability ledger replacing the enclosed matrix                             | Published |
+|  P21 | Remove abandoned source, obsolete assets, and unused Framer Motion dependency    | Published |
+|  P22 | Six fullscreen-oriented sections with five approved images and soft desktop snap | Published |
+|  P23 | Entity-led SEO, management association, canonical sitemap, and search metadata   | Published |
+|  P24 | Terminal homepage snap point keeping the compact footer fully reachable          | Published |
+|  P25 | Heritage Modern V2 dossiers, mobile navigation, imagery, metadata, and QA        | Published |
 
 ## P25 — Heritage Modern V2
 
@@ -45,6 +45,7 @@ Legal pages, bilingual navigation, 404 handling, metadata, structured data, site
 - Expand the eight verified systems categories with concise, non-operational descriptions.
 - Add the supplied Jammer and TSE motifs only to the Protection dossier and retain one red protection marker per composition.
 - Add reciprocal locale routes, contextual homepage links, canonical/hreflang metadata, structured data, sitemap entries, and route-specific social images.
+- Promote Company, Systems, and Protection to direct global-navigation destinations; retain Approach and Contact as homepage anchors and show Home / Start explicitly in the mobile menu.
 - Refine the mobile menu into a focus-contained, document-locking navigation panel below the sticky header.
 - Add safe-area-aware page gutters, intentional touch feedback, and one coordinated CSS-only route-hero entrance.
 - Keep normal document flow on dossiers; the root receives scroll snap only while `main[data-scroll-snap-page]` marks the homepage, and section/footer alignment remains opt-in.
@@ -58,10 +59,12 @@ Legal pages, bilingual navigation, 404 handling, metadata, structured data, site
 ### Acceptance
 
 - All six detail routes render statically with correct reciprocal language switching and route-specific metadata.
+- Global navigation identifies the current dossier or corresponding homepage section and exposes every primary route in both locales.
 - Homepage anchors, soft snap, contact form, legal routes, and 404 remain regression-free.
 - The mobile menu opens without document bleed, cycles focus, closes on Escape/navigation, and keeps every action reachable on short screens.
 - German and English remain readable and overflow-free across the full viewport matrix.
 - Route heroes remain immediate LCP candidates and reduced motion presents their final state without transition.
+- Automated desktop and iPhone WebKit smoke tests cover every public route, modal menu behavior, serious accessibility findings, horizontal overflow, contact validation, 404 fallback, and production security headers.
 
 ## P22 — six-section viewport rhythm
 
@@ -110,7 +113,7 @@ The release passed:
 1. formatting, diff, lint, TypeScript, production build, and dependency audit gates;
 2. DE and EN checks from compact mobile through wide desktop;
 3. navigation, locale, mobile-menu, reduced-motion, form, legal, 404, and metadata paths;
-4. desktop, tablet, and mobile Preview screenshots;
+4. desktop, tablet, and mobile production screenshots;
 5. production-mode browser and API verification with no console errors or horizontal overflow;
 6. Lighthouse accessibility, best-practices, and SEO scores of 100 on mobile and desktop.
 

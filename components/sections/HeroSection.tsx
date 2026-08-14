@@ -15,7 +15,6 @@ export function HeroSection({ content }: HeroSectionProps) {
           src="/images/elaman-advice.png"
           alt=""
           fill
-          fetchPriority="high"
           preload
           sizes="(min-width: 1024px) 50vw, 100vw"
           className="object-cover object-[48%_center]"
