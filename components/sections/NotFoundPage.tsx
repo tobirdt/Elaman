@@ -13,35 +13,29 @@ type NotFoundPageProps = {
 
 export function NotFoundPage({ locale = "de" }: NotFoundPageProps) {
   const content = getSiteContent(locale);
-  const isGerman = locale === "de";
+  const notFound = content.notFound;
 
   return (
     <>
       <Header locale={locale} content={content.navigation} />
       <main id="main-content" tabIndex={-1}>
         <Section
-          className="min-h-[calc(100vh-16rem)]"
+          className="min-h-[calc(100svh-var(--header-h)-12rem)]"
           tone="white"
           variant="content-band"
         >
           <Container size="legal">
             <SectionHeader
               as="h1"
-              body={
-                isGerman
-                  ? "Die aufgerufene Seite ist nicht verfügbar. Auf der Startseite finden Sie alle Informationen und Kontaktmöglichkeiten."
-                  : "The page you requested is not available. The Elaman homepage provides access to all information and contact options."
-              }
-              label="404"
+              body={notFound.body}
+              label={notFound.label}
               labelTone="dark"
               size="h1"
-              title={isGerman ? "Seite nicht gefunden." : "Page not found."}
+              title={notFound.title}
               width="content"
             />
             <div className="mt-8">
-              <Button href={`/${locale}`}>
-                {isGerman ? "Zur Elaman-Startseite" : "Go to Elaman homepage"}
-              </Button>
+              <Button href={`/${locale}`}>{notFound.cta}</Button>
             </div>
           </Container>
         </Section>

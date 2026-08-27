@@ -54,6 +54,7 @@ export type CompanyDetailContent = DetailBase & {
     label: string;
     name: string;
     note: string;
+    href: string;
   };
 };
 
@@ -131,6 +132,7 @@ const detailContent = {
         label: "Geschäftsführung",
         name: "Holger Rumscheidt",
         note: "Rechtliche Angaben zum Unternehmen finden Sie im Impressum.",
+        href: "/de/impressum",
       },
     },
     systems: {
@@ -138,7 +140,7 @@ const detailContent = {
       metadata: {
         title: "Systeme für Kommunikation und Observation",
         description:
-          "Elaman entwickelt und integriert Systeme für Kommunikation, Observation, Führung, technische Gegenüberwachung und Datenforensik.",
+          "Elaman entwickelt und integriert Systeme für Kommunikation, Observation, Führung, technische Abhörabwehr und Datenforensik.",
         ogLocale: "de_DE",
       },
       eyebrow: "Systeme",
@@ -162,9 +164,9 @@ const detailContent = {
             "Positionen und Bewegungen auf einer gemeinsamen Kartengrundlage — Basis für Lagebilder und Einsatzplanung.",
         },
         {
-          title: "Technische Gegenüberwachung",
+          title: "Technische Abhörabwehr",
           description:
-            "Technische Lösungen und Verfahren zur Erkennung und Abwehr unbefugter Überwachung.",
+            "Messtechnik und Prüfmittel, mit denen sich unbefugte Überwachung aufspüren lässt.",
         },
         {
           title: "Spezialfahrzeuge",
@@ -238,7 +240,7 @@ const detailContent = {
         },
         {
           number: "02",
-          title: "Gegenüberwachung und geschirmte Bereiche",
+          title: "Abhörabwehr und geschirmte Bereiche",
           body: "Wo vertrauliche Informationen besprochen oder verarbeitet werden, gehören technische Prüfung und räumlicher Schutz zusammen.",
           image: "/images/elaman-protection-tscm.jpg",
           imageAlt: "",
@@ -299,7 +301,8 @@ const detailContent = {
       management: {
         label: "Managing Director",
         name: "Holger Rumscheidt",
-        note: "Legal information about the company is available in the imprint.",
+        note: "Legal information about the company is available in the site notice.",
+        href: "/en/site-notice",
       },
     },
     systems: {
@@ -332,7 +335,7 @@ const detailContent = {
         {
           title: "Technical counter-surveillance",
           description:
-            "Technical solutions and procedures for detecting and countering unauthorised surveillance.",
+            "Measurement and inspection equipment for locating unauthorised surveillance.",
         },
         {
           title: "Special-purpose vehicles",

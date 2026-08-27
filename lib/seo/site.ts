@@ -14,10 +14,12 @@ export const siteConfig = {
   logoPath: "/brand/elaman-logo.png",
   iconPath: "/brand/elaman-icon.svg",
   ogImage: {
-    path: "/brand/elaman-logo.png",
-    width: 470,
-    height: 180,
-    alt: "Elaman wordmark and dot signet – German Security Solutions",
+    // Social platforms render 1200x630; the wordmark alone was 470x180 and
+    // came out as a stretched thumbnail or was dropped entirely.
+    path: "/images/elaman-home-og.jpg",
+    width: 1200,
+    height: 630,
+    alt: "Elaman GmbH, Munich – communications and security engineering",
   },
 } as const;
 
@@ -54,7 +56,7 @@ export function createPageMetadata({
   appendSiteName = true,
   description = siteConfig.description,
   path = "/",
-  locale = "en_US",
+  locale = "en_GB",
   languages,
   robots = {
     index: true,

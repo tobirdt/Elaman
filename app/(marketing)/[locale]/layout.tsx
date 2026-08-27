@@ -3,13 +3,11 @@ import type { ReactNode } from "react";
 
 import "../../globals.css";
 import { RootDocument } from "@/components/layout/RootDocument";
-import { defaultLocale, isLocale, locales, type Locale } from "@/lib/i18n";
+import { defaultLocale, isLocale, type Locale } from "@/lib/i18n";
 import { siteConfig } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: siteConfig.title,
-  description: siteConfig.description,
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   publisher: siteConfig.name,
@@ -27,19 +25,22 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
-
 type LocaleLayoutProps = {
   children: ReactNode;
-  params: Promise<unknown>;
+  params: Promise<{ locale: string }>;
 };
 
+/**
+ * Root layout for the localised routes. It stays a root layout so `<html lang>`
+ * can carry the actual page language — a single layout above the `[locale]`
+ * segment could not read it, and English pages would be announced as German.
+ *
+ * Unmatched routes are handled by `app/global-not-found.tsx`, which renders its
+ * own document.
+ */
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
-  const resolvedParams = (await params) as { locale?: string };
-  const locale = resolvedParams.locale;
-  const documentLocale: Locale = locale && isLocale(locale) ? locale : defaultLocale;
+  const { locale } = await params;
+  const documentLocale: Locale = isLocale(locale) ? locale : defaultLocale;
 
   return <RootDocument lang={documentLocale}>{children}</RootDocument>;
 }

@@ -103,10 +103,11 @@ Label and title:
 - DE title: `Kommunikations- und Sicherheitstechnik aus Deutschland.`
 - EN title: `German Security Solutions.`
 
-The two statements communicate:
+The three statements communicate:
 
-1. established products and current technologies form integrated systems for demanding communications and security environments;
-2. each solution is aligned with infrastructure, operating environment, and organisational project requirements.
+1. established products and current technologies form integrated systems for communications and security;
+2. each solution is aligned with infrastructure, operating environment, and organisational project requirements;
+3. who the clients are — public authorities, security-related organisations, and communication service providers. A procurement reader has to find themselves named somewhere on the homepage.
 
 The section closes with one factual management reference:
 
@@ -146,7 +147,7 @@ Capability labels:
 | -------: | --------------------------- | -------------------------------- |
 |       01 | Audio- und Videoobservation | Audio and video observation      |
 |       02 | Geoinformationssysteme      | Geographical information systems |
-|       03 | Technische Gegenüberwachung | Technical counter-surveillance   |
+|       03 | Technische Abhörabwehr      | Technical counter-surveillance   |
 |       04 | Spezialfahrzeuge            | Special-purpose vehicles         |
 |       05 | Führungszentralen           | Command and control centres      |
 |       06 | Intelligence-Fusion-Systeme | Intelligence fusion systems      |
@@ -190,7 +191,7 @@ The form collects first name, optional last name, optional company, email, messa
 - German default: `/de`
 - English: `/en`
 - Localised dossier pairs: `/de/unternehmen` ↔ `/en/company`, `/de/systeme` ↔ `/en/systems`, and `/de/schutzloesungen` ↔ `/en/protection`
-- Legal routes: `/imprint` and `/private-policy`
+- Legal routes are localised: `/de/impressum` ↔ `/en/site-notice` and `/de/datenschutz` ↔ `/en/privacy-policy`. The retired `/imprint` and `/private-policy` paths redirect permanently to the German documents.
 - Global header navigation:
   - Desktop DE: Unternehmen, Systeme, Schutzlösungen, Vorgehen, Kontakt
   - Desktop EN: Company, Systems, Protection, Approach, Contact
@@ -206,7 +207,13 @@ The form collects first name, optional last name, optional company, email, messa
 
 ## 11. Legal boundary
 
-The imprint and privacy policy are preserved from the supplied source. They require responsible legal review before substantive rewriting. Marketing cleanup must not silently alter legal copy.
+Both legal documents exist in German and English and are reachable from the footer in the reader's own language.
+
+The privacy policy describes only processing that actually happens: access logs at the hosting provider and the inquiry form delivered through Resend. It previously declared Google Analytics, Google Maps, cookies and Flash storage that the site never used, and cited the EU-US Privacy Shield, invalid since 2020. Those sections were removed and the contact-form processing that Article 13 GDPR requires was added.
+
+If the site ever gains analytics, an embed, a cookie or a new processor, this document has to be updated in the same change. Named processors (currently Vercel and Resend) must match the actual deployment.
+
+**Still required before launch: sign-off by legal counsel.** The rewrite improves factual accuracy over the previous text but is not a substitute for review, and the imprint's tax and register details should be confirmed against current records.
 
 ## 12. Change protocol
 

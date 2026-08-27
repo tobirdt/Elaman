@@ -14,7 +14,7 @@ export function ProtectionSection({ content }: ProtectionSectionProps) {
     <Section id="protection" variant="screen" tone="white">
       <div className="relative h-[clamp(15rem,34svh,19rem)] overflow-hidden bg-navy">
         <Image
-          src="/images/elaman-protection.png"
+          src="/images/elaman-protection.jpg"
           alt=""
           fill
           sizes="100vw"

@@ -3,18 +3,12 @@ import type { ReactNode } from "react";
 
 import "../globals.css";
 import { RootDocument } from "@/components/layout/RootDocument";
+import { defaultLocale } from "@/lib/i18n";
 import { siteConfig } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.name }],
-  publisher: siteConfig.name,
-  category: "Security",
-  icons: {
-    icon: siteConfig.iconPath,
-    apple: siteConfig.logoPath,
-  },
 };
 
 export const viewport: Viewport = {
@@ -24,6 +18,7 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
+/** Wraps the `/` redirect only; it renders no visible output. */
 export default function RootRedirectLayout({ children }: { children: ReactNode }) {
-  return <RootDocument lang="de">{children}</RootDocument>;
+  return <RootDocument lang={defaultLocale}>{children}</RootDocument>;
 }

@@ -168,10 +168,9 @@ export async function POST(request: Request) {
     );
   }
 
-  if (hasHoneypotValue(payload)) {
-    return json({ ok: true }, 200);
-  }
-
+  // Rate limiting runs before the honeypot check on purpose: a bot that always
+  // fills the honeypot would otherwise never be counted, and could hammer the
+  // endpoint indefinitely behind a friendly 200.
   const rateLimit = checkRateLimit(clientKey(request));
 
   if (rateLimit.limited) {
@@ -186,6 +185,10 @@ export async function POST(request: Request) {
     );
   }
 
+  if (hasHoneypotValue(payload)) {
+    return json({ ok: true }, 200);
+  }
+
   const validation = validateContactPayload(payload);
 
   if (!validation.ok) {
@@ -195,7 +198,10 @@ export async function POST(request: Request) {
   const config = readEmailConfig();
 
   if (!config) {
-    console.error("Contact email send unavailable: missing environment configuration.");
+    console.error(
+      "Contact email send unavailable: RESEND_API_KEY, CONTACT_TO_EMAIL or " +
+        "CONTACT_FROM_EMAIL is not configured. Inquiries are being rejected.",
+    );
     return json({ ok: false, error: "send_failed" }, 503);
   }
 

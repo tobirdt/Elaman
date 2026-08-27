@@ -19,6 +19,14 @@ type LocalePageProps = {
   params: Promise<unknown>;
 };
 
+/**
+ * Only the parameter combinations produced by `generateStaticParams` resolve.
+ * Anything else stops at the router and is served by `app/not-found.tsx`,
+ * instead of entering this page and calling `notFound()` — which yields Next's
+ * bare internal error document rather than the branded 404.
+ */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -72,7 +80,7 @@ export default async function HomePage({ params }: LocalePageProps) {
         <AdviceSection content={content.advice} />
         <SystemsSection content={content.systems} />
         <ProtectionSection content={content.protection} />
-        <ContactSection content={content.contact} />
+        <ContactSection content={content.contact} locale={locale} />
       </main>
       <Footer
         contact={content.contact}

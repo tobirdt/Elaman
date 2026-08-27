@@ -83,7 +83,7 @@ After a production deployment and final DNS cutover:
 
 1. Verify `https://www.elaman.de` as a domain property in Google Search Console.
 2. Submit `https://www.elaman.de/sitemap.xml`.
-3. Inspect and request indexing for `/de`, `/en`, the six dossier URLs, and `/imprint`.
+3. Inspect and request indexing for `/de`, `/en`, the six dossier URLs, and the four legal URLs.
 4. Check that Google sees the production canonical URLs rather than the previous Wix deployment.
 5. Recheck coverage and search queries after Google has recrawled the domain.
 
@@ -101,7 +101,7 @@ If the honeypot is filled, the API returns `{ "ok": true }` without sending emai
 4. Run the full local validation gate.
 5. Push a non-production branch and inspect its Vercel Preview.
 6. Check desktop, tablet, mobile, and reduced-motion behavior on the Preview.
-7. Check `/de`, `/en`, all six dossier URLs, `/imprint`, `/private-policy`, 404, metadata, and sitemap.
+7. Check `/de`, `/en`, all six dossier URLs, all four legal URLs, the 404 page, metadata, and the sitemap.
 8. Promote or merge only after Preview acceptance.
 9. Submit a production test inquiry and confirm delivery and reply-to behavior.
 
@@ -131,4 +131,8 @@ The Playwright suite runs this route, interaction, serious-accessibility, and ov
 
 ## Legal Review Note
 
-The imprint and privacy policy content is preserved from the extracted existing legal text. Before production launch, responsible counsel or the site owner should confirm that it reflects the actual production tracking, cookies, and data processing.
+Both legal documents exist in German and English at localised routes; `/imprint` and `/private-policy` redirect permanently to the German versions.
+
+The privacy policy was rewritten to describe only the processing that actually happens on this site: access logs at the hosting provider, and the inquiry form delivered through Resend. The previous text declared Google Analytics, Google Maps, cookies and Flash storage that the site never used, and cited the EU-US Privacy Shield, invalid since 2020.
+
+**Before production launch, legal counsel must sign the documents off.** The rewrite is factually accurate against the current code, but it is not legal advice. Two things need confirming against your records: the register and tax details in the imprint, and the named processors — the policy states Vercel (hosting) and Resend (email delivery). If either changes, or if the site ever gains analytics, an embed or a cookie, the policy has to be updated in the same change.

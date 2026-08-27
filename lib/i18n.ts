@@ -4,6 +4,9 @@ export type Locale = (typeof locales)[number];
 export const detailPageKinds = ["company", "systems", "protection"] as const;
 export type DetailPageKind = (typeof detailPageKinds)[number];
 
+export const legalPageKinds = ["imprint", "privacy"] as const;
+export type LegalPageKind = (typeof legalPageKinds)[number];
+
 export const defaultLocale: Locale = "de";
 
 export function isLocale(value: string): value is Locale {
@@ -52,4 +55,30 @@ export function detailPageKindFromSlug(
   return (
     detailPageKinds.find((kind) => detailPageSlugs[kind][locale] === slug[0]) ?? null
   );
+}
+
+const legalPageSlugs: Record<LegalPageKind, Record<Locale, string>> = {
+  imprint: {
+    de: "impressum",
+    en: "site-notice",
+  },
+  privacy: {
+    de: "datenschutz",
+    en: "privacy-policy",
+  },
+};
+
+export function legalPagePath(locale: Locale, kind: LegalPageKind) {
+  return `/${locale}/${legalPageSlugs[kind][locale]}`;
+}
+
+export function legalPageKindFromSlug(
+  locale: Locale,
+  slug: readonly string[],
+): LegalPageKind | null {
+  if (slug.length !== 1) {
+    return null;
+  }
+
+  return legalPageKinds.find((kind) => legalPageSlugs[kind][locale] === slug[0]) ?? null;
 }

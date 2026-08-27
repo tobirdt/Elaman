@@ -54,6 +54,7 @@ export function validateContactPayload(input: unknown): ContactValidationResult 
   const email = readString(payload, "email").toLowerCase();
   const message = readString(payload, "message");
   const website = readString(payload, "website");
+  const locale = readString(payload, "locale") === "en" ? "en" : "de";
 
   if (firstName.length < contactFieldLimits.firstName.min) {
     fields.firstName = "First name is required.";
@@ -98,6 +99,7 @@ export function validateContactPayload(input: unknown): ContactValidationResult 
       email,
       message,
       website: website || undefined,
+      locale,
     },
   };
 }

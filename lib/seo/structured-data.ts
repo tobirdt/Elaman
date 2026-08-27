@@ -5,7 +5,7 @@ import { absoluteUrl, siteConfig } from "@/lib/seo/site";
 
 const organizationId = absoluteUrl("/#organization");
 const websiteId = absoluteUrl("/#website");
-const managingDirectorId = absoluteUrl("/imprint#holger-rumscheidt");
+const managingDirectorId = absoluteUrl("/#holger-rumscheidt");
 
 function organizationNode() {
   const contact = getSiteContent("en").contact;
@@ -66,9 +66,11 @@ function websiteNode() {
 }
 
 export function siteJsonLd() {
+  // The Person node travels with the Organization because `employee` points at
+  // it; without it every page would carry a reference that resolves to nothing.
   return {
     "@context": "https://schema.org",
-    "@graph": [organizationNode(), websiteNode()],
+    "@graph": [organizationNode(), websiteNode(), managingDirectorNode()],
   };
 }
 
@@ -142,13 +144,18 @@ function managingDirectorNode() {
     "@id": managingDirectorId,
     name: "Holger Rumscheidt",
     jobTitle: "Managing Director",
-    url: absoluteUrl("/imprint"),
     worksFor: { "@id": organizationId },
   };
 }
 
-export function imprintJsonLd(title: string, description: string) {
-  const url = absoluteUrl("/imprint");
+export function legalPageJsonLd(
+  locale: Locale,
+  path: string,
+  title: string,
+  description: string,
+  includeManagingDirector: boolean,
+) {
+  const url = absoluteUrl(path);
 
   return {
     "@context": "https://schema.org",
@@ -159,12 +166,14 @@ export function imprintJsonLd(title: string, description: string) {
         url,
         name: title,
         description,
-        inLanguage: "en",
+        inLanguage: locale,
         isPartOf: { "@id": websiteId },
-        about: [{ "@id": organizationId }, { "@id": managingDirectorId }],
-        mainEntity: [{ "@id": organizationId }, { "@id": managingDirectorId }],
+        about: { "@id": organizationId },
+        ...(includeManagingDirector
+          ? { mainEntity: [{ "@id": organizationId }, { "@id": managingDirectorId }] }
+          : { mainEntity: { "@id": organizationId } }),
       },
-      managingDirectorNode(),
+      ...(includeManagingDirector ? [managingDirectorNode()] : []),
     ],
   };
 }

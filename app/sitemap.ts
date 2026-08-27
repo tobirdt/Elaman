@@ -1,14 +1,27 @@
 import type { MetadataRoute } from "next";
 
-import { detailPageKinds, detailPagePath, locales } from "@/lib/i18n";
+import {
+  detailPageKinds,
+  detailPagePath,
+  legalPageKinds,
+  legalPagePath,
+  locales,
+} from "@/lib/i18n";
 import { absoluteUrl } from "@/lib/seo/site";
 
 type SitemapEntry = {
   route: string;
   priority: number;
   changeFrequency: "monthly" | "yearly";
-  alternates?: Record<string, string>;
+  alternates: Record<string, string>;
 };
+
+/**
+ * Date of the last substantive content change. Bump it when copy changes.
+ * Deriving this from the build time would tell crawlers that every page
+ * changed on every deploy, which devalues the signal.
+ */
+const contentLastModified = new Date("2026-08-27T00:00:00.000Z");
 
 const homeEntries: SitemapEntry[] = locales.map((locale) => ({
   route: `/${locale}`,
@@ -34,25 +47,25 @@ const detailEntries: SitemapEntry[] = detailPageKinds.flatMap((kind) =>
   })),
 );
 
-const legalEntries: SitemapEntry[] = [
-  { route: "/imprint", priority: 0.4, changeFrequency: "yearly" },
-  { route: "/private-policy", priority: 0.4, changeFrequency: "yearly" },
-];
+const legalEntries: SitemapEntry[] = legalPageKinds.flatMap((kind) =>
+  locales.map((locale) => ({
+    route: legalPagePath(locale, kind),
+    priority: 0.3,
+    changeFrequency: "yearly" as const,
+    alternates: {
+      de: absoluteUrl(legalPagePath("de", kind)),
+      en: absoluteUrl(legalPagePath("en", kind)),
+      "x-default": absoluteUrl(legalPagePath("de", kind)),
+    },
+  })),
+);
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-
   return [...homeEntries, ...detailEntries, ...legalEntries].map((entry) => ({
     url: absoluteUrl(entry.route),
-    lastModified,
+    lastModified: contentLastModified,
     changeFrequency: entry.changeFrequency,
     priority: entry.priority,
-    ...(entry.alternates
-      ? {
-          alternates: {
-            languages: entry.alternates,
-          },
-        }
-      : {}),
+    alternates: { languages: entry.alternates },
   }));
 }

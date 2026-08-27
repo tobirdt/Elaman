@@ -4,6 +4,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/Button";
 import type { LocalizedSiteContent } from "@/lib/content/site";
+import type { Locale } from "@/lib/i18n";
 import { contactFieldLimits, isValidContactEmail } from "@/lib/validation/contact";
 
 type ContactFormValues = {
@@ -24,6 +25,7 @@ type ContactApiResponse =
 
 type ContactFormProps = {
   content: LocalizedSiteContent["contact"]["form"];
+  locale: Locale;
 };
 
 const initialValues: ContactFormValues = {
@@ -87,7 +89,7 @@ function focusFirstError(errors: ContactFormErrors) {
   });
 }
 
-export function ContactForm({ content }: ContactFormProps) {
+export function ContactForm({ content, locale }: ContactFormProps) {
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -128,7 +130,7 @@ export function ContactForm({ content }: ContactFormProps) {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, locale }),
       });
 
       const payload = (await response.json()) as ContactApiResponse;

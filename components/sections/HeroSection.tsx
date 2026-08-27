@@ -12,7 +12,7 @@ export function HeroSection({ content }: HeroSectionProps) {
     <Section id="hero" variant="screen" tone="soft" className="grid lg:grid-cols-2">
       <div className="hero-image-enter relative min-h-[clamp(12rem,34svh,24rem)] overflow-hidden bg-[var(--surface-paper-soft)] lg:min-h-full">
         <Image
-          src="/images/elaman-advice.png"
+          src="/images/elaman-advice.jpg"
           alt=""
           fill
           preload

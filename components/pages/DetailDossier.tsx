@@ -148,7 +148,7 @@ function CompanyDossier({ content }: { content: CompanyDetailContent }) {
                 {content.management.label}
               </p>
               <Link
-                href="/imprint"
+                href={content.management.href as Route}
                 className="mt-3 inline-flex min-h-11 items-center text-[length:var(--type-body)] font-semibold text-graphite underline decoration-[var(--border-accent-blue)] underline-offset-4 transition-colors [transition-duration:var(--motion-fast)] hover:text-elaman-blue"
               >
                 {content.management.name}
@@ -259,7 +259,7 @@ function ProtectionDossier({ content }: { content: ProtectionDetailContent }) {
       <section className="flex min-h-[calc(100svh-var(--header-h))] flex-col border-b border-[var(--border-hairline)] bg-[var(--surface-paper)]">
         <div className="hero-image-enter relative h-[clamp(18rem,40svh,23rem)] shrink-0 overflow-hidden bg-navy">
           <Image
-            src="/images/elaman-protection.png"
+            src="/images/elaman-protection.jpg"
             alt={content.heroAlt}
             fill
             preload

@@ -10,8 +10,10 @@ const publicRoutes = [
   { language: "en", path: "/en/systems" },
   { language: "de", path: "/de/schutzloesungen" },
   { language: "en", path: "/en/protection" },
-  { language: "en", path: "/imprint" },
-  { language: "de", path: "/private-policy" },
+  { language: "de", path: "/de/impressum" },
+  { language: "en", path: "/en/site-notice" },
+  { language: "de", path: "/de/datenschutz" },
+  { language: "en", path: "/en/privacy-policy" },
 ] as const;
 
 test.describe("public route quality", () => {
@@ -73,16 +75,55 @@ test.describe("public route quality", () => {
   }
 });
 
-test("global unknown routes use the German fallback", async ({ page }) => {
-  const response = await page.goto("/definitely-not-an-elaman-page", {
-    waitUntil: "networkidle",
-  });
+test("unknown routes serve a complete 404 document without JavaScript", async ({
+  request,
+}) => {
+  // Asserted on the raw server response on purpose: a browser-only check passes
+  // even when the server sends Next's blank internal error document, because
+  // the client router fills it in on hydration.
+  for (const path of [
+    "/definitely-not-an-elaman-page",
+    "/de/definitely-not-a-page",
+    "/en/definitely-not-a-page",
+    "/de/unternehmen/extra-segment",
+  ]) {
+    const response = await request.get(path);
+    const body = await response.text();
 
-  expect(response?.status()).toBe(404);
-  await expect(page.locator("html")).toHaveAttribute("lang", "de");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Seite nicht gefunden.",
-  );
+    expect(response.status(), path).toBe(404);
+    expect(body, path).toContain('lang="de"');
+    expect(body, path).toContain("Seite nicht gefunden.");
+    expect(body, path).not.toContain('id="__next_error__"');
+  }
+});
+
+test("retired legal URLs redirect permanently to their localised routes", async ({
+  request,
+}) => {
+  for (const [from, to] of [
+    ["/imprint", "/de/impressum"],
+    ["/private-policy", "/de/datenschutz"],
+  ]) {
+    const response = await request.get(from, { maxRedirects: 0 });
+
+    expect(response.status(), from).toBe(308);
+    expect(response.headers()["location"], from).toContain(to);
+  }
+});
+
+test("each locale has its own title and description", async ({ request }) => {
+  const titles = new Map<string, string>();
+
+  for (const path of ["/de", "/en"]) {
+    const body = await (await request.get(path)).text();
+    const title = body.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
+
+    expect(title.length, path).toBeGreaterThan(20);
+    titles.set(path, title);
+  }
+
+  expect(titles.get("/de")).not.toBe(titles.get("/en"));
+  expect(titles.get("/de")).toContain("Sicherheitstechnik");
 });
 
 test("security headers and invalid contact payloads are handled safely", async ({

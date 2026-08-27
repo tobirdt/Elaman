@@ -64,6 +64,12 @@ export type LocalizedSiteContent = {
   footer: {
     copyright: string;
   };
+  notFound: {
+    label: string;
+    title: string;
+    body: string;
+    cta: string;
+  };
   hero: {
     label: string;
     title: string;
@@ -76,6 +82,7 @@ export type LocalizedSiteContent = {
     management: {
       label: string;
       name: string;
+      href: string;
     };
     detailLink: NavigationItem;
   };
@@ -135,8 +142,8 @@ export const siteContent = {
         { label: "Contact", href: "#contact", section: "#contact" },
       ],
       legal: [
-        { label: "Imprint", href: "/imprint" },
-        { label: "Privacy Policy", href: "/private-policy" },
+        { label: "Site notice", href: "/en/site-notice" },
+        { label: "Privacy policy", href: "/en/privacy-policy" },
       ],
       menu: "Menu",
       homeLabel: "Elaman home",
@@ -147,6 +154,12 @@ export const siteContent = {
     },
     footer: {
       copyright: "© 2026 Elaman GmbH",
+    },
+    notFound: {
+      label: "404",
+      title: "Page not found.",
+      body: "This address does not exist on our website — the link may have changed. The homepage will take you to every section and to our contact details.",
+      cta: "Go to the Elaman homepage",
     },
     hero: {
       label: "Elaman",
@@ -162,10 +175,12 @@ export const siteContent = {
       paragraphs: [
         "Elaman brings established products together with new technologies to build systems for communications and security.",
         "What a system finally looks like is decided by its setting: the infrastructure already in place, the organisational requirements, the conditions on site.",
+        "Our clients are public authorities, security-related organisations and communication service providers.",
       ],
       management: {
         label: "Managing Director",
         name: "Holger Rumscheidt",
+        href: "/en/site-notice",
       },
       detailLink: {
         label: "Company profile",
@@ -303,7 +318,7 @@ export const siteContent = {
     metadata: {
       title: "Elaman – Kommunikations- und Sicherheitstechnik, München",
       description:
-        "Elaman GmbH in München entwickelt und integriert Kommunikations- und Sicherheitssysteme für Observation, technische Gegenüberwachung, Schutz und Datenforensik.",
+        "Elaman GmbH in München entwickelt und integriert Kommunikations- und Sicherheitssysteme für Observation, technische Abhörabwehr, Schutz und Datenforensik.",
       ogLocale: "de_DE",
     },
     navigation: {
@@ -320,8 +335,8 @@ export const siteContent = {
         { label: "Kontakt", href: "#contact", section: "#contact" },
       ],
       legal: [
-        { label: "Impressum", href: "/imprint" },
-        { label: "Datenschutzerklärung", href: "/private-policy" },
+        { label: "Impressum", href: "/de/impressum" },
+        { label: "Datenschutzerklärung", href: "/de/datenschutz" },
       ],
       menu: "Menü",
       homeLabel: "Zur Elaman-Startseite",
@@ -332,6 +347,12 @@ export const siteContent = {
     },
     footer: {
       copyright: "© 2026 Elaman GmbH",
+    },
+    notFound: {
+      label: "404",
+      title: "Seite nicht gefunden.",
+      body: "Diese Adresse gibt es auf unserer Website nicht — womöglich hat sich der Link geändert. Über die Startseite erreichen Sie alle Bereiche und den direkten Kontakt.",
+      cta: "Zur Elaman-Startseite",
     },
     hero: {
       label: "Elaman",
@@ -347,10 +368,12 @@ export const siteContent = {
       paragraphs: [
         "Elaman verbindet etablierte Produkte mit neuen Technologien zu Systemen für Kommunikation und Sicherheit.",
         "Wie ein System am Ende aussieht, entscheidet das Einsatzumfeld: die vorhandene Infrastruktur, die organisatorischen Vorgaben, die Bedingungen vor Ort.",
+        "Zu unseren Kunden zählen Behörden, sicherheitsrelevante Organisationen und Kommunikationsanbieter.",
       ],
       management: {
         label: "Geschäftsführung",
         name: "Holger Rumscheidt",
+        href: "/de/impressum",
       },
       detailLink: {
         label: "Zum Unternehmensprofil",
@@ -390,7 +413,7 @@ export const siteContent = {
       items: [
         { title: "Audio- und Videoobservation" },
         { title: "Geoinformationssysteme" },
-        { title: "Technische Gegenüberwachung" },
+        { title: "Technische Abhörabwehr" },
         { title: "Spezialfahrzeuge" },
         { title: "Führungszentralen" },
         { title: "Intelligence-Fusion-Systeme" },

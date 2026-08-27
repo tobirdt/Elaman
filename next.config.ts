@@ -21,10 +21,16 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["127.0.0.1"],
   experimental: {
     globalNotFound: true,
   },
+  async redirects() {
+    return [
+      { source: "/imprint", destination: "/de/impressum", permanent: true },
+      { source: "/private-policy", destination: "/de/datenschutz", permanent: true },
+    ];
+  },
+  allowedDevOrigins: ["127.0.0.1"],
   images: {
     localPatterns: [
       { pathname: "/brand/**", search: "" },

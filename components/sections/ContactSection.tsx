@@ -3,12 +3,14 @@ import Image from "next/image";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { Section } from "@/components/ui/Section";
 import type { LocalizedSiteContent } from "@/lib/content/site";
+import type { Locale } from "@/lib/i18n";
 
 type ContactSectionProps = {
   content: LocalizedSiteContent["contact"];
+  locale: Locale;
 };
 
-export function ContactSection({ content }: ContactSectionProps) {
+export function ContactSection({ content, locale }: ContactSectionProps) {
   return (
     <Section
       id="contact"
@@ -90,7 +92,7 @@ export function ContactSection({ content }: ContactSectionProps) {
               {content.form.intro}
             </p>
             <div className="mt-6">
-              <ContactForm content={content.form} />
+              <ContactForm content={content.form} locale={locale} />
             </div>
           </div>
         </div>

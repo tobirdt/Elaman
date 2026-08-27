@@ -1,173 +1,283 @@
+import type { Locale } from "@/lib/i18n";
+
 export type LegalBlock = {
   title?: string;
   paragraphs: string[];
 };
 
-export const imprintContent = {
-  title: "Imprint",
-  blocks: [
-    { title: "Publisher", paragraphs: ["ELAMAN GmbH", "D-81371 Munich"] },
-    { title: "General Manager", paragraphs: ["Holger Rumscheidt"] },
-    {
-      title: "Registered at",
-      paragraphs: ["Local Court Munich", "Munich AG HRB 153662"],
-    },
-    {
-      title: "Tax Registration Number",
-      paragraphs: ["Tax No.: 810 / 20915", "Ust-IdNr.: DE814086265"],
-    },
-    {
-      title: "Address",
-      paragraphs: [
-        "Implerstraße 24",
-        "81371 Munich",
-        "Germany",
-        "Tel.: +49 - (0) 89 - 24 20 91 80",
-        "Fax.: +49 - (0) 89 - 24 20 91 81",
-      ],
-    },
-    {
-      title: "Contact",
-      paragraphs: ["Internet: www.elaman.de", "Email: info(at)elaman.de"],
-    },
-    {
-      paragraphs: [
-        "The data on our website has been carefully selected and put together on the basis of the information currently available to us. However, we accept no responsibility for the completeness, accuracy or up-to-dateness of the information provided. This also applies to the contents of external websites to which reference is made from our website via links. Moreover, ELAMAN GmbH reserves the right to make changes or additions to the provided information.",
-      ],
-    },
-  ] satisfies LegalBlock[],
-} as const;
+export type LegalDocumentContent = {
+  title: string;
+  label: string;
+  metaTitle: string;
+  metaDescription: string;
+  blocks: LegalBlock[];
+};
 
-export const privacyPolicyContent = {
-  title: "Datenschutzerklärung",
-  blocks: [
-    {
-      title: "Name und Kontakt des Verantwortlichen gemäß Artikel 4 Abs. 7 DSGVO",
-      paragraphs: [
-        "Firma: Elaman GmbH",
-        "Anschrift: Implerstr. 24, 81371 Munich",
-        "Telefon: 089/24209180",
-        "Telefax: 089/24209181",
-        "E-Mail: info@elaman.de",
+export const legalPageKinds = ["imprint", "privacy"] as const;
+export type LegalPageKind = (typeof legalPageKinds)[number];
+
+/**
+ * Imprint and privacy policy.
+ *
+ * The privacy policy describes only processing that actually takes place on
+ * this site: server access logs at the hosting provider, and the inquiry form
+ * delivered through Resend. The site sets no cookies, embeds no third-party
+ * services, and loads no external assets — the content security policy in
+ * next.config.ts restricts connections to the site's own origin. Any change to
+ * that behaviour has to be reflected here before it ships.
+ */
+const legalContent = {
+  de: {
+    imprint: {
+      title: "Impressum",
+      label: "Rechtliches",
+      metaTitle: "Impressum",
+      metaDescription: "Impressum und Anbieterkennzeichnung der Elaman GmbH, München.",
+      blocks: [
+        {
+          title: "Angaben gemäß § 5 DDG",
+          paragraphs: ["Elaman GmbH", "Implerstraße 24", "81371 München", "Deutschland"],
+        },
+        {
+          title: "Vertreten durch",
+          paragraphs: ["Geschäftsführer: Holger Rumscheidt"],
+        },
+        {
+          title: "Kontakt",
+          paragraphs: [
+            "Telefon: +49 (0) 89 24 20 91 80",
+            "Telefax: +49 (0) 89 24 20 91 81",
+            "E-Mail: info@elaman.de",
+          ],
+        },
+        {
+          title: "Registereintrag",
+          paragraphs: [
+            "Registergericht: Amtsgericht München",
+            "Registernummer: HRB 153662",
+          ],
+        },
+        {
+          title: "Steuerangaben",
+          paragraphs: [
+            "Steuernummer: 810 / 20915",
+            "Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG: DE814086265",
+          ],
+        },
+        {
+          title: "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
+          paragraphs: ["Holger Rumscheidt, Implerstraße 24, 81371 München"],
+        },
+        {
+          title: "Haftung für Inhalte",
+          paragraphs: [
+            "Die Inhalte dieser Website wurden sorgfältig zusammengestellt und beruhen auf den uns derzeit verfügbaren Informationen. Für Vollständigkeit, Richtigkeit und Aktualität können wir gleichwohl keine Haftung übernehmen. Wir behalten uns vor, die bereitgestellten Informationen zu ändern oder zu ergänzen.",
+          ],
+        },
+        {
+          title: "Haftung für Links",
+          paragraphs: [
+            "Für die Inhalte externer Websites, auf die von dieser Website aus verlinkt wird, sind ausschließlich deren Anbieter verantwortlich. Zum Zeitpunkt der Verlinkung waren keine rechtswidrigen Inhalte erkennbar. Eine dauerhafte inhaltliche Kontrolle verlinkter Seiten ist ohne konkreten Anlass nicht zumutbar; bei Bekanntwerden von Rechtsverstößen entfernen wir entsprechende Links.",
+          ],
+        },
       ],
     },
-    {
-      title: "Sicherheit und Schutz Ihrer personenbezogenen Daten",
-      paragraphs: [
-        "Wir betrachten es als unsere vorrangige Aufgabe, die Vertraulichkeit der von Ihnen bereitgestellten personenbezogenen Daten zu wahren und diese vor unbefugten Zugriffen zu schützen. Deshalb wenden wir äußerste Sorgfalt und modernste Sicherheitsstandards an, um einen maximalen Schutz Ihrer personenbezogenen Daten zu gewährleisten.",
-        "Als privatrechtliches Unternehmen unterliegen wir den Bestimmungen der europäischen Datenschutzgrundverordnung (DSGVO) und den Regelungen des Bundesdatenschutzgesetzes (BDSG). Wir haben technische und organisatorische Maßnahmen getroffen, die sicherstellen, dass die Vorschriften über den Datenschutz sowohl von uns, als auch von unseren externen Dienstleistern beachtet werden.",
+    privacy: {
+      title: "Datenschutzerklärung",
+      label: "Rechtliches",
+      metaTitle: "Datenschutzerklärung",
+      metaDescription:
+        "Wie die Elaman GmbH personenbezogene Daten auf dieser Website verarbeitet.",
+      blocks: [
+        {
+          title: "Verantwortlicher",
+          paragraphs: [
+            "Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne des Art. 4 Nr. 7 DSGVO ist:",
+            "Elaman GmbH, Implerstraße 24, 81371 München, Deutschland",
+            "Telefon: +49 (0) 89 24 20 91 80 · E-Mail: info@elaman.de",
+          ],
+        },
+        {
+          title: "Was diese Website nicht tut",
+          paragraphs: [
+            "Diese Website setzt keine Cookies und verwendet keine Webanalyse, kein Tracking und keine Profilbildung. Es sind keine Dienste Dritter eingebunden — weder Kartendienste noch Schriftarten, Videos oder Social-Media-Elemente, die von externen Servern geladen würden. Alle Schriftarten werden von unserem eigenen Server ausgeliefert.",
+            "Technisch ist das durch eine Content Security Policy abgesichert, die Verbindungen ausschließlich zur eigenen Domain zulässt. Es findet daher auch keine Datenübermittlung an Werbenetzwerke statt.",
+          ],
+        },
+        {
+          title: "Zugriffsdaten beim Besuch der Website",
+          paragraphs: [
+            "Beim Aufruf dieser Website übermittelt Ihr Browser technisch notwendige Daten, die in den Protokolldateien unseres Hosting-Dienstleisters erfasst werden: die IP-Adresse des anfragenden Geräts, Datum und Uhrzeit des Zugriffs, die aufgerufene Adresse, der HTTP-Statuscode, die übertragene Datenmenge sowie Angaben zu Browser und Betriebssystem.",
+            "Diese Verarbeitung ist erforderlich, um die Website bereitzustellen, ihre Stabilität zu gewährleisten und Angriffe zu erkennen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt im sicheren und störungsfreien Betrieb. Eine Zusammenführung dieser Daten mit anderen Datenquellen oder eine Auswertung zu Werbezwecken findet nicht statt.",
+          ],
+        },
+        {
+          title: "Anfrageformular",
+          paragraphs: [
+            "Wenn Sie das Formular auf dieser Website nutzen, verarbeiten wir die von Ihnen eingegebenen Angaben: Vorname sowie E-Mail-Adresse und Ihre Nachricht als Pflichtfelder, Nachname und Unternehmen als freiwillige Angaben. Wir verwenden diese Daten ausschließlich, um Ihre Anfrage zu bearbeiten und Ihnen zu antworten.",
+            "Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit die Anfrage auf den Abschluss oder die Durchführung eines Vertrages gerichtet ist, im Übrigen Art. 6 Abs. 1 lit. f DSGVO mit unserem berechtigten Interesse an der Beantwortung geschäftlicher Anfragen. Die Angabe der Daten ist freiwillig; ohne Vorname, E-Mail-Adresse und Nachricht können wir Ihre Anfrage jedoch nicht beantworten.",
+            "Das Formular enthält ein für Sie unsichtbares Feld zur Abwehr automatisierter Einsendungen. Zusätzlich begrenzen wir die Zahl der Einsendungen kurzzeitig anhand eines aus der IP-Adresse abgeleiteten Werts, der nur im Arbeitsspeicher gehalten und nach wenigen Minuten verworfen wird.",
+            "Ihre Anfrage wird per E-Mail an unser Postfach übermittelt und dort so lange aufbewahrt, wie es zur Bearbeitung erforderlich ist. Anschließend löschen wir sie, sofern keine handels- oder steuerrechtlichen Aufbewahrungspflichten entgegenstehen.",
+          ],
+        },
+        {
+          title: "Auftragsverarbeiter",
+          paragraphs: [
+            "Für Betrieb und Versand setzen wir Dienstleister ein, die Daten ausschließlich nach unserer Weisung und auf Grundlage eines Vertrages zur Auftragsverarbeitung nach Art. 28 DSGVO verarbeiten:",
+            "Hosting und Auslieferung der Website: Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA.",
+            "Versand der Formularnachrichten: Resend (Plus Five Five, Inc.), 2261 Market Street #5039, San Francisco, CA 94114, USA.",
+            "Bei diesen Anbietern können personenbezogene Daten in die USA übermittelt werden. Die Übermittlung erfolgt auf Grundlage der Standardvertragsklauseln der EU-Kommission nach Art. 46 Abs. 2 lit. c DSGVO in Verbindung mit ergänzenden Schutzmaßnahmen beziehungsweise, soweit der Anbieter zertifiziert ist, auf Grundlage des Angemessenheitsbeschlusses zum EU-US Data Privacy Framework nach Art. 45 DSGVO.",
+          ],
+        },
+        {
+          title: "Verschlüsselung",
+          paragraphs: [
+            "Diese Website wird ausschließlich über eine verschlüsselte TLS-Verbindung ausgeliefert. Sie erkennen das an der Adresse „https://“ und am Schlosssymbol Ihres Browsers. Damit sind auch die über das Formular übermittelten Angaben auf dem Transportweg geschützt.",
+          ],
+        },
+        {
+          title: "Ihre Rechte",
+          paragraphs: [
+            "Sie haben das Recht auf Auskunft über die zu Ihrer Person verarbeiteten Daten (Art. 15 DSGVO), auf Berichtigung unrichtiger Daten (Art. 16 DSGVO), auf Löschung (Art. 17 DSGVO), auf Einschränkung der Verarbeitung (Art. 18 DSGVO) sowie auf Datenübertragbarkeit (Art. 20 DSGVO).",
+            "Soweit wir Daten auf Grundlage eines berechtigten Interesses verarbeiten, können Sie dieser Verarbeitung nach Art. 21 DSGVO widersprechen. Wenden Sie sich für alle diese Anliegen an die oben genannte Adresse oder an info@elaman.de.",
+            "Unabhängig davon steht Ihnen ein Beschwerderecht bei einer Aufsichtsbehörde zu. Für uns zuständig ist das Bayerische Landesamt für Datenschutzaufsicht, Promenade 27, 91522 Ansbach.",
+          ],
+        },
+        {
+          title: "Stand dieser Erklärung",
+          paragraphs: [
+            "August 2026. Ändert sich die Datenverarbeitung auf dieser Website, passen wir diese Erklärung entsprechend an.",
+          ],
+        },
       ],
     },
-    {
-      title: "Begriffsbestimmungen",
-      paragraphs: [
-        "Der Gesetzgeber fordert, dass personenbezogene Daten auf rechtmäßige Weise, nach Treu und Glauben und in einer für die betroffene Person nachvollziehbaren Weise verarbeitet werden („Rechtmäßigkeit, Verarbeitung nach Treu und Glauben, Transparenz“). Um dies zu gewährleisten, informieren wir Sie über die einzelnen gesetzlichen Begriffsbestimmungen, die auch in dieser Datenschutzerklärung verwendet werden:",
-        "1. Personenbezogene Daten: „Personenbezogene Daten“ sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person (im Folgenden „betroffene Person“) beziehen; als identifizierbar wird eine natürliche Person angesehen, die direkt oder indirekt, insbesondere mittels Zuordnung zu einer Kennung wie einem Namen, zu einer Kennnummer, zu Standortdaten, zu einer Online-Kennung oder zu einem oder mehreren besonderen Merkmalen identifiziert werden kann, die Ausdruck der physischen, physiologischen, genetischen, psychischen, wirtschaftlichen, kulturellen oder sozialen Identität dieser natürlichen Person sind.",
-        "2. Verarbeitung: „Verarbeitung“ ist jeder, mit oder ohne Hilfe automatisierter Verfahren, ausgeführter Vorgang oder jede solche Vorgangsreihe im Zusammenhang mit personenbezogenen Daten wie das Erheben, das Erfassen, die Organisation, das Ordnen, die Speicherung, die Anpassung oder Veränderung, das Auslesen, das Abfragen, die Verwendung, die Offenlegung durch Übermittlung, Verbreitung oder eine andere Form der Bereitstellung, den Abgleich oder die Verknüpfung, die Einschränkung, das Löschen oder die Vernichtung.",
-        "3. Einschränkung der Verarbeitung: „Einschränkung der Verarbeitung“ ist die Markierung gespeicherter personenbezogener Daten mit dem Ziel, ihre künftige Verarbeitung einzuschränken.",
-        "4. Profiling: „Profiling“ ist jede Art der automatisierten Verarbeitung personenbezogener Daten, die darin besteht, dass diese personenbezogenen Daten verwendet werden, um bestimmte persönliche Aspekte, die sich auf eine natürliche Person beziehen, zu bewerten, insbesondere um Aspekte bezüglich Arbeitsleistung, wirtschaftliche Lage, Gesundheit, persönliche Vorlieben, Interessen, Zuverlässigkeit, Verhalten, Aufenthaltsort oder Ortswechsel dieser natürlichen Person zu analysieren oder vorherzusagen.",
-        "5. Pseudonymisierung: „Pseudonymisierung“ ist die Verarbeitung personenbezogener Daten in einer Weise, dass die personenbezogenen Daten ohne Hinzuziehung zusätzlicher Informationen nicht mehr einer spezifischen betroffenen Person zugeordnet werden können, sofern diese zusätzlichen Informationen gesondert aufbewahrt werden und technischen und organisatorischen Maßnahmen unterliegen, die gewährleisten, dass die personenbezogenen Daten nicht einer identifizierten oder identifizierbaren natürlichen Person zugewiesen werden können.",
-        "6. Dateisystem: „Dateisystem“ ist jede strukturierte Sammlung personenbezogener Daten, die nach bestimmten Kriterien zugänglich sind, unabhängig davon, ob diese Sammlung zentral, dezentral oder nach funktionalen oder geografischen Gesichtspunkten geordnet geführt wird.",
-        "7. Verantwortlicher: „Verantwortlicher“ ist eine natürliche oder juristische Person, Behörde, Einrichtung oder andere Stelle, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten entscheidet; sind die Zwecke dieser Verarbeitung durch das Unionsrecht oder das Recht der Mitgliedstaaten vorgegeben, so können der Verantwortliche beziehungsweise die bestimmten Kriterien seiner Benennung nach dem Unionsrecht oder dem Recht der Mitgliedstaaten vorgesehen werden.",
-        "8. Auftragsverarbeiter: „Auftragsverarbeiter“ ist eine natürliche oder juristische Person, Behörde, Einrichtung oder andere Stelle, die personenbezogene Daten im Auftrag des Verantwortlichen verarbeitet.",
-        "9. Empfänger: „Empfänger“ ist eine natürliche oder juristische Person, Behörde, Einrichtung oder andere Stelle, denen personenbezogene Daten offengelegt werden, unabhängig davon, ob es sich bei ihr um einen Dritten handelt oder nicht. Behörden, die im Rahmen eines bestimmten Untersuchungsauftrags nach dem Unionsrecht oder dem Recht der Mitgliedstaaten möglicherweise personenbezogene Daten erhalten, gelten jedoch nicht als Empfänger; die Verarbeitung dieser Daten durch die genannten Behörden erfolgt im Einklang mit den geltenden Datenschutzvorschriften gemäß den Zwecken der Verarbeitung.",
-        "10. Dritter: „Dritter“ ist eine natürliche oder juristische Person, Behörde, Einrichtung oder andere Stelle, außer der betroffenen Person, dem Verantwortlichen, dem Auftragsverarbeiter und den Personen, die unter der unmittelbaren Verantwortung des Verantwortlichen oder des Auftragsverarbeiters befugt sind, die personenbezogenen Daten zu verarbeiten.",
-        "11. Einwilligung: Eine „Einwilligung“ der betroffenen Person ist jede freiwillig für den bestimmten Fall, in informierter Weise und unmissverständlich abgegebene Willensbekundung in Form einer Erklärung oder einer sonstigen eindeutigen bestätigenden Handlung, mit der die betroffene Person zu verstehen gibt, dass sie mit der Verarbeitung der sie betreffenden personenbezogenen Daten einverstanden ist.",
+  },
+  en: {
+    imprint: {
+      title: "Site notice",
+      label: "Legal",
+      metaTitle: "Site notice",
+      metaDescription: "Legal information about Elaman GmbH, Munich.",
+      blocks: [
+        {
+          title: "Information pursuant to section 5 DDG",
+          paragraphs: ["Elaman GmbH", "Implerstraße 24", "81371 Munich", "Germany"],
+        },
+        {
+          title: "Represented by",
+          paragraphs: ["Managing Director: Holger Rumscheidt"],
+        },
+        {
+          title: "Contact",
+          paragraphs: [
+            "Phone: +49 (0) 89 24 20 91 80",
+            "Fax: +49 (0) 89 24 20 91 81",
+            "Email: info@elaman.de",
+          ],
+        },
+        {
+          title: "Commercial register",
+          paragraphs: [
+            "Registering court: Munich Local Court (Amtsgericht München)",
+            "Registration number: HRB 153662",
+          ],
+        },
+        {
+          title: "Tax details",
+          paragraphs: [
+            "Tax number: 810 / 20915",
+            "VAT identification number pursuant to section 27 a UStG: DE814086265",
+          ],
+        },
+        {
+          title: "Responsible for editorial content under section 18 (2) MStV",
+          paragraphs: ["Holger Rumscheidt, Implerstraße 24, 81371 Munich, Germany"],
+        },
+        {
+          title: "Liability for content",
+          paragraphs: [
+            "The content of this website has been compiled with care on the basis of the information currently available to us. We accept no liability for its completeness, accuracy or timeliness, and we reserve the right to amend or extend the information provided.",
+          ],
+        },
+        {
+          title: "Liability for links",
+          paragraphs: [
+            "The providers of external websites linked from this site are solely responsible for their content. No unlawful content was apparent at the time the links were created. Permanent monitoring of linked pages is not reasonable without specific grounds; we remove links as soon as we become aware of any legal violation.",
+          ],
+        },
       ],
     },
-    {
-      title: "Rechtmäßigkeit der Verarbeitung",
-      paragraphs: [
-        "Die Verarbeitung personenbezogener Daten ist nur rechtmäßig, wenn für die Verarbeitung eine Rechtsgrundlage besteht. Rechtsgrundlage für die Verarbeitung können gemäß Artikel 6 Abs. 1 lit. a – f DSGVO insbesondere sein:",
-        "a. Die betroffene Person hat ihre Einwilligung zu der Verarbeitung der sie betreffenden personenbezogenen Daten für einen oder mehrere bestimmte Zwecke gegeben;",
-        "b. die Verarbeitung ist für die Erfüllung eines Vertrags, dessen Vertragspartei die betroffene Person ist, oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, die auf Anfrage der betroffenen Person erfolgen;",
-        "c. die Verarbeitung ist zur Erfüllung einer rechtlichen Verpflichtung erforderlich, der der Verantwortliche unterliegt;",
-        "d. die Verarbeitung ist erforderlich, um lebenswichtige Interessen der betroffenen Person oder einer anderen natürlichen Person zu schützen;",
-        "e. die Verarbeitung ist für die Wahrnehmung einer Aufgabe erforderlich, die im öffentlichen Interesse liegt oder in Ausübung öffentlicher Gewalt erfolgt, die dem Verantwortlichen übertragen wurde;",
-        "f. die Verarbeitung ist zur Wahrung der berechtigten Interessen des Verantwortlichen oder eines Dritten erforderlich, sofern nicht die Interessen oder Grundrechte und Grundfreiheiten der betroffenen Person, die den Schutz personenbezogener Daten erfordern, überwiegen, insbesondere dann, wenn es sich bei der betroffenen Person um ein Kind handelt.",
+    privacy: {
+      title: "Privacy policy",
+      label: "Legal",
+      metaTitle: "Privacy policy",
+      metaDescription: "How Elaman GmbH processes personal data on this website.",
+      blocks: [
+        {
+          title: "Controller",
+          paragraphs: [
+            "The controller for data processing on this website within the meaning of Article 4 (7) GDPR is:",
+            "Elaman GmbH, Implerstraße 24, 81371 Munich, Germany",
+            "Phone: +49 (0) 89 24 20 91 80 · Email: info@elaman.de",
+          ],
+        },
+        {
+          title: "What this website does not do",
+          paragraphs: [
+            "This website sets no cookies and uses no web analytics, tracking or profiling. No third-party services are embedded — no maps, fonts, videos or social media elements loaded from external servers. All fonts are served from our own server.",
+            "This is enforced technically by a content security policy that permits connections to our own domain only. No data is therefore transmitted to advertising networks.",
+          ],
+        },
+        {
+          title: "Access data when visiting the website",
+          paragraphs: [
+            "When you open this website, your browser transmits technically necessary data which is recorded in the log files of our hosting provider: the IP address of the requesting device, the date and time of access, the address requested, the HTTP status code, the volume of data transferred, and details of your browser and operating system.",
+            "This processing is necessary to provide the website, keep it stable and detect attacks. The legal basis is Article 6 (1) (f) GDPR; our legitimate interest lies in secure and uninterrupted operation. This data is not combined with other sources and not evaluated for advertising purposes.",
+          ],
+        },
+        {
+          title: "Inquiry form",
+          paragraphs: [
+            "If you use the form on this website, we process the details you enter: first name, email address and your message as mandatory fields, surname and company as optional ones. We use this data solely to handle your inquiry and reply to you.",
+            "The legal basis is Article 6 (1) (b) GDPR where the inquiry concerns the conclusion or performance of a contract, and otherwise Article 6 (1) (f) GDPR, our legitimate interest being to answer business inquiries. Providing the data is voluntary; without a first name, email address and message we cannot answer your inquiry.",
+            "The form contains a field invisible to you which serves to block automated submissions. We additionally limit the number of submissions for a short period using a value derived from the IP address, which is held in memory only and discarded after a few minutes.",
+            "Your inquiry is delivered to our mailbox by email and kept there for as long as handling it requires. We delete it afterwards unless commercial or tax retention obligations apply.",
+          ],
+        },
+        {
+          title: "Processors",
+          paragraphs: [
+            "We use service providers for operation and delivery which process data exclusively on our instructions and under a data processing agreement pursuant to Article 28 GDPR:",
+            "Website hosting and delivery: Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA.",
+            "Delivery of form messages: Resend (Plus Five Five, Inc.), 2261 Market Street #5039, San Francisco, CA 94114, USA.",
+            "Personal data may be transferred to the USA by these providers. Such transfers take place on the basis of the European Commission's standard contractual clauses pursuant to Article 46 (2) (c) GDPR together with supplementary safeguards or, where the provider is certified, on the basis of the adequacy decision for the EU-US Data Privacy Framework pursuant to Article 45 GDPR.",
+          ],
+        },
+        {
+          title: "Encryption",
+          paragraphs: [
+            "This website is delivered exclusively over an encrypted TLS connection, which you can recognise from the “https://” address and the padlock symbol in your browser. The details you submit through the form are therefore protected in transit.",
+          ],
+        },
+        {
+          title: "Your rights",
+          paragraphs: [
+            "You have the right to obtain information about the data we process about you (Article 15 GDPR), to have inaccurate data corrected (Article 16 GDPR), to erasure (Article 17 GDPR), to restriction of processing (Article 18 GDPR) and to data portability (Article 20 GDPR).",
+            "Where we process data on the basis of a legitimate interest, you may object to that processing under Article 21 GDPR. Please direct any of these requests to the address above or to info@elaman.de.",
+            "You also have the right to lodge a complaint with a supervisory authority. The authority responsible for us is the Bavarian Data Protection Authority (Bayerisches Landesamt für Datenschutzaufsicht), Promenade 27, 91522 Ansbach, Germany.",
+          ],
+        },
+        {
+          title: "Status of this policy",
+          paragraphs: [
+            "August 2026. Should data processing on this website change, we will amend this policy accordingly.",
+          ],
+        },
       ],
     },
-    {
-      title: "Information über die Erhebung personenbezogener Daten",
-      paragraphs: [
-        "(1) Im Folgenden informieren wir über die Erhebung personenbezogener Daten bei Nutzung unserer Website. Personenbezogene Daten sind z. B. Name, Adresse, E-Mail-Adressen, Nutzerverhalten.",
-        "(2) Bei einer Kontaktaufnahme mit uns per E-Mail werden die von Ihnen mitgeteilten Daten (Ihre E-Mail-Adresse, ggf. Ihr Name und Ihre Telefonnummer) von uns gespeichert, um Ihre Fragen zu beantworten. Die in diesem Zusammenhang anfallenden Daten löschen wir, nachdem die Speicherung nicht mehr erforderlich ist, oder die Verarbeitung wird eingeschränkt, falls gesetzliche Aufbewahrungspflichten bestehen.",
-      ],
-    },
-    {
-      title: "Erhebung personenbezogener Daten bei Besuch unserer Website",
-      paragraphs: [
-        "Bei der bloß informatorischen Nutzung der Website, also wenn Sie sich nicht registrieren oder uns anderweitig Informationen übermitteln, erheben wir nur die personenbezogenen Daten, die Ihr Browser an unseren Server übermittelt. Wenn Sie unsere Website betrachten möchten, erheben wir die folgenden Daten, die für uns technisch erforderlich sind, um Ihnen unsere Website anzuzeigen und die Stabilität und Sicherheit zu gewährleisten (Rechtsgrundlage ist Art. 6 Abs. 1 S. 1 lit. f DSGVO):",
-        "– IP-Adresse; – Datum und Uhrzeit der Anfrage; – Zeitzonendifferenz zur Greenwich Mean Time (GMT); – Inhalt der Anforderung (konkrete Seite); – Zugriffsstatus/HTTP-Statuscode; – jeweils übertragene Datenmenge; – Website, von der die Anforderung kommt; – Browser; – Betriebssystem und dessen Oberfläche; – Sprache und Version der Browsersoftware.",
-      ],
-    },
-    {
-      title: "Einsatz von Cookies",
-      paragraphs: [
-        "(1) Zusätzlich zu den zuvor genannten Daten werden bei der Nutzung unserer Website Cookies auf Ihrem Rechner gespeichert. Bei Cookies handelt es sich um kleine Textdateien, die auf Ihrer Festplatte dem von Ihnen verwendeten Browser zugeordnet gespeichert werden und durch welche der Stelle, die den Cookie setzt, bestimmte Informationen zufließen. Cookies können keine Programme ausführen oder Viren auf Ihren Computer übertragen. Sie dienen dazu, das Internetangebot insgesamt nutzerfreundlicher und effektiver zu machen.",
-        "(2) Diese Website nutzt folgende Arten von Cookies, deren Umfang und Funktionsweise im Folgenden erläutert werden: – Transiente Cookies (dazu a.) – Persistente Cookies (dazu b.).",
-        "a. Transiente Cookies werden automatisiert gelöscht, wenn Sie den Browser schließen. Dazu zählen insbesondere die Session-Cookies. Diese speichern eine sogenannte Session-ID, mit welcher sich verschiedene Anfragen Ihres Browsers der gemeinsamen Sitzung zuordnen lassen. Dadurch kann Ihr Rechner wiedererkannt werden, wenn Sie auf unsere Website zurückkehren. Die Session-Cookies werden gelöscht, wenn Sie sich ausloggen oder den Browser schließen.",
-        "b. Persistente Cookies werden automatisiert nach einer vorgegebenen Dauer gelöscht, die sich je nach Cookie unterscheiden kann. Sie können die Cookies in den Sicherheitseinstellungen Ihres Browsers jederzeit löschen.",
-        "c. Sie können Ihre Browser-Einstellung entsprechend Ihren Wünschen konfigurieren und z. B. die Annahme von Third-Party-Cookies oder allen Cookies ablehnen. Sog. „Third Party Cookies“ sind Cookies, die durch einen Dritten gesetzt wurden, folglich nicht durch die eigentliche Website auf der man sich gerade befindet. Wir weisen Sie darauf hin, dass Sie durch die Deaktivierung von Cookies eventuell nicht alle Funktionen dieser Website nutzen können.",
-        "d. Die genutzten Flash-Cookies werden nicht durch Ihren Browser erfasst, sondern durch Ihr Flash-Plug-in. Weiterhin nutzen wir HTML5 storage objects, die auf Ihrem Endgerät abgelegt werden. Diese Objekte speichern die erforderlichen Daten unabhängig von Ihrem verwendeten Browser und haben kein automatisches Ablaufdatum. Wenn Sie keine Verarbeitung der Flash-Cookies wünschen, müssen Sie ein entsprechendes Add-On installieren, z. B. „Better Privacy“ für Mozilla Firefox (https://addons.mozilla.org/de/firefox/addon/betterprivacy/) oder das Adobe-Flash-Killer-Cookie für Google Chrome. Die Nutzung von HTML5 storage objects können Sie verhindern, indem Sie in Ihrem Browser den privaten Modus einsetzen. Zudem empfehlen wir, regelmäßig Ihre Cookies und den Browser-Verlauf manuell zu löschen.",
-      ],
-    },
-    {
-      title: "Weitere Funktionen und Angebote unserer Website",
-      paragraphs: [
-        "(1) Neben der rein informatorischen Nutzung der Website bieten wir verschiedene Leistungen an, die Sie bei Interesse nutzen können. Dazu müssen Sie in der Regel weitere personenbezogene Daten angeben, die wir zur Erbringung der jeweiligen Leistung nutzen und für die die zuvor genannten Grundsätze zur Datenverarbeitung gelten.",
-        "(2) Teilweise bedienen wir uns zur Verarbeitung Ihrer Daten externer Dienstleister. Diese wurden von uns sorgfältig ausgewählt und beauftragt, sind an unsere Weisungen gebunden und werden regelmäßig kontrolliert.",
-        "(3) Weiterhin können wir Ihre personenbezogenen Daten an Dritte weitergeben, wenn Aktionsteilnahmen, Gewinnspiele, Vertragsabschlüsse oder ähnliche Leistungen von uns gemeinsam mit Partnern angeboten werden. Nähere Informationen hierzu erhalten Sie bei Angabe Ihrer personenbezogenen Daten oder untenstehend in der Beschreibung des Angebotes.",
-        "(4) Soweit unsere Dienstleister oder Partner ihren Sitz in einem Staat außerhalb des Europäischen Wirtschaftsraumen (EWR) haben, informieren wir Sie über die Folgen dieses Umstands in der Beschreibung des Angebotes.",
-      ],
-    },
-    {
-      title: "Kinder",
-      paragraphs: [
-        "Unser Angebot richtet sich grundsätzlich an Erwachsene. Personen unter 18 Jahren sollten ohne Zustimmung der Eltern oder Erziehungsberechtigten keine personenbezogenen Daten an uns übermitteln.",
-      ],
-    },
-    {
-      title: "Rechte der betroffenen Person",
-      paragraphs: [
-        "(1) Widerruf der Einwilligung: Sofern die Verarbeitung der personenbezogenen Daten auf einer erteilten Einwilligung beruht, haben Sie jederzeit das Recht, die Einwilligung zu widerrufen. Durch den Widerruf der Einwilligung wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung nicht berührt. Für die Ausübung des Widerrufsrechts können Sie sich jederzeit an uns wenden.",
-        "(2) Recht auf Bestätigung: Sie haben das Recht, von dem Verantwortlichen eine Bestätigung darüber zu verlangen, ob wir sie betreffende personenbezogene Daten verarbeiten. Die Bestätigung können Sie jederzeit unter den oben genannten Kontaktdaten verlangen.",
-        "(3) Auskunftsrecht: Sofern personenbezogene Daten verarbeitet werden, können Sie jederzeit Auskunft über diese personenbezogenen Daten und über folgenden Informationen verlangen: a. die Verarbeitungszwecke; b. den Kategorien personenbezogener Daten, die verarbeitet werden; c. die Empfänger oder Kategorien von Empfängern, gegenüber denen die personenbezogenen Daten offengelegt worden sind oder noch offengelegt werden, insbesondere bei Empfängern in Drittländern oder bei internationalen Organisationen; d. falls möglich, die geplante Dauer, für die die personenbezogenen Daten gespeichert werden, oder, falls dies nicht möglich ist, die Kriterien für die Festlegung dieser Dauer; e. das Bestehen eines Rechts auf Berichtigung oder Löschung der Sie betreffenden personenbezogenen Daten oder auf Einschränkung der Verarbeitung durch den Verantwortlichen oder eines Widerspruchsrechts gegen diese Verarbeitung; f. das Bestehen eines Beschwerderechts bei einer Aufsichtsbehörde; g. wenn die personenbezogenen Daten nicht bei der betroffenen Person erhoben werden, alle verfügbaren Informationen über die Herkunft der Daten; h. das Bestehen einer automatisierten Entscheidungsfindung einschließlich Profiling gemäß Artikel 22 Absätze 1 und 4 DSGVO.",
-        "Werden personenbezogene Daten an ein Drittland oder an eine internationale Organisation übermittelt, so haben Sie das Recht, über die geeigneten Garantien gemäß Artikel 46 DSGVO im Zusammenhang mit der Übermittlung unterrichtet zu werden. Wir stellen eine Kopie der personenbezogenen Daten, die Gegenstand der Verarbeitung sind, zur Verfügung. Für alle weiteren Kopien, die Sie Person beantragen, können wir ein angemessenes Entgelt auf der Grundlage der Verwaltungskosten verlangen. Stellen Sie den Antrag elektronisch, so sind die Informationen in einem gängigen elektronischen Format zur Verfügung zu stellen, sofern er nichts anderes angibt. Das Recht auf Erhalt einer Kopie gemäß Absatz 3 darf die Rechte und Freiheiten anderer Personen nicht beeinträchtigen.",
-        "(4) Recht auf Berichtigung: Sie haben das Recht, von uns unverzüglich die Berichtigung Sie betreffender unrichtiger personenbezogener Daten zu verlangen. Unter Berücksichtigung der Zwecke der Verarbeitung haben Sie das Recht, die Vervollständigung unvollständiger personenbezogener Daten – auch mittels einer ergänzenden Erklärung – zu verlangen.",
-        "(5) Recht auf Löschung („Recht auf vergessen werden“): Sie haben das Recht, von dem Verantwortlichen zu verlangen, dass Sie betreffende personenbezogene Daten unverzüglich gelöscht werden, und wir sind verpflichtet, personenbezogene Daten unverzüglich zu löschen, sofern einer der folgenden Gründe zutrifft: a. Die personenbezogenen Daten sind für die Zwecke, für die sie erhoben oder auf sonstige Weise verarbeitet wurden, nicht mehr notwendig. b. Die betroffene Person widerruft ihre Einwilligung, auf die sich die Verarbeitung gemäß Artikel 6 Absatz 1 Buchstabe a oder Artikel 9 Absatz 2 Buchstabe a DSGVO stützte, und es fehlt an einer anderweitigen Rechtsgrundlage für die Verarbeitung. c. Die betroffene Person legt gemäß Artikel 21 Absatz 1 DSGVO Widerspruch gegen die Verarbeitung ein und es liegen keine vorrangigen berechtigten Gründe für die Verarbeitung vor, oder die betroffene Person legt gemäß Artikel 21 Absatz 2 DSGVO Widerspruch gegen die Verarbeitung ein. d. Die personenbezogenen Daten wurden unrechtmäßig verarbeitet. e. Die Löschung der personenbezogenen Daten ist zur Erfüllung einer rechtlichen Verpflichtung nach dem Unionsrecht oder dem Recht der Mitgliedstaaten erforderlich, dem der Verantwortliche unterliegt. f. Die personenbezogenen Daten wurden in Bezug auf angebotene Dienste der Informationsgesellschaft gemäß Artikel 8 Absatz 1 DSGVO erhoben.",
-        "Hat der Verantwortliche die personenbezogenen Daten öffentlich gemacht und ist er gemäß Absatz 1 zu deren Löschung verpflichtet, so trifft er unter Berücksichtigung der verfügbaren Technologie und der Implementierungskosten angemessene Maßnahmen, auch technischer Art, um für die Datenverarbeitung Verantwortliche, die die personenbezogenen Daten verarbeiten, darüber zu informieren, dass eine betroffene Person von ihnen die Löschung aller Links zu diesen personenbezogenen Daten oder von Kopien oder Replikationen dieser personenbezogenen Daten verlangt hat. Das Recht auf Löschung („Recht auf vergessen werden“) besteht nicht, soweit die Verarbeitung erforderlich ist: – zur Ausübung des Rechts auf freie Meinungsäußerung und Information; – zur Erfüllung einer rechtlichen Verpflichtung; – aus Gründen des öffentlichen Interesses im Bereich der öffentlichen Gesundheit; – für im öffentlichen Interesse liegende Archivzwecke, wissenschaftliche oder historische Forschungszwecke oder für statistische Zwecke; oder – zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen.",
-        "(6) Recht auf Einschränkung der Verarbeitung: Sie haben das Recht, von uns die Einschränkung der Verarbeitung ihrer personenbezogenen Daten zu verlangen, wenn eine der folgenden Voraussetzungen gegeben ist: a. die Richtigkeit der personenbezogenen Daten von der betroffenen Person bestritten wird; b. die Verarbeitung unrechtmäßig ist und die betroffene Person die Löschung der personenbezogenen Daten ablehnt; c. der Verantwortliche die personenbezogenen Daten für die Zwecke der Verarbeitung nicht länger benötigt; oder d. die betroffene Person Widerspruch gegen die Verarbeitung gemäß Artikel 21 Absatz 1 DSGVO eingelegt hat.",
-        "Wurde die Verarbeitung gemäß den oben genannten Voraussetzungen eingeschränkt, so werden diese personenbezogenen Daten – von ihrer Speicherung abgesehen – nur mit Einwilligung der betroffenen Person oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Union oder eines Mitgliedstaats verarbeitet. Um das Recht auf Einschränkung der Verarbeitung geltend zu machen, kann sich die betroffene Person jederzeit an uns unter den oben angegebenen Kontaktdaten wenden.",
-        "(7) Recht auf Datenübertragbarkeit: Sie haben das Recht, die Sie betreffenden personenbezogenen Daten, die Sie uns bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten, und Sie haben das Recht, diese Daten einem anderen Verantwortlichen ohne Behinderung durch den Verantwortlichen, dem die personenbezogenen Daten bereitgestellt wurden, zu übermitteln, sofern: a. die Verarbeitung auf einer Einwilligung gemäß Artikel 6 Absatz 1 Buchstabe a oder Artikel 9 Absatz 2 Buchstabe a oder auf einem Vertrag gemäß Artikel 6 Absatz 1 Buchstabe b DSGVO beruht und b. die Verarbeitung mithilfe automatisierter Verfahren erfolgt.",
-        "Bei der Ausübung des Rechts auf Datenübertragbarkeit gemäß Absatz 1 haben Sie das Recht, zu erwirken, dass die personenbezogenen Daten direkt von einem Verantwortlichen zu einem anderen Verantwortlichen übermittelt werden, soweit dies technisch machbar ist. Die Ausübung des Rechts auf Datenübertragbarkeit lässt das Recht auf Löschung („Recht auf Vergessen werden“) unberührt. Dieses Recht gilt nicht für eine Verarbeitung, die für die Wahrnehmung einer Aufgabe erforderlich ist, die im öffentlichen Interesse liegt oder in Ausübung öffentlicher Gewalt erfolgt, die dem Verantwortlichen übertragen wurde.",
-        "(8) Widerspruchsrecht: Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Sie betreffender personenbezogener Daten, die aufgrund von Artikel 6 Absatz 1 Buchstaben e oder f DSGVO erfolgt, Widerspruch einzulegen; dies gilt auch für ein auf diese Bestimmungen gestütztes Profiling.",
-        "Der Verantwortliche verarbeitet die personenbezogenen Daten nicht mehr, es sei denn, er kann zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die die Interessen, Rechte und Freiheiten der betroffenen Person überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen. Werden personenbezogene Daten verarbeitet, um Direktwerbung zu betreiben, so haben SIe das Recht, jederzeit Widerspruch gegen die Verarbeitung Sie betreffender personenbezogener Daten zum Zwecke derartiger Werbung einzulegen; dies gilt auch für das Profiling, soweit es mit solcher Direktwerbung in Verbindung steht. Widersprechen Sie der Verarbeitung für Zwecke der Direktwerbung, so werden die personenbezogenen Daten nicht mehr für diese Zwecke verarbeitet.",
-        "Im Zusammenhang mit der Nutzung von Diensten der Informationsgesellschaft könne Sie ungeachtet der Richtlinie 2002/58/EG Ihr Widerspruchsrecht mittels automatisierter Verfahren ausüben, bei denen technische Spezifikationen verwendet werden. Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, gegen die Sie betreffende Verarbeitung Sie betreffender personenbezogener Daten, die zu wissenschaftlichen oder historischen Forschungszwecken oder zu statistischen Zwecken gemäß Artikel 89 Absatz 1 erfolgt, Widerspruch einzulegen, es sei denn, die Verarbeitung ist zur Erfüllung einer im öffentlichen Interesse liegenden Aufgabe erforderlich. Das Widerspruchsrecht können Sie jederzeit ausüben, indem Sie sich an den jeweiligen Verantwortlichen wenden.",
-        "(9) Automatisierte Entscheidungen im Einzelfall einschließlich Profiling: Sie haben das Recht, nicht einer ausschließlich auf einer automatisierten Verarbeitung – einschließlich Profiling – beruhenden Entscheidung unterworfen zu werden, die Ihnen gegenüber rechtliche Wirkung entfaltet oder Sie in ähnlicher Weise erheblich beeinträchtigt. Dies gilt nicht, wenn die Entscheidung für den Abschluss oder die Erfüllung eines Vertrags erforderlich ist, aufgrund von Rechtsvorschriften zulässig ist oder mit ausdrücklicher Einwilligung der betroffenen Person erfolgt.",
-        "(10) Recht auf Beschwerde bei einer Aufsichtsbehörde: Sie haben zudem, unbeschadet eines anderweitigen verwaltungsrechtlichen oder gerichtlichen Rechtsbehelfs, das Recht auf Beschwerde bei einer Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres Aufenthaltsorts, ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes, wenn die betroffene Person der Ansicht ist, dass die Verarbeitung der sie betreffenden personenbezogenen Daten gegen diese Verordnung verstößt.",
-        "(11) Recht auf wirksamen gerichtlichen Rechtsbehelf: Sie haben unbeschadet eines verfügbaren verwaltungsrechtlichen oder außergerichtlichen Rechtsbehelfs einschließlich des Rechts auf Beschwerde bei einer Aufsichtsbehörde gemäß Artikel 77 DSGVO das Recht auf einen wirksamen gerichtlichen Rechtsbehelf, wenn sie der Ansicht ist, dass die ihr aufgrund dieser Verordnung zustehenden Rechte infolge einer nicht im Einklang mit dieser Verordnung stehenden Verarbeitung ihrer personenbezogenen Daten verletzt wurden.",
-      ],
-    },
-    {
-      title: "Einsatz von Google Analytics",
-      paragraphs: [
-        "(1) Diese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc. („Google“). Google Analytics verwendet sog. „Cookies“, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.",
-        "(2) Die im Rahmen von Google Analytics von Ihrem Browser übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.",
-        "(3) Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich werden nutzen können. Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem sie das unter dem folgenden Link verfügbare Browser-Plug-in herunterladen und installieren: http://tools.google.com/dlpage/gaoptout?hl=de.",
-        "(4) Diese Website verwendet Google Analytics mit der Erweiterung „_anonymizeIp()“. Dadurch werden IP-Adressen gekürzt weiterverarbeitet, eine Personenbeziehbarkeit kann damit ausgeschlossen werden.",
-        "(5) Wir nutzen Google Analytics, um die Nutzung unserer Website analysieren und regelmäßig verbessern zu können. Rechtsgrundlage für die Nutzung von Google Analytics ist Art. 6 Abs. 1 S. 1 lit. f DSGVO.",
-        "(6) Informationen des Drittanbieters: Google Dublin, Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland. Nutzerbedingungen: www.google.com/analytics/terms/de.html, Übersicht zum Datenschutz: www.google.com/intl/de/analytics/learn/privacy.html, sowie die Datenschutzerklärung: www.google.de/intl/de/policies/privacy.",
-        "(7) Diese Website verwendet Google Analytics zudem für eine geräteübergreifende Analyse von Besucherströmen, die über eine User-ID durchgeführt wird.",
-      ],
-    },
-    {
-      title: "Einbindung von Google Maps",
-      paragraphs: [
-        "(1) Auf dieser Website nutzen wir das Angebot von Google Maps. Dadurch können wir Ihnen interaktive Karten direkt in der Website anzeigen und ermöglichen Ihnen die komfortable Nutzung der Karten-Funktion.",
-        "(2) Durch den Besuch auf der Website erhält Google die Information, dass Sie die entsprechende Unterseite unserer Website aufgerufen haben. Wenn Sie bei Google eingeloggt sind, werden Ihre Daten direkt Ihrem Konto zugeordnet. Google speichert Ihre Daten als Nutzungsprofile und nutzt sie für Zwecke der Werbung, Marktforschung und/oder bedarfsgerechten Gestaltung seiner Website.",
-        "(3) Weitere Informationen zu Zweck und Umfang der Datenerhebung und ihrer Verarbeitung durch den Plug-in-Anbieter erhalten Sie in den Datenschutzerklärungen des Anbieters: www.google.de/intl/de/policies/privacy. Google verarbeitet Ihre personenbezogenen Daten auch in den USA und hat sich dem EU-US Privacy Shield unterworfen, https://www.privacyshield.gov/EU-US-Framework.",
-      ],
-    },
-  ] satisfies LegalBlock[],
-} as const;
+  },
+} satisfies Record<Locale, Record<LegalPageKind, LegalDocumentContent>>;
+
+export function getLegalPageContent(locale: Locale, kind: LegalPageKind) {
+  return legalContent[locale][kind];
+}

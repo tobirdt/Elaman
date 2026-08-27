@@ -5,6 +5,8 @@ export type ContactEmailPayload = {
   email: string;
   message: string;
   website?: string;
+  /** Language the inquiry was written in, so the reply can match it. */
+  locale?: "de" | "en";
 };
 
 type ContactEmailContent = {
@@ -23,8 +25,27 @@ function escapeHtml(value: string) {
 }
 
 function formatOptional(value: string | undefined) {
-  return value && value.trim().length > 0 ? value : "Not provided";
+  return value && value.trim().length > 0 ? value : "—";
 }
+
+/**
+ * Local Munich time, spelled out. The team reads this in a mail client, where
+ * a raw UTC ISO string is needlessly hard to place.
+ */
+function formatSubmittedAt(timestamp: Date) {
+  const formatted = new Intl.DateTimeFormat("de-DE", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "Europe/Berlin",
+  }).format(timestamp);
+
+  return `${formatted} (Europe/Berlin)`;
+}
+
+const localeLabels = {
+  de: "Deutsch — bitte auf Deutsch antworten",
+  en: "English — please reply in English",
+} as const;
 
 function formatSubjectValue(value: string) {
   return value.replace(/[\r\n]+/g, " ").trim();
@@ -34,7 +55,7 @@ export function createContactEmailContent(
   payload: ContactEmailPayload,
   timestamp = new Date(),
 ): ContactEmailContent {
-  const submittedAt = timestamp.toISOString();
+  const submittedAt = formatSubmittedAt(timestamp);
   const fullName = [payload.firstName, payload.lastName].filter(Boolean).join(" ");
   const subjectName = formatSubjectValue(fullName || payload.email);
   const subject = `New Elaman website inquiry: ${subjectName}`;
@@ -44,6 +65,7 @@ export function createContactEmailContent(
     ["Last name", formatOptional(payload.lastName)],
     ["Company", formatOptional(payload.company)],
     ["Email", payload.email],
+    ["Language", localeLabels[payload.locale ?? "de"]],
     ["Submitted", submittedAt],
     ["Source", "Contact form on elaman.de"],
   ] as const;
