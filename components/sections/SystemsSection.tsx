@@ -42,7 +42,10 @@ export function SystemsSection({ content }: SystemsSectionProps) {
                 key={item.title}
                 className="grid min-w-0 grid-cols-[2.5rem_minmax(0,1fr)] items-baseline gap-3 border-t border-[var(--border-on-navy)] py-4"
               >
-                <span className="font-mono text-[length:var(--type-micro)] tracking-[var(--tracking-label)] text-[var(--color-on-dark-muted)]">
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-[length:var(--type-micro)] tracking-[var(--tracking-label)] text-[var(--color-on-dark-muted)]"
+                >
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h3 className="min-w-0 text-pretty text-[length:var(--type-body)] font-semibold leading-6 tracking-[-0.01em] text-[var(--color-on-dark)]">

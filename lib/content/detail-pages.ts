@@ -27,6 +27,20 @@ type DetailBase = {
   closing: string;
 };
 
+/**
+ * Alt-text rule for the heritage photography.
+ *
+ * An empty string marks the image as decorative, so assistive technology skips
+ * it. Use it whenever the picture carries no information the surrounding copy
+ * does not already state — which is the case for every atmospheric or
+ * metaphorical motif. Rule of thumb: if the alt text would have to explain the
+ * metaphor ("… as a symbol of reliable cooperation"), the image is decorative.
+ *
+ * Only genuinely informative photographs get a factual description: the Munich
+ * office and the protection-control detail. The homepage treats all of its
+ * images as decorative; keep both sides consistent for the same file.
+ */
+
 export type CompanyDetailContent = DetailBase & {
   kind: "company";
   heroAlt: string;
@@ -78,40 +92,40 @@ const detailContent = {
     company: {
       kind: "company",
       metadata: {
-        title: "Unternehmen",
+        title: "Unternehmen – Technik aus München",
         description:
           "Elaman GmbH in München entwickelt und integriert projektspezifische Kommunikations- und Sicherheitstechnik.",
         ogLocale: "de_DE",
       },
       eyebrow: "Unternehmen",
       title: "Technik für Kommunikation und Sicherheit. Aus München.",
-      lead: "Elaman verbindet bewährte Produkte und aktuelle Technologien zu Systemen, die auf Aufgabe, Infrastruktur und Einsatzumfeld abgestimmt sind.",
+      lead: "Elaman ist ein Münchner Unternehmen für Kommunikations- und Sicherheitstechnik. Wir planen Systeme, führen ihre Komponenten zusammen und bleiben bis in den laufenden Betrieb ansprechbar.",
       back: { label: "Zur Übersicht", href: "/de#profile" },
       contact: { label: "Kontakt aufnehmen", href: "/de#contact" },
-      closing: "Am Anfang genügt eine kurze Beschreibung der Aufgabe.",
+      closing:
+        "Rufen Sie an oder schreiben Sie uns — auch wenn noch nicht alles feststeht.",
       heroAlt: "Empfangsbereich des Elaman-Büros in München",
       principles: [
         {
           title: "Die Aufgabe präzise erfassen",
           description:
-            "Zu Beginn klären wir die technischen Anforderungen, die vorhandene Infrastruktur und das vorgesehene Einsatzumfeld.",
+            "Noch bevor über Technik gesprochen wird, klären wir, was das System leisten soll und was am Einsatzort bereits vorhanden ist.",
         },
         {
           title: "Komponenten aufeinander abstimmen",
           description:
-            "Wir wählen geeignete Produkte und Technologien aus, stimmen sie aufeinander ab und integrieren sie zu einem Gesamtsystem.",
+            "Wir entscheiden über Produkte und Schnittstellen und führen sie zu einem System zusammen, das als Ganzes funktioniert.",
         },
         {
           title: "Den Betrieb langfristig begleiten",
           description:
-            "Wir begleiten die Umsetzung und Inbetriebnahme und unterstützen den Betrieb mit Schulung und langfristiger technischer Betreuung.",
+            "Nach der Inbetriebnahme bleiben Schulung und technische Betreuung Teil der Zusammenarbeit — über Jahre, nicht über Monate.",
         },
       ],
       bridge: {
-        title: "Technische Qualität braucht verlässliche Zusammenarbeit.",
-        body: "Unsere Ingenieure begleiten ein Projekt von der ersten Analyse bis zum laufenden Betrieb. Zuständigkeiten, Entscheidungen und technische Zusammenhänge bleiben dabei nachvollziehbar.",
-        imageAlt:
-          "Aus Steinen geformte Brücke als Sinnbild für verlässliche Zusammenarbeit",
+        title: "Dieselben Ingenieure von der Analyse bis zum Betrieb.",
+        body: "Wer die Anforderungen aufgenommen hat, ist später auch bei der Inbetriebnahme dabei. Das erspart Übergaben, bei denen Wissen verloren geht, und hält Entscheidungen nachvollziehbar.",
+        imageAlt: "",
       },
       management: {
         label: "Geschäftsführung",
@@ -122,29 +136,30 @@ const detailContent = {
     systems: {
       kind: "systems",
       metadata: {
-        title: "Systeme",
+        title: "Systeme für Kommunikation und Observation",
         description:
           "Elaman entwickelt und integriert Systeme für Kommunikation, Observation, Führung, technische Gegenüberwachung und Datenforensik.",
         ogLocale: "de_DE",
       },
       eyebrow: "Systeme",
       title: "Systeme für Kommunikation, Observation und Auswertung.",
-      lead: "Elaman führt spezialisierte Technik zu Systemen zusammen, die auf Aufgabe, Infrastruktur und Einsatzumfeld abgestimmt sind. Im Mittelpunkt steht das Zusammenspiel aller Komponenten im laufenden Betrieb.",
+      lead: "Die folgenden acht Bereiche beschreiben, womit Elaman arbeitet. Entscheidend ist, wie sie zusammenwirken: Ein Observationssystem nützt wenig, wenn die Auswertung nicht mithält.",
       back: { label: "Zur Übersicht", href: "/de#systems" },
       contact: { label: "Anforderungen besprechen", href: "/de#contact" },
-      closing: "Jedes System beginnt mit einer klar definierten Aufgabe.",
-      heroAlt: "Menschen und Bewegungen im öffentlichen Raum aus erhöhter Perspektive",
+      closing:
+        "Wenn Sie wissen, was das System leisten soll, haben wir einen Ausgangspunkt.",
+      heroAlt: "",
       portfolioLabel: "Leistungsbereiche",
       portfolio: [
         {
           title: "Audio- und Videoobservation",
           description:
-            "Aufeinander abgestimmte Systeme zur Erfassung und strukturierten Weiterverarbeitung von Audio- und Videosignalen.",
+            "Erfassung von Audio- und Videosignalen samt der Technik, die daraus verwertbares Material macht.",
         },
         {
           title: "Geoinformationssysteme",
           description:
-            "Geoinformationssysteme führen räumliche Informationen zusammen und stellen sie strukturiert für die jeweilige Aufgabe bereit.",
+            "Positionen und Bewegungen auf einer gemeinsamen Kartengrundlage — Basis für Lagebilder und Einsatzplanung.",
         },
         {
           title: "Technische Gegenüberwachung",
@@ -164,12 +179,12 @@ const detailContent = {
         {
           title: "Intelligence-Fusion-Systeme",
           description:
-            "Fusion-Systeme führen Informationen aus unterschiedlichen Quellen zusammen und bereiten sie für die weitere Auswertung auf.",
+            "Zusammenführung von Daten aus getrennten Quellen, damit Zusammenhänge sichtbar werden, die einzeln nicht erkennbar sind.",
         },
         {
           title: "Schulung und Betreuung",
           description:
-            "Praxisnahe Einweisung und langfristige technische Betreuung unterstützen einen fachgerechten Betrieb.",
+            "Einweisung am fertigen System und technische Betreuung, solange es im Einsatz ist.",
         },
         {
           title: "Datenforensik",
@@ -179,45 +194,45 @@ const detailContent = {
       ],
       approach: {
         label: "Projektansatz",
-        title: "Das System folgt der Aufgabe.",
+        title: "Zuerst die Anforderungen, dann die Technik.",
         paragraphs: [
-          "Am Anfang stehen die technischen, organisatorischen und räumlichen Rahmenbedingungen.",
-          "Darauf aufbauend wählt Elaman geeignete Komponenten aus, integriert sie zu einem Gesamtsystem und begleitet die Inbetriebnahme.",
+          "Bevor Technik ausgewählt wird, klären wir, was das System leisten muss, welche Anlagen bereits vorhanden sind und welche räumlichen und organisatorischen Grenzen gelten.",
+          "Erst danach entscheiden wir über die Komponenten, führen sie zu einem Gesamtsystem zusammen und begleiten die Inbetriebnahme.",
         ],
       },
     },
     protection: {
       kind: "protection",
       metadata: {
-        title: "Schutzlösungen",
+        title: "Schutzlösungen und Gegenmaßnahmen",
         description:
           "Elaman plant und integriert technische Gegenmaßnahmen, TSCM und Schutzkonzepte für sensible Einsatzbereiche.",
         ogLocale: "de_DE",
       },
       eyebrow: "Schutzlösungen",
       title: "Schutz, wo Vertraulichkeit zählt.",
-      lead: "Elaman stimmt technische Gegenmaßnahmen und Schutzkonzepte auf das jeweilige Umfeld, die vorhandene Infrastruktur und den vorgesehenen Einsatz ab.",
+      lead: "Schutz lässt sich nicht von der Stange planen. Was wirkt, hängt vom Raum ab, von seiner Umgebung und davon, wofür das System zugelassen ist.",
       back: { label: "Zur Übersicht", href: "/de#protection" },
       contact: { label: "Schutzprojekt besprechen", href: "/de#contact" },
-      closing: "Für eine erste Einschätzung genügt eine kurze Beschreibung der Aufgabe.",
-      heroAlt: "Aufmerksamer Blick eines Tigers",
+      closing: "Für eine erste Einschätzung reicht ein Telefonat.",
+      heroAlt: "",
       groups: [
         {
           number: "01",
           title: "Elektronische Gegenmaßnahmen",
-          body: "Elaman plant und integriert Systeme zur Begrenzung funkbasierter Risiken ausschließlich für autorisierte Anwendungen.",
+          body: "Systeme, die funkbasierte Risiken begrenzen — geplant und integriert ausschließlich für behördlich autorisierte Anwendungen.",
           image: "/images/elaman-protection-jammer.jpg",
           imageAlt: "Detailaufnahme eines Reglers für ein technisches Schutzsystem",
           items: [
             {
               title: "ECM / Counter-RCIED",
               description:
-                "Elektronische Gegenmaßnahmen gegen funkgesteuerte Bedrohungen und andere funkbasierte Risiken.",
+                "Wir prüfen, welche Frequenzbereiche im Rahmen der Genehmigung abgedeckt werden dürfen, und legen Aufbau und Steuerung entsprechend aus.",
             },
             {
               title: "Jamming-Systeme",
               description:
-                "Mobile, fahrzeuggebundene und stationäre Systeme für behördlich autorisierte Anwendungen.",
+                "Ob mobil, im Fahrzeug oder fest installiert, entscheidet sich am Einsatzort. Was baulich und rechtlich möglich ist, klären wir vorab.",
             },
           ],
         },
@@ -226,18 +241,17 @@ const detailContent = {
           title: "Gegenüberwachung und geschirmte Bereiche",
           body: "Wo vertrauliche Informationen besprochen oder verarbeitet werden, gehören technische Prüfung und räumlicher Schutz zusammen.",
           image: "/images/elaman-protection-tscm.jpg",
-          imageAlt:
-            "Kameraobjektiv mit einem Auge als Sinnbild für technische Gegenüberwachung",
+          imageAlt: "",
           items: [
             {
               title: "TSCM",
               description:
-                "Technische Maßnahmen zur Erkennung und Abwehr unbefugter Überwachung sowie Beratung und Schulung spezialisierter Prüfteams.",
+                "Eine Prüfung umfasst Messung, Durchsuchung und die Bewertung der Ergebnisse. Auf Wunsch bilden wir Prüfteams aus, die diese Arbeit später selbst übernehmen.",
             },
             {
               title: "Geschirmte Räume",
               description:
-                "Bauliche, mechanische und elektronische Schutzkonzepte für sensible Besprechungs- und Arbeitsbereiche.",
+                "Ein geschirmter Raum entsteht aus Bauteilen, Türen, Lüftung und Kabelführung, die gemeinsam dichthalten müssen — nachgewiesen durch Messung nach Fertigstellung.",
             },
           ],
         },
@@ -248,39 +262,39 @@ const detailContent = {
     company: {
       kind: "company",
       metadata: {
-        title: "Company",
+        title: "Company – engineering from Munich",
         description:
           "Elaman GmbH in Munich develops and integrates communications and security systems tailored to each project.",
-        ogLocale: "en_US",
+        ogLocale: "en_GB",
       },
       eyebrow: "Company",
       title: "Engineering for communications and security. From Munich.",
-      lead: "Elaman combines established products with current technologies into systems tailored to the task, infrastructure and operating environment.",
+      lead: "Elaman is a Munich-based specialist in communications and security technology. We plan systems, bring their components together and remain available once they are in day-to-day operation.",
       back: { label: "Back to overview", href: "/en#profile" },
       contact: { label: "Discuss a project", href: "/en#contact" },
-      closing: "A brief outline is enough to start the conversation.",
+      closing: "Call or write to us — even if not everything has been decided yet.",
       heroAlt: "Reception area at the Elaman office in Munich",
       principles: [
         {
           title: "Define the task precisely",
           description:
-            "We begin by clarifying the technical requirements, existing infrastructure and intended operating environment.",
+            "Before any technology comes into play, we establish what the system has to do and what is already in place on site.",
         },
         {
           title: "Coordinate the complete system",
           description:
-            "We select suitable products and technologies, coordinate them and integrate them into a coherent system.",
+            "We decide on products and interfaces and bring them together into a system that works as a whole.",
         },
         {
           title: "Support long-term operation",
           description:
-            "We support implementation and commissioning, train the responsible teams and provide long-term technical assistance.",
+            "After commissioning, training and technical support stay part of the arrangement — over years, not months.",
         },
       ],
       bridge: {
-        title: "Technical quality depends on reliable collaboration.",
-        body: "Our engineers stay with a project from initial analysis through to operation. Responsibilities, decisions and technical dependencies remain clear throughout.",
-        imageAlt: "A bridge formed from stones as a symbol of reliable cooperation",
+        title: "The same engineers from analysis through to operation.",
+        body: "Whoever takes down the requirements is still there at commissioning. That avoids handovers where knowledge gets lost, and keeps decisions traceable.",
+        imageAlt: "",
       },
       management: {
         label: "Managing Director",
@@ -291,29 +305,29 @@ const detailContent = {
     systems: {
       kind: "systems",
       metadata: {
-        title: "Systems",
+        title: "Systems for communications and observation",
         description:
           "Elaman develops and integrates systems for communications, observation, command environments, technical counter-surveillance and data forensics.",
-        ogLocale: "en_US",
+        ogLocale: "en_GB",
       },
       eyebrow: "Systems",
       title: "Systems for communications, observation and analysis.",
-      lead: "Elaman integrates specialised technology into systems tailored to the task, infrastructure and operating environment. The focus is on how all components work together in operation.",
+      lead: "The eight areas below describe what Elaman works with. What matters is how they work together: an observation system is of little use if the analysis side cannot keep up.",
       back: { label: "Back to overview", href: "/en#systems" },
       contact: { label: "Discuss requirements", href: "/en#contact" },
-      closing: "Every system begins with a clearly defined task.",
-      heroAlt: "People and movement in a public space seen from above",
+      closing: "If you know what the system needs to do, we have a starting point.",
+      heroAlt: "",
       portfolioLabel: "Areas of expertise",
       portfolio: [
         {
           title: "Audio and video observation",
           description:
-            "Integrated systems for capturing and structured processing of audio and video signals.",
+            "Capture of audio and video signals, together with the equipment that turns them into usable material.",
         },
         {
           title: "Geographical information systems",
           description:
-            "Geographical information systems bring spatial data together and structure it for the task at hand.",
+            "Positions and movements on a shared cartographic basis — the groundwork for situational awareness and operational planning.",
         },
         {
           title: "Technical counter-surveillance",
@@ -333,12 +347,12 @@ const detailContent = {
         {
           title: "Intelligence fusion systems",
           description:
-            "Fusion systems bring information from different sources together and prepare it for further analysis.",
+            "Data from separate sources brought together so that connections become visible which no single source reveals on its own.",
         },
         {
           title: "Training and support",
           description:
-            "Practical instruction and long-term technical support for day-to-day operation.",
+            "Instruction on the finished system, and technical support for as long as it stays in service.",
         },
         {
           title: "Data forensics",
@@ -348,45 +362,45 @@ const detailContent = {
       ],
       approach: {
         label: "Project approach",
-        title: "The system follows the task.",
+        title: "Requirements first, technology second.",
         paragraphs: [
-          "Technical, organisational and spatial conditions define the starting point.",
-          "Elaman then selects suitable components, integrates them into a coordinated system and supports commissioning.",
+          "Before any technology is chosen, we establish what the system has to achieve, which installations are already in place, and what spatial and organisational limits apply.",
+          "Only then do we decide on components, bring them together into a complete system and support commissioning.",
         ],
       },
     },
     protection: {
       kind: "protection",
       metadata: {
-        title: "Protection solutions",
+        title: "Protection solutions and countermeasures",
         description:
           "Elaman plans and integrates technical countermeasures, TSCM and protection concepts for sensitive environments.",
-        ogLocale: "en_US",
+        ogLocale: "en_GB",
       },
       eyebrow: "Protection solutions",
       title: "Protection where confidentiality matters.",
-      lead: "Elaman aligns technical countermeasures and protection concepts with the environment, existing infrastructure and intended application.",
+      lead: "Protection cannot be planned off the shelf. What works depends on the room, on its surroundings and on what the system is authorised for.",
       back: { label: "Back to overview", href: "/en#protection" },
       contact: { label: "Discuss a protection project", href: "/en#contact" },
-      closing: "A brief outline of the task is enough for an initial assessment.",
-      heroAlt: "The attentive gaze of a tiger",
+      closing: "A phone call is enough for an initial assessment.",
+      heroAlt: "",
       groups: [
         {
           number: "01",
           title: "Electronic countermeasures",
-          body: "Elaman plans and integrates systems for controlling radio-based risks exclusively for authorised applications.",
+          body: "Systems that limit radio-based risks — planned and integrated exclusively for officially authorised applications.",
           image: "/images/elaman-protection-jammer.jpg",
           imageAlt: "Close-up of a control dial for a technical protection system",
           items: [
             {
               title: "ECM / Counter-RCIED",
               description:
-                "Electronic countermeasures addressing radio-controlled threats and other wireless risks.",
+                "We establish which frequency ranges may be covered within the scope of the authorisation, and design the setup and control accordingly.",
             },
             {
               title: "Jamming systems",
               description:
-                "Portable, vehicle-based and fixed systems for authorised public-sector applications.",
+                "Whether a system is portable, vehicle-mounted or permanently installed is decided on site. We establish in advance what is possible structurally and legally.",
             },
           ],
         },
@@ -395,17 +409,17 @@ const detailContent = {
           title: "Counter-surveillance and shielded environments",
           body: "Where confidential information is discussed or processed, technical inspection and spatial protection belong together.",
           image: "/images/elaman-protection-tscm.jpg",
-          imageAlt: "Camera lens and eye as a symbol of technical counter-surveillance",
+          imageAlt: "",
           items: [
             {
               title: "TSCM",
               description:
-                "Technical measures for detecting and countering unauthorised surveillance, supported by consulting and training for specialist inspection teams.",
+                "An inspection covers measurement, physical search and assessment of the findings. On request we train inspection teams to carry out this work themselves.",
             },
             {
               title: "Shielded rooms",
               description:
-                "Structural, mechanical and electronic protection concepts for sensitive meeting and working environments.",
+                "A shielded room comes together from panels, doors, ventilation and cable routing that all have to hold — verified by measurement once the work is finished.",
             },
           ],
         },

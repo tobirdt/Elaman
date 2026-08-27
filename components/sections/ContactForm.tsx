@@ -192,13 +192,13 @@ export function ContactForm({ content }: ContactFormProps) {
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <label className={fieldBase}>
-          <span>
+        <div className={fieldBase}>
+          <label htmlFor="firstName">
             {content.fields.firstName}
             <span aria-hidden="true" className="text-elaman-red">
               {" *"}
             </span>
-          </span>
+          </label>
           <input
             id="firstName"
             className="form-field"
@@ -212,14 +212,14 @@ export function ContactForm({ content }: ContactFormProps) {
             aria-describedby={errors.firstName ? "firstName-error" : undefined}
           />
           {errors.firstName ? (
-            <span id="firstName-error" className="text-sm leading-5 text-elaman-red">
+            <p id="firstName-error" className="text-sm leading-5 text-elaman-red">
               {errors.firstName}
-            </span>
+            </p>
           ) : null}
-        </label>
+        </div>
 
-        <label className={fieldBase}>
-          {content.fields.lastName}
+        <div className={fieldBase}>
+          <label htmlFor="lastName">{content.fields.lastName}</label>
           <input
             id="lastName"
             className="form-field"
@@ -232,16 +232,16 @@ export function ContactForm({ content }: ContactFormProps) {
             aria-describedby={errors.lastName ? "lastName-error" : undefined}
           />
           {errors.lastName ? (
-            <span id="lastName-error" className="text-sm leading-5 text-elaman-red">
+            <p id="lastName-error" className="text-sm leading-5 text-elaman-red">
               {errors.lastName}
-            </span>
+            </p>
           ) : null}
-        </label>
+        </div>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <label className={fieldBase}>
-          {content.fields.company}
+        <div className={fieldBase}>
+          <label htmlFor="company">{content.fields.company}</label>
           <input
             id="company"
             className="form-field"
@@ -254,19 +254,19 @@ export function ContactForm({ content }: ContactFormProps) {
             aria-describedby={errors.company ? "company-error" : undefined}
           />
           {errors.company ? (
-            <span id="company-error" className="text-sm leading-5 text-elaman-red">
+            <p id="company-error" className="text-sm leading-5 text-elaman-red">
               {errors.company}
-            </span>
+            </p>
           ) : null}
-        </label>
+        </div>
 
-        <label className={fieldBase}>
-          <span>
+        <div className={fieldBase}>
+          <label htmlFor="email">
             {content.fields.email}
             <span aria-hidden="true" className="text-elaman-red">
               {" *"}
             </span>
-          </span>
+          </label>
           <input
             id="email"
             className="form-field"
@@ -283,20 +283,20 @@ export function ContactForm({ content }: ContactFormProps) {
             aria-describedby={errors.email ? "email-error" : undefined}
           />
           {errors.email ? (
-            <span id="email-error" className="text-sm leading-5 text-elaman-red">
+            <p id="email-error" className="text-sm leading-5 text-elaman-red">
               {errors.email}
-            </span>
+            </p>
           ) : null}
-        </label>
+        </div>
       </div>
 
-      <label className={fieldBase}>
-        <span>
+      <div className={fieldBase}>
+        <label htmlFor="message">
           {content.fields.message}
           <span aria-hidden="true" className="text-elaman-red">
             {" *"}
           </span>
-        </span>
+        </label>
         <textarea
           id="message"
           className="form-field min-h-24 resize-y"
@@ -310,11 +310,11 @@ export function ContactForm({ content }: ContactFormProps) {
           aria-describedby={errors.message ? "message-error" : undefined}
         />
         {errors.message ? (
-          <span id="message-error" className="text-sm leading-5 text-elaman-red">
+          <p id="message-error" className="text-sm leading-5 text-elaman-red">
             {errors.message}
-          </span>
+          </p>
         ) : null}
-      </label>
+      </div>
 
       <div className="mt-1 flex flex-col gap-4 sm:flex-row sm:items-center">
         <Button

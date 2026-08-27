@@ -106,7 +106,10 @@ function CompanyDossier({ content }: { content: CompanyDetailContent }) {
                 key={principle.title}
                 className="border-b border-[var(--border-hairline)] py-8 lg:border-b-0 lg:border-r lg:px-8 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
               >
-                <span className="font-mono text-[length:var(--type-micro)] tracking-[var(--tracking-label)] text-elaman-blue">
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-[length:var(--type-micro)] tracking-[var(--tracking-label)] text-elaman-blue"
+                >
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h2 className="mt-8 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
@@ -207,7 +210,10 @@ function SystemsDossier({ content }: { content: SystemsDetailContent }) {
                   index % 2 === 0 ? "lg:border-r lg:pl-0" : "lg:pr-0"
                 }`}
               >
-                <span className="font-mono text-[length:var(--type-micro)] tracking-[var(--tracking-label)] text-graphite-soft">
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-[length:var(--type-micro)] tracking-[var(--tracking-label)] text-graphite-soft"
+                >
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div className="min-w-0">

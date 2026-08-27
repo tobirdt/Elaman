@@ -328,7 +328,10 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
                         mobile
                         onClick={() => setMenuOpen(false)}
                       >
-                        <span className="font-mono text-[length:var(--type-micro)] font-normal tracking-[var(--tracking-label)] text-graphite-soft">
+                        <span
+                          aria-hidden="true"
+                          className="font-mono text-[length:var(--type-micro)] font-normal tracking-[var(--tracking-label)] text-graphite-soft"
+                        >
                           {String(index + 1).padStart(2, "0")}
                         </span>
                         <span>{item.label}</span>

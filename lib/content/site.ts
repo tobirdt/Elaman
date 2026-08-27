@@ -120,10 +120,10 @@ export type LocalizedSiteContent = {
 export const siteContent = {
   en: {
     metadata: {
-      title: "Elaman – German Security Solutions",
+      title: "Elaman – German Security Solutions, Munich",
       description:
         "Elaman GmbH in Munich develops and integrates communications and security systems for observation, technical counter-surveillance, protection and data forensics.",
-      ogLocale: "en_US",
+      ogLocale: "en_GB",
     },
     navigation: {
       main: [
@@ -146,7 +146,7 @@ export const siteContent = {
       legalNavigationLabel: "Legal navigation",
     },
     footer: {
-      copyright: "©2026 Elaman GmbH",
+      copyright: "© 2026 Elaman GmbH",
     },
     hero: {
       label: "Elaman",
@@ -160,8 +160,8 @@ export const siteContent = {
       label: "Elaman",
       title: "German Security Solutions.",
       paragraphs: [
-        "Elaman combines established products with current technologies to create integrated systems for demanding communications and security tasks.",
-        "We align every solution with the existing infrastructure, operating environment and organisational requirements of the project.",
+        "Elaman brings established products together with new technologies to build systems for communications and security.",
+        "What a system finally looks like is decided by its setting: the infrastructure already in place, the organisational requirements, the conditions on site.",
       ],
       management: {
         label: "Managing Director",
@@ -174,35 +174,34 @@ export const siteContent = {
     },
     advice: {
       title: "From initial analysis to long-term support.",
-      intro:
-        "Our work begins with a clear understanding of the task and does not end at commissioning.",
+      intro: "For us, a project does not end at commissioning.",
       steps: [
         {
           title: "Analysis & consulting",
           description:
-            "Together, we define the technical requirements, existing infrastructure and conditions of the operating environment.",
+            "We establish what the system has to achieve and the conditions it will work under.",
         },
         {
           title: "Planning & integration",
           description:
-            "We select suitable products and technologies and integrate them into a coordinated system.",
+            "The requirements become a system design: which components, which interfaces, in which order.",
         },
         {
           title: "Turnkey implementation",
           description:
-            "Our engineers deliver the coordinated system and support commissioning.",
+            "Assembly, integration and commissioning are handled by our own engineers.",
         },
         {
           title: "Training & support",
           description:
-            "We train the responsible teams and provide long-term technical support during operation.",
+            "The teams are trained on the system; after that we remain available for technical operation.",
         },
       ],
     },
     systems: {
       title: "Systems for communications, observation and analysis.",
       intro:
-        "Elaman integrates specialised systems for communications, observation, command and analysis into the relevant operational environment.",
+        "Eight areas that Elaman supplies individually or brings together into a complete system.",
       items: [
         { title: "Audio and video observation" },
         { title: "Geographical information systems" },
@@ -210,7 +209,7 @@ export const siteContent = {
         { title: "Special-purpose vehicles" },
         { title: "Command and control centres" },
         { title: "Intelligence fusion systems" },
-        { title: "Training & support" },
+        { title: "Training and support" },
         { title: "Data forensics" },
       ],
       detailLink: {
@@ -221,7 +220,7 @@ export const siteContent = {
     protection: {
       label: "Protection & Countermeasures",
       title: "Protection where confidentiality matters.",
-      body: "Elaman plans technical countermeasures and protection concepts for sensitive environments and integrates them into existing infrastructure.",
+      body: "Technical countermeasures and physical shielding for places where conversations could be intercepted — planned for the specific room and the infrastructure already in place.",
       items: [
         {
           title: "ECM / Counter-RCIED",
@@ -267,8 +266,7 @@ export const siteContent = {
       emailHref: "mailto:info@elaman.de",
       form: {
         title: "Your inquiry",
-        intro:
-          "A brief description of the task is all we need for an initial conversation.",
+        intro: "A few sentences about the task are enough to start.",
         fields: {
           firstName: "First name",
           lastName: "Last name",
@@ -294,16 +292,16 @@ export const siteContent = {
           rateLimited:
             "Several inquiries were sent in a short period. Please try again in a few minutes.",
           sendFailed:
-            "We could not send your inquiry just now. Please try again or contact us by phone or email.",
+            "Your inquiry could not be sent. Please try again — or call us and we will take the details directly.",
           unexpected:
-            "We could not send your inquiry just now. Please try again or contact us by phone or email.",
+            "Something went wrong while processing your inquiry. Please try again, or contact us by phone or email.",
         },
       },
     },
   },
   de: {
     metadata: {
-      title: "Elaman – German Security Solutions",
+      title: "Elaman – Kommunikations- und Sicherheitstechnik, München",
       description:
         "Elaman GmbH in München entwickelt und integriert Kommunikations- und Sicherheitssysteme für Observation, technische Gegenüberwachung, Schutz und Datenforensik.",
       ogLocale: "de_DE",
@@ -333,7 +331,7 @@ export const siteContent = {
       legalNavigationLabel: "Rechtliche Hinweise",
     },
     footer: {
-      copyright: "©2026 Elaman GmbH",
+      copyright: "© 2026 Elaman GmbH",
     },
     hero: {
       label: "Elaman",
@@ -347,8 +345,8 @@ export const siteContent = {
       label: "Elaman",
       title: "Kommunikations- und Sicherheitstechnik aus Deutschland.",
       paragraphs: [
-        "Elaman verbindet bewährte Produkte und aktuelle Technologien zu integrierten Systemen für anspruchsvolle Aufgaben in Kommunikation und Sicherheit.",
-        "Wir stimmen jede Lösung auf die vorhandene Infrastruktur, das Einsatzumfeld und die organisatorischen Anforderungen des Projekts ab.",
+        "Elaman verbindet etablierte Produkte mit neuen Technologien zu Systemen für Kommunikation und Sicherheit.",
+        "Wie ein System am Ende aussieht, entscheidet das Einsatzumfeld: die vorhandene Infrastruktur, die organisatorischen Vorgaben, die Bedingungen vor Ort.",
       ],
       management: {
         label: "Geschäftsführung",
@@ -361,35 +359,34 @@ export const siteContent = {
     },
     advice: {
       title: "Von der Analyse bis zur langfristigen Betreuung.",
-      intro:
-        "Jedes Projekt beginnt mit einer sorgfältigen Analyse und endet für uns nicht mit der Inbetriebnahme.",
+      intro: "Ein Projekt endet für uns nicht mit der Inbetriebnahme.",
       steps: [
         {
           title: "Analyse & Beratung",
           description:
-            "Gemeinsam klären wir die technischen Anforderungen, die vorhandene Infrastruktur und die Bedingungen im Einsatzumfeld.",
+            "Wir nehmen auf, was das System leisten muss und unter welchen Bedingungen es arbeiten wird.",
         },
         {
           title: "Planung & Integration",
           description:
-            "Wir wählen geeignete Produkte und Technologien aus und integrieren sie zu einem abgestimmten System.",
+            "Aus dem Anforderungsprofil entsteht ein Systementwurf: welche Komponenten, welche Schnittstellen, welche Reihenfolge.",
         },
         {
           title: "Schlüsselfertige Umsetzung",
           description:
-            "Unsere Ingenieure realisieren das abgestimmte System und begleiten die Inbetriebnahme.",
+            "Aufbau, Integration und Inbetriebnahme übernehmen unsere eigenen Ingenieure.",
         },
         {
           title: "Schulung & Betreuung",
           description:
-            "Wir schulen die verantwortlichen Teams und begleiten den technischen Betrieb langfristig.",
+            "Die Teams werden am System geschult; danach bleiben wir für den technischen Betrieb erreichbar.",
         },
       ],
     },
     systems: {
       title: "Systeme für Kommunikation, Observation und Auswertung.",
       intro:
-        "Elaman integriert spezialisierte Systeme für Kommunikation, Observation, Führung und Auswertung in das jeweilige Einsatzumfeld.",
+        "Acht Bereiche, die Elaman einzeln liefert oder zu einem Gesamtsystem zusammenführt.",
       items: [
         { title: "Audio- und Videoobservation" },
         { title: "Geoinformationssysteme" },
@@ -408,7 +405,7 @@ export const siteContent = {
     protection: {
       label: "Schutz und Gegenmaßnahmen",
       title: "Schutz, wo Vertraulichkeit zählt.",
-      body: "Elaman plant technische Gegenmaßnahmen und Schutzkonzepte für sensible Einsatzbereiche und integriert sie in die vorhandene Infrastruktur.",
+      body: "Technische Gegenmaßnahmen und baulicher Schutz für Bereiche, in denen mitgehört werden könnte — geplant für den jeweiligen Raum und die vorhandene Infrastruktur.",
       items: [
         {
           title: "ECM / Counter-RCIED",
@@ -454,7 +451,7 @@ export const siteContent = {
       emailHref: "mailto:info@elaman.de",
       form: {
         title: "Ihr Anliegen",
-        intro: "Eine kurze Beschreibung der Aufgabe genügt für den ersten Austausch.",
+        intro: "Ein paar Sätze zur Aufgabe genügen für den ersten Austausch.",
         fields: {
           firstName: "Vorname",
           lastName: "Nachname",
@@ -481,9 +478,9 @@ export const siteContent = {
           rateLimited:
             "In kurzer Zeit wurden mehrere Anfragen gesendet. Bitte versuchen Sie es in einigen Minuten erneut.",
           sendFailed:
-            "Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch beziehungsweise per E-Mail.",
+            "Ihre Anfrage konnte nicht übermittelt werden. Bitte versuchen Sie es erneut — oder rufen Sie uns an, dann klären wir es direkt.",
           unexpected:
-            "Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch beziehungsweise per E-Mail.",
+            "Bei der Verarbeitung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder wenden Sie sich telefonisch an uns.",
         },
       },
     },

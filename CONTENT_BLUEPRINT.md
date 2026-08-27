@@ -19,9 +19,31 @@ The public site remains intentionally discreet. Do not name customers, expose op
 
 German copy must read as original German, not as a line-by-line translation. Prefer direct, active sentences and established technical terminology. Avoid literal English compounds, inflated sales language, and abstract formulations when a precise German verb is available.
 
+### Sentence rhythm (regression guard)
+
+Consistent terminology is required; a consistent _sentence pattern_ is not. Repeating one rhetorical figure across the site is the clearest sign of machine-written copy, and it must not return:
+
+- **No recurring triad.** `A, B und C` enumerations may appear where they list genuine technical elements, but the same three-part figure must not carry consecutive statements. Vary between two-part statements, a colon introducing an asyndetic list, and single-focus sentences.
+- **One formula, one place.** A phrase such as `auf Aufgabe, Infrastruktur und Einsatzumfeld abgestimmt` may exist once. It must never appear on both the homepage and a dossier page — a visitor who follows the link one click deeper must not read the same sentence twice.
+- **No empty aphorisms.** Headings must state something checkable. `Das System folgt der Aufgabe.` and `Jedes System beginnt mit einer klar definierten Aufgabe.` are examples of what to avoid; `Zuerst die Anforderungen, dann die Technik.` states an actual order of work.
+- **No circular definitions.** A description must not open by restating its own term (`Geoinformationssysteme führen räumliche Informationen zusammen …`). Name what the system produces instead.
+- **No empty intensifiers.** `anspruchsvoll`, `sorgfältig`, `praxisnah`, `geeignet`, and `bewährt` add no information. Delete them or replace them with the concrete fact they were standing in for.
+- **Distinct error and call-to-action strings.** Two different failure conditions need two different messages; three sections need three different closing lines.
+
+The same rules apply to English. Additionally, check English for German word order (fronted objects such as _What is possible legally, we establish in advance_) and for `a company for X` constructions. Keep the English register as measured as the German one — colloquialisms such as _we will sort it out_ do not belong in procurement copy.
+
+### Image alt text
+
+The heritage photography is atmospheric, not informative. An empty `alt` marks a picture as decorative so assistive technology skips it, and that is the correct choice whenever the image carries nothing the surrounding copy does not already say. If an alt text would have to explain the metaphor (_… as a symbol of reliable cooperation_, _the attentive gaze of a tiger_), the image is decorative. Only the Munich office and the protection-control detail are described factually. The same file must be treated the same way on the homepage and on a dossier page.
+
 The public voice is calm, exact, and assured. It explains what Elaman does without sales pressure, unsupported superlatives, or theatrical security language. Prefer concrete terms such as `Aufgabe`, `Infrastruktur`, `Einsatzumfeld`, `Integration`, and `technische Betreuung`; do not vary terminology merely for effect. English is written independently in the same register and uses British spelling throughout.
 
-The canonical browser and social title in both locales is `Elaman – German Security Solutions`.
+Browser and social titles are localised, because the `<title>` is the most heavily weighted search field and a German visitor must find German terms in it:
+
+- DE: `Elaman – Kommunikations- und Sicherheitstechnik, München`
+- EN: `Elaman – German Security Solutions, Munich`
+
+`German Security Solutions` remains the English brand descriptor and stays in the signet, the English title, and the organisation data. It is not used as the German homepage title.
 
 ## 2. Verified factual anchors
 
@@ -128,7 +150,7 @@ Capability labels:
 |       04 | Spezialfahrzeuge            | Special-purpose vehicles         |
 |       05 | Führungszentralen           | Command and control centres      |
 |       06 | Intelligence-Fusion-Systeme | Intelligence fusion systems      |
-|       07 | Schulung und Betreuung      | Training & Support               |
+|       07 | Schulung und Betreuung      | Training and support             |
 |       08 | Datenforensik               | Data forensics                   |
 
 The homepage ledger names capability categories only. The Systems dossier may add concise descriptions of each category and the project-specific integration approach. It does not expose technical specifications, customers, countries, operational scenarios, or performance claims.
