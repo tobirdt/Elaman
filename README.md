@@ -1,6 +1,6 @@
 # Elaman Website
 
-Production-ready bilingual Next.js website for Elaman GmbH. The current product combines a six-section homepage, three focused dossier pages, legal pages, and a server-validated contact form.
+Production-ready bilingual Next.js website for Elaman GmbH. The current product combines a five-section homepage, two focused dossier pages, legal pages, and a server-validated contact form.
 
 ## Stack
 
@@ -19,24 +19,22 @@ The fixed bilingual sequence is:
 2. `#profile` — Company / Unternehmen
 3. `#advice` — Approach / Vorgehen
 4. `#systems` — Systems / Systeme
-5. `#protection` — Protection / Schutz
-6. `#contact` — Contact / Kontakt
+5. `#contact` — Contact / Kontakt
 
 Desktop sections occupy at least the visible height below the sticky header. Mobile, tablet, short displays, and sections with additional content grow and scroll naturally.
 
 ## Dossier pages
 
-| Topic                | German                | English          |
-| -------------------- | --------------------- | ---------------- |
-| Company              | `/de/unternehmen`     | `/en/company`    |
-| Systems              | `/de/systeme`         | `/en/systems`    |
-| Protection solutions | `/de/schutzloesungen` | `/en/protection` |
+| Topic   | German            | English       |
+| ------- | ----------------- | ------------- |
+| Company | `/de/unternehmen` | `/en/company` |
+| Systems | `/de/systeme`     | `/en/systems` |
 
 Each route has reciprocal language links, canonical/hreflang metadata, structured data, and a route-specific social preview. Detail pages use normal document flow and do not opt into homepage scroll snap.
 
 ## Global navigation
 
-The points-only signet links to the localised homepage. Desktop navigation links directly to Company, Systems, and Protection, followed by the homepage anchors Approach and Contact. The mobile menu prepends an explicit Home / Start entry. Active styling follows either the current dossier route or the corresponding homepage section.
+The points-only signet links to the localised homepage. Desktop navigation links directly to Company and Systems, followed by the homepage anchors Approach and Contact. The mobile menu prepends an explicit Home / Start entry. Active styling follows either the current dossier route or the corresponding homepage section.
 
 ## Local Development
 
@@ -83,7 +81,7 @@ After a production deployment and final DNS cutover:
 
 1. Verify `https://www.elaman.de` as a domain property in Google Search Console.
 2. Submit `https://www.elaman.de/sitemap.xml`.
-3. Inspect and request indexing for `/de`, `/en`, the six dossier URLs, and the four legal URLs.
+3. Inspect and request indexing for `/de`, `/en`, the four dossier URLs, and the four legal URLs.
 4. Check that Google sees the production canonical URLs rather than the previous Wix deployment.
 5. Recheck coverage and search queries after Google has recrawled the domain.
 
@@ -101,7 +99,7 @@ If the honeypot is filled, the API returns `{ "ok": true }` without sending emai
 4. Run the full local validation gate.
 5. Push a non-production branch and inspect its Vercel Preview.
 6. Check desktop, tablet, mobile, and reduced-motion behavior on the Preview.
-7. Check `/de`, `/en`, all six dossier URLs, all four legal URLs, the 404 page, metadata, and the sitemap.
+7. Check `/de`, `/en`, all four dossier URLs, all four legal URLs, the 404 page, metadata, and the sitemap.
 8. Promote or merge only after Preview acceptance.
 9. Submit a production test inquiry and confirm delivery and reply-to behavior.
 

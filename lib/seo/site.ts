@@ -9,7 +9,7 @@ export const siteConfig = {
   name: "Elaman GmbH",
   title: "Elaman – German Security Solutions",
   description:
-    "Elaman GmbH in Munich develops and integrates communications and security systems for specialised professional applications.",
+    "Elaman GmbH in Munich supplies and integrates security technology exclusively for security authorities and security-related organisations.",
   url: siteUrl,
   logoPath: "/brand/elaman-logo.png",
   iconPath: "/brand/elaman-icon.svg",
@@ -19,7 +19,7 @@ export const siteConfig = {
     path: "/images/elaman-home-og.jpg",
     width: 1200,
     height: 630,
-    alt: "Elaman GmbH, Munich – communications and security engineering",
+    alt: "Elaman GmbH, Munich – German Security Solutions",
   },
 } as const;
 
@@ -76,6 +76,12 @@ export function createPageMetadata({
     title: pageTitle,
     description,
     metadataBase: new URL(siteConfig.url),
+    icons: {
+      icon: {
+        url: siteConfig.iconPath,
+        type: "image/svg+xml",
+      },
+    },
     alternates: {
       canonical: url,
       languages,

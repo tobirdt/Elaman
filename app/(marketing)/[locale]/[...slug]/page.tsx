@@ -51,15 +51,6 @@ const socialImages: Record<
       en: "Elaman – systems for communications, observation and analysis",
     },
   },
-  protection: {
-    path: "/images/elaman-protection-og.jpg",
-    width: 1200,
-    height: 630,
-    alt: {
-      de: "Elaman – Schutzlösungen",
-      en: "Elaman – protection solutions",
-    },
-  },
 };
 
 type Resolved =
@@ -94,9 +85,10 @@ function lastSegment(path: string) {
 
 /**
  * Only the parameter combinations produced by `generateStaticParams` resolve.
- * Anything else stops at the router and is served by `app/not-found.tsx`,
- * instead of entering this page and calling `notFound()` — which yields Next's
- * bare internal error document rather than the branded 404.
+ * Anything else stops at the router and is served by `app/global-not-found.tsx`,
+ * preserving a complete server-rendered 404 document without client JavaScript.
+ * Next.js 16.3.4 currently logs an internal `NoFallbackError` for this correct
+ * 404 response: https://github.com/vercel/next.js/issues/90537
  */
 export const dynamicParams = false;
 

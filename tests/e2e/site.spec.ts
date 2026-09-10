@@ -8,8 +8,6 @@ const publicRoutes = [
   { language: "en", path: "/en/company" },
   { language: "de", path: "/de/systeme" },
   { language: "en", path: "/en/systems" },
-  { language: "de", path: "/de/schutzloesungen" },
-  { language: "en", path: "/en/protection" },
   { language: "de", path: "/de/impressum" },
   { language: "en", path: "/en/site-notice" },
   { language: "de", path: "/de/datenschutz" },
@@ -86,6 +84,8 @@ test("unknown routes serve a complete 404 document without JavaScript", async ({
     "/de/definitely-not-a-page",
     "/en/definitely-not-a-page",
     "/de/unternehmen/extra-segment",
+    "/de/schutzloesungen",
+    "/en/protection",
   ]) {
     const response = await request.get(path);
     const body = await response.text();
@@ -94,6 +94,31 @@ test("unknown routes serve a complete 404 document without JavaScript", async ({
     expect(body, path).toContain('lang="de"');
     expect(body, path).toContain("Seite nicht gefunden.");
     expect(body, path).not.toContain('id="__next_error__"');
+  }
+});
+
+test("the homepages expose the approved bilingual portfolio", async ({ page }) => {
+  for (const route of [
+    {
+      path: "/de",
+      tagline: "Das Bindeglied zwischen Vertrauen und Sicherheit.",
+      excludedNavigation: "Schutzlösungen",
+    },
+    {
+      path: "/en",
+      tagline: "The link between trust and security.",
+      excludedNavigation: "Protection",
+    },
+  ]) {
+    await page.goto(route.path, { waitUntil: "networkidle" });
+
+    await expect(page.getByText(route.tagline, { exact: true })).toBeVisible();
+    await expect(page.getByText("25+", { exact: true })).toHaveCount(1);
+    await expect(page.locator("#systems li")).toHaveCount(5);
+    await expect(page.locator("#protection")).toHaveCount(0);
+    await expect(
+      page.getByRole("link", { name: route.excludedNavigation, exact: true }),
+    ).toHaveCount(0);
   }
 });
 

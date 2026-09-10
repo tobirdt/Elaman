@@ -4,7 +4,7 @@ Instructions for AI agents and developers working on the production Elaman GmbH 
 
 ## Project summary
 
-The site is a bilingual German/English company website built with Next.js 16, React 19, and Tailwind CSS 4. A six-section homepage provides orientation; three localised dossier pages add measured depth for the company, systems, and protection solutions. Its audience is institutional: public-sector decision-makers, technical stakeholders, procurement teams, and security-related organisations.
+The site is a bilingual German/English company website built with Next.js 16, React 19, and Tailwind CSS 4. A five-section homepage provides orientation; two localised dossier pages add measured depth for the company and systems. Its audience is institutional: public-sector decision-makers, technical stakeholders, procurement teams, and security-related organisations.
 
 The approved visual direction is a modern reconstruction of the former Elaman homepage: white-first, photography-led, restrained, and precise. It must feel like an established specialist company, not a SaaS product, a security-themed spectacle, or a design-system demo.
 
@@ -30,8 +30,8 @@ Conflict order for public wording: verified fact → `CONTENT_BLUEPRINT.md` → 
 
 - Keep German and English content complete and aligned.
 - Use tokens from `app/globals.css`; keep `lib/design/tokens.ts` synchronized.
-- Compose with the reachable primitives in `components/ui`, the six homepage sections, and the three dossier compositions.
-- Keep the homepage order: Hero → Profile → Advice → Systems → Protection → Contact.
+- Compose with the reachable primitives in `components/ui`, the five homepage sections, and the two dossier compositions.
+- Keep the homepage order: Hero → Profile → Advice → Systems → Contact.
 - Preserve the contact-form honeypot, client validation, server validation, and safe email rendering.
 - Respect `prefers-reduced-motion` for all transitions and entrances.
 - Use `next/image` with an accurate `sizes` value for site imagery.
@@ -43,7 +43,7 @@ Conflict order for public wording: verified fact → `CONTENT_BLUEPRINT.md` → 
 - Reintroduce removed Scroll Story, DotMatrix, formation, glass, technical-grid, signal-diagram, or feature-card implementations.
 - Add glassmorphism, gradient blobs, grid overlays, glow, cyberpunk styling, icon-tile grids, bento layouts, large shadows, or soft SaaS rounding.
 - Add colours outside the canonical palette or add/replace fonts.
-- Add imagery beyond the seven approved heritage photographs, their route-specific social crops, and supplied brand assets.
+- Add imagery beyond the four approved heritage photographs, their route-specific social crops, and supplied brand assets.
 - Invent statistics, certifications, client logos, named customers, portals, or sovereignty claims.
 - Add Framer Motion or another animation dependency for behavior achievable with the current CSS system.
 - Add scroll-scrubbed motion, parallax, loops, decorative perpetual motion, blur animation, or layout-property animation.
@@ -56,18 +56,18 @@ Conflict order for public wording: verified fact → `CONTENT_BLUEPRINT.md` → 
 
 ### Palette
 
-| Token          |     Value | Role                                      |
-| -------------- | --------: | ----------------------------------------- |
-| paper          | `#ffffff` | Primary canvas                            |
-| paper-soft     | `#f7f8fa` | Quiet contrast                            |
-| graphite       | `#16181d` | Primary text                              |
-| graphite-muted | `#555d6b` | Body text                                 |
-| graphite-soft  | `#667286` | Metadata                                  |
-| elaman-blue    | `#244074` | Brand and active state                    |
-| elaman-red     | `#d83034` | Protection semantics and required markers |
-| navy           | `#172033` | Systems composition                       |
-| on-dark        | `#f7f8fa` | Primary text on navy                      |
-| on-dark-muted  | `#c7d0dc` | Secondary text on navy                    |
+| Token          |     Value | Role                           |
+| -------------- | --------: | ------------------------------ |
+| paper          | `#ffffff` | Primary canvas                 |
+| paper-soft     | `#f7f8fa` | Quiet contrast                 |
+| graphite       | `#16181d` | Primary text                   |
+| graphite-muted | `#555d6b` | Body text                      |
+| graphite-soft  | `#667286` | Metadata                       |
+| elaman-blue    | `#244074` | Brand and active state         |
+| elaman-red     | `#d83034` | Required and error form states |
+| navy           | `#172033` | Systems composition            |
+| on-dark        | `#f7f8fa` | Primary text on navy           |
+| on-dark-muted  | `#c7d0dc` | Secondary text on navy         |
 
 No additional palette is permitted.
 
@@ -84,15 +84,12 @@ No additional palette is permitted.
 
 The approved source photographs are:
 
-- `public/images/elaman-advice.png`
+- `public/images/elaman-advice.jpg`
 - `public/images/elaman-profile-bridge.jpg`
 - `public/images/elaman-systems-media-mining.jpg`
-- `public/images/elaman-protection.png`
 - `public/images/elaman-munich-office.jpg`
-- `public/images/elaman-protection-jammer.jpg` — protection dossier only
-- `public/images/elaman-protection-tscm.jpg` — protection dossier only
 
-The route-specific `*-og.*` files are derived social previews, not additional editorial motifs. Keep all crops static and deliberate. The current route hero is the LCP image and must remain immediately available.
+The route-specific `elaman-home-og`, `elaman-company-og`, and `elaman-systems-og` files are derived social previews, not additional editorial motifs. Keep all crops static and deliberate. The current route hero is the LCP image and must remain immediately available.
 
 ## Current component vocabulary
 
@@ -112,14 +109,13 @@ The application intentionally has no generic card, surface, diagram, or animatio
 
 ## Homepage structure
 
-| Anchor        | Component           | Purpose                                                                   |
-| ------------- | ------------------- | ------------------------------------------------------------------------- |
-| `#hero`       | `HeroSection`       | Chameleon, Elaman, original tagline, and the single 20+ experience stat   |
-| `#profile`    | `ProfileSection`    | Company profile, factual management link, and supplied stone-bridge image |
-| `#advice`     | `AdviceSection`     | Four-stage project path from analysis to support                          |
-| `#systems`    | `SystemsSection`    | Navy Media Mining split and open eight-area ledger                        |
-| `#protection` | `ProtectionSection` | Tiger panorama and factual protection/countermeasure information          |
-| `#contact`    | `ContactSection`    | Munich office, direct contact routes, and inquiry form                    |
+| Anchor     | Component        | Purpose                                                                   |
+| ---------- | ---------------- | ------------------------------------------------------------------------- |
+| `#hero`    | `HeroSection`    | Chameleon, Elaman, approved tagline, and the single 25+ experience stat   |
+| `#profile` | `ProfileSection` | Company profile, factual management link, and supplied stone-bridge image |
+| `#advice`  | `AdviceSection`  | Four-stage project path from analysis to support                          |
+| `#systems` | `SystemsSection` | Navy Media Mining split and open five-area ledger                         |
+| `#contact` | `ContactSection` | Munich office, direct contact routes, and inquiry form                    |
 
 Do not change this approved section set or order without explicit approval.
 
@@ -144,11 +140,11 @@ On the homepage, the compact footer provides the single terminal `scroll-snap-al
 - Locales are `de` and `en`; German is the default route.
 - Homepage strings come from `getSiteContent(locale)`; dossier strings come from `getDetailPageContent(locale, kind)`.
 - Use `sectionPath(locale, "#anchor")` for anchored navigation.
-- Use `detailPagePath(locale, kind)` for the three localised dossier routes.
-- Detail routes are `/de/unternehmen` ↔ `/en/company`, `/de/systeme` ↔ `/en/systems`, and `/de/schutzloesungen` ↔ `/en/protection`.
-- Global desktop navigation exposes the three dossier routes plus Approach / Vorgehen and Contact; the points-only signet is Home, while the mobile menu also shows Home / Start explicitly.
+- Use `detailPagePath(locale, kind)` for the two localised dossier routes.
+- Detail routes are `/de/unternehmen` ↔ `/en/company` and `/de/systeme` ↔ `/en/systems`.
+- Global desktop navigation exposes the two dossier routes plus Approach / Vorgehen and Contact; the points-only signet is Home, while the mobile menu also shows Home / Start explicitly.
 - Active navigation must map both exact dossier paths and their corresponding homepage sections without relying on colour alone.
-- Keep exactly one visible 20+ experience statement in the hero.
+- Keep exactly one visible 25+ experience statement in the hero.
 - Public detail remains discreet: describe capability categories without operational specifics or named customers.
 - `/imprint` and `/private-policy` remain language-neutral preserved legal pages until counsel approves revisions.
 

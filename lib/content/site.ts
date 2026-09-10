@@ -97,13 +97,6 @@ export type LocalizedSiteContent = {
     items: Array<{ title: string }>;
     detailLink: NavigationItem;
   };
-  protection: {
-    label: string;
-    title: string;
-    body: string;
-    items: ContentItem[];
-    detailLink: NavigationItem;
-  };
   contact: {
     company: string;
     officeTitle: string;
@@ -129,7 +122,7 @@ export const siteContent = {
     metadata: {
       title: "Elaman – German Security Solutions, Munich",
       description:
-        "Elaman GmbH in Munich develops and integrates communications and security systems for observation, technical counter-surveillance, protection and data forensics.",
+        "Elaman GmbH in Munich supplies security technology for covert audio and video surveillance, analysis, TSCM and radio monitoring for mobile communications.",
       ogLocale: "en_GB",
     },
     navigation: {
@@ -137,7 +130,6 @@ export const siteContent = {
         { label: "Home", href: "#hero", section: "#hero", mobileOnly: true },
         { label: "Company", href: "/en/company", section: "#profile" },
         { label: "Systems", href: "/en/systems", section: "#systems" },
-        { label: "Protection", href: "/en/protection", section: "#protection" },
         { label: "Approach", href: "#advice", section: "#advice" },
         { label: "Contact", href: "#contact", section: "#contact" },
       ],
@@ -163,19 +155,19 @@ export const siteContent = {
     },
     hero: {
       label: "Elaman",
-      title: "Your bridge to trust and security.",
+      title: "The link between trust and security.",
       stat: {
-        value: "20+",
-        label: "Years of experience in communications and security engineering",
+        value: "25+",
+        label: "Years of experience in security technology and solutions",
       },
     },
     profile: {
       label: "Elaman",
       title: "German Security Solutions.",
       paragraphs: [
-        "Elaman brings established products together with new technologies to build systems for communications and security.",
-        "What a system finally looks like is decided by its setting: the infrastructure already in place, the organisational requirements, the conditions on site.",
-        "Our clients are public authorities, security-related organisations and communication service providers.",
+        "Elaman combines established products with new technologies to create integrated security systems.",
+        "The operating environment largely determines the final system: the existing infrastructure, organisational requirements and conditions on site.",
+        "We work exclusively with security authorities and security-related organisations.",
       ],
       management: {
         label: "Managing Director",
@@ -189,78 +181,46 @@ export const siteContent = {
     },
     advice: {
       title: "From initial analysis to long-term support.",
-      intro: "For us, a project does not end at commissioning.",
+      intro: "Our work continues beyond commissioning.",
       steps: [
         {
           title: "Analysis & consulting",
           description:
-            "We establish what the system has to achieve and the conditions it will work under.",
+            "We establish what the system must do and the conditions in which it will be used.",
         },
         {
           title: "Planning & integration",
           description:
-            "The requirements become a system design: which components, which interfaces, in which order.",
+            "We turn the requirements into a technical solution and coordinate the components and interfaces.",
         },
         {
           title: "Turnkey implementation",
-          description:
-            "Assembly, integration and commissioning are handled by our own engineers.",
+          description: "We handle installation, integration and commissioning.",
         },
         {
           title: "Training & support",
           description:
-            "The teams are trained on the system; after that we remain available for technical operation.",
+            "We train the teams on the finished system and remain available throughout operation.",
         },
       ],
     },
     systems: {
       title: "Systems for communications, observation and analysis.",
       intro:
-        "Eight areas that Elaman supplies individually or brings together into a complete system.",
+        "Elaman supplies these areas individually or integrates them into a complete system.",
       items: [
-        { title: "Audio and video observation" },
-        { title: "Geographical information systems" },
-        { title: "Technical counter-surveillance" },
-        { title: "Special-purpose vehicles" },
-        { title: "Command and control centres" },
-        { title: "Intelligence fusion systems" },
+        { title: "Covert audio and video surveillance" },
+        { title: "Audio and video analysis systems" },
+        { title: "Technical surveillance countermeasures (TSCM)" },
+        {
+          title:
+            "Radio monitoring systems for mobile communications in special-purpose vehicles",
+        },
         { title: "Training and support" },
-        { title: "Data forensics" },
       ],
       detailLink: {
         label: "Systems overview",
         href: "/en/systems",
-      },
-    },
-    protection: {
-      label: "Protection & Countermeasures",
-      title: "Protection where confidentiality matters.",
-      body: "Technical countermeasures and physical shielding for places where conversations could be intercepted — planned for the specific room and the infrastructure already in place.",
-      items: [
-        {
-          title: "ECM / Counter-RCIED",
-          description:
-            "Electronic countermeasures for radio-controlled threats and other wireless risks.",
-        },
-        {
-          title: "Jamming systems",
-          description:
-            "Portable, vehicle-based and building-based systems for authorised public-sector use.",
-        },
-        {
-          title: "TSCM",
-          description:
-            "Technical measures against unauthorised surveillance, supported by consulting and training for specialist inspection teams.",
-        },
-        {
-          title: "Shielded rooms",
-          description:
-            "Structural, mechanical and electronic concepts for rooms where confidential information is handled.",
-        },
-      ],
-      detailLink: {
-        label: "View protection solutions",
-        href: "/en/protection",
       },
     },
     contact: {
@@ -281,7 +241,7 @@ export const siteContent = {
       emailHref: "mailto:info@elaman.de",
       form: {
         title: "Your inquiry",
-        intro: "A few sentences about the task are enough to start.",
+        intro: "A brief description of the task is enough for an initial discussion.",
         fields: {
           firstName: "First name",
           lastName: "Last name",
@@ -316,9 +276,9 @@ export const siteContent = {
   },
   de: {
     metadata: {
-      title: "Elaman – Kommunikations- und Sicherheitstechnik, München",
+      title: "Elaman – Sicherheitstechnik und Sicherheitslösungen, München",
       description:
-        "Elaman GmbH in München entwickelt und integriert Kommunikations- und Sicherheitssysteme für Observation, technische Abhörabwehr, Schutz und Datenforensik.",
+        "Elaman GmbH in München liefert Sicherheitstechnik für verdeckte Audio- und Videoobservation, Auswertung, Lauschabwehr und Funkerfassung.",
       ogLocale: "de_DE",
     },
     navigation: {
@@ -326,11 +286,6 @@ export const siteContent = {
         { label: "Start", href: "#hero", section: "#hero", mobileOnly: true },
         { label: "Unternehmen", href: "/de/unternehmen", section: "#profile" },
         { label: "Systeme", href: "/de/systeme", section: "#systems" },
-        {
-          label: "Schutzlösungen",
-          href: "/de/schutzloesungen",
-          section: "#protection",
-        },
         { label: "Vorgehen", href: "#advice", section: "#advice" },
         { label: "Kontakt", href: "#contact", section: "#contact" },
       ],
@@ -356,19 +311,19 @@ export const siteContent = {
     },
     hero: {
       label: "Elaman",
-      title: "Ihre Brücke zu Vertrauen und Sicherheit.",
+      title: "Das Bindeglied zwischen Vertrauen und Sicherheit.",
       stat: {
-        value: "20+",
-        label: "Jahre Erfahrung mit Kommunikations- und Sicherheitstechnik",
+        value: "25+",
+        label: "Jahre Erfahrung mit Sicherheitstechnik und Sicherheitslösungen",
       },
     },
     profile: {
       label: "Elaman",
-      title: "Kommunikations- und Sicherheitstechnik aus Deutschland.",
+      title: "Lösungen und Produkte im Bereich der Sicherheitstechnik.",
       paragraphs: [
-        "Elaman verbindet etablierte Produkte mit neuen Technologien zu Systemen für Kommunikation und Sicherheit.",
-        "Wie ein System am Ende aussieht, entscheidet das Einsatzumfeld: die vorhandene Infrastruktur, die organisatorischen Vorgaben, die Bedingungen vor Ort.",
-        "Zu unseren Kunden zählen Behörden, sicherheitsrelevante Organisationen und Kommunikationsanbieter.",
+        "Elaman bringt etablierte Produkte und neue Technologien zu integrierten Sicherheitssystemen zusammen.",
+        "Wie ein System am Ende aussieht, entscheidet meist das Einsatzumfeld: die vorhandene Infrastruktur, die organisatorischen Vorgaben und die Bedingungen vor Ort.",
+        "Wir arbeiten ausschließlich für Sicherheitsbehörden und sicherheitsrelevante Organisationen.",
       ],
       management: {
         label: "Geschäftsführung",
@@ -387,73 +342,38 @@ export const siteContent = {
         {
           title: "Analyse & Beratung",
           description:
-            "Wir nehmen auf, was das System leisten muss und unter welchen Bedingungen es arbeiten wird.",
+            "Wir erfassen, was das System leisten muss und unter welchen Bedingungen es eingesetzt wird.",
         },
         {
           title: "Planung & Integration",
           description:
-            "Aus dem Anforderungsprofil entsteht ein Systementwurf: welche Komponenten, welche Schnittstellen, welche Reihenfolge.",
+            "Aus dem Anforderungsprofil entwickeln wir die technische Lösung und stimmen Komponenten und Schnittstellen aufeinander ab.",
         },
         {
           title: "Schlüsselfertige Umsetzung",
-          description:
-            "Aufbau, Integration und Inbetriebnahme übernehmen unsere eigenen Ingenieure.",
+          description: "Wir übernehmen Aufbau, Integration und Inbetriebnahme.",
         },
         {
           title: "Schulung & Betreuung",
           description:
-            "Die Teams werden am System geschult; danach bleiben wir für den technischen Betrieb erreichbar.",
+            "Wir schulen die Teams am fertigen System und bleiben im laufenden Betrieb erreichbar.",
         },
       ],
     },
     systems: {
       title: "Systeme für Kommunikation, Observation und Auswertung.",
       intro:
-        "Acht Bereiche, die Elaman einzeln liefert oder zu einem Gesamtsystem zusammenführt.",
+        "Elaman liefert diese Bereiche einzeln oder führt sie zu einem Gesamtsystem zusammen.",
       items: [
-        { title: "Audio- und Videoobservation" },
-        { title: "Geoinformationssysteme" },
-        { title: "Technische Abhörabwehr" },
-        { title: "Spezialfahrzeuge" },
-        { title: "Führungszentralen" },
-        { title: "Intelligence-Fusion-Systeme" },
+        { title: "Verdeckte Audio- und Videoobservation" },
+        { title: "Audio- und Videoauswertesysteme" },
+        { title: "Lauschabwehr (TSCM)" },
+        { title: "Funkerfassungssysteme für Mobilfunk in Spezialfahrzeugen" },
         { title: "Schulung und Betreuung" },
-        { title: "Datenforensik" },
       ],
       detailLink: {
         label: "Systeme im Überblick",
         href: "/de/systeme",
-      },
-    },
-    protection: {
-      label: "Schutz und Gegenmaßnahmen",
-      title: "Schutz, wo Vertraulichkeit zählt.",
-      body: "Technische Gegenmaßnahmen und baulicher Schutz für Bereiche, in denen mitgehört werden könnte — geplant für den jeweiligen Raum und die vorhandene Infrastruktur.",
-      items: [
-        {
-          title: "ECM / Counter-RCIED",
-          description:
-            "Elektronische Gegenmaßnahmen zum Schutz vor funkgesteuerten Bedrohungen und weiteren funkbasierten Risiken.",
-        },
-        {
-          title: "Jamming-Systeme",
-          description:
-            "Mobile, fahrzeuggebundene und stationäre Systeme für behördlich autorisierte Anwendungen.",
-        },
-        {
-          title: "TSCM",
-          description:
-            "Technische Maßnahmen zur Abwehr unbefugter Überwachung sowie Beratung und Schulung spezialisierter Prüfteams.",
-        },
-        {
-          title: "Geschirmte Räume",
-          description:
-            "Bauliche, mechanische und elektronische Schutzkonzepte für Räume, in denen vertrauliche Informationen besprochen oder verarbeitet werden.",
-        },
-      ],
-      detailLink: {
-        label: "Schutzlösungen im Überblick",
-        href: "/de/schutzloesungen",
       },
     },
     contact: {

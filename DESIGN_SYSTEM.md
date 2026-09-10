@@ -4,24 +4,24 @@ Implementation contract for the current production website. `app/globals.css`, `
 
 ## 1. Design thesis
 
-Elaman presents as an established German security-engineering specialist through restraint: disciplined typography, seven approved photographs, selective navy, local hairlines, factual copy, and one dominant idea per composition. The six-section homepage provides orientation; three editorial dossier pages provide depth without becoming a catalogue. The site intentionally avoids a decorative technical interface.
+Elaman presents as an established German security-technology specialist through restraint: disciplined typography, four approved photographs, selective navy, local hairlines, factual copy, and one dominant idea per composition. The five-section homepage provides orientation; two editorial dossier pages provide depth without becoming a catalogue. The site intentionally avoids a decorative technical interface.
 
 ## 2. Canonical tokens
 
 ### Colour
 
-| CSS token                |     Value | Use                             |
-| ------------------------ | --------: | ------------------------------- |
-| `--color-paper`          | `#ffffff` | Main canvas                     |
-| `--color-paper-soft`     | `#f7f8fa` | Quiet contrast                  |
-| `--color-graphite`       | `#16181d` | Primary ink                     |
-| `--color-graphite-muted` | `#555d6b` | Body copy                       |
-| `--color-graphite-soft`  | `#667286` | Labels and metadata             |
-| `--color-elaman-blue`    | `#244074` | Brand and active state          |
-| `--color-elaman-red`     | `#d83034` | Protection and required markers |
-| `--color-navy`           | `#172033` | Systems composition             |
-| `--color-on-dark`        | `#f7f8fa` | Primary on navy                 |
-| `--color-on-dark-muted`  | `#c7d0dc` | Secondary on navy               |
+| CSS token                |     Value | Use                            |
+| ------------------------ | --------: | ------------------------------ |
+| `--color-paper`          | `#ffffff` | Main canvas                    |
+| `--color-paper-soft`     | `#f7f8fa` | Quiet contrast                 |
+| `--color-graphite`       | `#16181d` | Primary ink                    |
+| `--color-graphite-muted` | `#555d6b` | Body copy                      |
+| `--color-graphite-soft`  | `#667286` | Labels and metadata            |
+| `--color-elaman-blue`    | `#244074` | Brand and active state         |
+| `--color-elaman-red`     | `#d83034` | Required and error form states |
+| `--color-navy`           | `#172033` | Systems composition            |
+| `--color-on-dark`        | `#f7f8fa` | Primary on navy                |
+| `--color-on-dark-muted`  | `#c7d0dc` | Secondary on navy              |
 
 ### Structure
 
@@ -100,9 +100,9 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 ### Header
 
 - Sticky white header with the supplied points-only Elaman signet.
-- The signet is the desktop home action; the desktop navigation exposes Company, Systems, Protection, Approach, and Contact directly.
-- Company, Systems, and Protection open localised dossier pages. Approach and Contact retain precise homepage anchor destinations.
-- Mobile prepends Home / Start and keeps the same five global destinations below it.
+- The signet is the desktop home action; the desktop navigation exposes Company, Systems, Approach, and Contact directly.
+- Company and Systems open localised dossier pages. Approach and Contact retain precise homepage anchor destinations.
+- Mobile prepends Home / Start and keeps the same four global destinations below it.
 - One blue rule communicates hover and either the current dossier page or its mapped homepage section.
 - Mobile navigation is the only raised overlay. It fills the available height below the header, locks the document while open, keeps legal and locale actions at the end, and traps keyboard focus.
 - Escape and outside-pointer behavior remain intact.
@@ -117,7 +117,7 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 - Mobile stacks naturally and may grow on short displays.
 - The image is the sole LCP asset.
 - Company positioning begins in Profile; the hero contains no service paragraph.
-- `20+` appears exactly once.
+- `25+` appears exactly once.
 
 ### ProfileSection
 
@@ -138,16 +138,10 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 ### SystemsSection
 
 - Navy split composition with Media Mining image.
+- The ledger contains the five approved capability areas.
 - Capability order is row-major in the DOM and visual layout.
 - Horizontal rules only; no boxed matrix or vertical cell dividers.
 - Capability titles do not use automatic hyphenation.
-
-### ProtectionSection
-
-- Panoramic tiger image followed by one primary H2 and four factual areas.
-- Exactly one red dot carries protection semantics.
-- Item copy remains readable and open, with local hairlines.
-- One editorial link leads to the protection dossier.
 
 ### ContactSection
 
@@ -159,17 +153,14 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 
 ## 5. Approved photography
 
-| Asset                                     | Role                                                      |
-| ----------------------------------------- | --------------------------------------------------------- |
-| `/images/elaman-advice.png`               | Hero                                                      |
-| `/images/elaman-profile-bridge.jpg`       | Profile                                                   |
-| `/images/elaman-systems-media-mining.jpg` | Systems                                                   |
-| `/images/elaman-protection.png`           | Protection                                                |
-| `/images/elaman-munich-office.jpg`        | Contact                                                   |
-| `/images/elaman-protection-jammer.jpg`    | Protection dossier: authorised electronic countermeasures |
-| `/images/elaman-protection-tscm.jpg`      | Protection dossier: TSCM and shielded environments        |
+| Asset                                     | Role    |
+| ----------------------------------------- | ------- |
+| `/images/elaman-advice.jpg`               | Hero    |
+| `/images/elaman-profile-bridge.jpg`       | Profile |
+| `/images/elaman-systems-media-mining.jpg` | Systems |
+| `/images/elaman-munich-office.jpg`        | Contact |
 
-The source set is limited to these seven photographs. The `elaman-company-og`, `elaman-systems-og`, and `elaman-protection-og` files are route-specific crops for search and social sharing. Static crop, saturation, contrast, and overlay adjustments are allowed when they preserve legibility and a calm palette.
+The source set is limited to these four photographs. The `elaman-home-og`, `elaman-company-og`, and `elaman-systems-og` files are route-specific crops for search and social sharing. Static crop, saturation, contrast, and overlay adjustments are allowed when they preserve legibility and a calm palette.
 
 ## 6. Motion and scrolling
 
@@ -197,22 +188,20 @@ Programmatic anchor movement temporarily disables snap through `data-anchor-scro
 
 ## 7. Homepage composition
 
-| Anchor        | Component           | Composition                               |
-| ------------- | ------------------- | ----------------------------------------- |
-| `#hero`       | `HeroSection`       | Chameleon, identity, tagline, experience  |
-| `#profile`    | `ProfileSection`    | Company profile and stone bridge          |
-| `#advice`     | `AdviceSection`     | Four-stage project path                   |
-| `#systems`    | `SystemsSection`    | Media Mining and open ledger              |
-| `#protection` | `ProtectionSection` | Tiger panorama and protection information |
-| `#contact`    | `ContactSection`    | Office, direct routes, and inquiry form   |
+| Anchor     | Component        | Composition                              |
+| ---------- | ---------------- | ---------------------------------------- |
+| `#hero`    | `HeroSection`    | Chameleon, identity, tagline, experience |
+| `#profile` | `ProfileSection` | Company profile and stone bridge         |
+| `#advice`  | `AdviceSection`  | Four-stage project path                  |
+| `#systems` | `SystemsSection` | Media Mining and open ledger             |
+| `#contact` | `ContactSection` | Office, direct routes, and inquiry form  |
 
 ## 8. Dossier composition
 
-| Kind       | Routes                                  | Contract                                                                                                                   |
-| ---------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Company    | `/de/unternehmen`, `/en/company`        | Office-led hero, three working principles, bridge composition, factual management link                                     |
-| Systems    | `/de/systeme`, `/en/systems`            | Navy image-led hero, open eight-area ledger, project approach                                                              |
-| Protection | `/de/schutzloesungen`, `/en/protection` | Panoramic tiger hero with one red marker, two alternating image/text groups for ECM/Jamming and TSCM/shielded environments |
+| Kind    | Routes                           | Contract                                                                               |
+| ------- | -------------------------------- | -------------------------------------------------------------------------------------- |
+| Company | `/de/unternehmen`, `/en/company` | Office-led hero, three working principles, bridge composition, factual management link |
+| Systems | `/de/systeme`, `/en/systems`     | Navy image-led hero, open five-area ledger, project approach                           |
 
 Dossier pages use normal document flow and never opt into homepage scroll snap. Their language switcher targets the matching localised route. Each has a contextual route-specific social image and internal links back to the relevant homepage section and contact.
 
@@ -222,7 +211,7 @@ Dossier pages use normal document flow and never opt into homepage scroll snap. 
 - Technical grids, network diagrams, DotMatrix fields, signal graphics
 - Generic feature-card or icon-tile grids
 - Gradient blobs, glow, neon, cyberpunk, or surveillance-first hero imagery
-- Repeated red accents outside protection and required/error form states
+- Repeated red accents outside required and error form states
 - New colours, fonts, unapproved images, statistics, certifications, or client logos
 - Scroll-linked motion, looping decoration, animated filters, or layout animation
 - Fixed section heights, clipped translations, nested section scrollbars, or wheel hijacking
@@ -234,7 +223,7 @@ For visual changes:
 
 1. Check 320×568, 390×844, 768×1024, 1024×768, 1366×768, 1440×900, and 1600×1000.
 2. Verify German and English wrapping and zero horizontal overflow.
-3. Verify all six anchors, active navigation, locale switching with hash, all six localised dossier URLs, detail-page locale switching, mobile menu, and skip link.
+3. Verify all five anchors, active navigation, locale switching with hash, all four localised dossier URLs, detail-page locale switching, mobile menu, and skip link.
 4. Verify free touch scrolling, soft desktop snap, and reduced-motion behavior.
 5. Verify contact validation, focus movement, direct links, and API error handling.
 6. Verify legal pages, 404, metadata, sitemap, and a clean browser console.

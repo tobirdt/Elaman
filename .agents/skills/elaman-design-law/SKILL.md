@@ -25,13 +25,13 @@ Reachable code is the final visual source of truth. Do not revive a removed impl
 Require:
 
 - white/paper-soft canvas with selective navy bands;
-- the seven approved heritage photographs, each in its assigned homepage or dossier role;
+- the four approved heritage photographs, each in its assigned homepage or dossier role;
 - supplied points-only Elaman signet in the header;
 - Geist and Geist Mono only;
 - strong editorial hierarchy and readable measures;
 - flat surfaces, 1px hairlines, 2px content radius, and 6px control radius;
 - one primary blue accent event per local composition;
-- red limited to protection semantics and required form markers;
+- red limited to required and error form states;
 - deliberate whitespace and discreet factual copy.
 
 Reject glass, blur, gradients, grid overlays, glow, diagrams, DotMatrix decoration, feature-card walls, bento layouts, icon tiles, cyberpunk imagery, large shadows, new colours, new fonts, and unsupported claims.
@@ -40,13 +40,12 @@ Reject glass, blur, gradients, grid overlays, glow, diagrams, DotMatrix decorati
 
 Preserve this sequence unless explicitly changed:
 
-Hero → Profile → Advice → Systems → Protection → Contact.
+Hero → Profile → Advice → Systems → Contact.
 
-- Hero: chameleon, Elaman name, original tagline, verified copy, one `20+` stat.
+- Hero: chameleon, Elaman name, approved tagline, verified copy, one `25+` stat.
 - Profile: white asymmetric composition with the stone-bridge image.
 - Advice: paper-soft ordered four-stage process with numerals and one hairline.
-- Systems: Navy Media Mining split and open row-major capability ledger.
-- Protection: tiger panorama, one H2, four factual areas, one red dot.
+- Systems: Navy Media Mining split and open five-area capability ledger.
 - Contact: Munich-office split, direct routes, standard inquiry form, footer after the section.
 
 Each `screen` section owns at least the visible height below the sticky header but must grow naturally. The capability ledger uses horizontal rules and an unambiguous DOM order. Do not restore a boxed matrix or vertical cell dividers.
@@ -55,15 +54,14 @@ Each `screen` section owns at least the visible height below the sticky header b
 
 Use only reachable primitives in `components/ui`: `Button`, `Container`, `Section`, `SectionHeader`, `SectionLabel`, and `TextLink`. Add a new abstraction only when at least two current consumers share a stable contract.
 
-The three approved dossier compositions are:
+The two approved dossier compositions are:
 
 - Company: office-led hero, three working principles, stone bridge, factual management reference;
-- Systems: navy Media Mining hero, open eight-area ledger, project approach;
-- Protection: tiger hero and two image/text groups using the approved Jammer and TSE motifs.
+- Systems: navy Media Mining hero, open five-area ledger, project approach.
 
 Dossiers use normal document flow, reciprocal localised routes, and no scroll snap. They may deepen verified homepage categories but must not add specifications, customers, tactical detail, or unsupported claims.
 
-The global header exposes Company, Systems, and Protection as direct localised dossier routes. Approach and Contact return to homepage anchors; the signet acts as Home on desktop, and the mobile overlay prepends an explicit Home / Start entry. The active rule must represent either the exact dossier route or its mapped homepage section.
+The global header exposes Company and Systems as direct localised dossier routes. Approach and Contact return to homepage anchors; the signet acts as Home on desktop, and the mobile overlay prepends an explicit Home / Start entry. The active rule must represent either the exact dossier route or its mapped homepage section.
 
 The active codebase intentionally has no generic Surface, GlassPanel, TechnicalMark, DotMatrix, signal diagram, or reveal-wrapper layer.
 
@@ -90,6 +88,6 @@ For fullscreen work also verify:
 - header plus Hero equal one normal viewport;
 - soft snap exists only on large fine-pointer non-reduced-motion environments;
 - mobile, tablet, short displays, and form-error states never clip or create internal scrollers;
-- all six anchors and hash-preserving locale changes land below the header.
+- all five anchors and hash-preserving locale changes land below the header.
 
 Report intentional exceptions; do not silently create a parallel design system.

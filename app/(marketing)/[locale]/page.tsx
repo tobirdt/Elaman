@@ -8,7 +8,6 @@ import { AdviceSection } from "@/components/sections/AdviceSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProfileSection } from "@/components/sections/ProfileSection";
-import { ProtectionSection } from "@/components/sections/ProtectionSection";
 import { SystemsSection } from "@/components/sections/SystemsSection";
 import { getSiteContent } from "@/lib/content/site";
 import { isLocale, locales, type Locale } from "@/lib/i18n";
@@ -21,9 +20,10 @@ type LocalePageProps = {
 
 /**
  * Only the parameter combinations produced by `generateStaticParams` resolve.
- * Anything else stops at the router and is served by `app/not-found.tsx`,
- * instead of entering this page and calling `notFound()` — which yields Next's
- * bare internal error document rather than the branded 404.
+ * Anything else stops at the router and is served by `app/global-not-found.tsx`,
+ * preserving a complete server-rendered 404 document without client JavaScript.
+ * Next.js 16.3.4 currently logs an internal `NoFallbackError` for this correct
+ * 404 response: https://github.com/vercel/next.js/issues/90537
  */
 export const dynamicParams = false;
 
@@ -79,7 +79,6 @@ export default async function HomePage({ params }: LocalePageProps) {
         <ProfileSection content={content.profile} />
         <AdviceSection content={content.advice} />
         <SystemsSection content={content.systems} />
-        <ProtectionSection content={content.protection} />
         <ContactSection content={content.contact} locale={locale} />
       </main>
       <Footer

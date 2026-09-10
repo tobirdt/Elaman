@@ -7,7 +7,6 @@ import { TextLink } from "@/components/ui/TextLink";
 import type {
   CompanyDetailContent,
   DetailPageContent,
-  ProtectionDetailContent,
   SystemsDetailContent,
 } from "@/lib/content/detail-pages";
 
@@ -253,112 +252,11 @@ function SystemsDossier({ content }: { content: SystemsDetailContent }) {
   );
 }
 
-function ProtectionDossier({ content }: { content: ProtectionDetailContent }) {
-  return (
-    <article>
-      <section className="flex min-h-[calc(100svh-var(--header-h))] flex-col border-b border-[var(--border-hairline)] bg-[var(--surface-paper)]">
-        <div className="hero-image-enter relative h-[clamp(18rem,40svh,23rem)] shrink-0 overflow-hidden bg-navy">
-          <Image
-            src="/images/elaman-protection.jpg"
-            alt={content.heroAlt}
-            fill
-            preload
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-navy/16" aria-hidden="true" />
-        </div>
-        <Container className="hero-copy-enter grid flex-1 content-center items-start gap-8 py-10 lg:grid-cols-[minmax(0,0.46fr)_minmax(0,0.54fr)] lg:items-center lg:gap-16 lg:py-12">
-          <div>
-            <BackLink href={content.back.href} label={content.back.label} />
-            <div className="mt-7 flex items-center gap-3">
-              <span className="size-2 rounded-full bg-elaman-red" aria-hidden="true" />
-              <p className="font-mono text-[length:var(--type-micro)] font-medium uppercase tracking-[var(--tracking-label)] text-graphite-soft">
-                {content.eyebrow}
-              </p>
-            </div>
-            <h1 className="mt-5 max-w-[17ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
-              {content.title}
-            </h1>
-          </div>
-          <p className="max-w-[58ch] text-[length:var(--type-lead)] leading-[1.6] text-graphite-muted lg:border-l lg:border-[var(--border-hairline-strong)] lg:pl-10">
-            {content.lead}
-          </p>
-        </Container>
-      </section>
-
-      {content.groups.map((group, index) => (
-        <section
-          key={group.number}
-          className={`grid border-b border-[var(--border-hairline)] ${
-            index % 2 === 0
-              ? "bg-[var(--surface-paper-soft)] lg:grid-cols-[minmax(22rem,0.47fr)_minmax(0,0.53fr)]"
-              : "bg-[var(--surface-paper)] lg:grid-cols-[minmax(0,0.53fr)_minmax(22rem,0.47fr)]"
-          }`}
-        >
-          <div
-            className={`relative min-h-[24rem] min-w-0 overflow-hidden bg-navy lg:min-h-[45rem] ${
-              index % 2 === 1 ? "lg:order-2" : ""
-            }`}
-          >
-            <Image
-              src={group.image}
-              alt={group.imageAlt}
-              fill
-              sizes="(min-width: 1024px) 47vw, 100vw"
-              className={`object-cover ${index === 0 ? "object-[58%_center]" : "object-center"}`}
-            />
-            <div className="absolute inset-0 bg-navy/12" aria-hidden="true" />
-          </div>
-          <div
-            className={`flex min-w-0 items-center px-[var(--page-x-left)] py-[var(--section-y-content-band)] ${
-              index % 2 === 1
-                ? "lg:pl-[var(--page-x-left)] lg:pr-[clamp(3rem,7vw,7rem)]"
-                : "lg:pl-[clamp(3rem,7vw,7rem)] lg:pr-[var(--page-x-right)]"
-            }`}
-          >
-            <div className="min-w-0 w-full max-w-[44rem]">
-              <span className="font-mono text-[length:var(--type-h3)] leading-none text-elaman-blue">
-                {group.number}
-              </span>
-              <h2 className="mt-7 max-w-[18ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
-                {group.title}
-              </h2>
-              <p className="mt-6 max-w-[58ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite-muted">
-                {group.body}
-              </p>
-              <div className="mt-9 grid sm:grid-cols-2 sm:gap-8">
-                {group.items.map((item) => (
-                  <div
-                    key={item.title}
-                    className="border-t border-[var(--border-hairline-strong)] py-5"
-                  >
-                    <h3 className="text-[length:var(--type-body)] font-semibold leading-6 text-graphite">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-[length:var(--type-small)] leading-6 text-graphite-muted">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      ))}
-
-      <DetailClosing content={content} />
-    </article>
-  );
-}
-
 export function DetailDossier({ content }: DetailDossierProps) {
   switch (content.kind) {
     case "company":
       return <CompanyDossier content={content} />;
     case "systems":
       return <SystemsDossier content={content} />;
-    case "protection":
-      return <ProtectionDossier content={content} />;
   }
 }

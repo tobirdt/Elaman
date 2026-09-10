@@ -1,7 +1,7 @@
 export const locales = ["de", "en"] as const;
 export type Locale = (typeof locales)[number];
 
-export const detailPageKinds = ["company", "systems", "protection"] as const;
+export const detailPageKinds = ["company", "systems"] as const;
 export type DetailPageKind = (typeof detailPageKinds)[number];
 
 export const legalPageKinds = ["imprint", "privacy"] as const;
@@ -33,10 +33,6 @@ const detailPageSlugs: Record<DetailPageKind, Record<Locale, string>> = {
   systems: {
     de: "systeme",
     en: "systems",
-  },
-  protection: {
-    de: "schutzloesungen",
-    en: "protection",
   },
 };
 
