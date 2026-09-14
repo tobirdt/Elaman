@@ -1,0 +1,41 @@
+version: 2
+
+updates:
+  # Application dependencies. Minor and patch updates are batched into two pull
+  # requests so routine maintenance stays reviewable; majors arrive separately
+  # because they need their own regression pass.
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    groups:
+      npm-minor:
+        update-types:
+          - minor
+      npm-patch:
+        update-types:
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    groups:
+      actions-minor:
+        update-types:
+          - minor
+      actions-patch:
+        update-types:
+          - patch
