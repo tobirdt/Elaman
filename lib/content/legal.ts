@@ -45,8 +45,8 @@ const legalContent = {
         {
           title: "Kontakt",
           paragraphs: [
-            "Telefon: +49 (0) 89 24 20 91 80",
-            "Telefax: +49 (0) 89 24 20 91 81",
+            "Telefon: +49 89 24209180",
+            "Telefax: +49 89 24209181",
             "E-Mail: info@elaman.de",
           ],
         },
@@ -94,13 +94,13 @@ const legalContent = {
           paragraphs: [
             "Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne des Art. 4 Nr. 7 DSGVO ist:",
             "Elaman GmbH, Implerstraße 24, 81371 München, Deutschland",
-            "Telefon: +49 (0) 89 24 20 91 80 · E-Mail: info@elaman.de",
+            "Telefon: +49 89 24209180 · E-Mail: info@elaman.de",
           ],
         },
         {
           title: "Was diese Website nicht tut",
           paragraphs: [
-            "Diese Website setzt keine Cookies und verwendet keine Webanalyse, kein Tracking und keine Profilbildung. Es sind keine Dienste Dritter eingebunden — weder Kartendienste noch Schriftarten, Videos oder Social-Media-Elemente, die von externen Servern geladen würden. Alle Schriftarten werden von unserem eigenen Server ausgeliefert.",
+            "Diese Website setzt keine Cookies und verwendet keine Webanalyse, kein Tracking und keine Profilbildung. Es sind keine Dienste Dritter eingebunden – weder Kartendienste noch Schriftarten, Videos oder Social-Media-Elemente, die von externen Servern geladen würden. Alle Schriftarten werden von unserem eigenen Server ausgeliefert.",
             "Technisch ist das durch eine Content Security Policy abgesichert, die Verbindungen ausschließlich zur eigenen Domain zulässt. Es findet daher auch keine Datenübermittlung an Werbenetzwerke statt.",
           ],
         },
@@ -109,6 +109,7 @@ const legalContent = {
           paragraphs: [
             "Beim Aufruf dieser Website übermittelt Ihr Browser technisch notwendige Daten, die in den Protokolldateien unseres Hosting-Dienstleisters erfasst werden: die IP-Adresse des anfragenden Geräts, Datum und Uhrzeit des Zugriffs, die aufgerufene Adresse, der HTTP-Statuscode, die übertragene Datenmenge sowie Angaben zu Browser und Betriebssystem.",
             "Diese Verarbeitung ist erforderlich, um die Website bereitzustellen, ihre Stabilität zu gewährleisten und Angriffe zu erkennen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt im sicheren und störungsfreien Betrieb. Eine Zusammenführung dieser Daten mit anderen Datenquellen oder eine Auswertung zu Werbezwecken findet nicht statt.",
+            "Die Protokolldaten werden nur so lange gespeichert, wie es für den sicheren Betrieb der Website erforderlich ist, und anschließend gelöscht. Eine längere Aufbewahrung erfolgt ausschließlich, wenn ein konkreter Sicherheitsvorfall untersucht werden muss.",
           ],
         },
         {
@@ -117,7 +118,7 @@ const legalContent = {
             "Wenn Sie das Formular auf dieser Website nutzen, verarbeiten wir die von Ihnen eingegebenen Angaben: Vorname sowie E-Mail-Adresse und Ihre Nachricht als Pflichtfelder, Nachname und Unternehmen als freiwillige Angaben. Wir verwenden diese Daten ausschließlich, um Ihre Anfrage zu bearbeiten und Ihnen zu antworten.",
             "Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit die Anfrage auf den Abschluss oder die Durchführung eines Vertrages gerichtet ist, im Übrigen Art. 6 Abs. 1 lit. f DSGVO mit unserem berechtigten Interesse an der Beantwortung geschäftlicher Anfragen. Die Angabe der Daten ist freiwillig; ohne Vorname, E-Mail-Adresse und Nachricht können wir Ihre Anfrage jedoch nicht beantworten.",
             "Das Formular enthält ein für Sie unsichtbares Feld zur Abwehr automatisierter Einsendungen. Zusätzlich begrenzen wir die Zahl der Einsendungen kurzzeitig anhand eines aus der IP-Adresse abgeleiteten Werts, der nur im Arbeitsspeicher gehalten und nach wenigen Minuten verworfen wird.",
-            "Ihre Anfrage wird per E-Mail an unser Postfach übermittelt und dort so lange aufbewahrt, wie es zur Bearbeitung erforderlich ist. Anschließend löschen wir sie, sofern keine handels- oder steuerrechtlichen Aufbewahrungspflichten entgegenstehen.",
+            "Die Verarbeitung der Formulardaten durch unseren Hosting-Dienstleister erfolgt in einem Rechenzentrum in Frankfurt am Main. Ihre Anfrage wird per E-Mail an unser Postfach übermittelt und dort so lange aufbewahrt, wie es zur Bearbeitung erforderlich ist. Anschließend löschen wir sie, sofern keine handels- oder steuerrechtlichen Aufbewahrungspflichten entgegenstehen.",
           ],
         },
         {
@@ -146,7 +147,7 @@ const legalContent = {
         {
           title: "Stand dieser Erklärung",
           paragraphs: [
-            "August 2026. Ändert sich die Datenverarbeitung auf dieser Website, passen wir diese Erklärung entsprechend an.",
+            "September 2026. Ändert sich die Datenverarbeitung auf dieser Website, passen wir diese Erklärung entsprechend an.",
           ],
         },
       ],
@@ -170,8 +171,8 @@ const legalContent = {
         {
           title: "Contact",
           paragraphs: [
-            "Phone: +49 (0) 89 24 20 91 80",
-            "Fax: +49 (0) 89 24 20 91 81",
+            "Phone: +49 89 24209180",
+            "Fax: +49 89 24209181",
             "Email: info@elaman.de",
           ],
         },
@@ -218,7 +219,7 @@ const legalContent = {
           paragraphs: [
             "The controller for data processing on this website within the meaning of Article 4 (7) GDPR is:",
             "Elaman GmbH, Implerstraße 24, 81371 Munich, Germany",
-            "Phone: +49 (0) 89 24 20 91 80 · Email: info@elaman.de",
+            "Phone: +49 89 24209180 · Email: info@elaman.de",
           ],
         },
         {
@@ -233,6 +234,7 @@ const legalContent = {
           paragraphs: [
             "When you open this website, your browser transmits technically necessary data which is recorded in the log files of our hosting provider: the IP address of the requesting device, the date and time of access, the address requested, the HTTP status code, the volume of data transferred, and details of your browser and operating system.",
             "This processing is necessary to provide the website, keep it stable and detect attacks. The legal basis is Article 6 (1) (f) GDPR; our legitimate interest lies in secure and uninterrupted operation. This data is not combined with other sources and not evaluated for advertising purposes.",
+            "Log data is kept only for as long as the secure operation of the website requires and is deleted afterwards. It is retained for longer only where a specific security incident has to be investigated.",
           ],
         },
         {
@@ -241,7 +243,7 @@ const legalContent = {
             "If you use the form on this website, we process the details you enter: first name, email address and your message as mandatory fields, surname and company as optional ones. We use this data solely to handle your inquiry and reply to you.",
             "The legal basis is Article 6 (1) (b) GDPR where the inquiry concerns the conclusion or performance of a contract, and otherwise Article 6 (1) (f) GDPR, our legitimate interest being to answer business inquiries. Providing the data is voluntary; without a first name, email address and message we cannot answer your inquiry.",
             "The form contains a field invisible to you which serves to block automated submissions. We additionally limit the number of submissions for a short period using a value derived from the IP address, which is held in memory only and discarded after a few minutes.",
-            "Your inquiry is delivered to our mailbox by email and kept there for as long as handling it requires. We delete it afterwards unless commercial or tax retention obligations apply.",
+            "Our hosting provider processes the form data in a data centre in Frankfurt am Main, Germany. Your inquiry is delivered to our mailbox by email and kept there for as long as handling it requires. We delete it afterwards unless commercial or tax retention obligations apply.",
           ],
         },
         {
@@ -270,7 +272,7 @@ const legalContent = {
         {
           title: "Status of this policy",
           paragraphs: [
-            "August 2026. Should data processing on this website change, we will amend this policy accordingly.",
+            "September 2026. Should data processing on this website change, we will amend this policy accordingly.",
           ],
         },
       ],
