@@ -11,7 +11,9 @@ import {
   legalPageKindFromSlug,
   legalPagePath,
   locales,
-  sectionPath,
+  contactPagePath,
+  contactPageSlug,
+  isContactPageSlug,
 } from "@/lib/i18n";
 
 describe("isLocale", () => {
@@ -31,15 +33,21 @@ describe("homePath", () => {
   });
 });
 
-describe("sectionPath", () => {
-  it("prefixes a hash with the localised home path", () => {
-    expect(sectionPath("de", "#contact")).toBe("/de#contact");
-    expect(sectionPath("en", "#systems")).toBe("/en#systems");
+describe("contact page routing", () => {
+  it("builds the localised contact paths", () => {
+    expect(contactPagePath("de")).toBe("/de/kontakt");
+    expect(contactPagePath("en")).toBe("/en/contact");
+    expect(contactPageSlug("de")).toBe("kontakt");
+    expect(contactPageSlug("en")).toBe("contact");
   });
 
-  it("leaves an absolute path untouched", () => {
-    expect(sectionPath("de", "/de/unternehmen")).toBe("/de/unternehmen");
-    expect(sectionPath("en", "https://example.org")).toBe("https://example.org");
+  it("recognises only the slug of its own locale", () => {
+    expect(isContactPageSlug("de", ["kontakt"])).toBe(true);
+    expect(isContactPageSlug("en", ["contact"])).toBe(true);
+    expect(isContactPageSlug("de", ["contact"])).toBe(false);
+    expect(isContactPageSlug("en", ["kontakt"])).toBe(false);
+    expect(isContactPageSlug("de", ["kontakt", "extra"])).toBe(false);
+    expect(isContactPageSlug("de", [])).toBe(false);
   });
 });
 

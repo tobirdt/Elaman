@@ -59,9 +59,18 @@ describe("createContactEmailContent", () => {
 
     expect(subject).not.toContain("\n");
     expect(subject).not.toContain("\r");
-    expect(subject).toBe(
-      "New Elaman website inquiry: Anna Bcc: victim@example.org Brandt",
+    expect(subject).toContain(
+      "Anfrage über elaman.de: Anna Bcc: victim@example.org Brandt",
     );
+  });
+
+  it("names the company in the subject when one is given", () => {
+    const { subject } = createContactEmailContent(
+      payload({ firstName: "Anna", lastName: "Brandt", company: "Stadt Musterhausen" }),
+      timestamp,
+    );
+
+    expect(subject).toBe("Anfrage über elaman.de: Anna Brandt, Stadt Musterhausen");
   });
 
   it("falls back to the email address when no name is present", () => {
@@ -70,7 +79,7 @@ describe("createContactEmailContent", () => {
       timestamp,
     );
 
-    expect(subject).toBe("New Elaman website inquiry: anna.brandt@example.org");
+    expect(subject).toContain("Anfrage über elaman.de: anna.brandt@example.org");
   });
 
   it("renders missing optional fields as a dash", () => {
@@ -79,8 +88,8 @@ describe("createContactEmailContent", () => {
       timestamp,
     );
 
-    expect(text).toContain("Last name: —");
-    expect(text).toContain("Company: —");
+    expect(text).toContain("Nachname: —");
+    expect(text).toContain("Unternehmen: —");
     expect(html).toContain("—");
   });
 
@@ -89,15 +98,15 @@ describe("createContactEmailContent", () => {
     const english = createContactEmailContent(payload({ locale: "en" }), timestamp);
     const fallback = createContactEmailContent(payload({ locale: undefined }), timestamp);
 
-    expect(german.text).toContain("Language: Deutsch — bitte auf Deutsch antworten");
-    expect(english.text).toContain("Language: English — please reply in English");
-    expect(fallback.text).toContain("Language: Deutsch — bitte auf Deutsch antworten");
+    expect(german.text).toContain("Sprache: Deutsch");
+    expect(english.text).toContain("Sprache: Englisch (bitte auf Englisch antworten)");
+    expect(fallback.text).toContain("Sprache: Deutsch");
   });
 
   it("stamps the submission time in the Munich time zone", () => {
     const { text } = createContactEmailContent(payload(), timestamp);
 
     expect(text).toContain("(Europe/Berlin)");
-    expect(text).toContain("Source: Contact form on elaman.de");
+    expect(text).toContain("Quelle: Anfrageformular auf elaman.de");
   });
 });
