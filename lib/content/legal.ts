@@ -155,9 +155,9 @@ const legalContent = {
   },
   en: {
     imprint: {
-      title: "Site notice",
+      title: "Legal notice",
       label: "Legal",
-      metaTitle: "Site notice",
+      metaTitle: "Legal notice",
       metaDescription: "Legal information about Elaman GmbH, Munich.",
       blocks: [
         {

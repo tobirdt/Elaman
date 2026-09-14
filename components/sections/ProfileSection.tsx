@@ -12,8 +12,8 @@ type ProfileSectionProps = {
 
 export function ProfileSection({ content }: ProfileSectionProps) {
   return (
-    <Section id="profile" variant="screen" tone="white" className="flex">
-      <Container className="grid flex-1 items-center gap-12 py-[var(--section-y-screen)] lg:grid-cols-[minmax(0,1.08fr)_minmax(20rem,0.92fr)] lg:gap-20 xl:gap-24">
+    <Section id="profile" variant="feature" tone="white" className="flex">
+      <Container className="reveal-group grid flex-1 items-center gap-12 py-[var(--section-y-screen)] lg:grid-cols-[minmax(0,1.08fr)_minmax(20rem,0.92fr)] lg:gap-20 xl:gap-24">
         <div className="min-w-0 max-w-[42rem]">
           <span className="block h-px w-20 bg-elaman-blue" aria-hidden="true" />
           <p className="mt-7 text-[length:var(--type-h3)] leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite-muted">

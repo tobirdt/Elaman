@@ -49,7 +49,7 @@ export function ContactPage({ content, contact, locale }: ContactPageProps) {
       </section>
 
       <section className="bg-[var(--surface-paper)]">
-        <Container className="grid gap-10 py-[var(--section-y-content-band)] xl:grid-cols-[minmax(16rem,0.36fr)_minmax(0,0.64fr)] xl:gap-16">
+        <Container className="reveal-group grid gap-10 py-[var(--section-y-content-band)] xl:grid-cols-[minmax(16rem,0.36fr)_minmax(0,0.64fr)] xl:gap-16">
           <dl className="grid self-start border-t border-[var(--border-hairline-strong)]">
             <div className="border-b border-[var(--border-hairline)] py-5">
               <dt className={termClasses}>{contact.labels.address}</dt>

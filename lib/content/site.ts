@@ -149,7 +149,7 @@ export const siteContent = {
         { label: "Contact", href: contactPagePath("en") },
       ],
       legal: [
-        { label: "Site notice", href: legalPagePath("en", "imprint") },
+        { label: "Legal notice", href: legalPagePath("en", "imprint") },
         { label: "Privacy policy", href: legalPagePath("en", "privacy") },
       ],
       menu: "Menu",
@@ -171,7 +171,7 @@ export const siteContent = {
     notFound: {
       label: "404",
       title: "Page not found.",
-      body: "This address does not exist on our website — the link may have changed. The homepage will take you to every section and to our contact details.",
+      body: "This address does not exist on our website. The link may have changed. The homepage will take you to every section and to our contact details.",
       cta: "Go to the Elaman homepage",
     },
     hero: {
@@ -228,7 +228,7 @@ export const siteContent = {
     systems: {
       title: "Systems for communications, observation and analysis.",
       intro:
-        "Elaman supplies these areas individually or integrates them into a complete system.",
+        "Elaman supplies these systems individually or integrates them into a complete system.",
       items: [
         { title: "Covert audio and video surveillance" },
         { title: "Audio and video analysis systems" },
@@ -255,7 +255,7 @@ export const siteContent = {
       },
       addressLines: ["Implerstraße 24", "81371 Munich", "Germany"],
       footerAddressLines: ["Implerstraße 24", "81371 Munich, Germany"],
-      phone: "+49 (0) 89 - 24 20 91 80",
+      phone: "+49 89 24209180",
       phoneHref: "+498924209180",
       email: "info@elaman.de",
       emailHref: "mailto:info@elaman.de",
@@ -289,7 +289,7 @@ export const siteContent = {
           rateLimited:
             "Several inquiries were sent in a short period. Please try again in a few minutes.",
           sendFailed:
-            "Your inquiry could not be sent. Please try again — or call us and we will take the details directly.",
+            "Your inquiry could not be sent. Please try again, or call us and we will take the details directly.",
           unexpected:
             "Something went wrong while processing your inquiry. Please try again, or contact us by phone or email.",
         },
@@ -333,7 +333,7 @@ export const siteContent = {
     notFound: {
       label: "404",
       title: "Seite nicht gefunden.",
-      body: "Diese Adresse gibt es auf unserer Website nicht — womöglich hat sich der Link geändert. Über die Startseite erreichen Sie alle Bereiche und den direkten Kontakt.",
+      body: "Diese Adresse gibt es auf unserer Website nicht. Möglicherweise hat sich der Link geändert. Über die Startseite erreichen Sie alle Bereiche und den direkten Kontakt.",
       cta: "Zur Elaman-Startseite",
     },
     hero: {
@@ -390,7 +390,7 @@ export const siteContent = {
     systems: {
       title: "Systeme für Kommunikation, Observation und Auswertung.",
       intro:
-        "Elaman liefert diese Bereiche einzeln oder führt sie zu einem Gesamtsystem zusammen.",
+        "Elaman liefert diese Systeme einzeln oder führt sie zu einem Gesamtsystem zusammen.",
       items: [
         { title: "Verdeckte Audio- und Videoobservation" },
         { title: "Audio- und Videoauswertesysteme" },
@@ -415,7 +415,7 @@ export const siteContent = {
       },
       addressLines: ["Implerstraße 24", "81371 München", "Deutschland"],
       footerAddressLines: ["Implerstraße 24", "81371 München, Deutschland"],
-      phone: "+49 (0) 89 - 24 20 91 80",
+      phone: "+49 89 24209180",
       phoneHref: "+498924209180",
       email: "info@elaman.de",
       emailHref: "mailto:info@elaman.de",
@@ -450,7 +450,7 @@ export const siteContent = {
           rateLimited:
             "In kurzer Zeit wurden mehrere Anfragen gesendet. Bitte versuchen Sie es in einigen Minuten erneut.",
           sendFailed:
-            "Ihre Anfrage konnte nicht übermittelt werden. Bitte versuchen Sie es erneut — oder rufen Sie uns an, dann klären wir es direkt.",
+            "Ihre Anfrage konnte nicht übermittelt werden. Bitte versuchen Sie es erneut oder rufen Sie uns an, dann klären wir es direkt.",
           unexpected:
             "Bei der Verarbeitung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder wenden Sie sich telefonisch an uns.",
         },

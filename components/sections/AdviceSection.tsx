@@ -8,9 +8,9 @@ type AdviceSectionProps = {
 
 export function AdviceSection({ content }: AdviceSectionProps) {
   return (
-    <Section id="advice" variant="screen" tone="soft" className="flex">
+    <Section id="advice" variant="feature" tone="soft" className="flex">
       <Container className="flex flex-1 flex-col justify-center py-[var(--section-y-screen)]">
-        <div className="max-w-[60rem]">
+        <div className="reveal max-w-[60rem]">
           <h2 className="max-w-[22ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
             {content.title}
           </h2>
@@ -19,7 +19,7 @@ export function AdviceSection({ content }: AdviceSectionProps) {
           </p>
         </div>
 
-        <ol className="mt-12 grid lg:mt-16 lg:grid-cols-4 lg:gap-8 lg:border-t lg:border-[var(--border-hairline-strong)]">
+        <ol className="reveal-group mt-12 grid lg:mt-16 lg:grid-cols-4 lg:gap-8 lg:border-t lg:border-[var(--border-hairline-strong)]">
           {content.steps.map((step, index) => (
             <li
               key={step.title}

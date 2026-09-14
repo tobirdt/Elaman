@@ -11,7 +11,6 @@ type FooterProps = {
   footer: LocalizedSiteContent["footer"];
   locale: Locale;
   alternateLocaleHref?: string;
-  snapEnd?: boolean;
 };
 
 const columnLabelClasses =
@@ -26,13 +25,9 @@ export function Footer({
   navigation,
   footer,
   locale,
-  snapEnd = false,
 }: FooterProps) {
   return (
-    <footer
-      className="border-t border-[var(--border-hairline)] bg-[var(--surface-paper)]"
-      data-scroll-snap-end={snapEnd || undefined}
-    >
+    <footer className="border-t border-[var(--border-hairline)] bg-[var(--surface-paper)]">
       <Container className="py-12 sm:py-14">
         <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           <nav aria-label={footer.navigationLabel}>

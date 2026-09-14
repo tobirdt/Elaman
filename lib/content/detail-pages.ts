@@ -100,7 +100,7 @@ const detailContent = {
       back: { label: "Zur Startseite", href: homePath("de") },
       contact: { label: "Kontakt aufnehmen", href: contactPagePath("de") },
       closing:
-        "Rufen Sie an oder schreiben Sie uns — auch wenn noch nicht alles feststeht.",
+        "Rufen Sie an oder schreiben Sie uns, auch wenn noch nicht alles feststeht.",
       heroAlt: "Empfangsbereich des Elaman-Büros in München",
       process: {
         label: "Vorgehen",
@@ -244,7 +244,7 @@ const detailContent = {
       management: {
         label: "Managing Director",
         name: "Holger Rumscheidt",
-        note: "Legal information about the company is available in the site notice.",
+        note: "Legal information about the company is available in the legal notice.",
         href: legalPagePath("en", "imprint"),
       },
     },

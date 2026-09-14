@@ -12,7 +12,7 @@ export function SystemsSection({ content }: SystemsSectionProps) {
   return (
     <Section
       id="systems"
-      variant="screen"
+      variant="feature"
       className="grid bg-navy text-[var(--color-on-dark)] lg:grid-cols-[minmax(20rem,0.38fr)_minmax(0,0.62fr)]"
     >
       <div className="relative min-h-[clamp(18rem,42svh,28rem)] overflow-hidden bg-navy lg:min-h-full">
@@ -28,19 +28,19 @@ export function SystemsSection({ content }: SystemsSectionProps) {
 
       <div className="flex items-center border-t border-[var(--border-on-navy)] py-[var(--section-y-screen)] pl-[var(--page-x-left)] pr-[var(--page-x-right)] lg:border-l lg:border-t-0">
         <div className="w-full max-w-[48rem]">
-          <span className="block h-px w-20 bg-elaman-blue" aria-hidden="true" />
-          <h2 className="mt-7 max-w-[21ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-[var(--color-on-dark)]">
+          <span className="reveal block h-px w-20 bg-elaman-blue" aria-hidden="true" />
+          <h2 className="reveal mt-7 max-w-[21ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-[var(--color-on-dark)]">
             {content.title}
           </h2>
-          <p className="mt-5 max-w-[62ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-[var(--color-on-dark-muted)]">
+          <p className="reveal mt-5 max-w-[62ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-[var(--color-on-dark-muted)]">
             {content.intro}
           </p>
 
-          <ol className="mt-9 grid sm:grid-cols-2 sm:gap-x-8 lg:mt-10">
+          <ol className="reveal-group mt-9 grid sm:grid-cols-2 sm:gap-x-8 lg:mt-10">
             {content.items.map((item, index) => (
               <li
                 key={item.title}
-                className="grid min-w-0 grid-cols-[2.5rem_minmax(0,1fr)] items-baseline gap-3 border-t border-[var(--border-on-navy)] py-4"
+                className="grid min-w-0 grid-cols-[2.5rem_minmax(0,1fr)] items-baseline gap-3 border-t border-[var(--border-on-navy)] py-4 sm:last:odd:col-span-2"
               >
                 <span
                   aria-hidden="true"
@@ -54,7 +54,7 @@ export function SystemsSection({ content }: SystemsSectionProps) {
               </li>
             ))}
           </ol>
-          <div className="mt-6">
+          <div className="reveal mt-6">
             <TextLink
               href={content.detailLink.href}
               label={content.detailLink.label}

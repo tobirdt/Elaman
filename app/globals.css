@@ -26,6 +26,7 @@
   --container-narrow: 30rem;
   --container-legal: 56rem;
   --section-screen-min: calc(100vh - var(--header-h));
+  --section-feature-max: 46rem;
   --section-y-screen: clamp(3rem, 6svh, 5.5rem);
   --section-y-content-band: clamp(3.75rem, 6vw, 5.5rem);
   --section-y-legal-page: clamp(2.75rem, 5vw, 4.25rem);
@@ -110,10 +111,6 @@ html {
   background: var(--surface-paper);
 }
 
-html[data-anchor-scrolling] {
-  scroll-snap-type: none !important;
-}
-
 body {
   min-height: 100vh;
   margin: 0;
@@ -146,20 +143,77 @@ body {
   }
 }
 
-@media (min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  html:has(main[data-scroll-snap-page]) {
-    scroll-snap-type: y proximity;
+/*
+ * Feature sections own the visible height on a laptop but stop growing on
+ * tall displays, so a short composition never floats in a viewport of empty
+ * paper. Only the route hero keeps the full first screen.
+ */
+.section-feature {
+  min-height: min(var(--section-screen-min), var(--section-feature-max));
+  scroll-margin-top: var(--header-h);
+}
+
+@supports (height: 100svh) {
+  .section-feature {
+    min-height: min(calc(100svh - var(--header-h)), var(--section-feature-max));
+  }
+}
+
+/*
+ * Scroll-linked entrance. Content blocks settle into place as they enter the
+ * viewport, driven by the browser's own scroll timeline: no observer, no
+ * JavaScript, nothing runs off the main thread budget. Browsers without
+ * scroll-driven animations and readers who ask for reduced motion get the
+ * final state immediately. Only opacity and transform move, and the distance
+ * is the same 12px rise the route hero uses.
+ */
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-rise));
   }
 
-  .section-screen {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  [data-scroll-snap-end] {
-    scroll-snap-align: end;
-    scroll-snap-stop: normal;
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal,
+    .reveal-group > * {
+      animation: reveal-rise var(--motion-ease) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 32%;
+    }
+
+    .reveal-group > :nth-child(2) {
+      animation-range: entry 6% entry 38%;
+    }
+
+    .reveal-group > :nth-child(3) {
+      animation-range: entry 12% entry 44%;
+    }
+
+    .reveal-group > :nth-child(4) {
+      animation-range: entry 18% entry 50%;
+    }
+
+    .reveal-group > :nth-child(n + 5) {
+      animation-range: entry 24% entry 56%;
+    }
   }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --type-display: 7rem;
+  }
+}
+
+p {
+  text-wrap: pretty;
 }
 
 a {

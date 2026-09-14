@@ -19,7 +19,7 @@ export function ContactSection({ content }: ContactSectionProps) {
   return (
     <Section
       id="contact"
-      variant="screen"
+      variant="feature"
       tone="white"
       className="grid lg:grid-cols-[minmax(20rem,0.38fr)_minmax(0,0.62fr)]"
     >
@@ -35,7 +35,7 @@ export function ContactSection({ content }: ContactSectionProps) {
       </div>
 
       <div className="flex items-center border-t border-[var(--border-hairline)] py-[var(--section-y-screen)] pl-[var(--page-x-left)] pr-[var(--page-x-right)] lg:border-l lg:border-t-0">
-        <div className="w-full max-w-[46rem]">
+        <div className="reveal w-full max-w-[46rem]">
           <h2 className="text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
             {content.title}
           </h2>

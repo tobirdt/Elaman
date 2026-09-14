@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { AnchorScrollManager } from "@/components/motion/AnchorScrollManager";
 import { AdviceSection } from "@/components/sections/AdviceSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -72,9 +71,8 @@ export default async function HomePage({ params }: LocalePageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(homepageJsonLd(locale)) }}
       />
-      <AnchorScrollManager locale={locale} />
       <Header locale={locale} content={content.navigation} />
-      <main id="main-content" data-scroll-snap-page tabIndex={-1}>
+      <main id="main-content" tabIndex={-1}>
         <HeroSection content={content.hero} />
         <ProfileSection content={content.profile} />
         <AdviceSection content={content.advice} />
@@ -86,7 +84,6 @@ export default async function HomePage({ params }: LocalePageProps) {
         locale={locale}
         navigation={content.navigation}
         footer={content.footer}
-        snapEnd
       />
     </>
   );
