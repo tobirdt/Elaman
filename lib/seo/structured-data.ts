@@ -1,6 +1,6 @@
 import { getSiteContent } from "@/lib/content/site";
 import type { DetailPageKind, Locale } from "@/lib/i18n";
-import { detailPagePath } from "@/lib/i18n";
+import { contactPagePath, detailPagePath, homePath } from "@/lib/i18n";
 import { absoluteUrl, siteConfig } from "@/lib/seo/site";
 
 const organizationId = absoluteUrl("/#organization");
@@ -19,6 +19,7 @@ function organizationNode() {
     description: siteConfig.description,
     url: siteConfig.url,
     logo: absoluteUrl(siteConfig.logoPath),
+    sameAs: ["https://www.linkedin.com/company/elaman-gmbh"],
     email: contact.email,
     telephone: contact.phone,
     address: {
@@ -73,7 +74,7 @@ export function siteJsonLd() {
 
 export function homepageJsonLd(locale: Locale) {
   const content = getSiteContent(locale);
-  const url = absoluteUrl(`/${locale}`);
+  const url = absoluteUrl(homePath(locale));
 
   return {
     "@context": "https://schema.org",
@@ -89,15 +90,55 @@ export function homepageJsonLd(locale: Locale) {
   };
 }
 
+export function contactPageJsonLd(locale: Locale, name: string, description: string) {
+  const url = absoluteUrl(contactPagePath(locale));
+  const homeUrl = absoluteUrl(homePath(locale));
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "@id": `${url}#webpage`,
+        url,
+        name,
+        description,
+        inLanguage: locale,
+        isPartOf: { "@id": websiteId },
+        about: { "@id": organizationId },
+        mainEntity: { "@id": organizationId },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: locale === "de" ? "Start" : "Home",
+            item: homeUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name,
+            item: url,
+          },
+        ],
+      },
+    ],
+  };
+}
+
 export function detailPageJsonLd(
   locale: Locale,
   kind: DetailPageKind,
   name: string,
   description: string,
 ) {
-  const path = detailPagePath(locale, kind);
-  const url = absoluteUrl(path);
-  const homeUrl = absoluteUrl(`/${locale}`);
+  const url = absoluteUrl(detailPagePath(locale, kind));
+  const homeUrl = absoluteUrl(homePath(locale));
 
   return {
     "@context": "https://schema.org",

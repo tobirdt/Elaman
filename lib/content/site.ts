@@ -1,12 +1,24 @@
-import type { Locale } from "@/lib/i18n";
+import type { Route } from "next";
+
+import {
+  contactPagePath,
+  detailPagePath,
+  homePath,
+  legalPagePath,
+  type Locale,
+} from "@/lib/i18n";
 
 type NavigationItem = {
   label: string;
-  href: string;
+  href: Route;
 };
 
+/**
+ * Global destinations. Every entry is a real page, so the active state is a
+ * plain path comparison; `mobileOnly` marks the home entry that the signet
+ * already provides on desktop.
+ */
 type PrimaryNavigationItem = NavigationItem & {
-  section: `#${string}`;
   mobileOnly?: boolean;
 };
 
@@ -16,8 +28,6 @@ type ContentItem = {
 };
 
 type ContactFormContent = {
-  title: string;
-  intro: string;
   fields: {
     firstName: string;
     lastName: string;
@@ -62,6 +72,12 @@ export type LocalizedSiteContent = {
     legalNavigationLabel: string;
   };
   footer: {
+    navigationLabel: string;
+    columns: {
+      navigation: string;
+      contact: string;
+      legal: string;
+    };
     copyright: string;
   };
   notFound: {
@@ -82,7 +98,7 @@ export type LocalizedSiteContent = {
     management: {
       label: string;
       name: string;
-      href: string;
+      href: Route;
     };
     detailLink: NavigationItem;
   };
@@ -99,7 +115,6 @@ export type LocalizedSiteContent = {
   };
   contact: {
     company: string;
-    officeTitle: string;
     title: string;
     intro: string;
     labels: {
@@ -113,6 +128,7 @@ export type LocalizedSiteContent = {
     phoneHref: string;
     email: string;
     emailHref: string;
+    cta: NavigationItem;
     form: ContactFormContent;
   };
 };
@@ -127,15 +143,14 @@ export const siteContent = {
     },
     navigation: {
       main: [
-        { label: "Home", href: "#hero", section: "#hero", mobileOnly: true },
-        { label: "Company", href: "/en/company", section: "#profile" },
-        { label: "Systems", href: "/en/systems", section: "#systems" },
-        { label: "Approach", href: "#advice", section: "#advice" },
-        { label: "Contact", href: "#contact", section: "#contact" },
+        { label: "Home", href: homePath("en"), mobileOnly: true },
+        { label: "Company", href: detailPagePath("en", "company") },
+        { label: "Systems", href: detailPagePath("en", "systems") },
+        { label: "Contact", href: contactPagePath("en") },
       ],
       legal: [
-        { label: "Site notice", href: "/en/site-notice" },
-        { label: "Privacy policy", href: "/en/privacy-policy" },
+        { label: "Site notice", href: legalPagePath("en", "imprint") },
+        { label: "Privacy policy", href: legalPagePath("en", "privacy") },
       ],
       menu: "Menu",
       homeLabel: "Elaman home",
@@ -145,6 +160,12 @@ export const siteContent = {
       legalNavigationLabel: "Legal navigation",
     },
     footer: {
+      navigationLabel: "Footer navigation",
+      columns: {
+        navigation: "Navigation",
+        contact: "Contact",
+        legal: "Legal",
+      },
       copyright: "© 2026 Elaman GmbH",
     },
     notFound: {
@@ -172,11 +193,11 @@ export const siteContent = {
       management: {
         label: "Managing Director",
         name: "Holger Rumscheidt",
-        href: "/en/site-notice",
+        href: legalPagePath("en", "imprint"),
       },
       detailLink: {
         label: "Company profile",
-        href: "/en/company",
+        href: detailPagePath("en", "company"),
       },
     },
     advice: {
@@ -220,14 +241,13 @@ export const siteContent = {
       ],
       detailLink: {
         label: "Systems overview",
-        href: "/en/systems",
+        href: detailPagePath("en", "systems"),
       },
     },
     contact: {
       company: "Elaman GmbH",
-      officeTitle: "Elaman in Munich",
       title: "Contact",
-      intro: "Your inquiry goes directly to our Munich team.",
+      intro: "Elaman in Munich. Call us, send an email or use the inquiry form.",
       labels: {
         address: "Address",
         phone: "Phone",
@@ -239,9 +259,11 @@ export const siteContent = {
       phoneHref: "+498924209180",
       email: "info@elaman.de",
       emailHref: "mailto:info@elaman.de",
+      cta: {
+        label: "Send an inquiry",
+        href: contactPagePath("en"),
+      },
       form: {
-        title: "Your inquiry",
-        intro: "A brief description of the task is enough for an initial discussion.",
         fields: {
           firstName: "First name",
           lastName: "Last name",
@@ -283,15 +305,14 @@ export const siteContent = {
     },
     navigation: {
       main: [
-        { label: "Start", href: "#hero", section: "#hero", mobileOnly: true },
-        { label: "Unternehmen", href: "/de/unternehmen", section: "#profile" },
-        { label: "Systeme", href: "/de/systeme", section: "#systems" },
-        { label: "Vorgehen", href: "#advice", section: "#advice" },
-        { label: "Kontakt", href: "#contact", section: "#contact" },
+        { label: "Start", href: homePath("de"), mobileOnly: true },
+        { label: "Unternehmen", href: detailPagePath("de", "company") },
+        { label: "Systeme", href: detailPagePath("de", "systems") },
+        { label: "Kontakt", href: contactPagePath("de") },
       ],
       legal: [
-        { label: "Impressum", href: "/de/impressum" },
-        { label: "Datenschutzerklärung", href: "/de/datenschutz" },
+        { label: "Impressum", href: legalPagePath("de", "imprint") },
+        { label: "Datenschutzerklärung", href: legalPagePath("de", "privacy") },
       ],
       menu: "Menü",
       homeLabel: "Zur Elaman-Startseite",
@@ -301,6 +322,12 @@ export const siteContent = {
       legalNavigationLabel: "Rechtliche Hinweise",
     },
     footer: {
+      navigationLabel: "Navigation im Fußbereich",
+      columns: {
+        navigation: "Navigation",
+        contact: "Kontakt",
+        legal: "Rechtliches",
+      },
       copyright: "© 2026 Elaman GmbH",
     },
     notFound: {
@@ -328,11 +355,11 @@ export const siteContent = {
       management: {
         label: "Geschäftsführung",
         name: "Holger Rumscheidt",
-        href: "/de/impressum",
+        href: legalPagePath("de", "imprint"),
       },
       detailLink: {
         label: "Zum Unternehmensprofil",
-        href: "/de/unternehmen",
+        href: detailPagePath("de", "company"),
       },
     },
     advice: {
@@ -373,14 +400,14 @@ export const siteContent = {
       ],
       detailLink: {
         label: "Systeme im Überblick",
-        href: "/de/systeme",
+        href: detailPagePath("de", "systems"),
       },
     },
     contact: {
       company: "Elaman GmbH",
-      officeTitle: "Elaman in München",
       title: "Kontakt",
-      intro: "Ihre Anfrage erreicht direkt unser Team in München.",
+      intro:
+        "Elaman in München. Rufen Sie an, schreiben Sie eine E-Mail oder schicken Sie uns Ihre Anfrage über das Formular.",
       labels: {
         address: "Adresse",
         phone: "Telefon",
@@ -392,9 +419,11 @@ export const siteContent = {
       phoneHref: "+498924209180",
       email: "info@elaman.de",
       emailHref: "mailto:info@elaman.de",
+      cta: {
+        label: "Anfrage senden",
+        href: contactPagePath("de"),
+      },
       form: {
-        title: "Ihr Anliegen",
-        intro: "Ein paar Sätze zur Aufgabe genügen für den ersten Austausch.",
         fields: {
           firstName: "Vorname",
           lastName: "Nachname",

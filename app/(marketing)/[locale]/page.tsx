@@ -10,7 +10,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { ProfileSection } from "@/components/sections/ProfileSection";
 import { SystemsSection } from "@/components/sections/SystemsSection";
 import { getSiteContent } from "@/lib/content/site";
-import { isLocale, locales, type Locale } from "@/lib/i18n";
+import { homePath, isLocale, locales, type Locale } from "@/lib/i18n";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo/site";
 import { homepageJsonLd, safeJsonLd } from "@/lib/seo/structured-data";
 
@@ -45,12 +45,12 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
     title: content.metadata.title,
     appendSiteName: false,
     description: content.metadata.description,
-    path: `/${locale}`,
+    path: homePath(locale),
     locale: content.metadata.ogLocale,
     languages: {
-      en: absoluteUrl("/en"),
-      de: absoluteUrl("/de"),
-      "x-default": absoluteUrl("/de"),
+      en: absoluteUrl(homePath("en")),
+      de: absoluteUrl(homePath("de")),
+      "x-default": absoluteUrl(homePath("de")),
     },
   });
 }
@@ -79,7 +79,7 @@ export default async function HomePage({ params }: LocalePageProps) {
         <ProfileSection content={content.profile} />
         <AdviceSection content={content.advice} />
         <SystemsSection content={content.systems} />
-        <ContactSection content={content.contact} locale={locale} />
+        <ContactSection content={content.contact} />
       </main>
       <Footer
         contact={content.contact}

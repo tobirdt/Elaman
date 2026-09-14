@@ -3,19 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { Route } from "next";
-import {
-  useEffect,
-  useRef,
-  useState,
-  type MouseEventHandler,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { Container } from "@/components/ui/Container";
 import type { LocalizedSiteContent } from "@/lib/content/site";
-import { homePath, sectionPath, type Locale } from "@/lib/i18n";
+import { homePath, type Locale } from "@/lib/i18n";
 
 type HeaderProps = {
   locale: Locale;
@@ -23,88 +16,29 @@ type HeaderProps = {
   alternateLocaleHref?: string;
 };
 
-type PrimaryNavigationItem = LocalizedSiteContent["navigation"]["main"][number];
-
-type PrimaryNavigationLinkProps = {
-  ariaCurrent?: "page" | "location";
-  children: ReactNode;
-  className: string;
-  item: PrimaryNavigationItem;
-  locale: Locale;
-  mobile?: boolean;
-  onClick?: MouseEventHandler<HTMLAnchorElement>;
-};
-
-function PrimaryNavigationLink({
-  ariaCurrent,
-  children,
-  className,
-  item,
-  locale,
-  mobile = false,
-  onClick,
-}: PrimaryNavigationLinkProps) {
-  const href = sectionPath(locale, item.href);
-  const sharedProps = {
-    "aria-current": ariaCurrent,
-    className,
-    "data-mobile-menu-link": mobile || undefined,
-    onClick,
-  } as const;
-
-  if (item.href.startsWith("#")) {
-    return (
-      <a href={href} {...sharedProps}>
-        {children}
-      </a>
-    );
-  }
-
-  return (
-    <Link href={href as Route} {...sharedProps}>
-      {children}
-    </Link>
-  );
-}
-
 export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
   const pathname = usePathname();
-  const [activeSection, setActiveSection] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const sections = content.main
-      .map((item) => document.getElementById(item.section.slice(1)))
-      .filter((section): section is HTMLElement => section !== null);
     let frame = 0;
 
-    function updateHeaderState() {
+    function updateHairline() {
       cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const marker = window.innerHeight * 0.34;
-        const active = sections.reduce<HTMLElement | null>((match, section) => {
-          const rect = section.getBoundingClientRect();
-          return rect.top <= marker && rect.bottom > marker ? section : match;
-        }, null);
-
-        setScrolled(window.scrollY > 8);
-        setActiveSection(active ? `#${active.id}` : "");
-      });
+      frame = requestAnimationFrame(() => setScrolled(window.scrollY > 8));
     }
 
-    updateHeaderState();
-    window.addEventListener("scroll", updateHeaderState, { passive: true });
-    window.addEventListener("resize", updateHeaderState);
+    updateHairline();
+    window.addEventListener("scroll", updateHairline, { passive: true });
 
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", updateHeaderState);
-      window.removeEventListener("resize", updateHeaderState);
+      window.removeEventListener("scroll", updateHairline);
     };
-  }, [content.main]);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -191,16 +125,12 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
     };
   }, [menuOpen]);
 
-  function getCurrentState(item: PrimaryNavigationItem): "page" | "location" | undefined {
-    if (!item.href.startsWith("#") && pathname === item.href) {
-      return "page";
-    }
-
-    if (pathname === homePath(locale) && activeSection === item.section) {
-      return "location";
-    }
-
-    return undefined;
+  /**
+   * Every global destination is a page of its own, so the current state is the
+   * current path — no scroll observation, no anchor mapping.
+   */
+  function isCurrentPage(href: string) {
+    return pathname === href;
   }
 
   return (
@@ -219,7 +149,7 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
       >
         <Container className="flex h-full items-center justify-between gap-3 lg:gap-5">
           <Link
-            href={`/${locale}` as Route}
+            href={homePath(locale)}
             className="flex min-h-11 min-w-11 shrink-0 items-center"
             aria-label={content.homeLabel}
             aria-hidden={menuOpen || undefined}
@@ -244,22 +174,21 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
               {content.main
                 .filter((item) => !item.mobileOnly)
                 .map((item) => {
-                  const current = getCurrentState(item);
+                  const current = isCurrentPage(item.href);
 
                   return (
-                    <PrimaryNavigationLink
-                      ariaCurrent={current}
+                    <Link
+                      aria-current={current ? "page" : undefined}
                       className={`relative flex min-h-11 items-center transition-colors [transition-duration:var(--motion-fast)] after:absolute after:bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:bg-elaman-blue after:transition-transform after:[transition-duration:var(--motion-fast)] after:[transition-timing-function:var(--motion-ease)] hover:text-graphite ${
                         current
                           ? "text-graphite after:scale-x-100"
                           : "after:scale-x-0 hover:after:scale-x-100"
                       }`}
-                      item={item}
+                      href={item.href}
                       key={item.href}
-                      locale={locale}
                     >
                       {item.label}
-                    </PrimaryNavigationLink>
+                    </Link>
                   );
                 })}
             </nav>
@@ -314,18 +243,17 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
               <Container className="flex min-h-full flex-col py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:py-8">
                 <nav aria-label={content.mainNavigationLabel} className="grid">
                   {content.main.map((item, index) => {
-                    const current = getCurrentState(item);
+                    const current = isCurrentPage(item.href);
 
                     return (
-                      <PrimaryNavigationLink
-                        ariaCurrent={current}
+                      <Link
+                        aria-current={current ? "page" : undefined}
                         className={`group grid min-h-14 grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-3 border-b border-[var(--border-hairline)] py-3 text-[length:var(--type-h3)] font-semibold tracking-[var(--tracking-title)] transition-colors [transition-duration:var(--motion-fast)] hover:text-graphite ${
                           current ? "text-graphite" : "text-graphite-muted"
                         }`}
-                        item={item}
+                        data-mobile-menu-link
+                        href={item.href}
                         key={item.href}
-                        locale={locale}
-                        mobile
                         onClick={() => setMenuOpen(false)}
                       >
                         <span
@@ -341,7 +269,7 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
                         >
                           →
                         </span>
-                      </PrimaryNavigationLink>
+                      </Link>
                     );
                   })}
                 </nav>
@@ -350,7 +278,7 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
                     {content.legal.map((item) => (
                       <Link
                         key={item.href}
-                        href={item.href as Route}
+                        href={item.href}
                         className="flex min-h-11 items-center text-sm text-graphite-soft transition-colors [transition-duration:var(--motion-fast)] hover:text-graphite"
                         onClick={() => setMenuOpen(false)}
                       >

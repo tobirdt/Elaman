@@ -1,4 +1,12 @@
-import type { DetailPageKind, Locale } from "@/lib/i18n";
+import type { Route } from "next";
+
+import {
+  contactPagePath,
+  homePath,
+  legalPagePath,
+  type DetailPageKind,
+  type Locale,
+} from "@/lib/i18n";
 
 type DetailMetadata = {
   title: string;
@@ -8,7 +16,7 @@ type DetailMetadata = {
 
 type DetailLink = {
   label: string;
-  href: string;
+  href: Route;
 };
 
 type DetailItem = {
@@ -44,7 +52,11 @@ type DetailBase = {
 export type CompanyDetailContent = DetailBase & {
   kind: "company";
   heroAlt: string;
-  principles: DetailItem[];
+  process: {
+    label: string;
+    title: string;
+    steps: DetailItem[];
+  };
   bridge: {
     title: string;
     body: string;
@@ -54,7 +66,7 @@ export type CompanyDetailContent = DetailBase & {
     label: string;
     name: string;
     note: string;
-    href: string;
+    href: Route;
   };
 };
 
@@ -85,28 +97,37 @@ const detailContent = {
       eyebrow: "Unternehmen",
       title: "Sicherheitslösungen aus München.",
       lead: "Elaman ist ein Münchner Unternehmen für Sicherheitstechnik. Für Sicherheitsbehörden und sicherheitsrelevante Organisationen planen wir Systeme, führen Produkte und Komponenten zusammen und bleiben bis in den laufenden Betrieb ansprechbar.",
-      back: { label: "Zur Übersicht", href: "/de#profile" },
-      contact: { label: "Kontakt aufnehmen", href: "/de#contact" },
+      back: { label: "Zur Startseite", href: homePath("de") },
+      contact: { label: "Kontakt aufnehmen", href: contactPagePath("de") },
       closing:
         "Rufen Sie an oder schreiben Sie uns — auch wenn noch nicht alles feststeht.",
       heroAlt: "Empfangsbereich des Elaman-Büros in München",
-      principles: [
-        {
-          title: "Die Aufgabe präzise erfassen",
-          description:
-            "Bevor wir über Technik sprechen, klären wir, was das System leisten soll und was am Einsatzort bereits vorhanden ist.",
-        },
-        {
-          title: "Produkte und Schnittstellen abstimmen",
-          description:
-            "Wir wählen Produkte und Schnittstellen aus und führen sie zu einem System zusammen, das als Ganzes funktioniert.",
-        },
-        {
-          title: "Den Betrieb langfristig begleiten",
-          description:
-            "Nach der Inbetriebnahme bleiben Schulung und technische Betreuung Teil der Zusammenarbeit.",
-        },
-      ],
+      process: {
+        label: "Vorgehen",
+        title: "So arbeiten wir.",
+        steps: [
+          {
+            title: "Analyse & Beratung",
+            description:
+              "Am Anfang steht die Aufgabe: Was soll das System leisten, wo wird es eingesetzt, was ist bereits vorhanden? Daraus entsteht ein Anforderungsprofil, das die Grundlage für alle weiteren Entscheidungen bildet.",
+          },
+          {
+            title: "Planung & Integration",
+            description:
+              "Auf dieser Basis wählen wir Produkte und Komponenten aus und legen die Schnittstellen fest. Vorhandene Systeme werden eingebunden, wo immer das sinnvoll ist.",
+          },
+          {
+            title: "Schlüsselfertige Umsetzung",
+            description:
+              "Aufbau, Integration und Inbetriebnahme liegen in einer Hand. Übergeben wird ein System, das als Ganzes geprüft ist.",
+          },
+          {
+            title: "Schulung & Betreuung",
+            description:
+              "Wir schulen die Teams am fertigen System. Im laufenden Betrieb bleiben wir technischer Ansprechpartner, bei Fragen ebenso wie bei Erweiterungen.",
+          },
+        ],
+      },
       bridge: {
         title: "Dieselben Ansprechpartner von der Analyse bis zum Betrieb.",
         body: "Wer die Anforderungen aufnimmt, begleitet das Projekt auch bei der Inbetriebnahme. So gehen bei Übergaben keine Informationen verloren und Entscheidungen bleiben nachvollziehbar.",
@@ -116,7 +137,7 @@ const detailContent = {
         label: "Geschäftsführung",
         name: "Holger Rumscheidt",
         note: "Rechtliche Angaben zum Unternehmen finden Sie im Impressum.",
-        href: "/de/impressum",
+        href: legalPagePath("de", "imprint"),
       },
     },
     systems: {
@@ -130,8 +151,8 @@ const detailContent = {
       eyebrow: "Systeme",
       title: "Systeme für Kommunikation, Observation und Auswertung.",
       lead: "Die folgenden Bereiche zeigen, was Elaman liefert. Wir planen sie einzeln oder stimmen sie als Gesamtsystem aufeinander ab.",
-      back: { label: "Zur Übersicht", href: "/de#systems" },
-      contact: { label: "Anforderungen besprechen", href: "/de#contact" },
+      back: { label: "Zur Startseite", href: homePath("de") },
+      contact: { label: "Anforderungen besprechen", href: contactPagePath("de") },
       closing:
         "Wenn Sie wissen, was das System leisten soll, haben wir einen Ausgangspunkt.",
       heroAlt: "",
@@ -185,27 +206,36 @@ const detailContent = {
       eyebrow: "Company",
       title: "Security solutions from Munich.",
       lead: "Elaman is a Munich-based security technology company. We plan systems for security authorities and security-related organisations, bring products and components together and remain available through day-to-day operation.",
-      back: { label: "Back to overview", href: "/en#profile" },
-      contact: { label: "Discuss a project", href: "/en#contact" },
+      back: { label: "Home", href: homePath("en") },
+      contact: { label: "Discuss a project", href: contactPagePath("en") },
       closing: "Call or email us, even if not every detail has been decided.",
       heroAlt: "Reception area at the Elaman office in Munich",
-      principles: [
-        {
-          title: "Define the task precisely",
-          description:
-            "Before discussing technology, we establish what the system must do and what is already in place on site.",
-        },
-        {
-          title: "Coordinate products and interfaces",
-          description:
-            "We select the products and interfaces and bring them together into a system that works as a whole.",
-        },
-        {
-          title: "Support long-term operation",
-          description:
-            "After commissioning, training and technical support remain part of our work.",
-        },
-      ],
+      process: {
+        label: "Approach",
+        title: "How we work.",
+        steps: [
+          {
+            title: "Analysis & consulting",
+            description:
+              "Everything starts with the task: what the system must do, where it will be used and what is already in place. The result is a requirements profile that guides every later decision.",
+          },
+          {
+            title: "Planning & integration",
+            description:
+              "On that basis we select products and components and define the interfaces. Existing systems are integrated wherever that makes sense.",
+          },
+          {
+            title: "Turnkey implementation",
+            description:
+              "Installation, integration and commissioning stay in one hand. What we hand over is a system that has been tested as a whole.",
+          },
+          {
+            title: "Training & support",
+            description:
+              "We train the teams on the finished system. During operation we remain the technical point of contact, for questions as well as for extensions.",
+          },
+        ],
+      },
       bridge: {
         title: "The same contacts from initial analysis through operation.",
         body: "The people who define the requirements also support commissioning. This prevents information from being lost during handovers and keeps decisions traceable.",
@@ -215,7 +245,7 @@ const detailContent = {
         label: "Managing Director",
         name: "Holger Rumscheidt",
         note: "Legal information about the company is available in the site notice.",
-        href: "/en/site-notice",
+        href: legalPagePath("en", "imprint"),
       },
     },
     systems: {
@@ -229,8 +259,8 @@ const detailContent = {
       eyebrow: "Systems",
       title: "Systems for communications, observation and analysis.",
       lead: "The following areas show what Elaman supplies. We plan them individually or coordinate them as part of a complete system.",
-      back: { label: "Back to overview", href: "/en#systems" },
-      contact: { label: "Discuss requirements", href: "/en#contact" },
+      back: { label: "Home", href: homePath("en") },
+      contact: { label: "Discuss requirements", href: contactPagePath("en") },
       closing: "If you know what the system needs to do, we have a starting point.",
       heroAlt: "",
       portfolioLabel: "Areas of expertise",

@@ -19,13 +19,13 @@ function BackLink({
   label,
   inverse = false,
 }: {
-  href: string;
+  href: Route;
   label: string;
   inverse?: boolean;
 }) {
   return (
     <Link
-      href={href as Route}
+      href={href}
       className={`inline-flex min-h-11 items-center gap-2 text-[length:var(--type-small)] transition-colors [transition-duration:var(--motion-fast)] ${
         inverse
           ? "text-[var(--color-on-dark-muted)] hover:text-[var(--color-on-dark)]"
@@ -99,23 +99,29 @@ function CompanyDossier({ content }: { content: CompanyDetailContent }) {
 
       <section className="bg-[var(--surface-paper-soft)]">
         <Container className="py-[var(--section-y-content-band)]">
-          <ol className="grid border-t border-[var(--border-hairline-strong)] lg:grid-cols-3">
-            {content.principles.map((principle, index) => (
+          <p className="font-mono text-[length:var(--type-micro)] font-medium uppercase tracking-[var(--tracking-label)] text-elaman-blue">
+            {content.process.label}
+          </p>
+          <h2 className="mt-6 max-w-[18ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
+            {content.process.title}
+          </h2>
+          <ol className="mt-11 grid lg:mt-14 lg:grid-cols-4 lg:gap-8 lg:border-t lg:border-[var(--border-hairline-strong)]">
+            {content.process.steps.map((step, index) => (
               <li
-                key={principle.title}
-                className="border-b border-[var(--border-hairline)] py-8 lg:border-b-0 lg:border-r lg:px-8 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
+                key={step.title}
+                className="border-t border-[var(--border-hairline)] py-8 first:border-[var(--border-hairline-strong)] lg:border-t-0 lg:pb-0 lg:pt-8"
               >
                 <span
                   aria-hidden="true"
-                  className="font-mono text-[length:var(--type-micro)] tracking-[var(--tracking-label)] text-elaman-blue"
+                  className="font-mono text-[length:var(--type-h3)] font-normal leading-none tracking-[var(--tracking-title)] text-elaman-blue"
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h2 className="mt-8 text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
-                  {principle.title}
-                </h2>
-                <p className="mt-4 max-w-[40ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite-muted">
-                  {principle.description}
+                <h3 className="mt-7 max-w-[17ch] text-[length:var(--type-body)] font-semibold leading-6 tracking-[-0.01em] text-graphite">
+                  {step.title}
+                </h3>
+                <p className="mt-3 max-w-[38ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-graphite-muted">
+                  {step.description}
                 </p>
               </li>
             ))}
@@ -147,7 +153,7 @@ function CompanyDossier({ content }: { content: CompanyDetailContent }) {
                 {content.management.label}
               </p>
               <Link
-                href={content.management.href as Route}
+                href={content.management.href}
                 className="mt-3 inline-flex min-h-11 items-center text-[length:var(--type-body)] font-semibold text-graphite underline decoration-[var(--border-accent-blue)] underline-offset-4 transition-colors [transition-duration:var(--motion-fast)] hover:text-elaman-blue"
               >
                 {content.management.name}

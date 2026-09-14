@@ -4,7 +4,7 @@ Implementation contract for the current production website. `app/globals.css`, `
 
 ## 1. Design thesis
 
-Elaman presents as an established German security-technology specialist through restraint: disciplined typography, four approved photographs, selective navy, local hairlines, factual copy, and one dominant idea per composition. The five-section homepage provides orientation; two editorial dossier pages provide depth without becoming a catalogue. The site intentionally avoids a decorative technical interface.
+Elaman presents as an established German security-technology specialist through restraint: disciplined typography, four approved photographs, selective navy, local hairlines, factual copy, and one dominant idea per composition. The five-section homepage provides orientation; two editorial dossier pages provide depth without becoming a catalogue; the contact route carries the inquiry form in the same editorial language. The site intentionally avoids a decorative technical interface.
 
 ## 2. Canonical tokens
 
@@ -89,6 +89,10 @@ Supported tones are `plain`, `white`, and `soft`. `screen` is always a minimum h
 
 Used by legal pages and utility states. `SectionLabel` uses Geist Mono. Top-level homepage sections may compose their own heading blocks where the image relationship is specific. Do not add decorative numbering; numbering is reserved for genuine ordered processes and ledgers.
 
+### Footer
+
+Identical on every route: three columns (Navigation, Contact, Legal) that collapse to two at `sm` and one below it, followed by a hairline-separated row with the copyright and the locale switch. Column titles are Geist Mono micro labels; links keep a 44px target. No box, no shadow, no repeated address block beyond the one contact column.
+
 ### Button
 
 Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill`. Primary actions use graphite and turn Elaman blue on hover. All controls retain visible focus and at least 44px touch height.
@@ -100,13 +104,13 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 ### Header
 
 - Sticky white header with the supplied points-only Elaman signet.
-- The signet is the desktop home action; the desktop navigation exposes Company, Systems, Approach, and Contact directly.
-- Company and Systems open localised dossier pages. Approach and Contact retain precise homepage anchor destinations.
-- Mobile prepends Home / Start and keeps the same four global destinations below it.
-- One blue rule communicates hover and either the current dossier page or its mapped homepage section.
+- The signet is the desktop home action; the desktop navigation exposes Company, Systems, and Contact.
+- All three are pages of their own; the menu contains no anchors, and the header runs no scroll observation. Only the hairline under the header reacts to scrolling.
+- Mobile prepends Home / Start and keeps the same global destinations below it.
+- One blue rule communicates hover and the current page, matched on the exact path.
 - Mobile navigation is the only raised overlay. It fills the available height below the header, locks the document while open, keeps legal and locale actions at the end, and traps keyboard focus.
 - Escape and outside-pointer behavior remain intact.
-- Locale switching preserves homepage hashes and maps each dossier to its reciprocal localised route.
+- Locale switching preserves homepage hashes and maps each dossier, legal and contact route to its reciprocal localised route.
 
 ## 4. Homepage section contracts
 
@@ -145,22 +149,22 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 
 ### ContactSection
 
-- Office image and contact/form content form the outer desktop split.
-- Wide desktop uses an internal contact-details/form split so the composition fits the visible height.
+- Office image and contact content form the outer desktop split.
+- The section is the compact homepage close: heading, one short paragraph, the three direct contact routes as a ruled `dl`, and one primary action to the contact route.
+- The office photograph carries no caption; the opening sentence already names Munich.
 - Mobile and tablet use natural vertical flow.
-- The office title is subordinate copy, not a competing H2.
-- Inquiry validation, honeypot, API behavior, and direct contact links remain unchanged.
+- The inquiry form itself is not part of the homepage.
 
 ## 5. Approved photography
 
-| Asset                                     | Role    |
-| ----------------------------------------- | ------- |
-| `/images/elaman-advice.jpg`               | Hero    |
-| `/images/elaman-profile-bridge.jpg`       | Profile |
-| `/images/elaman-systems-media-mining.jpg` | Systems |
-| `/images/elaman-munich-office.jpg`        | Contact |
+| Asset                                     | Role                                                          |
+| ----------------------------------------- | ------------------------------------------------------------- |
+| `/images/elaman-advice.jpg`               | Hero                                                          |
+| `/images/elaman-profile-bridge.jpg`       | Profile                                                       |
+| `/images/elaman-systems-media-mining.jpg` | Systems                                                       |
+| `/images/elaman-munich-office.jpg`        | Contact section, company dossier hero, and contact route hero |
 
-The source set is limited to these four photographs. The `elaman-home-og`, `elaman-company-og`, and `elaman-systems-og` files are route-specific crops for search and social sharing. Static crop, saturation, contrast, and overlay adjustments are allowed when they preserve legibility and a calm palette.
+The source set is limited to these four photographs. The `elaman-home-og`, `elaman-company-og`, `elaman-systems-og`, and `elaman-contact-og` files are route-specific crops for search and social sharing. Static crop, saturation, contrast, and overlay adjustments are allowed when they preserve legibility and a calm palette.
 
 ## 6. Motion and scrolling
 
@@ -188,22 +192,26 @@ Programmatic anchor movement temporarily disables snap through `data-anchor-scro
 
 ## 7. Homepage composition
 
-| Anchor     | Component        | Composition                              |
-| ---------- | ---------------- | ---------------------------------------- |
-| `#hero`    | `HeroSection`    | Chameleon, identity, tagline, experience |
-| `#profile` | `ProfileSection` | Company profile and stone bridge         |
-| `#advice`  | `AdviceSection`  | Four-stage project path                  |
-| `#systems` | `SystemsSection` | Media Mining and open ledger             |
-| `#contact` | `ContactSection` | Office, direct routes, and inquiry form  |
+| Anchor     | Component        | Composition                                   |
+| ---------- | ---------------- | --------------------------------------------- |
+| `#hero`    | `HeroSection`    | Chameleon, identity, tagline, experience      |
+| `#profile` | `ProfileSection` | Company profile and stone bridge              |
+| `#advice`  | `AdviceSection`  | Four-stage project path                       |
+| `#systems` | `SystemsSection` | Media Mining and open ledger                  |
+| `#contact` | `ContactSection` | Office, direct routes, and the inquiry action |
 
 ## 8. Dossier composition
 
-| Kind    | Routes                           | Contract                                                                               |
-| ------- | -------------------------------- | -------------------------------------------------------------------------------------- |
-| Company | `/de/unternehmen`, `/en/company` | Office-led hero, three working principles, bridge composition, factual management link |
-| Systems | `/de/systeme`, `/en/systems`     | Navy image-led hero, open five-area ledger, project approach                           |
+| Kind    | Routes                           | Contract                                                                            |
+| ------- | -------------------------------- | ----------------------------------------------------------------------------------- |
+| Company | `/de/unternehmen`, `/en/company` | Office-led hero, the four-step process, bridge composition, factual management link |
+| Systems | `/de/systeme`, `/en/systems`     | Navy image-led hero, open five-area ledger, project approach                        |
 
-Dossier pages use normal document flow and never opt into homepage scroll snap. Their language switcher targets the matching localised route. Each has a contextual route-specific social image and internal links back to the relevant homepage section and contact.
+Dossier pages use normal document flow and never opt into homepage scroll snap. Their language switcher targets the matching localised route. Each has a contextual route-specific social image, a back link to the homepage, and a closing link to the contact route.
+
+## 8a. Contact composition
+
+`/de/kontakt` ↔ `/en/contact` uses the same contract: normal document flow, the dossier hero split with the Munich office photograph on the right, then one band with the direct contact details on the left and the inquiry form on the right from `xl`. Below `xl` the two stack, separated by a single hairline. A small privacy note under the form links to the privacy policy in the reader's language. No map service.
 
 ## 9. Prohibited patterns
 
@@ -223,7 +231,7 @@ For visual changes:
 
 1. Check 320×568, 390×844, 768×1024, 1024×768, 1366×768, 1440×900, and 1600×1000.
 2. Verify German and English wrapping and zero horizontal overflow.
-3. Verify all five anchors, active navigation, locale switching with hash, all four localised dossier URLs, detail-page locale switching, mobile menu, and skip link.
+3. Verify all five anchors, active navigation, locale switching with hash, all four localised dossier URLs, both contact URLs, page-level locale switching, mobile menu, and skip link.
 4. Verify free touch scrolling, soft desktop snap, and reduced-motion behavior.
 5. Verify contact validation, focus movement, direct links, and API error handling.
 6. Verify legal pages, 404, metadata, sitemap, and a clean browser console.

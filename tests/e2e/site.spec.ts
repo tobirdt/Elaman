@@ -8,6 +8,8 @@ const publicRoutes = [
   { language: "en", path: "/en/company" },
   { language: "de", path: "/de/systeme" },
   { language: "en", path: "/en/systems" },
+  { language: "de", path: "/de/kontakt" },
+  { language: "en", path: "/en/contact" },
   { language: "de", path: "/de/impressum" },
   { language: "en", path: "/en/site-notice" },
   { language: "de", path: "/de/datenschutz" },
@@ -173,13 +175,74 @@ test("security headers and invalid contact payloads are handled safely", async (
 test("the German contact form exposes and focuses validation errors", async ({
   page,
 }) => {
-  await page.goto("/de#contact", { waitUntil: "networkidle" });
+  await page.goto("/de/kontakt", { waitUntil: "networkidle" });
   await page.getByRole("button", { name: "Anfrage senden" }).click();
 
   const firstName = page.locator("#firstName");
   await expect(firstName).toBeFocused();
   await expect(firstName).toHaveAttribute("aria-invalid", "true");
   await expect(page.locator("#firstName-error")).toBeVisible();
+});
+
+test("the desktop header exposes the three global destinations", async ({
+  isMobile,
+  page,
+}) => {
+  test.skip(Boolean(isMobile), "The inline navigation is desktop-only.");
+
+  await page.goto("/de", { waitUntil: "networkidle" });
+
+  const navigation = page.getByRole("navigation", { name: "Hauptnavigation" }).first();
+  await expect(navigation.getByRole("link")).toHaveText([
+    "Unternehmen",
+    "Systeme",
+    "Kontakt",
+  ]);
+  await expect(navigation.getByRole("link", { name: "Vorgehen" })).toHaveCount(0);
+
+  await expect(page.locator("main form")).toHaveCount(0);
+  await expect(page.locator('main a[href="/de/kontakt"]')).toHaveCount(1);
+});
+
+test("the header reaches the contact page from a dossier", async ({ isMobile, page }) => {
+  test.skip(Boolean(isMobile), "The inline navigation is desktop-only.");
+
+  await page.goto("/de/systeme", { waitUntil: "networkidle" });
+  await page
+    .getByRole("navigation", { name: "Hauptnavigation" })
+    .first()
+    .getByRole("link", { name: "Kontakt", exact: true })
+    .click();
+
+  await expect(page).toHaveURL(/\/de\/kontakt$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Sprechen Sie mit uns.",
+  );
+});
+
+test("the footer carries the global navigation and the legal routes", async ({
+  page,
+}) => {
+  await page.goto("/de/unternehmen", { waitUntil: "networkidle" });
+
+  const footerNavigation = page.getByRole("navigation", {
+    name: "Navigation im Fußbereich",
+  });
+  await expect(footerNavigation.getByRole("link")).toHaveText([
+    "Start",
+    "Unternehmen",
+    "Systeme",
+    "Kontakt",
+  ]);
+  await expect(page.locator('footer a[href="/de/impressum"]').first()).toBeVisible();
+  await expect(page.locator('footer a[href^="tel:"]')).toBeVisible();
+});
+
+test("the sitemap lists both contact routes", async ({ request }) => {
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+
+  expect(sitemap).toContain("/de/kontakt");
+  expect(sitemap).toContain("/en/contact");
 });
 
 test("the mobile navigation behaves as a modal and remains keyboard operable", async ({

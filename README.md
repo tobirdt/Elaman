@@ -1,6 +1,6 @@
 # Elaman Website
 
-Production-ready bilingual Next.js website for Elaman GmbH. The current product combines a five-section homepage, two focused dossier pages, legal pages, and a server-validated contact form.
+Production-ready bilingual Next.js website for Elaman GmbH. The current product combines a five-section homepage, two focused dossier pages, a contact route with the server-validated inquiry form, and legal pages.
 
 ## Stack
 
@@ -23,18 +23,19 @@ The fixed bilingual sequence is:
 
 Desktop sections occupy at least the visible height below the sticky header. Mobile, tablet, short displays, and sections with additional content grow and scroll naturally.
 
-## Dossier pages
+## Dossier and contact pages
 
 | Topic   | German            | English       |
 | ------- | ----------------- | ------------- |
 | Company | `/de/unternehmen` | `/en/company` |
 | Systems | `/de/systeme`     | `/en/systems` |
+| Contact | `/de/kontakt`     | `/en/contact` |
 
-Each route has reciprocal language links, canonical/hreflang metadata, structured data, and a route-specific social preview. Detail pages use normal document flow and do not opt into homepage scroll snap.
+Each route has reciprocal language links, canonical/hreflang metadata, structured data, and a route-specific social preview. These pages use normal document flow and do not opt into homepage scroll snap. Build their paths with the helpers in `lib/i18n.ts`; they return typed routes, so no component casts an href.
 
 ## Global navigation
 
-The points-only signet links to the localised homepage. Desktop navigation links directly to Company and Systems, followed by the homepage anchors Approach and Contact. The mobile menu prepends an explicit Home / Start entry. Active styling follows either the current dossier route or the corresponding homepage section.
+The points-only signet links to the localised homepage. Desktop navigation links to Company, Systems, and Contact — three pages, no anchors. The mobile menu prepends an explicit Home / Start entry. Active styling follows the current path. The footer repeats the same destinations next to the contact details and the legal routes on every page.
 
 ## Local Development
 

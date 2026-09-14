@@ -4,7 +4,7 @@ Instructions for AI agents and developers working on the production Elaman GmbH 
 
 ## Project summary
 
-The site is a bilingual German/English company website built with Next.js 16, React 19, and Tailwind CSS 4. A five-section homepage provides orientation; two localised dossier pages add measured depth for the company and systems. Its audience is institutional: public-sector decision-makers, technical stakeholders, procurement teams, and security-related organisations.
+The site is a bilingual German/English company website built with Next.js 16, React 19, and Tailwind CSS 4. A five-section homepage provides orientation; two localised dossier pages add measured depth for the company and systems; a localised contact route carries the inquiry form. Its audience is institutional: public-sector decision-makers, technical stakeholders, procurement teams, and security-related organisations.
 
 The approved visual direction is a modern reconstruction of the former Elaman homepage: white-first, photography-led, restrained, and precise. It must feel like an established specialist company, not a SaaS product, a security-themed spectacle, or a design-system demo.
 
@@ -89,7 +89,7 @@ The approved source photographs are:
 - `public/images/elaman-systems-media-mining.jpg`
 - `public/images/elaman-munich-office.jpg`
 
-The route-specific `elaman-home-og`, `elaman-company-og`, and `elaman-systems-og` files are derived social previews, not additional editorial motifs. Keep all crops static and deliberate. The current route hero is the LCP image and must remain immediately available.
+The route-specific `elaman-home-og`, `elaman-company-og`, `elaman-systems-og`, and `elaman-contact-og` files are derived social previews, not additional editorial motifs. Keep all crops static and deliberate. The current route hero is the LCP image and must remain immediately available.
 
 ## Current component vocabulary
 
@@ -104,6 +104,7 @@ The route-specific `elaman-home-og`, `elaman-company-og`, and `elaman-systems-og
 | Footer                      | `Footer`                         |
 | Anchor navigation           | `AnchorScrollManager`            |
 | Detail composition          | `DetailDossier`                  |
+| Contact composition         | `ContactPage`                    |
 
 The application intentionally has no generic card, surface, diagram, or animation component layer. Add a primitive only when at least two current consumers need the same contract.
 
@@ -115,7 +116,7 @@ The application intentionally has no generic card, surface, diagram, or animatio
 | `#profile` | `ProfileSection` | Company profile, factual management link, and supplied stone-bridge image |
 | `#advice`  | `AdviceSection`  | Four-stage project path from analysis to support                          |
 | `#systems` | `SystemsSection` | Navy Media Mining split and open five-area ledger                         |
-| `#contact` | `ContactSection` | Munich office, direct contact routes, and inquiry form                    |
+| `#contact` | `ContactSection` | Munich office, direct contact routes, and the link to the contact route   |
 
 Do not change this approved section set or order without explicit approval.
 
@@ -138,18 +139,18 @@ On the homepage, the compact footer provides the single terminal `scroll-snap-al
 ## Content and i18n
 
 - Locales are `de` and `en`; German is the default route.
-- Homepage strings come from `getSiteContent(locale)`; dossier strings come from `getDetailPageContent(locale, kind)`.
-- Use `sectionPath(locale, "#anchor")` for anchored navigation.
-- Use `detailPagePath(locale, kind)` for the two localised dossier routes.
-- Detail routes are `/de/unternehmen` ↔ `/en/company` and `/de/systeme` ↔ `/en/systems`.
-- Global desktop navigation exposes the two dossier routes plus Approach / Vorgehen and Contact; the points-only signet is Home, while the mobile menu also shows Home / Start explicitly.
-- Active navigation must map both exact dossier paths and their corresponding homepage sections without relying on colour alone.
+- Homepage strings come from `getSiteContent(locale)`; dossier strings come from `getDetailPageContent(locale, kind)`; contact-route strings come from `getContactPageContent(locale)`.
+- Build every internal path with the helpers in `lib/i18n.ts` — `homePath`, `detailPagePath`, `contactPagePath`, `legalPagePath`. They return `Route`, so the single `typedRoutes` assertion lives there and content files and components stay cast-free.
+- Detail routes are `/de/unternehmen` ↔ `/en/company` and `/de/systeme` ↔ `/en/systems`; the contact route is `/de/kontakt` ↔ `/en/contact`.
+- Global navigation exposes three pages — Unternehmen / Company, Systeme / Systems, Kontakt / Contact — plus the locale switch; the points-only signet is Home, while the mobile menu also shows Home / Start explicitly. The menu contains no anchors.
+- Active navigation is purely path-based: `aria-current="page"` on an exact path match, never colour alone. The header carries no scroll observation.
 - Keep exactly one visible 25+ experience statement in the hero.
 - Public detail remains discreet: describe capability categories without operational specifics or named customers.
 - `/imprint` and `/private-policy` remain language-neutral preserved legal pages until counsel approves revisions.
 
 ## Contact form
 
+- It lives on the contact route only; the homepage closes with the direct contact details and one primary action that leads there.
 - Present it as an inquiry form, never a secure portal.
 - Required environment variables: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, and `NEXT_PUBLIC_SITE_URL`.
 - Missing mail configuration must fail safely; do not fake successful delivery.

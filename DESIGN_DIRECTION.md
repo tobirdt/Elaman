@@ -33,15 +33,15 @@ Each image has a distinct structural role. Images are static, tightly cropped, a
 
 ## Homepage sequence
 
-| Anchor     | Experience                                                                      |
-| ---------- | ------------------------------------------------------------------------------- |
-| `#hero`    | 50/50 chameleon and concise Elaman identity; header plus hero form one viewport |
-| `#profile` | Asymmetric white text/image composition with the stone bridge                   |
-| `#advice`  | Paper-soft four-stage process using numerals and a continuous hairline          |
-| `#systems` | Navy split with Media Mining and an open, row-major capability ledger           |
-| `#contact` | Office image and a functional contact/form split within one desktop viewport    |
+| Anchor     | Experience                                                                          |
+| ---------- | ----------------------------------------------------------------------------------- |
+| `#hero`    | 50/50 chameleon and concise Elaman identity; header plus hero form one viewport     |
+| `#profile` | Asymmetric white text/image composition with the stone bridge                       |
+| `#advice`  | Paper-soft four-stage process using numerals and a continuous hairline              |
+| `#systems` | Navy split with Media Mining and an open, row-major capability ledger               |
+| `#contact` | Office image, the direct contact routes, and one action leading to the contact page |
 
-The footer follows as a compact legal close. On the homepage it supplies the terminal end-aligned snap point so the last wheel or trackpad gesture settles at the real page end instead of returning to the Contact section. Legal and utility pages do not opt into this behavior.
+The footer follows as a three-column close: navigation, contact, legal. On the homepage it supplies the terminal end-aligned snap point so the last wheel or trackpad gesture settles at the real page end instead of returning to the Contact section. Legal and utility pages do not opt into this behavior.
 
 ## Fullscreen rhythm
 
@@ -57,13 +57,14 @@ The footer follows as a compact legal close. On the homepage it supplies the ter
 - Profile is spacious and left aligned; the single blue line supports the heading, while one quiet ruled management reference provides a factual internal link to the imprint.
 - Advice is an actual ordered process, not a row of feature cards. Large mono numerals and one hairline communicate sequence.
 - Systems is the highest-density section but remains open: horizontal rules, natural row-major order, no enclosed matrix.
-- Contact is functional and human. The office title is subordinate to the `Kontakt / Contact` heading, and the form remains visibly standard rather than a secure portal.
+- Contact is functional and human. The homepage section states where Elaman is and how to reach it; the form itself lives on the contact route and remains visibly standard rather than a secure portal.
 
 ## Dossier pages
 
-- Company is office-led and human without inventing a portrait or biography. Three working principles and the stone-bridge composition carry the narrative.
+- Company is office-led and human without inventing a portrait or biography. The four-stage process, told at greater length than on the homepage, and the stone-bridge composition carry the narrative.
 - Systems begins with the established navy photography language, then opens into a calm five-area ledger and a concise project approach.
-- All dossiers use normal document flow, localised reciprocal routes, contextual links back to the homepage, and a restrained contact close.
+- All dossiers use normal document flow, localised reciprocal routes, a back link to the homepage, and a restrained close leading to the contact route.
+- The contact route follows the same rules: dossier hero split with the office photograph, one band with the direct contact details beside the inquiry form, and no map service.
 
 ## Content tone
 
@@ -86,7 +87,7 @@ Motion is nearly invisible:
 
 Reduced-motion users receive the final state immediately and no smooth scrolling or snap behavior.
 
-The header acts as global orientation rather than a homepage table of contents: the two substantive dossier pages are directly visible, while Approach and Contact return to their precise homepage sections. The points-only signet remains the quiet desktop home action; mobile adds an explicit Home / Start entry.
+The header acts as global orientation rather than a homepage table of contents: Company, Systems, and Contact are three real pages, and nothing in the menu scrolls. The points-only signet remains the quiet desktop home action; mobile adds an explicit Home / Start entry.
 
 ## Responsive behavior
 

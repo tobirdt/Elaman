@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Route } from "next";
 
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
@@ -36,7 +35,7 @@ export function ProfileSection({ content }: ProfileSectionProps) {
               {content.management.label}
             </span>
             <Link
-              href={content.management.href as Route}
+              href={content.management.href}
               className="inline-flex min-h-11 items-center text-[length:var(--type-small)] font-medium text-graphite underline decoration-[var(--border-accent-blue)] underline-offset-4 transition-colors duration-[var(--motion-fast)] ease-[var(--motion-ease)] hover:text-elaman-blue"
             >
               {content.management.name}

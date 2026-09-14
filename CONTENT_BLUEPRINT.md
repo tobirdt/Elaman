@@ -1,6 +1,6 @@
 # Elaman GmbH — current content blueprint
 
-Authoritative factual and structural guide for the bilingual production website. Exact approved strings live in `lib/content/site.ts` and `lib/content/detail-pages.ts`; this document defines what may be communicated across the five-section homepage and two focused dossier pages.
+Authoritative factual and structural guide for the bilingual production website. Exact approved strings live in `lib/content/site.ts`, `lib/content/detail-pages.ts`, and `lib/content/contact-page.ts`; this document defines what may be communicated across the five-section homepage, two focused dossier pages, and the contact route.
 
 ## 1. Positioning
 
@@ -69,16 +69,17 @@ Do not add percentages, certifications, awards, project counts, client logos, na
 | `#profile` | German/English Security Solutions title, technology combination, and project alignment |
 | `#advice`  | Four-stage path from analysis and advice to training and long-term support             |
 | `#systems` | Five capability categories without technical specifications                            |
-| `#contact` | Munich office, direct contact routes, and inquiry form                                 |
+| `#contact` | Munich office, direct contact routes, and the link to the contact route                |
 
-The footer is a compact legal conclusion outside the five-section viewport rhythm.
+The footer closes every route with the same three columns — navigation, contact, legal — outside the five-section viewport rhythm.
 
-The homepage links to two reciprocal localised dossiers:
+The site has three reciprocal localised routes beyond the homepage:
 
 | Responsibility                    | German            | English       |
 | --------------------------------- | ----------------- | ------------- |
 | Company and working approach      | `/de/unternehmen` | `/en/company` |
 | Systems and five capability areas | `/de/systeme`     | `/en/systems` |
+| Inquiry form and direct contact   | `/de/kontakt`     | `/en/contact` |
 
 These pages add useful context, not new claims. They must not become thin keyword pages, product catalogues, or substitutes for a factual source that is not available.
 
@@ -115,7 +116,7 @@ The section closes with one factual management reference:
 
 The name links to the existing imprint. It must not be repeated elsewhere on the homepage or expanded into biographical claims without approved source material.
 
-The Company dossier may repeat the management name once as a factual route to the imprint. Without an approved portrait or biography, its narrative is carried by the Munich office, three verified working principles, and the supplied stone-bridge motif.
+The Company dossier may repeat the management name once as a factual route to the imprint. Without an approved portrait or biography, its narrative is carried by the Munich office, the four-stage process told in full, and the supplied stone-bridge motif.
 
 ## 6. Advice
 
@@ -132,6 +133,8 @@ The ordered process is fixed:
 4. Schulung & Betreuung / Training & support
 
 Descriptions remain concise and non-operational. The process may explain that Elaman assesses technical requirements, combines suitable technologies, accompanies implementation and commissioning, and provides professional training and long-term support.
+
+The homepage keeps the short form of these four steps; the Company dossier tells the same four steps at length. The two texts must stay distinct — no sentence may appear in both.
 
 ## 7. Systems
 
@@ -164,19 +167,22 @@ Approved public contact facts:
 
 The form collects first name, optional last name, optional company, email, message, and a hidden honeypot field. Present it as a standard inquiry, never as a secure or confidential portal.
 
+The form lives on `/de/kontakt` ↔ `/en/contact`, together with the Munich office photograph, the direct contact routes, and a short note on the processing of the submitted data that links to the privacy policy. No map service is embedded. The homepage contact section repeats none of those sentences: it names the office, lists the direct routes, and leads to the contact route with one primary action.
+
 ## 9. Metadata and navigation
 
 - German default: `/de`
 - English: `/en`
 - Localised dossier pairs: `/de/unternehmen` ↔ `/en/company` and `/de/systeme` ↔ `/en/systems`
+- Localised contact route: `/de/kontakt` ↔ `/en/contact`
 - Legal routes are localised: `/de/impressum` ↔ `/en/site-notice` and `/de/datenschutz` ↔ `/en/privacy-policy`. The retired `/imprint` and `/private-policy` paths redirect permanently to the German documents.
 - Global header navigation:
-  - Desktop DE: Unternehmen, Systeme, Vorgehen, Kontakt
-  - Desktop EN: Company, Systems, Approach, Contact
+  - Desktop DE: Unternehmen, Systeme, Kontakt
+  - Desktop EN: Company, Systems, Contact
   - Mobile prepends Start / Home; the points-only signet remains the desktop home action.
-  - Unternehmen / Company and Systeme / Systems open their localised dossier pages directly.
-  - Vorgehen / Approach and Kontakt / Contact open the corresponding homepage sections.
-- The active rule represents either the current dossier page or its corresponding homepage section.
+  - Every entry opens a page of its own; the menu carries no anchors.
+- The active rule represents the current page and is matched on the exact path.
+- The footer is identical on every route: Navigation (Start, Unternehmen, Systeme, Kontakt), Kontakt (address, phone, email), Rechtliches (Impressum, Datenschutzerklärung), plus copyright and the locale switch.
 - Metadata may state security technology, technical services, advice, surveillance/observation, analysis, TSCM, radio monitoring for mobile communications, training, and support.
 - The company may be associated with the alternate brand spellings `Elaman` and `ELAMAN` in organisation data.
 - Holger Rumscheidt may be associated with Elaman through the factual management reference in Profile, the supplied imprint, and the corresponding entity relationship. Do not create a biographical profile without approved source material.

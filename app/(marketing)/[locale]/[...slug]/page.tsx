@@ -3,36 +3,52 @@ import { notFound } from "next/navigation";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { ContactPage } from "@/components/pages/ContactPage";
 import { DetailDossier } from "@/components/pages/DetailDossier";
 import { LegalDocument } from "@/components/sections/LegalDocument";
+import { getContactPageContent } from "@/lib/content/contact-page";
 import { getDetailPageContent } from "@/lib/content/detail-pages";
 import { getLegalPageContent } from "@/lib/content/legal";
 import { getSiteContent } from "@/lib/content/site";
 import {
   alternateLocale,
+  contactPagePath,
+  contactPageSlug,
   detailPageKindFromSlug,
   detailPageKinds,
   detailPagePath,
+  detailPageSlug,
+  isContactPageSlug,
   isLocale,
   legalPageKindFromSlug,
   legalPageKinds,
   legalPagePath,
+  legalPageSlug,
   locales,
   type DetailPageKind,
   type LegalPageKind,
   type Locale,
 } from "@/lib/i18n";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo/site";
-import { detailPageJsonLd, legalPageJsonLd, safeJsonLd } from "@/lib/seo/structured-data";
+import {
+  contactPageJsonLd,
+  detailPageJsonLd,
+  legalPageJsonLd,
+  safeJsonLd,
+} from "@/lib/seo/structured-data";
 
 type DetailPageProps = {
   params: Promise<unknown>;
 };
 
-const socialImages: Record<
-  DetailPageKind,
-  { path: string; width: number; height: number; alt: Record<Locale, string> }
-> = {
+type SocialImage = {
+  path: string;
+  width: number;
+  height: number;
+  alt: Record<Locale, string>;
+};
+
+const socialImages: Record<DetailPageKind, SocialImage> = {
   company: {
     path: "/images/elaman-company-og.jpg",
     width: 1200,
@@ -53,8 +69,19 @@ const socialImages: Record<
   },
 };
 
+const contactSocialImage: SocialImage = {
+  path: "/images/elaman-contact-og.jpg",
+  width: 1200,
+  height: 630,
+  alt: {
+    de: "Elaman-Büro in München",
+    en: "Elaman office in Munich",
+  },
+};
+
 type Resolved =
   | { type: "detail"; locale: Locale; kind: DetailPageKind }
+  | { type: "contact"; locale: Locale }
   | { type: "legal"; locale: Locale; kind: LegalPageKind };
 
 function resolveParams(params: unknown): Resolved | null {
@@ -70,6 +97,10 @@ function resolveParams(params: unknown): Resolved | null {
     return { type: "detail", locale: resolved.locale, kind: detailKind };
   }
 
+  if (isContactPageSlug(resolved.locale, resolved.slug)) {
+    return { type: "contact", locale: resolved.locale };
+  }
+
   const legalKind = legalPageKindFromSlug(resolved.locale, resolved.slug);
 
   if (legalKind) {
@@ -77,10 +108,6 @@ function resolveParams(params: unknown): Resolved | null {
   }
 
   return null;
-}
-
-function lastSegment(path: string) {
-  return path.split("/").at(-1)!;
 }
 
 /**
@@ -96,11 +123,12 @@ export function generateStaticParams() {
   return locales.flatMap((locale) => [
     ...detailPageKinds.map((kind) => ({
       locale,
-      slug: [lastSegment(detailPagePath(locale, kind))],
+      slug: [detailPageSlug(locale, kind)],
     })),
+    { locale, slug: [contactPageSlug(locale)] },
     ...legalPageKinds.map((kind) => ({
       locale,
-      slug: [lastSegment(legalPagePath(locale, kind))],
+      slug: [legalPageSlug(locale, kind)],
     })),
   ]);
 }
@@ -124,6 +152,28 @@ export async function generateMetadata({ params }: DetailPageProps): Promise<Met
         de: absoluteUrl(legalPagePath("de", resolved.kind)),
         en: absoluteUrl(legalPagePath("en", resolved.kind)),
         "x-default": absoluteUrl(legalPagePath("de", resolved.kind)),
+      },
+    });
+  }
+
+  if (resolved.type === "contact") {
+    const contactPage = getContactPageContent(resolved.locale);
+
+    return createPageMetadata({
+      title: contactPage.metadata.title,
+      description: contactPage.metadata.description,
+      path: contactPagePath(resolved.locale),
+      locale: contactPage.metadata.ogLocale,
+      languages: {
+        de: absoluteUrl(contactPagePath("de")),
+        en: absoluteUrl(contactPagePath("en")),
+        "x-default": absoluteUrl(contactPagePath("de")),
+      },
+      image: {
+        path: contactSocialImage.path,
+        width: contactSocialImage.width,
+        height: contactSocialImage.height,
+        alt: contactSocialImage.alt[resolved.locale],
       },
     });
   }
@@ -163,6 +213,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
   if (resolved.type === "legal") {
     const legal = getLegalPageContent(resolved.locale, resolved.kind);
     const path = legalPagePath(resolved.locale, resolved.kind);
+    const alternateLocaleHref = legalPagePath(otherLocale, resolved.kind);
 
     return (
       <>
@@ -183,10 +234,52 @@ export default async function DetailPage({ params }: DetailPageProps) {
         <Header
           locale={resolved.locale}
           content={site.navigation}
-          alternateLocaleHref={legalPagePath(otherLocale, resolved.kind)}
+          alternateLocaleHref={alternateLocaleHref}
         />
         <LegalDocument label={legal.label} title={legal.title} blocks={legal.blocks} />
         <Footer
+          alternateLocaleHref={alternateLocaleHref}
+          contact={site.contact}
+          locale={resolved.locale}
+          navigation={site.navigation}
+          footer={site.footer}
+        />
+      </>
+    );
+  }
+
+  if (resolved.type === "contact") {
+    const contactPage = getContactPageContent(resolved.locale);
+    const alternateLocaleHref = contactPagePath(otherLocale);
+
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: safeJsonLd(
+              contactPageJsonLd(
+                resolved.locale,
+                contactPage.metadata.title,
+                contactPage.metadata.description,
+              ),
+            ),
+          }}
+        />
+        <Header
+          locale={resolved.locale}
+          content={site.navigation}
+          alternateLocaleHref={alternateLocaleHref}
+        />
+        <main id="main-content" tabIndex={-1}>
+          <ContactPage
+            content={contactPage}
+            contact={site.contact}
+            locale={resolved.locale}
+          />
+        </main>
+        <Footer
+          alternateLocaleHref={alternateLocaleHref}
           contact={site.contact}
           locale={resolved.locale}
           navigation={site.navigation}
@@ -197,6 +290,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
   }
 
   const content = getDetailPageContent(resolved.locale, resolved.kind);
+  const alternateLocaleHref = detailPagePath(otherLocale, resolved.kind);
 
   return (
     <>
@@ -216,12 +310,13 @@ export default async function DetailPage({ params }: DetailPageProps) {
       <Header
         locale={resolved.locale}
         content={site.navigation}
-        alternateLocaleHref={detailPagePath(otherLocale, resolved.kind)}
+        alternateLocaleHref={alternateLocaleHref}
       />
       <main id="main-content" tabIndex={-1}>
         <DetailDossier content={content} />
       </main>
       <Footer
+        alternateLocaleHref={alternateLocaleHref}
         contact={site.contact}
         locale={resolved.locale}
         navigation={site.navigation}

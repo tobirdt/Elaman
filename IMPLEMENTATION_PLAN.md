@@ -16,7 +16,7 @@ The homepage contains five compositions:
 4. Systems
 5. Contact
 
-The Company and Systems dossiers are available in both languages. Legal pages, bilingual navigation, global and localised 404 handling, metadata, structured data, sitemap, robots, the contact API, and the compact footer remain part of the release surface.
+The Company and Systems dossiers and the contact route are available in both languages. Legal pages, bilingual navigation, global and localised 404 handling, metadata, structured data, sitemap, robots, the contact API, and the three-column footer remain part of the release surface.
 
 ## Current release candidate — stakeholder copy revision
 
@@ -53,7 +53,7 @@ The Company and Systems dossiers are available in both languages. Legal pages, b
 - Soft `y proximity` scroll snap applies only to the homepage on large fine-pointer displays without reduced motion.
 - Detail and legal pages remain in normal document flow.
 - The homepage footer remains the single terminal end-aligned snap point.
-- Company and Systems are direct localised dossier routes; Approach and Contact are homepage anchors.
+- Company, Systems, and Contact are direct localised routes; the header carries no anchors.
 - Route heroes use the existing CSS-only entrance and remain immediate LCP candidates.
 
 ## Operational follow-ups
