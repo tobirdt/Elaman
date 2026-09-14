@@ -1,6 +1,6 @@
 # Elaman GmbH — current content blueprint
 
-Authoritative factual and structural guide for the bilingual production website. Exact approved strings live in `lib/content/site.ts`, `lib/content/detail-pages.ts`, and `lib/content/contact-page.ts`; this document defines what may be communicated across the five-section homepage, two focused dossier pages, and the contact route.
+Authoritative factual and structural guide for the bilingual production website. Exact approved strings live in `lib/content/site.ts`, `lib/content/detail-pages.ts`, `lib/content/contact-page.ts`, and `lib/content/legal.ts`; this document defines what may be communicated across the five-section homepage, two focused dossier pages, and the contact page. See `AGENTS.md` for audience, purpose, and accessibility goal.
 
 ## 1. Positioning
 
@@ -83,6 +83,8 @@ The site has three reciprocal localised routes beyond the homepage:
 
 These pages add useful context, not new claims. They must not become thin keyword pages, product catalogues, or substitutes for a factual source that is not available.
 
+The global header exposes exactly these three pages plus the locale switch — Unternehmen/Company, Systeme/Systems, Kontakt/Contact — with no in-page anchors; the points-only signet is the desktop Home action, and the mobile menu prepends an explicit Start/Home entry. The footer repeats the same navigation, the contact details, and the legal links on every page (see § 9).
+
 ## 4. Hero
 
 Required content:
@@ -162,12 +164,19 @@ Approved public contact facts:
 - Elaman GmbH
 - Implerstraße 24
 - 81371 München / Munich, Germany
-- `+49 (0) 89 - 24 20 91 80`
+- `+49 89 24209180`
 - `info@elaman.de`
 
 The form collects first name, optional last name, optional company, email, message, and a hidden honeypot field. Present it as a standard inquiry, never as a secure or confidential portal.
 
-The form lives on `/de/kontakt` ↔ `/en/contact`, together with the Munich office photograph, the direct contact routes, and a short note on the processing of the submitted data that links to the privacy policy. No map service is embedded. The homepage contact section repeats none of those sentences: it names the office, lists the direct routes, and leads to the contact route with one primary action.
+The contact page (`/de/kontakt` ↔ `/en/contact`) is the only place the form appears. Its content:
+
+- Eyebrow `Kontakt` / `Contact`; title DE `Sprechen Sie mit uns.`, EN `Talk to us.`; a one-sentence lead naming the Munich team and inviting a short description of the task.
+- A hero split with the Munich office photograph (factual alt text), matching the Company dossier's hero image and role.
+- A ruled `dl` of the direct contact facts (address, phone, email) beside the form, form title `Ihr Anliegen` / `Your inquiry`, and a note that required fields are marked with `*`.
+- A short privacy note below the form linking to the localised privacy policy — no separate consent checkbox, no map service.
+
+The homepage contact section repeats none of that copy: it names the office, lists the direct routes as a ruled `dl`, and leads to the contact page with one primary action (`Anfrage senden` / `Send an inquiry`). It contains no form.
 
 ## 9. Metadata and navigation
 
@@ -195,7 +204,9 @@ Both legal documents exist in German and English and are reachable from the foot
 
 The privacy policy describes only processing that actually happens: access logs at the hosting provider and the inquiry form delivered through Resend. It previously declared Google Analytics, Google Maps, cookies and Flash storage that the site never used, and cited the EU-US Privacy Shield, invalid since 2020. Those sections were removed and the contact-form processing that Article 13 GDPR requires was added.
 
-If the site ever gains analytics, an embed, a cookie or a new processor, this document has to be updated in the same change. Named processors (currently Vercel and Resend) must match the actual deployment.
+Retention is stated by criterion, not by a fixed period: access logs are kept only as long as secure operation requires and are deleted afterwards, extended only to investigate a specific security incident; form submissions are forwarded to the team's mailbox by email and kept there only as long as handling the inquiry requires, unless a commercial or tax retention duty applies. The form's processing runs through the hosting provider's data centre in Frankfurt am Main, which the policy names explicitly. The document is dated September 2026 and must be re-dated whenever it changes.
+
+If the site ever gains analytics, an embed, a cookie or a new processor, this document has to be updated in the same change. Named processors (currently Vercel for hosting and Resend for form-message delivery) must match the actual deployment.
 
 **Still required before launch: sign-off by legal counsel.** The rewrite improves factual accuracy over the previous text but is not a substitute for review, and the imprint's tax and register details should be confirmed against current records.
 
