@@ -12,7 +12,8 @@
     "format:check": "prettier --check .",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
-    "test:e2e:iphone": "playwright test --project=iphone-webkit --project=iphone-landscape-webkit"
+    "test:e2e:iphone": "playwright test --project=iphone-webkit --project=iphone-landscape-webkit",
+    "icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
     "next": "^16.3.4",
