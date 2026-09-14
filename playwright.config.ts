@@ -1,13 +1,22 @@
 import { defineConfig, devices } from "@playwright/test";
 
 const externalBaseUrl = process.env.PLAYWRIGHT_BASE_URL;
+const isCI = Boolean(process.env.CI);
+
+// CI runs the suite against the production server so the assertions describe
+// what is actually deployed — dev-only overlays, unminified output and relaxed
+// dev CSP would otherwise hide real regressions. Locally `next dev` stays the
+// default so a running dev server can simply be reused.
+const localWebServerCommand = isCI
+  ? "npm run start -- --port 3001"
+  : "npm run dev -- --port 3001";
 
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: false,
-  forbidOnly: Boolean(process.env.CI),
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : 3,
+  forbidOnly: isCI,
+  retries: isCI ? 2 : 0,
+  workers: isCI ? 1 : 3,
   reporter: "list",
   use: {
     baseURL: externalBaseUrl ?? "http://127.0.0.1:3001",
@@ -17,8 +26,8 @@ export default defineConfig({
   webServer: externalBaseUrl
     ? undefined
     : {
-        command: "npm run dev -- --port 3001",
-        reuseExistingServer: !process.env.CI,
+        command: localWebServerCommand,
+        reuseExistingServer: !isCI,
         timeout: 120_000,
         url: "http://127.0.0.1:3001/de",
       },

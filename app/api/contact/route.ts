@@ -4,11 +4,18 @@ import { Resend } from "resend";
 import { createContactEmailContent } from "@/lib/email/contact-email";
 import {
   hasHoneypotValue,
+  hasSuspiciousCompletionTime,
   validateContactPayload,
   type ContactFieldErrors,
 } from "@/lib/validation/contact";
 
 export const runtime = "nodejs";
+
+// No `preferredRegion` export: Next 16 deprecated the route segment config
+// (`node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/
+// 02-route-segment-config/preferredRegion.md`) and, on Vercel, now only accepts
+// "auto", "global" and "home" — a concrete region code such as "fra1" throws.
+// Pin the function region in the Vercel project settings instead.
 
 type ContactApiResponse =
   | { ok: true }
@@ -114,6 +121,40 @@ async function readRequestBody(request: Request) {
   return body + decoder.decode();
 }
 
+/**
+ * Cheap, dependency-free cross-site gate. A browser posting the real form sends
+ * either `Sec-Fetch-Site: same-origin` or an `Origin` matching the host that
+ * served the page, so a form embedded on someone else's domain is rejected
+ * outright. Non-browser clients that send neither header are still accepted —
+ * this is a spam speed bump, not authentication, and the honeypot, timing gate
+ * and rate limit remain the substantive defences.
+ */
+function isForbiddenOrigin(request: Request) {
+  if (request.headers.get("sec-fetch-site") === "cross-site") {
+    return true;
+  }
+
+  const origin = request.headers.get("origin");
+
+  if (!origin) {
+    return false;
+  }
+
+  const requestHost =
+    request.headers.get("x-forwarded-host")?.split(",")[0]?.trim() ||
+    request.headers.get("host")?.trim();
+
+  if (!requestHost) {
+    return false;
+  }
+
+  try {
+    return new URL(origin).host !== requestHost;
+  } catch {
+    return true;
+  }
+}
+
 function readEmailConfig() {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   const to = process.env.CONTACT_TO_EMAIL?.trim();
@@ -168,6 +209,17 @@ export async function POST(request: Request) {
     );
   }
 
+  if (isForbiddenOrigin(request)) {
+    return json(
+      {
+        ok: false,
+        error: "validation_error",
+        fields: { form: "Forbidden origin." },
+      },
+      403,
+    );
+  }
+
   // Rate limiting runs before the honeypot check on purpose: a bot that always
   // fills the honeypot would otherwise never be counted, and could hammer the
   // endpoint indefinitely behind a friendly 200.
@@ -185,7 +237,16 @@ export async function POST(request: Request) {
     );
   }
 
+  // Both bot gates answer with the same plain success the happy path returns.
+  // Telling a scripted submitter that it was recognised only invites it to try
+  // the next variation, so the honeypot and the timing check stay silent: no
+  // mail is sent, no error is surfaced, and the response is indistinguishable
+  // from a delivered inquiry.
   if (hasHoneypotValue(payload)) {
+    return json({ ok: true }, 200);
+  }
+
+  if (hasSuspiciousCompletionTime(payload)) {
     return json({ ok: true }, 200);
   }
 

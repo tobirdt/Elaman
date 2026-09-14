@@ -54,10 +54,20 @@ Run the full local quality gate before deployment:
 npm run lint
 npm run typecheck
 npm run format:check
+npm run test:unit
 npm run build
 npm run test:e2e
 npm audit --omit=dev
 ```
+
+`npm run test:unit` runs the Vitest suite in `tests/unit`, which covers contact
+validation, email rendering, and locale routing without a browser.
+`npm run test:e2e` runs Playwright against `next dev`; with `CI=true` it runs
+against the production server instead, which is what GitHub Actions does.
+
+The same gate runs on every push to `main` and on every pull request through
+`.github/workflows/ci.yml`. Dependency updates arrive weekly through Dependabot,
+grouped into one minor and one patch pull request per ecosystem.
 
 For visual changes, verify DE and EN at 320×568, 390×844, 768×1024, 1024×768, 1366×768, 1440×900, and 1600×1000.
 
@@ -88,9 +98,15 @@ After a production deployment and final DNS cutover:
 
 ## Contact Form Delivery
 
-The contact API validates all submissions server-side, enforces the payload limit while reading the request stream, checks the hidden honeypot, applies a bounded best-effort in-memory rate limit per runtime instance, and sends through Resend when all required environment variables are configured. API responses are never cached, and rate-limited responses include `Retry-After`.
+The contact API validates all submissions server-side, enforces the payload limit while reading the request stream, rejects cross-site submissions, checks the hidden honeypot and the form completion time, applies a bounded best-effort in-memory rate limit per runtime instance, and sends through Resend when all required environment variables are configured. API responses are never cached, and rate-limited responses include `Retry-After`.
 
-If the honeypot is filled, the API returns `{ "ok": true }` without sending email. If mail variables are missing locally, a valid submission returns `send_failed`; production success is never faked. The email includes escaped plain text and minimal escaped HTML.
+Checks run in this order: payload size, JSON parsing, request origin, rate limit, honeypot, completion time, field validation.
+
+A submission whose `Sec-Fetch-Site` header is `cross-site`, or whose `Origin` host does not match the request host, is answered with `403`. Requests that send neither header are accepted, so non-browser clients are not locked out.
+
+The form stamps `startedAt` on mount and sends it with the inquiry. Submissions that arrive less than three seconds later, carry no stamp, or carry a stamp from the future are discarded without sending email. Like the honeypot, they are answered with `{ "ok": true }` so an automated submitter learns nothing from the response.
+
+If mail variables are missing locally, a valid submission returns `send_failed`; production success is never faked. Server-side field errors are returned in the language the inquiry was written in. The email includes escaped plain text and minimal escaped HTML.
 
 ## Vercel Deployment Preparation
 
