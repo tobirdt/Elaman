@@ -22,14 +22,14 @@ export function HeroSection({ content }: HeroSectionProps) {
       </div>
 
       <div className="hero-copy-enter flex items-center border-t border-[var(--border-hairline)] py-8 pl-[var(--page-x-left)] pr-[var(--page-x-right)] sm:py-10 lg:border-l lg:border-t-0 lg:py-[var(--section-y-screen)]">
-        <div className="w-full max-w-[39rem]">
+        <div className="w-full max-w-[39rem] 2xl:max-w-[44rem]">
           {/* Brand and tagline form one heading so the h1 carries the actual
               proposition, not just the company name. */}
           <h1>
             <span className="block text-[length:var(--type-display)] font-semibold leading-[var(--leading-display)] tracking-[var(--tracking-display)] text-graphite">
               {content.label}
             </span>
-            <span className="mt-2 block max-w-[24ch] text-balance text-[length:var(--type-h3)] font-normal leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite-muted sm:mt-3">
+            <span className="mt-2 block max-w-[24ch] text-balance text-[length:var(--type-h3)] font-normal 2xl:text-[2.25rem] leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite-muted sm:mt-3">
               {content.title}
             </span>
           </h1>

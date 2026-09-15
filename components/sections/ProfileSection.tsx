@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Route } from "next";
 
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
@@ -13,8 +12,8 @@ type ProfileSectionProps = {
 
 export function ProfileSection({ content }: ProfileSectionProps) {
   return (
-    <Section id="profile" variant="screen" tone="white" className="flex">
-      <Container className="grid flex-1 items-center gap-12 py-[var(--section-y-screen)] lg:grid-cols-[minmax(0,1.08fr)_minmax(20rem,0.92fr)] lg:gap-20 xl:gap-24">
+    <Section id="profile" variant="feature" tone="white" className="flex">
+      <Container className="reveal-group grid flex-1 items-center gap-12 py-[var(--section-y-screen)] lg:grid-cols-[minmax(0,1.08fr)_minmax(20rem,0.92fr)] lg:gap-20 xl:gap-24">
         <div className="min-w-0 max-w-[42rem]">
           <span className="block h-px w-20 bg-elaman-blue" aria-hidden="true" />
           <p className="mt-7 text-[length:var(--type-h3)] leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite-muted">
@@ -36,7 +35,7 @@ export function ProfileSection({ content }: ProfileSectionProps) {
               {content.management.label}
             </span>
             <Link
-              href={content.management.href as Route}
+              href={content.management.href}
               className="inline-flex min-h-11 items-center text-[length:var(--type-small)] font-medium text-graphite underline decoration-[var(--border-accent-blue)] underline-offset-4 transition-colors duration-[var(--motion-fast)] ease-[var(--motion-ease)] hover:text-elaman-blue"
             >
               {content.management.name}

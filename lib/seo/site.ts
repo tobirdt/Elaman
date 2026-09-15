@@ -21,7 +21,22 @@ export const siteConfig = {
     height: 630,
     alt: "Elaman GmbH, Munich – German Security Solutions",
   },
+  contactOgImage: {
+    path: "/images/elaman-contact-og.jpg",
+    width: 1200,
+    height: 630,
+    alt: "Elaman GmbH reception in Munich with the illuminated elaman sign",
+  },
 } as const;
+
+const icons: Metadata["icons"] = {
+  icon: [
+    { url: "/favicon.ico", sizes: "48x48" },
+    { url: "/brand/elaman-icon.svg", type: "image/svg+xml" },
+    { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+  ],
+  apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+};
 
 type PageMetadataOptions = {
   title?: string;
@@ -76,12 +91,7 @@ export function createPageMetadata({
     title: pageTitle,
     description,
     metadataBase: new URL(siteConfig.url),
-    icons: {
-      icon: {
-        url: siteConfig.iconPath,
-        type: "image/svg+xml",
-      },
-    },
+    icons,
     alternates: {
       canonical: url,
       languages,

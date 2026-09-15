@@ -13,8 +13,12 @@ export const metadata: Metadata = {
   publisher: siteConfig.name,
   category: "Security",
   icons: {
-    icon: siteConfig.iconPath,
-    apple: siteConfig.logoPath,
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/brand/elaman-icon.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
 

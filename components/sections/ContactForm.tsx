@@ -1,11 +1,15 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/Button";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 import type { Locale } from "@/lib/i18n";
-import { contactFieldLimits, isValidContactEmail } from "@/lib/validation/contact";
+import {
+  contactFieldLimits,
+  isValidContactEmail,
+  type ContactRequestPayload,
+} from "@/lib/validation/contact";
 
 type ContactFormValues = {
   firstName: string;
@@ -93,6 +97,15 @@ export function ContactForm({ content, locale }: ContactFormProps) {
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [status, setStatus] = useState<FormStatus>("idle");
+  // Stamped after hydration rather than during render so the server-rendered
+  // markup stays stable, and held in a ref because nothing renders it: the
+  // server reads it to discard submissions that arrive faster than a person
+  // could plausibly complete the form.
+  const startedAtRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   function updateField(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = event.target;
@@ -127,10 +140,16 @@ export function ContactForm({ content, locale }: ContactFormProps) {
     setStatus("loading");
 
     try {
+      const requestPayload: ContactRequestPayload = {
+        ...values,
+        locale,
+        startedAt: startedAtRef.current ?? undefined,
+      };
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, locale }),
+        body: JSON.stringify(requestPayload),
       });
 
       const payload = (await response.json()) as ContactApiResponse;
@@ -139,6 +158,7 @@ export function ContactForm({ content, locale }: ContactFormProps) {
         setStatus("success");
         setValues(initialValues);
         setErrors({});
+        startedAtRef.current = Date.now();
         return;
       }
 

@@ -1,8 +1,10 @@
 import type { MetadataRoute } from "next";
 
 import {
+  contactPagePath,
   detailPageKinds,
   detailPagePath,
+  homePath,
   legalPageKinds,
   legalPagePath,
   locales,
@@ -21,16 +23,27 @@ type SitemapEntry = {
  * Deriving this from the build time would tell crawlers that every page
  * changed on every deploy, which devalues the signal.
  */
-const contentLastModified = new Date("2026-09-10T00:00:00.000Z");
+const contentLastModified = new Date("2026-09-14T00:00:00.000Z");
 
 const homeEntries: SitemapEntry[] = locales.map((locale) => ({
-  route: `/${locale}`,
+  route: homePath(locale),
   priority: locale === "de" ? 1 : 0.9,
   changeFrequency: "monthly",
   alternates: {
-    de: absoluteUrl("/de"),
-    en: absoluteUrl("/en"),
-    "x-default": absoluteUrl("/de"),
+    de: absoluteUrl(homePath("de")),
+    en: absoluteUrl(homePath("en")),
+    "x-default": absoluteUrl(homePath("de")),
+  },
+}));
+
+const contactEntries: SitemapEntry[] = locales.map((locale) => ({
+  route: contactPagePath(locale),
+  priority: 0.8,
+  changeFrequency: "monthly",
+  alternates: {
+    de: absoluteUrl(contactPagePath("de")),
+    en: absoluteUrl(contactPagePath("en")),
+    "x-default": absoluteUrl(contactPagePath("de")),
   },
 }));
 
@@ -61,11 +74,13 @@ const legalEntries: SitemapEntry[] = legalPageKinds.flatMap((kind) =>
 );
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [...homeEntries, ...detailEntries, ...legalEntries].map((entry) => ({
-    url: absoluteUrl(entry.route),
-    lastModified: contentLastModified,
-    changeFrequency: entry.changeFrequency,
-    priority: entry.priority,
-    alternates: { languages: entry.alternates },
-  }));
+  return [...homeEntries, ...detailEntries, ...contactEntries, ...legalEntries].map(
+    (entry) => ({
+      url: absoluteUrl(entry.route),
+      lastModified: contentLastModified,
+      changeFrequency: entry.changeFrequency,
+      priority: entry.priority,
+      alternates: { languages: entry.alternates },
+    }),
+  );
 }

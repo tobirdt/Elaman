@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { getSiteContent } from "@/lib/content/site";
-import type { Locale } from "@/lib/i18n";
+import { homePath, type Locale } from "@/lib/i18n";
 
 type NotFoundPageProps = {
   locale?: Locale;
@@ -35,7 +35,7 @@ export function NotFoundPage({ locale = "de" }: NotFoundPageProps) {
               width="content"
             />
             <div className="mt-8">
-              <Button href={`/${locale}`}>{notFound.cta}</Button>
+              <Button href={homePath(locale)}>{notFound.cta}</Button>
             </div>
           </Container>
         </Section>

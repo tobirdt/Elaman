@@ -1,6 +1,6 @@
 # Elaman GmbH — current content blueprint
 
-Authoritative factual and structural guide for the bilingual production website. Exact approved strings live in `lib/content/site.ts` and `lib/content/detail-pages.ts`; this document defines what may be communicated across the five-section homepage and two focused dossier pages.
+Authoritative factual and structural guide for the bilingual production website. Exact approved strings live in `lib/content/site.ts`, `lib/content/detail-pages.ts`, `lib/content/contact-page.ts`, and `lib/content/legal.ts`; this document defines what may be communicated across the five-section homepage, two focused dossier pages, and the contact page. See `AGENTS.md` for audience, purpose, and accessibility goal.
 
 ## 1. Positioning
 
@@ -69,18 +69,21 @@ Do not add percentages, certifications, awards, project counts, client logos, na
 | `#profile` | German/English Security Solutions title, technology combination, and project alignment |
 | `#advice`  | Four-stage path from analysis and advice to training and long-term support             |
 | `#systems` | Five capability categories without technical specifications                            |
-| `#contact` | Munich office, direct contact routes, and inquiry form                                 |
+| `#contact` | Munich office, direct contact routes, and the link to the contact route                |
 
-The footer is a compact legal conclusion outside the five-section viewport rhythm.
+The footer closes every route with the same three columns — navigation, contact, legal — outside the five-section viewport rhythm.
 
-The homepage links to two reciprocal localised dossiers:
+The site has three reciprocal localised routes beyond the homepage:
 
 | Responsibility                    | German            | English       |
 | --------------------------------- | ----------------- | ------------- |
 | Company and working approach      | `/de/unternehmen` | `/en/company` |
 | Systems and five capability areas | `/de/systeme`     | `/en/systems` |
+| Inquiry form and direct contact   | `/de/kontakt`     | `/en/contact` |
 
 These pages add useful context, not new claims. They must not become thin keyword pages, product catalogues, or substitutes for a factual source that is not available.
+
+The global header exposes exactly these three pages plus the locale switch — Unternehmen/Company, Systeme/Systems, Kontakt/Contact — with no in-page anchors; the points-only signet is the desktop Home action, and the mobile menu prepends an explicit Start/Home entry. The footer repeats the same navigation, the contact details, and the legal links on every page (see § 9).
 
 ## 4. Hero
 
@@ -115,7 +118,7 @@ The section closes with one factual management reference:
 
 The name links to the existing imprint. It must not be repeated elsewhere on the homepage or expanded into biographical claims without approved source material.
 
-The Company dossier may repeat the management name once as a factual route to the imprint. Without an approved portrait or biography, its narrative is carried by the Munich office, three verified working principles, and the supplied stone-bridge motif.
+The Company dossier may repeat the management name once as a factual route to the imprint. Without an approved portrait or biography, its narrative is carried by the Munich office, the four-stage process told in full, and the supplied stone-bridge motif.
 
 ## 6. Advice
 
@@ -132,6 +135,8 @@ The ordered process is fixed:
 4. Schulung & Betreuung / Training & support
 
 Descriptions remain concise and non-operational. The process may explain that Elaman assesses technical requirements, combines suitable technologies, accompanies implementation and commissioning, and provides professional training and long-term support.
+
+The homepage keeps the short form of these four steps; the Company dossier tells the same four steps at length. The two texts must stay distinct — no sentence may appear in both.
 
 ## 7. Systems
 
@@ -159,24 +164,34 @@ Approved public contact facts:
 - Elaman GmbH
 - Implerstraße 24
 - 81371 München / Munich, Germany
-- `+49 (0) 89 - 24 20 91 80`
+- `+49 89 24209180`
 - `info@elaman.de`
 
 The form collects first name, optional last name, optional company, email, message, and a hidden honeypot field. Present it as a standard inquiry, never as a secure or confidential portal.
+
+The contact page (`/de/kontakt` ↔ `/en/contact`) is the only place the form appears. Its content:
+
+- Eyebrow `Kontakt` / `Contact`; title DE `Sprechen Sie mit uns.`, EN `Talk to us.`; a one-sentence lead naming the Munich team and inviting a short description of the task.
+- A hero split with the Munich office photograph (factual alt text), matching the Company dossier's hero image and role.
+- A ruled `dl` of the direct contact facts (address, phone, email) beside the form, form title `Ihr Anliegen` / `Your inquiry`, and a note that required fields are marked with `*`.
+- A short privacy note below the form linking to the localised privacy policy — no separate consent checkbox, no map service.
+
+The homepage contact section repeats none of that copy: it names the office, lists the direct routes as a ruled `dl`, and leads to the contact page with one primary action (`Anfrage senden` / `Send an inquiry`). It contains no form.
 
 ## 9. Metadata and navigation
 
 - German default: `/de`
 - English: `/en`
 - Localised dossier pairs: `/de/unternehmen` ↔ `/en/company` and `/de/systeme` ↔ `/en/systems`
+- Localised contact route: `/de/kontakt` ↔ `/en/contact`
 - Legal routes are localised: `/de/impressum` ↔ `/en/site-notice` and `/de/datenschutz` ↔ `/en/privacy-policy`. The retired `/imprint` and `/private-policy` paths redirect permanently to the German documents.
 - Global header navigation:
-  - Desktop DE: Unternehmen, Systeme, Vorgehen, Kontakt
-  - Desktop EN: Company, Systems, Approach, Contact
+  - Desktop DE: Unternehmen, Systeme, Kontakt
+  - Desktop EN: Company, Systems, Contact
   - Mobile prepends Start / Home; the points-only signet remains the desktop home action.
-  - Unternehmen / Company and Systeme / Systems open their localised dossier pages directly.
-  - Vorgehen / Approach and Kontakt / Contact open the corresponding homepage sections.
-- The active rule represents either the current dossier page or its corresponding homepage section.
+  - Every entry opens a page of its own; the menu carries no anchors.
+- The active rule represents the current page and is matched on the exact path.
+- The footer is identical on every route: Navigation (Start, Unternehmen, Systeme, Kontakt), Kontakt (address, phone, email), Rechtliches (Impressum, Datenschutzerklärung), plus copyright and the locale switch.
 - Metadata may state security technology, technical services, advice, surveillance/observation, analysis, TSCM, radio monitoring for mobile communications, training, and support.
 - The company may be associated with the alternate brand spellings `Elaman` and `ELAMAN` in organisation data.
 - Holger Rumscheidt may be associated with Elaman through the factual management reference in Profile, the supplied imprint, and the corresponding entity relationship. Do not create a biographical profile without approved source material.
@@ -189,7 +204,9 @@ Both legal documents exist in German and English and are reachable from the foot
 
 The privacy policy describes only processing that actually happens: access logs at the hosting provider and the inquiry form delivered through Resend. It previously declared Google Analytics, Google Maps, cookies and Flash storage that the site never used, and cited the EU-US Privacy Shield, invalid since 2020. Those sections were removed and the contact-form processing that Article 13 GDPR requires was added.
 
-If the site ever gains analytics, an embed, a cookie or a new processor, this document has to be updated in the same change. Named processors (currently Vercel and Resend) must match the actual deployment.
+Retention is stated by criterion, not by a fixed period: access logs are kept only as long as secure operation requires and are deleted afterwards, extended only to investigate a specific security incident; form submissions are forwarded to the team's mailbox by email and kept there only as long as handling the inquiry requires, unless a commercial or tax retention duty applies. The form's processing runs through the hosting provider's data centre in Frankfurt am Main, which the policy names explicitly. The document is dated September 2026 and must be re-dated whenever it changes.
+
+If the site ever gains analytics, an embed, a cookie or a new processor, this document has to be updated in the same change. Named processors (currently Vercel for hosting and Resend for form-message delivery) must match the actual deployment.
 
 **Still required before launch: sign-off by legal counsel.** The rewrite improves factual accuracy over the previous text but is not a substitute for review, and the imprint's tax and register details should be confirmed against current records.
 

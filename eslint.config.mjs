@@ -5,7 +5,9 @@ const eslintConfig = [
   ...nextVitals,
   ...nextTs,
   {
-    ignores: [".next/**", "node_modules/**", "out/**"],
+    // `.claude/**` holds transient agent worktrees with their own build output;
+    // Prettier already skips them through .gitignore, ESLint needs it here.
+    ignores: [".claude/**", ".next/**", "node_modules/**", "out/**"],
   },
 ];
 

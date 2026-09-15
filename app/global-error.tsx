@@ -44,7 +44,7 @@ export default function GlobalError({ reset }: { error: Error; reset: () => void
           </h1>
           <p style={{ margin: "1.25rem 0 0", lineHeight: 1.65, color: "#555d6b" }}>
             Bitte laden Sie die Seite neu. Falls das Problem bestehen bleibt, erreichen
-            Sie uns unter +49 (0) 89 24 20 91 80 oder info@elaman.de.
+            Sie uns unter +49 89 24209180 oder info@elaman.de.
           </p>
           <button
             type="button"

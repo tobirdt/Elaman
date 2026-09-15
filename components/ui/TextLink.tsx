@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Route } from "next";
 
 type TextLinkProps = {
-  href: string;
+  href: Route;
   label: string;
   inverse?: boolean;
 };
@@ -10,7 +10,7 @@ type TextLinkProps = {
 export function TextLink({ href, label, inverse = false }: TextLinkProps) {
   return (
     <Link
-      href={href as Route}
+      href={href}
       className={`group inline-flex min-h-11 items-center gap-3 border-b py-2 text-[length:var(--type-small)] font-semibold transition-colors [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] ${
         inverse
           ? "border-[var(--border-on-navy)] text-[var(--color-on-dark)] hover:border-[var(--color-on-dark-muted)]"

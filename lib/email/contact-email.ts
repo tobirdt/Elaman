@@ -43,8 +43,8 @@ function formatSubmittedAt(timestamp: Date) {
 }
 
 const localeLabels = {
-  de: "Deutsch — bitte auf Deutsch antworten",
-  en: "English — please reply in English",
+  de: "Deutsch",
+  en: "Englisch (bitte auf Englisch antworten)",
 } as const;
 
 function formatSubjectValue(value: string) {
@@ -58,24 +58,27 @@ export function createContactEmailContent(
   const submittedAt = formatSubmittedAt(timestamp);
   const fullName = [payload.firstName, payload.lastName].filter(Boolean).join(" ");
   const subjectName = formatSubjectValue(fullName || payload.email);
-  const subject = `New Elaman website inquiry: ${subjectName}`;
+  const subjectCompany = payload.company
+    ? `, ${formatSubjectValue(payload.company)}`
+    : "";
+  const subject = `Anfrage über elaman.de: ${subjectName}${subjectCompany}`;
 
   const rows = [
-    ["First name", payload.firstName],
-    ["Last name", formatOptional(payload.lastName)],
-    ["Company", formatOptional(payload.company)],
-    ["Email", payload.email],
-    ["Language", localeLabels[payload.locale ?? "de"]],
-    ["Submitted", submittedAt],
-    ["Source", "Contact form on elaman.de"],
+    ["Vorname", payload.firstName],
+    ["Nachname", formatOptional(payload.lastName)],
+    ["Unternehmen", formatOptional(payload.company)],
+    ["E-Mail", payload.email],
+    ["Sprache", localeLabels[payload.locale ?? "de"]],
+    ["Eingegangen", submittedAt],
+    ["Quelle", "Anfrageformular auf elaman.de"],
   ] as const;
 
   const text = [
-    "New inquiry from elaman.de",
+    "Neue Anfrage über elaman.de",
     "",
     ...rows.map(([label, value]) => `${label}: ${value}`),
     "",
-    "Message:",
+    "Nachricht:",
     payload.message,
   ].join("\n");
 
@@ -90,7 +93,7 @@ export function createContactEmailContent(
     .join("");
 
   const html = `<!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <title>${escapeHtml(subject)}</title>
@@ -99,11 +102,11 @@ export function createContactEmailContent(
     <div style="max-width:640px;margin:0 auto;padding:32px 20px;">
       <div style="border:1px solid #dfe4ea;background:#ffffff;border-radius:10px;padding:24px;">
         <p style="margin:0 0 8px;color:#244074;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">Elaman GmbH</p>
-        <h1 style="margin:0 0 20px;color:#16181d;font-size:24px;line-height:1.2;">New website inquiry</h1>
+        <h1 style="margin:0 0 20px;color:#16181d;font-size:24px;line-height:1.2;">Neue Anfrage über die Website</h1>
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;margin:0 0 24px;">
           ${htmlRows}
         </table>
-        <p style="margin:0 0 8px;color:#555d6b;font-size:13px;font-weight:700;">Message</p>
+        <p style="margin:0 0 8px;color:#555d6b;font-size:13px;font-weight:700;">Nachricht</p>
         <div style="white-space:pre-wrap;border:1px solid #dfe4ea;background:#f7f8fa;border-radius:8px;padding:16px;color:#16181d;font-size:14px;line-height:1.65;">${escapeHtml(payload.message)}</div>
       </div>
     </div>
