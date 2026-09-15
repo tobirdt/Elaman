@@ -86,7 +86,7 @@ Before promoting a deployment: verify the Resend sending domain/sender, run the 
 npm run icons
 ```
 
-Runs `scripts/generate-icons.mjs`, which renders `public/brand/elaman-icon.svg` into `favicon.ico`, `icon-32/192/512.png`, `icon-512-maskable.png`, and `apple-touch-icon.png`, and re-crops `public/images/elaman-munich-office.jpg` into the contact page's `public/images/elaman-contact-og.jpg` social image. Deterministic and idempotent — re-run it whenever the source signet or the office photograph changes. It depends on `sharp`, which is available transitively through Next's own optional dependency once `npm install` has run.
+Runs `scripts/generate-icons.mjs`, which lays the thirteen-dot signet out for each icon size and writes `favicon.ico` (pixel-snapped 16, 32 and 48 px frames), `icon-32/192/512.png`, `icon-512-maskable.png`, and `apple-touch-icon.png`, and re-crops `public/images/elaman-munich-office.jpg` into the contact page's `public/images/elaman-contact-og.jpg` social image. The signet geometry lives in the script; the header mark `public/brand/elaman-icon.svg` is the same drawing, kept hand-authored. Tab-sized frames use a slightly darker grey ramp so the light dots survive on a white tab strip, and the 16 px frame drops the outermost, lightest dot because six columns do not fit on whole pixels. Deterministic and idempotent — re-run it whenever the signet or the office photograph changes, and bump `iconVersion` in `lib/seo/site.ts` so browsers drop their cached favicon. It depends on `sharp`, an explicit dev dependency.
 
 ## Contact form delivery
 
