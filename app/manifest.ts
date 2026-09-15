@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/seo/site";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: siteConfig.title,
-    short_name: siteConfig.name,
+    short_name: siteConfig.shortName,
     description: siteConfig.description,
     start_url: "/de",
     display: "browser",

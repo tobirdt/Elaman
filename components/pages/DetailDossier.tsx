@@ -1,42 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Route } from "next";
 
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Container } from "@/components/ui/Container";
+import { MediaBand } from "@/components/ui/MediaBand";
 import { TextLink } from "@/components/ui/TextLink";
 import type {
   CompanyDetailContent,
   DetailPageContent,
   SystemsDetailContent,
 } from "@/lib/content/detail-pages";
+import type { Locale } from "@/lib/i18n";
 
 type DetailDossierProps = {
   content: DetailPageContent;
+  locale: Locale;
 };
-
-function BackLink({
-  href,
-  label,
-  inverse = false,
-}: {
-  href: Route;
-  label: string;
-  inverse?: boolean;
-}) {
-  return (
-    <Link
-      href={href}
-      className={`inline-flex min-h-11 items-center gap-2 text-[length:var(--type-small)] transition-colors [transition-duration:var(--motion-fast)] ${
-        inverse
-          ? "text-[var(--color-on-dark-muted)] hover:text-[var(--color-on-dark)]"
-          : "text-graphite-soft hover:text-elaman-blue"
-      }`}
-    >
-      <span aria-hidden="true">←</span>
-      {label}
-    </Link>
-  );
-}
 
 function DetailClosing({
   content,
@@ -67,35 +46,28 @@ function DetailClosing({
   );
 }
 
-function CompanyDossier({ content }: { content: CompanyDetailContent }) {
+function CompanyDossier({
+  content,
+  locale,
+}: {
+  content: CompanyDetailContent;
+  locale: Locale;
+}) {
   return (
     <article>
-      <section className="grid min-h-[calc(100svh-var(--header-h))] border-b border-[var(--border-hairline)] bg-[var(--surface-paper)] lg:grid-cols-[minmax(0,0.56fr)_minmax(22rem,0.44fr)]">
-        <div className="flex min-w-0 items-center px-[var(--page-x-left)] py-[var(--section-y-screen)] lg:pl-[var(--page-x-left)] lg:pr-[clamp(3rem,7vw,7rem)]">
-          <div className="hero-copy-enter min-w-0 max-w-[44rem]">
-            <BackLink href={content.back.href} label={content.back.label} />
-            <p className="mt-10 font-mono text-[length:var(--type-micro)] font-medium uppercase tracking-[var(--tracking-label)] text-elaman-blue">
-              {content.eyebrow}
-            </p>
-            <h1 className="mt-5 max-w-[18ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
-              {content.title}
-            </h1>
-            <p className="mt-7 max-w-[58ch] text-[length:var(--type-lead)] leading-[1.6] text-graphite-muted">
-              {content.lead}
-            </p>
-          </div>
-        </div>
-        <div className="hero-image-enter relative min-h-[38svh] min-w-0 overflow-hidden bg-[var(--surface-paper-soft)] lg:min-h-full">
-          <Image
-            src="/images/elaman-munich-office.jpg"
-            alt={content.heroAlt}
-            fill
-            preload
-            sizes="(min-width: 1024px) 44vw, 100vw"
-            className="object-cover object-[63%_center] saturate-[0.78]"
-          />
-        </div>
-      </section>
+      <PageHeader
+        locale={locale}
+        current={content.breadcrumb}
+        eyebrow={content.eyebrow}
+        title={content.title}
+        lead={content.lead}
+      />
+      <MediaBand
+        src="/images/elaman-munich-office.jpg"
+        alt={content.heroAlt}
+        imageClassName="object-cover object-[63%_58%] saturate-[0.78]"
+        preload
+      />
 
       <section className="bg-[var(--surface-paper-soft)]">
         <Container className="py-[var(--section-y-content-band)]">
@@ -171,36 +143,29 @@ function CompanyDossier({ content }: { content: CompanyDetailContent }) {
   );
 }
 
-function SystemsDossier({ content }: { content: SystemsDetailContent }) {
+function SystemsDossier({
+  content,
+  locale,
+}: {
+  content: SystemsDetailContent;
+  locale: Locale;
+}) {
   return (
     <article>
-      <section className="grid min-h-[calc(100svh-var(--header-h))] bg-navy text-[var(--color-on-dark)] lg:grid-cols-[minmax(22rem,0.44fr)_minmax(0,0.56fr)]">
-        <div className="hero-image-enter relative min-h-[40svh] min-w-0 overflow-hidden bg-navy lg:min-h-full">
-          <Image
-            src="/images/elaman-systems-media-mining.jpg"
-            alt={content.heroAlt}
-            fill
-            preload
-            sizes="(min-width: 1024px) 44vw, 100vw"
-            className="object-cover object-[52%_43%] saturate-[0.52] contrast-[1.04]"
-          />
-          <div className="absolute inset-0 bg-navy/42" aria-hidden="true" />
-        </div>
-        <div className="flex min-w-0 items-center border-t border-[var(--border-on-navy)] px-[var(--page-x-right)] py-[var(--section-y-screen)] lg:border-l lg:border-t-0 lg:pl-[clamp(3rem,7vw,7rem)] lg:pr-[var(--page-x-right)]">
-          <div className="hero-copy-enter min-w-0 max-w-[47rem]">
-            <BackLink href={content.back.href} label={content.back.label} inverse />
-            <p className="mt-10 font-mono text-[length:var(--type-micro)] font-medium uppercase tracking-[var(--tracking-label)] text-[var(--color-on-dark-muted)]">
-              {content.eyebrow}
-            </p>
-            <h1 className="mt-5 max-w-[17ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-[var(--color-on-dark)]">
-              {content.title}
-            </h1>
-            <p className="mt-7 max-w-[60ch] text-[length:var(--type-lead)] leading-[1.6] text-[var(--color-on-dark-muted)]">
-              {content.lead}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        locale={locale}
+        current={content.breadcrumb}
+        eyebrow={content.eyebrow}
+        title={content.title}
+        lead={content.lead}
+      />
+      <MediaBand
+        src="/images/elaman-systems-media-mining.jpg"
+        alt={content.heroAlt}
+        imageClassName="object-cover object-[52%_43%] saturate-[0.52] contrast-[1.04]"
+        tone="navy"
+        preload
+      />
 
       <section className="bg-[var(--surface-paper)]">
         <Container className="py-[var(--section-y-content-band)]">
@@ -262,11 +227,11 @@ function SystemsDossier({ content }: { content: SystemsDetailContent }) {
   );
 }
 
-export function DetailDossier({ content }: DetailDossierProps) {
+export function DetailDossier({ content, locale }: DetailDossierProps) {
   switch (content.kind) {
     case "company":
-      return <CompanyDossier content={content} />;
+      return <CompanyDossier content={content} locale={locale} />;
     case "systems":
-      return <SystemsDossier content={content} />;
+      return <SystemsDossier content={content} locale={locale} />;
   }
 }

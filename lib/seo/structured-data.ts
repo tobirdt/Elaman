@@ -90,9 +90,39 @@ export function homepageJsonLd(locale: Locale) {
   };
 }
 
-export function contactPageJsonLd(locale: Locale, name: string, description: string) {
+/**
+ * Two-step breadcrumb trail, matching the one the page renders. The second
+ * step carries the page's short name rather than its meta title, so the trail
+ * reads the same in search results as it does on the page.
+ */
+function breadcrumbNode(locale: Locale, url: string, name: string) {
+  return {
+    "@type": "BreadcrumbList",
+    "@id": `${url}#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: getSiteContent(locale).breadcrumb.home,
+        item: absoluteUrl(homePath(locale)),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name,
+        item: url,
+      },
+    ],
+  };
+}
+
+export function contactPageJsonLd(
+  locale: Locale,
+  name: string,
+  breadcrumbName: string,
+  description: string,
+) {
   const url = absoluteUrl(contactPagePath(locale));
-  const homeUrl = absoluteUrl(homePath(locale));
 
   return {
     "@context": "https://schema.org",
@@ -109,24 +139,7 @@ export function contactPageJsonLd(locale: Locale, name: string, description: str
         mainEntity: { "@id": organizationId },
         breadcrumb: { "@id": `${url}#breadcrumb` },
       },
-      {
-        "@type": "BreadcrumbList",
-        "@id": `${url}#breadcrumb`,
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: locale === "de" ? "Start" : "Home",
-            item: homeUrl,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name,
-            item: url,
-          },
-        ],
-      },
+      breadcrumbNode(locale, url, breadcrumbName),
     ],
   };
 }
@@ -135,10 +148,10 @@ export function detailPageJsonLd(
   locale: Locale,
   kind: DetailPageKind,
   name: string,
+  breadcrumbName: string,
   description: string,
 ) {
   const url = absoluteUrl(detailPagePath(locale, kind));
-  const homeUrl = absoluteUrl(homePath(locale));
 
   return {
     "@context": "https://schema.org",
@@ -154,24 +167,7 @@ export function detailPageJsonLd(
         about: { "@id": organizationId },
         breadcrumb: { "@id": `${url}#breadcrumb` },
       },
-      {
-        "@type": "BreadcrumbList",
-        "@id": `${url}#breadcrumb`,
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: locale === "de" ? "Start" : "Home",
-            item: homeUrl,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name,
-            item: url,
-          },
-        ],
-      },
+      breadcrumbNode(locale, url, breadcrumbName),
     ],
   };
 }
@@ -190,6 +186,7 @@ export function legalPageJsonLd(
   locale: Locale,
   path: string,
   title: string,
+  breadcrumbName: string,
   description: string,
   includeManagingDirector: boolean,
 ) {
@@ -210,7 +207,9 @@ export function legalPageJsonLd(
         ...(includeManagingDirector
           ? { mainEntity: [{ "@id": organizationId }, { "@id": managingDirectorId }] }
           : { mainEntity: { "@id": organizationId } }),
+        breadcrumb: { "@id": `${url}#breadcrumb` },
       },
+      breadcrumbNode(locale, url, breadcrumbName),
       ...(includeManagingDirector ? [managingDirectorNode()] : []),
     ],
   };

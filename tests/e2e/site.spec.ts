@@ -278,3 +278,64 @@ test("the mobile navigation behaves as a modal and remains keyboard operable", a
   await expect(page).toHaveURL(/\/de\/unternehmen$/);
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 });
+
+const subpages = [
+  { path: "/de/unternehmen", current: "Unternehmen" },
+  { path: "/de/systeme", current: "Systeme" },
+  { path: "/de/kontakt", current: "Kontakt" },
+  { path: "/de/impressum", current: "Impressum" },
+  { path: "/de/datenschutz", current: "Datenschutz" },
+  { path: "/de/gibt-es-nicht", current: "Seite nicht gefunden" },
+] as const;
+
+/**
+ * The regression this guards against is disorientation: before the shared
+ * page header, every subpage opened with its own geometry, so a visitor could
+ * not tell one level from another. The title now starts at the same place, at
+ * the same size, under the same breadcrumb, on all of them.
+ */
+test("every subpage opens with the same header geometry and breadcrumb", async ({
+  page,
+}) => {
+  const openings: { left: number; top: number; size: string }[] = [];
+
+  for (const subpage of subpages) {
+    await page.goto(subpage.path, { waitUntil: "networkidle" });
+
+    const breadcrumb = page.getByRole("navigation", { name: "Navigationspfad" });
+    await expect(breadcrumb).toBeVisible();
+    await expect(breadcrumb.getByRole("link", { name: "Start" })).toHaveAttribute(
+      "href",
+      "/de",
+    );
+    await expect(breadcrumb).toContainText(subpage.current);
+
+    const heading = page.getByRole("heading", { level: 1 });
+    await expect(heading).toHaveCount(1);
+
+    const box = await heading.boundingBox();
+    expect(box).not.toBeNull();
+    openings.push({
+      left: Math.round(box!.x),
+      top: Math.round(box!.y),
+      size: await heading.evaluate((element) => getComputedStyle(element).fontSize),
+    });
+  }
+
+  const [first, ...rest] = openings;
+  for (const opening of rest) {
+    expect(opening).toEqual(first);
+  }
+});
+
+test("the homepage keeps the full first screen to itself", async ({ page }) => {
+  await page.goto("/de", { waitUntil: "networkidle" });
+  const homeOpening = await page.locator("main > section").first().boundingBox();
+
+  await page.goto("/de/unternehmen", { waitUntil: "networkidle" });
+  const subpageOpening = await page.locator("main section").first().boundingBox();
+
+  const viewport = page.viewportSize()!;
+  expect(homeOpening!.height).toBeGreaterThan(viewport.height * 0.7);
+  expect(subpageOpening!.height).toBeLessThan(homeOpening!.height);
+});

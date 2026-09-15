@@ -2,7 +2,6 @@ import type { Route } from "next";
 
 import {
   contactPagePath,
-  homePath,
   legalPagePath,
   type DetailPageKind,
   type Locale,
@@ -30,7 +29,8 @@ type DetailBase = {
   eyebrow: string;
   title: string;
   lead: string;
-  back: DetailLink;
+  /** Short name of the page, shown as the last breadcrumb step. */
+  breadcrumb: string;
   contact: DetailLink;
   closing: string;
 };
@@ -97,7 +97,7 @@ const detailContent = {
       eyebrow: "Unternehmen",
       title: "Sicherheitslösungen aus München.",
       lead: "Elaman ist ein Münchner Unternehmen für Sicherheitstechnik. Für Sicherheitsbehörden und sicherheitsrelevante Organisationen planen wir Systeme, führen Produkte und Komponenten zusammen und bleiben bis in den laufenden Betrieb ansprechbar.",
-      back: { label: "Zur Startseite", href: homePath("de") },
+      breadcrumb: "Unternehmen",
       contact: { label: "Kontakt aufnehmen", href: contactPagePath("de") },
       closing:
         "Rufen Sie an oder schreiben Sie uns, auch wenn noch nicht alles feststeht.",
@@ -143,7 +143,7 @@ const detailContent = {
     systems: {
       kind: "systems",
       metadata: {
-        title: "Systeme für Kommunikation, Observation und Auswertung",
+        title: "Systeme – Observation, Auswertung, Lauschabwehr",
         description:
           "Elaman liefert Systeme für verdeckte Audio- und Videoobservation, Auswertung, Lauschabwehr und Funkerfassung sowie Schulung und Betreuung.",
         ogLocale: "de_DE",
@@ -151,7 +151,7 @@ const detailContent = {
       eyebrow: "Systeme",
       title: "Systeme für Kommunikation, Observation und Auswertung.",
       lead: "Die folgenden Bereiche zeigen, was Elaman liefert. Wir planen sie einzeln oder stimmen sie als Gesamtsystem aufeinander ab.",
-      back: { label: "Zur Startseite", href: homePath("de") },
+      breadcrumb: "Systeme",
       contact: { label: "Anforderungen besprechen", href: contactPagePath("de") },
       closing:
         "Wenn Sie wissen, was das System leisten soll, haben wir einen Ausgangspunkt.",
@@ -206,7 +206,7 @@ const detailContent = {
       eyebrow: "Company",
       title: "Security solutions from Munich.",
       lead: "Elaman is a Munich-based security technology company. We plan systems for security authorities and security-related organisations, bring products and components together and remain available through day-to-day operation.",
-      back: { label: "Home", href: homePath("en") },
+      breadcrumb: "Company",
       contact: { label: "Discuss a project", href: contactPagePath("en") },
       closing: "Call or email us, even if not every detail has been decided.",
       heroAlt: "Reception area at the Elaman office in Munich",
@@ -251,7 +251,7 @@ const detailContent = {
     systems: {
       kind: "systems",
       metadata: {
-        title: "Systems for communications, observation and analysis",
+        title: "Systems – surveillance, analysis and TSCM",
         description:
           "Elaman supplies systems for covert audio and video surveillance, analysis, TSCM and radio monitoring for mobile communications, as well as training and support.",
         ogLocale: "en_GB",
@@ -259,7 +259,7 @@ const detailContent = {
       eyebrow: "Systems",
       title: "Systems for communications, observation and analysis.",
       lead: "The following areas show what Elaman supplies. We plan them individually or coordinate them as part of a complete system.",
-      back: { label: "Home", href: homePath("en") },
+      breadcrumb: "Systems",
       contact: { label: "Discuss requirements", href: contactPagePath("en") },
       closing: "If you know what the system needs to do, we have a starting point.",
       heroAlt: "",

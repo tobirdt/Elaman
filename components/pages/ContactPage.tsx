@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 
+import { PageHeader } from "@/components/layout/PageHeader";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { Container } from "@/components/ui/Container";
 import type { ContactPageContent } from "@/lib/content/contact-page";
@@ -22,31 +22,13 @@ const directLinkClasses =
 export function ContactPage({ content, contact, locale }: ContactPageProps) {
   return (
     <article>
-      <section className="grid min-h-[calc(100svh-var(--header-h))] border-b border-[var(--border-hairline)] bg-[var(--surface-paper)] lg:grid-cols-[minmax(0,0.56fr)_minmax(22rem,0.44fr)]">
-        <div className="flex min-w-0 items-center px-[var(--page-x-left)] py-[var(--section-y-screen)] lg:pl-[var(--page-x-left)] lg:pr-[clamp(3rem,7vw,7rem)]">
-          <div className="hero-copy-enter min-w-0 max-w-[44rem]">
-            <p className="font-mono text-[length:var(--type-micro)] font-medium uppercase tracking-[var(--tracking-label)] text-elaman-blue">
-              {content.eyebrow}
-            </p>
-            <h1 className="mt-5 max-w-[16ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-graphite">
-              {content.title}
-            </h1>
-            <p className="mt-7 max-w-[58ch] text-[length:var(--type-lead)] leading-[1.6] text-graphite-muted">
-              {content.lead}
-            </p>
-          </div>
-        </div>
-        <div className="hero-image-enter relative min-h-[38svh] min-w-0 overflow-hidden bg-[var(--surface-paper-soft)] lg:min-h-full">
-          <Image
-            src="/images/elaman-munich-office.jpg"
-            alt={content.heroAlt}
-            fill
-            preload
-            sizes="(min-width: 1024px) 44vw, 100vw"
-            className="object-cover object-[63%_center] saturate-[0.78]"
-          />
-        </div>
-      </section>
+      <PageHeader
+        locale={locale}
+        current={content.breadcrumb}
+        eyebrow={content.eyebrow}
+        title={content.title}
+        lead={content.lead}
+      />
 
       <section className="bg-[var(--surface-paper)]">
         <Container className="reveal-group grid gap-10 py-[var(--section-y-content-band)] xl:grid-cols-[minmax(16rem,0.36fr)_minmax(0,0.64fr)] xl:gap-16">

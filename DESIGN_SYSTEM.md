@@ -63,6 +63,8 @@ No ordinary content shadow, glass surface, gradient surface, or alternative radi
 | `--section-y-screen`       |                      `clamp(3rem, 6svh, 5.5rem)` |
 | `--section-y-content-band` |                    `clamp(3.75rem, 6vw, 5.5rem)` |
 | `--section-y-legal-page`   |                   `clamp(2.75rem, 5vw, 4.25rem)` |
+| `--section-y-page-header`  |                    `clamp(3rem, 5.5vw, 4.75rem)` |
+| `--media-band-h`           |                     `clamp(15rem, 40svh, 27rem)` |
 
 `.section-screen` and `.section-feature` upgrade their minimum height to a `100svh`-based value when supported (`@supports (height: 100svh)`). The property is applied directly rather than inside a custom-property declaration, because the production CSS compiler may strip `svh` there. Both section modes share the header-sized `scroll-margin-top`.
 
@@ -90,7 +92,7 @@ Do not add a font, a local heading clamp, undersized long copy, or arbitrary dec
 
 `Section` owns section mode and tone via `lib/design/tokens.ts`'s `SectionMode`:
 
-- `screen`: minimum visible height below the sticky header, used only by the homepage `HeroSection`. The dossier and contact-page heroes replicate the same `min-height: calc(100svh - var(--header-h))` math in a hand-built `<section>`, not this primitive, because their split ratios and tone differ per page;
+- `screen`: minimum visible height below the sticky header, used only by the homepage `HeroSection`. Nothing below the homepage may claim the full first screen;
 - `feature`: minimum height that fills the viewport below the header on a laptop but stops growing at `--section-feature-max` (46rem) on tall displays, so a short composition never floats in empty paper. The four non-hero homepage sections (Profile, Advice, Systems, Contact) use this mode;
 - `content-band`: normal marketing band;
 - `legal-page`: legal/document rhythm.
@@ -99,7 +101,25 @@ Supported tones are `plain`, `white`, and `soft`. `screen` and `feature` are alw
 
 ### SectionHeader and SectionLabel
 
-Used by legal pages and utility states. `SectionLabel` uses Geist Mono. Top-level homepage sections may compose their own heading blocks where the image relationship is specific. Do not add decorative numbering; numbering is reserved for genuine ordered processes and ledgers.
+Used inside homepage and dossier sections. Page-level titles belong to `PageHeader`, not here. `SectionLabel` uses Geist Mono. Top-level homepage sections may compose their own heading blocks where the image relationship is specific. Do not add decorative numbering; numbering is reserved for genuine ordered processes and ledgers.
+
+### PageHeader
+
+The opening band of every page below the homepage: company, systems, contact, imprint, privacy policy, and the error page. It is the single most important consistency device on the site, so it takes no tone, width, or alignment options.
+
+- Always `--surface-paper`, always on the `page` container, always closed by a hairline.
+- Always the same four slots in the same order: breadcrumb, mono label, `h1`, optional lead. An optional `actions` slot carries a button, and only the error page uses it.
+- Padding is `--section-y-page-header`, a fixed clamp rather than a share of the viewport, so the `h1` starts at the same left edge and the same height on every subpage. The band's own height follows its content.
+- The `h1` is one step, `--type-h2`, on every subpage. The larger `--type-h1` and `--type-display` steps belong to the homepage. A legal page must never carry a bigger title than a content page.
+- `PageHeader` reads the breadcrumb strings from `lib/content/site.ts` itself; callers pass only the locale and the page's own short name.
+
+### Breadcrumb
+
+Two steps, `Start`/`Home` linked and the current page as plain text with `aria-current="page"`, separated by a slash that is hidden from assistive technology. It replaced the former "back to the homepage" link, which said how to leave but never said where the visitor was. Every subpage carries one, including the legal and error pages, where the header shows no active navigation item.
+
+### MediaBand
+
+The full-bleed photograph that follows a `PageHeader` on a page that has one. Fixed height (`--media-band-h`), `100vw`, closed by a hairline. The `navy` tone sets the house colour behind the picture and lays a light tint over it; it is the only full-bleed dark surface below the homepage and belongs to the systems page. No text ever sits on a media band, so the tint stays a tint and never becomes a scrim.
 
 ### Header
 
@@ -126,11 +146,11 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 
 ### DetailDossier
 
-Switches on `content.kind` (`company` | `systems`) to render the Company or Systems dossier composition (§ 8). Shares a `BackLink` (to the homepage) and a `DetailClosing` band (heading plus a `TextLink` to the contact page) between both.
+Switches on `content.kind` (`company` | `systems`) to render the Company or Systems dossier composition (§ 8). Both open with `PageHeader` and a `MediaBand`, and both close with a `DetailClosing` band (heading plus a `TextLink` to the contact page).
 
 ### ContactPage
 
-The contact-route composition (§ 8a): a dossier-style hero split with the Munich office photograph, then a content band pairing a ruled `dl` of direct contact facts with the `ContactForm`.
+The contact-route composition (§ 8a): `PageHeader`, then one content band pairing a ruled `dl` of direct contact facts with the `ContactForm`. It carries no photograph; the form is the content, and the office picture already opens the company page.
 
 ## 5. Homepage section contracts
 
@@ -198,8 +218,10 @@ The source set is limited to these four photographs. `elaman-home-og.jpg`, `elam
 
 There is no client animation library. Movement uses only `opacity` and `transform`, in two tiers:
 
-1. **Route-hero entrance.** `.hero-copy-enter` and `.hero-image-enter` use `@starting-style` for a once-only 12px rise / fade on the homepage hero, each dossier hero, and the contact-page hero, at `--motion-entrance` / `--motion-ease`.
-2. **Scroll-linked reveal.** `.reveal` and `.reveal-group > *` (`app/globals.css`) animate the same 12px rise via `animation-timeline: view()` and `animation-range: entry 0% entry 32%` (each `.reveal-group` child gets a staggered range, from the 2nd child on). This requires no JavaScript and no `IntersectionObserver`. It is gated by `@supports (animation-timeline: view())` and, inside that, by `@media (prefers-reduced-motion: no-preference)` — a browser without the feature, or a reader who asks for reduced motion, simply gets the final state as the unanimated base style. `.reveal`/`.reveal-group` mark most homepage and dossier content blocks below the hero.
+1. **Opening entrance.** `.hero-copy-enter` and `.hero-image-enter` use `@starting-style` for a once-only 12px rise / fade on the homepage hero, on every `PageHeader`, and on every `MediaBand`, at `--motion-entrance` / `--motion-ease`. These are time-based transitions: they finish on their own shortly after load.
+2. **Scroll-linked reveal.** `.reveal` and `.reveal-group > *` (`app/globals.css`) animate the same 12px rise via `animation-timeline: view()` and `animation-range: entry 0% entry 32%` (each `.reveal-group` child gets a staggered range, from the 2nd child on). This requires no JavaScript and no `IntersectionObserver`. It is gated by `@supports (animation-timeline: view())` and, inside that, by `@media (prefers-reduced-motion: no-preference)` — a browser without the feature, or a reader who asks for reduced motion, simply gets the final state as the unanimated base style. `.reveal`/`.reveal-group` mark most homepage and dossier content blocks below the opening.
+
+   **The scroll-linked reveal moves `transform` only, never `opacity`.** A scroll timeline has no end of its own: a block that is half inside the viewport when the page loads holds its half-way value until someone scrolls. A fade parks real text at a fraction of its opacity there, which drops it under the WCAG contrast floor for as long as the visitor sits still, and axe reports it as a serious violation. A rise has no such failure mode. Fades belong to the time-based tier above, which always completes.
 
 Short colour/border/background feedback (hover, focus, form fields, the mobile-menu state) uses plain CSS transitions at the micro tiers. The global `prefers-reduced-motion: reduce` query collapses every transition and animation duration to effectively zero and leaves content in its final state; it does not need to separately handle smooth scrolling because the site sets none (`scroll-behavior` is not used for snap or anchor purposes any more).
 
@@ -207,18 +229,31 @@ There is no scroll snap anywhere in the product. It was removed together with `A
 
 ## 8. Dossier composition
 
-| Kind    | Routes                           | Contract                                                                                                                 |
-| ------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Company | `/de/unternehmen`, `/en/company` | Office-led hero, the four-stage "So arbeiten wir." / "How we work." process, bridge composition, factual management link |
-| Systems | `/de/systeme`, `/en/systems`     | Navy image-led hero, open five-area ledger, project approach                                                             |
+| Kind    | Routes                           | Contract                                                                                                                   |
+| ------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Company | `/de/unternehmen`, `/en/company` | Office media band, the four-stage "So arbeiten wir." / "How we work." process, bridge composition, factual management link |
+| Systems | `/de/systeme`, `/en/systems`     | Navy-toned media band, open five-area ledger, project approach                                                             |
 
-Both dossiers use normal document flow and never opt into any scroll snap. Their language switcher targets the matching localised route. Each has a contextual route-specific social image, a back link to the homepage (`Zur Startseite` / `Home`), and a closing band (`DetailClosing`) leading to the contact page.
+Both dossiers open with the shared `PageHeader` and a `MediaBand`, use normal document flow, and never opt into any scroll snap. Their language switcher targets the matching localised route. Each has a contextual route-specific social image, a breadcrumb back to the homepage, and a closing band (`DetailClosing`) leading to the contact page.
 
 The Company dossier's process section replaced the former three-principle composition: it is the same four steps as the homepage `AdviceSection` (Analyse & Beratung, Planung & Integration, Schlüsselfertige Umsetzung, Schulung & Betreuung), told at greater length, laid out as a four-column ruled ordered list on desktop with mono sequence numerals — the same visual pattern `AdviceSection` uses, not a new one.
 
 ## 8a. Contact page composition
 
-`/de/kontakt` ↔ `/en/contact` (`ContactPage`) uses the same dossier-style contract: normal document flow, a hero split with the Munich office photograph on the right, then one content band with the direct contact details (ruled `dl`) on the left and the `ContactForm` on the right from `xl`. Below `xl` the two stack, separated by a single hairline. A small privacy note under the form links to the privacy policy in the reader's language. No map service.
+`/de/kontakt` ↔ `/en/contact` (`ContactPage`) uses the same contract as every other subpage: `PageHeader`, then one content band with the direct contact details (ruled `dl`) on the left and the `ContactForm` on the right from `xl`. Below `xl` the two stack, separated by a single hairline. A small privacy note under the form links to the privacy policy in the reader's language. No map service.
+
+## 8b. Page levels
+
+The site has two page levels and each one looks like itself. This is a hard rule, not a preference: before it existed, five subpages opened with five different geometries and a visitor could not tell one level from another.
+
+| Level    | Pages                                                   | Opening                                                                               |
+| -------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Homepage | `/de`, `/en`                                            | Full first screen, split composition, `--type-display`, soft paper                    |
+| Subpage  | Company, Systems, Contact, Imprint, Privacy policy, 404 | `PageHeader` band on white, `--type-h2` title, breadcrumb, optional `MediaBand` below |
+
+What this forbids on a subpage: a full-screen opening, a mirrored split, a dark page surface, a title in a different step, a centred or indented measure, and an opening that carries its own photograph instead of using a `MediaBand`. `tests/e2e/site.spec.ts` asserts that the `h1` of every subpage shares one left edge, one top edge, and one size, and that the homepage opening stays taller than a subpage's.
+
+The legal pages sit on the same grid as every other subpage. They carry no panel, no card, and no border box; the document keeps the `legal` measure, left-aligned under the title.
 
 ## 9. Prohibited patterns
 
@@ -228,7 +263,8 @@ The Company dossier's process section replaced the former three-principle compos
 - Gradient blobs, glow, neon, cyberpunk, or surveillance-first hero imagery
 - Repeated red accents outside required and error form states
 - New colours, fonts, unapproved images, statistics, certifications, or client logos
-- Scroll snap, scroll scrubbing, parallax, looping decoration, animated filters, or layout-property animation (anything beyond `.reveal`/`.reveal-group` and the route-hero entrance)
+- Scroll snap, scroll scrubbing, parallax, looping decoration, animated filters, or layout-property animation (anything beyond `.reveal`/`.reveal-group` and the opening entrance)
+- `opacity` in a scroll-linked keyframe (§ 7), and any per-page opening geometry that departs from `PageHeader` (§ 8b)
 - Fixed section heights, clipped translations, nested section scrollbars, or wheel hijacking
 - Obsolete compatibility aliases or unused component variants (e.g. a revived `AnchorScrollManager`)
 

@@ -283,6 +283,20 @@ Stand: 15. September 2026, Branch `claude/elaman-website-setup-qw1gom`, Pull Req
 | P6.1 bis P6.4              | teilweise                             | automatisierte Prüfungen erledigt; echte Geräte, Screenreader und securityheaders.com bleiben manuell                                                                                                                                                                                                                                                                                      |
 | P6.5 Launch                | offen                                 | Merge nach Freigabe, Testanfrage, Search Console, NAP, Resend-Key rotieren                                                                                                                                                                                                                                                                                                                 |
 
+### Nachtrag: Seitenebenen und Titel
+
+Nach dem ersten Durchlauf fiel auf, dass die Unterseiten schwer als solche zu erkennen waren. Die Messung bestätigte es: sechs Seiten, vier verschiedene linke Kanten der Überschrift, vier verschiedene Einstiegshöhen, drei Schriftgrößen für dieselbe Ebene, und die Rechtstexte trugen mit 84 Pixeln die größte Überschrift der Website.
+
+| Paket                  | Status    | Ergebnis                                                                                                                                                                                                                |
+| ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Gemeinsamer Seitenkopf | umgesetzt | `PageHeader` für Unternehmen, Systeme, Kontakt, Impressum, Datenschutz und 404: weiß, auf dem Seitenraster, Brotkrume, Kürzel, Titel auf einer Stufe, Vorspann. Volle Bildschirmhöhe gehört jetzt allein der Startseite |
+| Bildband               | umgesetzt | `MediaBand` ersetzt die gespiegelten Hero-Splits; Navy ist Akzent statt Seitenfläche, die Lesereihenfolge auf dem Handy ist überall gleich                                                                              |
+| Brotkrume              | umgesetzt | Zwei Stufen auf jeder Unterseite, dazu `BreadcrumbList` auch für die Rechtstexte                                                                                                                                        |
+| Rechtstexte            | umgesetzt | Gleiches Raster wie alle Unterseiten, Kasten entfernt                                                                                                                                                                   |
+| Kontaktseite           | umgesetzt | Ohne Foto; das Büroblid trug vorher Startseite, Unternehmen und Kontakt zugleich                                                                                                                                        |
+| Seitentitel            | umgesetzt | Alle unter 60 Zeichen, Suffix auf `Elaman` gekürzt, Budget als Unit-Test                                                                                                                                                |
+| Motion (Korrektur)     | umgesetzt | Der Scroll-Reveal bewegt nur noch `transform`. Ein Fade auf einer Scroll-Timeline parkt halb sichtbare Blöcke bei reduzierter Deckkraft und fiel damit unter die Kontrastschwelle                                       |
+
 ### Offen für Holger
 
 Unverändert die Punkte M1 bis M7 aus Phase 0: Hero-Original in hoher Auflösung, Vektorlogo, Lizenznachweise, Rohtexte je Systembereich, freigegebene Unternehmensfakten, Entscheidung zu Profil-Titel, Steuernummer und Fax, Termin für die anwaltliche Prüfung.

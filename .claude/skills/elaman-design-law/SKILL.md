@@ -47,22 +47,31 @@ Hero → Profile → Advice → Systems → Contact.
 - Systems: Navy Media Mining split and open five-area capability ledger, fifth entry spanning the full row. `variant="feature"`.
 - Contact: Munich-office split, direct routes, and one action to the contact page. `variant="feature"`. **No form on the homepage** — the inquiry form lives only on `/de/kontakt` ↔ `/en/contact` (`ContactPage`).
 
-`feature` sections fill the viewport below the header on a laptop but cap at `--section-feature-max` (46rem) on tall displays, so short compositions never float in empty paper; only the route `Hero` uses the uncapped `screen` variant. Each dossier hero and the contact-page hero replicate the same `calc(100svh - var(--header-h))` minimum in a hand-built section rather than through the `Section` primitive.
+`feature` sections fill the viewport below the header on a laptop but cap at `--section-feature-max` (46rem) on tall displays, so short compositions never float in empty paper; only the route `Hero` uses the uncapped `screen` variant. Nothing below the homepage claims the full first screen.
+
+## Two page levels
+
+The homepage and the subpages look like themselves, and a visitor can tell which one they are on before reading a word. Before this rule existed, five subpages opened with five different geometries, and people got lost.
+
+- **Homepage**: full first screen, split composition, `--type-display`, soft paper.
+- **Every subpage** — company, systems, contact, imprint, privacy policy, 404 — opens with `PageHeader`: white, on the `page` container, breadcrumb then mono label, `h1` at `--type-h2`, optional lead, fixed `--section-y-page-header` padding. The title lands on the same left edge and the same height on all of them. A photograph, where the page has one, follows as a full-bleed `MediaBand`.
+
+Never give a subpage its own opening: no full-screen hero, no mirrored split, no dark page surface, no different title step, no centred or indented measure, and no photograph inside the header band. The legal pages sit on the same grid as the rest, with no card or panel around the document. `tests/e2e/site.spec.ts` asserts the shared geometry, so a departure fails the suite rather than shipping.
 
 The capability ledger uses horizontal rules and an unambiguous DOM order. Do not restore a boxed matrix or vertical cell dividers.
 
 ## Use current primitives
 
-Use only reachable primitives in `components/ui`: `Button`, `Container`, `Section`, `SectionHeader`, `SectionLabel`, and `TextLink`. Add a new abstraction only when at least two current consumers share a stable contract.
+Use only reachable primitives: `Button`, `Container`, `MediaBand`, `Section`, `SectionHeader`, `SectionLabel`, and `TextLink` in `components/ui`, plus `PageHeader` and `Breadcrumb` in `components/layout`. Add a new abstraction only when at least two current consumers share a stable contract.
 
 The two approved dossier compositions (`DetailDossier`) are:
 
-- Company: office-led hero, the four-stage "So arbeiten wir." / "How we work." process (the same four steps as the homepage `AdviceSection`, told at greater length), bridge composition, factual management reference;
-- Systems: navy Media Mining hero, open five-area ledger, project approach.
+- Company: office media band, the four-stage "So arbeiten wir." / "How we work." process (the same four steps as the homepage `AdviceSection`, told at greater length), bridge composition, factual management reference;
+- Systems: navy-toned Media Mining band, open five-area ledger, project approach.
 
 Dossiers use normal document flow, reciprocal localised routes, and no scroll snap. They may deepen verified homepage categories but must not add specifications, customers, tactical detail, or unsupported claims. Each ends in a `DetailClosing` band linking to the contact page.
 
-The contact page (`ContactPage`) shares the dossier hero contract: a hero split with the Munich office photograph, then a content band pairing the direct contact `dl` with `ContactForm`.
+The contact page (`ContactPage`) opens with the same `PageHeader` and carries no photograph: the form is the content, and the office picture already opens the company page. Below the header, one content band pairs the direct contact `dl` with `ContactForm`.
 
 The global header exposes Company, Systems, and Contact as three direct localised pages, plus the locale switch — no anchors anywhere in the menu. The signet acts as Home on desktop; the mobile overlay prepends an explicit Start / Home entry ahead of the other destinations. The active rule (`aria-current="page"`) matches the exact current path only.
 

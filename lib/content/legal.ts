@@ -8,6 +8,8 @@ export type LegalBlock = {
 export type LegalDocumentContent = {
   title: string;
   label: string;
+  /** Short name of the page, shown as the last breadcrumb step. */
+  breadcrumb: string;
   metaTitle: string;
   metaDescription: string;
   blocks: LegalBlock[];
@@ -30,6 +32,7 @@ const legalContent = {
   de: {
     imprint: {
       title: "Impressum",
+      breadcrumb: "Impressum",
       label: "Rechtliches",
       metaTitle: "Impressum",
       metaDescription: "Impressum und Anbieterkennzeichnung der Elaman GmbH, München.",
@@ -84,6 +87,7 @@ const legalContent = {
     },
     privacy: {
       title: "Datenschutzerklärung",
+      breadcrumb: "Datenschutz",
       label: "Rechtliches",
       metaTitle: "Datenschutzerklärung",
       metaDescription:
@@ -156,6 +160,7 @@ const legalContent = {
   en: {
     imprint: {
       title: "Legal notice",
+      breadcrumb: "Legal notice",
       label: "Legal",
       metaTitle: "Legal notice",
       metaDescription: "Legal information about Elaman GmbH, Munich.",
@@ -210,6 +215,7 @@ const legalContent = {
     },
     privacy: {
       title: "Privacy policy",
+      breadcrumb: "Privacy policy",
       label: "Legal",
       metaTitle: "Privacy policy",
       metaDescription: "How Elaman GmbH processes personal data on this website.",

@@ -37,6 +37,8 @@ export const designTokens = {
     screenY: "clamp(3rem, 6svh, 5.5rem)",
     contentBand: "clamp(3.75rem, 6vw, 5.5rem)",
     legalPage: "clamp(2.75rem, 5vw, 4.25rem)",
+    pageHeader: "clamp(3rem, 5.5vw, 4.75rem)",
+    mediaBand: "clamp(15rem, 40svh, 27rem)",
   },
   typography: {
     display: "clamp(3rem, 7.2vw, 6rem)",

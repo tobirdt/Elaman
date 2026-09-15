@@ -30,6 +30,15 @@
   --section-y-screen: clamp(3rem, 6svh, 5.5rem);
   --section-y-content-band: clamp(3.75rem, 6vw, 5.5rem);
   --section-y-legal-page: clamp(2.75rem, 5vw, 4.25rem);
+  /*
+   * Every page below the homepage opens with the same band: breadcrumb,
+   * label, title, lead. The padding is fixed rather than a share of the
+   * viewport, so the title starts at the same height on every subpage and
+   * the eye recognises the level before it reads a word.
+   */
+  --section-y-page-header: clamp(3rem, 5.5vw, 4.75rem);
+  /* Full-bleed photograph directly below that band. */
+  --media-band-h: clamp(15rem, 40svh, 27rem);
   --type-display: clamp(3rem, 7.2vw, 6rem);
   --type-h1: clamp(2.6rem, 5.8vw, 5.4rem);
   --type-h2: clamp(1.8rem, 4.1vw, 3.75rem);
@@ -164,17 +173,23 @@ body {
  * viewport, driven by the browser's own scroll timeline: no observer, no
  * JavaScript, nothing runs off the main thread budget. Browsers without
  * scroll-driven animations and readers who ask for reduced motion get the
- * final state immediately. Only opacity and transform move, and the distance
- * is the same 12px rise the route hero uses.
+ * final state immediately. The distance is the same 12px rise the route hero
+ * uses.
+ *
+ * Transform only, deliberately. A scroll timeline has no end of its own: a
+ * block that is half inside the viewport when the page loads stays at its
+ * half-way value until someone scrolls. With a fade in the keyframes that
+ * parks real text at a fraction of its opacity, which drops it below the
+ * contrast floor for as long as the visitor sits still. A rise has no such
+ * failure mode, and the route hero still fades on its own time-based
+ * transition.
  */
 @keyframes reveal-rise {
   from {
-    opacity: 0;
     transform: translateY(var(--motion-rise));
   }
 
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -275,6 +290,8 @@ select {
   :root {
     --section-y-content-band: clamp(3rem, 11vw, 4.25rem);
     --section-y-legal-page: clamp(2.5rem, 9vw, 3.75rem);
+    --section-y-page-header: clamp(2.25rem, 8vw, 3.25rem);
+    --media-band-h: clamp(13rem, 32svh, 20rem);
   }
 }
 
