@@ -12,7 +12,6 @@ export const siteConfig = {
     "Elaman GmbH in Munich supplies and integrates security technology exclusively for security authorities and security-related organisations.",
   url: siteUrl,
   logoPath: "/brand/elaman-logo.png",
-  iconPath: "/brand/elaman-icon.svg",
   ogImage: {
     // Social platforms render 1200x630; the wordmark alone was 470x180 and
     // came out as a stretched thumbnail or was dropped entirely.
@@ -29,13 +28,28 @@ export const siteConfig = {
   },
 } as const;
 
-const icons: Metadata["icons"] = {
+/**
+ * Bump when the icon artwork changes. Browsers cache favicons by URL for a
+ * long time and ignore ordinary cache headers, so a new query string is the
+ * only reliable way to make an updated tab icon appear for returning
+ * visitors.
+ */
+const iconVersion = "2";
+
+const iconUrl = (path: string) => `${path}?v=${iconVersion}`;
+
+/**
+ * Raster only, on purpose: the multi-size ICO carries pixel-snapped 16, 32
+ * and 48 px frames drawn for the tab strip, and browsers would otherwise
+ * prefer a vector icon and rasterise it themselves, which smears the
+ * thirteen-dot signet at tab size.
+ */
+export const siteIcons: Metadata["icons"] = {
   icon: [
-    { url: "/favicon.ico", sizes: "48x48" },
-    { url: "/brand/elaman-icon.svg", type: "image/svg+xml" },
-    { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    { url: iconUrl("/favicon.ico"), sizes: "16x16 32x32 48x48" },
+    { url: iconUrl("/icon-192.png"), sizes: "192x192", type: "image/png" },
   ],
-  apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  apple: [{ url: iconUrl("/apple-touch-icon.png"), sizes: "180x180" }],
 };
 
 type PageMetadataOptions = {
@@ -91,7 +105,7 @@ export function createPageMetadata({
     title: pageTitle,
     description,
     metadataBase: new URL(siteConfig.url),
-    icons,
+    icons: siteIcons,
     alternates: {
       canonical: url,
       languages,
