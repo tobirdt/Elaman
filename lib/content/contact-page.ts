@@ -86,7 +86,7 @@ const contactPageContent = {
         "Required fields are marked with *. We reply by email, or by phone if you prefer.",
     },
     privacy: {
-      text: "By submitting the form you agree that we process your details in order to answer your inquiry. Details are set out in the ",
+      text: "When you send the form, we process your details in order to answer your inquiry. Details are set out in the ",
       linkLabel: "privacy policy",
       href: legalPagePath("en", "privacy"),
       suffix: ".",
