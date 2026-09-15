@@ -339,3 +339,51 @@ test("the homepage keeps the full first screen to itself", async ({ page }) => {
   expect(homeOpening!.height).toBeGreaterThan(viewport.height * 0.7);
   expect(subpageOpening!.height).toBeLessThan(homeOpening!.height);
 });
+
+/**
+ * The second half of the wayfinding rule. The page header fixed where a page
+ * starts; this fixes where everything below it starts. Before the shared
+ * section intro, headings began at six different left edges on one screen
+ * width and the eye had no line to follow down a page.
+ */
+test("every section heading sits on the page's own left edge", async ({ page }) => {
+  for (const path of ["/de", "/de/unternehmen", "/de/systeme", "/de/kontakt"]) {
+    await page.goto(path, { waitUntil: "networkidle" });
+
+    const edges = await page.evaluate(() => {
+      const headings = [...document.querySelectorAll("main h2")];
+      return [
+        ...new Set(headings.map((h) => Math.round(h.getBoundingClientRect().left))),
+      ];
+    });
+
+    expect(edges, `${path} uses more than one left edge for its sections`).toHaveLength(
+      1,
+    );
+
+    if (path !== "/de") {
+      const titleEdge = await page
+        .locator("main h1")
+        .first()
+        .evaluate((h) => Math.round(h.getBoundingClientRect().left));
+      expect(titleEdge, `${path} parts its title from its sections`).toBe(edges[0]);
+    }
+  }
+});
+
+test("the homepage names the subpages' lists and the subpages explain them", async ({
+  page,
+}) => {
+  // Breadcrumb list items carry no paragraph, so counting paragraphs inside
+  // list items counts descriptions and nothing else.
+  await page.goto("/de", { waitUntil: "networkidle" });
+  await expect(page.locator("#advice li")).toHaveCount(4);
+  await expect(page.locator("#advice li p")).toHaveCount(0);
+  await expect(page.locator("#systems li p")).toHaveCount(0);
+
+  await page.goto("/de/unternehmen", { waitUntil: "networkidle" });
+  await expect(page.locator("main ol li p")).toHaveCount(4);
+
+  await page.goto("/de/systeme", { waitUntil: "networkidle" });
+  await expect(page.locator("main ol li p")).toHaveCount(5);
+});

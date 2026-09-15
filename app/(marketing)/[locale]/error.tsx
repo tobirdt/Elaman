@@ -2,10 +2,8 @@
 
 import { useParams } from "next/navigation";
 
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { SectionHeader } from "@/components/ui/SectionHeader";
 import { getErrorContent } from "@/lib/content/error";
 import { defaultLocale, isLocale } from "@/lib/i18n";
 
@@ -27,22 +25,14 @@ export default function LocaleError({ reset }: { error: Error; reset: () => void
 
   return (
     <main id="main-content" tabIndex={-1}>
-      <Section
-        className="min-h-[calc(100svh-var(--header-h)-12rem)]"
-        tone="white"
-        variant="content-band"
-      >
-        <Container size="legal">
-          <SectionHeader
-            as="h1"
-            body={content.body}
-            label={content.label}
-            labelTone="dark"
-            size="h1"
-            title={content.title}
-            width="content"
-          />
-          <div className="mt-8 flex flex-wrap gap-4">
+      <PageHeader
+        locale={locale}
+        current={content.breadcrumb}
+        eyebrow={content.label}
+        title={content.title}
+        lead={content.body}
+        actions={
+          <div className="flex flex-wrap gap-4">
             <Button onClick={reset} type="button">
               {content.retry}
             </Button>
@@ -50,8 +40,8 @@ export default function LocaleError({ reset }: { error: Error; reset: () => void
               {content.home}
             </Button>
           </div>
-        </Container>
-      </Section>
+        }
+      />
     </main>
   );
 }

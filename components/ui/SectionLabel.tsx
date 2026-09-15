@@ -1,20 +1,27 @@
+type SectionLabelTone = "blue" | "dark" | "on-dark";
+
 type SectionLabelProps = {
   children: string;
-  tone?: "blue" | "red" | "dark";
+  tone?: SectionLabelTone;
 };
 
-const toneClasses = {
+const toneClasses: Record<SectionLabelTone, string> = {
   blue: "text-elaman-blue",
-  red: "text-elaman-red",
   dark: "text-graphite",
+  "on-dark": "text-[var(--color-on-dark-muted)]",
 };
 
+/**
+ * The one way a section names itself. Mono, uppercase, in the house blue,
+ * directly above the heading it belongs to. There is no second label
+ * treatment: a rule without text, a large grey word, or a heading with no
+ * label at all each made the same role look like a different one.
+ */
 export function SectionLabel({ children, tone = "blue" }: SectionLabelProps) {
   return (
     <p
-      className={`mb-5 flex items-center gap-3 font-mono text-[length:var(--type-micro)] font-semibold uppercase tracking-[var(--tracking-label)] ${toneClasses[tone]}`}
+      className={`font-mono text-[length:var(--type-micro)] font-medium uppercase tracking-[var(--tracking-label)] ${toneClasses[tone]}`}
     >
-      <span className="h-px w-8 bg-current sm:w-9" aria-hidden="true" />
       {children}
     </p>
   );

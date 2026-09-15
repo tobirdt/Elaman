@@ -41,13 +41,15 @@ Preserve this sequence unless explicitly changed:
 
 Hero → Profile → Advice → Systems → Contact.
 
-- Hero: chameleon, Elaman name, approved tagline, verified copy, one `25+` stat. Uses `Section` `variant="screen"`.
-- Profile: white asymmetric composition with the stone-bridge image. `variant="feature"`.
-- Advice: paper-soft ordered four-stage process with numerals and one hairline. `variant="feature"`.
-- Systems: Navy Media Mining split and open five-area capability ledger, fifth entry spanning the full row. `variant="feature"`.
-- Contact: Munich-office split, direct routes, and one action to the contact page. `variant="feature"`. **No form on the homepage** — the inquiry form lives only on `/de/kontakt` ↔ `/en/contact` (`ContactPage`).
+Hero → Profile → (media band) → Advice → Systems → Closing band.
 
-`feature` sections fill the viewport below the header on a laptop but cap at `--section-feature-max` (46rem) on tall displays, so short compositions never float in empty paper; only the route `Hero` uses the uncapped `screen` variant. Nothing below the homepage claims the full first screen.
+- Hero: chameleon, Elaman name, approved tagline, verified copy, one `25+` stat. `Section` `variant="screen"`, and the only full screen on the site.
+- Profile: white text band opened by `SectionIntro`, followed by the stone-bridge photograph as a full-width `MediaBand`.
+- Advice: paper-soft text band, the four stage names with numerals, no descriptions, one `TextLink` to the company page.
+- Systems: white text band, the five area names as a plain two-column list flowing down the first column, no numerals and no rules, one `TextLink` to the systems page.
+- Close: the shared `ClosingBand` on navy. **No form and no contact details on the homepage** — the inquiry form lives only on `/de/kontakt` ↔ `/en/contact`, and the footer carries the address one screen below.
+
+Every section below a hero uses `variant="content-band"` and opens with `SectionIntro`, so its `h2` starts where the page title starts. A band's height follows its content; there is no minimum-height mode any more.
 
 ## Two page levels
 
@@ -56,18 +58,20 @@ The homepage and the subpages look like themselves, and a visitor can tell which
 - **Homepage**: full first screen, split composition, `--type-display`, soft paper.
 - **Every subpage** — company, systems, contact, imprint, privacy policy, 404 — opens with `PageHeader`: white, on the `page` container, breadcrumb then mono label, `h1` at `--type-h2`, optional lead, fixed `--section-y-page-header` padding. The title lands on the same left edge and the same height on all of them. A photograph, where the page has one, follows as a full-bleed `MediaBand`.
 
+One left edge below the opening, too. Every section, on every page, opens with `SectionIntro` on the page container: label, `h2`, optional lead. Measured at 1440 before this rule, headings began at 138, 210, 586, 606, 663 and 822. A two-column band titles itself once at the left edge above both columns; a column may carry an `h3`. Only the homepage hero and a `MediaBand` run outside the page container. `h1` titles the page, `h2` a section, `h3` an item; item size follows density, not level.
+
 Never give a subpage its own opening: no full-screen hero, no mirrored split, no dark page surface, no different title step, no centred or indented measure, and no photograph inside the header band. The legal pages sit on the same grid as the rest, with no card or panel around the document. `tests/e2e/site.spec.ts` asserts the shared geometry, so a departure fails the suite rather than shipping.
 
 The capability ledger uses horizontal rules and an unambiguous DOM order. Do not restore a boxed matrix or vertical cell dividers.
 
 ## Use current primitives
 
-Use only reachable primitives: `Button`, `Container`, `MediaBand`, `Section`, `SectionHeader`, `SectionLabel`, and `TextLink` in `components/ui`, plus `PageHeader` and `Breadcrumb` in `components/layout`. Add a new abstraction only when at least two current consumers share a stable contract.
+Use only reachable primitives: `Button`, `ClosingBand`, `Container`, `MediaBand`, `Section`, `SectionIntro`, `SectionLabel`, and `TextLink` in `components/ui`, plus `PageHeader` and `Breadcrumb` in `components/layout`. Add a new abstraction only when at least two current consumers share a stable contract.
 
 The two approved dossier compositions (`DetailDossier`) are:
 
-- Company: office media band, the four-stage "So arbeiten wir." / "How we work." process (the same four steps as the homepage `AdviceSection`, told at greater length), bridge composition, factual management reference;
-- Systems: navy-toned Media Mining band, open five-area ledger, project approach.
+- Company: office media band, the four-stage "So arbeiten wir." / "How we work." process with the descriptions the homepage omits, the collaboration band with the factual management reference;
+- Systems: navy-toned Media Mining band, the five-area ledger in one column with descriptions, project approach.
 
 Dossiers use normal document flow, reciprocal localised routes, and no scroll snap. They may deepen verified homepage categories but must not add specifications, customers, tactical detail, or unsupported claims. Each ends in a `DetailClosing` band linking to the contact page.
 

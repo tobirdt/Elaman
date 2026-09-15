@@ -59,14 +59,14 @@ No ordinary content shadow, glass surface, gradient surface, or alternative radi
 | `--page-x-left`            |  `max(var(--page-x), env(safe-area-inset-left))` |
 | `--page-x-right`           | `max(var(--page-x), env(safe-area-inset-right))` |
 | `--section-screen-min`     |         `calc(100vh - var(--header-h))` fallback |
-| `--section-feature-max`    |                                          `46rem` |
 | `--section-y-screen`       |                      `clamp(3rem, 6svh, 5.5rem)` |
 | `--section-y-content-band` |                    `clamp(3.75rem, 6vw, 5.5rem)` |
 | `--section-y-legal-page`   |                   `clamp(2.75rem, 5vw, 4.25rem)` |
 | `--section-y-page-header`  |                    `clamp(3rem, 5.5vw, 4.75rem)` |
 | `--media-band-h`           |                     `clamp(15rem, 40svh, 27rem)` |
+| `--section-y-closing`      |                    `clamp(2.75rem, 4vw, 3.5rem)` |
 
-`.section-screen` and `.section-feature` upgrade their minimum height to a `100svh`-based value when supported (`@supports (height: 100svh)`). The property is applied directly rather than inside a custom-property declaration, because the production CSS compiler may strip `svh` there. Both section modes share the header-sized `scroll-margin-top`.
+`.section-screen` upgrades its minimum height to a `100svh`-based value when supported (`@supports (height: 100svh)`). The property is applied directly rather than inside a custom-property declaration, because the production CSS compiler may strip `svh` there.
 
 ### Typography
 
@@ -93,15 +93,22 @@ Do not add a font, a local heading clamp, undersized long copy, or arbitrary dec
 `Section` owns section mode and tone via `lib/design/tokens.ts`'s `SectionMode`:
 
 - `screen`: minimum visible height below the sticky header, used only by the homepage `HeroSection`. Nothing below the homepage may claim the full first screen;
-- `feature`: minimum height that fills the viewport below the header on a laptop but stops growing at `--section-feature-max` (46rem) on tall displays, so a short composition never floats in empty paper. The four non-hero homepage sections (Profile, Advice, Systems, Contact) use this mode;
-- `content-band`: normal marketing band;
+- `content-band`: the ordinary band, and the only mode any section below a hero uses;
 - `legal-page`: legal/document rhythm.
 
-Supported tones are `plain`, `white`, and `soft`. `screen` and `feature` are always a minimum height, never a clipping or fixed-height contract.
+Supported tones are `plain`, `white`, and `soft`. A band's height follows its content: the retired `feature` mode centred content inside a minimum height, which left between 54 and 281 pixels of air above a heading depending on how much copy a section happened to carry. Fixed padding gives one rhythm instead.
 
-### SectionHeader and SectionLabel
+### SectionIntro and SectionLabel
 
-Used inside homepage and dossier sections. Page-level titles belong to `PageHeader`, not here. `SectionLabel` uses Geist Mono. Top-level homepage sections may compose their own heading blocks where the image relationship is specific. Do not add decorative numbering; numbering is reserved for genuine ordered processes and ledgers.
+`SectionIntro` opens every section below a page header: label, `h2`, optional lead, built like `PageHeader` and therefore on the same left edge. A section never composes its own heading block, and never places its label in a column beside the heading.
+
+`SectionLabel` is the one way a section names itself: Geist Mono, uppercase, house blue, directly above the heading. There is no second treatment. A rule without text, a large grey word and a heading with no label at all each made the same role look like a different one.
+
+Do not add decorative numbering; numbering is reserved for genuine ordered processes and ledgers.
+
+### ClosingBand
+
+How the homepage and both dossiers end: one sentence and one `TextLink`, on navy, across the full width. It is the only place navy carries a band of text, which gives the colour a single job and every page the same closing beat. The contact route and the legal documents have none; they are the destination.
 
 ### PageHeader
 
@@ -165,35 +172,28 @@ The contact-route composition (§ 8a): `PageHeader`, then one content band pairi
 
 ### ProfileSection
 
-- White asymmetric text/image grid (`variant="feature"`).
-- Stone-bridge image is decorative and colour-calmed.
-- One blue hairline supports the heading.
-- Body copy is left aligned and bounded to 65ch.
-- One compact ruled management reference links Holger Rumscheidt to the existing imprint without creating a competing profile composition.
+- Text band on white (`variant="content-band"`), opened by `SectionIntro`.
+- The stone-bridge photograph follows as a full-width `MediaBand`, not beside the copy.
+- Body copy is left aligned and bounded to 62ch.
+- The managing director is named on the company page only; printing the same reference twice was one of the duplicates this composition removed.
 
 ### AdviceSection
 
-- Paper-soft background (`variant="feature"`, `tone="soft"`).
-- Semantic ordered list with four fixed steps.
-- Desktop uses four columns and one continuous top rule.
-- Mobile uses one natural vertical sequence.
-- No cards, icons, or enclosed cells.
+- Paper-soft text band, opened by `SectionIntro`.
+- Semantic ordered list with the four fixed stage names and their numerals. No descriptions: the company page tells the stages at length, and printing both meant reading the same four paragraphs twice.
+- One `TextLink` to the company page closes the section.
+- Desktop uses four columns, mobile one natural sequence. No cards, icons, or enclosed cells.
 
 ### SystemsSection
 
-- Navy split composition with the Media Mining image (`variant="feature"`).
-- The ledger contains the five approved capability areas; the fifth entry spans the full row width on `sm` and up (`sm:last:odd:col-span-2`) instead of leaving a half-empty row.
-- Capability order is row-major in the DOM and visual layout.
-- Horizontal rules only; no boxed matrix or vertical cell dividers.
-- Capability titles do not use automatic hyphenation.
+- White text band, opened by `SectionIntro`.
+- The five approved areas as a plain two-column list, names only, flowing down the first column before the second (`sm:grid-flow-col sm:grid-rows-3`) so the list reads in its real order.
+- No numerals and no rules here: the systems page sets the same five as a numbered ledger with descriptions, and when the homepage matched that treatment the subpage read as a repeat rather than the detail.
+- One `TextLink` to the systems page closes the section.
 
-### ContactSection
+### Homepage close
 
-- Office image and contact content form the outer desktop split (`variant="feature"`).
-- The section is the compact homepage close: heading, one short paragraph, the three direct contact routes as a ruled `dl`, and one primary action to the contact page.
-- The office photograph carries no caption; the opening sentence already names Munich.
-- Mobile and tablet use natural vertical flow.
-- The inquiry form itself is not part of the homepage — it lives only on `/de/kontakt` ↔ `/en/contact`.
+The homepage ends in the shared `ClosingBand`. It carries no contact details: the footer repeats address, phone and email one screen further down, and the same three facts twice in one view is the repetition the content blueprint rules out.
 
 ## 6. Approved photography
 
@@ -234,13 +234,13 @@ There is no scroll snap anywhere in the product. It was removed together with `A
 | Company | `/de/unternehmen`, `/en/company` | Office media band, the four-stage "So arbeiten wir." / "How we work." process, bridge composition, factual management link |
 | Systems | `/de/systeme`, `/en/systems`     | Navy-toned media band, open five-area ledger, project approach                                                             |
 
-Both dossiers open with the shared `PageHeader` and a `MediaBand`, use normal document flow, and never opt into any scroll snap. Their language switcher targets the matching localised route. Each has a contextual route-specific social image, a breadcrumb back to the homepage, and a closing band (`DetailClosing`) leading to the contact page.
+Both dossiers open with the shared `PageHeader` and a `MediaBand`, give every section below it a `SectionIntro`, end in the shared `ClosingBand`, use normal document flow, and never opt into any scroll snap. Their language switcher targets the matching localised route. Each has a contextual route-specific social image, a breadcrumb back to the homepage, and a closing band (`DetailClosing`) leading to the contact page.
 
 The Company dossier's process section replaced the former three-principle composition: it is the same four steps as the homepage `AdviceSection` (Analyse & Beratung, Planung & Integration, Schlüsselfertige Umsetzung, Schulung & Betreuung), told at greater length, laid out as a four-column ruled ordered list on desktop with mono sequence numerals — the same visual pattern `AdviceSection` uses, not a new one.
 
 ## 8a. Contact page composition
 
-`/de/kontakt` ↔ `/en/contact` (`ContactPage`) uses the same contract as every other subpage: `PageHeader`, then one content band with the direct contact details (ruled `dl`) on the left and the `ContactForm` on the right from `xl`. Below `xl` the two stack, separated by a single hairline. A small privacy note under the form links to the privacy policy in the reader's language. No map service.
+`/de/kontakt` ↔ `/en/contact` (`ContactPage`) uses the same contract as every other subpage: `PageHeader`, then one content band opened by a `SectionIntro` on the page's left edge, with the direct contact details (ruled `dl`) on the left and the `ContactForm` on the right from `xl`. The form's own title is an `h3` inside its column, because the band's heading already titles both columns. Below `xl` the two stack, separated by a single hairline. A small privacy note under the form links to the privacy policy in the reader's language. No map service.
 
 ## 8b. Page levels
 
@@ -253,6 +253,16 @@ The site has two page levels and each one looks like itself. This is a hard rule
 
 What this forbids on a subpage: a full-screen opening, a mirrored split, a dark page surface, a title in a different step, a centred or indented measure, and an opening that carries its own photograph instead of using a `MediaBand`. `tests/e2e/site.spec.ts` asserts that the `h1` of every subpage shares one left edge, one top edge, and one size, and that the homepage opening stays taller than a subpage's.
 
+### One left edge below the opening
+
+The same rule continues down the page. Every section on every page, the homepage included, opens with `SectionIntro` on the page container, so each `h2` starts where the page title starts. Measured at 1440 before this rule, headings began at 138, 210, 586, 606, 663 and 822; at 1024 the systems page alone used four edges. The suite asserts that each page renders exactly one left edge for its `h2` elements and that a subpage's `h1` shares it.
+
+A section with two columns keeps the rule by titling the band once, at the left edge, above both columns. A column may then carry an `h3` of its own. Only the homepage hero and the `MediaBand` run outside the page container.
+
+### Heading levels
+
+`h1` titles the page, `h2` titles a section, `h3` titles an item inside one. Item size follows density rather than level: a compact multi-column list uses `--type-body` semibold, a ledger entry with a description uses `--type-h3`. Before this, the five systems areas were `h2` at the same outline level as the section titles around them, and the section that held them had no heading at all.
+
 The legal pages sit on the same grid as every other subpage. They carry no panel, no card, and no border box; the document keeps the `legal` measure, left-aligned under the title.
 
 ## 9. Prohibited patterns
@@ -264,7 +274,8 @@ The legal pages sit on the same grid as every other subpage. They carry no panel
 - Repeated red accents outside required and error form states
 - New colours, fonts, unapproved images, statistics, certifications, or client logos
 - Scroll snap, scroll scrubbing, parallax, looping decoration, animated filters, or layout-property animation (anything beyond `.reveal`/`.reveal-group` and the opening entrance)
-- `opacity` in a scroll-linked keyframe (§ 7), and any per-page opening geometry that departs from `PageHeader` (§ 8b)
+- `opacity` in a scroll-linked keyframe (§ 7), any per-page opening geometry that departs from `PageHeader`, and any section heading that departs from `SectionIntro` or leaves the page's left edge (§ 8b)
+- Printing a list on the homepage and again on its subpage in the same treatment: the homepage names, the subpage explains
 - Fixed section heights, clipped translations, nested section scrollbars, or wheel hijacking
 - Obsolete compatibility aliases or unused component variants (e.g. a revived `AnchorScrollManager`)
 

@@ -1,7 +1,7 @@
 export const containerSizes = ["page", "content", "copy", "narrow", "legal"] as const;
 export type ContainerSize = (typeof containerSizes)[number];
 
-export const sectionModes = ["screen", "feature", "content-band", "legal-page"] as const;
+export const sectionModes = ["screen", "content-band", "legal-page"] as const;
 export type SectionMode = (typeof sectionModes)[number];
 
 /**
@@ -33,12 +33,12 @@ export const designTokens = {
   },
   section: {
     screen: "calc(100svh - var(--header-h))",
-    featureMax: "46rem",
     screenY: "clamp(3rem, 6svh, 5.5rem)",
     contentBand: "clamp(3.75rem, 6vw, 5.5rem)",
     legalPage: "clamp(2.75rem, 5vw, 4.25rem)",
     pageHeader: "clamp(3rem, 5.5vw, 4.75rem)",
     mediaBand: "clamp(15rem, 40svh, 27rem)",
+    closing: "clamp(2.75rem, 4vw, 3.5rem)",
   },
   typography: {
     display: "clamp(3rem, 7.2vw, 6rem)",

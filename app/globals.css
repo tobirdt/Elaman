@@ -26,7 +26,6 @@
   --container-narrow: 30rem;
   --container-legal: 56rem;
   --section-screen-min: calc(100vh - var(--header-h));
-  --section-feature-max: 46rem;
   --section-y-screen: clamp(3rem, 6svh, 5.5rem);
   --section-y-content-band: clamp(3.75rem, 6vw, 5.5rem);
   --section-y-legal-page: clamp(2.75rem, 5vw, 4.25rem);
@@ -39,6 +38,7 @@
   --section-y-page-header: clamp(3rem, 5.5vw, 4.75rem);
   /* Full-bleed photograph directly below that band. */
   --media-band-h: clamp(15rem, 40svh, 27rem);
+  --section-y-closing: clamp(2.75rem, 4vw, 3.5rem);
   --type-display: clamp(3rem, 7.2vw, 6rem);
   --type-h1: clamp(2.6rem, 5.8vw, 5.4rem);
   --type-h2: clamp(1.8rem, 4.1vw, 3.75rem);
@@ -149,22 +149,6 @@ body {
 @supports (height: 100svh) {
   .section-screen {
     min-height: calc(100svh - var(--header-h));
-  }
-}
-
-/*
- * Feature sections own the visible height on a laptop but stop growing on
- * tall displays, so a short composition never floats in a viewport of empty
- * paper. Only the route hero keeps the full first screen.
- */
-.section-feature {
-  min-height: min(var(--section-screen-min), var(--section-feature-max));
-  scroll-margin-top: var(--header-h);
-}
-
-@supports (height: 100svh) {
-  .section-feature {
-    min-height: min(calc(100svh - var(--header-h)), var(--section-feature-max));
   }
 }
 
