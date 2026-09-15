@@ -329,15 +329,15 @@ Die englische Dokumentfassung nennt 20+ Jahre, einen dritten Kundenkreis und ach
 
 ### Stand der Umsetzung
 
-| Paket                        | Stand     | Ergebnis                                                                                                                                  |
-| ---------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| P8.1 Sprachpflege            | umgesetzt | Sechs Formulierungen übernommen, dazu drei Stellen, die daran anschlossen                                                                 |
-| P8.2 Fehler aus dem Dokument | umgesetzt | Keiner der fünf Fehler ist in den Text gelangt; die Rufnummer bleibt nach DIN 5008                                                        |
-| P8.3 Leistungsbereiche       | fünf      | Entscheidung für die deutsche Startseite. Ob Observation und Auswertung zusammengehen, entscheidet Holger; die Änderung bleibt eine Zeile |
-| P8.4 Positionierung          | umgesetzt | Kommunikations- und Sicherheitstechnik in Vorspann, Seitentitel, Beschreibungen, `description` und `knowsAbout`                           |
-| P8.5 Arbeitsweise            | umgesetzt | Vier Schritte auf beiden Seiten. Die Startseite nennt nur noch die Namen, die Beschreibungen stehen allein auf der Unternehmensseite      |
-| P8.6 Schutzlösungen          | offen     | Es gibt keinen deutschen Text; es bleibt bei drei Navigationspunkten                                                                      |
-| P8.7 Impressum               | umgesetzt | Steuernummer in beiden Sprachen entfernt, USt-IdNr. bleibt                                                                                |
+| Paket                        | Stand                   | Ergebnis                                                                                                                                  |
+| ---------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| P8.1 Sprachpflege            | umgesetzt               | Sechs Formulierungen übernommen, dazu drei Stellen, die daran anschlossen                                                                 |
+| P8.2 Fehler aus dem Dokument | umgesetzt               | Keiner der fünf Fehler ist in den Text gelangt; die Rufnummer bleibt nach DIN 5008                                                        |
+| P8.3 Leistungsbereiche       | fünf                    | Entscheidung für die deutsche Startseite. Ob Observation und Auswertung zusammengehen, entscheidet Holger; die Änderung bleibt eine Zeile |
+| P8.4 Positionierung          | live, Bestätigung offen | Kommunikations- und Sicherheitstechnik in Vorspann, Seitentitel, Beschreibungen, `description` und `knowsAbout`. Siehe E4 in Abschnitt 10 |
+| P8.5 Arbeitsweise            | umgesetzt               | Vier Schritte auf beiden Seiten. Die Startseite nennt nur noch die Namen, die Beschreibungen stehen allein auf der Unternehmensseite      |
+| P8.6 Schutzlösungen          | offen                   | Deutscher Text liegt im Dokument vor, ungeprüft von Holger. Siehe E6 und P10.11 in Abschnitt 10                                           |
+| P8.7 Impressum               | umgesetzt               | Steuernummer in beiden Sprachen entfernt, USt-IdNr. bleibt                                                                                |
 
 ### P8.1 Sprachpflege ohne Entscheidungsbedarf
 
@@ -366,7 +366,9 @@ Die deutsche Fassung widerspricht sich selbst: die Startseite nennt fünf Bereic
 
 ### P8.4 Positionierung: Kommunikations- und Sicherheitstechnik
 
-Holgers deutsche Unternehmensseite beschreibt Elaman als "Münchner Unternehmen für Kommunikations- und Sicherheitstechnik". Das ist eine Erweiterung gegenüber "Sicherheitstechnik" und zieht sich durch: Vorspann der Unternehmensseite, deutscher Seitentitel, beide Beschreibungen für Suchergebnisse, `description` und `knowsAbout` in den strukturierten Daten. Übernommen, weil die Formulierung aus Holgers eigener Fassung stammt. Hero und Jahresangabe bleiben bei "Sicherheitstechnik und Sicherheitslösungen", damit die Startseite nicht zwei Positionierungen nebeneinander trägt.
+Holgers deutsche Unternehmensseite beschreibt Elaman als "Münchner Unternehmen für Kommunikations- und Sicherheitstechnik". Das ist eine Erweiterung gegenüber "Sicherheitstechnik" und zieht sich durch: Vorspann der Unternehmensseite, deutscher Seitentitel, beide Beschreibungen für Suchergebnisse, `description` und `knowsAbout` in den strukturierten Daten. So ist es seit dem 15. September live.
+
+Korrektur nach Auswertung der Änderungsverfolgung: Der Satz auf der Unternehmensseite ist Grundtext des Dokuments, den Holger nicht angefasst hat. Wo er auf der Startseite "Kommunikations- und" vorfand, hat er es zweimal gestrichen (Jahresangabe, Profiltitel), ebenso "Kommunikationsanbieter" beim Kundenkreis. Seine eigenen Eingriffe gehen also in die engere Richtung. Ob die Erweiterung auf der Unternehmensseite und in den Suchtexten stehen bleibt, muss er bestätigen (E4). Ein Rückbau betrifft neun Zeichenketten und dauert eine halbe Stunde.
 
 ### P8.5 Arbeitsweise, offene Rückfrage
 
@@ -374,7 +376,7 @@ Das Dokument führt auf der Startseite vier Schritte und auf der Unternehmenssei
 
 ### P8.6 Schutzlösungen
 
-Eine vollständige Schutzlösungen-Seite steht nur in der englischen Dokumentfassung, mit ECM und Counter-RCIED, Störsendern, TSCM, geschirmten Räumen und Sichtschutz. Die deutsche Fassung führt "Schutzlösungen" nur im Navigationsblock, der aus der alten Seite stammt. Es gibt also keinen deutschen Text. Solange der fehlt, bleibt es bei drei Navigationspunkten. Optional: Ich erstelle eine deutsche Übersetzung des englischen Textes als Entwurf zur Freigabe. Erfundene Aussagen zu Störsendern oder Gegenmaßnahmen kommen nicht in Frage.
+Korrektur: Die Schutzlösungen-Seite steht im Dokument in beiden Sprachen, auch auf Deutsch vollständig (Vorspann, ECM / Counter-RCIED, Jamming-Systeme, TSCM, geschirmte Räume, Abschluss). Meine erste Lesung hatte nur den Navigationsblock gesehen. Der deutsche Block trägt allerdings keine einzige Änderung von Holger, er ist Grundtext aus einem früheren Entwurf. Was fehlt, ist demnach nicht der Text, sondern seine Freigabe und eine rechtliche Einordnung, weil Störsender und Gegenmaßnahmen ein exportkontrolliertes und behördlich reguliertes Feld sind. Der Weg zur Seite steht in P10.11.
 
 ### P8.7 Impressum
 
@@ -400,3 +402,110 @@ Unverändert die Punkte M1 bis M7 aus Phase 0: Hero-Original in hoher Auflösung
 
 - Firewall-Rate-Limit auf `/api/contact` anlegen.
 - Nach dem Merge: Produktions-Testanfrage, Sitemap in der Search Console einreichen, Resend-Key rotieren.
+
+## 10. Erweiterungsplan
+
+Stand: 15. September 2026, nach Merge von Pull Request #16. Grundlage sind der Live-Stand, die drei Bildsendungen, das Word-Dokument mit Holgers Änderungsverfolgung und die Messungen aus den letzten Durchläufen.
+
+### 10.1 Ausgangslage
+
+Die Seite steht. Sechs Routen je Sprache, ein Seitenraster, drei Bausteine, ein Labelstil, Lighthouse mobil 99 bis 100 in allen Kategorien, axe ohne Befund, CI mit Chromium und WebKit. Was jetzt noch kommt, ist keine Reparatur mehr, sondern Ausbau, und der ist an drei Stellen gebunden: an Entscheidungen von Holger, an Material, das nur er liefern kann, und an Arbeit im Vercel-Dashboard, die nur Tobi machen kann.
+
+Drei Befunde aus der zweiten Lesung des Word-Dokuments verändern den Plan:
+
+- Das Dokument trägt 205 markierte Änderungen, alle von Holger, alle in den deutschen Blöcken Startseite, Unternehmen und Systeme. Der Schutzlösungen-Block und der gesamte englische Teil sind unberührt. Was dort steht, ist Grundtext eines früheren Entwurfs, nicht Holgers Wort.
+- Holgers Eingriffe gehen durchgehend in Richtung weniger: acht Bereiche auf fünf, "Kommunikationsanbieter" gestrichen, "übernehmen unsere eigenen Ingenieure" gestrichen, "Ingenieure" durch "Ansprechpartner" ersetzt, "Kommunikations- und" auf der Startseite zweimal gestrichen. Das ist eine klare Haltung: keine Zusage, die man nicht halten kann. Der Plan folgt ihr.
+- Die deutsche Schutzlösungen-Seite existiert als Text. Damit ist eine vierte Seite möglich, sobald Holger den Text prüft und die rechtliche Frage geklärt ist.
+
+Was die Bilder betrifft, bleibt es beim Ergebnis der drei Sendungen: Von dreizehn Motiven sind zwei nutzbar (der weiter gefasste Steinbogen und das Platzfoto in höherer Auflösung, beide noch nicht als Datei da), eines liegt schon als Vektor vor, das vollständige Logo fehlt weiterhin als Vektor, und zehn Stockmotive mit Leuchteffekten, Netzen und Renderings passen nicht zur Seite. Echte Fotos aus dem Unternehmen gibt es nicht. Die Seite ist dafür gebaut und braucht sie nicht.
+
+### 10.2 Entscheidungen
+
+| Nr. | Frage                                                                                            | Empfehlung                                                                                                                                                                                                                                                                         | Wer    |
+| --- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| E4  | Bleibt "Kommunikations- und Sicherheitstechnik" auf der Unternehmensseite und in den Suchtexten? | Holger fragen, mit dem Hinweis, dass er es auf der Startseite gestrichen hat. Bei Nein: Rückbau auf "Sicherheitstechnik" in neun Zeichenketten. Bei Ja: bleibt wie live                                                                                                            | Holger |
+| E5  | Fünf Leistungsbereiche oder vier?                                                                | Fünf. "Auswertesysteme" ist ein eigener suchbarer Begriff, steht so in den strukturierten Daten und auf Holgers eigener Startseite. Sein zusammengezogener Satz ("samt der Technik, die daraus verwertbares Material macht") wird als Beschreibung des zweiten Bereichs übernommen | Holger |
+| E6  | Schutzlösungen als vierte Seite?                                                                 | Ja, wenn Holger den deutschen Text freigibt und der Anwalt die Formulierungen zu Störsendern mitträgt. Bis dahin drei Navigationspunkte                                                                                                                                            | Holger |
+| E7  | Besucherzahlen messen?                                                                           | Zuerst nur Search Console, die braucht keine Änderung an der Datenschutzerklärung. Vercel Web Analytics erst, wenn die Zahlen aus der Search Console nicht reichen; das ist cookiefrei, verlangt aber einen Absatz in der Datenschutzerklärung und eine CSP-Freigabe               | Tobi   |
+| E8  | Sprachwahl auf der Startadresse nach Browsersprache?                                             | Ja. Heute landet jeder Besucher auf `/de`, auch mit englischem Browser (geprüft am 15.9.). Die Suchmaschinen kennen beide Sprachen über hreflang, für sie ändert sich nichts                                                                                                       | Tobi   |
+| E9  | Unternehmensfakten auf die Unternehmensseite (Gründungsjahr, Standort seit)?                     | Nur diese zwei, nur mit Freigabe, als eine Zeile unter dem Vorspann. Teamgröße, Partner und Einsatzräume nicht, das widerspricht der Zurückhaltung, die Holger im Dokument selbst vorgibt                                                                                          | Holger |
+
+### 10.3 Pakete
+
+Gruppe A läuft sofort, ohne Freigabe und ohne Material. Gruppe B wartet auf Antworten aus 10.2. Gruppe C wartet auf Dateien. Gruppe D ist Handarbeit außerhalb des Codes.
+
+#### A. Sofort
+
+| Paket                        | Inhalt                                                                                                                                                                                                                                                   | Aufwand | Abhängig von |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------ |
+| P10.1 Sprachwahl auf `/`     | `Accept-Language` auswerten, englische Browser nach `/en`, alle anderen nach `/de`. Weiterleitung bleibt 307, `x-default` bleibt `/de`. Test für beide Fälle                                                                                             | 1 h     | E8           |
+| P10.2 AVIF und Bildquellen   | `images.formats` um AVIF ergänzen; heute liefert die Seite auch bei AVIF-Anfrage WebP (geprüft am 15.9.). Brücke von 1,9 MB Quelldatei auf unter 500 KB sRGB neu exportieren, Maße bleiben 2400 px. Repo wird kleiner, Optimierung am Ursprung schneller | 1 h     | –            |
+| P10.3 Sitemap-Datum aus Git  | `lastmod` je Route aus dem letzten Commit der zugehörigen Inhaltsdatei ableiten statt von Hand. Fällt im Build auf das heutige Datum zurück, wenn kein Git vorliegt, mit Test                                                                            | 2 h     | –            |
+| P10.4 Lighthouse in der CI   | Vier Routen mobil, Schwellen Performance 95, die übrigen 100. Ein Pull Request, der darunter fällt, wird rot. Heute wird Lighthouse nur von Hand gemessen                                                                                                | 2 h     | –            |
+| P10.5 Screenshot-Vergleich   | Playwright-Screenshots als Assertion, nur im Chromium-Job der CI, weil dort die Plattform fest ist. Sieben Viewports, beide Sprachen, alle Routen. Lokal bleibt der Vergleich aus                                                                        | 3 h     | –            |
+| P10.6 Druckansicht           | Dossiers und Rechtstexte drucken sauber: Kopf- und Fußnavigation weg, Bildband weg, Links mit URL, Seitenumbruch vor Abschnitten. Behörden drucken Angebote und Impressen aus                                                                            | 1 h     | –            |
+| P10.7 Zweite Beschreibung    | Beschreibung der Auswertesysteme von "Systeme zur Sichtung und Auswertung" auf Holgers konkreteren Satz. Die aktuelle Fassung öffnet mit dem eigenen Begriff, was der Blueprint verbietet                                                                | 0,5 h   | E5           |
+| P10.8 Search Console und NAP | Domain in der Search Console verifizieren (DNS-Eintrag), Sitemap einreichen, Bing Webmaster ebenso, Google-Unternehmensprofil mit Adresse und Telefon exakt wie im Impressum                                                                             | 1 h     | Tobi         |
+| P10.9 Dashboard              | Firewall-Rate-Limit auf `/api/contact` (zum Beispiel 10 Anfragen je Minute je IP), Resend-Key rotieren, Produktions-Testanfrage mit Antwort auf die Reply-To-Adresse                                                                                     | 1 h     | Tobi         |
+
+#### B. Nach Freigabe
+
+| Paket                       | Inhalt                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Aufwand | Abhängig von |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------ |
+| P10.11 Schutzlösungen-Seite | Dritte Dossier-Art `protection` in `lib/i18n`, Slugs `schutzloesungen` und `protection`, Inhalte in `lib/content/detail-pages.ts` aus dem Dokument, Passiv und Gedankenstriche bereinigt. Aufbau wie die beiden anderen Dossiers: Seitenkopf, Textband mit den vier Bereichen als nummerierte Liste, Projektansatz, Abschlussbalken. Kein Bildband, bis ein passendes Motiv da ist. Navigation auf vier Punkte in Header, Fußzeile und Mobilmenü. Startseite bekommt einen Teaser nach dem Muster des Systeme-Abschnitts: Label, Titel, vier Namen, ein Link. Sitemap, hreflang, Brotkrume, OG-Bild in Navy mit Text, `knowsAbout` ergänzt, Tests für Header, Brotkrume und Titelbudget | 8 h     | E6, P10.22   |
+| P10.12 Bereiche 5 oder 4    | Nur falls Holger vier will: ein Eintrag in beiden Sprachen, strukturierte Daten, Blueprint, E2E-Test der Listenlänge                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 0,5 h   | E5           |
+| P10.13 Positionierung       | Nur falls Holger die Erweiterung nicht will: neun Zeichenketten zurück auf "Sicherheitstechnik", Blueprint, Titelbudget-Test                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | 0,5 h   | E4           |
+| P10.14 Unternehmensfakten   | Gründungsjahr und Standort als eine Zeile unter dem Vorspann der Unternehmensseite, dazu `foundingDate` in den strukturierten Daten                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 1 h     | E9           |
+| P10.15 Web Analytics        | Vercel Web Analytics: Skript, CSP-Freigabe für `/_vercel/insights`, Absatz in beiden Datenschutzerklärungen mit Datum, Blueprint § 10                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 2 h     | E7           |
+
+#### C. Nach Material
+
+| Paket                      | Inhalt                                                                                                                                                    | Aufwand | Abhängig von    |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------- |
+| P10.16 Wortmarke im Header | Signet plus Schriftzug auf dem Desktop, Signet allein mobil, als SVG mit korrekten Abständen zum Punktraster                                              | 2 h     | Vektorlogo (M2) |
+| P10.17 Platzfoto           | Original mit mindestens 2400 px Breite in das Bildband der Systemseite, gleicher Ausschnitt, gleiche Entsättigung                                         | 0,5 h   | Original        |
+| P10.18 Steinbogen          | Die weiter gefasste Aufnahme mit mehr Himmel in das Bildband der Startseite, neuer Zuschnitt                                                              | 0,5 h   | Original        |
+| P10.19 Gecko-Hero          | Das Hero-Bild hat 1920 × 635 px und wird auf Bildschirmen ab 2560 px oder bei doppelter Pixeldichte weich. Original in voller Auflösung, Zuschnitt bleibt | 0,5 h   | Original (M1)   |
+| P10.20 Lizenzdossier       | `docs/IMAGE_LICENSES.md` mit Quelle, Lizenz, Lizenznehmer und Datum je Bild                                                                               | 1 h     | Nachweise (M3)  |
+
+#### D. Handarbeit
+
+| Paket                      | Inhalt                                                                                                                                                                                                                                                                                                    | Wer            |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| P10.21 Gerätetest          | Preview auf iPhone Safari, Android Chrome, iPad, Windows Edge und Firefox, macOS Safari. Prüfliste liefere ich, je Gerät zehn Minuten                                                                                                                                                                     | Tobi           |
+| P10.22 Anwaltliche Prüfung | Impressum und Datenschutzerklärung wie geplant, dazu neu die Schutzlösungen-Texte: Störsender sind in Deutschland nur für Behörden zulässig, der Vertrieb fällt unter Exportkontrolle. Die Formulierung "ausschließlich für behördlich autorisierte Anwendungen" muss stehen bleiben oder schärfer werden | Holger, Anwalt |
+| P10.23 Screenreader        | VoiceOver auf iOS und macOS, NVDA auf Windows, einmal komplett durch alle Routen und das Formular                                                                                                                                                                                                         | Tobi           |
+| P10.24 Sicherheitsheader   | securityheaders.com und Mozilla Observatory auf der Produktion, Ergebnis im Plan festhalten                                                                                                                                                                                                               | Tobi           |
+
+### 10.4 Was ich bewusst nicht empfehle
+
+- **Referenzen, Kundenlogos, Fallbeispiele.** Der Kundenkreis sind Sicherheitsbehörden. Wer sie nennt, verliert sie.
+- **News, Blog, Aktuelles.** Ohne redaktionelle Kapazität entsteht eine Seite mit einem Eintrag von 2026, die 2028 noch dort steht. Das schadet mehr, als es nützt.
+- **Karriere.** Es gibt keine freigegebenen Fakten zu Team und Stellen.
+- **Erzeugte oder gestellte Fotos.** Die Seite lebt von vier ruhigen, echten Aufnahmen. Ein Rendering oder ein KI-Bild fällt dieser Zielgruppe sofort auf und beschädigt das Vertrauen, das die Seite aufbauen soll.
+- **Die zehn abgelehnten Stockmotive.** Leuchteffekte, Netzdiagramme, Auge im Objektiv, Regler mit englischem Text. Alles auf der Ausschlussliste des Design-Systems, aus gutem Grund.
+- **Cookie-Banner.** Es gibt nichts, wozu man einwilligen müsste. Das bleibt mit Search Console so und mit Vercel Web Analytics ebenfalls.
+- **Eingangsbestätigung per Mail an den Absender.** Öffnet einen Rückkanal für Missbrauch (fremde Adressen eintragen), verlangt einen weiteren Absatz in der Datenschutzerklärung und bringt dem Absender wenig, der die Bestätigung schon auf der Seite sieht.
+- **Acht Leistungsbereiche, Datenforensik, Führungszentralen, Intelligence Fusion.** Holger hat sie im Dokument gestrichen. Sie kommen nicht zurück.
+- **Nonce-CSP.** Bleibt zurückgestellt, Begründung in P5.1.
+
+### 10.5 Reihenfolge
+
+| Schritt  | Umfang                                                                               | Voraussetzung                         | Aufwand            |
+| -------- | ------------------------------------------------------------------------------------ | ------------------------------------- | ------------------ |
+| Sprint 1 | Gruppe A komplett, P10.1 bis P10.7 in einem Pull Request, P10.8 und P10.9 durch Tobi | E8 (kann Tobi sofort entscheiden)     | 10 h plus 2 h Tobi |
+| Sprint 2 | P10.11 bis P10.14, je nach Antworten                                                 | E4, E5, E6, E9 von Holger, P10.22     | 2 bis 10 h         |
+| Sprint 3 | Gruppe C, sobald Dateien da sind, jedes Paket einzeln                                | Vektorlogo, drei Originale, Nachweise | 5 h                |
+| Laufend  | Gruppe D                                                                             | Preview-Links, Prüflisten             | Tobi, Holger       |
+
+Jeder Sprint geht wie bisher: ein Branch, ein Draft-PR, Gate mit Lint, Typen, Format, Unit, Build, Playwright mit axe, Screenshots auf sieben Viewports, Vercel-Preview, Merge nach grüner CI, Prüfung auf der Produktion.
+
+### 10.6 Fragen an Holger
+
+Fünf Fragen, mit einer Zeile beantwortbar:
+
+1. Auf der Unternehmensseite und im Seitentitel steht jetzt "Kommunikations- und Sicherheitstechnik". Auf der Startseite haben Sie "Kommunikations- und" gestrichen. Soll es auf der Unternehmensseite stehen bleiben?
+2. Die Startseite nennt fünf Bereiche, Ihre Systemseite vier, weil Observation und Auswertung zusammengezogen sind. Fünf oder vier?
+3. Der deutsche Schutzlösungen-Text im Dokument (ECM, Jamming, TSCM, geschirmte Räume) trägt keine Ihrer Änderungen. Soll er so auf die Seite, und wenn ja, wer prüft die Formulierungen zu Störsendern rechtlich?
+4. Dürfen Gründungsjahr und "in München seit" auf die Unternehmensseite?
+5. Gibt es das Logo mit Schriftzug als Vektordatei (AI, EPS, SVG), das Original des Platzfotos, den weiter gefassten Steinbogen und das Gecko-Original in voller Auflösung? Dazu je Bild: woher, welche Lizenz, auf wen ausgestellt?
