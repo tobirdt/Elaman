@@ -180,6 +180,10 @@ The homepage contact section repeats none of that copy: it names the office, lis
 
 ## 9. Metadata and navigation
 
+Every page below the homepage names its own breadcrumb step, in `breadcrumb` next to its other strings. It is the page's short name, not its title: `Systeme`, `Kontakt`, `Datenschutz`, `Seite nicht gefunden`. The first step, `Start` / `Home`, and the landmark label live once in `lib/content/site.ts`. The rendered trail and the `BreadcrumbList` structured data read the same strings.
+
+Document titles carry a budget of 60 characters including the ` | Elaman` suffix, which `tests/unit/page-content.test.ts` enforces. A browser tab shows roughly twenty characters and a search result about sixty, so anything longer is cut where nobody chose to cut it. The suffix is the short brand: the legal form belongs in the imprint and in the structured data, not in every tab. The homepage sets its title outright and takes no suffix.
+
 - German default: `/de`
 - English: `/en`
 - Localised dossier pairs: `/de/unternehmen` ↔ `/en/company` and `/de/systeme` ↔ `/en/systems`

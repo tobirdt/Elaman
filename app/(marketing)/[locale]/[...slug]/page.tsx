@@ -225,6 +225,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
                 resolved.locale,
                 path,
                 legal.metaTitle,
+                legal.breadcrumb,
                 legal.metaDescription,
                 resolved.kind === "imprint",
               ),
@@ -236,7 +237,13 @@ export default async function DetailPage({ params }: DetailPageProps) {
           content={site.navigation}
           alternateLocaleHref={alternateLocaleHref}
         />
-        <LegalDocument label={legal.label} title={legal.title} blocks={legal.blocks} />
+        <LegalDocument
+          locale={resolved.locale}
+          label={legal.label}
+          title={legal.title}
+          breadcrumb={legal.breadcrumb}
+          blocks={legal.blocks}
+        />
         <Footer
           alternateLocaleHref={alternateLocaleHref}
           contact={site.contact}
@@ -261,6 +268,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
               contactPageJsonLd(
                 resolved.locale,
                 contactPage.metadata.title,
+                contactPage.breadcrumb,
                 contactPage.metadata.description,
               ),
             ),
@@ -302,6 +310,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
               resolved.locale,
               resolved.kind,
               content.metadata.title,
+              content.breadcrumb,
               content.metadata.description,
             ),
           ),
@@ -313,7 +322,7 @@ export default async function DetailPage({ params }: DetailPageProps) {
         alternateLocaleHref={alternateLocaleHref}
       />
       <main id="main-content" tabIndex={-1}>
-        <DetailDossier content={content} />
+        <DetailDossier content={content} locale={resolved.locale} />
       </main>
       <Footer
         alternateLocaleHref={alternateLocaleHref}

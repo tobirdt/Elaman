@@ -1,9 +1,7 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { SectionHeader } from "@/components/ui/SectionHeader";
 import { getSiteContent } from "@/lib/content/site";
 import { homePath, type Locale } from "@/lib/i18n";
 
@@ -19,26 +17,17 @@ export function NotFoundPage({ locale = "de" }: NotFoundPageProps) {
     <>
       <Header locale={locale} content={content.navigation} />
       <main id="main-content" tabIndex={-1}>
-        <Section
-          className="min-h-[calc(100svh-var(--header-h)-12rem)]"
-          tone="white"
-          variant="content-band"
-        >
-          <Container size="legal">
-            <SectionHeader
-              as="h1"
-              body={notFound.body}
-              label={notFound.label}
-              labelTone="dark"
-              size="h1"
-              title={notFound.title}
-              width="content"
-            />
-            <div className="mt-8">
-              <Button href={homePath(locale)}>{notFound.cta}</Button>
-            </div>
-          </Container>
-        </Section>
+        {/* The error page is a subpage like any other, so it opens with the
+            same band. The way out sits in the band itself; the footer right
+            below adds every other destination. */}
+        <PageHeader
+          locale={locale}
+          current={notFound.breadcrumb}
+          eyebrow={notFound.label}
+          title={notFound.title}
+          lead={notFound.body}
+          actions={<Button href={homePath(locale)}>{notFound.cta}</Button>}
+        />
       </main>
       <Footer
         contact={content.contact}

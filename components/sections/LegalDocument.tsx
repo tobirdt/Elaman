@@ -1,36 +1,36 @@
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SectionHeader } from "@/components/ui/SectionHeader";
 import type { LegalBlock } from "@/lib/content/legal";
+import type { Locale } from "@/lib/i18n";
 
 type LegalDocumentProps = {
+  locale: Locale;
   title: string;
+  breadcrumb: string;
   blocks: readonly LegalBlock[];
-  label?: string;
+  label: string;
 };
 
-export function LegalDocument({ title, blocks, label = "Legal" }: LegalDocumentProps) {
+/**
+ * Imprint and privacy policy open with the same band as every other subpage
+ * and sit on the same page grid. The document itself keeps a narrower
+ * measure for readability, left-aligned under the title rather than centred
+ * in a panel of its own.
+ */
+export function LegalDocument({
+  locale,
+  title,
+  breadcrumb,
+  blocks,
+  label,
+}: LegalDocumentProps) {
   return (
     <main id="main-content" tabIndex={-1}>
+      <PageHeader locale={locale} current={breadcrumb} eyebrow={label} title={title} />
       <Section variant="legal-page" tone="white">
-        <Container size="legal">
-          <SectionHeader
-            as="h1"
-            label={label}
-            labelTone="dark"
-            size="h1"
-            title={title}
-            width="full"
-          />
-        </Container>
-      </Section>
-      <Section
-        className="border-t border-[var(--border-hairline)]"
-        variant="legal-page"
-        tone="soft"
-      >
-        <Container size="legal">
-          <div className="rounded-[var(--radius-card)] border border-[var(--border-hairline)] bg-[var(--surface-paper)] p-6 sm:p-9">
+        <Container>
+          <div className="max-w-[var(--container-legal)]">
             {blocks.map((block, index) => (
               <section
                 key={`${block.title ?? "legal-block"}-${index}`}

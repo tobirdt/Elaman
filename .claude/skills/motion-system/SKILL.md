@@ -31,8 +31,11 @@ Use `--motion-ease: cubic-bezier(0.22, 1, 0.36, 1)`.
 
 ## Current allowed motion
 
-- **Route-hero entrance.** `.hero-copy-enter` / `.hero-image-enter`: once-only opacity plus a 12px rise (copy) or a 1.2% settling scale (image) through `@starting-style`, at `--motion-entrance`. Used by the homepage hero, each dossier hero, and the contact-page hero.
-- **Scroll-linked reveal.** `.reveal` and `.reveal-group > *` in `app/globals.css`: `animation: reveal-rise var(--motion-ease) both;` driven by `animation-timeline: view()` with `animation-range: entry 0% entry 32%` (staggered per child inside a `.reveal-group`, from the 2nd child on). Only `opacity` and `transform` (the same 12px rise) move. It is CSS-only — no `IntersectionObserver`, no JavaScript — and is gated two ways: `@supports (animation-timeline: view())` for browser support, and inside that, `@media (prefers-reduced-motion: no-preference)`. Outside either gate, elements simply render in their unanimated final state, which is the correct fallback, not a bug.
+- **Opening entrance.** `.hero-copy-enter` / `.hero-image-enter`: once-only opacity plus a 12px rise (copy) or a 1.2% settling scale (image) through `@starting-style`, at `--motion-entrance`. Used by the homepage hero, every `PageHeader`, and every `MediaBand`. These are time-based transitions and always finish on their own.
+- **Scroll-linked reveal.** `.reveal` and `.reveal-group > *` in `app/globals.css`: `animation: reveal-rise var(--motion-ease) both;` driven by `animation-timeline: view()` with `animation-range: entry 0% entry 32%` (staggered per child inside a `.reveal-group`, from the 2nd child on). It moves `transform` only — the same 12px rise. It is CSS-only — no `IntersectionObserver`, no JavaScript — and is gated two ways: `@supports (animation-timeline: view())` for browser support, and inside that, `@media (prefers-reduced-motion: no-preference)`. Outside either gate, elements simply render in their unanimated final state, which is the correct fallback, not a bug.
+
+  **Never put `opacity` in a scroll-linked keyframe.** A scroll timeline has no end of its own: a block that is half inside the viewport when the page loads holds its half-way value until someone scrolls. A fade parks real text at a fraction of its opacity there, which drops it under the WCAG contrast floor for as long as the visitor sits still, and axe reports it as a serious violation on every route where it happens. Fades belong to the time-based tier above.
+
 - Header/navigation: short colour and scale feedback.
 - Mobile menu: direct opacity and translate state.
 - Form fields: short border/background/focus feedback.
@@ -46,7 +49,7 @@ Do not add:
 - Framer Motion or another animation dependency without explicit approval;
 - scroll snap of any kind — root-document, per-section, or via a `data-scroll-snap-page`-style marker; it was removed along with `AnchorScrollManager` and must not return;
 - scroll scrubbing, parallax, progress-bound visuals, or sticky animation stories beyond the one approved `.reveal` entrance;
-- page-wide reveal wrappers beyond `.reveal` / `.reveal-group`, and no extension of their animated properties past opacity/transform;
+- page-wide reveal wrappers beyond `.reveal` / `.reveal-group`, and no extension of their animated properties past `transform`;
 - loops, pulses, particles, bouncing, radar effects, or perpetual decoration;
 - animated diagrams, dot formations, glows, or filters;
 - wheel interception or a nested page scroller.

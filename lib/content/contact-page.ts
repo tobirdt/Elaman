@@ -18,7 +18,8 @@ export type ContactPageContent = {
   eyebrow: string;
   title: string;
   lead: string;
-  heroAlt: string;
+  /** Short name of the page, shown as the last breadcrumb step. */
+  breadcrumb: string;
   form: {
     title: string;
     intro: string;
@@ -42,7 +43,7 @@ const contactPageContent = {
     eyebrow: "Kontakt",
     title: "Sprechen Sie mit uns.",
     lead: "Ihre Anfrage erreicht direkt unser Team in München. Ein paar Sätze zur Aufgabe genügen für den ersten Austausch.",
-    heroAlt: "Empfangsbereich des Elaman-Büros in München",
+    breadcrumb: "Kontakt",
     form: {
       title: "Ihr Anliegen",
       intro:
@@ -65,7 +66,7 @@ const contactPageContent = {
     eyebrow: "Contact",
     title: "Talk to us.",
     lead: "Your inquiry goes directly to our team in Munich. A brief description of the task is enough for an initial discussion.",
-    heroAlt: "Reception area at the Elaman office in Munich",
+    breadcrumb: "Contact",
     form: {
       title: "Your inquiry",
       intro:

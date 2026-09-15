@@ -61,6 +61,11 @@ export type LocalizedSiteContent = {
     description: string;
     ogLocale: string;
   };
+  /** Wayfinding strings shared by every page below the homepage. */
+  breadcrumb: {
+    label: string;
+    home: string;
+  };
   navigation: {
     main: PrimaryNavigationItem[];
     legal: NavigationItem[];
@@ -82,6 +87,7 @@ export type LocalizedSiteContent = {
   };
   notFound: {
     label: string;
+    breadcrumb: string;
     title: string;
     body: string;
     cta: string;
@@ -141,6 +147,10 @@ export const siteContent = {
         "Elaman GmbH in Munich supplies security technology for covert audio and video surveillance, analysis, TSCM and radio monitoring for mobile communications.",
       ogLocale: "en_GB",
     },
+    breadcrumb: {
+      label: "Breadcrumb",
+      home: "Home",
+    },
     navigation: {
       main: [
         { label: "Home", href: homePath("en"), mobileOnly: true },
@@ -170,6 +180,7 @@ export const siteContent = {
     },
     notFound: {
       label: "404",
+      breadcrumb: "Page not found",
       title: "Page not found.",
       body: "This address does not exist on our website. The link may have changed. The homepage will take you to every section and to our contact details.",
       cta: "Go to the Elaman homepage",
@@ -298,10 +309,14 @@ export const siteContent = {
   },
   de: {
     metadata: {
-      title: "Elaman – Sicherheitstechnik und Sicherheitslösungen, München",
+      title: "Elaman – Sicherheitstechnik aus München",
       description:
         "Elaman GmbH in München liefert Sicherheitstechnik für verdeckte Audio- und Videoobservation, Auswertung, Lauschabwehr und Funkerfassung.",
       ogLocale: "de_DE",
+    },
+    breadcrumb: {
+      label: "Navigationspfad",
+      home: "Start",
     },
     navigation: {
       main: [
@@ -332,6 +347,7 @@ export const siteContent = {
     },
     notFound: {
       label: "404",
+      breadcrumb: "Seite nicht gefunden",
       title: "Seite nicht gefunden.",
       body: "Diese Adresse gibt es auf unserer Website nicht. Möglicherweise hat sich der Link geändert. Über die Startseite erreichen Sie alle Bereiche und den direkten Kontakt.",
       cta: "Zur Elaman-Startseite",

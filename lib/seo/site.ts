@@ -7,6 +7,12 @@ const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.elaman.de").re
 
 export const siteConfig = {
   name: "Elaman GmbH",
+  /**
+   * Title suffix and app name. A browser tab shows roughly twenty characters,
+   * so the legal form would cost a fifth of that without telling a visitor
+   * anything; it stays in the imprint and in the structured data.
+   */
+  shortName: "Elaman",
   title: "Elaman – German Security Solutions",
   description:
     "Elaman GmbH in Munich supplies and integrates security technology exclusively for security authorities and security-related organisations.",
@@ -73,9 +79,9 @@ export function absoluteUrl(path: string) {
 }
 
 function withSiteName(title: string) {
-  const suffix = ` | ${siteConfig.name}`;
+  const suffix = ` | ${siteConfig.shortName}`;
 
-  return title === siteConfig.name || title.endsWith(suffix)
+  return title === siteConfig.shortName || title.endsWith(suffix)
     ? title
     : `${title}${suffix}`;
 }
