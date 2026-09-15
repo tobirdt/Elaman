@@ -30,7 +30,7 @@ export function Footer({
     <footer className="border-t border-[var(--border-hairline)] bg-[var(--surface-paper)]">
       <Container className="py-12 sm:py-14">
         <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          <nav aria-label={footer.navigationLabel}>
+          <nav aria-label={footer.navigationLabel} className="print:hidden">
             <p className={columnLabelClasses}>{footer.columns.navigation}</p>
             <ul className="mt-2 grid">
               {navigation.main.map((item) => (
@@ -68,7 +68,7 @@ export function Footer({
             </address>
           </div>
 
-          <nav aria-label={navigation.legalNavigationLabel}>
+          <nav aria-label={navigation.legalNavigationLabel} className="print:hidden">
             <p className={columnLabelClasses}>{footer.columns.legal}</p>
             <ul className="mt-2 grid">
               {navigation.legal.map((item) => (
@@ -86,11 +86,13 @@ export function Footer({
           <p className="text-[length:var(--type-micro)] text-graphite-soft">
             {footer.copyright}
           </p>
-          <LanguageSwitcher
-            alternateHref={alternateLocaleHref}
-            label={navigation.languageSwitcherLabel}
-            locale={locale}
-          />
+          <div className="print:hidden">
+            <LanguageSwitcher
+              alternateHref={alternateLocaleHref}
+              label={navigation.languageSwitcherLabel}
+              locale={locale}
+            />
+          </div>
         </div>
       </Container>
     </footer>

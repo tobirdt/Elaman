@@ -227,6 +227,10 @@ Short colour/border/background feedback (hover, focus, form fields, the mobile-m
 
 There is no scroll snap anywhere in the product. It was removed together with `AnchorScrollManager`; do not reintroduce root-document `scroll-snap-type`, a `main[data-scroll-snap-page]` marker, or any per-section snap point.
 
+## 7a. Print
+
+Printed, a page is its document and nothing else. The header, every `MediaBand`, the `ClosingBand` and the footer navigation carry `print:hidden`; the `@media print` block in `app/globals.css` turns the soft bands white, puts every entrance and reveal at rest, keeps headings with their first paragraph and list entries whole, and prints the address after any link that leaves the site. Nothing else changes: same type, same measure, same left edge.
+
 ## 8. Dossier composition
 
 | Kind    | Routes                           | Contract                                                                                                                   |
@@ -291,3 +295,5 @@ For visual changes:
 6. Verify contact-form validation, focus movement, direct links, and API error handling on both the homepage close and the contact page.
 7. Verify legal pages, 404, metadata, sitemap, and a clean browser console.
 8. Run lint, typecheck, format check, unit tests, production build, and production dependency audit.
+9. Open the print preview of a dossier and a legal page: no header, no photograph, no closing band, white bands, external links with their address.
+10. After an intended visual change, refresh the baselines with `npm run test:visual:update` and read the diff; CI compares every route at 390 and 1440 against `tests/e2e/__screenshots__`.

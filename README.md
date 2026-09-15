@@ -53,10 +53,12 @@ npm audit --omit=dev
 
 - `npm run test:unit` runs the Vitest suite in `tests/unit` (contact validation, email rendering, locale routing) without a browser.
 - `npm run test:e2e` runs Playwright (`tests/e2e`) against `next dev` locally; with `CI=true` it runs against the production server (`next start`) instead, which is what CI does.
+- `npm run test:visual:update` refreshes the screenshot baselines in `tests/e2e/__screenshots__` after an intended visual change. The comparison itself runs only in CI on Chromium, where the platform is fixed.
+- `npm run lighthouse` audits four routes on the mobile profile against a production build and fails under the floors in `scripts/lighthouse-check.mjs` (performance 90, the rest 100; the performance score moves two or three points between runs, a real regression costs ten). CI runs it after the Playwright suite.
 
 ## CI
 
-`.github/workflows/ci.yml` runs on every push to `main` and every pull request: lint, typecheck, format check, unit tests, and build in one job; Playwright (Chromium + iPhone WebKit portrait/landscape) against a production build in a second job that depends on the first. `.github/dependabot.yml` checks npm and GitHub Actions dependencies weekly (Mondays, Europe/Berlin), grouping minor and patch updates into separate pull requests per ecosystem.
+`.github/workflows/ci.yml` runs on every push to `main` and every pull request: lint, typecheck, format check, unit tests, and build in one job; Playwright (Chromium + iPhone WebKit portrait/landscape) plus the screenshot comparison and the Lighthouse budget against a production build in a second job that depends on the first. `.github/dependabot.yml` checks npm and GitHub Actions dependencies weekly (Mondays, Europe/Berlin), grouping minor and patch updates into separate pull requests per ecosystem.
 
 ## Environment variables
 

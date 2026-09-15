@@ -17,7 +17,7 @@ type ClosingBandProps = {
  */
 export function ClosingBand({ statement, link }: ClosingBandProps) {
   return (
-    <section className="border-t border-[var(--border-on-navy)] bg-navy text-[var(--color-on-dark)]">
+    <section className="border-t border-[var(--border-on-navy)] bg-navy text-[var(--color-on-dark)] print:hidden">
       <Container className="reveal-group flex flex-col items-start justify-between gap-6 py-[var(--section-y-closing)] sm:flex-row sm:items-center">
         <h2 className="max-w-[28ch] text-balance text-[length:var(--type-h3)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)]">
           {statement}

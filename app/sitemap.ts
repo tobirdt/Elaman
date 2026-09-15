@@ -9,24 +9,20 @@ import {
   legalPagePath,
   locales,
 } from "@/lib/i18n";
+import { contentDate, type ContentKey } from "@/lib/seo/content-dates";
 import { absoluteUrl } from "@/lib/seo/site";
 
 type SitemapEntry = {
   route: string;
+  content: ContentKey;
   priority: number;
   changeFrequency: "monthly" | "yearly";
   alternates: Record<string, string>;
 };
 
-/**
- * Date of the last substantive content change. Bump it when copy changes.
- * Deriving this from the build time would tell crawlers that every page
- * changed on every deploy, which devalues the signal.
- */
-const contentLastModified = new Date("2026-09-15T00:00:00.000Z");
-
 const homeEntries: SitemapEntry[] = locales.map((locale) => ({
   route: homePath(locale),
+  content: "home",
   priority: locale === "de" ? 1 : 0.9,
   changeFrequency: "monthly",
   alternates: {
@@ -38,6 +34,7 @@ const homeEntries: SitemapEntry[] = locales.map((locale) => ({
 
 const contactEntries: SitemapEntry[] = locales.map((locale) => ({
   route: contactPagePath(locale),
+  content: "contact",
   priority: 0.8,
   changeFrequency: "monthly",
   alternates: {
@@ -50,6 +47,7 @@ const contactEntries: SitemapEntry[] = locales.map((locale) => ({
 const detailEntries: SitemapEntry[] = detailPageKinds.flatMap((kind) =>
   locales.map((locale) => ({
     route: detailPagePath(locale, kind),
+    content: kind,
     priority: locale === "de" ? 0.8 : 0.7,
     changeFrequency: "monthly" as const,
     alternates: {
@@ -63,6 +61,7 @@ const detailEntries: SitemapEntry[] = detailPageKinds.flatMap((kind) =>
 const legalEntries: SitemapEntry[] = legalPageKinds.flatMap((kind) =>
   locales.map((locale) => ({
     route: legalPagePath(locale, kind),
+    content: kind,
     priority: 0.3,
     changeFrequency: "yearly" as const,
     alternates: {
@@ -77,7 +76,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [...homeEntries, ...detailEntries, ...contactEntries, ...legalEntries].map(
     (entry) => ({
       url: absoluteUrl(entry.route),
-      lastModified: contentLastModified,
+      lastModified: contentDate(entry.content),
       changeFrequency: entry.changeFrequency,
       priority: entry.priority,
       alternates: { languages: entry.alternates },

@@ -168,7 +168,7 @@ const detailContent = {
         {
           title: "Audio- und Videoauswertesysteme",
           description:
-            "Systeme zur Sichtung und Auswertung aufgezeichneter Audio- und Videodaten.",
+            "Die Technik, die aus Aufzeichnungen verwertbares Material macht: Sichtung, Aufbereitung und Auswertung von Audio- und Videodaten.",
         },
         {
           title: "Lauschabwehr (TSCM)",
@@ -276,7 +276,7 @@ const detailContent = {
         {
           title: "Audio and video analysis systems",
           description:
-            "Systems for reviewing and analysing recorded audio and video material.",
+            "The equipment that turns recordings into usable material: reviewing, processing and analysing audio and video data.",
         },
         {
           title: "Technical surveillance countermeasures (TSCM)",

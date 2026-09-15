@@ -44,7 +44,8 @@ Conflict order for public wording: verified fact → `CONTENT_BLUEPRINT.md` → 
 - Respect `prefers-reduced-motion` for all transitions, entrances, and the scroll-linked reveal.
 - Use `next/image` with an accurate `sizes` value for site imagery.
 - Run `npm run lint`, `npm run typecheck`, `npm run format:check`, `npm run test:unit`, `npm run build`, and `npm run test:e2e` before signoff.
-- Capture desktop and mobile screenshots for visual changes.
+- After an intended visual change, refresh the screenshot baselines with `npm run test:visual:update` and read the diff; CI compares every route against `tests/e2e/__screenshots__`.
+- When copy changes, bump that route's date in `lib/seo/content-dates.ts`; the unit test names the file when it is forgotten.
 
 ### Do not
 
@@ -168,7 +169,7 @@ A scroll-linked reveal (`.reveal`, `.reveal-group > *` in `app/globals.css`) is 
 
 ## Quality gate
 
-Before signoff: `npm run lint`, `npm run typecheck`, `npm run format:check`, `npm run test:unit`, `npm run build`, `npm run test:e2e`. The same sequence (plus `npm audit --omit=dev`) runs in `.github/workflows/ci.yml` on every push to `main` and every pull request.
+Before signoff: `npm run lint`, `npm run typecheck`, `npm run format:check`, `npm run test:unit`, `npm run build`, `npm run test:e2e`. The same sequence, plus the screenshot comparison (`CI=true`) and the Lighthouse budget (`npm run lighthouse`), runs in `.github/workflows/ci.yml` on every push to `main` and every pull request.
 
 ## Documentation maintenance
 

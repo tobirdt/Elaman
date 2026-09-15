@@ -18,6 +18,17 @@ export default defineConfig({
   retries: isCI ? 2 : 0,
   workers: isCI ? 1 : 3,
   reporter: "list",
+  // One flat folder of baselines. The visual suite runs on one project and
+  // one platform only, so the project and platform suffixes would just repeat.
+  snapshotPathTemplate: "{testDir}/__screenshots__/{arg}{ext}",
+  expect: {
+    toHaveScreenshot: {
+      // Anti-aliasing drifts a little between Chromium builds; a moved
+      // heading or a changed band shifts far more pixels than this.
+      maxDiffPixelRatio: 0.005,
+      threshold: 0.2,
+    },
+  },
   use: {
     baseURL: externalBaseUrl ?? "http://127.0.0.1:3001",
     screenshot: "only-on-failure",
