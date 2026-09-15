@@ -63,7 +63,6 @@ const legalContent = {
         {
           title: "Steuerangaben",
           paragraphs: [
-            "Steuernummer: 810 / 20915",
             "Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG: DE814086265",
           ],
         },
@@ -191,7 +190,6 @@ const legalContent = {
         {
           title: "Tax details",
           paragraphs: [
-            "Tax number: 810 / 20915",
             "VAT identification number pursuant to section 27 a UStG: DE814086265",
           ],
         },

@@ -1,15 +1,16 @@
 # Elaman GmbH — current content blueprint
 
-Authoritative factual and structural guide for the bilingual production website. Exact approved strings live in `lib/content/site.ts`, `lib/content/detail-pages.ts`, `lib/content/contact-page.ts`, and `lib/content/legal.ts`; this document defines what may be communicated across the five-section homepage, two focused dossier pages, and the contact page. See `AGENTS.md` for audience, purpose, and accessibility goal.
+Authoritative factual and structural guide for the bilingual production website. Exact approved strings live in `lib/content/site.ts`, `lib/content/detail-pages.ts`, `lib/content/contact-page.ts`, and `lib/content/legal.ts`; this document defines what may be communicated across the homepage, two focused dossier pages, and the contact page. See `AGENTS.md` for audience, purpose, and accessibility goal.
 
 ## 1. Positioning
 
-Elaman GmbH is presented as an established Munich-based security-technology company. Its clients are exclusively security authorities and security-related organisations.
+Elaman GmbH is presented as an established Munich company for communications and security technology. Its clients are exclusively security authorities and security-related organisations.
 
 The site communicates:
 
 - more than 25 years of experience in security technology and security solutions;
 - technical analysis, advice, planning, and system integration;
+- communications technology named alongside security technology, because the supplied systems carry radio, audio, and video links as a matter of course;
 - turnkey implementation;
 - professional training and long-term support;
 - covert audio and video observation, audio and video analysis, TSCM, radio monitoring for mobile communications in special-purpose vehicles, training, and technical support;
@@ -40,24 +41,25 @@ The public voice is calm, exact, and assured. It explains what Elaman does witho
 
 Browser and social titles are localised, because the `<title>` is the most heavily weighted search field and a German visitor must find German terms in it:
 
-- DE: `Elaman – Sicherheitstechnik und Sicherheitslösungen, München`
+- DE: `Elaman – Kommunikations- und Sicherheitstechnik, München`
 - EN: `Elaman – German Security Solutions, Munich`
 
 `German Security Solutions` remains the English brand descriptor and stays in the signet, the English title, and the organisation data. It is not used as the German homepage title.
 
 ## 2. Verified factual anchors
 
-| Fact                                                                            | Approved use                               |
-| ------------------------------------------------------------------------------- | ------------------------------------------ |
-| 25+ years of experience                                                         | One visible hero stat only                 |
-| Security technology and security solutions                                      | Hero, profile, metadata                    |
-| Established products combined with current technologies                         | Profile and advice                         |
-| Analysis, planning, integration, and turnkey implementation                     | Advice process                             |
-| Professional training and long-term support                                     | Advice process and systems ledger          |
-| Five approved capability areas                                                  | Systems ledger                             |
-| Clients are exclusively security authorities and security-related organisations | Profile and company dossier                |
-| Munich office                                                                   | Contact image, details, and footer         |
-| Holger Rumscheidt is named as General Manager                                   | Profile link, imprint, and structured data |
+| Fact                                                                            | Approved use                              |
+| ------------------------------------------------------------------------------- | ----------------------------------------- |
+| 25+ years of experience                                                         | One visible hero stat only                |
+| Communications and security technology                                          | Positioning line, company lead, metadata  |
+| Security technology and security solutions                                      | Hero, profile, metadata                   |
+| Established products combined with current technologies                         | Profile and advice                        |
+| Analysis, planning, integration, and turnkey implementation                     | Advice process                            |
+| Professional training and long-term support                                     | Advice process and systems ledger         |
+| Five approved capability areas                                                  | Systems ledger                            |
+| Clients are exclusively security authorities and security-related organisations | Profile and company dossier               |
+| Munich office                                                                   | Contact image, details, and footer        |
+| Holger Rumscheidt is named as General Manager                                   | Company dossier, imprint, structured data |
 
 Do not add percentages, certifications, awards, project counts, client logos, named authorities, countries, or sovereignty statements without verified stakeholder approval.
 
@@ -69,9 +71,9 @@ Do not add percentages, certifications, awards, project counts, client logos, na
 | `#profile` | German/English Security Solutions title, technology combination, and project alignment |
 | `#advice`  | Four-stage path from analysis and advice to training and long-term support             |
 | `#systems` | Five capability categories without technical specifications                            |
-| `#contact` | Munich office, direct contact routes, and the link to the contact route                |
+| closing    | One sentence and one route to the contact page, on navy                                |
 
-The footer closes every route with the same three columns — navigation, contact, legal — outside the five-section viewport rhythm.
+The homepage, the company dossier, and the systems dossier end with the same navy closing band: one statement and one link, no contact facts. The contact route and the legal documents have none, because they are the destination. Below that, the footer closes every route with the same three columns, navigation, contact, legal.
 
 The site has three reciprocal localised routes beyond the homepage:
 
@@ -111,14 +113,12 @@ The three statements communicate:
 2. each solution is aligned with infrastructure, operating environment, and organisational project requirements;
 3. Elaman works exclusively for security authorities and security-related organisations. Do not add communications providers or private-market audiences.
 
-The section closes with one factual management reference:
+The homepage does not name the management. The factual reference stands once, on the Company dossier:
 
 - DE: `Geschäftsführung: Holger Rumscheidt`
 - EN: `Managing Director: Holger Rumscheidt`
 
-The name links to the existing imprint. It must not be repeated elsewhere on the homepage or expanded into biographical claims without approved source material.
-
-The Company dossier may repeat the management name once as a factual route to the imprint. Without an approved portrait or biography, its narrative is carried by the Munich office, the four-stage process told in full, and the supplied stone-bridge motif.
+The name links to the existing imprint and must not be expanded into biographical claims without approved source material. Without an approved portrait or biography, the dossier's narrative is carried by the Munich office, the four-stage process told in full, and the supplied stone-bridge motif.
 
 ## 6. Advice
 
@@ -136,7 +136,7 @@ The ordered process is fixed:
 
 Descriptions remain concise and non-operational. The process may explain that Elaman assesses technical requirements, combines suitable technologies, accompanies implementation and commissioning, and provides professional training and long-term support.
 
-The homepage keeps the short form of these four steps; the Company dossier tells the same four steps at length. The two texts must stay distinct — no sentence may appear in both.
+The homepage prints the four stage names and nothing else; the descriptions live on the Company dossier alone. Holding a short and a long version of the same four steps meant two texts that could drift apart, and a visitor who clicked through read the same thing twice.
 
 ## 7. Systems
 
@@ -176,11 +176,11 @@ The contact page (`/de/kontakt` ↔ `/en/contact`) is the only place the form ap
 - A ruled `dl` of the direct contact facts (address, phone, email) beside the form, form title `Ihr Anliegen` / `Your inquiry`, and a note that required fields are marked with `*`.
 - A short privacy note below the form linking to the localised privacy policy — no separate consent checkbox, no map service.
 
-The homepage contact section repeats none of that copy: it names the office, lists the direct routes as a ruled `dl`, and leads to the contact page with one primary action (`Anfrage senden` / `Send an inquiry`). It contains no form.
+The homepage repeats none of that copy. It ends with the closing band: one sentence naming Munich and one link to the contact page. Address, phone, and email stand in the footer, which is on every route anyway.
 
 ## 9. Metadata and navigation
 
-Every section on every page names itself with a short label of its own, in `label` next to its title: `Unternehmen`, `Vorgehen`, `Systeme`, `Zusammenarbeit`, `Leistungsbereiche`, `Projektansatz`, `Kontaktwege`. It is a category name, two words at most, not a sentence.
+Every section on every page names itself with a short label of its own, in `label` next to its title: `Unternehmen`, `Vorgehen`, `Systeme`, `Zusammenarbeit`, `Leistungsbereiche`, `Projektansatz`, `Kontaktwege`. It is a category name, two words at most, not a sentence, set in mono capitals directly above the heading.
 
 The homepage names what a subpage explains. Its process and systems blocks carry the stage and area names only; the descriptions belong to the company and systems pages. Printing both meant a visitor read the same four paragraphs and the same five entries twice and could not see what clicking through added. `tests/e2e/site.spec.ts` asserts that the homepage lists carry no description paragraphs and the dossier lists do.
 

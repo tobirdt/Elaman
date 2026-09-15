@@ -15,7 +15,7 @@ export const siteConfig = {
   shortName: "Elaman",
   title: "Elaman – German Security Solutions",
   description:
-    "Elaman GmbH in Munich supplies and integrates security technology exclusively for security authorities and security-related organisations.",
+    "Elaman GmbH in Munich supplies and integrates communications and security technology exclusively for security authorities and security-related organisations.",
   url: siteUrl,
   logoPath: "/brand/elaman-logo.png",
   ogImage: {

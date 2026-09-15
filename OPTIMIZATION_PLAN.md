@@ -270,7 +270,7 @@ Stand: 15. September 2026, Branch `claude/elaman-website-setup-qw1gom`, Pull Req
 | P3.4 Layout-Feinschliff    | umgesetzt                             | Snap entfernt, Sektionen auf 46rem gedeckelt, Hero ab 1536 px größer, Ledger-Waise, Formular-Legende                                                                                                                                                                                                                                                                                       |
 | Motion (neu)               | umgesetzt                             | CSS-Scroll-Reveal über `animation-timeline: view()`, ohne JavaScript, mit Fallback und reduced-motion                                                                                                                                                                                                                                                                                      |
 | P4.1 EU-Verarbeitung       | umgesetzt                             | Region `fra1` über `vercel.json`; `preferredRegion` ist in Next 16 veraltet. Resend-Region bleibt zu prüfen                                                                                                                                                                                                                                                                                |
-| P4.2 Impressum             | teilweise                             | Telefonformat erledigt; Steuernummer und Fax brauchen M6                                                                                                                                                                                                                                                                                                                                   |
+| P4.2 Impressum             | teilweise                             | Telefonformat erledigt, Steuernummer entfernt (§ 5 DDG verlangt sie nicht); Fax braucht M6                                                                                                                                                                                                                                                                                                 |
 | P4.3 Datenschutzerklärung  | umgesetzt                             | Speicherdauer-Kriterium, Frankfurt, Datum; anwaltliche Prüfung offen                                                                                                                                                                                                                                                                                                                       |
 | P4.4 Lizenzdossier         | offen                                 | braucht M3                                                                                                                                                                                                                                                                                                                                                                                 |
 | P4.5 Anwaltliche Prüfung   | offen                                 | M7                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -322,14 +322,26 @@ Grundlage ist `Elaman_Website_Texte_update.docx`, 482 Absätze, beide Sprachen. 
 | -------------------------- | -------------------------------------------------------------------------- | ---------------------------- |
 | Jahre Erfahrung            | 25+                                                                        | bereits live, beide Sprachen |
 | Kundenkreis                | ausschließlich Sicherheitsbehörden und sicherheitsrelevante Organisationen | bereits live, beide Sprachen |
-| Zahl der Leistungsbereiche | deutsche Fassung, nicht die acht der englischen                            | siehe P8.3, Rückfrage offen  |
+| Zahl der Leistungsbereiche | deutsche Fassung, nicht die acht der englischen                            | fünf, siehe P8.3             |
 | Schutzlösungen             | deutsche Fassung                                                           | siehe P8.6                   |
 
 Die englische Dokumentfassung nennt 20+ Jahre, einen dritten Kundenkreis und acht Leistungsbereiche. Nichts davon wird übernommen.
 
+### Stand der Umsetzung
+
+| Paket                        | Stand     | Ergebnis                                                                                                                                  |
+| ---------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| P8.1 Sprachpflege            | umgesetzt | Sechs Formulierungen übernommen, dazu drei Stellen, die daran anschlossen                                                                 |
+| P8.2 Fehler aus dem Dokument | umgesetzt | Keiner der fünf Fehler ist in den Text gelangt; die Rufnummer bleibt nach DIN 5008                                                        |
+| P8.3 Leistungsbereiche       | fünf      | Entscheidung für die deutsche Startseite. Ob Observation und Auswertung zusammengehen, entscheidet Holger; die Änderung bleibt eine Zeile |
+| P8.4 Positionierung          | umgesetzt | Kommunikations- und Sicherheitstechnik in Vorspann, Seitentitel, Beschreibungen, `description` und `knowsAbout`                           |
+| P8.5 Arbeitsweise            | umgesetzt | Vier Schritte auf beiden Seiten. Die Startseite nennt nur noch die Namen, die Beschreibungen stehen allein auf der Unternehmensseite      |
+| P8.6 Schutzlösungen          | offen     | Es gibt keinen deutschen Text; es bleibt bei drei Navigationspunkten                                                                      |
+| P8.7 Impressum               | umgesetzt | Steuernummer in beiden Sprachen entfernt, USt-IdNr. bleibt                                                                                |
+
 ### P8.1 Sprachpflege ohne Entscheidungsbedarf
 
-Sechs Formulierungen aus dem Dokument sind besser als der aktuelle Stand und werden übernommen, die Gedankenstriche dabei entfernt:
+Sechs Formulierungen aus dem Dokument sind besser als der bisherige Stand und wurden übernommen, die Gedankenstriche dabei entfernt:
 
 | Ort                         | Neu                                                                                                                                                                        |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -340,7 +352,9 @@ Sechs Formulierungen aus dem Dokument sind besser als der aktuelle Stand und wer
 | Systemseite, Funkerfassung  | "Projektbezogen ausgestattete Fahrzeuge, in denen Technik, Arbeitsplätze und Kommunikation als Einheit geplant werden."                                                    |
 | Englisch, Projektansatz     | "Requirements first, technology second."                                                                                                                                   |
 
-Nicht übernommen werden die Gedankenstriche, der abgesetzte Punkt in "Sicherheitslösungen. Aus München.", die Passivkonstruktionen ("Die Teams werden geschult", "Bevor Technik ausgewählt wird") und die unscharfe Wendung "Systeme im Bereich der gesamten Sicherheit".
+Drei weitere Stellen zogen nach, weil sie sonst neben den neuen Sätzen abgefallen wären: die Passivwendung "Übergeben wird ein System" auf der Unternehmensseite, der blasse Titel "Einzeln geplant oder als Gesamtsystem aufeinander abgestimmt." über den Leistungsbereichen, und die englischen Entsprechungen aller übernommenen Sätze.
+
+Nicht übernommen wurden die Gedankenstriche, der abgesetzte Punkt in "Sicherheitslösungen. Aus München.", die Passivkonstruktionen ("Die Teams werden geschult", "Bevor Technik ausgewählt wird") und die unscharfe Wendung "Systeme im Bereich der gesamten Sicherheit".
 
 ### P8.2 Fehler aus dem Dokument, die nicht in die Seite dürfen
 
@@ -348,15 +362,15 @@ Vier Schreibfehler und ein Formatfehler stehen im Dokument und sind beim Überne
 
 ### P8.3 Leistungsbereiche, offene Rückfrage
 
-Die deutsche Fassung widerspricht sich selbst: die Startseite nennt fünf Bereiche, die Systemseite vier, weil Holger Observation und Auswertung zu einem Eintrag zusammengefasst hat. Der Plan behält vorerst fünf, weil das dem aktuellen Stand, der deutschen Startseite und den strukturierten Daten entspricht und "Auswertesysteme" ein eigener, suchbarer Begriff ist. Holger entscheidet, ob es bei fünf bleibt oder auf vier zusammengeht; die Änderung ist eine Zeile.
+Die deutsche Fassung widerspricht sich selbst: die Startseite nennt fünf Bereiche, die Systemseite vier, weil Holger Observation und Auswertung zu einem Eintrag zusammengefasst hat. Es bleibt bei fünf, weil das der deutschen Startseite und den strukturierten Daten entspricht und "Auswertesysteme" ein eigener, suchbarer Begriff ist. Holger entscheidet, ob das so bleibt oder auf vier zusammengeht; die Änderung ist eine Zeile.
 
 ### P8.4 Positionierung: Kommunikations- und Sicherheitstechnik
 
-Holgers deutsche Unternehmensseite beschreibt Elaman als "Münchner Unternehmen für Kommunikations- und Sicherheitstechnik". Das ist eine Erweiterung gegenüber "Sicherheitstechnik" und zieht sich durch: Vorspann der Unternehmensseite, Seitentitel und Beschreibungen für Suchergebnisse, `description` und `knowsAbout` in den strukturierten Daten, und mittelbar die Startseite. Erst umsetzen, wenn Holger bestätigt, dass Kommunikationstechnik gleichrangig genannt werden soll.
+Holgers deutsche Unternehmensseite beschreibt Elaman als "Münchner Unternehmen für Kommunikations- und Sicherheitstechnik". Das ist eine Erweiterung gegenüber "Sicherheitstechnik" und zieht sich durch: Vorspann der Unternehmensseite, deutscher Seitentitel, beide Beschreibungen für Suchergebnisse, `description` und `knowsAbout` in den strukturierten Daten. Übernommen, weil die Formulierung aus Holgers eigener Fassung stammt. Hero und Jahresangabe bleiben bei "Sicherheitstechnik und Sicherheitslösungen", damit die Startseite nicht zwei Positionierungen nebeneinander trägt.
 
 ### P8.5 Arbeitsweise, offene Rückfrage
 
-Das Dokument führt auf der Startseite vier Schritte und auf der Unternehmensseite drei ("Die Aufgabe präzise erfassen", "Komponenten aufeinander abstimmen", "Den Betrieb langfristig begleiten"). Der Plan behält vier auf beiden Seiten, weil die Startseite nennt und die Unterseite erklärt, und arbeitet Holgers drei Formulierungen in die vier Beschreibungen ein.
+Das Dokument führt auf der Startseite vier Schritte und auf der Unternehmensseite drei ("Die Aufgabe präzise erfassen", "Komponenten aufeinander abstimmen", "Den Betrieb langfristig begleiten"). Es bleibt bei vier auf beiden Seiten, weil die Startseite nennt und die Unterseite erklärt. Holgers drei Formulierungen sind in die vier Beschreibungen der Unternehmensseite eingearbeitet; die Startseite trägt nur noch die Schrittnamen, damit es die Beschreibungen nicht zweimal gibt.
 
 ### P8.6 Schutzlösungen
 
@@ -364,7 +378,7 @@ Eine vollständige Schutzlösungen-Seite steht nur in der englischen Dokumentfas
 
 ### P8.7 Impressum
 
-Das Dokument trägt die Steuernummer wieder ein. Pflichtangabe nach § 5 DDG ist nur die Umsatzsteuer-Identifikationsnummer. Empfehlung: Steuernummer entfernen, USt-IdNr. bleibt. Datum der Datenschutzerklärung bleibt beim aktuellen Stand, nicht beim älteren aus dem Dokument.
+Das Dokument trägt die Steuernummer wieder ein. Pflichtangabe nach § 5 DDG ist nur die Umsatzsteuer-Identifikationsnummer. Die Steuernummer ist deshalb in beiden Sprachen entfernt, die USt-IdNr. bleibt. Das Datum der Datenschutzerklärung bleibt beim aktuellen Stand, nicht beim älteren aus dem Dokument.
 
 ## 9. Was darüber hinaus noch offen ist
 

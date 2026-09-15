@@ -23,7 +23,7 @@ type SitemapEntry = {
  * Deriving this from the build time would tell crawlers that every page
  * changed on every deploy, which devalues the signal.
  */
-const contentLastModified = new Date("2026-09-14T00:00:00.000Z");
+const contentLastModified = new Date("2026-09-15T00:00:00.000Z");
 
 const homeEntries: SitemapEntry[] = locales.map((locale) => ({
   route: homePath(locale),
