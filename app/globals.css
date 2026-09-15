@@ -116,7 +116,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background: var(--surface-paper);
 }
 
@@ -306,10 +305,6 @@ select {
 
   @page {
     margin: 18mm;
-  }
-
-  html {
-    scroll-behavior: auto;
   }
 
   .section-screen {

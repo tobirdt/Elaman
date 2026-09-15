@@ -176,6 +176,8 @@ The contact page (`/de/kontakt` ↔ `/en/contact`) is the only place the form ap
 - A ruled `dl` of the direct contact facts (address, phone, email) beside the form, form title `Ihr Anliegen` / `Your inquiry`, and a note that required fields are marked with `*`.
 - A short privacy note below the form linking to the localised privacy policy — no separate consent checkbox, no map service.
 
+The privacy note **states** that the details are processed to answer the inquiry. It must never read as a consent declaration in either language. The policy names Article 6 (1) (b) and (f) GDPR, contract and legitimate interest, and no consent anywhere; a note saying "you agree that we process" would assert Article 6 (1) (a) instead, which carries a right of withdrawal the site makes no provision for. The English note said exactly that until 15 September 2026 while the German did not, so the two languages disagreed about the legal basis.
+
 The homepage repeats none of that copy. It ends with the closing band: one sentence naming Munich and one link to the contact page. Address, phone, and email stand in the footer, which is on every route anyway.
 
 ## 9. Metadata and navigation

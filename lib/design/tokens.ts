@@ -21,6 +21,21 @@ export const designTokens = {
     onDark: "#f7f8fa",
     onDarkMuted: "#c7d0dc",
   },
+  /** Semantic aliases: what a colour is for, not what it is. */
+  surface: {
+    paper: "var(--color-paper)",
+    paperSoft: "var(--color-paper-soft)",
+  },
+  action: {
+    primary: "var(--color-graphite)",
+    primaryHover: "var(--color-elaman-blue)",
+    onPrimary: "var(--color-paper)",
+  },
+  focus: {
+    outline: "rgba(36, 64, 116, 0.48)",
+    ring: "rgba(36, 64, 116, 0.1)",
+    selection: "rgba(36, 64, 116, 0.16)",
+  },
   container: {
     pageX: "clamp(1.25rem, 4vw, 4rem)",
     pageXLeft: "max(var(--page-x), env(safe-area-inset-left))",
@@ -32,7 +47,8 @@ export const designTokens = {
     legal: "56rem",
   },
   section: {
-    screen: "calc(100svh - var(--header-h))",
+    screen: "calc(100vh - var(--header-h))",
+    screenSvh: "calc(100svh - var(--header-h))",
     screenY: "clamp(3rem, 6svh, 5.5rem)",
     contentBand: "clamp(3.75rem, 6vw, 5.5rem)",
     legalPage: "clamp(2.75rem, 5vw, 4.25rem)",

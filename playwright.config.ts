@@ -23,9 +23,16 @@ export default defineConfig({
   snapshotPathTemplate: "{testDir}/__screenshots__/{arg}{ext}",
   expect: {
     toHaveScreenshot: {
-      // Anti-aliasing drifts a little between Chromium builds; a moved
-      // heading or a changed band shifts far more pixels than this.
-      maxDiffPixelRatio: 0.005,
+      // `threshold` is the per-pixel colour tolerance and it is what absorbs
+      // anti-aliasing drift between Chromium builds. `maxDiffPixelRatio` then
+      // only has to allow the few pixels that drift past it, so it is small:
+      // the denominator is the whole full-page screenshot, roughly a million
+      // pixels, and at the 0.005 this started with, a two-line copy change on
+      // the contact page measured 0.003 and passed unnoticed. At 0.0005 that
+      // same change is caught six times over. If a CI run ever fails with a
+      // ratio just above this and nothing in the page actually moved, raise it
+      // to the number that run reported rather than back to a round guess.
+      maxDiffPixelRatio: 0.0005,
       threshold: 0.2,
     },
   },
