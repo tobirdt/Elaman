@@ -312,6 +312,72 @@ Nach dem Seitenkopf blieb der Bereich darunter unruhig. Die Messung bei 1440 zei
 | Doppelungen         | umgesetzt | Startseite nennt, Unterseite erklärt. Kontaktdaten stehen auf Startseite und Dossiers nur noch im Fußbereich                                        |
 | Brückenbild         | umgesetzt | Der Steinbogen steht nur noch auf der Startseite, die Zusammenarbeit wird ein Textband                                                              |
 
+## 8. Textrevision nach Holgers Word-Fassung
+
+Grundlage ist `Elaman_Website_Texte_update.docx`, 482 Absätze, beide Sprachen. Holger hat nur die deutsche Fassung bearbeitet; die englischen Abschnitte des Dokuments sind der alte Stand der Ursprungsseite. Deutsch ist damit maßgeblich, Englisch zieht nach.
+
+### Entschieden
+
+| Frage                      | Entscheidung                                                               | Stand                        |
+| -------------------------- | -------------------------------------------------------------------------- | ---------------------------- |
+| Jahre Erfahrung            | 25+                                                                        | bereits live, beide Sprachen |
+| Kundenkreis                | ausschließlich Sicherheitsbehörden und sicherheitsrelevante Organisationen | bereits live, beide Sprachen |
+| Zahl der Leistungsbereiche | deutsche Fassung, nicht die acht der englischen                            | siehe P8.3, Rückfrage offen  |
+| Schutzlösungen             | deutsche Fassung                                                           | siehe P8.6                   |
+
+Die englische Dokumentfassung nennt 20+ Jahre, einen dritten Kundenkreis und acht Leistungsbereiche. Nichts davon wird übernommen.
+
+### P8.1 Sprachpflege ohne Entscheidungsbedarf
+
+Sechs Formulierungen aus dem Dokument sind besser als der aktuelle Stand und werden übernommen, die Gedankenstriche dabei entfernt:
+
+| Ort                         | Neu                                                                                                                                                                        |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Systemseite, Vorspann       | "Die folgenden Bereiche beschreiben, was Elaman liefert. Entscheidend ist, wie sie zusammenwirken: Ein Observationssystem nützt wenig, wenn die Auswertung nicht mithält." |
+| Startseite, Planung         | "Aus dem Anforderungsprofil entsteht ein Systementwurf: welche Komponenten, welche Schnittstellen, welche Reihenfolge."                                                    |
+| Unternehmen, Zusammenarbeit | "Das erspart Übergaben, bei denen Wissen verloren geht, und hält Entscheidungen nachvollziehbar."                                                                          |
+| Unternehmen, Betreuung      | Zusatz "über Jahre, nicht über Monate"                                                                                                                                     |
+| Systemseite, Funkerfassung  | "Projektbezogen ausgestattete Fahrzeuge, in denen Technik, Arbeitsplätze und Kommunikation als Einheit geplant werden."                                                    |
+| Englisch, Projektansatz     | "Requirements first, technology second."                                                                                                                                   |
+
+Nicht übernommen werden die Gedankenstriche, der abgesetzte Punkt in "Sicherheitslösungen. Aus München.", die Passivkonstruktionen ("Die Teams werden geschult", "Bevor Technik ausgewählt wird") und die unscharfe Wendung "Systeme im Bereich der gesamten Sicherheit".
+
+### P8.2 Fehler aus dem Dokument, die nicht in die Seite dürfen
+
+Vier Schreibfehler und ein Formatfehler stehen im Dokument und sind beim Übernehmen zu vermeiden: "Sichertechnologie" statt Sicherheitstechnologie, "wasElaman" ohne Leerzeichen, "ausschliesslich" in Schweizer Schreibweise, "Audio- und Video Auswertesysteme" ohne Durchkopplung, und die Rufnummer als "+49 (0) 89 - 24 20 91 80". Die Null in Klammern gehört nicht in eine internationale Nummer; die Seite schreibt nach DIN 5008 "+49 89 24209180".
+
+### P8.3 Leistungsbereiche, offene Rückfrage
+
+Die deutsche Fassung widerspricht sich selbst: die Startseite nennt fünf Bereiche, die Systemseite vier, weil Holger Observation und Auswertung zu einem Eintrag zusammengefasst hat. Der Plan behält vorerst fünf, weil das dem aktuellen Stand, der deutschen Startseite und den strukturierten Daten entspricht und "Auswertesysteme" ein eigener, suchbarer Begriff ist. Holger entscheidet, ob es bei fünf bleibt oder auf vier zusammengeht; die Änderung ist eine Zeile.
+
+### P8.4 Positionierung: Kommunikations- und Sicherheitstechnik
+
+Holgers deutsche Unternehmensseite beschreibt Elaman als "Münchner Unternehmen für Kommunikations- und Sicherheitstechnik". Das ist eine Erweiterung gegenüber "Sicherheitstechnik" und zieht sich durch: Vorspann der Unternehmensseite, Seitentitel und Beschreibungen für Suchergebnisse, `description` und `knowsAbout` in den strukturierten Daten, und mittelbar die Startseite. Erst umsetzen, wenn Holger bestätigt, dass Kommunikationstechnik gleichrangig genannt werden soll.
+
+### P8.5 Arbeitsweise, offene Rückfrage
+
+Das Dokument führt auf der Startseite vier Schritte und auf der Unternehmensseite drei ("Die Aufgabe präzise erfassen", "Komponenten aufeinander abstimmen", "Den Betrieb langfristig begleiten"). Der Plan behält vier auf beiden Seiten, weil die Startseite nennt und die Unterseite erklärt, und arbeitet Holgers drei Formulierungen in die vier Beschreibungen ein.
+
+### P8.6 Schutzlösungen
+
+Eine vollständige Schutzlösungen-Seite steht nur in der englischen Dokumentfassung, mit ECM und Counter-RCIED, Störsendern, TSCM, geschirmten Räumen und Sichtschutz. Die deutsche Fassung führt "Schutzlösungen" nur im Navigationsblock, der aus der alten Seite stammt. Es gibt also keinen deutschen Text. Solange der fehlt, bleibt es bei drei Navigationspunkten. Optional: Ich erstelle eine deutsche Übersetzung des englischen Textes als Entwurf zur Freigabe. Erfundene Aussagen zu Störsendern oder Gegenmaßnahmen kommen nicht in Frage.
+
+### P8.7 Impressum
+
+Das Dokument trägt die Steuernummer wieder ein. Pflichtangabe nach § 5 DDG ist nur die Umsatzsteuer-Identifikationsnummer. Empfehlung: Steuernummer entfernen, USt-IdNr. bleibt. Datum der Datenschutzerklärung bleibt beim aktuellen Stand, nicht beim älteren aus dem Dokument.
+
+## 9. Was darüber hinaus noch offen ist
+
+| Paket                    | Inhalt                                                                                                            | Abhängig von |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------- | ------------ |
+| P9.1 Wortmarke im Header | Signet plus Schriftzug auf dem Desktop, Signet allein mobil                                                       | Vektorlogo   |
+| P9.2 Systemfoto          | Das Platzfoto hat 1198 Pixel Breite und läuft über die volle Fensterbreite; auf großen Bildschirmen wird es weich | Original     |
+| P9.3 Steinbogen          | Die weiter gefasste Originalaufnahme gibt einen besseren Zuschnitt für das Bildband                               | Original     |
+| P9.4 Bildlizenzen        | `docs/IMAGE_LICENSES.md` mit Quelle, Lizenz, Lizenznehmer und Datum je Bild                                       | Holger       |
+| P9.5 Anwaltliche Prüfung | Impressum und Datenschutzerklärung in beiden Sprachen                                                             | Holger       |
+| P9.6 Sitemap             | `lastmod` wird bisher von Hand gepflegt; automatisch aus dem Commit-Datum wäre verlässlicher                      | –            |
+| P9.7 CSP mit Nonce       | Bleibt zurückgestellt, weil sie in Next 16 dynamisches Rendern jeder Seite erzwingt                               | –            |
+
 ### Offen für Holger
 
 Unverändert die Punkte M1 bis M7 aus Phase 0: Hero-Original in hoher Auflösung, Vektorlogo, Lizenznachweise, Rohtexte je Systembereich, freigegebene Unternehmensfakten, Entscheidung zu Profil-Titel, Steuernummer und Fax, Termin für die anwaltliche Prüfung.
