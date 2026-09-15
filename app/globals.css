@@ -289,3 +289,56 @@ select {
     animation-iteration-count: 1 !important;
   }
 }
+
+/*
+ * Print. A dossier or a legal text on paper is the document and nothing
+ * else: no navigation, no photograph, no closing band, no soft bands (grey
+ * fills cost ink and mean nothing on paper). Motion is at rest, headings
+ * keep their first paragraph, list entries stay whole, and a link that
+ * leaves the site prints its address after the text, because paper has no
+ * hover. The header, media bands, closing band and footer navigation opt
+ * out with `print:hidden` where they are rendered.
+ */
+@media print {
+  :root {
+    --surface-paper-soft: var(--color-paper);
+  }
+
+  @page {
+    margin: 18mm;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .section-screen {
+    min-height: 0;
+  }
+
+  .hero-copy-enter,
+  .hero-image-enter,
+  .reveal,
+  .reveal-group > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  li,
+  dl {
+    break-inside: avoid;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: var(--type-micro);
+    color: var(--color-graphite-soft);
+  }
+}

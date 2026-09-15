@@ -36,7 +36,7 @@ export function MediaBand({
 }: MediaBandProps) {
   return (
     <div
-      className={`hero-image-enter relative h-[var(--media-band-h)] w-full overflow-hidden border-b border-[var(--border-hairline)] ${toneClasses[tone]}`}
+      className={`hero-image-enter relative h-[var(--media-band-h)] w-full overflow-hidden border-b border-[var(--border-hairline)] print:hidden ${toneClasses[tone]}`}
     >
       <Image
         src={src}

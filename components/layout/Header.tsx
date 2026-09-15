@@ -138,12 +138,12 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
       <a
         href="#main-content"
         data-native-anchor
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:inline-flex focus:min-h-11 focus:items-center focus:rounded-[var(--radius-control)] focus:border focus:border-elaman-blue focus:bg-[var(--surface-paper)] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-graphite"
+        className="sr-only print:hidden focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:inline-flex focus:min-h-11 focus:items-center focus:rounded-[var(--radius-control)] focus:border focus:border-elaman-blue focus:bg-[var(--surface-paper)] focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-graphite"
       >
         {content.skipToContent}
       </a>
       <header
-        className={`sticky top-0 z-40 h-[var(--header-h)] border-b bg-[var(--surface-paper)] transition-colors [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] ${
+        className={`sticky top-0 z-40 h-[var(--header-h)] print:hidden border-b bg-[var(--surface-paper)] transition-colors [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] ${
           scrolled ? "border-[var(--border-hairline)]" : "border-transparent"
         }`}
       >

@@ -124,6 +124,27 @@ test("the homepages expose the approved bilingual portfolio", async ({ page }) =
   }
 });
 
+test("the bare origin sends each browser to the homepage in its own language", async ({
+  request,
+}) => {
+  for (const [acceptLanguage, destination] of [
+    ["en-GB,en;q=0.9,de;q=0.8", "/en"],
+    ["de-DE,de;q=0.9,en;q=0.8", "/de"],
+    ["fr-FR,fr;q=0.9", "/de"],
+    [undefined, "/de"],
+  ] as const) {
+    const response = await request.get("/", {
+      headers: acceptLanguage ? { "accept-language": acceptLanguage } : {},
+      maxRedirects: 0,
+    });
+
+    expect(response.status(), `Accept-Language: ${acceptLanguage}`).toBe(307);
+    expect(response.headers().location, `Accept-Language: ${acceptLanguage}`).toBe(
+      destination,
+    );
+  }
+});
+
 test("retired legal URLs redirect permanently to their localised routes", async ({
   request,
 }) => {

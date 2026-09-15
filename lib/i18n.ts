@@ -16,6 +16,40 @@ export function isLocale(value: string): value is Locale {
 }
 
 /**
+ * Picks the locale for a visitor who arrives at `/` from the browser's
+ * `Accept-Language` header. The header lists language ranges with an
+ * optional weight (`en-GB,en;q=0.9,de;q=0.8`); the highest-weighted range
+ * whose primary subtag is one of ours wins, ties fall to the order in the
+ * header, and a header that names neither language, or no header at all,
+ * lands on the default. Only the primary subtag counts: `en-US` and `en-GB`
+ * are both English to this site.
+ */
+export function localeFromAcceptLanguage(header: string | null | undefined): Locale {
+  if (!header) {
+    return defaultLocale;
+  }
+
+  const ranges = header
+    .split(",")
+    .map((range, index) => {
+      const [tag = "", ...params] = range.trim().split(";");
+      const weightParam = params
+        .map((param) => param.trim())
+        .find((param) => param.startsWith("q="));
+      const weight = weightParam ? Number(weightParam.slice(2)) : 1;
+      const primary = tag.trim().toLowerCase().split("-")[0];
+
+      return { primary, weight: Number.isFinite(weight) ? weight : 0, index };
+    })
+    .filter((range) => range.weight > 0 && isLocale(range.primary))
+    .sort((a, b) => b.weight - a.weight || a.index - b.index);
+
+  const best = ranges[0];
+
+  return best && isLocale(best.primary) ? best.primary : defaultLocale;
+}
+
+/**
  * Every internal path is composed at runtime from a locale and a slug table,
  * so `typedRoutes` — which only validates literal hrefs — cannot check it.
  * The assertion therefore happens once, here. Content files and components

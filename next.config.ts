@@ -32,6 +32,10 @@ const nextConfig: NextConfig = {
   },
   allowedDevOrigins: ["127.0.0.1"],
   images: {
+    // AVIF first: a third smaller than WebP for the photographs at the same
+    // quality, and every current browser accepts it. WebP stays as the
+    // fallback the optimiser negotiates for the rest.
+    formats: ["image/avif", "image/webp"],
     localPatterns: [
       { pathname: "/brand/**", search: "" },
       { pathname: "/images/**", search: "" },

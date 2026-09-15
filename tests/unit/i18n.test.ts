@@ -7,6 +7,7 @@ import {
   detailPagePath,
   homePath,
   isLocale,
+  localeFromAcceptLanguage,
   legalPageKinds,
   legalPageKindFromSlug,
   legalPagePath,
@@ -23,6 +24,35 @@ describe("isLocale", () => {
 
   it.each(["", "DE", "fr", "de-DE", "en-GB"])("rejects %s", (value) => {
     expect(isLocale(value)).toBe(false);
+  });
+});
+
+describe("localeFromAcceptLanguage", () => {
+  it("prefers the highest-weighted language the site speaks", () => {
+    expect(localeFromAcceptLanguage("en-GB,en;q=0.9,de;q=0.8")).toBe("en");
+    expect(localeFromAcceptLanguage("de-DE,de;q=0.9,en;q=0.8")).toBe("de");
+    expect(localeFromAcceptLanguage("fr-FR,fr;q=0.9,en;q=0.5,de;q=0.8")).toBe("de");
+    expect(localeFromAcceptLanguage("fr,de;q=0.5,en;q=0.7")).toBe("en");
+  });
+
+  it("uses header order to break ties", () => {
+    expect(localeFromAcceptLanguage("en,de")).toBe("en");
+    expect(localeFromAcceptLanguage("de,en")).toBe("de");
+    expect(localeFromAcceptLanguage("en;q=0.8,de;q=0.8")).toBe("en");
+  });
+
+  it("falls back to German when nothing matches", () => {
+    expect(localeFromAcceptLanguage("fr-FR,fr;q=0.9")).toBe("de");
+    expect(localeFromAcceptLanguage("*")).toBe("de");
+    expect(localeFromAcceptLanguage("")).toBe("de");
+    expect(localeFromAcceptLanguage(null)).toBe("de");
+    expect(localeFromAcceptLanguage(undefined)).toBe("de");
+  });
+
+  it("ignores ranges a browser has switched off and malformed weights", () => {
+    expect(localeFromAcceptLanguage("en;q=0,de;q=0.5")).toBe("de");
+    expect(localeFromAcceptLanguage("en;q=abc,de")).toBe("de");
+    expect(localeFromAcceptLanguage(" EN-us ; q=0.9 , de ; q=0.3 ")).toBe("en");
   });
 });
 
