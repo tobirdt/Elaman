@@ -4,10 +4,11 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { AdviceSection } from "@/components/sections/AdviceSection";
-import { ContactSection } from "@/components/sections/ContactSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProfileSection } from "@/components/sections/ProfileSection";
 import { SystemsSection } from "@/components/sections/SystemsSection";
+import { ClosingBand } from "@/components/ui/ClosingBand";
+import { MediaBand } from "@/components/ui/MediaBand";
 import { getSiteContent } from "@/lib/content/site";
 import { homePath, isLocale, locales, type Locale } from "@/lib/i18n";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo/site";
@@ -75,9 +76,14 @@ export default async function HomePage({ params }: LocalePageProps) {
       <main id="main-content" tabIndex={-1}>
         <HeroSection content={content.hero} />
         <ProfileSection content={content.profile} />
+        <MediaBand
+          src="/images/elaman-profile-bridge.jpg"
+          alt=""
+          imageClassName="object-cover object-[48%_62%] saturate-[0.72]"
+        />
         <AdviceSection content={content.advice} />
         <SystemsSection content={content.systems} />
-        <ContactSection content={content.contact} />
+        <ClosingBand statement={content.contact.closing} link={content.contact.cta} />
       </main>
       <Footer
         contact={content.contact}

@@ -297,6 +297,21 @@ Nach dem ersten Durchlauf fiel auf, dass die Unterseiten schwer als solche zu er
 | Seitentitel            | umgesetzt | Alle unter 60 Zeichen, Suffix auf `Elaman` gekürzt, Budget als Unit-Test                                                                                                                                                |
 | Motion (Korrektur)     | umgesetzt | Der Scroll-Reveal bewegt nur noch `transform`. Ein Fade auf einer Scroll-Timeline parkt halb sichtbare Blöcke bei reduzierter Deckkraft und fiel damit unter die Kontrastschwelle                                       |
 
+### Nachtrag: Raster unterhalb der Seitenköpfe
+
+Nach dem Seitenkopf blieb der Bereich darunter unruhig. Die Messung bei 1440 zeigte sechs verschiedene linke Kanten für Überschriften, bei 1024 allein auf der Systemseite vier.
+
+| Paket               | Status    | Ergebnis                                                                                                                                            |
+| ------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Eine linke Kante    | umgesetzt | `SectionIntro` öffnet jeden Abschnitt auf dem Seitenraster. Bei 768, 1024 und 1280 liefert jede Seite genau eine Kante für ihre `h2`                |
+| Bausteine           | umgesetzt | Textband, Bildband, Abschlussbalken. Die gespiegelten Splits und die Sidebar-Labels sind weg, die Startseite behält den Hero als einzigen Split     |
+| Ein Labelstil       | umgesetzt | Mono, versal, blau, direkt über der Überschrift. Blaue Linie ohne Text und graues "Elaman" entfallen                                                |
+| Überschriftenebenen | umgesetzt | `h1` Seite, `h2` Abschnitt, `h3` Eintrag. Die fünf Systembereiche waren `h2` auf Abschnittsebene, ihr Abschnitt hatte gar keine Überschrift         |
+| Senkrechtes Raster  | umgesetzt | Feste Abstände statt zentrierter Mindesthöhen. Die Schwankung von 54 bis 281 Pixeln auf der Startseite ist weg, die Seite ist rund 570 Pixel kürzer |
+| Systemliste         | umgesetzt | Einspaltig, keine Kreuz-Lesart, keine Waise                                                                                                         |
+| Doppelungen         | umgesetzt | Startseite nennt, Unterseite erklärt. Kontaktdaten stehen auf Startseite und Dossiers nur noch im Fußbereich                                        |
+| Brückenbild         | umgesetzt | Der Steinbogen steht nur noch auf der Startseite, die Zusammenarbeit wird ein Textband                                                              |
+
 ### Offen für Holger
 
 Unverändert die Punkte M1 bis M7 aus Phase 0: Hero-Original in hoher Auflösung, Vektorlogo, Lizenznachweise, Rohtexte je Systembereich, freigegebene Unternehmensfakten, Entscheidung zu Profil-Titel, Steuernummer und Fax, Termin für die anwaltliche Prüfung.

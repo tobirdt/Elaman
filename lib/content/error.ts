@@ -2,6 +2,8 @@ import { homePath, type Locale } from "@/lib/i18n";
 
 export type ErrorBoundaryContent = {
   label: string;
+  /** Short name of the page, shown as the last breadcrumb step. */
+  breadcrumb: string;
   title: string;
   body: string;
   retry: string;
@@ -18,6 +20,7 @@ export type ErrorBoundaryContent = {
 const errorContent: Record<Locale, Omit<ErrorBoundaryContent, "homeHref">> = {
   de: {
     label: "Fehler",
+    breadcrumb: "Fehler",
     title: "Diese Seite konnte nicht geladen werden.",
     body: "Bitte versuchen Sie es erneut. Falls die Störung bleibt, erreichen Sie unser Team in München telefonisch unter +49 89 24209180 oder per E-Mail an info@elaman.de.",
     retry: "Erneut versuchen",
@@ -25,6 +28,7 @@ const errorContent: Record<Locale, Omit<ErrorBoundaryContent, "homeHref">> = {
   },
   en: {
     label: "Error",
+    breadcrumb: "Error",
     title: "This page could not be loaded.",
     body: "Please try again. If the problem persists, you can reach our team in Munich by phone on +49 89 24209180 or by email at info@elaman.de.",
     retry: "Try again",

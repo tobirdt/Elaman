@@ -41,6 +41,36 @@ describe("breadcrumb labels", () => {
   });
 });
 
+describe("section labels", () => {
+  it("gives every section on the homepage a label of its own", () => {
+    for (const locale of locales) {
+      const { profile, advice, systems } = getSiteContent(locale);
+
+      for (const label of [profile.label, advice.label, systems.label]) {
+        expect(label.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("gives every section on a dossier a label of its own", () => {
+    for (const locale of locales) {
+      const company = getDetailPageContent(locale, "company");
+      const systems = getDetailPageContent(locale, "systems");
+
+      for (const label of [
+        company.process.label,
+        company.bridge.label,
+        systems.portfolioLabel,
+        systems.approach.label,
+      ]) {
+        expect(label.length).toBeGreaterThan(0);
+      }
+
+      expect(systems.portfolioTitle.length).toBeGreaterThan(0);
+    }
+  });
+});
+
 describe("document titles", () => {
   it("keeps every title inside the budget", () => {
     for (const locale of locales) {

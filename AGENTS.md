@@ -101,17 +101,20 @@ The route-specific `elaman-home-og`, `elaman-company-og`, `elaman-systems-og`, a
 
 ## Current component vocabulary
 
-| Need                                | Current primitive                                             |
-| ----------------------------------- | ------------------------------------------------------------- |
-| Page width                          | `Container`                                                   |
-| Screen/feature/content/legal rhythm | `Section` (`screen`, `feature`, `content-band`, `legal-page`) |
-| Legal and 404 headings              | `SectionHeader` + `SectionLabel`                              |
-| Actions                             | `Button`                                                      |
-| Editorial route link                | `TextLink`                                                    |
-| Navigation                          | `Header` + `LanguageSwitcher`                                 |
-| Footer                              | `Footer`                                                      |
-| Detail composition                  | `DetailDossier`                                               |
-| Contact page composition            | `ContactPage` (hero split, direct details, `ContactForm`)     |
+| Need                        | Current primitive                                  |
+| --------------------------- | -------------------------------------------------- |
+| Page width                  | `Container`                                        |
+| Screen/content/legal rhythm | `Section` (`screen`, `content-band`, `legal-page`) |
+| Page opening                | `PageHeader` + `Breadcrumb`                        |
+| Section opening             | `SectionIntro` + `SectionLabel`                    |
+| Full-width photograph       | `MediaBand`                                        |
+| Page close                  | `ClosingBand`                                      |
+| Actions                     | `Button`                                           |
+| Editorial route link        | `TextLink`                                         |
+| Navigation                  | `Header` + `LanguageSwitcher`                      |
+| Footer                      | `Footer`                                           |
+| Detail composition          | `DetailDossier`                                    |
+| Contact page composition    | `ContactPage` (direct details, `ContactForm`)      |
 
 The application intentionally has no generic card, surface, diagram, animation, or anchor-scroll-management component layer. Add a primitive only when at least two current consumers need the same contract.
 

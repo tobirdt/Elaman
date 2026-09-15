@@ -101,19 +101,18 @@ export type LocalizedSiteContent = {
     label: string;
     title: string;
     paragraphs: string[];
-    management: {
-      label: string;
-      name: string;
-      href: Route;
-    };
     detailLink: NavigationItem;
   };
   advice: {
+    label: string;
     title: string;
     intro: string;
+    /** The homepage prints the stage names; the company page explains them. */
     steps: ContentItem[];
+    detailLink: NavigationItem;
   };
   systems: {
+    label: string;
     title: string;
     intro: string;
     items: Array<{ title: string }>;
@@ -121,8 +120,8 @@ export type LocalizedSiteContent = {
   };
   contact: {
     company: string;
-    title: string;
-    intro: string;
+    /** One sentence for the homepage closing band. */
+    closing: string;
     labels: {
       address: string;
       phone: string;
@@ -194,24 +193,20 @@ export const siteContent = {
       },
     },
     profile: {
-      label: "Elaman",
+      label: "Company",
       title: "German Security Solutions.",
       paragraphs: [
         "Elaman combines established products with new technologies to create integrated security systems.",
         "The operating environment largely determines the final system: the existing infrastructure, organisational requirements and conditions on site.",
         "We work exclusively with security authorities and security-related organisations.",
       ],
-      management: {
-        label: "Managing Director",
-        name: "Holger Rumscheidt",
-        href: legalPagePath("en", "imprint"),
-      },
       detailLink: {
         label: "Company profile",
         href: detailPagePath("en", "company"),
       },
     },
     advice: {
+      label: "Approach",
       title: "From initial analysis to long-term support.",
       intro: "Our work continues beyond commissioning.",
       steps: [
@@ -235,8 +230,13 @@ export const siteContent = {
             "We train the teams on the finished system and remain available throughout operation.",
         },
       ],
+      detailLink: {
+        label: "How we work",
+        href: detailPagePath("en", "company"),
+      },
     },
     systems: {
+      label: "Systems",
       title: "Systems for communications, observation and analysis.",
       intro:
         "Elaman supplies these systems individually or integrates them into a complete system.",
@@ -257,8 +257,7 @@ export const siteContent = {
     },
     contact: {
       company: "Elaman GmbH",
-      title: "Contact",
-      intro: "Elaman in Munich. Call us, send an email or use the inquiry form.",
+      closing: "Elaman in Munich. Call, write, or send us your inquiry through the form.",
       labels: {
         address: "Address",
         phone: "Phone",
@@ -361,24 +360,20 @@ export const siteContent = {
       },
     },
     profile: {
-      label: "Elaman",
+      label: "Unternehmen",
       title: "Lösungen und Produkte im Bereich der Sicherheitstechnik.",
       paragraphs: [
         "Elaman bringt etablierte Produkte und neue Technologien zu integrierten Sicherheitssystemen zusammen.",
         "Wie ein System am Ende aussieht, entscheidet meist das Einsatzumfeld: die vorhandene Infrastruktur, die organisatorischen Vorgaben und die Bedingungen vor Ort.",
         "Wir arbeiten ausschließlich für Sicherheitsbehörden und sicherheitsrelevante Organisationen.",
       ],
-      management: {
-        label: "Geschäftsführung",
-        name: "Holger Rumscheidt",
-        href: legalPagePath("de", "imprint"),
-      },
       detailLink: {
         label: "Zum Unternehmensprofil",
         href: detailPagePath("de", "company"),
       },
     },
     advice: {
+      label: "Vorgehen",
       title: "Von der Analyse bis zur langfristigen Betreuung.",
       intro: "Ein Projekt endet für uns nicht mit der Inbetriebnahme.",
       steps: [
@@ -402,8 +397,13 @@ export const siteContent = {
             "Wir schulen die Teams am fertigen System und bleiben im laufenden Betrieb erreichbar.",
         },
       ],
+      detailLink: {
+        label: "So arbeiten wir",
+        href: detailPagePath("de", "company"),
+      },
     },
     systems: {
+      label: "Systeme",
       title: "Systeme für Kommunikation, Observation und Auswertung.",
       intro:
         "Elaman liefert diese Systeme einzeln oder führt sie zu einem Gesamtsystem zusammen.",
@@ -421,9 +421,8 @@ export const siteContent = {
     },
     contact: {
       company: "Elaman GmbH",
-      title: "Kontakt",
-      intro:
-        "Elaman in München. Rufen Sie an, schreiben Sie eine E-Mail oder schicken Sie uns Ihre Anfrage über das Formular.",
+      closing:
+        "Elaman in München. Rufen Sie an, schreiben Sie oder schicken Sie uns Ihre Anfrage über das Formular.",
       labels: {
         address: "Adresse",
         phone: "Telefon",

@@ -1,6 +1,6 @@
-import Image from "next/image";
-
+import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { SectionIntro } from "@/components/ui/SectionIntro";
 import { TextLink } from "@/components/ui/TextLink";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
@@ -8,61 +8,35 @@ type SystemsSectionProps = {
   content: LocalizedSiteContent["systems"];
 };
 
+/**
+ * The five areas, named only, as a plain two-column list. The systems page
+ * sets the same five as a numbered ledger with descriptions; when the
+ * homepage used numerals and rules too, the two read as the same block twice
+ * and the subpage looked like a repeat rather than the detail.
+ */
 export function SystemsSection({ content }: SystemsSectionProps) {
   return (
-    <Section
-      id="systems"
-      variant="feature"
-      className="grid bg-navy text-[var(--color-on-dark)] lg:grid-cols-[minmax(20rem,0.38fr)_minmax(0,0.62fr)]"
-    >
-      <div className="relative min-h-[clamp(18rem,42svh,28rem)] overflow-hidden bg-navy lg:min-h-full">
-        <Image
-          src="/images/elaman-systems-media-mining.jpg"
-          alt=""
-          fill
-          sizes="(min-width: 1024px) 38vw, 100vw"
-          className="object-cover object-[52%_43%] saturate-[0.58] contrast-[1.04]"
-        />
-        <div className="absolute inset-0 bg-navy/38" aria-hidden="true" />
-      </div>
+    <Section id="systems" variant="content-band" tone="white">
+      <Container>
+        <SectionIntro label={content.label} title={content.title} lead={content.intro} />
 
-      <div className="flex items-center border-t border-[var(--border-on-navy)] py-[var(--section-y-screen)] pl-[var(--page-x-left)] pr-[var(--page-x-right)] lg:border-l lg:border-t-0">
-        <div className="w-full max-w-[48rem]">
-          <span className="reveal block h-px w-20 bg-elaman-blue" aria-hidden="true" />
-          <h2 className="reveal mt-7 max-w-[21ch] text-balance text-[length:var(--type-h2)] font-semibold leading-[var(--leading-title)] tracking-[var(--tracking-title)] text-[var(--color-on-dark)]">
-            {content.title}
-          </h2>
-          <p className="reveal mt-5 max-w-[62ch] text-[length:var(--type-body)] leading-[var(--leading-body)] text-[var(--color-on-dark-muted)]">
-            {content.intro}
-          </p>
+        {/* Three rows, flowing down the first column before the second, so the
+            eye reads the list in its real order instead of across the gap. */}
+        <ul className="reveal-group mt-9 grid max-w-[var(--container-content)] gap-x-12 gap-y-3 sm:grid-flow-col sm:grid-rows-3">
+          {content.items.map((item) => (
+            <li
+              key={item.title}
+              className="text-[length:var(--type-body)] font-semibold leading-6 tracking-[-0.01em] text-graphite"
+            >
+              {item.title}
+            </li>
+          ))}
+        </ul>
 
-          <ol className="reveal-group mt-9 grid sm:grid-cols-2 sm:gap-x-8 lg:mt-10">
-            {content.items.map((item, index) => (
-              <li
-                key={item.title}
-                className="grid min-w-0 grid-cols-[2.5rem_minmax(0,1fr)] items-baseline gap-3 border-t border-[var(--border-on-navy)] py-4 sm:last:odd:col-span-2"
-              >
-                <span
-                  aria-hidden="true"
-                  className="font-mono text-[length:var(--type-micro)] tracking-[var(--tracking-label)] text-[var(--color-on-dark-muted)]"
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="min-w-0 text-pretty text-[length:var(--type-body)] font-semibold leading-6 tracking-[-0.01em] text-[var(--color-on-dark)]">
-                  {item.title}
-                </h3>
-              </li>
-            ))}
-          </ol>
-          <div className="reveal mt-6">
-            <TextLink
-              href={content.detailLink.href}
-              label={content.detailLink.label}
-              inverse
-            />
-          </div>
+        <div className="reveal mt-9">
+          <TextLink href={content.detailLink.href} label={content.detailLink.label} />
         </div>
-      </div>
+      </Container>
     </Section>
   );
 }

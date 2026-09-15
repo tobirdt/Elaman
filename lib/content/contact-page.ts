@@ -20,6 +20,11 @@ export type ContactPageContent = {
   lead: string;
   /** Short name of the page, shown as the last breadcrumb step. */
   breadcrumb: string;
+  /** Titles the band that holds the direct routes and the form. */
+  section: {
+    label: string;
+    title: string;
+  };
   form: {
     title: string;
     intro: string;
@@ -44,6 +49,10 @@ const contactPageContent = {
     title: "Sprechen Sie mit uns.",
     lead: "Ihre Anfrage erreicht direkt unser Team in München. Ein paar Sätze zur Aufgabe genügen für den ersten Austausch.",
     breadcrumb: "Kontakt",
+    section: {
+      label: "Kontaktwege",
+      title: "Direkt oder über das Formular.",
+    },
     form: {
       title: "Ihr Anliegen",
       intro:
@@ -67,6 +76,10 @@ const contactPageContent = {
     title: "Talk to us.",
     lead: "Your inquiry goes directly to our team in Munich. A brief description of the task is enough for an initial discussion.",
     breadcrumb: "Contact",
+    section: {
+      label: "Ways to reach us",
+      title: "Directly or through the form.",
+    },
     form: {
       title: "Your inquiry",
       intro:

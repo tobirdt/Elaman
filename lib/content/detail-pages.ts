@@ -58,9 +58,9 @@ export type CompanyDetailContent = DetailBase & {
     steps: DetailItem[];
   };
   bridge: {
+    label: string;
     title: string;
     body: string;
-    imageAlt: string;
   };
   management: {
     label: string;
@@ -74,6 +74,7 @@ export type SystemsDetailContent = DetailBase & {
   kind: "systems";
   heroAlt: string;
   portfolioLabel: string;
+  portfolioTitle: string;
   portfolio: DetailItem[];
   approach: {
     label: string;
@@ -129,9 +130,9 @@ const detailContent = {
         ],
       },
       bridge: {
+        label: "Zusammenarbeit",
         title: "Dieselben Ansprechpartner von der Analyse bis zum Betrieb.",
         body: "Wer die Anforderungen aufnimmt, begleitet das Projekt auch bei der Inbetriebnahme. So gehen bei Übergaben keine Informationen verloren und Entscheidungen bleiben nachvollziehbar.",
-        imageAlt: "",
       },
       management: {
         label: "Geschäftsführung",
@@ -150,13 +151,14 @@ const detailContent = {
       },
       eyebrow: "Systeme",
       title: "Systeme für Kommunikation, Observation und Auswertung.",
-      lead: "Die folgenden Bereiche zeigen, was Elaman liefert. Wir planen sie einzeln oder stimmen sie als Gesamtsystem aufeinander ab.",
+      lead: "Die folgenden Bereiche zeigen, was Elaman liefert.",
       breadcrumb: "Systeme",
       contact: { label: "Anforderungen besprechen", href: contactPagePath("de") },
       closing:
         "Wenn Sie wissen, was das System leisten soll, haben wir einen Ausgangspunkt.",
       heroAlt: "",
       portfolioLabel: "Leistungsbereiche",
+      portfolioTitle: "Einzeln geplant oder als Gesamtsystem aufeinander abgestimmt.",
       portfolio: [
         {
           title: "Verdeckte Audio- und Videoobservation",
@@ -237,9 +239,9 @@ const detailContent = {
         ],
       },
       bridge: {
+        label: "Working together",
         title: "The same contacts from initial analysis through operation.",
         body: "The people who define the requirements also support commissioning. This prevents information from being lost during handovers and keeps decisions traceable.",
-        imageAlt: "",
       },
       management: {
         label: "Managing Director",
@@ -258,12 +260,13 @@ const detailContent = {
       },
       eyebrow: "Systems",
       title: "Systems for communications, observation and analysis.",
-      lead: "The following areas show what Elaman supplies. We plan them individually or coordinate them as part of a complete system.",
+      lead: "The following areas show what Elaman supplies.",
       breadcrumb: "Systems",
       contact: { label: "Discuss requirements", href: contactPagePath("en") },
       closing: "If you know what the system needs to do, we have a starting point.",
       heroAlt: "",
       portfolioLabel: "Areas of expertise",
+      portfolioTitle: "Planned individually or coordinated as one complete system.",
       portfolio: [
         {
           title: "Covert audio and video surveillance",
@@ -304,9 +307,18 @@ const detailContent = {
   },
 } satisfies Record<Locale, Record<DetailPageKind, DetailPageContent>>;
 
-export function getDetailPageContent(
+type DetailContentByKind = {
+  company: CompanyDetailContent;
+  systems: SystemsDetailContent;
+};
+
+/**
+ * Generic in the kind, so a caller that asks for the company dossier gets the
+ * company type rather than the union and does not have to narrow it again.
+ */
+export function getDetailPageContent<Kind extends DetailPageKind>(
   locale: Locale,
-  kind: DetailPageKind,
-): DetailPageContent {
-  return detailContent[locale][kind];
+  kind: Kind,
+): DetailContentByKind[Kind] {
+  return detailContent[locale][kind] as DetailContentByKind[Kind];
 }

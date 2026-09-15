@@ -180,6 +180,12 @@ The homepage contact section repeats none of that copy: it names the office, lis
 
 ## 9. Metadata and navigation
 
+Every section on every page names itself with a short label of its own, in `label` next to its title: `Unternehmen`, `Vorgehen`, `Systeme`, `Zusammenarbeit`, `Leistungsbereiche`, `Projektansatz`, `Kontaktwege`. It is a category name, two words at most, not a sentence.
+
+The homepage names what a subpage explains. Its process and systems blocks carry the stage and area names only; the descriptions belong to the company and systems pages. Printing both meant a visitor read the same four paragraphs and the same five entries twice and could not see what clicking through added. `tests/e2e/site.spec.ts` asserts that the homepage lists carry no description paragraphs and the dossier lists do.
+
+Contact facts appear once per view. The homepage and both dossiers leave address, phone and email to the footer; only the contact route repeats them, because there they are the content.
+
 Every page below the homepage names its own breadcrumb step, in `breadcrumb` next to its other strings. It is the page's short name, not its title: `Systeme`, `Kontakt`, `Datenschutz`, `Seite nicht gefunden`. The first step, `Start` / `Home`, and the landmark label live once in `lib/content/site.ts`. The rendered trail and the `BreadcrumbList` structured data read the same strings.
 
 Document titles carry a budget of 60 characters including the ` | Elaman` suffix, which `tests/unit/page-content.test.ts` enforces. A browser tab shows roughly twenty characters and a search result about sixty, so anything longer is cut where nobody chose to cut it. The suffix is the short brand: the legal form belongs in the imprint and in the structured data, not in every tab. The homepage sets its title outright and takes no suffix.
