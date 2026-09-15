@@ -25,7 +25,8 @@ fi
 browsers_dir="${PLAYWRIGHT_BROWSERS_PATH:-/opt/pw-browsers}"
 if [ -d "$browsers_dir" ] && [ -f node_modules/playwright-core/browsers.json ]; then
   wanted="$(node -e 'const b=require("./node_modules/playwright-core/browsers.json").browsers;process.stdout.write(b.find(x=>x.name==="chromium").revision)')"
-  have="$(ls -d "$browsers_dir"/chromium-[0-9]* 2>/dev/null | sed 's/.*chromium-//' | sort -n | tail -1 || true)"
+  # Only a real install has chrome-linux; mapped builds use chrome-linux64.
+  have="$(ls -d "$browsers_dir"/chromium-[0-9]*/chrome-linux 2>/dev/null | sed 's|.*chromium-\([0-9]*\)/.*|\1|' | sort -n | tail -1 || true)"
 
   if [ -n "$wanted" ] && [ -n "$have" ] && [ "$wanted" != "$have" ]; then
     full_src="$browsers_dir/chromium-$have/chrome-linux"

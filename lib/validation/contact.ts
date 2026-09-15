@@ -14,8 +14,7 @@ export type ContactFieldErrors = Partial<
 >;
 
 export type ContactValidationResult =
-  | { ok: true; data: ContactEmailPayload }
-  | { ok: false; fields: ContactFieldErrors };
+  { ok: true; data: ContactEmailPayload } | { ok: false; fields: ContactFieldErrors };
 
 export const contactFieldLimits = {
   firstName: { min: 1, max: 80 },
