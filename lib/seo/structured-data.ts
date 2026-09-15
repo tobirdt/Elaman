@@ -38,6 +38,7 @@ function organizationNode() {
       availableLanguage: ["de", "en"],
     },
     knowsAbout: [
+      "Communications technology",
       "Security technology",
       "System integration",
       "Covert audio and video surveillance",

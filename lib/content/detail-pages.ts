@@ -92,12 +92,12 @@ const detailContent = {
       metadata: {
         title: "Unternehmen – Sicherheitslösungen aus München",
         description:
-          "Elaman GmbH in München plant und integriert Sicherheitssysteme für Sicherheitsbehörden und sicherheitsrelevante Organisationen.",
+          "Elaman GmbH in München plant und integriert Kommunikations- und Sicherheitssysteme für Sicherheitsbehörden und sicherheitsrelevante Organisationen.",
         ogLocale: "de_DE",
       },
       eyebrow: "Unternehmen",
       title: "Sicherheitslösungen aus München.",
-      lead: "Elaman ist ein Münchner Unternehmen für Sicherheitstechnik. Für Sicherheitsbehörden und sicherheitsrelevante Organisationen planen wir Systeme, führen Produkte und Komponenten zusammen und bleiben bis in den laufenden Betrieb ansprechbar.",
+      lead: "Elaman ist ein Münchner Unternehmen für Kommunikations- und Sicherheitstechnik. Für Sicherheitsbehörden und sicherheitsrelevante Organisationen planen wir Systeme, führen Produkte und Komponenten zusammen und bleiben bis in den laufenden Betrieb ansprechbar.",
       breadcrumb: "Unternehmen",
       contact: { label: "Kontakt aufnehmen", href: contactPagePath("de") },
       closing:
@@ -115,24 +115,24 @@ const detailContent = {
           {
             title: "Planung & Integration",
             description:
-              "Auf dieser Basis wählen wir Produkte und Komponenten aus und legen die Schnittstellen fest. Vorhandene Systeme werden eingebunden, wo immer das sinnvoll ist.",
+              "Aus dem Anforderungsprofil entsteht ein Systementwurf: welche Komponenten, welche Schnittstellen, welche Reihenfolge. Vorhandene Systeme binden wir ein, wo immer das sinnvoll ist.",
           },
           {
             title: "Schlüsselfertige Umsetzung",
             description:
-              "Aufbau, Integration und Inbetriebnahme liegen in einer Hand. Übergeben wird ein System, das als Ganzes geprüft ist.",
+              "Aufbau, Integration und Inbetriebnahme liegen in einer Hand. Wir übergeben ein System, das als Ganzes geprüft ist.",
           },
           {
             title: "Schulung & Betreuung",
             description:
-              "Wir schulen die Teams am fertigen System. Im laufenden Betrieb bleiben wir technischer Ansprechpartner, bei Fragen ebenso wie bei Erweiterungen.",
+              "Wir schulen die Teams am fertigen System und bleiben danach technischer Ansprechpartner, bei Fragen ebenso wie bei Erweiterungen. Diese Betreuung läuft über Jahre, nicht über Monate.",
           },
         ],
       },
       bridge: {
         label: "Zusammenarbeit",
         title: "Dieselben Ansprechpartner von der Analyse bis zum Betrieb.",
-        body: "Wer die Anforderungen aufnimmt, begleitet das Projekt auch bei der Inbetriebnahme. So gehen bei Übergaben keine Informationen verloren und Entscheidungen bleiben nachvollziehbar.",
+        body: "Wer die Anforderungen aufnimmt, ist später auch bei der Inbetriebnahme dabei. Das erspart Übergaben, bei denen Wissen verloren geht, und hält Entscheidungen nachvollziehbar.",
       },
       management: {
         label: "Geschäftsführung",
@@ -151,14 +151,14 @@ const detailContent = {
       },
       eyebrow: "Systeme",
       title: "Systeme für Kommunikation, Observation und Auswertung.",
-      lead: "Die folgenden Bereiche zeigen, was Elaman liefert.",
+      lead: "Die folgenden Bereiche beschreiben, was Elaman liefert. Entscheidend ist, wie sie zusammenwirken: Ein Observationssystem nützt wenig, wenn die Auswertung nicht mithält.",
       breadcrumb: "Systeme",
       contact: { label: "Anforderungen besprechen", href: contactPagePath("de") },
       closing:
         "Wenn Sie wissen, was das System leisten soll, haben wir einen Ausgangspunkt.",
       heroAlt: "",
       portfolioLabel: "Leistungsbereiche",
-      portfolioTitle: "Einzeln geplant oder als Gesamtsystem aufeinander abgestimmt.",
+      portfolioTitle: "Einzeln oder im Gesamtsystem.",
       portfolio: [
         {
           title: "Verdeckte Audio- und Videoobservation",
@@ -178,7 +178,7 @@ const detailContent = {
         {
           title: "Funkerfassungssysteme für Mobilfunk in Spezialfahrzeugen",
           description:
-            "Die Technik wird in Fahrzeuge integriert, die für das jeweilige Projekt ausgestattet werden.",
+            "Projektbezogen ausgestattete Fahrzeuge, in denen Technik, Arbeitsplätze und Kommunikation als Einheit geplant werden.",
         },
         {
           title: "Schulung und Betreuung",
@@ -202,12 +202,12 @@ const detailContent = {
       metadata: {
         title: "Company – security solutions from Munich",
         description:
-          "Elaman GmbH in Munich plans and integrates security systems exclusively for security authorities and security-related organisations.",
+          "Elaman GmbH in Munich plans and integrates communications and security systems exclusively for security authorities and security-related organisations.",
         ogLocale: "en_GB",
       },
       eyebrow: "Company",
       title: "Security solutions from Munich.",
-      lead: "Elaman is a Munich-based security technology company. We plan systems for security authorities and security-related organisations, bring products and components together and remain available through day-to-day operation.",
+      lead: "Elaman is a Munich-based communications and security technology company. We plan systems for security authorities and security-related organisations, bring products and components together and remain available through day-to-day operation.",
       breadcrumb: "Company",
       contact: { label: "Discuss a project", href: contactPagePath("en") },
       closing: "Call or email us, even if not every detail has been decided.",
@@ -224,24 +224,24 @@ const detailContent = {
           {
             title: "Planning & integration",
             description:
-              "On that basis we select products and components and define the interfaces. Existing systems are integrated wherever that makes sense.",
+              "The requirements profile becomes a system design: which components, which interfaces, in which order. We integrate existing systems wherever that makes sense.",
           },
           {
             title: "Turnkey implementation",
             description:
-              "Installation, integration and commissioning stay in one hand. What we hand over is a system that has been tested as a whole.",
+              "Installation, integration and commissioning stay in one hand. We hand over a system that has been tested as a whole.",
           },
           {
             title: "Training & support",
             description:
-              "We train the teams on the finished system. During operation we remain the technical point of contact, for questions as well as for extensions.",
+              "We train the teams on the finished system and remain the technical point of contact afterwards, for questions as well as for extensions. That support runs over years, not months.",
           },
         ],
       },
       bridge: {
         label: "Working together",
         title: "The same contacts from initial analysis through operation.",
-        body: "The people who define the requirements also support commissioning. This prevents information from being lost during handovers and keeps decisions traceable.",
+        body: "Whoever takes down the requirements is still there at commissioning. That spares the handovers where knowledge gets lost, and keeps decisions traceable.",
       },
       management: {
         label: "Managing Director",
@@ -260,13 +260,13 @@ const detailContent = {
       },
       eyebrow: "Systems",
       title: "Systems for communications, observation and analysis.",
-      lead: "The following areas show what Elaman supplies.",
+      lead: "The areas below describe what Elaman supplies. What matters is how they work together: an observation system is of little use if the analysis cannot keep up.",
       breadcrumb: "Systems",
       contact: { label: "Discuss requirements", href: contactPagePath("en") },
       closing: "If you know what the system needs to do, we have a starting point.",
       heroAlt: "",
       portfolioLabel: "Areas of expertise",
-      portfolioTitle: "Planned individually or coordinated as one complete system.",
+      portfolioTitle: "Individually or as one system.",
       portfolio: [
         {
           title: "Covert audio and video surveillance",
@@ -287,7 +287,7 @@ const detailContent = {
           title:
             "Radio monitoring systems for mobile communications in special-purpose vehicles",
           description:
-            "The equipment is integrated into vehicles configured for the specific project.",
+            "Vehicles fitted out for the specific project, in which technology, workstations and communications are planned as one unit.",
         },
         {
           title: "Training and support",
@@ -297,7 +297,7 @@ const detailContent = {
       ],
       approach: {
         label: "Project approach",
-        title: "Requirements first, then the technical solution.",
+        title: "Requirements first, technology second.",
         paragraphs: [
           "Before selecting any technology, we establish what the system must do, which systems and products are already in place, and what spatial and organisational limits apply.",
           "We then select the components, bring them together into a complete system and support commissioning.",

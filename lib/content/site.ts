@@ -22,11 +22,6 @@ type PrimaryNavigationItem = NavigationItem & {
   mobileOnly?: boolean;
 };
 
-type ContentItem = {
-  title: string;
-  description: string;
-};
-
 type ContactFormContent = {
   fields: {
     firstName: string;
@@ -107,8 +102,11 @@ export type LocalizedSiteContent = {
     label: string;
     title: string;
     intro: string;
-    /** The homepage prints the stage names; the company page explains them. */
-    steps: ContentItem[];
+    /**
+     * Names only. The company page carries the descriptions, and holding them
+     * twice invited the two from drifting apart.
+     */
+    steps: Array<{ title: string }>;
     detailLink: NavigationItem;
   };
   systems: {
@@ -143,7 +141,7 @@ export const siteContent = {
     metadata: {
       title: "Elaman – German Security Solutions, Munich",
       description:
-        "Elaman GmbH in Munich supplies security technology for covert audio and video surveillance, analysis, TSCM and radio monitoring for mobile communications.",
+        "Elaman GmbH in Munich supplies communications and security technology for covert audio and video surveillance, analysis, TSCM and radio monitoring.",
       ogLocale: "en_GB",
     },
     breadcrumb: {
@@ -212,22 +210,15 @@ export const siteContent = {
       steps: [
         {
           title: "Analysis & consulting",
-          description:
-            "We establish what the system must do and the conditions in which it will be used.",
         },
         {
           title: "Planning & integration",
-          description:
-            "We turn the requirements into a technical solution and coordinate the components and interfaces.",
         },
         {
           title: "Turnkey implementation",
-          description: "We handle installation, integration and commissioning.",
         },
         {
           title: "Training & support",
-          description:
-            "We train the teams on the finished system and remain available throughout operation.",
         },
       ],
       detailLink: {
@@ -308,9 +299,9 @@ export const siteContent = {
   },
   de: {
     metadata: {
-      title: "Elaman – Sicherheitstechnik aus München",
+      title: "Elaman – Kommunikations- und Sicherheitstechnik, München",
       description:
-        "Elaman GmbH in München liefert Sicherheitstechnik für verdeckte Audio- und Videoobservation, Auswertung, Lauschabwehr und Funkerfassung.",
+        "Elaman GmbH in München liefert Kommunikations- und Sicherheitstechnik für verdeckte Audio- und Videoobservation, Auswertung, Lauschabwehr und Funkerfassung.",
       ogLocale: "de_DE",
     },
     breadcrumb: {
@@ -379,22 +370,15 @@ export const siteContent = {
       steps: [
         {
           title: "Analyse & Beratung",
-          description:
-            "Wir erfassen, was das System leisten muss und unter welchen Bedingungen es eingesetzt wird.",
         },
         {
           title: "Planung & Integration",
-          description:
-            "Aus dem Anforderungsprofil entwickeln wir die technische Lösung und stimmen Komponenten und Schnittstellen aufeinander ab.",
         },
         {
           title: "Schlüsselfertige Umsetzung",
-          description: "Wir übernehmen Aufbau, Integration und Inbetriebnahme.",
         },
         {
           title: "Schulung & Betreuung",
-          description:
-            "Wir schulen die Teams am fertigen System und bleiben im laufenden Betrieb erreichbar.",
         },
       ],
       detailLink: {
