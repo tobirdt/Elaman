@@ -6,8 +6,8 @@ const publicRoutes = [
   { language: "en", path: "/en" },
   { language: "de", path: "/de/unternehmen" },
   { language: "en", path: "/en/company" },
-  { language: "de", path: "/de/systeme" },
-  { language: "en", path: "/en/systems" },
+  { language: "de", path: "/de/loesungen" },
+  { language: "en", path: "/en/solutions" },
   { language: "de", path: "/de/kontakt" },
   { language: "en", path: "/en/contact" },
   { language: "de", path: "/de/impressum" },
@@ -116,7 +116,7 @@ test("the homepages expose the approved bilingual portfolio", async ({ page }) =
 
     await expect(page.getByText(route.tagline, { exact: true })).toBeVisible();
     await expect(page.getByText("25+", { exact: true })).toHaveCount(1);
-    await expect(page.locator("#systems li")).toHaveCount(5);
+    await expect(page.locator("#solutions li")).toHaveCount(5);
     await expect(page.locator("#protection")).toHaveCount(0);
     await expect(
       page.getByRole("link", { name: route.excludedNavigation, exact: true }),
@@ -216,7 +216,7 @@ test("the desktop header exposes the three global destinations", async ({
   const navigation = page.getByRole("navigation", { name: "Hauptnavigation" }).first();
   await expect(navigation.getByRole("link")).toHaveText([
     "Unternehmen",
-    "Systeme",
+    "Lösungen",
     "Kontakt",
   ]);
   await expect(navigation.getByRole("link", { name: "Vorgehen" })).toHaveCount(0);
@@ -225,10 +225,46 @@ test("the desktop header exposes the three global destinations", async ({
   await expect(page.locator('main a[href="/de/kontakt"]')).toHaveCount(1);
 });
 
+test("the signet and the home word are one link to the homepage", async ({
+  isMobile,
+  page,
+}) => {
+  test.skip(Boolean(isMobile), "The home word is desktop-only.");
+
+  await page.goto("/de/loesungen", { waitUntil: "networkidle" });
+
+  // One visible link, not a signet and a word competing for the same
+  // destination. The mobile overlay carries its own home entry and stays in
+  // the DOM at every width, so the count is taken on what is actually shown.
+  const header = page.locator("header");
+  const home = header.locator('a[href="/de"]:visible');
+  await expect(home).toHaveCount(1);
+  await expect(home).toContainText("Start");
+
+  await home.click();
+  await expect(page).toHaveURL(/\/de$/);
+  await expect(header.locator('a[href="/de"]:visible')).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+});
+
+test("the renamed solutions page keeps its old address working", async ({ request }) => {
+  for (const [from, to] of [
+    ["/de/systeme", "/de/loesungen"],
+    ["/en/systems", "/en/solutions"],
+  ] as const) {
+    const response = await request.get(from, { maxRedirects: 0 });
+
+    expect(response.status(), from).toBe(308);
+    expect(response.headers().location, from).toBe(to);
+  }
+});
+
 test("the header reaches the contact page from a dossier", async ({ isMobile, page }) => {
   test.skip(Boolean(isMobile), "The inline navigation is desktop-only.");
 
-  await page.goto("/de/systeme", { waitUntil: "networkidle" });
+  await page.goto("/de/loesungen", { waitUntil: "networkidle" });
   await page
     .getByRole("navigation", { name: "Hauptnavigation" })
     .first()
@@ -252,7 +288,7 @@ test("the footer carries the global navigation and the legal routes", async ({
   await expect(footerNavigation.getByRole("link")).toHaveText([
     "Start",
     "Unternehmen",
-    "Systeme",
+    "Lösungen",
     "Kontakt",
   ]);
   await expect(page.locator('footer a[href="/de/impressum"]').first()).toBeVisible();
@@ -302,7 +338,7 @@ test("the mobile navigation behaves as a modal and remains keyboard operable", a
 
 const subpages = [
   { path: "/de/unternehmen", current: "Unternehmen" },
-  { path: "/de/systeme", current: "Systeme" },
+  { path: "/de/loesungen", current: "Lösungen" },
   { path: "/de/kontakt", current: "Kontakt" },
   { path: "/de/impressum", current: "Impressum" },
   { path: "/de/datenschutz", current: "Datenschutz" },
@@ -368,7 +404,7 @@ test("the homepage keeps the full first screen to itself", async ({ page }) => {
  * width and the eye had no line to follow down a page.
  */
 test("every section heading sits on the page's own left edge", async ({ page }) => {
-  for (const path of ["/de", "/de/unternehmen", "/de/systeme", "/de/kontakt"]) {
+  for (const path of ["/de", "/de/unternehmen", "/de/loesungen", "/de/kontakt"]) {
     await page.goto(path, { waitUntil: "networkidle" });
 
     const edges = await page.evaluate(() => {
@@ -400,11 +436,11 @@ test("the homepage names the subpages' lists and the subpages explain them", asy
   await page.goto("/de", { waitUntil: "networkidle" });
   await expect(page.locator("#advice li")).toHaveCount(4);
   await expect(page.locator("#advice li p")).toHaveCount(0);
-  await expect(page.locator("#systems li p")).toHaveCount(0);
+  await expect(page.locator("#solutions li p")).toHaveCount(0);
 
   await page.goto("/de/unternehmen", { waitUntil: "networkidle" });
   await expect(page.locator("main ol li p")).toHaveCount(4);
 
-  await page.goto("/de/systeme", { waitUntil: "networkidle" });
+  await page.goto("/de/loesungen", { waitUntil: "networkidle" });
   await expect(page.locator("main ol li p")).toHaveCount(5);
 });

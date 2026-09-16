@@ -44,9 +44,9 @@ describe("breadcrumb labels", () => {
 describe("section labels", () => {
   it("gives every section on the homepage a label of its own", () => {
     for (const locale of locales) {
-      const { profile, advice, systems } = getSiteContent(locale);
+      const { profile, advice, solutions } = getSiteContent(locale);
 
-      for (const label of [profile.label, advice.label, systems.label]) {
+      for (const label of [profile.label, advice.label, solutions.label]) {
         expect(label.length).toBeGreaterThan(0);
       }
     }
@@ -55,18 +55,18 @@ describe("section labels", () => {
   it("gives every section on a dossier a label of its own", () => {
     for (const locale of locales) {
       const company = getDetailPageContent(locale, "company");
-      const systems = getDetailPageContent(locale, "systems");
+      const solutions = getDetailPageContent(locale, "solutions");
 
       for (const label of [
         company.process.label,
         company.bridge.label,
-        systems.portfolioLabel,
-        systems.approach.label,
+        solutions.portfolioLabel,
+        solutions.approach.label,
       ]) {
         expect(label.length).toBeGreaterThan(0);
       }
 
-      expect(systems.portfolioTitle.length).toBeGreaterThan(0);
+      expect(solutions.portfolioTitle.length).toBeGreaterThan(0);
     }
   });
 });

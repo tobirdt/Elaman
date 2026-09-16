@@ -70,8 +70,8 @@ export type CompanyDetailContent = DetailBase & {
   };
 };
 
-export type SystemsDetailContent = DetailBase & {
-  kind: "systems";
+export type SolutionsDetailContent = DetailBase & {
+  kind: "solutions";
   heroAlt: string;
   portfolioLabel: string;
   portfolioTitle: string;
@@ -83,7 +83,7 @@ export type SystemsDetailContent = DetailBase & {
   };
 };
 
-export type DetailPageContent = CompanyDetailContent | SystemsDetailContent;
+export type DetailPageContent = CompanyDetailContent | SolutionsDetailContent;
 
 const detailContent = {
   de: {
@@ -141,18 +141,18 @@ const detailContent = {
         href: legalPagePath("de", "imprint"),
       },
     },
-    systems: {
-      kind: "systems",
+    solutions: {
+      kind: "solutions",
       metadata: {
-        title: "Systeme – Observation, Auswertung, Lauschabwehr",
+        title: "Lösungen – Observation, Auswertung, Lauschabwehr",
         description:
           "Elaman liefert Systeme für verdeckte Audio- und Videoobservation, Auswertung, Lauschabwehr und Funkerfassung sowie Schulung und Betreuung.",
         ogLocale: "de_DE",
       },
-      eyebrow: "Systeme",
+      eyebrow: "Lösungen",
       title: "Systeme für Kommunikation, Observation und Auswertung.",
       lead: "Die folgenden Bereiche beschreiben, was Elaman liefert. Entscheidend ist, wie sie zusammenwirken: Ein Observationssystem nützt wenig, wenn die Auswertung nicht mithält.",
-      breadcrumb: "Systeme",
+      breadcrumb: "Lösungen",
       contact: { label: "Anforderungen besprechen", href: contactPagePath("de") },
       closing:
         "Wenn Sie wissen, was das System leisten soll, haben wir einen Ausgangspunkt.",
@@ -250,18 +250,18 @@ const detailContent = {
         href: legalPagePath("en", "imprint"),
       },
     },
-    systems: {
-      kind: "systems",
+    solutions: {
+      kind: "solutions",
       metadata: {
-        title: "Systems – surveillance, analysis and TSCM",
+        title: "Solutions – surveillance, analysis and TSCM",
         description:
           "Elaman supplies systems for covert audio and video surveillance, analysis, TSCM and radio monitoring for mobile communications, as well as training and support.",
         ogLocale: "en_GB",
       },
-      eyebrow: "Systems",
+      eyebrow: "Solutions",
       title: "Systems for communications, observation and analysis.",
       lead: "The areas below describe what Elaman supplies. What matters is how they work together: an observation system is of little use if the analysis cannot keep up.",
-      breadcrumb: "Systems",
+      breadcrumb: "Solutions",
       contact: { label: "Discuss requirements", href: contactPagePath("en") },
       closing: "If you know what the system needs to do, we have a starting point.",
       heroAlt: "",
@@ -309,7 +309,7 @@ const detailContent = {
 
 type DetailContentByKind = {
   company: CompanyDetailContent;
-  systems: SystemsDetailContent;
+  solutions: SolutionsDetailContent;
 };
 
 /**

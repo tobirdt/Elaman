@@ -38,6 +38,31 @@ function lastCommitDate(files: readonly string[]): string | null {
 
 const today = new Date().toISOString().slice(0, 10);
 
+/**
+ * True when any of the files has uncommitted edits, staged or not. Without
+ * this the check could only ever see committed dates, so it fired one step
+ * too late: the copy change and its stale date went in together and CI
+ * caught them afterwards. Counting a dirty file as changed today moves the
+ * failure to where it belongs, before the commit.
+ */
+function hasUncommittedChanges(files: readonly string[]): boolean {
+  try {
+    return (
+      execFileSync("git", ["status", "--porcelain", "--", ...files], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      }).trim().length > 0
+    );
+  } catch {
+    return false;
+  }
+}
+
+/** The last commit to the files, or today when they are still uncommitted. */
+function lastChangeDate(files: readonly string[]): string | null {
+  return hasUncommittedChanges(files) ? today : lastCommitDate(files);
+}
+
 describe("content dates", () => {
   it("names a date for every route", () => {
     for (const key of contentKeys) {
@@ -56,12 +81,12 @@ describe("content dates", () => {
   it.skipIf(history === null).each(contentKeys)(
     "keeps %s at least as new as the last commit to its copy",
     (key) => {
-      const committed = lastCommitDate(contentSources[key]);
+      const changed = lastChangeDate(contentSources[key]);
 
-      expect(committed).not.toBeNull();
+      expect(changed).not.toBeNull();
       expect(
-        contentLastModified[key] >= committed!,
-        `${key}: ${contentSources[key].join(", ")} changed on ${committed}, contentLastModified says ${contentLastModified[key]}`,
+        contentLastModified[key] >= changed!,
+        `${key}: ${contentSources[key].join(", ")} changed on ${changed}, contentLastModified says ${contentLastModified[key]}`,
       ).toBe(true);
     },
   );

@@ -9,7 +9,7 @@ import { SectionIntro } from "@/components/ui/SectionIntro";
 import type {
   CompanyDetailContent,
   DetailPageContent,
-  SystemsDetailContent,
+  SolutionsDetailContent,
 } from "@/lib/content/detail-pages";
 import type { Locale } from "@/lib/i18n";
 
@@ -97,11 +97,11 @@ function CompanyDossier({
   );
 }
 
-function SystemsDossier({
+function SolutionsDossier({
   content,
   locale,
 }: {
-  content: SystemsDetailContent;
+  content: SolutionsDetailContent;
   locale: Locale;
 }) {
   return (
@@ -173,7 +173,7 @@ export function DetailDossier({ content, locale }: DetailDossierProps) {
   switch (content.kind) {
     case "company":
       return <CompanyDossier content={content} locale={locale} />;
-    case "systems":
-      return <SystemsDossier content={content} locale={locale} />;
+    case "solutions":
+      return <SolutionsDossier content={content} locale={locale} />;
   }
 }

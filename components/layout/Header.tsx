@@ -133,6 +133,13 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
     return pathname === href;
   }
 
+  /**
+   * The home entry already exists in the navigation list, where `mobileOnly`
+   * keeps it out of the inline menu. Reading its label here means the signet
+   * lockup and the mobile menu always say the same word.
+   */
+  const homeEntry = content.main.find((item) => item.href === homePath(locale));
+
   return (
     <>
       <a
@@ -148,10 +155,17 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
         }`}
       >
         <Container className="flex h-full items-center justify-between gap-3 lg:gap-5">
+          {/*
+            Signet and word are one link, not two next to each other. The
+            signet alone gave no sign that it was clickable, and two adjacent
+            links to the same page read as a duplicate to a screen reader.
+            Exactly one of the two labels is exposed at any width, so the
+            accessible name always matches what is on screen.
+          */}
           <Link
             href={homePath(locale)}
-            className="flex min-h-11 min-w-11 shrink-0 items-center"
-            aria-label={content.homeLabel}
+            className="group flex min-h-11 min-w-11 shrink-0 items-center gap-2.5"
+            aria-current={isCurrentPage(homePath(locale)) ? "page" : undefined}
             aria-hidden={menuOpen || undefined}
             tabIndex={menuOpen ? -1 : undefined}
           >
@@ -164,6 +178,12 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
               sizes="(min-width: 1024px) 56px, 48px"
               className="size-12 lg:size-14"
             />
+            <span className="sr-only lg:hidden">{content.homeLabel}</span>
+            {homeEntry ? (
+              <span className="hidden text-[length:var(--type-small)] font-semibold tracking-[-0.01em] text-graphite transition-colors [transition-duration:var(--motion-fast)] group-hover:text-elaman-blue lg:inline">
+                {homeEntry.label}
+              </span>
+            ) : null}
           </Link>
 
           <div className="ml-auto hidden items-center lg:flex">

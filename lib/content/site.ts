@@ -109,7 +109,7 @@ export type LocalizedSiteContent = {
     steps: Array<{ title: string }>;
     detailLink: NavigationItem;
   };
-  systems: {
+  solutions: {
     label: string;
     title: string;
     intro: string;
@@ -152,7 +152,7 @@ export const siteContent = {
       main: [
         { label: "Home", href: homePath("en"), mobileOnly: true },
         { label: "Company", href: detailPagePath("en", "company") },
-        { label: "Systems", href: detailPagePath("en", "systems") },
+        { label: "Solutions", href: detailPagePath("en", "solutions") },
         { label: "Contact", href: contactPagePath("en") },
       ],
       legal: [
@@ -226,8 +226,8 @@ export const siteContent = {
         href: detailPagePath("en", "company"),
       },
     },
-    systems: {
-      label: "Systems",
+    solutions: {
+      label: "Solutions",
       title: "Systems for communications, observation and analysis.",
       intro:
         "Elaman supplies these systems individually or integrates them into a complete system.",
@@ -242,8 +242,8 @@ export const siteContent = {
         { title: "Training and support" },
       ],
       detailLink: {
-        label: "Systems overview",
-        href: detailPagePath("en", "systems"),
+        label: "Solutions overview",
+        href: detailPagePath("en", "solutions"),
       },
     },
     contact: {
@@ -312,7 +312,7 @@ export const siteContent = {
       main: [
         { label: "Start", href: homePath("de"), mobileOnly: true },
         { label: "Unternehmen", href: detailPagePath("de", "company") },
-        { label: "Systeme", href: detailPagePath("de", "systems") },
+        { label: "Lösungen", href: detailPagePath("de", "solutions") },
         { label: "Kontakt", href: contactPagePath("de") },
       ],
       legal: [
@@ -386,8 +386,8 @@ export const siteContent = {
         href: detailPagePath("de", "company"),
       },
     },
-    systems: {
-      label: "Systeme",
+    solutions: {
+      label: "Lösungen",
       title: "Systeme für Kommunikation, Observation und Auswertung.",
       intro:
         "Elaman liefert diese Systeme einzeln oder führt sie zu einem Gesamtsystem zusammen.",
@@ -399,8 +399,8 @@ export const siteContent = {
         { title: "Schulung und Betreuung" },
       ],
       detailLink: {
-        label: "Systeme im Überblick",
-        href: detailPagePath("de", "systems"),
+        label: "Lösungen im Überblick",
+        href: detailPagePath("de", "solutions"),
       },
     },
     contact: {

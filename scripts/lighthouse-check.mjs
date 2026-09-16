@@ -17,7 +17,7 @@ import lighthouse from "lighthouse";
 const port = 3002;
 const debugPort = 9333;
 const origin = `http://127.0.0.1:${port}`;
-const routes = ["/de", "/de/unternehmen", "/de/systeme", "/de/kontakt"];
+const routes = ["/de", "/de/unternehmen", "/de/loesungen", "/de/kontakt"];
 const runs = 3;
 // Performance on a static site moves two or three points between runs of
 // the simulated mobile profile even on the same machine; a regression that

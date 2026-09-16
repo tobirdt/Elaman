@@ -58,7 +58,7 @@ const socialImages: Record<DetailPageKind, SocialImage> = {
       en: "Elaman office in Munich",
     },
   },
-  systems: {
+  solutions: {
     path: "/images/elaman-systems-og.jpg",
     width: 1200,
     height: 630,
