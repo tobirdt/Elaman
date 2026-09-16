@@ -55,8 +55,8 @@ Browser and social titles are localised, because the `<title>` is the most heavi
 | Security technology and security solutions                                      | Hero, profile, metadata                   |
 | Established products combined with current technologies                         | Profile and advice                        |
 | Analysis, planning, integration, and turnkey implementation                     | Advice process                            |
-| Professional training and long-term support                                     | Advice process and systems ledger         |
-| Five approved capability areas                                                  | Systems ledger                            |
+| Professional training and long-term support                                     | Advice process and solutions ledger       |
+| Five approved capability areas                                                  | Solutions ledger                          |
 | Clients are exclusively security authorities and security-related organisations | Profile and company dossier               |
 | Munich office                                                                   | Contact image, details, and footer        |
 | Holger Rumscheidt is named as General Manager                                   | Company dossier, imprint, structured data |
@@ -65,27 +65,27 @@ Do not add percentages, certifications, awards, project counts, client logos, na
 
 ## 3. Current information architecture
 
-| Anchor     | Content responsibility                                                                 |
-| ---------- | -------------------------------------------------------------------------------------- |
-| `#hero`    | Company name, approved bridge tagline, and the single `25+` experience fact            |
-| `#profile` | German/English Security Solutions title, technology combination, and project alignment |
-| `#advice`  | Four-stage path from analysis and advice to training and long-term support             |
-| `#systems` | Five capability categories without technical specifications                            |
-| closing    | One sentence and one route to the contact page, on navy                                |
+| Anchor       | Content responsibility                                                                 |
+| ------------ | -------------------------------------------------------------------------------------- |
+| `#hero`      | Company name, approved bridge tagline, and the single `25+` experience fact            |
+| `#profile`   | German/English Security Solutions title, technology combination, and project alignment |
+| `#advice`    | Four-stage path from analysis and advice to training and long-term support             |
+| `#solutions` | Five capability categories without technical specifications                            |
+| closing      | One sentence and one route to the contact page, on navy                                |
 
-The homepage, the company dossier, and the systems dossier end with the same navy closing band: one statement and one link, no contact facts. The contact route and the legal documents have none, because they are the destination. Below that, the footer closes every route with the same three columns, navigation, contact, legal.
+The homepage, the company dossier, and the solutions dossier end with the same navy closing band: one statement and one link, no contact facts. The contact route and the legal documents have none, because they are the destination. Below that, the footer closes every route with the same three columns, navigation, contact, legal.
 
 The site has three reciprocal localised routes beyond the homepage:
 
-| Responsibility                    | German            | English       |
-| --------------------------------- | ----------------- | ------------- |
-| Company and working approach      | `/de/unternehmen` | `/en/company` |
-| Systems and five capability areas | `/de/systeme`     | `/en/systems` |
-| Inquiry form and direct contact   | `/de/kontakt`     | `/en/contact` |
+| Responsibility                      | German            | English         |
+| ----------------------------------- | ----------------- | --------------- |
+| Company and working approach        | `/de/unternehmen` | `/en/company`   |
+| Solutions and five capability areas | `/de/loesungen`   | `/en/solutions` |
+| Inquiry form and direct contact     | `/de/kontakt`     | `/en/contact`   |
 
 These pages add useful context, not new claims. They must not become thin keyword pages, product catalogues, or substitutes for a factual source that is not available.
 
-The global header exposes exactly these three pages plus the locale switch — Unternehmen/Company, Systeme/Systems, Kontakt/Contact — with no in-page anchors; the points-only signet is the desktop Home action, and the mobile menu prepends an explicit Start/Home entry. The footer repeats the same navigation, the contact details, and the legal links on every page (see § 9).
+The global header exposes exactly these three pages plus the locale switch — Unternehmen/Company, Lösungen/Solutions, Kontakt/Contact — with no in-page anchors; the points-only signet is the desktop Home action, and the mobile menu prepends an explicit Start/Home entry. The footer repeats the same navigation, the contact details, and the legal links on every page (see § 9).
 
 ## 4. Hero
 
@@ -138,7 +138,7 @@ Descriptions remain concise and non-operational. The process may explain that El
 
 The homepage prints the four stage names and nothing else; the descriptions live on the Company dossier alone. Holding a short and a long version of the same four steps meant two texts that could drift apart, and a visitor who clicked through read the same thing twice.
 
-## 7. Systems
+## 7. Solutions
 
 Title:
 
@@ -155,7 +155,7 @@ The approved capability labels are:
 |       04 | Funkerfassungssysteme für Mobilfunk in Spezialfahrzeugen | Radio monitoring systems for mobile communications in special-purpose vehicles |
 |       05 | Schulung und Betreuung                                   | Training and support                                                           |
 
-The homepage ledger names capability categories only. The Systems dossier may add concise descriptions of each category and the project-specific integration approach. It does not expose technical specifications, customers, countries, operational scenarios, or performance claims.
+The homepage ledger names capability categories only. The Solutions dossier may add concise descriptions of each category and the project-specific integration approach. It does not expose technical specifications, customers, countries, operational scenarios, or performance claims.
 
 ## 8. Contact
 
@@ -182,28 +182,28 @@ The homepage repeats none of that copy. It ends with the closing band: one sente
 
 ## 9. Metadata and navigation
 
-Every section on every page names itself with a short label of its own, in `label` next to its title: `Unternehmen`, `Vorgehen`, `Systeme`, `Zusammenarbeit`, `Leistungsbereiche`, `Projektansatz`, `Kontaktwege`. It is a category name, two words at most, not a sentence, set in mono capitals directly above the heading.
+Every section on every page names itself with a short label of its own, in `label` next to its title: `Unternehmen`, `Vorgehen`, `Lösungen`, `Zusammenarbeit`, `Leistungsbereiche`, `Projektansatz`, `Kontaktwege`. It is a category name, two words at most, not a sentence, set in mono capitals directly above the heading.
 
-The homepage names what a subpage explains. Its process and systems blocks carry the stage and area names only; the descriptions belong to the company and systems pages. Printing both meant a visitor read the same four paragraphs and the same five entries twice and could not see what clicking through added. `tests/e2e/site.spec.ts` asserts that the homepage lists carry no description paragraphs and the dossier lists do.
+The homepage names what a subpage explains. Its process and systems blocks carry the stage and area names only; the descriptions belong to the company and solutions pages. Printing both meant a visitor read the same four paragraphs and the same five entries twice and could not see what clicking through added. `tests/e2e/site.spec.ts` asserts that the homepage lists carry no description paragraphs and the dossier lists do.
 
 Contact facts appear once per view. The homepage and both dossiers leave address, phone and email to the footer; only the contact route repeats them, because there they are the content.
 
-Every page below the homepage names its own breadcrumb step, in `breadcrumb` next to its other strings. It is the page's short name, not its title: `Systeme`, `Kontakt`, `Datenschutz`, `Seite nicht gefunden`. The first step, `Start` / `Home`, and the landmark label live once in `lib/content/site.ts`. The rendered trail and the `BreadcrumbList` structured data read the same strings.
+Every page below the homepage names its own breadcrumb step, in `breadcrumb` next to its other strings. It is the page's short name, not its title: `Lösungen`, `Kontakt`, `Datenschutz`, `Seite nicht gefunden`. The first step, `Start` / `Home`, and the landmark label live once in `lib/content/site.ts`. The rendered trail and the `BreadcrumbList` structured data read the same strings.
 
 Document titles carry a budget of 60 characters including the ` | Elaman` suffix, which `tests/unit/page-content.test.ts` enforces. A browser tab shows roughly twenty characters and a search result about sixty, so anything longer is cut where nobody chose to cut it. The suffix is the short brand: the legal form belongs in the imprint and in the structured data, not in every tab. The homepage sets its title outright and takes no suffix.
 
 - German default: `/de`
 - English: `/en`
-- Localised dossier pairs: `/de/unternehmen` ↔ `/en/company` and `/de/systeme` ↔ `/en/systems`
+- Localised dossier pairs: `/de/unternehmen` ↔ `/en/company` and `/de/loesungen` ↔ `/en/solutions`. The solutions page was called Systeme / Systems until 16 September 2026; both old paths redirect permanently (308).
 - Localised contact route: `/de/kontakt` ↔ `/en/contact`
 - Legal routes are localised: `/de/impressum` ↔ `/en/site-notice` and `/de/datenschutz` ↔ `/en/privacy-policy`. The retired `/imprint` and `/private-policy` paths redirect permanently to the German documents.
 - Global header navigation:
-  - Desktop DE: Unternehmen, Systeme, Kontakt
-  - Desktop EN: Company, Systems, Contact
+  - Desktop DE: Unternehmen, Lösungen, Kontakt
+  - Desktop EN: Company, Solutions, Contact
   - Mobile prepends Start / Home; the points-only signet remains the desktop home action.
   - Every entry opens a page of its own; the menu carries no anchors.
 - The active rule represents the current page and is matched on the exact path.
-- The footer is identical on every route: Navigation (Start, Unternehmen, Systeme, Kontakt), Kontakt (address, phone, email), Rechtliches (Impressum, Datenschutzerklärung), plus copyright and the locale switch.
+- The footer is identical on every route: Navigation (Start, Unternehmen, Lösungen, Kontakt), Kontakt (address, phone, email), Rechtliches (Impressum, Datenschutzerklärung), plus copyright and the locale switch.
 - Metadata may state security technology, technical services, advice, surveillance/observation, analysis, TSCM, radio monitoring for mobile communications, training, and support.
 - The company may be associated with the alternate brand spellings `Elaman` and `ELAMAN` in organisation data.
 - Holger Rumscheidt may be associated with Elaman through the factual management reference in Profile, the supplied imprint, and the corresponding entity relationship. Do not create a biographical profile without approved source material.

@@ -39,7 +39,7 @@ Conflict order for public wording: verified fact → `CONTENT_BLUEPRINT.md` → 
 - Keep German and English content complete and aligned.
 - Use tokens from `app/globals.css`; keep `lib/design/tokens.ts` synchronized.
 - Compose with the reachable primitives in `components/ui`, the five homepage sections, the two dossier compositions, and `ContactPage`.
-- Keep the homepage order: Hero → Profile → Advice → Systems → Contact.
+- Keep the homepage order: Hero → Profile → Advice → Solutions → Contact.
 - Preserve the contact-form honeypot, client validation, server validation, and safe email rendering.
 - Respect `prefers-reduced-motion` for all transitions, entrances, and the scroll-linked reveal.
 - Use `next/image` with an accurate `sizes` value for site imagery.
@@ -74,7 +74,7 @@ Conflict order for public wording: verified fact → `CONTENT_BLUEPRINT.md` → 
 | graphite-soft  | `#667286` | Metadata                       |
 | elaman-blue    | `#244074` | Brand and active state         |
 | elaman-red     | `#d83034` | Required and error form states |
-| navy           | `#172033` | Systems composition            |
+| navy           | `#172033` | Solutions composition          |
 | on-dark        | `#f7f8fa` | Primary text on navy           |
 | on-dark-muted  | `#c7d0dc` | Secondary text on navy         |
 
@@ -121,13 +121,13 @@ The application intentionally has no generic card, surface, diagram, animation, 
 
 ## Homepage structure
 
-| Component        | Purpose                                                                                                                                            |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `HeroSection`    | Elaman, approved tagline, and the single 25+ experience stat                                                                                       |
-| `ProfileSection` | Company profile, factual management link, and supplied stone-bridge image                                                                          |
-| `AdviceSection`  | Four-stage project path from analysis to support                                                                                                   |
-| `SystemsSection` | Navy Media Mining split and open five-area ledger                                                                                                  |
-| `ContactSection` | Munich office, direct contact routes, and the link to the contact page — **no inquiry form**; the form lives only on `/de/kontakt` ↔ `/en/contact` |
+| Component          | Purpose                                                                                                                                            |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `HeroSection`      | Elaman, approved tagline, and the single 25+ experience stat                                                                                       |
+| `ProfileSection`   | Company profile, factual management link, and supplied stone-bridge image                                                                          |
+| `AdviceSection`    | Four-stage project path from analysis to support                                                                                                   |
+| `SolutionsSection` | Navy Media Mining split and open five-area ledger                                                                                                  |
+| `ContactSection`   | Munich office, direct contact routes, and the link to the contact page — **no inquiry form**; the form lives only on `/de/kontakt` ↔ `/en/contact` |
 
 Do not change this approved section set or order without explicit approval.
 
@@ -150,8 +150,8 @@ A scroll-linked reveal (`.reveal`, `.reveal-group > *` in `app/globals.css`) is 
 - Locales are `de` and `en`; German is the default route.
 - Homepage strings come from `getSiteContent(locale)`; dossier strings come from `getDetailPageContent(locale, kind)`; contact-page strings come from `getContactPageContent(locale)`; legal strings from `getLegalPageContent(locale, kind)`; the error boundary from `getErrorContent(locale)`.
 - Build every internal path with the helpers in `lib/i18n.ts` — `homePath`, `detailPagePath`, `contactPagePath`, `legalPagePath`. They return `Route`, so the single `typedRoutes` assertion lives there and content files and components stay cast-free.
-- Detail routes are `/de/unternehmen` ↔ `/en/company` and `/de/systeme` ↔ `/en/systems`; the contact route is `/de/kontakt` ↔ `/en/contact`.
-- Global navigation exposes three pages — Unternehmen / Company, Systeme / Systems, Kontakt / Contact — plus the locale switch; the points-only signet is Home, while the mobile menu also shows Start / Home explicitly, ahead of the other entries. The menu contains no anchors.
+- Detail routes are `/de/unternehmen` ↔ `/en/company` and `/de/loesungen` ↔ `/en/solutions` (the old `/de/systeme` and `/en/systems` redirect permanently); the contact route is `/de/kontakt` ↔ `/en/contact`.
+- Global navigation exposes three pages — Unternehmen / Company, Lösungen / Solutions, Kontakt / Contact — plus the locale switch; the points-only signet and the home word form one link, while the mobile menu also shows Start / Home explicitly, ahead of the other entries. The menu contains no anchors.
 - Active navigation is purely path-based: `aria-current="page"` on an exact path match, never colour alone. The header carries no scroll observation.
 - Keep exactly one visible 25+ experience statement in the hero.
 - Public detail remains discreet: describe capability categories without operational specifics or named customers.

@@ -16,7 +16,7 @@ export type ContentKey = "home" | "contact" | DetailPageKind | LegalPageKind;
 export const contentSources: Record<ContentKey, readonly string[]> = {
   home: ["lib/content/site.ts"],
   company: ["lib/content/detail-pages.ts"],
-  systems: ["lib/content/detail-pages.ts"],
+  solutions: ["lib/content/detail-pages.ts"],
   contact: ["lib/content/contact-page.ts"],
   imprint: ["lib/content/legal.ts"],
   privacy: ["lib/content/legal.ts"],
@@ -33,7 +33,7 @@ export const contentSources: Record<ContentKey, readonly string[]> = {
 export const contentLastModified: Record<ContentKey, string> = {
   home: "2026-09-15",
   company: "2026-09-15",
-  systems: "2026-09-15",
+  solutions: "2026-09-15",
   contact: "2026-09-15",
   imprint: "2026-09-15",
   privacy: "2026-09-15",

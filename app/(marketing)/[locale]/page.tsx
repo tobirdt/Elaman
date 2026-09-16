@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { AdviceSection } from "@/components/sections/AdviceSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProfileSection } from "@/components/sections/ProfileSection";
-import { SystemsSection } from "@/components/sections/SystemsSection";
+import { SolutionsSection } from "@/components/sections/SolutionsSection";
 import { ClosingBand } from "@/components/ui/ClosingBand";
 import { MediaBand } from "@/components/ui/MediaBand";
 import { getSiteContent } from "@/lib/content/site";
@@ -82,7 +82,7 @@ export default async function HomePage({ params }: LocalePageProps) {
           imageClassName="object-cover object-[48%_62%] saturate-[0.72]"
         />
         <AdviceSection content={content.advice} />
-        <SystemsSection content={content.systems} />
+        <SolutionsSection content={content.solutions} />
         <ClosingBand statement={content.contact.closing} link={content.contact.cta} />
       </main>
       <Footer

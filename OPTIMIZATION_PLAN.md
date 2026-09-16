@@ -560,3 +560,31 @@ Ebenfalls am 15. September, außerhalb der Pakete, weil eine Prüfung nur zählt
 | Sicherheitsheader auf der Produktion                                                                                                                                                                                                               | alle sechs gesetzt: CSP, HSTS mit zwei Jahren und Preload, `nosniff`, Referrer-Policy, Permissions-Policy, `X-Frame-Options`                                                                    |
 | `manifest.webmanifest` zeigt mit `start_url` auf `/de`                                                                                                                                                                                             | richtig, eine installierte Seite läuft nicht über die Weiterleitung                                                                                                                             |
 | Nur `/` und `/api/contact` werden dynamisch gerendert, die zwölf Inhaltsrouten bleiben vorgerendert                                                                                                                                                | wie beabsichtigt, die Sprachwahl kostet eine Funktion, sonst nichts                                                                                                                             |
+
+## 11. Menü: Lösungen und der Home-Einstieg
+
+Stand: 16. September 2026. Entschieden von Tobi: volle Umbenennung inklusive Adresse, beide Sprachen, Signet und Wort als ein Link. Die Kollision mit der später geplanten Seite „Schutzlösungen" ist bekannt und bewusst in Kauf genommen, weil „Lösungen" im Menü besser trägt.
+
+### 11.1 Umbenennung
+
+Die Systemseite heißt jetzt Lösungen und Solutions, unter `/de/loesungen` und `/en/solutions`. Der Zeitpunkt war der günstigste, den es geben konnte: die Sitemap liegt noch nicht in der Search Console, die Seite hatte also praktisch keine Indexhistorie. Die alten Adressen leiten dauerhaft weiter (308), nach demselben Muster wie `/imprint`; ohne die Weiterleitung liefen sie in ein 404, weil `dynamicParams = false` nur die generierten Pfade zulässt.
+
+Umbenannt wurde der **Seitenname**, nicht das Wort. Menü, Fußzeile, Kürzel, Brotkrume, Abschnittslabel, der Link von der Startseite und der Seitentitel für Suchergebnisse tragen jetzt Lösungen. „Systeme" als gewöhnliches Substantiv im Fließtext bleibt, wo es steht: „Systeme zur verdeckten Erfassung", „welche Systeme und Produkte bereits vorhanden sind", „Systementwurf". Die Seite heißt Lösungen und liefert Systeme, das ist kein Widerspruch.
+
+Mitgezogen wurde auch der interne Schlüssel: `detailPageKinds`, der Inhaltsschlüssel, der Typ `SolutionsDetailContent`, die Komponente `SolutionsSection`, die Abschnitts-ID und der Eintrag in `content-dates.ts`. Ein Schlüssel `systems` für eine Seite namens Lösungen wäre genau die Drift, die später jemanden Zeit kostet. TypeScript hat dabei jede der 14 Fundstellen benannt, die der erste Durchgang übersehen hatte.
+
+### 11.2 Home-Einstieg
+
+Signet und Wort sind ein Link, nicht zwei nebeneinander. Das Signet allein gab keinen Hinweis darauf, dass es anklickbar ist; zwei benachbarte Links auf dieselbe Seite hätte ein Screenreader als Dopplung vorgelesen. Ab `lg` steht das Wort sichtbar daneben, darunter trägt das Signet stattdessen ein `sr-only`-Label. Damit ist zu jeder Breite genau ein Label ausgezeichnet und der zugängliche Name stimmt mit dem überein, was auf dem Bildschirm steht. Das frühere `aria-label` entfällt.
+
+Die blaue Linie bekommt der Einstieg nicht: sie gehört der Navigation, unter einem Logo sähe sie falsch aus. `aria-current="page"` trägt er auf der Startseite trotzdem, damit Screenreader den Zustand ansagen.
+
+### 11.3 Login
+
+Nicht umgesetzt, bewusst. Geplant ist eine eigene Login-Seite im Elaman-Design mit User-Management dahinter: Administratoren landen im Elaman-Adminportal, Kunden bekommen Zugriff auf nicht öffentliche Inhalte wie Produktkataloge. Das wird als eigenes Projekt aufgesetzt.
+
+Was vorher geklärt sein muss: wer Konten anlegt, wie viele Rollen es gibt, woher die geschützten Inhalte kommen und wo sie liegen, ob Kunden sich selbst registrieren können. Rechtlich zieht es einen neuen Abschnitt in beiden Datenschutzerklärungen nach sich (Kontodaten, Speicherdauer, Auftragsverarbeiter) und damit eine erneute anwaltliche Prüfung. Ein Menüpunkt, der ins Leere zeigt, wurde nicht gebaut: bei einem Unternehmen, das für Sicherheitsbehörden arbeitet, beschädigt ein halbfertiger Login genau die Glaubwürdigkeit, für die die Seite steht.
+
+### 11.4 Weiterhin offen
+
+Der Abschnittstitel auf der Startseite und die `h1` der Unterseite sind in beiden Sprachen derselbe Satz: „Systeme für Kommunikation, Observation und Auswertung." Das verstößt gegen die Blueprint-Regel, dass keine Formulierung einen Klick tiefer wörtlich wiederkehrt. Die Umbenennung hat daran nichts geändert, weil beide Sätze beschreibend sind und nicht den Seitennamen tragen. Vorschlag: die `h1` bleibt, die Startseite bekommt einen eigenen Satz. Das ist Text und wartet auf eine Freigabe.

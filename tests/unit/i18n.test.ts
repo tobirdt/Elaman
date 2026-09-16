@@ -98,8 +98,8 @@ describe("detail page routing", () => {
   it("builds the approved dossier paths", () => {
     expect(detailPagePath("de", "company")).toBe("/de/unternehmen");
     expect(detailPagePath("en", "company")).toBe("/en/company");
-    expect(detailPagePath("de", "systems")).toBe("/de/systeme");
-    expect(detailPagePath("en", "systems")).toBe("/en/systems");
+    expect(detailPagePath("de", "solutions")).toBe("/de/loesungen");
+    expect(detailPagePath("en", "solutions")).toBe("/en/solutions");
   });
 
   it("round-trips every kind through its localised slug", () => {

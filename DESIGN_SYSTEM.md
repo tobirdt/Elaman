@@ -29,7 +29,7 @@ Elaman presents as an established German security-technology specialist through 
 | `--color-graphite-soft`  | `#667286` | Labels and metadata            |
 | `--color-elaman-blue`    | `#244074` | Brand and active state         |
 | `--color-elaman-red`     | `#d83034` | Required and error form states |
-| `--color-navy`           | `#172033` | Systems composition            |
+| `--color-navy`           | `#172033` | Solutions composition          |
 | `--color-on-dark`        | `#f7f8fa` | Primary on navy                |
 | `--color-on-dark-muted`  | `#c7d0dc` | Secondary on navy              |
 
@@ -112,7 +112,7 @@ How the homepage and both dossiers end: one sentence and one `TextLink`, on navy
 
 ### PageHeader
 
-The opening band of every page below the homepage: company, systems, contact, imprint, privacy policy, and the error page. It is the single most important consistency device on the site, so it takes no tone, width, or alignment options.
+The opening band of every page below the homepage: company, solutions, contact, imprint, privacy policy, and the error page. It is the single most important consistency device on the site, so it takes no tone, width, or alignment options.
 
 - Always `--surface-paper`, always on the `page` container, always closed by a hairline.
 - Always the same four slots in the same order: breadcrumb, mono label, `h1`, optional lead. An optional `actions` slot carries a button, and only the error page uses it.
@@ -131,7 +131,8 @@ The full-bleed photograph that follows a `PageHeader` on a page that has one. Fi
 ### Header
 
 - Sticky white header with the supplied points-only Elaman signet.
-- The signet is the desktop home action; the desktop navigation exposes Company, Systems, and Contact.
+- Signet and the home word are one link on the left, the desktop home action. The word appears from `lg` up; below that the signet carries an `sr-only` label instead, so exactly one label is exposed at any width and the accessible name always matches what is on screen.
+- The desktop navigation exposes Company, Solutions, and Contact.
 - All three are real pages of their own; the menu contains no anchors, and the header runs no scroll observation. Only the hairline under the header reacts to scrolling.
 - Mobile prepends Start / Home and keeps the same global destinations below it.
 - One blue rule communicates hover and the current page, matched on the exact path (`aria-current="page"`).
@@ -153,7 +154,7 @@ Variants are `primary`, `secondary`, and `ghost`; shapes are `control` and `pill
 
 ### DetailDossier
 
-Switches on `content.kind` (`company` | `systems`) to render the Company or Systems dossier composition (§ 8). Both open with `PageHeader` and a `MediaBand`, and both close with a `DetailClosing` band (heading plus a `TextLink` to the contact page).
+Switches on `content.kind` (`company` | `solutions`) to render the Company or Solutions dossier composition (§ 8). Both open with `PageHeader` and a `MediaBand`, and both close with a `DetailClosing` band (heading plus a `TextLink` to the contact page).
 
 ### ContactPage
 
@@ -184,12 +185,12 @@ The contact-route composition (§ 8a): `PageHeader`, then one content band pairi
 - One `TextLink` to the company page closes the section.
 - Desktop uses four columns, mobile one natural sequence. No cards, icons, or enclosed cells.
 
-### SystemsSection
+### SolutionsSection
 
 - White text band, opened by `SectionIntro`.
 - The five approved areas as a plain two-column list, names only, flowing down the first column before the second (`sm:grid-flow-col sm:grid-rows-3`) so the list reads in its real order.
-- No numerals and no rules here: the systems page sets the same five as a numbered ledger with descriptions, and when the homepage matched that treatment the subpage read as a repeat rather than the detail.
-- One `TextLink` to the systems page closes the section.
+- No numerals and no rules here: the solutions page sets the same five as a numbered ledger with descriptions, and when the homepage matched that treatment the subpage read as a repeat rather than the detail.
+- One `TextLink` to the solutions page closes the section.
 
 ### Homepage close
 
@@ -201,7 +202,7 @@ The homepage ends in the shared `ClosingBand`. It carries no contact details: th
 | ----------------------------------------- | ------------------------------------------------------------ |
 | `/images/elaman-advice.jpg`               | Hero                                                         |
 | `/images/elaman-profile-bridge.jpg`       | Profile, Company dossier bridge composition                  |
-| `/images/elaman-systems-media-mining.jpg` | Systems section, Systems dossier hero                        |
+| `/images/elaman-systems-media-mining.jpg` | Solutions section, Solutions dossier hero                    |
 | `/images/elaman-munich-office.jpg`        | Contact section, Company dossier hero, and contact page hero |
 
 The source set is limited to these four photographs. `elaman-home-og.jpg`, `elaman-company-og.jpg`, `elaman-systems-og.jpg`, and `elaman-contact-og.jpg` are route-specific crops for search and social sharing; the last is generated by `scripts/generate-icons.mjs` from the office photograph (see `README.md`). Static crop, saturation, contrast, and overlay adjustments are allowed when they preserve legibility and a calm palette.
@@ -233,10 +234,10 @@ Printed, a page is its document and nothing else. The header, every `MediaBand`,
 
 ## 8. Dossier composition
 
-| Kind    | Routes                           | Contract                                                                                                                   |
-| ------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Company | `/de/unternehmen`, `/en/company` | Office media band, the four-stage "So arbeiten wir." / "How we work." process, bridge composition, factual management link |
-| Systems | `/de/systeme`, `/en/systems`     | Navy-toned media band, open five-area ledger, project approach                                                             |
+| Kind      | Routes                           | Contract                                                                                                                   |
+| --------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Company   | `/de/unternehmen`, `/en/company` | Office media band, the four-stage "So arbeiten wir." / "How we work." process, bridge composition, factual management link |
+| Solutions | `/de/loesungen`, `/en/solutions` | Navy-toned media band, open five-area ledger, project approach                                                             |
 
 Both dossiers open with the shared `PageHeader` and a `MediaBand`, give every section below it a `SectionIntro`, end in the shared `ClosingBand`, use normal document flow, and never opt into any scroll snap. Their language switcher targets the matching localised route. Each has a contextual route-specific social image, a breadcrumb back to the homepage, and a closing band (`DetailClosing`) leading to the contact page.
 
@@ -250,10 +251,10 @@ The Company dossier's process section replaced the former three-principle compos
 
 The site has two page levels and each one looks like itself. This is a hard rule, not a preference: before it existed, five subpages opened with five different geometries and a visitor could not tell one level from another.
 
-| Level    | Pages                                                   | Opening                                                                               |
-| -------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Homepage | `/de`, `/en`                                            | Full first screen, split composition, `--type-display`, soft paper                    |
-| Subpage  | Company, Systems, Contact, Imprint, Privacy policy, 404 | `PageHeader` band on white, `--type-h2` title, breadcrumb, optional `MediaBand` below |
+| Level    | Pages                                                     | Opening                                                                               |
+| -------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Homepage | `/de`, `/en`                                              | Full first screen, split composition, `--type-display`, soft paper                    |
+| Subpage  | Company, Solutions, Contact, Imprint, Privacy policy, 404 | `PageHeader` band on white, `--type-h2` title, breadcrumb, optional `MediaBand` below |
 
 What this forbids on a subpage: a full-screen opening, a mirrored split, a dark page surface, a title in a different step, a centred or indented measure, and an opening that carries its own photograph instead of using a `MediaBand`. `tests/e2e/site.spec.ts` asserts that the `h1` of every subpage shares one left edge, one top edge, and one size, and that the homepage opening stays taller than a subpage's.
 
@@ -289,7 +290,7 @@ For visual changes:
 
 1. Check 320×568, 390×844, 768×1024, 1024×768, 1366×768, 1440×900, and 1600×1000.
 2. Verify German and English wrapping and zero horizontal overflow.
-3. Verify Header/Footer active state on Company, Systems, Contact and the home signet, both locales, mobile menu, and skip link.
+3. Verify Header/Footer active state on Company, Solutions, Contact and the home lockup, both locales, mobile menu, and skip link.
 4. Verify the language switch lands on the matching reciprocal route from every page, including the contact page.
 5. Verify the route-hero entrance and the scroll-linked reveal, and that `prefers-reduced-motion` shows final states immediately with no snap or scroll-timeline animation.
 6. Verify contact-form validation, focus movement, direct links, and API error handling on both the homepage close and the contact page.

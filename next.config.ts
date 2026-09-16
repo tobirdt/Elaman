@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // The systems page became Lösungen / Solutions on 16 September 2026.
+      // The old paths keep working for anything already linking to them.
+      { source: "/de/systeme", destination: "/de/loesungen", permanent: true },
+      { source: "/en/systems", destination: "/en/solutions", permanent: true },
       { source: "/imprint", destination: "/de/impressum", permanent: true },
       { source: "/private-policy", destination: "/de/datenschutz", permanent: true },
     ];

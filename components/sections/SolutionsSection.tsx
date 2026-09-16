@@ -4,8 +4,8 @@ import { SectionIntro } from "@/components/ui/SectionIntro";
 import { TextLink } from "@/components/ui/TextLink";
 import type { LocalizedSiteContent } from "@/lib/content/site";
 
-type SystemsSectionProps = {
-  content: LocalizedSiteContent["systems"];
+type SolutionsSectionProps = {
+  content: LocalizedSiteContent["solutions"];
 };
 
 /**
@@ -14,9 +14,9 @@ type SystemsSectionProps = {
  * homepage used numerals and rules too, the two read as the same block twice
  * and the subpage looked like a repeat rather than the detail.
  */
-export function SystemsSection({ content }: SystemsSectionProps) {
+export function SolutionsSection({ content }: SolutionsSectionProps) {
   return (
-    <Section id="systems" variant="content-band" tone="white">
+    <Section id="solutions" variant="content-band" tone="white">
       <Container>
         <SectionIntro label={content.label} title={content.title} lead={content.intro} />
 

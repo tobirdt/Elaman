@@ -39,14 +39,14 @@ Reject glass, blur, gradients, grid overlays, glow, diagrams, DotMatrix decorati
 
 Preserve this sequence unless explicitly changed:
 
-Hero → Profile → Advice → Systems → Contact.
+Hero → Profile → Advice → Solutions → Contact.
 
-Hero → Profile → (media band) → Advice → Systems → Closing band.
+Hero → Profile → (media band) → Advice → Solutions → Closing band.
 
 - Hero: chameleon, Elaman name, approved tagline, verified copy, one `25+` stat. `Section` `variant="screen"`, and the only full screen on the site.
 - Profile: white text band opened by `SectionIntro`, followed by the stone-bridge photograph as a full-width `MediaBand`.
 - Advice: paper-soft text band, the four stage names with numerals, no descriptions, one `TextLink` to the company page.
-- Systems: white text band, the five area names as a plain two-column list flowing down the first column, no numerals and no rules, one `TextLink` to the systems page.
+- Solutions: white text band, the five area names as a plain two-column list flowing down the first column, no numerals and no rules, one `TextLink` to the solutions page.
 - Close: the shared `ClosingBand` on navy. **No form and no contact details on the homepage** — the inquiry form lives only on `/de/kontakt` ↔ `/en/contact`, and the footer carries the address one screen below.
 
 Every section below a hero uses `variant="content-band"` and opens with `SectionIntro`, so its `h2` starts where the page title starts. A band's height follows its content; there is no minimum-height mode any more.
@@ -56,7 +56,7 @@ Every section below a hero uses `variant="content-band"` and opens with `Section
 The homepage and the subpages look like themselves, and a visitor can tell which one they are on before reading a word. Before this rule existed, five subpages opened with five different geometries, and people got lost.
 
 - **Homepage**: full first screen, split composition, `--type-display`, soft paper.
-- **Every subpage** — company, systems, contact, imprint, privacy policy, 404 — opens with `PageHeader`: white, on the `page` container, breadcrumb then mono label, `h1` at `--type-h2`, optional lead, fixed `--section-y-page-header` padding. The title lands on the same left edge and the same height on all of them. A photograph, where the page has one, follows as a full-bleed `MediaBand`.
+- **Every subpage** — company, solutions, contact, imprint, privacy policy, 404 — opens with `PageHeader`: white, on the `page` container, breadcrumb then mono label, `h1` at `--type-h2`, optional lead, fixed `--section-y-page-header` padding. The title lands on the same left edge and the same height on all of them. A photograph, where the page has one, follows as a full-bleed `MediaBand`.
 
 One left edge below the opening, too. Every section, on every page, opens with `SectionIntro` on the page container: label, `h2`, optional lead. Measured at 1440 before this rule, headings began at 138, 210, 586, 606, 663 and 822. A two-column band titles itself once at the left edge above both columns; a column may carry an `h3`. Only the homepage hero and a `MediaBand` run outside the page container. `h1` titles the page, `h2` a section, `h3` an item; item size follows density, not level.
 
@@ -71,13 +71,13 @@ Use only reachable primitives: `Button`, `ClosingBand`, `Container`, `MediaBand`
 The two approved dossier compositions (`DetailDossier`) are:
 
 - Company: office media band, the four-stage "So arbeiten wir." / "How we work." process with the descriptions the homepage omits, the collaboration band with the factual management reference;
-- Systems: navy-toned Media Mining band, the five-area ledger in one column with descriptions, project approach.
+- Solutions: navy-toned Media Mining band, the five-area ledger in one column with descriptions, project approach.
 
 Dossiers use normal document flow, reciprocal localised routes, and no scroll snap. They may deepen verified homepage categories but must not add specifications, customers, tactical detail, or unsupported claims. Each ends in a `DetailClosing` band linking to the contact page.
 
 The contact page (`ContactPage`) opens with the same `PageHeader` and carries no photograph: the form is the content, and the office picture already opens the company page. Below the header, one content band pairs the direct contact `dl` with `ContactForm`.
 
-The global header exposes Company, Systems, and Contact as three direct localised pages, plus the locale switch — no anchors anywhere in the menu. The signet acts as Home on desktop; the mobile overlay prepends an explicit Start / Home entry ahead of the other destinations. The active rule (`aria-current="page"`) matches the exact current path only.
+The global header exposes Company, Solutions, and Contact as three direct localised pages, plus the locale switch — no anchors anywhere in the menu. The signet and the home word are one link that acts as Home on desktop; the mobile overlay prepends an explicit Start / Home entry ahead of the other destinations. The active rule (`aria-current="page"`) matches the exact current path only.
 
 The active codebase intentionally has no generic Surface, GlassPanel, TechnicalMark, DotMatrix, signal diagram, or anchor-scroll-management layer.
 
@@ -104,7 +104,7 @@ For fullscreen work also verify:
 - header plus Hero equal one normal viewport;
 - `feature` sections cap correctly on tall/short desktop displays;
 - mobile, tablet, short displays, and form-error states never clip or create internal scrollers;
-- Company, Systems, and Contact all render correctly and the language switch lands on the matching reciprocal route from every page.
+- Company, Solutions, and Contact all render correctly and the language switch lands on the matching reciprocal route from every page.
 
 There is no scroll snap in the product; do not verify for it or reintroduce it.
 
