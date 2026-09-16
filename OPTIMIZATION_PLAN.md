@@ -588,3 +588,13 @@ Was vorher geklärt sein muss: wer Konten anlegt, wie viele Rollen es gibt, wohe
 ### 11.4 Weiterhin offen
 
 Der Abschnittstitel auf der Startseite und die `h1` der Unterseite sind in beiden Sprachen derselbe Satz: „Systeme für Kommunikation, Observation und Auswertung." Das verstößt gegen die Blueprint-Regel, dass keine Formulierung einen Klick tiefer wörtlich wiederkehrt. Die Umbenennung hat daran nichts geändert, weil beide Sätze beschreibend sind und nicht den Seitennamen tragen. Vorschlag: die `h1` bleibt, die Startseite bekommt einen eigenen Satz. Das ist Text und wartet auf eine Freigabe.
+
+### 11.5 Nachtrag: der Datumswächter schlug zu spät an
+
+Der erste CI-Lauf dieses Pakets war rot, und zwar an `content-dates.test.ts`, also an dem Wächter aus P10.3. Das war inhaltlich richtig: die Umbenennung fasst `site.ts` und `detail-pages.ts` an, die eingetragenen Daten standen aber noch auf dem 15. September.
+
+Der Punkt ist, wann er anschlug. Lokal lief der Test durch, weil er den letzten **Commit** je Inhaltsdatei abfragt und die Änderungen zu dem Zeitpunkt noch nicht committet waren. Erst der Commit machte die Datei jünger als ihr Datum, und gemerkt hat es die CI. Ein Wächter, der erst nach dem Commit greifen kann, kostet jedes Mal einen Durchlauf.
+
+Behoben: Der Test zählt jetzt auch unkommittierte Änderungen, staged oder nicht, als Änderung von heute. Damit schlägt er dort an, wo er hingehört, vor dem Commit. Gegenprobe an `contact-page.ts`, dessen letzter Commit vom 15. September ist: unverändert läuft der Test durch, nach einer unkommittierten Änderung schlägt er mit der richtigen Meldung an. Vorher wäre genau dieser Fall durchgelaufen.
+
+Bleibt als bewusste Ungenauigkeit: die Auflösung ist die Datei, nicht der Abschnitt. Weil Unternehmens- und Lösungsseite in derselben Datei stehen, bekommt die Unternehmensseite ein neues Datum, obwohl sich an ihrem Text nichts geändert hat. Ein etwas zu frisches `lastmod` ist für Suchmaschinen harmloser als ein verpasstes.
