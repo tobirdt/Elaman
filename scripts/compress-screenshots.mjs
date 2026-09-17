@@ -6,7 +6,7 @@
  *
  *   node scripts/compress-screenshots.mjs
  */
-import { readdir, stat } from "node:fs/promises";
+import { readdir, stat, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 import sharp from "sharp";
@@ -26,7 +26,10 @@ for (const name of await readdir(directory)) {
   const buffer = await sharp(file)
     .png({ compressionLevel: 9, adaptiveFiltering: true, effort: 10 })
     .toBuffer();
-  await sharp(buffer).toFile(file);
+  // Write the buffer, not a re-encode of it: passing it back through sharp
+  // would apply the default compression level again and undo the saving this
+  // function then went on to report.
+  await writeFile(file, buffer);
   after += buffer.length;
 }
 

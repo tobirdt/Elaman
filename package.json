@@ -13,7 +13,7 @@
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
     "test:e2e:iphone": "playwright test --project=iphone-webkit --project=iphone-landscape-webkit",
-    "test:visual:update": "CI=true playwright test visual --project=desktop-chromium --update-snapshots && node scripts/compress-screenshots.mjs",
+    "test:visual:update": "CI=true playwright test visual --project=desktop-chromium --update-snapshots=all && node scripts/compress-screenshots.mjs",
     "lighthouse": "node scripts/lighthouse-check.mjs",
     "migrate": "node scripts/migrate.mjs",
     "migrate:status": "node scripts/migrate.mjs --status",
