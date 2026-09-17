@@ -6,13 +6,16 @@
  * dependency that rewrites the database deserves more scrutiny than forty
  * lines we can read in full.
  *
+ * Neon's driver, same as the application: the Postgres protocol over a
+ * WebSocket on 443, so this runs from anywhere HTTPS reaches.
+ *
  *   DATABASE_URL=postgres://… node scripts/migrate.mjs          apply
  *   DATABASE_URL=postgres://… node scripts/migrate.mjs --status  list only
  */
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-import pg from "pg";
+import { Client } from "@neondatabase/serverless";
 
 const directory = "lib/db/migrations";
 const statusOnly = process.argv.includes("--status");
@@ -22,7 +25,7 @@ if (!process.env.DATABASE_URL) {
   process.exit(1);
 }
 
-const client = new pg.Client({ connectionString: process.env.DATABASE_URL });
+const client = new Client({ connectionString: process.env.DATABASE_URL });
 await client.connect();
 
 try {
