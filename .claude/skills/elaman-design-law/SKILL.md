@@ -77,7 +77,7 @@ Dossiers use normal document flow, reciprocal localised routes, and no scroll sn
 
 The contact page (`ContactPage`) opens with the same `PageHeader` and carries no photograph: the form is the content, and the office picture already opens the company page. Below the header, one content band pairs the direct contact `dl` with `ContactForm`.
 
-The global header exposes Company, Solutions, and Contact as three direct localised pages, plus the locale switch — no anchors anywhere in the menu. The signet and the home word are one link that acts as Home on desktop; the mobile overlay prepends an explicit Start / Home entry ahead of the other destinations. The active rule (`aria-current="page"`) matches the exact current path only.
+The global header names four direct localised pages, Start / Home first, then Company, Solutions and Contact, plus the locale switch — no anchors anywhere in the menu, and the same four at every width. The signet leads to the homepage too, with an `sr-only` name and no visible word, so only the named entry carries the active rule (`aria-current="page"`), matched on the exact current path.
 
 The active codebase intentionally has no generic Surface, GlassPanel, TechnicalMark, DotMatrix, signal diagram, or anchor-scroll-management layer.
 

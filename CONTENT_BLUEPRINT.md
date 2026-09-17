@@ -85,7 +85,7 @@ The site has three reciprocal localised routes beyond the homepage:
 
 These pages add useful context, not new claims. They must not become thin keyword pages, product catalogues, or substitutes for a factual source that is not available.
 
-The global header exposes exactly these three pages plus the locale switch — Unternehmen/Company, Lösungen/Solutions, Kontakt/Contact — with no in-page anchors; the points-only signet is the desktop Home action, and the mobile menu prepends an explicit Start/Home entry. The footer repeats the same navigation, the contact details, and the legal links on every page (see § 9).
+The global header names four destinations plus the locale switch — Start/Home, Unternehmen/Company, Lösungen/Solutions, Kontakt/Contact — with no in-page anchors; the points-only signet leads to the homepage as well, without a word of its own. The footer repeats the same navigation, the contact details, and the legal links on every page (see § 9).
 
 ## 4. Hero
 
@@ -200,7 +200,7 @@ Document titles carry a budget of 60 characters including the ` | Elaman` suffix
 - Global header navigation:
   - Desktop DE: Unternehmen, Lösungen, Kontakt
   - Desktop EN: Company, Solutions, Contact
-  - Mobile prepends Start / Home; the points-only signet remains the desktop home action.
+  - Start / Home leads the list at every width; the points-only signet is a second way to the same page.
   - Every entry opens a page of its own; the menu carries no anchors.
 - The active rule represents the current page and is matched on the exact path.
 - The footer is identical on every route: Navigation (Start, Unternehmen, Lösungen, Kontakt), Kontakt (address, phone, email), Rechtliches (Impressum, Datenschutzerklärung), plus copyright and the locale switch.

@@ -133,13 +133,6 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
     return pathname === href;
   }
 
-  /**
-   * The home entry already exists in the navigation list, where `mobileOnly`
-   * keeps it out of the inline menu. Reading its label here means the signet
-   * lockup and the mobile menu always say the same word.
-   */
-  const homeEntry = content.main.find((item) => item.href === homePath(locale));
-
   return (
     <>
       <a
@@ -156,16 +149,14 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
       >
         <Container className="flex h-full items-center justify-between gap-3 lg:gap-5">
           {/*
-            Signet and word are one link, not two next to each other. The
-            signet alone gave no sign that it was clickable, and two adjacent
-            links to the same page read as a duplicate to a screen reader.
-            Exactly one of the two labels is exposed at any width, so the
-            accessible name always matches what is on screen.
+            The mark, and a second way to the homepage. The named entry that
+            carries the current-page rule is the first one in the navigation
+            on the right, so the signet needs no visible word of its own —
+            only a name for anything that cannot see it.
           */}
           <Link
             href={homePath(locale)}
-            className="group flex min-h-11 min-w-11 shrink-0 items-center gap-2.5"
-            aria-current={isCurrentPage(homePath(locale)) ? "page" : undefined}
+            className="flex min-h-11 min-w-11 shrink-0 items-center"
             aria-hidden={menuOpen || undefined}
             tabIndex={menuOpen ? -1 : undefined}
           >
@@ -178,12 +169,7 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
               sizes="(min-width: 1024px) 56px, 48px"
               className="size-12 lg:size-14"
             />
-            <span className="sr-only lg:hidden">{content.homeLabel}</span>
-            {homeEntry ? (
-              <span className="hidden text-[length:var(--type-small)] font-semibold tracking-[-0.01em] text-graphite transition-colors [transition-duration:var(--motion-fast)] group-hover:text-elaman-blue lg:inline">
-                {homeEntry.label}
-              </span>
-            ) : null}
+            <span className="sr-only">{content.homeLabel}</span>
           </Link>
 
           <div className="ml-auto hidden items-center lg:flex">
@@ -191,26 +177,24 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
               aria-label={content.mainNavigationLabel}
               className="flex items-center gap-4 text-sm text-graphite-muted xl:gap-6"
             >
-              {content.main
-                .filter((item) => !item.mobileOnly)
-                .map((item) => {
-                  const current = isCurrentPage(item.href);
+              {content.main.map((item) => {
+                const current = isCurrentPage(item.href);
 
-                  return (
-                    <Link
-                      aria-current={current ? "page" : undefined}
-                      className={`relative flex min-h-11 items-center transition-colors [transition-duration:var(--motion-fast)] after:absolute after:bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:bg-elaman-blue after:transition-transform after:[transition-duration:var(--motion-fast)] after:[transition-timing-function:var(--motion-ease)] hover:text-graphite ${
-                        current
-                          ? "text-graphite after:scale-x-100"
-                          : "after:scale-x-0 hover:after:scale-x-100"
-                      }`}
-                      href={item.href}
-                      key={item.href}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
+                return (
+                  <Link
+                    aria-current={current ? "page" : undefined}
+                    className={`relative flex min-h-11 items-center transition-colors [transition-duration:var(--motion-fast)] after:absolute after:bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:bg-elaman-blue after:transition-transform after:[transition-duration:var(--motion-fast)] after:[transition-timing-function:var(--motion-ease)] hover:text-graphite ${
+                      current
+                        ? "text-graphite after:scale-x-100"
+                        : "after:scale-x-0 hover:after:scale-x-100"
+                    }`}
+                    href={item.href}
+                    key={item.href}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </nav>
             <span
               className="mx-4 h-4 w-px bg-[var(--border-hairline)] xl:mx-5"
