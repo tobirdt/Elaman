@@ -3,6 +3,11 @@ import { Resend } from "resend";
 
 import { createContactEmailContent } from "@/lib/email/contact-email";
 import {
+  exceedsClaimedSize,
+  isForbiddenOrigin,
+  readCappedBody,
+} from "@/lib/http/request";
+import {
   hasHoneypotValue,
   hasSuspiciousCompletionTime,
   validateContactPayload,
@@ -91,70 +96,6 @@ function checkRateLimit(key: string) {
   };
 }
 
-async function readRequestBody(request: Request) {
-  if (!request.body) {
-    return "";
-  }
-
-  const reader = request.body.getReader();
-  const decoder = new TextDecoder();
-  let bytesRead = 0;
-  let body = "";
-
-  while (true) {
-    const { done, value } = await reader.read();
-
-    if (done) {
-      break;
-    }
-
-    bytesRead += value.byteLength;
-
-    if (bytesRead > maxRequestBytes) {
-      await reader.cancel();
-      return null;
-    }
-
-    body += decoder.decode(value, { stream: true });
-  }
-
-  return body + decoder.decode();
-}
-
-/**
- * Cheap, dependency-free cross-site gate. A browser posting the real form sends
- * either `Sec-Fetch-Site: same-origin` or an `Origin` matching the host that
- * served the page, so a form embedded on someone else's domain is rejected
- * outright. Non-browser clients that send neither header are still accepted —
- * this is a spam speed bump, not authentication, and the honeypot, timing gate
- * and rate limit remain the substantive defences.
- */
-function isForbiddenOrigin(request: Request) {
-  if (request.headers.get("sec-fetch-site") === "cross-site") {
-    return true;
-  }
-
-  const origin = request.headers.get("origin");
-
-  if (!origin) {
-    return false;
-  }
-
-  const requestHost =
-    request.headers.get("x-forwarded-host")?.split(",")[0]?.trim() ||
-    request.headers.get("host")?.trim();
-
-  if (!requestHost) {
-    return false;
-  }
-
-  try {
-    return new URL(origin).host !== requestHost;
-  } catch {
-    return true;
-  }
-}
-
 function readEmailConfig() {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   const to = process.env.CONTACT_TO_EMAIL?.trim();
@@ -168,9 +109,7 @@ function readEmailConfig() {
 }
 
 export async function POST(request: Request) {
-  const contentLength = Number(request.headers.get("content-length") ?? 0);
-
-  if (contentLength > maxRequestBytes) {
+  if (exceedsClaimedSize(request, maxRequestBytes)) {
     return json(
       {
         ok: false,
@@ -184,7 +123,7 @@ export async function POST(request: Request) {
   let payload: unknown;
 
   try {
-    const rawBody = await readRequestBody(request);
+    const rawBody = await readCappedBody(request, maxRequestBytes);
 
     if (rawBody === null) {
       return json(

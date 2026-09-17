@@ -5,6 +5,7 @@ import {
   detailPagePath,
   homePath,
   legalPagePath,
+  portalPath,
   type Locale,
 } from "@/lib/i18n";
 
@@ -61,6 +62,14 @@ export type LocalizedSiteContent = {
   };
   navigation: {
     main: PrimaryNavigationItem[];
+    /**
+     * The portal, at the right-hand end of the bar. Held apart from `main`
+     * because it is a different kind of destination: the four in `main` are
+     * pages of this site and carry the current-page underline between them,
+     * this one leads out of the public site into something that asks who you
+     * are. Rendered as a control rather than as a fifth word in the row.
+     */
+    portal: NavigationItem;
     legal: NavigationItem[];
     menu: string;
     homeLabel: string;
@@ -153,6 +162,7 @@ export const siteContent = {
         { label: "Solutions", href: detailPagePath("en", "solutions") },
         { label: "Contact", href: contactPagePath("en") },
       ],
+      portal: { label: "Login", href: portalPath("en") },
       legal: [
         { label: "Legal notice", href: legalPagePath("en", "imprint") },
         { label: "Privacy policy", href: legalPagePath("en", "privacy") },
@@ -313,6 +323,7 @@ export const siteContent = {
         { label: "Lösungen", href: detailPagePath("de", "solutions") },
         { label: "Kontakt", href: contactPagePath("de") },
       ],
+      portal: { label: "Login", href: portalPath("de") },
       legal: [
         { label: "Impressum", href: legalPagePath("de", "imprint") },
         { label: "Datenschutzerklärung", href: legalPagePath("de", "privacy") },
