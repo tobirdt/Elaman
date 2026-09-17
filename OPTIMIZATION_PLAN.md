@@ -598,3 +598,13 @@ Der Punkt ist, wann er anschlug. Lokal lief der Test durch, weil er den letzten 
 Behoben: Der Test zählt jetzt auch unkommittierte Änderungen, staged oder nicht, als Änderung von heute. Damit schlägt er dort an, wo er hingehört, vor dem Commit. Gegenprobe an `contact-page.ts`, dessen letzter Commit vom 15. September ist: unverändert läuft der Test durch, nach einer unkommittierten Änderung schlägt er mit der richtigen Meldung an. Vorher wäre genau dieser Fall durchgelaufen.
 
 Bleibt als bewusste Ungenauigkeit: die Auflösung ist die Datei, nicht der Abschnitt. Weil Unternehmens- und Lösungsseite in derselben Datei stehen, bekommt die Unternehmensseite ein neues Datum, obwohl sich an ihrem Text nichts geändert hat. Ein etwas zu frisches `lastmod` ist für Suchmaschinen harmloser als ein verpasstes.
+
+### 11.6 Korrektur: Home gehört in die Menüleiste, nicht ans Signet
+
+Die erste Umsetzung setzte das Wort neben das Signet. Tobi wollte es in der Menüleiste rechts haben, dort als ersten Eintrag. Korrigiert.
+
+Die Navigation nennt jetzt auf jeder Breite vier Ziele in dieser Reihenfolge: Start, Unternehmen, Lösungen, Kontakt. Damit entfällt `mobileOnly`, das den Home-Eintrag bisher vom Desktop ferngehalten hat, samt dem Filter im Header. Das Signet steht wieder allein links und führt weiterhin auf die Startseite, trägt aber kein sichtbares Wort mehr, sondern nur einen `sr-only`-Namen. Die aktive blaue Linie gehört dem benannten Eintrag; das Signet bekommt sie nicht, unter einer Bildmarke sähe sie falsch aus.
+
+Zwei Wege auf dieselbe Seite nebeneinander sind hier kein Fehler, sondern die übliche Konvention: eine Bildmarke führt nach Hause, und ein benannter Menüpunkt tut es auch. Was ich im ersten Anlauf vermeiden wollte, waren zwei sichtbare Wörter im selben Bereich; das ist so ausgeschlossen.
+
+Gemessen bei 1024: die Leiste wächst von 224 auf 279 Pixel, frei bleiben 609 von 1024. Kein Platzproblem.

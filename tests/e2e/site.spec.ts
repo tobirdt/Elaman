@@ -205,7 +205,7 @@ test("the German contact form exposes and focuses validation errors", async ({
   await expect(page.locator("#firstName-error")).toBeVisible();
 });
 
-test("the desktop header exposes the three global destinations", async ({
+test("the desktop header exposes the four global destinations, home first", async ({
   isMobile,
   page,
 }) => {
@@ -215,6 +215,7 @@ test("the desktop header exposes the three global destinations", async ({
 
   const navigation = page.getByRole("navigation", { name: "Hauptnavigation" }).first();
   await expect(navigation.getByRole("link")).toHaveText([
+    "Start",
     "Unternehmen",
     "Lösungen",
     "Kontakt",
@@ -225,28 +226,31 @@ test("the desktop header exposes the three global destinations", async ({
   await expect(page.locator('main a[href="/de/kontakt"]')).toHaveCount(1);
 });
 
-test("the signet and the home word are one link to the homepage", async ({
+test("home is the first named entry in the menu, and the signet still leads there", async ({
   isMobile,
   page,
 }) => {
-  test.skip(Boolean(isMobile), "The home word is desktop-only.");
+  test.skip(Boolean(isMobile), "The inline navigation is desktop-only.");
 
   await page.goto("/de/loesungen", { waitUntil: "networkidle" });
 
-  // One visible link, not a signet and a word competing for the same
-  // destination. The mobile overlay carries its own home entry and stays in
-  // the DOM at every width, so the count is taken on what is actually shown.
   const header = page.locator("header");
-  const home = header.locator('a[href="/de"]:visible');
-  await expect(home).toHaveCount(1);
-  await expect(home).toContainText("Start");
+  const navigation = header.getByRole("navigation", { name: "Hauptnavigation" }).first();
+  const home = navigation.getByRole("link", { name: "Start", exact: true });
+
+  await expect(navigation.getByRole("link").first()).toHaveText("Start");
 
   await home.click();
   await expect(page).toHaveURL(/\/de$/);
-  await expect(header.locator('a[href="/de"]:visible')).toHaveAttribute(
-    "aria-current",
-    "page",
-  );
+  // The named entry carries the current-page rule; the signet is the mark.
+  await expect(home).toHaveAttribute("aria-current", "page");
+
+  // The signet leads to the same page and is told apart by its accessible
+  // name, not by its text: "Zur Elaman-Startseite" contains "Start".
+  const signet = header.getByRole("link", { name: "Zur Elaman-Startseite", exact: true });
+  await expect(signet).toHaveCount(1);
+  await expect(signet).toHaveAttribute("href", "/de");
+  await expect(signet).not.toHaveAttribute("aria-current", "page");
 });
 
 test("the renamed solutions page keeps its old address working", async ({ request }) => {

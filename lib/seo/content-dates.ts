@@ -31,7 +31,7 @@ export const contentSources: Record<ContentKey, readonly string[]> = {
  * unit test says which one when it is forgotten.
  */
 export const contentLastModified: Record<ContentKey, string> = {
-  home: "2026-09-16",
+  home: "2026-09-17",
   company: "2026-09-16",
   solutions: "2026-09-16",
   contact: "2026-09-15",

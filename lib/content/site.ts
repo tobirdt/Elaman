@@ -15,12 +15,10 @@ type NavigationItem = {
 
 /**
  * Global destinations. Every entry is a real page, so the active state is a
- * plain path comparison; `mobileOnly` marks the home entry that the signet
- * already provides on desktop.
+ * plain path comparison. Home leads the list at every width; the signet
+ * stays a second way to the same page, the way a mark usually does.
  */
-type PrimaryNavigationItem = NavigationItem & {
-  mobileOnly?: boolean;
-};
+type PrimaryNavigationItem = NavigationItem;
 
 type ContactFormContent = {
   fields: {
@@ -150,7 +148,7 @@ export const siteContent = {
     },
     navigation: {
       main: [
-        { label: "Home", href: homePath("en"), mobileOnly: true },
+        { label: "Home", href: homePath("en") },
         { label: "Company", href: detailPagePath("en", "company") },
         { label: "Solutions", href: detailPagePath("en", "solutions") },
         { label: "Contact", href: contactPagePath("en") },
@@ -310,7 +308,7 @@ export const siteContent = {
     },
     navigation: {
       main: [
-        { label: "Start", href: homePath("de"), mobileOnly: true },
+        { label: "Start", href: homePath("de") },
         { label: "Unternehmen", href: detailPagePath("de", "company") },
         { label: "Lösungen", href: detailPagePath("de", "solutions") },
         { label: "Kontakt", href: contactPagePath("de") },

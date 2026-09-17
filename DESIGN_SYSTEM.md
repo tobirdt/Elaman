@@ -131,10 +131,10 @@ The full-bleed photograph that follows a `PageHeader` on a page that has one. Fi
 ### Header
 
 - Sticky white header with the supplied points-only Elaman signet.
-- Signet and the home word are one link on the left, the desktop home action. The word appears from `lg` up; below that the signet carries an `sr-only` label instead, so exactly one label is exposed at any width and the accessible name always matches what is on screen.
+- The signet sits alone on the left and leads to the homepage. It carries no visible word, only an `sr-only` name for anything that cannot see it, because the named entry is in the navigation on the right.
 - The desktop navigation exposes Company, Solutions, and Contact.
 - All three are real pages of their own; the menu contains no anchors, and the header runs no scroll observation. Only the hairline under the header reacts to scrolling.
-- Mobile prepends Start / Home and keeps the same global destinations below it.
+- The navigation names four destinations at every width, Start / Home first, then Company, Solutions, Contact. The named entry carries the current-page rule; the signet is the mark and takes none.
 - One blue rule communicates hover and the current page, matched on the exact path (`aria-current="page"`).
 - Mobile navigation is the only raised overlay. It fills the available height below the header, locks the document while open, keeps legal and locale actions at the end, and traps keyboard focus.
 - Escape and outside-pointer behavior remain intact.
@@ -142,7 +142,7 @@ The full-bleed photograph that follows a `PageHeader` on a page that has one. Fi
 
 ### Footer
 
-Identical on every route: three columns (Navigation, Contact, Legal) that collapse to two at `sm` and one below it, followed by a hairline-separated row with the copyright and the locale switch. Navigation repeats the header's destinations, including the Home/Start entry the header only shows on mobile. Column titles are Geist Mono micro labels; links keep a 44px target. No box, no shadow, no repeated address block beyond the one contact column.
+Identical on every route: three columns (Navigation, Contact, Legal) that collapse to two at `sm` and one below it, followed by a hairline-separated row with the copyright and the locale switch. Navigation repeats the header's four destinations, Home/Start included. Column titles are Geist Mono micro labels; links keep a 44px target. No box, no shadow, no repeated address block beyond the one contact column.
 
 ### Button
 
@@ -290,7 +290,7 @@ For visual changes:
 
 1. Check 320×568, 390×844, 768×1024, 1024×768, 1366×768, 1440×900, and 1600×1000.
 2. Verify German and English wrapping and zero horizontal overflow.
-3. Verify Header/Footer active state on Company, Solutions, Contact and the home lockup, both locales, mobile menu, and skip link.
+3. Verify Header/Footer active state on Start/Home, Company, Solutions and Contact, both locales, mobile menu, signet, and skip link.
 4. Verify the language switch lands on the matching reciprocal route from every page, including the contact page.
 5. Verify the route-hero entrance and the scroll-linked reveal, and that `prefers-reduced-motion` shows final states immediately with no snap or scroll-timeline animation.
 6. Verify contact-form validation, focus movement, direct links, and API error handling on both the homepage close and the contact page.
