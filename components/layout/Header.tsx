@@ -166,8 +166,8 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
               width={128}
               height={128}
               loading="eager"
-              sizes="(min-width: 1024px) 56px, 48px"
-              className="size-12 lg:size-14"
+              sizes="(min-width: 1024px) 52px, 44px"
+              className="size-11 lg:size-13"
             />
             <span className="sr-only">{content.homeLabel}</span>
           </Link>
