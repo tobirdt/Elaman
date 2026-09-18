@@ -77,9 +77,9 @@ Dossiers use normal document flow, reciprocal localised routes, and no scroll sn
 
 The contact page (`ContactPage`) opens with the same `PageHeader` and carries no photograph: the form is the content, and the office picture already opens the company page. Below the header, one content band pairs the direct contact `dl` with `ContactForm`.
 
-The global header names four direct localised pages, Start / Home first, then Company, Solutions and Contact, then the portal entry (Login), then the locale switch — no anchors anywhere in the menu, and the same set at every width. The signet leads to the homepage too, with an `sr-only` name and no visible word, so only the named entry carries the active rule (`aria-current="page"`), matched on the exact current path.
+The global header names five entries, Start / Home first, then Company, Solutions, Contact and Login, then the locale switch — no anchors anywhere in the menu, and the same set at every width. The signet leads to the homepage too, with an `sr-only` name and no visible word, so only the named entry carries the active rule (`aria-current="page"`), matched on the exact current path.
 
-The portal entry is a bordered control, not a fifth word in the row: it is the only entry in the bar that leaves the public site for something that asks who you are. It stays secondary and is never filled, so the blue current-page underline remains the header's one accent event.
+The portal entry is set exactly like the other four and is not boxed: same type and underline on desktop, same numbered row on mobile. It leads somewhere different in kind, and one row of words that all look alike says that better than one word in a frame. One divider only, before the locale switch.
 
 The portal itself follows the two page levels like everything else — `PageHeader`, one left edge, the same title step — so someone arriving from the public site recognises where they are. Its paths are **not** localised (`/de/portal`, `/en/portal`, with stable English segments below): the public catch-all sits at the same depth and a second dynamic segment beside it would be an ambiguous route, and these are addresses that get read out in a support call. The locale still decides the interface language and `<html lang>`.
 
