@@ -205,7 +205,7 @@ test("the German contact form exposes and focuses validation errors", async ({
   await expect(page.locator("#firstName-error")).toBeVisible();
 });
 
-test("the desktop header exposes the four global destinations, home first", async ({
+test("the desktop header exposes the five global destinations, home first", async ({
   isMobile,
   page,
 }) => {
@@ -213,12 +213,16 @@ test("the desktop header exposes the four global destinations, home first", asyn
 
   await page.goto("/de", { waitUntil: "networkidle" });
 
+  // The portal sits inside the navigation, not beside it: it is an entry in
+  // the same list, set like the rest, and anything reading the menu out loud
+  // should find it there rather than as a stray control afterwards.
   const navigation = page.getByRole("navigation", { name: "Hauptnavigation" }).first();
   await expect(navigation.getByRole("link")).toHaveText([
     "Start",
     "Unternehmen",
     "Lösungen",
     "Kontakt",
+    "Login",
   ]);
   await expect(navigation.getByRole("link", { name: "Vorgehen" })).toHaveCount(0);
 
