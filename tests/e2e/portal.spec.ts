@@ -71,14 +71,6 @@ async function freshCode(userId: string, secret: string): Promise<string> {
 }
 
 /**
- * A ready-to-use account of its own.
- *
- * The lockout test locks the account it uses, and a test that borrows the
- * shared one both depends on eleven predecessors having run and leaves the
- * account unusable for anything after it. Its own account costs one round trip
- * and removes both problems.
- */
-/**
  * Submits one code and waits for the server to have answered.
  *
  * A fixed pause instead of this is how the first version of the lockout test
@@ -98,6 +90,14 @@ async function submitCode(page: Page, code: string) {
   return answered;
 }
 
+/**
+ * A ready-to-use account of its own.
+ *
+ * The lockout test locks the account it uses, and a test that borrows the
+ * shared one both depends on eleven predecessors having run and leaves the
+ * account unusable for anything after it. Its own account costs one round trip
+ * and removes both problems.
+ */
 async function provisionAccount(page: Page) {
   const own = `own-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
   const email = `${own}@example.test`;
@@ -350,6 +350,25 @@ test.describe("portal", () => {
     // And with that session in hand, the sign-in form is not offered again.
     await page.goto("/de/portal");
     await page.waitForURL("**/de/portal/overview");
+
+    // The menu stops inviting someone who is already in. It cannot do that on
+    // the public pages, which are prerendered and know nothing about a
+    // session, so there it still reads "Login" — and still behaves, because
+    // the sign-in page sends a signed-in visitor straight back here.
+    const entry = page
+      .getByRole("link")
+      .filter({ hasText: /^(Login|Portal)$/ })
+      .first();
+    await expect(entry).toHaveText("Portal");
+    await expect(entry).toHaveAttribute("href", "/de/portal/overview");
+
+    await page.goto("/de");
+    await expect(
+      page
+        .getByRole("link")
+        .filter({ hasText: /^(Login|Portal)$/ })
+        .first(),
+    ).toHaveText("Login");
   });
 
   /**

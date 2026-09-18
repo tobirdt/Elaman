@@ -1,5 +1,4 @@
-import { evaluateLockout, type LockoutState } from "@/lib/auth/policy";
-import { lockout } from "@/lib/auth/policy";
+import { evaluateLockout, lockout, type LockoutState } from "@/lib/auth/policy";
 import { query } from "@/lib/db/client";
 import { describeError } from "@/lib/http/log";
 

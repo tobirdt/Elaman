@@ -18,8 +18,15 @@ export type PortalContent = {
     invitation: { title: string; description: string };
     overview: { title: string; description: string };
   };
-  /** Shown in the header, and as the last breadcrumb step. */
+  /** Shown in the header when nobody is signed in. */
   navLabel: string;
+  /**
+   * And once they are. The public pages are prerendered and cannot know about
+   * a session, so they keep saying "Login" — which still behaves correctly,
+   * because the sign-in page sends a signed-in visitor straight on. Inside the
+   * portal, where the pages are dynamic anyway, the word can be honest.
+   */
+  navLabelSignedIn: string;
   signIn: {
     breadcrumb: string;
     eyebrow: string;
@@ -101,6 +108,11 @@ export type PortalContent = {
     eyebrow: string;
     title: string;
     lead: string;
+    /**
+     * Titles the band. Not the person's name: a name set at heading size
+     * shouts, and it is already the first row of the list below.
+     */
+    section: { label: string; title: string };
     account: {
       label: string;
       name: string;
@@ -132,6 +144,7 @@ const portalContent = {
       },
     },
     navLabel: "Login",
+    navLabelSignedIn: "Portal",
     signIn: {
       breadcrumb: "Anmeldung",
       eyebrow: "Portal",
@@ -236,6 +249,10 @@ const portalContent = {
       eyebrow: "Portal",
       title: "Übersicht",
       lead: "Sie sind angemeldet.",
+      section: {
+        label: "Konto",
+        title: "Ihr Konto bei Elaman.",
+      },
       account: {
         label: "Konto",
         name: "Name",
@@ -272,6 +289,7 @@ const portalContent = {
       },
     },
     navLabel: "Login",
+    navLabelSignedIn: "Portal",
     signIn: {
       breadcrumb: "Sign in",
       eyebrow: "Portal",
@@ -372,6 +390,10 @@ const portalContent = {
       eyebrow: "Portal",
       title: "Overview",
       lead: "You are signed in.",
+      section: {
+        label: "Account",
+        title: "Your Elaman account.",
+      },
       account: {
         label: "Account",
         name: "Name",

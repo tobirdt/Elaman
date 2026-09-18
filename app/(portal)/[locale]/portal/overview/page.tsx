@@ -84,6 +84,10 @@ export default async function PortalOverviewPage({ params }: OverviewPageProps) 
         locale={locale}
         content={site.navigation}
         alternateLocaleHref={portalOverviewPath(alternateLocale(locale))}
+        portalEntry={{
+          label: content.navLabelSignedIn,
+          href: portalOverviewPath(locale),
+        }}
       />
       <main id="main-content" tabIndex={-1}>
         <article>
@@ -97,7 +101,10 @@ export default async function PortalOverviewPage({ params }: OverviewPageProps) 
 
           <Section variant="content-band" tone="white">
             <Container>
-              <SectionIntro label={content.overview.account.label} title={user.name} />
+              <SectionIntro
+                label={content.overview.section.label}
+                title={content.overview.section.title}
+              />
               <div className="mt-11 grid gap-10 xl:grid-cols-[minmax(16rem,0.4fr)_minmax(0,0.6fr)] xl:gap-16">
                 <dl className="grid self-start border-t border-[var(--border-hairline-strong)]">
                   {rows.map((row) => (
