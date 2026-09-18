@@ -97,8 +97,10 @@ create table account_requests (
 
 create index account_requests_open_idx on account_requests (created_at) where handled_at is null;
 
--- The file itself lives in private blob storage and is only ever handed out
--- through a short-lived signed link. `blob_path` is not a URL.
+-- The file itself lives in a private bucket and is only ever handed out
+-- through a short-lived signed link. The path column is not a URL.
+-- (Renamed to `object_key` in 002; kept here so this file still describes the
+-- state it actually creates.)
 create table documents (
   id uuid primary key default gen_random_uuid(),
   title text not null,

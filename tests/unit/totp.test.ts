@@ -108,17 +108,50 @@ describe("verifyTotp", () => {
 
   // A code stays valid for up to ninety seconds, so without this a shoulder
   // surfer or a log reader could present the same one again.
-  it("refuses a code that was already used", () => {
+  it("refuses a code that was already used, and says why", () => {
     const code = totp(RFC_SECRET_BASE32, now);
     const first = verifyTotp(RFC_SECRET_BASE32, code, { atSeconds: now });
 
     expect(first.valid).toBe(true);
-    expect(
-      verifyTotp(RFC_SECRET_BASE32, code, {
-        atSeconds: now,
-        lastUsedStep: first.valid ? first.step : null,
-      }).valid,
-    ).toBe(false);
+
+    const second = verifyTotp(RFC_SECRET_BASE32, code, {
+      atSeconds: now,
+      lastUsedStep: first.valid ? first.step : null,
+    });
+
+    expect(second.valid).toBe(false);
+    // The distinction earns its keep in the interface: someone who just
+    // enrolled and signed in inside the same thirty seconds lands here, and
+    // "wrong code" would send them hunting for a problem they do not have.
+    expect(second.valid === false && second.reason).toBe("replayed");
+  });
+
+  it("separates a spent code from a wrong one", () => {
+    const code = totp(RFC_SECRET_BASE32, now);
+    const step = counterFor(now);
+
+    const spent = verifyTotp(RFC_SECRET_BASE32, code, {
+      atSeconds: now,
+      lastUsedStep: step,
+    });
+    const wrong = verifyTotp(RFC_SECRET_BASE32, "000000", {
+      atSeconds: now,
+      lastUsedStep: step,
+    });
+
+    expect(spent.valid === false && spent.reason).toBe("replayed");
+    expect(wrong.valid === false && wrong.reason).toBe("no_match");
+  });
+
+  // Every step at or below the mark is spent, not just the one that was used.
+  it("treats an older step as spent as well", () => {
+    const previous = totp(RFC_SECRET_BASE32, now - 30);
+    const result = verifyTotp(RFC_SECRET_BASE32, previous, {
+      atSeconds: now,
+      lastUsedStep: counterFor(now),
+    });
+
+    expect(result.valid === false && result.reason).toBe("replayed");
   });
 
   it("refuses anything that is not digits", () => {

@@ -46,3 +46,51 @@ if [ -d "$browsers_dir" ] && [ -f node_modules/playwright-core/browsers.json ]; 
     echo "Playwright: mapped installed Chromium $have to expected build $wanted"
   fi
 fi
+
+# Chromium's certificate trust. Outbound HTTPS goes through an intercepting
+# proxy, and the container's CA bundle covers curl and Node but not Chromium:
+# it reads user-added roots from the NSS database at ~/.pki/nssdb, which ships
+# empty. Without this, any Playwright navigation to an external site fails with
+# ERR_CERT_AUTHORITY_INVALID, so the live site and preview deployments cannot be
+# checked in a browser, only localhost. Only the proxy's own CAs are added, and
+# only as TLS server roots; the public roots in the bundle are Chromium's own
+# business.
+ca_bundle="${CLAUDE_CODE_CA_BUNDLE:-/root/.ccr/ca-bundle.crt}"
+nssdb="$HOME/.pki/nssdb"
+
+if [ -f "$ca_bundle" ] && ! certutil -L -d "sql:$nssdb" 2>/dev/null | grep -q "^Anthropic "; then
+  if ! command -v certutil >/dev/null 2>&1; then
+    apt-get install -y -q libnss3-tools >/dev/null 2>&1 ||
+      { apt-get update -q >/dev/null 2>&1 &&
+        apt-get install -y -q libnss3-tools >/dev/null 2>&1; } ||
+      true
+  fi
+
+  if command -v certutil >/dev/null 2>&1; then
+    mkdir -p "$nssdb"
+    certutil -L -d "sql:$nssdb" >/dev/null 2>&1 ||
+      certutil -N --empty-password -d "sql:$nssdb" >/dev/null 2>&1 || true
+
+    added=0
+    workdir="$(mktemp -d)"
+    (cd "$workdir" &&
+      csplit -z -s -f part- -b '%03d.pem' "$ca_bundle" '/BEGIN CERTIFICATE/' '{*}') 2>/dev/null || true
+
+    for part in "$workdir"/part-*.pem; do
+      [ -f "$part" ] || continue
+      subject="$(openssl x509 -in "$part" -noout -subject 2>/dev/null || true)"
+      case "$subject" in
+        *"O = Anthropic"* | *"O=Anthropic"*) ;;
+        *) continue ;;
+      esac
+      name="Anthropic ${subject##*CN = }"
+      name="${name%%,*}"
+      # "C,," trusts it for TLS server certificates and nothing else.
+      certutil -A -n "$name" -t "C,," -i "$part" -d "sql:$nssdb" 2>/dev/null &&
+        added=$((added + 1)) || true
+    done
+
+    rm -rf "$workdir"
+    [ "$added" -gt 0 ] && echo "Chromium: trusted $added proxy CA(s) for external HTTPS"
+  fi
+fi

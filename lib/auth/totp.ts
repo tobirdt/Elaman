@@ -97,7 +97,18 @@ export function totp(
 }
 
 export type TotpVerification =
-  | { valid: false }
+  /**
+   * `reason` matters to the caller. "replayed" means the code is genuinely
+   * this user's current or recent code but has already been spent — which is
+   * what happens to anyone who finishes enrolling their authenticator and
+   * signs in within the same thirty seconds. Telling them to wait for the next
+   * code is the only honest answer; "wrong code" would send them looking for a
+   * problem that does not exist.
+   *
+   * Saying so reveals nothing an attacker replaying a captured code does not
+   * already know: they had the code.
+   */
+  | { valid: false; reason: "no_match" | "replayed" }
   /** The step that matched, so the caller can refuse to accept it twice. */
   | { valid: true; step: bigint };
 
@@ -124,28 +135,42 @@ export function verifyTotp(
   const candidate = code.replace(/\s+/g, "");
 
   if (!/^\d+$/.test(candidate)) {
-    return { valid: false };
+    return { valid: false, reason: "no_match" };
   }
 
   const secret = base32Decode(secretBase32);
   const current = counterFor(atSeconds);
+  const actual = Buffer.from(candidate, "utf8");
+  let replayed = false;
 
   for (let offset = -window; offset <= window; offset += 1) {
     const step = current + BigInt(offset);
 
-    if (step < 0n || (lastUsedStep !== null && step <= lastUsedStep)) {
+    if (step < 0n) {
       continue;
     }
 
     const expected = Buffer.from(hotp(secret, step, candidate.length), "utf8");
-    const actual = Buffer.from(candidate, "utf8");
+    const matches =
+      expected.length === actual.length && timingSafeEqual(expected, actual);
 
-    if (expected.length === actual.length && timingSafeEqual(expected, actual)) {
-      return { valid: true, step };
+    if (!matches) {
+      continue;
     }
+
+    // Matched, but this step has already been accepted once. Keep looking:
+    // the same six digits can belong to only one step in practice, but the
+    // window is walked in full either way so the timing does not depend on
+    // where the match was.
+    if (lastUsedStep !== null && step <= lastUsedStep) {
+      replayed = true;
+      continue;
+    }
+
+    return { valid: true, step };
   }
 
-  return { valid: false };
+  return { valid: false, reason: replayed ? "replayed" : "no_match" };
 }
 
 /**

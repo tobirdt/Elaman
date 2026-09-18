@@ -146,3 +146,27 @@ export function legalPageKindFromSlug(
 
   return legalPageKinds.find((kind) => legalPageSlugs[kind][locale] === slug[0]) ?? null;
 }
+
+/**
+ * The portal.
+ *
+ * Its path segments are the same in both languages, unlike the public pages,
+ * which carry localised slugs. Two reasons. The structural one: the public
+ * catch-all route sits at the same depth, and a second dynamic segment beside
+ * it would be an ambiguous route rather than a localised one. The practical
+ * one: these are addresses that appear in an invitation mail and in a support
+ * conversation, and a stable path is easier to read out than a translated one.
+ * The locale still decides the interface language and `<html lang>`, and the
+ * language switch maps one portal path onto the other unchanged.
+ */
+export function portalPath(locale: Locale): Route {
+  return route(`/${locale}/portal`);
+}
+
+export function portalOverviewPath(locale: Locale): Route {
+  return route(`/${locale}/portal/overview`);
+}
+
+export function portalInvitationPath(locale: Locale): Route {
+  return route(`/${locale}/portal/invitation`);
+}

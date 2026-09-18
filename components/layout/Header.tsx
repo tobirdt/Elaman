@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -14,9 +15,25 @@ type HeaderProps = {
   locale: Locale;
   content: LocalizedSiteContent["navigation"];
   alternateLocaleHref?: string;
+  /**
+   * Replaces the portal entry, which otherwise says "Login".
+   *
+   * Only the portal's own pages pass it, and only because they are dynamic:
+   * the public pages are prerendered and cannot know whether anyone is signed
+   * in. Saying "Login" there stays correct behaviour — the sign-in page sends
+   * a signed-in visitor straight to the overview — but inside the portal the
+   * word would be plainly wrong, so there it is replaced.
+   */
+  portalEntry?: { label: string; href: Route };
 };
 
-export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
+export function Header({
+  alternateLocaleHref,
+  locale,
+  content,
+  portalEntry,
+}: HeaderProps) {
+  const portal = portalEntry ?? content.portal;
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -200,6 +217,28 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
               className="mx-4 h-4 w-px bg-[var(--border-hairline)] xl:mx-5"
               aria-hidden="true"
             />
+            {/*
+              The portal. A bordered control rather than a fifth word in the
+              row, because it is the only entry in the bar that leads somewhere
+              that asks who you are. Secondary rather than primary: the blue
+              current-page underline is this composition's one accent, and a
+              filled button here would compete with it.
+            */}
+            <Link
+              aria-current={isCurrentPage(portal.href) ? "page" : undefined}
+              className={`flex min-h-11 items-center rounded-[var(--radius-control)] border px-3.5 text-sm font-medium transition-colors [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] ${
+                isCurrentPage(portal.href)
+                  ? "border-[var(--border-accent-blue)] text-elaman-blue"
+                  : "border-[var(--border-hairline-strong)] text-graphite hover:border-[var(--border-accent-blue)] hover:text-elaman-blue"
+              }`}
+              href={portal.href}
+            >
+              {portal.label}
+            </Link>
+            <span
+              className="mx-4 h-4 w-px bg-[var(--border-hairline)] xl:mx-5"
+              aria-hidden="true"
+            />
             <LanguageSwitcher
               locale={locale}
               label={content.languageSwitcherLabel}
@@ -277,6 +316,17 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
                     );
                   })}
                 </nav>
+                <div className="pt-7">
+                  <Link
+                    aria-current={isCurrentPage(portal.href) ? "page" : undefined}
+                    className="inline-flex min-h-11 items-center rounded-[var(--radius-control)] border border-[var(--border-hairline-strong)] px-5 py-3 text-[length:var(--type-small)] font-medium text-graphite transition-colors [transition-duration:var(--motion-fast)] hover:border-[var(--border-accent-blue)] hover:text-elaman-blue"
+                    data-mobile-menu-link
+                    href={portal.href}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {portal.label}
+                  </Link>
+                </div>
                 <div className="mt-auto flex flex-wrap items-center justify-between gap-x-6 gap-y-2 pt-8">
                   <div className="flex flex-wrap gap-x-6">
                     {content.legal.map((item) => (

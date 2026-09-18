@@ -1,6 +1,15 @@
-import { Pool, type PoolClient, type QueryResultRow } from "pg";
+import { Pool, type PoolClient, type QueryResultRow } from "@neondatabase/serverless";
 
 /**
+ * Neon's driver rather than `pg`. It speaks the Postgres protocol over a
+ * WebSocket on port 443 instead of a raw socket on 5432, which is what Neon
+ * recommends for serverless functions and what makes the database reachable
+ * from networks that only allow HTTPS. The API mirrors `pg`, so everything
+ * below is the same code it was.
+ *
+ * Node 22 supplies the global `WebSocket` the driver needs, so nothing has to
+ * be configured and no polyfill is pulled in.
+ *
  * One pool per process. Next.js reloads modules in development, so the pool
  * is parked on `globalThis` to avoid opening a new one on every edit and
  * exhausting the database's connection limit.
