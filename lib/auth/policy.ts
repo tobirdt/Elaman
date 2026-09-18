@@ -24,7 +24,7 @@ import { isValidContactEmail } from "@/lib/validation/contact";
 export const passwordLength = { min: 12, max: 128 } as const;
 
 /** Six digits, the length the enrolled authenticators produce. */
-export const totpCodeLength = 6;
+const totpCodeLength = 6;
 
 export type PasswordProblem =
   "too_short" | "too_long" | "whitespace_only" | "contains_identity";
@@ -115,8 +115,15 @@ export const sessionLifetime = {
 /** Two minutes to read six digits off a phone and type them. */
 export const loginChallengeLifetimeMs = 2 * 60 * 1000;
 
-/** An invitation is valid for a week; after that an admin issues a new one. */
-export const invitationLifetimeMs = 7 * 24 * 60 * 60 * 1000;
+/**
+ * Wrong codes one challenge will absorb before it is thrown away.
+ *
+ * The time limit alone is not a limit: two minutes is thousands of requests,
+ * and a six-digit code with a three-step window falls to about one guess in
+ * 333,000. Five covers someone reading the wrong line off their phone and
+ * mistyping it twice more; anything past that is not a person.
+ */
+export const maxChallengeAttempts = 5;
 
 export type SessionTiming = {
   createdAt: Date;
@@ -149,7 +156,7 @@ export function judgeSession(timing: SessionTiming, now: Date): SessionVerdict {
  * active session does not cause a write on every single request. One minute of
  * imprecision against a one-hour idle limit is not worth the row churn.
  */
-export const sessionTouchIntervalMs = 60 * 1000;
+const sessionTouchIntervalMs = 60 * 1000;
 
 export function shouldTouchSession(lastSeenAt: Date, now: Date): boolean {
   return now.getTime() - lastSeenAt.getTime() >= sessionTouchIntervalMs;

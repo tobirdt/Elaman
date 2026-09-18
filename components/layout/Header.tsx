@@ -209,7 +209,7 @@ export function Header({ alternateLocaleHref, locale, content }: HeaderProps) {
             */}
             <Link
               aria-current={isCurrentPage(content.portal.href) ? "page" : undefined}
-              className={`flex min-h-9 items-center rounded-[var(--radius-control)] border px-3.5 text-sm font-medium transition-colors [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] ${
+              className={`flex min-h-11 items-center rounded-[var(--radius-control)] border px-3.5 text-sm font-medium transition-colors [transition-duration:var(--motion-fast)] [transition-timing-function:var(--motion-ease)] ${
                 isCurrentPage(content.portal.href)
                   ? "border-[var(--border-accent-blue)] text-elaman-blue"
                   : "border-[var(--border-hairline-strong)] text-graphite hover:border-[var(--border-accent-blue)] hover:text-elaman-blue"

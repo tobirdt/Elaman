@@ -1,10 +1,4 @@
-import {
-  generateToken,
-  hashPassword,
-  hashToken,
-  needsRehash,
-  verifyPassword,
-} from "@/lib/auth/crypto";
+import { hashPassword, hashToken, needsRehash, verifyPassword } from "@/lib/auth/crypto";
 import {
   lockoutFor,
   pruneExpired,
@@ -13,7 +7,6 @@ import {
 } from "@/lib/auth/audit";
 import {
   checkPassword,
-  invitationLifetimeMs,
   isWellFormedTotpCode,
   normalizeTotpCode,
   type PasswordProblem,
@@ -25,6 +18,7 @@ import {
   createSession,
   destroyAllSessions,
   pendingChallenge,
+  recordChallengeFailure,
   type RequestContext,
 } from "@/lib/auth/session";
 import { generateTotpSecret, totpUri, verifyTotp } from "@/lib/auth/totp";
@@ -148,6 +142,7 @@ export async function beginLogin(
 export type CompleteLoginResult =
   | { status: "signed_in"; role: "admin" | "customer" }
   | { status: "rejected" }
+  | { status: "locked"; retryAt: Date | null }
   /**
    * The code is right but was already spent — the ordinary case for someone
    * who just enrolled their authenticator and signed in within the same
@@ -160,8 +155,17 @@ export type CompleteLoginResult =
 /**
  * Step two: the authenticator code.
  *
- * A failure here counts towards the same lockout as a wrong password, because
- * from the outside both are guesses against the same account.
+ * Three separate bounds, because the time limit is not one. Two minutes is
+ * thousands of requests, and a six-digit code inside a three-step window falls
+ * to roughly one guess in 333,000 — so a challenge that accepted unlimited
+ * guesses would hand the whole second factor to anyone who already had the
+ * password. That was the state this code was in, and the comment here used to
+ * claim a lockout it never consulted.
+ *
+ * Now: the account lockout is read before anything is compared, five wrong
+ * codes end the challenge, and the route in front of this carries a request
+ * budget. A code that is right but already spent is exempt from the count —
+ * that is the ordinary case for someone who just enrolled, not a guess.
  */
 export async function completeLogin(
   code: string,
@@ -186,8 +190,26 @@ export async function completeLogin(
     return { status: "rejected" };
   }
 
+  // Read, not merely written to. The failures recorded below feed this, and
+  // without the read they fed nothing.
+  const lock = await lockoutFor(user.email);
+
+  if (lock.locked) {
+    await clearLoginChallenge();
+    await recordAudit({
+      action: "login.locked_out",
+      actorUserId: user.id,
+      actorEmail: user.email,
+      ip: context.ip,
+      detail: { failures: lock.failures, step: "totp" },
+    });
+
+    return { status: "locked", retryAt: lock.retryAt };
+  }
+
   if (!isWellFormedTotpCode(code)) {
     await recordLoginAttempt(user.email, false, context.ip);
+    await recordChallengeFailure(challenge.id);
     await recordAudit({
       action: "login.totp_rejected",
       actorUserId: user.id,
@@ -213,9 +235,15 @@ export async function completeLogin(
       detail: { reason: verification.reason },
     });
 
-    return verification.reason === "replayed"
-      ? { status: "code_used" }
-      : { status: "rejected" };
+    // A spent code is not a guess: it is what someone who enrolled thirty
+    // seconds ago types. It costs the challenge nothing.
+    if (verification.reason === "replayed") {
+      return { status: "code_used" };
+    }
+
+    await recordChallengeFailure(challenge.id);
+
+    return { status: "rejected" };
   }
 
   // Consumed before the session is created: if two requests arrive with the
@@ -280,7 +308,12 @@ export async function openInvitation(token: string): Promise<InvitationView | nu
     [hashToken(token)],
   );
 
-  if (!row || row.status === "disabled") {
+  // An active account is never re-openable through an invitation link. No
+  // code here can produce that state today — the seeding script refuses it —
+  // but the day an admin screen issues invitations, this is the difference
+  // between "resend the welcome mail" and "hand over a working account
+  // together with its authenticator secret".
+  if (!row || row.status !== "invited") {
     return null;
   }
 
@@ -415,23 +448,4 @@ export async function redeemInvitation(
   });
 
   return { status: "redeemed" };
-}
-
-/**
- * Issues an invitation for an existing account and returns the raw token once.
- * Used by the seeding script and, later, by the admin screens.
- */
-export async function issueInvitation(
-  userId: string,
-  createdBy: string | null,
-): Promise<string> {
-  const token = generateToken();
-
-  await query(
-    `insert into invitations (user_id, token_hash, expires_at, created_by)
-     values ($1, $2, $3, $4)`,
-    [userId, hashToken(token), new Date(Date.now() + invitationLifetimeMs), createdBy],
-  );
-
-  return token;
 }

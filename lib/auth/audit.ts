@@ -1,6 +1,7 @@
 import { evaluateLockout, type LockoutState } from "@/lib/auth/policy";
 import { lockout } from "@/lib/auth/policy";
 import { query } from "@/lib/db/client";
+import { describeError } from "@/lib/http/log";
 
 /**
  * The record of who did what, and the counter that feeds the lockout.
@@ -68,7 +69,7 @@ export async function recordAudit(entry: AuditEntry): Promise<void> {
   } catch (error) {
     console.error("Audit entry could not be written.", {
       action: entry.action,
-      name: error instanceof Error ? error.name : "UnknownError",
+      ...describeError(error),
     });
   }
 }
@@ -126,8 +127,6 @@ export async function pruneExpired(): Promise<void> {
       "delete from login_challenges where expires_at < now() - interval '1 hour'",
     );
   } catch (error) {
-    console.error("Pruning failed.", {
-      name: error instanceof Error ? error.name : "UnknownError",
-    });
+    console.error("Pruning failed.", describeError(error));
   }
 }

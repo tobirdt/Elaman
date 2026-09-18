@@ -1,0 +1,13 @@
+-- How many wrong codes one challenge has already absorbed.
+--
+-- Without this a challenge is an oracle: it stays valid for its full two
+-- minutes no matter how many codes are thrown at it, so anyone holding the
+-- password alone could guess the six digits at whatever rate the network
+-- allows. Three accepted steps out of a million is not much per guess, and it
+-- does not have to be — the guesses were unlimited.
+--
+-- Counted per challenge rather than per account because that is the unit an
+-- attacker actually controls: a fresh challenge costs another password
+-- submission, which is what the account lockout and the request budget then
+-- bound.
+alter table login_challenges add column attempts integer not null default 0;

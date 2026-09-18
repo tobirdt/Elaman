@@ -4,6 +4,7 @@ import { generateToken, hashToken } from "@/lib/auth/crypto";
 import {
   judgeSession,
   loginChallengeLifetimeMs,
+  maxChallengeAttempts,
   sessionLifetime,
   shouldTouchSession,
 } from "@/lib/auth/policy";
@@ -134,8 +135,9 @@ export async function createSession(
  *
  * A row that fails either lifetime limit is deleted rather than merely
  * ignored, so an abandoned session does not sit in the table until someone
- * runs a cleanup. A user who has since been disabled loses every session the
- * same way.
+ * runs a cleanup. The session of a user who has since been disabled goes the
+ * same way — this one, on its next use; the others when they are next used,
+ * because each is checked here on every request.
  */
 export async function currentSession(): Promise<ActiveSession | null> {
   const store = await cookies();
@@ -198,16 +200,25 @@ export async function currentSession(): Promise<ActiveSession | null> {
   };
 }
 
-/** Signs out. Deletes the row, so the cookie cannot be replayed afterwards. */
+/**
+ * Signs out. Deletes the row, so the cookie cannot be replayed afterwards.
+ *
+ * The cookie is cleared in a `finally`: if the delete fails, the caller is
+ * still shown a signed-out page, and leaving them holding a live cookie while
+ * telling them they are signed out is the one outcome worth ruling out. The
+ * row then ages out on its own limits.
+ */
 export async function destroySession(): Promise<void> {
   const store = await cookies();
   const token = store.get(sessionCookieName)?.value;
 
-  if (token) {
-    await query("delete from sessions where token_hash = $1", [hashToken(token)]);
+  try {
+    if (token) {
+      await query("delete from sessions where token_hash = $1", [hashToken(token)]);
+    }
+  } finally {
+    store.delete(sessionCookieName);
   }
-
-  store.delete(sessionCookieName);
 }
 
 /**
@@ -226,6 +237,8 @@ export async function destroyAllSessions(userId: string): Promise<number> {
 export type PendingChallenge = {
   id: string;
   userId: string;
+  /** Wrong codes this challenge has already absorbed. */
+  attempts: number;
 };
 
 /**
@@ -275,8 +288,8 @@ export async function pendingChallenge(): Promise<PendingChallenge | null> {
     return null;
   }
 
-  const row = await queryOne<{ id: string; user_id: string }>(
-    `select id, user_id
+  const row = await queryOne<{ id: string; user_id: string; attempts: number }>(
+    `select id, user_id, attempts
        from login_challenges
       where token_hash = $1
         and consumed_at is null
@@ -284,7 +297,36 @@ export async function pendingChallenge(): Promise<PendingChallenge | null> {
     [hashToken(token)],
   );
 
-  return row ? { id: row.id, userId: row.user_id } : null;
+  return row ? { id: row.id, userId: row.user_id, attempts: row.attempts } : null;
+}
+
+/**
+ * Counts a wrong code against the challenge, and says whether that was the
+ * last one it will take.
+ *
+ * The increment is done in SQL rather than read-modify-write, so guesses fired
+ * in parallel all count — which is exactly the case this exists for.
+ */
+export async function recordChallengeFailure(id: string): Promise<boolean> {
+  const rows = await query<{ attempts: number }>(
+    `update login_challenges
+        set attempts = attempts + 1
+      where id = $1 and consumed_at is null
+      returning attempts`,
+    [id],
+  );
+
+  const attempts = rows[0]?.attempts ?? maxChallengeAttempts;
+
+  if (attempts >= maxChallengeAttempts) {
+    await query("delete from login_challenges where id = $1", [id]);
+    const store = await cookies();
+    store.delete(challengeCookieName);
+
+    return true;
+  }
+
+  return false;
 }
 
 /**

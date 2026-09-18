@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 
 import { redeemInvitation } from "@/lib/auth/login";
 import { requestContext } from "@/lib/auth/session";
+import { describeError } from "@/lib/http/log";
+import { checkRateLimit, clientKey } from "@/lib/http/rate-limit";
 import type { PasswordProblem } from "@/lib/auth/policy";
 import {
   isForbiddenOrigin,
@@ -14,6 +16,14 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const maxRequestBytes = 4_000;
+
+/**
+ * Redeeming an invitation hashes a password, so it carries the same cost as a
+ * sign-in and needs the same bound. Tighter, because this is something a
+ * person does once: fifteen attempts in a quarter of an hour covers a few
+ * mistyped codes and nothing else.
+ */
+const rateLimit = { windowMs: 15 * 60 * 1000, max: 15 } as const;
 
 export type InvitationApiResponse =
   | { ok: true }
@@ -46,6 +56,21 @@ function json(body: InvitationApiResponse, status: number) {
 export async function POST(request: Request) {
   if (isForbiddenOrigin(request)) {
     return json({ ok: false, error: "bad_request" }, 403);
+  }
+
+  const budget = checkRateLimit(clientKey(request, "portal-invitation"), rateLimit);
+
+  if (budget.limited) {
+    return NextResponse.json(
+      { ok: false, error: "bad_request" } satisfies InvitationApiResponse,
+      {
+        status: 429,
+        headers: {
+          "Cache-Control": "no-store",
+          "Retry-After": String(budget.retryAfterSeconds),
+        },
+      },
+    );
   }
 
   const body = await readJsonObject(request, maxRequestBytes);
@@ -85,9 +110,7 @@ export async function POST(request: Request) {
       return json({ ok: false, error: "invalid_token" }, 410);
     }
 
-    console.error("Invitation redemption failed unexpectedly.", {
-      name: error instanceof Error ? error.name : "UnknownError",
-    });
+    console.error("Invitation redemption failed unexpectedly.", describeError(error));
 
     return json({ ok: false, error: "bad_request" }, 500);
   }

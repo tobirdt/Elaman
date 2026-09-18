@@ -171,6 +171,16 @@ export function SignInForm({
         return;
       }
 
+      if (payload.error === "locked") {
+        // The challenge is gone with the lockout, so there is nothing left to
+        // type here; back to the first step, where the message belongs.
+        setStep("password");
+        setCode("");
+        setErrors({ form: content.errors.locked });
+        setStatus("error");
+        return;
+      }
+
       setErrors({
         code:
           payload.error === "code_used"

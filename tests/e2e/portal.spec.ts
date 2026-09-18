@@ -3,6 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 
 import { generateToken, hashToken } from "@/lib/auth/crypto";
 import { closePool, query, queryOne } from "@/lib/db/client";
+import { lockout, maxChallengeAttempts } from "@/lib/auth/policy";
 import { counterFor, hotp, base32Decode } from "@/lib/auth/totp";
 
 /**
@@ -67,6 +68,82 @@ async function freshCode(userId: string, secret: string): Promise<string> {
   }
 
   return hotp(base32Decode(secret), step);
+}
+
+/**
+ * A ready-to-use account of its own.
+ *
+ * The lockout test locks the account it uses, and a test that borrows the
+ * shared one both depends on eleven predecessors having run and leaves the
+ * account unusable for anything after it. Its own account costs one round trip
+ * and removes both problems.
+ */
+/**
+ * Submits one code and waits for the server to have answered.
+ *
+ * A fixed pause instead of this is how the first version of the lockout test
+ * lost a click and counted nine failures where it expected ten: the button is
+ * disabled while the request is in flight, so a click that lands too early
+ * does nothing at all and the test cannot tell.
+ */
+async function submitCode(page: Page, code: string) {
+  const answered = page.waitForResponse(
+    (response) =>
+      response.url().includes("/api/portal/login/code") &&
+      response.request().method() === "POST",
+  );
+  await field(page, "Sechsstelliger Code").fill(code);
+  await page.getByRole("button", { name: "Anmelden" }).click();
+
+  return answered;
+}
+
+async function provisionAccount(page: Page) {
+  const own = `own-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+  const email = `${own}@example.test`;
+  const companyId = (await queryOne<{ id: string }>(
+    "insert into companies (name) values ($1) returning id",
+    [`Firma ${own}`],
+  ))!.id;
+  const id = (await queryOne<{ id: string }>(
+    `insert into users (email, name, role, company_id, status)
+       values ($1, 'Eigene Testperson', 'customer', $2, 'invited') returning id`,
+    [email, companyId],
+  ))!.id;
+
+  const token = generateToken();
+  await query(
+    `insert into invitations (user_id, token_hash, expires_at)
+     values ($1, $2, now() + interval '1 day')`,
+    [id, hashToken(token)],
+  );
+
+  // Opening the page is what mints the authenticator secret.
+  await page.goto(`/de/portal/invitation?token=${token}`);
+  const secret = (await queryOne<{ totp_secret: string }>(
+    "select totp_secret from users where id = $1",
+    [id],
+  ))!.totp_secret;
+
+  await field(page, "Kennwort").fill(testPassword);
+  await field(page, "Kennwort wiederholen").fill(testPassword);
+  await field(page, "Code aus der App").fill(await freshCode(id, secret));
+  await page.getByRole("button", { name: "Konto einrichten" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Konto ist eingerichtet" }),
+  ).toBeVisible();
+
+  return {
+    id,
+    email,
+    secret,
+    async remove() {
+      await query("delete from users where id = $1", [id]);
+      await query("delete from companies where id = $1", [companyId]);
+      await query("delete from login_attempts where email = $1", [email]);
+      await query("delete from audit_log where actor_email = $1", [email]);
+    },
+  };
 }
 
 test.describe("portal", () => {
@@ -362,6 +439,91 @@ test.describe("portal", () => {
     await page.goto("/de/portal/overview");
     await page.waitForURL("**/de/portal");
     await expect(field(page, "E-Mail-Adresse")).toBeVisible();
+  });
+
+  /**
+   * The defect this exists for: before it was fixed, a challenge accepted any
+   * number of wrong codes for its full two minutes, so a password on its own
+   * was enough — the second factor could simply be searched. The account
+   * lockout did not help either, because `completeLogin` wrote failures into
+   * it and never read them.
+   *
+   * Both halves are checked here, on an account this test owns, because
+   * proving them means locking that account.
+   */
+  test("guessing the second factor runs out of room twice over", async ({ page }) => {
+    const account = await provisionAccount(page);
+
+    try {
+      // --- Half one: one challenge takes five wrong codes and no more.
+      await page.goto("/de/portal");
+      await field(page, "E-Mail-Adresse").fill(account.email);
+      await field(page, "Kennwort").fill(testPassword);
+      await page.getByRole("button", { name: "Weiter" }).click();
+      await expect(page.getByRole("heading", { name: "Bestätigungscode" })).toBeVisible();
+
+      const challenge = await queryOne<{ id: string }>(
+        "select id from login_challenges where user_id = $1 and consumed_at is null",
+        [account.id],
+      );
+      expect(challenge).not.toBeNull();
+
+      for (let attempt = 1; attempt <= maxChallengeAttempts; attempt += 1) {
+        const response = await submitCode(page, String(attempt).padStart(6, "0"));
+        expect(response.status(), `attempt ${attempt}`).toBe(401);
+      }
+
+      expect(
+        await query("select id from login_challenges where id = $1", [challenge!.id]),
+      ).toHaveLength(0);
+      expect(
+        (await page.context().cookies()).find(
+          (entry) => entry.name === "elaman_login_challenge",
+        ),
+      ).toBeUndefined();
+
+      // --- Half two: those failures reach the account lockout.
+      const failures = await query<{ n: number }>(
+        "select count(*)::int as n from login_attempts where lower(email) = lower($1) and success = false",
+        [account.email],
+      );
+      expect(failures[0].n).toBe(maxChallengeAttempts);
+
+      // Five more, on a second challenge, crosses the threshold of ten.
+      await page.goto("/de/portal");
+      await field(page, "E-Mail-Adresse").fill(account.email);
+      await field(page, "Kennwort").fill(testPassword);
+      await page.getByRole("button", { name: "Weiter" }).click();
+
+      for (let attempt = 1; attempt <= maxChallengeAttempts; attempt += 1) {
+        await submitCode(page, String(attempt).padStart(6, "0"));
+      }
+
+      expect(
+        (
+          await query<{ n: number }>(
+            "select count(*)::int as n from login_attempts where lower(email) = lower($1) and success = false",
+            [account.email],
+          )
+        )[0].n,
+      ).toBeGreaterThanOrEqual(lockout.maxFailures);
+
+      // The correct password is refused now. Counting the second step's
+      // failures is the only reason this happens.
+      await page.goto("/de/portal");
+      await field(page, "E-Mail-Adresse").fill(account.email);
+      await field(page, "Kennwort").fill(testPassword);
+      await page.getByRole("button", { name: "Weiter" }).click();
+
+      await expect(page.getByText("Zu viele Versuche")).toBeVisible();
+
+      // And no session came out of any of it.
+      expect(
+        (await page.context().cookies()).find((entry) => entry.name === "elaman_session"),
+      ).toBeUndefined();
+    } finally {
+      await account.remove();
+    }
   });
 
   test("the portal is not offered to search engines", async ({ page }) => {

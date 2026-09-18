@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import { beginLogin } from "@/lib/auth/login";
 import { isValidPortalEmail } from "@/lib/auth/policy";
 import { requestContext } from "@/lib/auth/session";
+import { describeError } from "@/lib/http/log";
+import { checkRateLimit, clientKey } from "@/lib/http/rate-limit";
 import {
   isForbiddenOrigin,
   readJsonObject,
@@ -15,6 +17,20 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const maxRequestBytes = 4_000;
+
+/**
+ * Thirty attempts per address per five minutes.
+ *
+ * This is not about guessing — the account lockout covers that. It is about
+ * cost: every call here runs one scrypt hash, deliberately, whether the
+ * address exists or not, and that is 64 MB and half a second of work an
+ * unauthenticated caller can ask for. The lockout cannot bound it, because it
+ * counts per email and a caller who varies the address never reaches it.
+ *
+ * Thirty is far above a shared office address on a Monday morning and far
+ * below anything that would cost us a function.
+ */
+const rateLimit = { windowMs: 5 * 60 * 1000, max: 30 } as const;
 
 export type LoginApiResponse =
   | { ok: true; next: "code" }
@@ -41,6 +57,19 @@ function json(body: LoginApiResponse, status: number) {
 export async function POST(request: Request) {
   if (isForbiddenOrigin(request)) {
     return json({ ok: false, error: "bad_request" }, 403);
+  }
+
+  // Before the body is read and long before anything is hashed.
+  const budget = checkRateLimit(clientKey(request, "portal-login"), rateLimit);
+
+  if (budget.limited) {
+    return NextResponse.json({ ok: false, error: "locked" } satisfies LoginApiResponse, {
+      status: 429,
+      headers: {
+        "Cache-Control": "no-store",
+        "Retry-After": String(budget.retryAfterSeconds),
+      },
+    });
   }
 
   const body = await readJsonObject(request, maxRequestBytes);
@@ -74,9 +103,7 @@ export async function POST(request: Request) {
 
     return json({ ok: false, error: "rejected" }, 401);
   } catch (error) {
-    console.error("Portal sign-in failed unexpectedly.", {
-      name: error instanceof Error ? error.name : "UnknownError",
-    });
+    console.error("Portal sign-in failed unexpectedly.", describeError(error));
 
     return json({ ok: false, error: "bad_request" }, 500);
   }

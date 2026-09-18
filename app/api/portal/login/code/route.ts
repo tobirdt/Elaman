@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 
 import { completeLogin } from "@/lib/auth/login";
 import { requestContext } from "@/lib/auth/session";
+import { describeError } from "@/lib/http/log";
+import { checkRateLimit, clientKey } from "@/lib/http/rate-limit";
 import { isForbiddenOrigin, readJsonObject, readSecretField } from "@/lib/http/request";
 
 export const runtime = "nodejs";
@@ -9,9 +11,19 @@ export const dynamic = "force-dynamic";
 
 const maxRequestBytes = 1_000;
 
+/**
+ * The cheapest of the three endpoints to call and the most valuable to guess
+ * at, so it gets the tightest budget. Sixty codes in five minutes is far more
+ * than a person mistyping and far less than a search of the keyspace.
+ */
+const rateLimit = { windowMs: 5 * 60 * 1000, max: 60 } as const;
+
 export type LoginCodeApiResponse =
   | { ok: true; role: "admin" | "customer" }
-  | { ok: false; error: "rejected" | "code_used" | "no_challenge" | "bad_request" };
+  | {
+      ok: false;
+      error: "rejected" | "code_used" | "locked" | "no_challenge" | "bad_request";
+    };
 
 function json(body: LoginCodeApiResponse, status: number) {
   return NextResponse.json(body, {
@@ -31,6 +43,21 @@ function json(body: LoginCodeApiResponse, status: number) {
 export async function POST(request: Request) {
   if (isForbiddenOrigin(request)) {
     return json({ ok: false, error: "bad_request" }, 403);
+  }
+
+  const budget = checkRateLimit(clientKey(request, "portal-login-code"), rateLimit);
+
+  if (budget.limited) {
+    return NextResponse.json(
+      { ok: false, error: "locked" } satisfies LoginCodeApiResponse,
+      {
+        status: 429,
+        headers: {
+          "Cache-Control": "no-store",
+          "Retry-After": String(budget.retryAfterSeconds),
+        },
+      },
+    );
   }
 
   const body = await readJsonObject(request, maxRequestBytes);
@@ -57,11 +84,13 @@ export async function POST(request: Request) {
       return json({ ok: false, error: "code_used" }, 401);
     }
 
+    if (result.status === "locked") {
+      return json({ ok: false, error: "locked" }, 429);
+    }
+
     return json({ ok: false, error: "rejected" }, 401);
   } catch (error) {
-    console.error("Portal code check failed unexpectedly.", {
-      name: error instanceof Error ? error.name : "UnknownError",
-    });
+    console.error("Portal code check failed unexpectedly.", describeError(error));
 
     return json({ ok: false, error: "bad_request" }, 500);
   }
